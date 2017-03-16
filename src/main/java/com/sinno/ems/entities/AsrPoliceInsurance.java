@@ -16,7 +16,7 @@ import java.util.Date;
 public class AsrPoliceInsurance implements Serializable {
     private long asrPoliceInsuranceId;
     @NotNull
-    private Vehicule vehicle;
+    private Vehicule asrPoliceInsurancevehicle;
     @Size(max = 30)
     @NotNull
     private String asrPoliceInsuranceCode;
@@ -51,12 +51,12 @@ public class AsrPoliceInsurance implements Serializable {
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "asr_policeinsuranceid", nullable = false)
-    public Vehicule getVehicle() {
-        return vehicle;
+    public Vehicule getAsrPoliceInsurancevehicle() {
+        return asrPoliceInsurancevehicle;
     }
 
-    public void setVehicle(Vehicule vehicle) {
-        this.vehicle = vehicle;
+    public void setAsrPoliceInsurancevehicle(Vehicule asrPoliceInsurancevehicle) {
+        this.asrPoliceInsurancevehicle = asrPoliceInsurancevehicle;
     }
     @Column(name = "asr_policeinsurancecode", nullable = false, length = 30)
 

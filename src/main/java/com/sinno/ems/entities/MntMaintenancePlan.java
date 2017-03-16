@@ -1,44 +1,36 @@
 package com.sinno.ems.entities;
 
+import com.sinno.ems.dto.Acte;
+import com.sinno.ems.dto.Vehicule;
+
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 /**
  * Created by bouzi on 3/15/2017.
  */
 @Entity
-@Table(name = "mnt_MaintenancePlan", uniqueConstraints = @UniqueConstraint(columnNames = {"mnt_maintenanceplancode","mnt_maintenanceplanvehicleid"}))
+@Table(name = "mnt_maintenanceplan")
 public class MntMaintenancePlan implements java.io.Serializable{
     private long mntMaintenancePlanId;
     @NotNull
-    private Vehicle Vehicle;
+    private Vehicule Vehicle;
     @Size(max = 30)
     @NotNull
     private String mntMaintenancePlanCode;
     @Size(max = 255)
     private String mntDescription;
-    //acte
+    private Set<Acte> mntMaintenancePlanActes;
 
     public MntMaintenancePlan(){
 
     }
-    public MntMaintenancePlan(long mntMaintenancePlanId,Vehicle Vehicle,String mntMaintenancePlanCode){
-        this.mntMaintenancePlanId=mntMaintenancePlanId;
-        this.Vehicle=Vehicle;
-        this.mntMaintenancePlanCode=mntMaintenancePlanCode;
 
-    }
-    public MntMaintenancePlan(long mntMaintenancePlanId,Vehicle Vehicle,String mntMaintenancePlanCode,String mntDescription){
-        this.mntMaintenancePlanId=mntMaintenancePlanId;
-        this.Vehicle=Vehicle;
-        this.mntMaintenancePlanCode=mntMaintenancePlanCode;
-        this.mntDescription=mntDescription;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -52,7 +44,7 @@ public class MntMaintenancePlan implements java.io.Serializable{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mnt_maintenanceplanvehicleid", nullable = false)
 
-    public com.sinno.ems.entities.Vehicle getVehicle() {
+    public Vehicule getVehicle() {
         return Vehicle;
     }
 
@@ -60,7 +52,7 @@ public class MntMaintenancePlan implements java.io.Serializable{
         this.mntMaintenancePlanId = mntMaintenancePlanId;
     }
 
-    public void setVehicle(com.sinno.ems.entities.Vehicle vehicle) {
+    public void setVehicle(Vehicule vehicle) {
         Vehicle = vehicle;
     }
 
