@@ -23,10 +23,10 @@ public class ColorMapper {
         map.put("creationDate", "prmColorCreationDate");
 
     }
-
     public static Map<String, String> getMap() {
         return map;
     }
+
 
     public static String getField(String key) {
         return map.get(key);
@@ -109,4 +109,5 @@ public class ColorMapper {
         }
         return colors;
     }
+
 }
