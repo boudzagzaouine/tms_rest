@@ -19,7 +19,7 @@ import java.util.Set;
 public class MntMaintenancePlan implements java.io.Serializable{
     private long mntMaintenancePlanId;
     @NotNull
-    private Vehicule Vehicle;
+    private PrmVehicle vehicle;
     @Size(max = 30)
     @NotNull
     private String mntMaintenancePlanCode;
@@ -41,20 +41,24 @@ public class MntMaintenancePlan implements java.io.Serializable{
     public long getMntMaintenancePlanId() {
         return mntMaintenancePlanId;
     }
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mnt_maintenanceplanvehicleid", nullable = false)
-
-    public Vehicule getVehicle() {
-        return Vehicle;
-    }
 
     public void setMntMaintenancePlanId(long mntMaintenancePlanId) {
         this.mntMaintenancePlanId = mntMaintenancePlanId;
     }
 
-    public void setVehicle(Vehicule vehicle) {
-        Vehicle = vehicle;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "mnt_maintenanceplanvehicleid", nullable = false)
+    public PrmVehicle getVehicle() {
+        return vehicle;
     }
+
+    public void setVehicle(PrmVehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
+
+
 
     public void setMntMaintenancePlanCode(String mntMaintenancePlanCode) {
         this.mntMaintenancePlanCode = mntMaintenancePlanCode;

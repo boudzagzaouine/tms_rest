@@ -11,21 +11,19 @@ import java.util.Set;
 /**
  * Created by bouzi on 3/15/2017.
  */
-public class PrmVehiculeStatus implements Serializable {
+public class PrmVehicleStatus implements Serializable {
     private long prmVehiculeStatusId;
     @Size(max = 30)
     @NotNull
     private String prmVehiculeStatusCode;
     @Size(max = 30)
-    @NotNull
     private String prmVehiculeStatusActivity;
     @Size(max = 255)
-    @NotNull
     private String prmVehiculeStatusDescritpion;
     @NotNull
     private Set<Vehicule> prmVehiculeStatusVehicules;
 
-    public PrmVehiculeStatus() {
+    public PrmVehicleStatus() {
 
     }
 

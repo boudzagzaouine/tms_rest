@@ -275,3 +275,5 @@ target/generated-sources/java/com/sinno/ems/entities/QPrmColor.java
 target/maven-archiver/pom.properties
 target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
 target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+.idea/uiDesigner.xml
+tms-rest/
