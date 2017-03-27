@@ -20,8 +20,8 @@ public class PrmBadge implements java.io.Serializable{
     private String prmBadgeCode;
     private String prmBadgeLibelle;
     private String prmBadgeDescription;
-    private Set<Vehicule> pvehicules;
-    private Set<Driver> drivers;
+    private Set<PrmVehicle> pvehicules;
+    private Set<PrmDriver> drivers;
 
 
 
@@ -62,24 +62,22 @@ public class PrmBadge implements java.io.Serializable{
     }
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="prm_vehiculebadgeid",nullable=false)
-    public Set<Vehicule> getPvehicules() {
+    public Set<PrmVehicle> getPvehicules() {
         return pvehicules;
     }
-    public void setPvehicules(Set<Vehicule> pvehicules) {
+
+    public void setPvehicules(Set<PrmVehicle> pvehicules) {
         this.pvehicules = pvehicules;
     }
     @Column(name="prm_driverbadgeid",nullable=false)
-    public Set<Driver> getDrivers() {
+
+    public Set<PrmDriver> getDrivers() {
         return drivers;
     }
-    public void setDrivers(Set<Driver> drivers) {
+
+    public void setDrivers(Set<PrmDriver> drivers) {
         this.drivers = drivers;
     }
-
-
-
-
-
 
 
 }

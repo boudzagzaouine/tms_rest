@@ -55,7 +55,9 @@ public class DriverMapper {
         prmDriver.setPrmDriverBirthDay(driver.getBirthDay());
         prmDriver.setPrmDriverCellPhone(driver.getCellPhone());
         if (!lazy) {
-
+            prmDriver.setPincidents(IncidentMapper.toEntities(driver.getIncidents(),true));
+            prmDriver.setProads(RoadMapper.toEntities(driver.getRoads(),true));
+            prmDriver.setPbadges(BadgeMapper.toEntities(driver.getBadges(),true));
         }
         return prmDriver;
     }
@@ -74,7 +76,9 @@ public class DriverMapper {
         driver.setBirthDay(prmDriver.getPrmDriverBirthDay());
         driver.setCellPhone(prmDriver.getPrmDriverCellPhone());
         if (!lazy) {
-            driver.setIncidents(IncidentMapper.toDtos(prmDriver.getPincidents(),lazy:true));
+            driver.setIncidents(IncidentMapper.toDtos(prmDriver.getPincidents(),true));
+            driver.setRoads(RoadMapper.toDtos(prmDriver.getProads(),true));
+            driver.setBadges(BadgeMapper.toDtos(prmDriver.getPbadges(),true));
         }
         return driver;
     }

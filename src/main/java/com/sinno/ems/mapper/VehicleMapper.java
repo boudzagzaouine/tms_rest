@@ -1,5 +1,6 @@
 package com.sinno.ems.mapper;
 
+import com.sinno.ems.dto.MaintenancePlan;
 import com.sinno.ems.dto.Vehicule;
 import com.sinno.ems.entities.PrmVehicle;
 
@@ -51,11 +52,12 @@ public class VehicleMapper {
         prmVehicle.setPrmVehicleDateOfRegistration(vehicule.getDateOfRegistration());
         prmVehicle.setPrmVehicleBrand(vehicule.getBrand());
         prmVehicle.setPrmVehicleModel(vehicule.getModel());
-        prmVehicle.setPrmVehicleStatus(vehicule.getStatus());
-        prmVehicle.setPrmVehicleType(vehicule.getType());
+
         if (!lazy) {
-           //
-            //
+
+            prmVehicle.setPrmVehicleBadges((BadgeMapper.toEntities(vehicule.getBadges(),true)));
+            prmVehicle.setPrmVehiclePoliceAssurance(PoliceInsuranceMapper.toEntity(vehicule.getPoliceAssurance(),true));
+            prmVehicle.setPrmVehicleMaintenancePlan(MaintenancePlanMapper.toEntity(vehicule.getMaintenancePlan(),true));
             //
 //
         }
@@ -75,12 +77,11 @@ public class VehicleMapper {
         vehicule.setDateOfRegistration(prmVehicle.getPrmVehicleDateOfRegistration());
         vehicule.setBrand(prmVehicle.getPrmVehicleBrand());
         vehicule.setModel(prmVehicle.getPrmVehicleModel());
-        vehicule.setStatus(prmVehicle.getPrmVehicleStatus());
-        prmVehicle.setPrmVehicleType(prmVehicle.getPrmVehicleType());
+
         if (!lazy) {
-            //
-            //
-            //
+           vehicule.setBadges(BadgeMapper.toDtos(prmVehicle.getPrmVehicleBadges(),true));
+           vehicule.setPoliceAssurance(PoliceInsuranceMapper.toDto(prmVehicle.getPrmVehiclePoliceAssurance(),true));
+           vehicule.setMaintenancePlan(MaintenancePlanMapper.toDto(prmVehicle.getPrmVehicleMaintenancePlan(),true));
 //
         }
         return  vehicule;

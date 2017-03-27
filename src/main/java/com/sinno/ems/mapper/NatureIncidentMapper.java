@@ -39,7 +39,7 @@ public class NatureIncidentMapper {
         incNatureIncident.setIncNatureIncidentCode(natureIncident.getCode() !=null ? natureIncident.getCode().toUpperCase(): null);
         incNatureIncident.setIncNatureIncidentDescription(natureIncident.getDescription());
         if (!lazy) {
-           //
+           incNatureIncident.setIncidents(IncidentMapper.toEntities(natureIncident.getIncidents(),true));
 //
         }
         return incNatureIncident;
@@ -53,7 +53,7 @@ public class NatureIncidentMapper {
         natureIncident.setCode(incNatureIncident.getIncNatureIncidentCode());
         natureIncident.setDescription(incNatureIncident.getIncNatureIncidentDescription());
         if (!lazy) {
-            //
+            natureIncident.setIncidents(IncidentMapper.toDtos(incNatureIncident.getIncidents(),true));
 //
         }
         return natureIncident;

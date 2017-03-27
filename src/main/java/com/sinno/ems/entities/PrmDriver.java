@@ -27,9 +27,9 @@ public class PrmDriver implements java.io.Serializable{
     private String prmDriverFirstName;
     private Date prmDriverBirthDay;
     private String prmDriverCellPhone;
-    private Set<Incident> pincidents;
-    private Set<Road> proads;
-    private Set<Badge> pbadges;
+    private Set<PrmIncident> pincidents;
+    private Set<PrmRoad> proads;
+    private Set<PrmBadge> pbadges;
     private Adresse adresse;
     @Size(max = 30)
     @NotNull
@@ -112,29 +112,29 @@ public class PrmDriver implements java.io.Serializable{
     }
     @Column(name="prm_insidentDriver",nullable=false)
 
-    public Set<Incident> getPincidents() {
+    public Set<PrmIncident> getPincidents() {
         return pincidents;
     }
 
-    public void setPincidents(Set<Incident> pincidents) {
+    public void setPincidents(Set<PrmIncident> pincidents) {
         this.pincidents = pincidents;
     }
     @Column(name="prm_roadDriver",nullable=false)
 
-    public Set<Road> getProads() {
+    public Set<PrmRoad> getProads() {
         return proads;
     }
 
-    public void setProads(Set<Road> proads) {
+    public void setProads(Set<PrmRoad> proads) {
         this.proads = proads;
     }
     @Column(name="prm_badgeDriver",nullable=false)
 
-    public Set<Badge> getPbadges() {
+    public Set<PrmBadge> getPbadges() {
         return pbadges;
     }
 
-    public void setPbadges(Set<Badge> pbadges) {
+    public void setPbadges(Set<PrmBadge> pbadges) {
         this.pbadges = pbadges;
     }
     @Column(name="prm_adresseDriver",nullable=false)
@@ -145,5 +145,13 @@ public class PrmDriver implements java.io.Serializable{
 
     public void setAdresse(Adresse adresse) {
         this.adresse = adresse;
+    }
+
+    public DriverSituation getDriverSituation() {
+        return driverSituation;
+    }
+
+    public void setDriverSituation(DriverSituation driverSituation) {
+        this.driverSituation = driverSituation;
     }
 }

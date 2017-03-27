@@ -16,7 +16,7 @@ public class IncNatureIncident implements java.io.Serializable  {
 
     private long incNatureIncidentId;
     @NotNull
-    private Set<Incident> incidents;
+    private Set<PrmIncident> incidents;
     @Size(max = 30)
     @NotNull
     private String incNatureIncidentCode;
@@ -40,11 +40,11 @@ public class IncNatureIncident implements java.io.Serializable  {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "inc_incidentid", nullable = false)
 
-    public Set<Incident> getIncidents() {
+    public Set<PrmIncident> getIncidents() {
         return incidents;
     }
 
-    public void setIncidents(Set<Incident> incidents) {
+    public void setIncidents(Set<PrmIncident> incidents) {
         this.incidents = incidents;
     }
     @Column(name = "inc_natureincidentcode", nullable = false, length = 30)
@@ -63,5 +63,6 @@ public class IncNatureIncident implements java.io.Serializable  {
     public void setIncNatureIncidentDescription(String incNatureIncidentDescription) {
         this.incNatureIncidentDescription = incNatureIncidentDescription;
     }
+
 
 }

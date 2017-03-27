@@ -44,7 +44,7 @@ public class VehicleTypeMapper {
         prmVehicleType.setPrmVehicleTypeCode(vehiculeType.getCode() != null ? vehiculeType.getCode().toUpperCase():null );
         prmVehicleType.setPrmVehicleTypeType(vehiculeType.getType());
         if (!lazy) {
-           //
+           prmVehicleType.setPrmVehicleTypeVehicules(VehicleMapper.toEntities(vehiculeType.getVehicules(),true));
 //
         }
         return prmVehicleType;
@@ -59,7 +59,7 @@ public class VehicleTypeMapper {
         vehiculeType.setCode(prmVehicleType.getPrmVehicleTypeCode());
         vehiculeType.setType(prmVehicleType.getPrmVehicleTypeType());
         if (!lazy) {
-            //
+            vehiculeType.setVehicules(VehicleMapper.toDtos(prmVehicleType.getPrmVehicleTypeVehicules(),true));
 //
         }
         return vehiculeType;

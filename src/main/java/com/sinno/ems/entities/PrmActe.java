@@ -104,6 +104,21 @@ public class PrmActe implements java.io.Serializable {
         this.prmActedateLastAct = prmActedateLastAct;
     }
 
+    public String getPrmActeDuration() {
+        return prmActeDuration;
+    }
+
+    public void setPrmActeDuration(String prmActeDuration) {
+        this.prmActeDuration = prmActeDuration;
+    }
+
+    public Date getPrmActedateLastAct() {
+        return prmActedateLastAct;
+    }
+
+    public void setPrmActedateLastAct(Date prmActedateLastAct) {
+        this.prmActedateLastAct = prmActedateLastAct;
+    }
 }
 
 

@@ -51,4 +51,11 @@ public class PrmDriverSituation implements java.io.Serializable {
         this.prmDriverSituationDescription = prmDriverSituationDescription;
     }
 
+    public Set getPrmDrivers() {
+        return prmDrivers;
+    }
+
+    public void setPrmDrivers(Set prmDrivers) {
+        this.prmDrivers = prmDrivers;
+    }
 }

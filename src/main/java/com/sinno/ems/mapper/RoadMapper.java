@@ -50,12 +50,13 @@ public class RoadMapper {
         prmRoad.setPrmRoadDuration(road.getDuration());
         prmRoad.setPrmRoadCost(road.getCost());
         prmRoad.setPrmRoadDistance(road.getDistance());
-        prmRoad.setPrmRoadIncident(road.getIncidents());
-        prmRoad.setPrmRoadPrincialDriver(road.getPrincipalDriver());
-        prmRoad.setPrmRoadSuppleantDriver(road.getSuppleantDriver());
+
         if (!lazy) {
+          prmRoad.setPrmRoadIncident(IncidentMapper.toEntities(road.getIncidents(),true));
+          prmRoad.setPrmRoadPrincialDriver(DriverMapper.toEntity(road.getPrincipalDriver(),true));
+          prmRoad.setPrmRoadSuppleantDriver(DriverMapper.toEntity(road.getPrincipalDriver(),true));
           //
-            //
+          prmRoad.setPrmRoadVehicle(VehicleMapper.toEntity(road.getVehicule(),true));
         }
         return prmRoad;
     }
@@ -69,12 +70,13 @@ public class RoadMapper {
         road.setDuration(prmRoad.getPrmRoadDuration());
         road.setCost(prmRoad.getPrmRoadCost());
         road.setDistance(prmRoad.getPrmRoadDistance());
-        road.setIncidents(prmRoad.getPrmRoadIncident());
-        road.setPrincipalDriver(prmRoad.getPrmRoadPrincialDriver());
-        road.setSuppleantDriver(prmRoad.getPrmRoadSuppleantDriver());
+
         if (!lazy) {
+            road.setIncidents(IncidentMapper.toDtos(prmRoad.getPrmRoadIncident(),true));
+            road.setPrincipalDriver(DriverMapper.toDto(prmRoad.getPrmRoadPrincialDriver(),true));
+            road.setSuppleantDriver(DriverMapper.toDto(prmRoad.getPrmRoadPrincialDriver(),true));
             //
-            //
+            road.setVehicule(VehicleMapper.toDto(prmRoad.getPrmRoadVehicle(),true));
         }
         return road;
     }

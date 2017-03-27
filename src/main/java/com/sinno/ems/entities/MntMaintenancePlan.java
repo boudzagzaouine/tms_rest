@@ -25,7 +25,7 @@ public class MntMaintenancePlan implements java.io.Serializable{
     private String mntMaintenancePlanCode;
     @Size(max = 255)
     private String mntDescription;
-    private Set<Acte> mntMaintenancePlanActes;
+    private Set<PrmActe> mntMaintenancePlanActes;
 
     public MntMaintenancePlan(){
 
@@ -77,4 +77,14 @@ public class MntMaintenancePlan implements java.io.Serializable{
     public String getMntDescription() {
         return mntDescription;
     }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "mnt_maintenanceplanvehicleid", nullable = false)
+    public Set<PrmActe> getMntMaintenancePlanActes() {
+        return mntMaintenancePlanActes;
+    }
+
+    public void setMntMaintenancePlanActes(Set<PrmActe> mntMaintenancePlanActes) {
+        this.mntMaintenancePlanActes = mntMaintenancePlanActes;
+    }
+
 }

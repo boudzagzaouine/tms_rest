@@ -2,6 +2,7 @@ package com.sinno.ems.mapper;
 
 import com.sinno.ems.dto.Incident;
 import com.sinno.ems.entities.PrmIncident;
+import com.sinno.ems.entities.PrmRoad;
 
 import java.util.*;
 
@@ -45,7 +46,9 @@ public class IncidentMapper {
         prmIncident.setPrmIncidentTime(incident.getDateTime());
         prmIncident.setPrmIncidentDescription(incident.getDescription());
         if (!lazy) {
-
+            prmIncident.setPrmIncidentNature(NatureIncidentMapper.toEntity(incident.getNatureIncident(),true));
+            prmIncident.setPrmRoad(RoadMapper.toEntity(incident.getRoad() , true));
+            prmIncident.setPrmDriver(DriverMapper.toEntity(incident.getDriver() , true));
         }
         return prmIncident;
     }
@@ -60,7 +63,9 @@ public class IncidentMapper {
         incident.setDateTime(prmIncident.getPrmIncidentTime());
         incident.setDescription(prmIncident.getPrmIncidentDescription());
         if (!lazy) {
-
+            incident.setNatureIncident(NatureIncidentMapper.toDto(prmIncident.getPrmIncidentNature(),true));
+            incident.setRoad(RoadMapper.toDto( prmIncident.getPrmRoad(), true));
+            incident.setDriver(DriverMapper.toDto(prmIncident.getPrmDriver() , true));
         }
         return incident;
     }

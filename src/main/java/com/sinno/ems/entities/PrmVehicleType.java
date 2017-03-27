@@ -20,7 +20,7 @@ public class PrmVehicleType implements Serializable {
     @NotNull
     private String prmVehicleTypeType;
     @NotNull
-    private Set<Vehicule> prmVehicleTypeVehicules;
+    private Set<PrmVehicle> prmVehicleTypeVehicules;
 
     public PrmVehicleType() {
 
@@ -54,11 +54,12 @@ public class PrmVehicleType implements Serializable {
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_vehicletypevehicleid", nullable = false)
-    public Set<Vehicule> getPrmVehicleTypeVehicules() {
+    public Set<PrmVehicle> getPrmVehicleTypeVehicules() {
         return prmVehicleTypeVehicules;
     }
 
-    public void setPrmVehicleTypeVehicules(Set<Vehicule> prmVehicleTypeVehicules) {
+    public void setPrmVehicleTypeVehicules(Set<PrmVehicle> prmVehicleTypeVehicules) {
         this.prmVehicleTypeVehicules = prmVehicleTypeVehicules;
     }
+
 }

@@ -2,6 +2,7 @@ package com.sinno.ems.mapper;
 
 import com.sinno.ems.dto.MaintenancePlan;
 import com.sinno.ems.entities.MntMaintenancePlan;
+import com.sinno.ems.entities.PrmActe;
 import sun.applet.Main;
 
 import java.util.*;
@@ -43,6 +44,7 @@ public class MaintenancePlanMapper {
 
         if (!lazy) {
           mntMaintenancePlan.setVehicle(VehicleMapper.toEntity(maintenancePlan.getVehicule(),true));
+       mntMaintenancePlan.setMntMaintenancePlanActes(ActeMapper.toEntities(maintenancePlan.getActes(),true));
         }
         return mntMaintenancePlan;
     }
@@ -56,6 +58,11 @@ public class MaintenancePlanMapper {
         maintenancePlan.setId(mntMaintenancePlan.getMntMaintenancePlanId());
         maintenancePlan.setCode(mntMaintenancePlan.getMntMaintenancePlanCode());
         maintenancePlan.setDescription(mntMaintenancePlan.getMntDescription());
+    if (!lazy){
+        maintenancePlan.setVehicule(VehicleMapper.toDto(mntMaintenancePlan.getVehicle(),true));
+        maintenancePlan.setActes(ActeMapper.toDtos(mntMaintenancePlan.getMntMaintenancePlanActes(),true));
+    }
+
         return maintenancePlan;
     }
     public static List<MaintenancePlan> toDtos(List<MntMaintenancePlan>mntMaintenancePlans , boolean lazy){

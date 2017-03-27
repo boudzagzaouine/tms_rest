@@ -21,9 +21,9 @@ public class PrmIncident implements java.io.Serializable {
     private String prmIncidentCode;
     private Date prmIncidentTime;
     private String prmIncidentDescription;
-    private NatureIncident prmIncidentNature;
-    private Road prmRoad;
-    private Driver prmDriver;
+    private IncNatureIncident prmIncidentNature;
+    private PrmRoad prmRoad;
+    private PrmDriver prmDriver;
 
     public PrmIncident(){
 
@@ -69,5 +69,30 @@ public class PrmIncident implements java.io.Serializable {
     public void setPrmIncidentDescription(String prmIncidentDescription) {
         this.prmIncidentDescription = prmIncidentDescription;
     }
+
+    public IncNatureIncident getPrmIncidentNature() {
+        return prmIncidentNature;
+    }
+
+    public void setPrmIncidentNature(IncNatureIncident prmIncidentNature) {
+        this.prmIncidentNature = prmIncidentNature;
+    }
+
+    public PrmRoad getPrmRoad() {
+        return prmRoad;
+    }
+
+    public void setPrmRoad(PrmRoad prmRoad) {
+        this.prmRoad = prmRoad;
+    }
+
+    public PrmDriver getPrmDriver() {
+        return prmDriver;
+    }
+
+    public void setPrmDriver(PrmDriver prmDriver) {
+        this.prmDriver = prmDriver;
+    }
+
 
 }

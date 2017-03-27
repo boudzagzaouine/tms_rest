@@ -16,7 +16,7 @@ import java.util.Date;
 public class AsrPoliceInsurance implements Serializable {
     private long asrPoliceInsuranceId;
     @NotNull
-    private Vehicule asrPoliceInsurancevehicle;
+    private PrmVehicle vehicules;
     @Size(max = 30)
     @NotNull
     private String asrPoliceInsuranceCode;
@@ -49,15 +49,14 @@ public class AsrPoliceInsurance implements Serializable {
     public void setAsrPoliceInsuranceId(long asrPoliceInsuranceId) {
         this.asrPoliceInsuranceId = asrPoliceInsuranceId;
     }
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "asr_policeinsuranceid", nullable = false)
-    public Vehicule getAsrPoliceInsurancevehicle() {
-        return asrPoliceInsurancevehicle;
+
+    public void setVehicules(PrmVehicle vehicules) {
+        this.vehicules = vehicules;
     }
 
-    public void setAsrPoliceInsurancevehicle(Vehicule asrPoliceInsurancevehicle) {
-        this.asrPoliceInsurancevehicle = asrPoliceInsurancevehicle;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "asr_policeinsuranceid", nullable = false)
+
     @Column(name = "asr_policeinsurancecode", nullable = false, length = 30)
 
     public String getAsrPoliceInsuranceCode() {
@@ -115,4 +114,12 @@ public class AsrPoliceInsurance implements Serializable {
     public void setAsrPoliceInsuranceEndDate(Date asrPoliceInsuranceEndDate) {
         this.asrPoliceInsuranceEndDate = asrPoliceInsuranceEndDate;
     }
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "asr_policeinsurancevehicle")
+
+    public PrmVehicle getVehicules() {
+        return vehicules;
+    }
+
+
 }

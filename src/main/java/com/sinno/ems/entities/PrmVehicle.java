@@ -30,15 +30,15 @@ public class PrmVehicle implements Serializable {
     @Size(max = 255)
     private String prmVehicleModel;
     @NotNull
-    private VehiculeStatus prmVehicleStatus;
+    private PrmVehicleStatus prmVehicleStatus;
     @NotNull
-    private VehiculeType prmVehicleType;
+    private PrmVehicleType prmVehicleType;
     @NotNull
-    private Set<Badge> prmVehicleBadges;
+    private Set<PrmBadge> prmVehicleBadges;
     @NotNull
-    private PoliceAssurance prmVehiclePoliceAssurance;
+    private AsrPoliceInsurance prmVehiclePoliceAssurance;
     @NotNull
-    private MaintenancePlan prmVehicleMaintenancePlan;
+    private MntMaintenancePlan prmVehicleMaintenancePlan;
 
     public PrmVehicle() {
 
@@ -106,47 +106,49 @@ public class PrmVehicle implements Serializable {
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_vehiclevehiclestatusid", nullable = false)
-    public VehiculeStatus getPrmVehicleStatus() {
+    public PrmVehicleStatus getPrmVehicleStatus() {
         return prmVehicleStatus;
     }
 
-    public void setPrmVehicleStatus(VehiculeStatus prmVehicleStatus) {
+    public void setPrmVehicleStatus(PrmVehicleStatus prmVehicleStatus) {
         this.prmVehicleStatus = prmVehicleStatus;
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_vehiclevehicletypeid", nullable = false)
-    public VehiculeType getPrmVehicleType() {
+    public PrmVehicleType getPrmVehicleType() {
         return prmVehicleType;
     }
 
-    public void setPrmVehicleType(VehiculeType prmVehicleType) {
+    public void setPrmVehicleType(PrmVehicleType prmVehicleType) {
         this.prmVehicleType = prmVehicleType;
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_vehiclebadgeid", nullable = false)
-    public Set<Badge> getPrmVehicleBadges() {
+    public Set<PrmBadge> getPrmVehicleBadges() {
         return prmVehicleBadges;
     }
 
-    public void setPrmVehicleBadges(Set<Badge> prmVehicleBadges) {
+    public void setPrmVehicleBadges(Set<PrmBadge> prmVehicleBadges) {
         this.prmVehicleBadges = prmVehicleBadges;
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_vehiclepoliceassuranceid", nullable = false)
-    public PoliceAssurance getPrmVehiclePoliceAssurance() {
+    public AsrPoliceInsurance getPrmVehiclePoliceAssurance() {
         return prmVehiclePoliceAssurance;
     }
 
-    public void setPrmVehiclePoliceAssurance(PoliceAssurance prmVehiclePoliceAssurance) {
+    public void setPrmVehiclePoliceAssurance(AsrPoliceInsurance prmVehiclePoliceAssurance) {
         this.prmVehiclePoliceAssurance = prmVehiclePoliceAssurance;
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_vehiclemaintenanceplanid", nullable = false)
-    public MaintenancePlan getPrmVehicleMaintenancePlan() {
+    public MntMaintenancePlan getPrmVehicleMaintenancePlan() {
         return prmVehicleMaintenancePlan;
     }
 
-    public void setPrmVehicleMaintenancePlan(MaintenancePlan prmVehicleMaintenancePlan) {
+    public void setPrmVehicleMaintenancePlan(MntMaintenancePlan prmVehicleMaintenancePlan) {
         this.prmVehicleMaintenancePlan = prmVehicleMaintenancePlan;
     }
+
+
 }

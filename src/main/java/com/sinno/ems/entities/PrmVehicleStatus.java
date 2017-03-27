@@ -21,7 +21,7 @@ public class PrmVehicleStatus implements Serializable {
     @Size(max = 255)
     private String prmVehiculeStatusDescritpion;
     @NotNull
-    private Set<Vehicule> prmVehiculeStatusVehicules;
+    private Set<PrmVehicle> prmVehiculeStatusVehicules;
 
     public PrmVehicleStatus() {
 
@@ -64,11 +64,12 @@ public class PrmVehicleStatus implements Serializable {
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_vehiclestatusvehicleid", nullable = false)
-    public Set<Vehicule> getPrmVehiculeStatusVehicules() {
+    public Set<PrmVehicle> getPrmVehiculeStatusVehicules() {
         return prmVehiculeStatusVehicules;
     }
 
-    public void setPrmVehiculeStatusVehicules(Set<Vehicule> prmVehiculeStatusVehicules) {
+    public void setPrmVehiculeStatusVehicules(Set<PrmVehicle> prmVehiculeStatusVehicules) {
         this.prmVehiculeStatusVehicules = prmVehiculeStatusVehicules;
     }
+
 }

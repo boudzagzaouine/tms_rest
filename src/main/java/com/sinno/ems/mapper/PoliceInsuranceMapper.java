@@ -46,8 +46,7 @@ public class PoliceInsuranceMapper {
         asrPoliceInsurance.setAsrPoliceInsuranceType(policeAssurance.getType());
         asrPoliceInsurance.setAsrPoliceInsurancePhoneNumber(policeAssurance.getPhoneNumber());
         if (!lazy){
-        //asrPoliceInsurance.setAsrPoliceInsurancevehicle(VehicleMapper.toDto(asrPoliceInsurance.getPrmV));
-        //
+            asrPoliceInsurance.setVehicules(VehicleMapper.toEntity(policeAssurance.getVehicule(),true));
         }
         return asrPoliceInsurance;
     }
@@ -64,7 +63,7 @@ public class PoliceInsuranceMapper {
         policeAssurance.setType(asrPoliceInsurance.getAsrPoliceInsuranceType());
         policeAssurance.setPhoneNumber(asrPoliceInsurance.getAsrPoliceInsurancePhoneNumber());
         if (!lazy){
-            //
+            policeAssurance.setVehicule(VehicleMapper.toDto(asrPoliceInsurance.getVehicules(),true));
         }
     return policeAssurance;
     }

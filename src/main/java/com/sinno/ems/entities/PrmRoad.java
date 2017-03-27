@@ -14,16 +14,7 @@ import java.util.Set;
 
 /**
  * Created by bouzi on 3/15/2017.
- * private long id;
- private String code;
- private BigDecimal duration;
- private BigDecimal cost;
- private BigDecimal distance;
- private Set<Incident> incidents;
- private Driver PrincipalDriver;
- private Driver suppleantDriver;
- private Set<Delivery> deliveries;
- private Vehicule vehicule;
+ *
  */
 public class PrmRoad implements Serializable {
 
@@ -41,15 +32,15 @@ public class PrmRoad implements Serializable {
     @Size(max = 30)
     private BigDecimal prmRoadDistance;
     @Size(max = 30)
-    private Set<Incident>prmRoadIncident;
+    private Set<PrmIncident>prmRoadIncident;
     @NotNull
-    private Driver prmRoadPrincialDriver;
+    private PrmDriver prmRoadPrincialDriver;
     @NotNull
-    private Driver prmRoadSuppleantDriver;
+    private PrmDriver prmRoadSuppleantDriver;
     @NotNull
     private Set<Delivery> prmRoadDeliveries;
     @NotNull
-    private Vehicule prmRoadVehicle;
+    private PrmVehicle prmRoadVehicle;
 
     public PrmRoad() {
 
@@ -100,29 +91,29 @@ public class PrmRoad implements Serializable {
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_roadincidentid", nullable = false)
-    public Set<Incident> getPrmRoadIncident() {
+    public Set<PrmIncident> getPrmRoadIncident() {
         return prmRoadIncident;
     }
 
-    public void setPrmRoadIncident(Set<Incident> prmRoadIncident) {
+    public void setPrmRoadIncident(Set<PrmIncident> prmRoadIncident) {
         this.prmRoadIncident = prmRoadIncident;
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_roaddriverid", nullable = false)
-    public Driver getPrmRoadPrincialDriver() {
+    public PrmDriver getPrmRoadPrincialDriver() {
         return prmRoadPrincialDriver;
     }
 
-    public void setPrmRoadPrincialDriver(Driver prmRoadPrincialDriver) {
+    public void setPrmRoadPrincialDriver(PrmDriver prmRoadPrincialDriver) {
         this.prmRoadPrincialDriver = prmRoadPrincialDriver;
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_roaddriverid", nullable = false)
-    public Driver getPrmRoadSuppleantDriver() {
+    public PrmDriver getPrmRoadSuppleantDriver() {
         return prmRoadSuppleantDriver;
     }
 
-    public void setPrmRoadSuppleantDriver(Driver prmRoadSuppleantDriver) {
+    public void setPrmRoadSuppleantDriver(PrmDriver prmRoadSuppleantDriver) {
         this.prmRoadSuppleantDriver = prmRoadSuppleantDriver;
     }
     @ManyToOne(fetch = FetchType.LAZY)
@@ -136,11 +127,14 @@ public class PrmRoad implements Serializable {
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_roadvehicleid", nullable = false)
-    public Vehicule getPrmRoadVehicle() {
+
+    public PrmVehicle getPrmRoadVehicle() {
         return prmRoadVehicle;
     }
 
-    public void setPrmRoadVehicle(Vehicule prmRoadVehicle) {
+    public void setPrmRoadVehicle(PrmVehicle prmRoadVehicle) {
         this.prmRoadVehicle = prmRoadVehicle;
     }
+
+
 }

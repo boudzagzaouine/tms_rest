@@ -72,6 +72,7 @@ public class Incident implements Serializable {
         this.driver = driver;
     }
 
+
     @Override
     public boolean equals(Object object) {
         boolean result = false;
