@@ -26,6 +26,8 @@ public class ColorServiceImpl implements ColorService {
     private final static Logger LOGGER = LoggerFactory
             .getLogger(ColorService.class);
 
+
+
     @Override
     public Color save(Color color) {
         LOGGER.info("save Color");

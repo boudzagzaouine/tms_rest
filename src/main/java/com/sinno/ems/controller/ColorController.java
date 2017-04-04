@@ -23,7 +23,7 @@ public class ColorController {
     @Autowired
     private ColorService colorService;
 
-    @PreAuthorize("hasAnyRole('COLOR_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('COLOR_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
     public List<Color> getColors() {
