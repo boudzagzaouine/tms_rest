@@ -72,7 +72,7 @@ public class NatureIncidentController {
         return natureIncidentService.findById(id);
     }
 
-    @PreAuthorize("hasAnyRole('COLOR_VIEW')")
+    @PreAuthorize("hasAnyRole('NATUREINCIDENT_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
     public List<NatureIncident> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
