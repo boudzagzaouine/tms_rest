@@ -1,7 +1,5 @@
 package com.sinno.ems.entities;
 
-import com.sinno.ems.dto.*;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -39,6 +37,15 @@ public class PrmVehicle implements Serializable {
     private AsrPoliceInsurance prmVehiclePoliceAssurance;
     @NotNull
     private MntMaintenancePlan prmVehicleMaintenancePlan;
+    @Size(max = 30)
+    @NotNull
+    private String prmVehicleMatricule;
+    private Date prmVehicleDateCreation;
+    private Date prmVehicleDateUpDate;
+    private UsrUser prmVehicleCreationUser;
+    private UsrUser prmVehicleUpDateUser;
+
+
 
     public PrmVehicle() {
 
@@ -149,6 +156,48 @@ public class PrmVehicle implements Serializable {
     public void setPrmVehicleMaintenancePlan(MntMaintenancePlan prmVehicleMaintenancePlan) {
         this.prmVehicleMaintenancePlan = prmVehicleMaintenancePlan;
     }
+    @Column(name = "prm_vehiclematricule")
+    public String getPrmVehicleMatricule() {
+        return prmVehicleMatricule;
+    }
 
+    public void setPrmVehicleMatricule(String prmVehicleMatricule) {
+        this.prmVehicleMatricule = prmVehicleMatricule;
+    }
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "prm_vehicledatecreation")
+    public Date getPrmVehicleDateCreation() {
+        return prmVehicleDateCreation;
+    }
 
+    public void setPrmVehicleDateCreation(Date prmVehicleDateCreation) {
+        this.prmVehicleDateCreation = prmVehicleDateCreation;
+    }
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "prm_vehicledateupdate")
+    public Date getPrmVehicleDateUpDate() {
+        return prmVehicleDateUpDate;
+    }
+
+    public void setPrmVehicleDateUpDate(Date prmVehicleDateUpDate) {
+        this.prmVehicleDateUpDate = prmVehicleDateUpDate;
+    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "prm_vehiclecreationuser")
+    public UsrUser getPrmVehicleCreationUser() {
+        return prmVehicleCreationUser;
+    }
+
+    public void setPrmVehicleCreationUser(UsrUser prmVehicleCreationUser) {
+        this.prmVehicleCreationUser = prmVehicleCreationUser;
+    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "prm_vehicleupdateuser")
+    public UsrUser getPrmVehicleUpDateUser() {
+        return prmVehicleUpDateUser;
+    }
+
+    public void setPrmVehicleUpDateUser(UsrUser prmVehicleUpDateUser) {
+        this.prmVehicleUpDateUser = prmVehicleUpDateUser;
+    }
 }

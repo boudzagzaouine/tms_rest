@@ -2,6 +2,7 @@ package com.sinno.ems.dto;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -22,6 +23,14 @@ public class Driver implements Serializable {
     private Set<Badge> badges;
     private Adresse adresse;
     private DriverSituation driverSituation;
+
+    private Date dateCreation;
+    private Date dateUpDate;
+    private User creationUser;
+    private User upDateUser;
+    private List<DriverBadge>idBadge;
+    private List<DriverBadge>idDriver;
+
 
     public DriverSituation getDriverSituation() {
         return driverSituation;
@@ -126,6 +135,55 @@ public class Driver implements Serializable {
     public void setAdresse(Adresse adresse) {
         this.adresse = adresse;
     }
+
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public Date getDateUpDate() {
+        return dateUpDate;
+    }
+
+    public void setDateUpDate(Date dateUpDate) {
+        this.dateUpDate = dateUpDate;
+    }
+
+    public User getCreationUser() {
+        return creationUser;
+    }
+
+    public void setCreationUser(User creationUser) {
+        this.creationUser = creationUser;
+    }
+
+    public User getUpDateUser() {
+        return upDateUser;
+    }
+
+    public void setUpDateUser(User upDateUser) {
+        this.upDateUser = upDateUser;
+    }
+
+    public List<DriverBadge> getIdBadge() {
+        return idBadge;
+    }
+
+    public void setIdBadge(List<DriverBadge> idBadge) {
+        this.idBadge = idBadge;
+    }
+
+    public List<DriverBadge> getIdDriver() {
+        return idDriver;
+    }
+
+    public void setIdDriver(List<DriverBadge> idDriver) {
+        this.idDriver = idDriver;
+    }
+
     @Override
     public boolean equals(Object object) {
         boolean result = false;

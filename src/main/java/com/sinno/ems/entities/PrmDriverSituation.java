@@ -15,13 +15,13 @@ public class PrmDriverSituation implements java.io.Serializable {
     @NotNull
     private String prmDriverSituationCode;
     private String prmDriverSituationDescription;
-    private Set prmDrivers;
+    private Set<PrmDriver> prmDrivers;
     public PrmDriverSituation(){
 
     }
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_prm_color", allocationSize = 1)
+    @SequenceGenerator(name = "seq")
     @Column(name="prm_driverid",unique = true, nullable = false, precision = 10, scale = 0)
 
     public long getPrmDriverId() {
@@ -50,12 +50,13 @@ public class PrmDriverSituation implements java.io.Serializable {
     public void setPrmDriverSituationDescription(String prmDriverSituationDescription) {
         this.prmDriverSituationDescription = prmDriverSituationDescription;
     }
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "")
 
-    public Set getPrmDrivers() {
+    public Set<PrmDriver> getPrmDrivers() {
         return prmDrivers;
     }
 
-    public void setPrmDrivers(Set prmDrivers) {
+    public void setPrmDrivers(Set<PrmDriver> prmDrivers) {
         this.prmDrivers = prmDrivers;
     }
 }

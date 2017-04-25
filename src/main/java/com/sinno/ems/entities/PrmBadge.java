@@ -27,7 +27,7 @@ public class PrmBadge implements java.io.Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_prm_badge", allocationSize = 1)
+    @SequenceGenerator(name = "seq")
 
     @Column(name = "prm_badgeid", unique = true, nullable = false, precision = 10, scale = 0)
 
@@ -60,7 +60,7 @@ public class PrmBadge implements java.io.Serializable{
     public void setPrmBadgeLibelle(String prmBadgeLibelle) {
         this.prmBadgeLibelle = prmBadgeLibelle;
     }
-    @Temporal(TemporalType.TIMESTAMP)
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "")
     @Column(name="prm_vehiculebadgeid",nullable=false)
     public Set<PrmVehicle> getPvehicules() {
         return pvehicules;
@@ -69,6 +69,7 @@ public class PrmBadge implements java.io.Serializable{
     public void setPvehicules(Set<PrmVehicle> pvehicules) {
         this.pvehicules = pvehicules;
     }
+
     @Column(name="prm_driverbadgeid",nullable=false)
 
     public Set<PrmDriver> getDrivers() {

@@ -28,7 +28,7 @@ public class IncNatureIncident implements java.io.Serializable  {
     }
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_inc_natureincident", allocationSize = 1)
+    @SequenceGenerator(name = "seq")
     @Column(name = "inc_natureincidentid", unique = true, nullable = false, precision = 10, scale = 0)
     public long getIncNatureIncidentId() {
         return incNatureIncidentId;
@@ -37,7 +37,7 @@ public class IncNatureIncident implements java.io.Serializable  {
     public void setIncNatureIncidentId(long incNatureIncidentId) {
         this.incNatureIncidentId = incNatureIncidentId;
     }
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "")
     @JoinColumn(name = "inc_incidentid", nullable = false)
 
     public Set<PrmIncident> getIncidents() {

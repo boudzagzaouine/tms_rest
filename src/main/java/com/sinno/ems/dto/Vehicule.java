@@ -21,6 +21,11 @@ public class Vehicule implements Serializable {
     private Set<Badge> badges;
     private PoliceAssurance policeAssurance;
     private MaintenancePlan maintenancePlan;
+    private String matricule;
+    private Date dateCreation;
+    private Date dateUpDate;
+    private User creationUser;
+    private User upDateUser;
 
     public long getId() {
         return id;
@@ -116,6 +121,46 @@ public class Vehicule implements Serializable {
 
     public void setMaintenancePlan(MaintenancePlan maintenancePlan) {
         this.maintenancePlan = maintenancePlan;
+    }
+
+    public String getMatricule() {
+        return matricule;
+    }
+
+    public void setMatricule(String matricule) {
+        this.matricule = matricule;
+    }
+
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public Date getDateUpDate() {
+        return dateUpDate;
+    }
+
+    public void setDateUpDate(Date dateUpDate) {
+        this.dateUpDate = dateUpDate;
+    }
+
+    public User getCreationUser() {
+        return creationUser;
+    }
+
+    public void setCreationUser(User creationUser) {
+        this.creationUser = creationUser;
+    }
+
+    public User getUpDateUser() {
+        return upDateUser;
+    }
+
+    public void setUpDateUser(User upDateUser) {
+        this.upDateUser = upDateUser;
     }
 
     @Override

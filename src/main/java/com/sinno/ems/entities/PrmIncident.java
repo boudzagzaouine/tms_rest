@@ -30,7 +30,7 @@ public class PrmIncident implements java.io.Serializable {
     }
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_prm_incident", allocationSize = 1)
+    @SequenceGenerator(name = "seq")
     @Column(name = "prm_incidentid", unique = true, nullable = false, precision = 10, scale = 0)
 
     public long getPrmIncidentId() {

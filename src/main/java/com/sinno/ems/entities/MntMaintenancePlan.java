@@ -34,7 +34,7 @@ public class MntMaintenancePlan implements java.io.Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_mnt_maintenanceplan", allocationSize = 1)
+    @SequenceGenerator(name = "seq")
     @Column(name = "mnt_maintenanceplanid", unique = true, nullable = false, precision = 10, scale = 0)
 
 
@@ -47,7 +47,7 @@ public class MntMaintenancePlan implements java.io.Serializable{
     }
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "")
     @JoinColumn(name = "mnt_maintenanceplanvehicleid", nullable = false)
     public PrmVehicle getVehicle() {
         return vehicle;

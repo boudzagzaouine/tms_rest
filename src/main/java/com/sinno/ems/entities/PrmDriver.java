@@ -18,25 +18,29 @@ import java.util.Set;
 
 public class PrmDriver implements java.io.Serializable{
     private long prmDriverId;
-    @NotNull
-    private String prmDriverCode;
+    //@NotNull
+  //  private String prmDriverCode;
     @Size(max = 255)
     private String prmDriverPassportNumber;
-    private String prmDriverPassportLink;
-    private String prmDriverLastName;
-    private String prmDriverFirstName;
-    private Date prmDriverBirthDay;
-    private String prmDriverCellPhone;
+  //  private String prmDriverPassportLink;
+    //private String prmDriverLastName;
+   // private String prmDriverFirstName;
+   // private Date prmDriverBirthDay;
+   // private String prmDriverCellPhone;
     private Set<PrmIncident> pincidents;
-    private Set<PrmRoad> proads;
+  //  private Set<PrmRoad> proads;
     private Set<PrmBadge> pbadges;
-    private Adresse adresse;
+  //  private Adresse adresse;
+  private Date prmDriverDateCreation;
+    private Date prmDriverDateUpDate;
+    private UsrUser prmDriverCreationUser;
+    private UsrUser prmDriverUpDateUser;
     @Size(max = 30)
     @NotNull
-    private DriverSituation driverSituation;
+    private PrmDriverSituation prmDriverSituation;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_prm_driver", allocationSize = 1)
+    @SequenceGenerator(name = "seq")
     @Column(name = "prm_driverid", unique = true, nullable = false, precision = 10, scale = 0)
 
     public long getPrmDriverId() {
@@ -46,15 +50,17 @@ public class PrmDriver implements java.io.Serializable{
     public void setPrmDriverId(long prmDriverId) {
         this.prmDriverId = prmDriverId;
     }
-    @Column(name = "prm_drivercode", nullable = false, length = 20)
+    /* @Column(name = "prm_drivercode", nullable = false, length = 20)
 
-    public String getPrmDriverCode() {
+   public String getPrmDriverCode() {
         return prmDriverCode;
     }
 
     public void setPrmDriverCode(String prmDriverCode) {
         this.prmDriverCode = prmDriverCode;
     }
+    */
+
     @Column(name = "prm_driverpassportNumber", nullable = false, length = 20)
 
     public String getPrmDriverPassportNumber() {
@@ -64,15 +70,15 @@ public class PrmDriver implements java.io.Serializable{
     public void setPrmDriverPassportNumber(String prmDriverPassportNumber) {
         this.prmDriverPassportNumber = prmDriverPassportNumber;
     }
-    @Column(name = "prm_driverpassportLink", nullable = false, length = 20)
+    /*  @Column(name = "prm_driverpassportLink", nullable = false, length = 20)
+/*
+      public String getPrmDriverPassportLink() {
+          return prmDriverPassportLink;
+      }
 
-    public String getPrmDriverPassportLink() {
-        return prmDriverPassportLink;
-    }
-
-    public void setPrmDriverPassportLink(String prmDriverPassportLink) {
-        this.prmDriverPassportLink = prmDriverPassportLink;
-    }
+      public void setPrmDriverPassportLink(String prmDriverPassportLink) {
+          this.prmDriverPassportLink = prmDriverPassportLink;
+      }
     @Column(name = "prm_prmDriverLastName", nullable = false, length = 20)
 
     public String getPrmDriverLastName() {
@@ -109,7 +115,9 @@ public class PrmDriver implements java.io.Serializable{
 
     public void setPrmDriverCellPhone(String prmDriverCellPhone) {
         this.prmDriverCellPhone = prmDriverCellPhone;
-    }
+    }*/
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "")
     @Column(name="prm_insidentDriver",nullable=false)
 
     public Set<PrmIncident> getPincidents() {
@@ -119,7 +127,7 @@ public class PrmDriver implements java.io.Serializable{
     public void setPincidents(Set<PrmIncident> pincidents) {
         this.pincidents = pincidents;
     }
-    @Column(name="prm_roadDriver",nullable=false)
+   /* @Column(name="prm_roadDriver",nullable=false)
 
     public Set<PrmRoad> getProads() {
         return proads;
@@ -127,9 +135,10 @@ public class PrmDriver implements java.io.Serializable{
 
     public void setProads(Set<PrmRoad> proads) {
         this.proads = proads;
-    }
-    @Column(name="prm_badgeDriver",nullable=false)
+    }*/
 
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "")
+    @Column(name="prm_badgeDriver",nullable=false)
     public Set<PrmBadge> getPbadges() {
         return pbadges;
     }
@@ -137,21 +146,62 @@ public class PrmDriver implements java.io.Serializable{
     public void setPbadges(Set<PrmBadge> pbadges) {
         this.pbadges = pbadges;
     }
-    @Column(name="prm_adresseDriver",nullable=false)
 
-    public Adresse getAdresse() {
-        return adresse;
+
+
+    /*
+        @Column(name="prm_adresseDriver",nullable=false)
+
+        public Adresse getAdresse() {
+            return adresse;
+        }
+
+        public void setAdresse(Adresse adresse) {
+            this.adresse = adresse;
+        }*/
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "prm_driversituationid")
+    public PrmDriverSituation getPrmDriverSituation() {
+        return prmDriverSituation;
     }
 
-    public void setAdresse(Adresse adresse) {
-        this.adresse = adresse;
+    public void setPrmDriverSituation(PrmDriverSituation prmDriverSituation) {
+        this.prmDriverSituation = prmDriverSituation;
+    }
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "prm_driverdatecreation")
+    public Date getPrmDriverDateCreation() {
+        return prmDriverDateCreation;
     }
 
-    public DriverSituation getDriverSituation() {
-        return driverSituation;
+    public void setPrmDriverDateCreation(Date prmDriverDateCreation) {
+        this.prmDriverDateCreation = prmDriverDateCreation;
+    }
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "prm_driverdateupdate")
+    public Date getPrmDriverDateUpDate() {
+        return prmDriverDateUpDate;
     }
 
-    public void setDriverSituation(DriverSituation driverSituation) {
-        this.driverSituation = driverSituation;
+    public void setPrmDriverDateUpDate(Date prmDriverDateUpDate) {
+        this.prmDriverDateUpDate = prmDriverDateUpDate;
+    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "prm_drivercreationuser")
+    public UsrUser getPrmDriverCreationUser() {
+        return prmDriverCreationUser;
+    }
+
+    public void setPrmDriverCreationUser(UsrUser prmDriverCreationUser) {
+        this.prmDriverCreationUser = prmDriverCreationUser;
+    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "prm_driverupdateuser")
+    public UsrUser getPrmDriverUpDateUser() {
+        return prmDriverUpDateUser;
+    }
+
+    public void setPrmDriverUpDateUser(UsrUser prmDriverUpDateUser) {
+        this.prmDriverUpDateUser = prmDriverUpDateUser;
     }
 }

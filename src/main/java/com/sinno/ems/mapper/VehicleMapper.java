@@ -1,6 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.MaintenancePlan;
 import com.sinno.ems.dto.Vehicule;
 import com.sinno.ems.entities.PrmVehicle;
 
@@ -31,6 +30,14 @@ public class VehicleMapper {
         map.put("policeAssurance", "prmVehiclePoliceInsurance");
         map.put("maintenancePlan", "prmVehicleMaintenancePlan");
 
+        map.put("matricule", "prmVehicleMatricule");
+        map.put("dateCreation", "prmVehicleDateCreation");
+        map.put("dateUpDate", "prmVehicleDateUpDate");
+        map.put("creationUser", "prmVehicleCreationUser");
+        map.put("upDateUser", "prmVehicleUpDateUser");
+
+
+
     }
     public static Map<String, String> getMap() {
         return map;
@@ -52,13 +59,17 @@ public class VehicleMapper {
         prmVehicle.setPrmVehicleDateOfRegistration(vehicule.getDateOfRegistration());
         prmVehicle.setPrmVehicleBrand(vehicule.getBrand());
         prmVehicle.setPrmVehicleModel(vehicule.getModel());
+        prmVehicle.setPrmVehicleMatricule(vehicule.getMatricule());
+        prmVehicle.setPrmVehicleDateCreation(vehicule.getDateCreation());
+        prmVehicle.setPrmVehicleDateUpDate(vehicule.getDateUpDate());
 
         if (!lazy) {
 
             prmVehicle.setPrmVehicleBadges((BadgeMapper.toEntities(vehicule.getBadges(),true)));
             prmVehicle.setPrmVehiclePoliceAssurance(PoliceInsuranceMapper.toEntity(vehicule.getPoliceAssurance(),true));
             prmVehicle.setPrmVehicleMaintenancePlan(MaintenancePlanMapper.toEntity(vehicule.getMaintenancePlan(),true));
-            //
+            prmVehicle.setPrmVehicleCreationUser(UserMapper.toEntity(vehicule.getCreationUser(),true));
+            prmVehicle.setPrmVehicleUpDateUser(UserMapper.toEntity(vehicule.getUpDateUser(),true));
 //
         }
         return prmVehicle;
@@ -77,11 +88,16 @@ public class VehicleMapper {
         vehicule.setDateOfRegistration(prmVehicle.getPrmVehicleDateOfRegistration());
         vehicule.setBrand(prmVehicle.getPrmVehicleBrand());
         vehicule.setModel(prmVehicle.getPrmVehicleModel());
+        vehicule.setMatricule(prmVehicle.getPrmVehicleMatricule());
+        vehicule.setDateCreation(prmVehicle.getPrmVehicleDateCreation());
+        vehicule.setDateUpDate(prmVehicle.getPrmVehicleDateUpDate());
 
         if (!lazy) {
            vehicule.setBadges(BadgeMapper.toDtos(prmVehicle.getPrmVehicleBadges(),true));
            vehicule.setPoliceAssurance(PoliceInsuranceMapper.toDto(prmVehicle.getPrmVehiclePoliceAssurance(),true));
            vehicule.setMaintenancePlan(MaintenancePlanMapper.toDto(prmVehicle.getPrmVehicleMaintenancePlan(),true));
+           vehicule.setCreationUser(UserMapper.toDto(prmVehicle.getPrmVehicleCreationUser(),true));
+           vehicule.setUpDateUser(UserMapper.toDto(prmVehicle.getPrmVehicleUpDateUser(),true));
 //
         }
         return  vehicule;
@@ -131,5 +147,4 @@ public class VehicleMapper {
         }
         return vehicules;
     }
-
 }
