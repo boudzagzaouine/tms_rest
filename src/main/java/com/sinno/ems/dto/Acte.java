@@ -8,6 +8,7 @@ import java.util.Set;
  * Created by yasser on 22/09/2016.
  */
 public class Acte implements Serializable {
+    //Khalil noob
     private long id;
     private String code;
     private String nature;
