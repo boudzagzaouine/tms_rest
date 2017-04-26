@@ -5,7 +5,6 @@ import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 /**
@@ -36,4 +35,10 @@ public interface ActeService {
 
 
     List<Acte> findAll(org.springframework.data.domain.Pageable pageable);
+
+    /**
+     * Created by bouzi on 4/26/2017.
+     */
+    interface DriverBadgeService {
+    }
 }

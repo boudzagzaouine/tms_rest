@@ -13,11 +13,11 @@ import java.io.Serializable;
 @Entity
 @Table(name = "drv_driverbadge")
 public class DrvDriverBadge implements Serializable {
-    private long driverBadgeId;
+    private long drvDriverBadgeId;
     @NotNull
-    private PrmBadge driverBadgeBadge;
+    private PrmBadge drvDriverBadgeBadge;
     @NotNull
-    private PrmDriver driverBadgeDriver;
+    private PrmDriver drvDriverBadgeDriver;
 
     public DrvDriverBadge() {
 
@@ -26,29 +26,29 @@ public class DrvDriverBadge implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
     @Column(name="drv_driverbadgeid",unique = true, nullable = false, precision = 10, scale = 0)
-    public long getDriverBadgeId() {
-        return driverBadgeId;
+    public long getDrvDriverBadgeId() {
+        return drvDriverBadgeId;
     }
 
-    public void setDriverBadgeId(long driverBadgeId) {
-        this.driverBadgeId = driverBadgeId;
+    public void setDrvDriverBadgeId(long drvDriverBadgeId) {
+        this.drvDriverBadgeId = drvDriverBadgeId;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "drv_driverbadgebadge", nullable = false)
-    public PrmBadge getDriverBadgeBadge() {
-        return driverBadgeBadge;
+    @JoinColumn(name = "drv_driverbadgebadgeid", nullable = false)
+    public PrmBadge getDrvDriverBadgeBadge() {
+        return drvDriverBadgeBadge;
     }
 
-    public void setDriverBadgeBadge(PrmBadge driverBadgeBadge) {
-        this.driverBadgeBadge = driverBadgeBadge;
+    public void setDrvDriverBadgeBadge(PrmBadge drvDriverBadgeBadge) {
+        this.drvDriverBadgeBadge = drvDriverBadgeBadge;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "drv_driverbadgedriver", nullable = false)
-    public PrmDriver getDriverBadgeDriver() {
-        return driverBadgeDriver;
+    @JoinColumn(name = "drv_driverbadgedriverid", nullable = false)
+    public PrmDriver getDrvDriverBadgeDriver() {
+        return drvDriverBadgeDriver;
     }
 
-    public void setDriverBadgeDriver(PrmDriver driverBadgeDriver) {
-        this.driverBadgeDriver = driverBadgeDriver;
+    public void setDrvDriverBadgeDriver(PrmDriver drvDriverBadgeDriver) {
+        this.drvDriverBadgeDriver = drvDriverBadgeDriver;
     }
 }

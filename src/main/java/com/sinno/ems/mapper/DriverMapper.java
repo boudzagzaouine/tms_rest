@@ -1,6 +1,7 @@
 package com.sinno.ems.mapper;
 
 import com.sinno.ems.dto.Driver;
+import com.sinno.ems.dto.User;
 import com.sinno.ems.entities.PrmDriver;
 
 import java.util.HashMap;
@@ -19,23 +20,16 @@ public class DriverMapper {
     static {
         map = new HashMap<>();
         map.put("id", "prmDriverId");
-      // map.put("code", "prmDriverCode");
         map.put("passportNumber", "prmDriverPassportNumber");
-       // map.put("passportLink", "prmDriverPassportLink");
-       // map.put("lastName", "prmDriverLastName");
-        //map.put("firstName", "prmDriverFirstName");
-        //map.put("birthay", "prmDriverBirthay");
-       // map.put("cellPhone", "prmDriverCellphone");
         map.put("incidents", "prmDriverIncidents");
-      //  map.put("roads", "prmDriverRoads");
         map.put("badge", "prmDriverBadge");
-     //   map.put("adresse", "prmDriverAdresse");
         map.put("driversituation", "prmDriversituation");
 
-        map.put("driversituation", "prmDriversituation");
-        map.put("driversituation", "prmDriversituation");
-        map.put("driversituation", "prmDriversituation");
-        map.put("driversituation", "prmDriversituation");
+        map.put("dateCreation", "prmDriverDateCreation");
+        map.put("dateUpDate", "prmDriverDateUpDate");
+        map.put("creationUser", "prmDriverCreationUser");
+        map.put("upDateUser", "prmDriverUpDateUser");
+        map.put("driverBadges", "drvDriverBadges");
 
     }
 
@@ -53,17 +47,16 @@ public class DriverMapper {
         }
         PrmDriver prmDriver = new PrmDriver();
         prmDriver.setPrmDriverId(driver.getId());
-      //  prmDriver.setPrmDriverCode(driver.getCode());
         prmDriver.setPrmDriverPassportNumber(driver.getPassportNumber());
-      //  prmDriver.setPrmDriverPassportLink(driver.getPassportLink());
-      //  prmDriver.setPrmDriverLastName(driver.getLastName());
-      //  prmDriver.setPrmDriverFirstName(driver.getFirstName());
-      //  prmDriver.setPrmDriverBirthDay(driver.getBirthDay());
-       // prmDriver.setPrmDriverCellPhone(driver.getCellPhone());
+        prmDriver.setPrmDriverDateCreation(driver.getDateCreation());
+        prmDriver.setPrmDriverDateUpDate(driver.getDateUpDate());
         if (!lazy) {
             prmDriver.setPincidents(IncidentMapper.toEntities(driver.getIncidents(),true));
-        //    prmDriver.setProads(RoadMapper.toEntities(driver.getRoads(),true));
             prmDriver.setPbadges(BadgeMapper.toEntities(driver.getBadges(),true));
+            prmDriver.setPrmDriverSituation(DriverSituationMapper.toEntity(driver.getDriverSituation(),true));
+            prmDriver.setPrmDriverCreationUser(UserMapper.toEntity(driver.getCreationUser(),true));
+            prmDriver.setPrmDriverUpDateUser(UserMapper.toEntity(driver.getUpDateUser(),true));
+            prmDriver.setDrvDriverBadges(DriverBadgeMapper.toEntities(driver.getDriverBadges(),true));
         }
         return prmDriver;
     }
@@ -74,17 +67,16 @@ public class DriverMapper {
         }
         Driver driver = new Driver();
         driver.setId(prmDriver.getPrmDriverId());
-       // driver.setCode(prmDriver.getPrmDriverCode());
-        //driver.setPassportNumber(prmDriver.getPrmDriverPassportNumber());
-    //    driver.setPassportLink(prmDriver.getPrmDriverPassportLink());
-      // driver.setLastName(prmDriver.getPrmDriverLastName());
-      //  driver.setFirstName(prmDriver.getPrmDriverFirstName());
-      //  driver.setBirthDay(prmDriver.getPrmDriverBirthDay());
-       // driver.setCellPhone(prmDriver.getPrmDriverCellPhone());
+        driver.setDateCreation(prmDriver.getPrmDriverDateCreation());
+        driver.setDateUpDate(prmDriver.getPrmDriverDateUpDate());
+
         if (!lazy) {
             driver.setIncidents(IncidentMapper.toDtos(prmDriver.getPincidents(),true));
-         //   driver.setRoads(RoadMapper.toDtos(prmDriver.getProads(),true));
             driver.setBadges(BadgeMapper.toDtos(prmDriver.getPbadges(),true));
+            driver.setDriverSituation(DriverSituationMapper.toDto(prmDriver.getPrmDriverSituation(),true));
+            driver.setCreationUser(UserMapper.toDto(prmDriver.getPrmDriverCreationUser(),true));
+            driver.setUpDateUser(UserMapper.toDto(prmDriver.getPrmDriverUpDateUser(),true));
+            driver.setDriverBadges(DriverBadgeMapper.toDtos(prmDriver.getDrvDriverBadges(),true));
         }
         return driver;
     }

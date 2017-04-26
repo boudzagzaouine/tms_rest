@@ -183,7 +183,7 @@ public class PrmVehicle implements Serializable {
         this.prmVehicleDateUpDate = prmVehicleDateUpDate;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_vehiclecreationuser")
+    @JoinColumn(name = "prm_vehiclecreationuserid")
     public UsrUser getPrmVehicleCreationUser() {
         return prmVehicleCreationUser;
     }
@@ -192,7 +192,7 @@ public class PrmVehicle implements Serializable {
         this.prmVehicleCreationUser = prmVehicleCreationUser;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_vehicleupdateuser")
+    @JoinColumn(name = "prm_vehicleupdateuserid")
     public UsrUser getPrmVehicleUpDateUser() {
         return prmVehicleUpDateUser;
     }

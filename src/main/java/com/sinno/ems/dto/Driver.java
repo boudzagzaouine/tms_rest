@@ -23,13 +23,12 @@ public class Driver implements Serializable {
     private Set<Badge> badges;
     private Adresse adresse;
     private DriverSituation driverSituation;
-
+    //TODO add contact
     private Date dateCreation;
     private Date dateUpDate;
     private User creationUser;
     private User upDateUser;
-    private List<DriverBadge>idBadge;
-    private List<DriverBadge>idDriver;
+    private Set<DriverBadge>driverBadges;
 
 
     public DriverSituation getDriverSituation() {
@@ -168,20 +167,12 @@ public class Driver implements Serializable {
         this.upDateUser = upDateUser;
     }
 
-    public List<DriverBadge> getIdBadge() {
-        return idBadge;
+    public Set<DriverBadge> getDriverBadges() {
+        return driverBadges;
     }
 
-    public void setIdBadge(List<DriverBadge> idBadge) {
-        this.idBadge = idBadge;
-    }
-
-    public List<DriverBadge> getIdDriver() {
-        return idDriver;
-    }
-
-    public void setIdDriver(List<DriverBadge> idDriver) {
-        this.idDriver = idDriver;
+    public void setDriverBadges(Set<DriverBadge> driverBadges) {
+        this.driverBadges = driverBadges;
     }
 
     @Override
