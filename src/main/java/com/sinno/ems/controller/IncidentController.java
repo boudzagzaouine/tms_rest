@@ -72,8 +72,8 @@ public class IncidentController {
     @ResponseBody
     public List<Incident> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         Pageable pageable = new PageRequest(page, size);
-        //return incidentService.find(search, pageable);
-        return null;
+        return incidentService.find(search, pageable);
+
     }
     @PreAuthorize("hasRole('INCIDENT_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
