@@ -13,7 +13,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "mnt_maintenanceplan")
-public class MntMaintenancePlan implements java.io.Serializable{
+public class TmsMaintenancePlan implements java.io.Serializable{
     private long mntMaintenancePlanId;
     @NotNull
     private TmsVehicle vehicle;
@@ -24,7 +24,7 @@ public class MntMaintenancePlan implements java.io.Serializable{
     private String mntDescription;
     private Set<TmsActe> mntMaintenancePlanActes;
 
-    public MntMaintenancePlan(){
+    public TmsMaintenancePlan(){
 
     }
 

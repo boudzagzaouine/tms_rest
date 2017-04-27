@@ -34,9 +34,9 @@ public class TmsVehicle implements Serializable {
     @NotNull
     private Set<TmsBadge> prmVehicleBadges;
     @NotNull
-    private AsrPoliceInsurance prmVehiclePoliceAssurance;
+    private TmsPoliceInsurance prmVehiclePoliceAssurance;
     @NotNull
-    private MntMaintenancePlan prmVehicleMaintenancePlan;
+    private TmsMaintenancePlan prmVehicleMaintenancePlan;
     @Size(max = 30)
     @NotNull
     private String prmVehicleMatricule;
@@ -139,20 +139,20 @@ public class TmsVehicle implements Serializable {
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_vehiclepoliceassuranceid", nullable = false)
-    public AsrPoliceInsurance getPrmVehiclePoliceAssurance() {
+    public TmsPoliceInsurance getPrmVehiclePoliceAssurance() {
         return prmVehiclePoliceAssurance;
     }
 
-    public void setPrmVehiclePoliceAssurance(AsrPoliceInsurance prmVehiclePoliceAssurance) {
+    public void setPrmVehiclePoliceAssurance(TmsPoliceInsurance prmVehiclePoliceAssurance) {
         this.prmVehiclePoliceAssurance = prmVehiclePoliceAssurance;
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_vehiclemaintenanceplanid", nullable = false)
-    public MntMaintenancePlan getPrmVehicleMaintenancePlan() {
+    public TmsMaintenancePlan getPrmVehicleMaintenancePlan() {
         return prmVehicleMaintenancePlan;
     }
 
-    public void setPrmVehicleMaintenancePlan(MntMaintenancePlan prmVehicleMaintenancePlan) {
+    public void setPrmVehicleMaintenancePlan(TmsMaintenancePlan prmVehicleMaintenancePlan) {
         this.prmVehicleMaintenancePlan = prmVehicleMaintenancePlan;
     }
     @Column(name = "prm_vehiclematricule")

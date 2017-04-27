@@ -10,7 +10,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "inc_natureincident")
-public class IncNatureIncident implements java.io.Serializable  {
+public class TmsNatureIncident implements java.io.Serializable  {
 
     private long incNatureIncidentId;
     @NotNull
@@ -21,7 +21,7 @@ public class IncNatureIncident implements java.io.Serializable  {
     @Size(max = 255)
     private String incNatureIncidentDescription;
 
-    public IncNatureIncident(){
+    public TmsNatureIncident(){
 
     }
     @Id

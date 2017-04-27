@@ -12,14 +12,14 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "drv_driverbadge")
-public class DrvDriverBadge implements Serializable {
+public class TmsDriverBadge implements Serializable {
     private long drvDriverBadgeId;
     @NotNull
     private TmsBadge drvDriverBadgeBadge;
     @NotNull
     private TmsDriver drvDriverBadgeDriver;
 
-    public DrvDriverBadge() {
+    public TmsDriverBadge() {
 
     }
     @Id

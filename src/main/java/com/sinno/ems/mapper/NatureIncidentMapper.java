@@ -1,9 +1,7 @@
 package com.sinno.ems.mapper;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.sinno.ems.dto.NatureIncident;
-import com.sinno.ems.entities.AsrPoliceInsurance;
-import com.sinno.ems.entities.IncNatureIncident;
+import com.sinno.ems.entities.TmsNatureIncident;
 
 import java.util.*;
 
@@ -30,73 +28,73 @@ public class NatureIncidentMapper {
     public static String getField(String key) {
         return map.get(key);
     }
-    public static IncNatureIncident toEntity(NatureIncident natureIncident , boolean lazy){
+    public static TmsNatureIncident toEntity(NatureIncident natureIncident , boolean lazy){
         if (null == natureIncident) {
             return null;
         }
-        IncNatureIncident incNatureIncident = new IncNatureIncident();
-        incNatureIncident.setIncNatureIncidentId(natureIncident.getId());
-        incNatureIncident.setIncNatureIncidentCode(natureIncident.getCode() !=null ? natureIncident.getCode().toUpperCase(): null);
-        incNatureIncident.setIncNatureIncidentDescription(natureIncident.getDescription());
+        TmsNatureIncident tmsNatureIncident = new TmsNatureIncident();
+        tmsNatureIncident.setIncNatureIncidentId(natureIncident.getId());
+        tmsNatureIncident.setIncNatureIncidentCode(natureIncident.getCode() !=null ? natureIncident.getCode().toUpperCase(): null);
+        tmsNatureIncident.setIncNatureIncidentDescription(natureIncident.getDescription());
         if (!lazy) {
-           incNatureIncident.setIncidents(IncidentMapper.toEntities(natureIncident.getIncidents(),true));
+           tmsNatureIncident.setIncidents(IncidentMapper.toEntities(natureIncident.getIncidents(),true));
 //
         }
-        return incNatureIncident;
+        return tmsNatureIncident;
     }
-    public static NatureIncident toDto(IncNatureIncident incNatureIncident , boolean lazy){
-        if (null == incNatureIncident) {
+    public static NatureIncident toDto(TmsNatureIncident tmsNatureIncident, boolean lazy){
+        if (null == tmsNatureIncident) {
             return null;
         }
         NatureIncident natureIncident = new NatureIncident();
-        natureIncident.setId(incNatureIncident.getIncNatureIncidentId());
-        natureIncident.setCode(incNatureIncident.getIncNatureIncidentCode());
-        natureIncident.setDescription(incNatureIncident.getIncNatureIncidentDescription());
+        natureIncident.setId(tmsNatureIncident.getIncNatureIncidentId());
+        natureIncident.setCode(tmsNatureIncident.getIncNatureIncidentCode());
+        natureIncident.setDescription(tmsNatureIncident.getIncNatureIncidentDescription());
         if (!lazy) {
-            natureIncident.setIncidents(IncidentMapper.toDtos(incNatureIncident.getIncidents(),true));
+            natureIncident.setIncidents(IncidentMapper.toDtos(tmsNatureIncident.getIncidents(),true));
 //
         }
         return natureIncident;
     }
-    public static List<NatureIncident>toDtos(List<IncNatureIncident>incNatureIncidents,boolean lazy){
-        if (null == incNatureIncidents) {
+    public static List<NatureIncident>toDtos(List<TmsNatureIncident> tmsNatureIncidents, boolean lazy){
+        if (null == tmsNatureIncidents) {
             return null;
         }
         List<NatureIncident>natureIncidents = new ArrayList<>();
-        for (IncNatureIncident incNatureIncident : incNatureIncidents) {
-            natureIncidents.add(toDto(incNatureIncident , lazy));
+        for (TmsNatureIncident tmsNatureIncident : tmsNatureIncidents) {
+            natureIncidents.add(toDto(tmsNatureIncident, lazy));
         }
         return natureIncidents;
     }
 
-    public static List<NatureIncident> toDtos(Iterable<IncNatureIncident>incNatureIncidents , boolean lazy){
+    public static List<NatureIncident> toDtos(Iterable<TmsNatureIncident>incNatureIncidents , boolean lazy){
         if (null == incNatureIncidents) {
             return null;
         }
         List<NatureIncident> natureIncidents= new ArrayList<>();
-        for (IncNatureIncident incNatureIncident : incNatureIncidents) {
-            natureIncidents.add(toDto(incNatureIncident,lazy));
+        for (TmsNatureIncident tmsNatureIncident : incNatureIncidents) {
+            natureIncidents.add(toDto(tmsNatureIncident,lazy));
         }
         return natureIncidents;
     }
-    public static Set<IncNatureIncident>toEntities(Set<NatureIncident>natureIncidents, boolean lazy){
+    public static Set<TmsNatureIncident>toEntities(Set<NatureIncident>natureIncidents, boolean lazy){
         if (null == natureIncidents) {
             return null;
         }
-        Set<IncNatureIncident> incNatureIncidents = new HashSet<>();
+        Set<TmsNatureIncident> tmsNatureIncidents = new HashSet<>();
         for ( NatureIncident natureIncident : natureIncidents) {
-            incNatureIncidents.add(toEntity(natureIncident,lazy));
+            tmsNatureIncidents.add(toEntity(natureIncident,lazy));
         }
-        return incNatureIncidents;
+        return tmsNatureIncidents;
     }
-    public static Set<NatureIncident>toDtos(Set<IncNatureIncident>incNatureIncidents , boolean lazy){
-        if (null == incNatureIncidents) {
+    public static Set<NatureIncident>toDtos(Set<TmsNatureIncident> tmsNatureIncidents, boolean lazy){
+        if (null == tmsNatureIncidents) {
             return null;
         }
         Set<NatureIncident>natureIncidents = new HashSet<>();
 
-        for (IncNatureIncident incNatureIncident: incNatureIncidents) {
-            natureIncidents.add(toDto(incNatureIncident , lazy));
+        for (TmsNatureIncident tmsNatureIncident : tmsNatureIncidents) {
+            natureIncidents.add(toDto(tmsNatureIncident, lazy));
         }
         return natureIncidents;
     }

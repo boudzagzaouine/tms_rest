@@ -1,7 +1,7 @@
 package com.sinno.ems.service.impl;
 
 import com.sinno.ems.dto.DriverBadge;
-import com.sinno.ems.entities.DrvDriverBadge;
+import com.sinno.ems.entities.TmsDriverBadge;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
@@ -52,15 +52,15 @@ public class DriverBadgeImpl implements DriverBadgeService {
     }
     @Override
     public List<DriverBadge> find(String search) throws AttributesNotFound, ErrorType {
-        return DriverBadgeMapper.toDtos(driverBadgeRepository.findAll(Search.expression(search, DrvDriverBadge.class)), false);
+        return DriverBadgeMapper.toDtos(driverBadgeRepository.findAll(Search.expression(search, TmsDriverBadge.class)), false);
     }
     @Override
     public List<DriverBadge> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
-        return DriverBadgeMapper.toDtos(driverBadgeRepository.findAll(Search.expression(search,DrvDriverBadge.class), pageable), false);
+        return DriverBadgeMapper.toDtos(driverBadgeRepository.findAll(Search.expression(search,TmsDriverBadge.class), pageable), false);
     }
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        return driverBadgeRepository.count(Search.expression(search,DrvDriverBadge.class));
+        return driverBadgeRepository.count(Search.expression(search,TmsDriverBadge.class));
     }
     @Override
     public void delete(Long id) {

@@ -1,14 +1,13 @@
 package com.sinno.ems.service.impl;
 
 import com.sinno.ems.dto.PoliceAssurance;
-import com.sinno.ems.entities.AsrPoliceInsurance;
+import com.sinno.ems.entities.TmsPoliceInsurance;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.PoliceInsuranceMapper;
 import com.sinno.ems.repositories.PoliceInsuranceRepository;
 import com.sinno.ems.service.PoliceInsuranceService;
-import com.sinno.ems.util.EmsDate;
 import com.sinno.ems.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,15 +51,15 @@ public class PoliceInsuranceServiceImpl implements PoliceInsuranceService {
     }
     @Override
     public List<PoliceAssurance> find(String search)throws AttributesNotFound,ErrorType{
-        return PoliceInsuranceMapper.toDtos(policeInsuranceRepository.findAll(Search.expression(search,AsrPoliceInsurance.class)), false);
+        return PoliceInsuranceMapper.toDtos(policeInsuranceRepository.findAll(Search.expression(search,TmsPoliceInsurance.class)), false);
     }
     @Override
     public List<PoliceAssurance>find(String search, Pageable pageable)throws AttributesNotFound,ErrorType{
-        return PoliceInsuranceMapper.toDtos(policeInsuranceRepository.findAll(Search.expression(search,AsrPoliceInsurance.class),pageable),false);
+        return PoliceInsuranceMapper.toDtos(policeInsuranceRepository.findAll(Search.expression(search,TmsPoliceInsurance.class),pageable),false);
     }
     @Override
     public Long size(String search)throws AttributesNotFound,ErrorType{
-        return policeInsuranceRepository.count(Search.expression(search , AsrPoliceInsurance.class));
+        return policeInsuranceRepository.count(Search.expression(search , TmsPoliceInsurance.class));
     }
     @Override
     public void delete(Long id){

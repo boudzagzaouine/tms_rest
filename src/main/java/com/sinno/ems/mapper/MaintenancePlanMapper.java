@@ -1,7 +1,7 @@
 package com.sinno.ems.mapper;
 
 import com.sinno.ems.dto.MaintenancePlan;
-import com.sinno.ems.entities.MntMaintenancePlan;
+import com.sinno.ems.entities.TmsMaintenancePlan;
 
 import java.util.*;
 
@@ -31,76 +31,76 @@ public class MaintenancePlanMapper {
         return map.get(key);
     }
 
-    public static MntMaintenancePlan toEntity(MaintenancePlan maintenancePlan, boolean lazy){
+    public static TmsMaintenancePlan toEntity(MaintenancePlan maintenancePlan, boolean lazy){
         if (null == maintenancePlan) {
             return null;
         }
-        MntMaintenancePlan mntMaintenancePlan = new MntMaintenancePlan();
-       mntMaintenancePlan.setMntMaintenancePlanId(maintenancePlan.getId());
+        TmsMaintenancePlan tmsMaintenancePlan = new TmsMaintenancePlan();
+       tmsMaintenancePlan.setMntMaintenancePlanId(maintenancePlan.getId());
        maintenancePlan.setCode(maintenancePlan.getCode() != null ? maintenancePlan.getCode().toUpperCase() : null );
        maintenancePlan.setDescription(maintenancePlan.getDescription());
 
         if (!lazy) {
-          mntMaintenancePlan.setVehicle(VehicleMapper.toEntity(maintenancePlan.getVehicule(),true));
-       mntMaintenancePlan.setMntMaintenancePlanActes(ActeMapper.toEntities(maintenancePlan.getActes(),true));
+          tmsMaintenancePlan.setVehicle(VehicleMapper.toEntity(maintenancePlan.getVehicule(),true));
+       tmsMaintenancePlan.setMntMaintenancePlanActes(ActeMapper.toEntities(maintenancePlan.getActes(),true));
         }
-        return mntMaintenancePlan;
+        return tmsMaintenancePlan;
     }
 
-    public static MaintenancePlan toDto(MntMaintenancePlan mntMaintenancePlan , boolean lazy){
-        if (null == mntMaintenancePlan) {
+    public static MaintenancePlan toDto(TmsMaintenancePlan tmsMaintenancePlan, boolean lazy){
+        if (null == tmsMaintenancePlan) {
             return null;
         }
         MaintenancePlan maintenancePlan = new MaintenancePlan();
 
-        maintenancePlan.setId(mntMaintenancePlan.getMntMaintenancePlanId());
-        maintenancePlan.setCode(mntMaintenancePlan.getMntMaintenancePlanCode());
-        maintenancePlan.setDescription(mntMaintenancePlan.getMntDescription());
+        maintenancePlan.setId(tmsMaintenancePlan.getMntMaintenancePlanId());
+        maintenancePlan.setCode(tmsMaintenancePlan.getMntMaintenancePlanCode());
+        maintenancePlan.setDescription(tmsMaintenancePlan.getMntDescription());
     if (!lazy){
-        maintenancePlan.setVehicule(VehicleMapper.toDto(mntMaintenancePlan.getVehicle(),true));
-        maintenancePlan.setActes(ActeMapper.toDtos(mntMaintenancePlan.getMntMaintenancePlanActes(),true));
+        maintenancePlan.setVehicule(VehicleMapper.toDto(tmsMaintenancePlan.getVehicle(),true));
+        maintenancePlan.setActes(ActeMapper.toDtos(tmsMaintenancePlan.getMntMaintenancePlanActes(),true));
     }
 
         return maintenancePlan;
     }
-    public static List<MaintenancePlan> toDtos(List<MntMaintenancePlan>mntMaintenancePlans , boolean lazy){
+    public static List<MaintenancePlan> toDtos(List<TmsMaintenancePlan> tmsMaintenancePlans, boolean lazy){
+        if (null == tmsMaintenancePlans) {
+            return null;
+        }
+        List<MaintenancePlan>maintenancePlans = new ArrayList<>();
+        for (TmsMaintenancePlan tmsMaintenancePlan : tmsMaintenancePlans) {
+            maintenancePlans.add(toDto(tmsMaintenancePlan, lazy));
+        }
+        return maintenancePlans;
+    }
+    public static List<MaintenancePlan>toDtos(Iterable<TmsMaintenancePlan>mntMaintenancePlans , boolean lazy){
         if (null == mntMaintenancePlans) {
             return null;
         }
         List<MaintenancePlan>maintenancePlans = new ArrayList<>();
-        for (MntMaintenancePlan mntMaintenancePlan : mntMaintenancePlans) {
-            maintenancePlans.add(toDto(mntMaintenancePlan , lazy));
+        for (TmsMaintenancePlan tmsMaintenancePlan : mntMaintenancePlans) {
+            maintenancePlans.add(toDto(tmsMaintenancePlan,lazy));
         }
         return maintenancePlans;
     }
-    public static List<MaintenancePlan>toDtos(Iterable<MntMaintenancePlan>mntMaintenancePlans , boolean lazy){
-        if (null == mntMaintenancePlans) {
-            return null;
-        }
-        List<MaintenancePlan>maintenancePlans = new ArrayList<>();
-        for (MntMaintenancePlan mntMaintenancePlan : mntMaintenancePlans) {
-            maintenancePlans.add(toDto(mntMaintenancePlan,lazy));
-        }
-        return maintenancePlans;
-    }
-    public static Set<MntMaintenancePlan>toEntities(Set<MaintenancePlan>maintenancePlans,boolean lazy){
+    public static Set<TmsMaintenancePlan>toEntities(Set<MaintenancePlan>maintenancePlans, boolean lazy){
         if (null == maintenancePlans) {
             return null;
         }
-        Set<MntMaintenancePlan>mntMaintenancePlans = new HashSet<>();
+        Set<TmsMaintenancePlan> tmsMaintenancePlans = new HashSet<>();
 
         for (MaintenancePlan maintenancePlan:maintenancePlans) {
-            mntMaintenancePlans.add(toEntity(maintenancePlan,lazy));
+            tmsMaintenancePlans.add(toEntity(maintenancePlan,lazy));
         }
-        return mntMaintenancePlans;
+        return tmsMaintenancePlans;
     }
-    public static Set<MaintenancePlan>toDtos(Set<MntMaintenancePlan>mntMaintenancePlans,boolean lazy){
-        if (null == mntMaintenancePlans) {
+    public static Set<MaintenancePlan>toDtos(Set<TmsMaintenancePlan> tmsMaintenancePlans, boolean lazy){
+        if (null == tmsMaintenancePlans) {
             return null;
         }
         Set<MaintenancePlan>maintenancePlans = new HashSet<>();
-        for (MntMaintenancePlan mntMaintenancePlan : mntMaintenancePlans) {
-            maintenancePlans.add(toDto(mntMaintenancePlan,lazy));
+        for (TmsMaintenancePlan tmsMaintenancePlan : tmsMaintenancePlans) {
+            maintenancePlans.add(toDto(tmsMaintenancePlan,lazy));
         }
         return maintenancePlans;
     }

@@ -1,8 +1,7 @@
 package com.sinno.ems.mapper;
 
 import com.sinno.ems.dto.DriverBadge;
-import com.sinno.ems.entities.DrvDriverBadge;
-import com.sinno.ems.util.Search;
+import com.sinno.ems.entities.TmsDriverBadge;
 
 import java.util.*;
 
@@ -32,69 +31,69 @@ public class DriverBadgeMapper {
         return map.get(key);
     }
 
-    public static DrvDriverBadge toEntity(DriverBadge driverBadge,boolean lazy){
+    public static TmsDriverBadge toEntity(DriverBadge driverBadge, boolean lazy){
         if (null == driverBadge) {
             return null;
         }
 
-        DrvDriverBadge drvDriverBadge = new DrvDriverBadge();
-        drvDriverBadge.setDrvDriverBadgeId(driverBadge.getId());
+        TmsDriverBadge tmsDriverBadge = new TmsDriverBadge();
+        tmsDriverBadge.setDrvDriverBadgeId(driverBadge.getId());
         if (!lazy){
-            drvDriverBadge.setDrvDriverBadgeBadge(BadgeMapper.toEntity(driverBadge.getBadge(),true));
-            drvDriverBadge.setDrvDriverBadgeDriver(DriverMapper.toEntity(driverBadge.getDriver(),true));
+            tmsDriverBadge.setDrvDriverBadgeBadge(BadgeMapper.toEntity(driverBadge.getBadge(),true));
+            tmsDriverBadge.setDrvDriverBadgeDriver(DriverMapper.toEntity(driverBadge.getDriver(),true));
         }
-        return drvDriverBadge;
+        return tmsDriverBadge;
     }
 
-    public static DriverBadge toDto(DrvDriverBadge drvDriverBadge,boolean lazy){
-        if (null == drvDriverBadge) {
+    public static DriverBadge toDto(TmsDriverBadge tmsDriverBadge, boolean lazy){
+        if (null == tmsDriverBadge) {
             return null;
         }
         DriverBadge driverBadge= new DriverBadge();
-        driverBadge.setId(drvDriverBadge.getDrvDriverBadgeId());
+        driverBadge.setId(tmsDriverBadge.getDrvDriverBadgeId());
         if (!lazy){
-            driverBadge.setBadge(BadgeMapper.toDto(drvDriverBadge.getDrvDriverBadgeBadge(),true));
-            driverBadge.setDriver(DriverMapper.toDto(drvDriverBadge.getDrvDriverBadgeDriver(),true));
+            driverBadge.setBadge(BadgeMapper.toDto(tmsDriverBadge.getDrvDriverBadgeBadge(),true));
+            driverBadge.setDriver(DriverMapper.toDto(tmsDriverBadge.getDrvDriverBadgeDriver(),true));
         }
         return driverBadge;
     }
-    public static List<DriverBadge>toDtos(List<DrvDriverBadge>drvDriverBadges , boolean lazy){
+    public static List<DriverBadge>toDtos(List<TmsDriverBadge> tmsDriverBadges, boolean lazy){
+        if (null == tmsDriverBadges) {
+            return null;
+        }
+        List<DriverBadge>driverBadges=new ArrayList<>();
+        for (TmsDriverBadge tmsDriverBadge : tmsDriverBadges) {
+            driverBadges.add(toDto(tmsDriverBadge,lazy));
+        }
+        return driverBadges;
+    }
+    public static List<DriverBadge>toDtos(Iterable<TmsDriverBadge>drvDriverBadges, boolean lazy){
         if (null == drvDriverBadges) {
             return null;
         }
         List<DriverBadge>driverBadges=new ArrayList<>();
-        for (DrvDriverBadge drvDriverBadge:drvDriverBadges) {
-            driverBadges.add(toDto(drvDriverBadge,lazy));
+        for (TmsDriverBadge tmsDriverBadge : drvDriverBadges){
+            driverBadges.add(toDto(tmsDriverBadge,lazy));
         }
         return driverBadges;
     }
-    public static List<DriverBadge>toDtos(Iterable<DrvDriverBadge>drvDriverBadges,boolean lazy){
-        if (null == drvDriverBadges) {
-            return null;
-        }
-        List<DriverBadge>driverBadges=new ArrayList<>();
-        for (DrvDriverBadge drvDriverBadge : drvDriverBadges){
-            driverBadges.add(toDto(drvDriverBadge,lazy));
-        }
-        return driverBadges;
-    }
-    public static Set<DrvDriverBadge>toEntities(Set<DriverBadge>driverBadges,boolean lazy){
+    public static Set<TmsDriverBadge>toEntities(Set<DriverBadge>driverBadges, boolean lazy){
         if (null == driverBadges) {
             return null;
         }
-        Set<DrvDriverBadge>drvDriverBadges = new HashSet<>();
+        Set<TmsDriverBadge> tmsDriverBadges = new HashSet<>();
         for (DriverBadge driverBadge : driverBadges){
-            drvDriverBadges.add(toEntity(driverBadge,lazy));
+            tmsDriverBadges.add(toEntity(driverBadge,lazy));
         }
-        return drvDriverBadges;
+        return tmsDriverBadges;
     }
-    public static Set<DriverBadge>toDtos(Set<DrvDriverBadge>drvDriverBadges,boolean lazy){
-        if (null == drvDriverBadges) {
+    public static Set<DriverBadge>toDtos(Set<TmsDriverBadge> tmsDriverBadges, boolean lazy){
+        if (null == tmsDriverBadges) {
             return null;
         }
         Set<DriverBadge>driverBadges = new HashSet<>();
-        for (DrvDriverBadge drvDriverBadge : drvDriverBadges){
-            driverBadges.add(toDto(drvDriverBadge,lazy));
+        for (TmsDriverBadge tmsDriverBadge : tmsDriverBadges){
+            driverBadges.add(toDto(tmsDriverBadge,lazy));
         }
         return driverBadges;
     }

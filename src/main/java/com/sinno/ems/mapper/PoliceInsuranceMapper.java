@@ -1,8 +1,7 @@
 package com.sinno.ems.mapper;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.sinno.ems.dto.PoliceAssurance;
-import com.sinno.ems.entities.AsrPoliceInsurance;
+import com.sinno.ems.entities.TmsPoliceInsurance;
 
 import java.util.*;
 
@@ -33,77 +32,77 @@ public class PoliceInsuranceMapper {
         return map.get(key);
     }
 
-    public static AsrPoliceInsurance toEntity(PoliceAssurance policeAssurance , boolean lazy){
+    public static TmsPoliceInsurance toEntity(PoliceAssurance policeAssurance , boolean lazy){
         if(null == policeAssurance){
             return null;
         }
-        AsrPoliceInsurance asrPoliceInsurance = new AsrPoliceInsurance();
-        asrPoliceInsurance.setAsrPoliceInsuranceId(policeAssurance.getId());
-        asrPoliceInsurance.setAsrPoliceInsuranceCode(policeAssurance.getCode() != null ? policeAssurance.getCode().toUpperCase(): null  );
-        asrPoliceInsurance.setAsrPoliceInsuranceNumber(policeAssurance.getPoliceNumber());
-        asrPoliceInsurance.setAsrPoliceInsuranceStartDate(policeAssurance.getStartDate());
-        asrPoliceInsurance.setAsrPoliceInsuranceEndDate(policeAssurance.getEndDate());
-        asrPoliceInsurance.setAsrPoliceInsuranceType(policeAssurance.getType());
-        asrPoliceInsurance.setAsrPoliceInsurancePhoneNumber(policeAssurance.getPhoneNumber());
+        TmsPoliceInsurance tmsPoliceInsurance = new TmsPoliceInsurance();
+        tmsPoliceInsurance.setAsrPoliceInsuranceId(policeAssurance.getId());
+        tmsPoliceInsurance.setAsrPoliceInsuranceCode(policeAssurance.getCode() != null ? policeAssurance.getCode().toUpperCase(): null  );
+        tmsPoliceInsurance.setAsrPoliceInsuranceNumber(policeAssurance.getPoliceNumber());
+        tmsPoliceInsurance.setAsrPoliceInsuranceStartDate(policeAssurance.getStartDate());
+        tmsPoliceInsurance.setAsrPoliceInsuranceEndDate(policeAssurance.getEndDate());
+        tmsPoliceInsurance.setAsrPoliceInsuranceType(policeAssurance.getType());
+        tmsPoliceInsurance.setAsrPoliceInsurancePhoneNumber(policeAssurance.getPhoneNumber());
         if (!lazy){
-            asrPoliceInsurance.setVehicules(VehicleMapper.toEntity(policeAssurance.getVehicule(),true));
+            tmsPoliceInsurance.setVehicules(VehicleMapper.toEntity(policeAssurance.getVehicule(),true));
         }
-        return asrPoliceInsurance;
+        return tmsPoliceInsurance;
     }
-    public static PoliceAssurance toDto(AsrPoliceInsurance asrPoliceInsurance,boolean lazy){
-        if (null == asrPoliceInsurance){
+    public static PoliceAssurance toDto(TmsPoliceInsurance tmsPoliceInsurance, boolean lazy){
+        if (null == tmsPoliceInsurance){
             return null;
         }
         PoliceAssurance policeAssurance = new PoliceAssurance();
-        policeAssurance.setId(asrPoliceInsurance.getAsrPoliceInsuranceId());
-        policeAssurance.setCode(asrPoliceInsurance.getAsrPoliceInsuranceCode());
-        policeAssurance.setPhoneNumber(asrPoliceInsurance.getAsrPoliceInsurancePhoneNumber());
-        policeAssurance.setStartDate(asrPoliceInsurance.getAsrPoliceInsuranceStartDate());
-        policeAssurance.setEndDate(asrPoliceInsurance.getAsrPoliceInsuranceEndDate());
-        policeAssurance.setType(asrPoliceInsurance.getAsrPoliceInsuranceType());
-        policeAssurance.setPhoneNumber(asrPoliceInsurance.getAsrPoliceInsurancePhoneNumber());
+        policeAssurance.setId(tmsPoliceInsurance.getAsrPoliceInsuranceId());
+        policeAssurance.setCode(tmsPoliceInsurance.getAsrPoliceInsuranceCode());
+        policeAssurance.setPhoneNumber(tmsPoliceInsurance.getAsrPoliceInsurancePhoneNumber());
+        policeAssurance.setStartDate(tmsPoliceInsurance.getAsrPoliceInsuranceStartDate());
+        policeAssurance.setEndDate(tmsPoliceInsurance.getAsrPoliceInsuranceEndDate());
+        policeAssurance.setType(tmsPoliceInsurance.getAsrPoliceInsuranceType());
+        policeAssurance.setPhoneNumber(tmsPoliceInsurance.getAsrPoliceInsurancePhoneNumber());
         if (!lazy){
-            policeAssurance.setVehicule(VehicleMapper.toDto(asrPoliceInsurance.getVehicules(),true));
+            policeAssurance.setVehicule(VehicleMapper.toDto(tmsPoliceInsurance.getVehicules(),true));
         }
     return policeAssurance;
     }
-    public static List<PoliceAssurance>toDtos(List<AsrPoliceInsurance>asrPoliceInsurances,boolean lazy){
+    public static List<PoliceAssurance>toDtos(List<TmsPoliceInsurance> tmsPoliceInsurances, boolean lazy){
+        if(null == tmsPoliceInsurances){
+            return null;
+        }
+        List<PoliceAssurance>policeAssurances = new ArrayList<>();
+        for (TmsPoliceInsurance tmsPoliceInsurance : tmsPoliceInsurances){
+            policeAssurances.add(toDto(tmsPoliceInsurance,lazy));
+        }
+        return policeAssurances;
+    }
+    public static List<PoliceAssurance>toDtos(Iterable<TmsPoliceInsurance>asrPoliceInsurances, boolean lazy){
         if(null == asrPoliceInsurances){
             return null;
         }
         List<PoliceAssurance>policeAssurances = new ArrayList<>();
-        for (AsrPoliceInsurance asrPoliceInsurance :asrPoliceInsurances){
-            policeAssurances.add(toDto(asrPoliceInsurance,lazy));
+        for (TmsPoliceInsurance tmsPoliceInsurance :asrPoliceInsurances) {
+            policeAssurances.add(toDto(tmsPoliceInsurance,lazy));
         }
         return policeAssurances;
     }
-    public static List<PoliceAssurance>toDtos(Iterable<AsrPoliceInsurance>asrPoliceInsurances,boolean lazy){
-        if(null == asrPoliceInsurances){
-            return null;
-        }
-        List<PoliceAssurance>policeAssurances = new ArrayList<>();
-        for (AsrPoliceInsurance asrPoliceInsurance:asrPoliceInsurances) {
-            policeAssurances.add(toDto(asrPoliceInsurance,lazy));
-        }
-        return policeAssurances;
-    }
-    public  static Set<AsrPoliceInsurance>toEntities(Set<PoliceAssurance>policeAssurances,boolean lazy){
+    public  static Set<TmsPoliceInsurance>toEntities(Set<PoliceAssurance>policeAssurances, boolean lazy){
         if (null == policeAssurances){
             return null;
         }
-        Set<AsrPoliceInsurance>asrPoliceInsurances = new HashSet<>();
+        Set<TmsPoliceInsurance> tmsPoliceInsurances = new HashSet<>();
         for (PoliceAssurance policeAssurance:policeAssurances) {
-            asrPoliceInsurances.add(toEntity(policeAssurance,lazy));
+            tmsPoliceInsurances.add(toEntity(policeAssurance,lazy));
         }
-        return asrPoliceInsurances;
+        return tmsPoliceInsurances;
     }
-    public static Set<PoliceAssurance>toDtos(Set<AsrPoliceInsurance>asrPoliceInsurances,boolean lazy){
-        if (null == asrPoliceInsurances){
+    public static Set<PoliceAssurance>toDtos(Set<TmsPoliceInsurance> tmsPoliceInsurances, boolean lazy){
+        if (null == tmsPoliceInsurances){
             return null;
         }
         Set<PoliceAssurance>policeAssurances = new HashSet<>();
-        for (AsrPoliceInsurance asrPoliceInsurance:asrPoliceInsurances) {
-            policeAssurances.add(toDto(asrPoliceInsurance,lazy));
+        for (TmsPoliceInsurance tmsPoliceInsurance : tmsPoliceInsurances) {
+            policeAssurances.add(toDto(tmsPoliceInsurance,lazy));
 
         }
         return policeAssurances;

@@ -11,7 +11,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "asr_policeinsurance")
-public class AsrPoliceInsurance implements Serializable {
+public class TmsPoliceInsurance implements Serializable {
     private long asrPoliceInsuranceId;
     @NotNull
     private TmsVehicle vehicules;
@@ -33,7 +33,7 @@ public class AsrPoliceInsurance implements Serializable {
 
     private Date asrPoliceInsuranceEndDate;
 
-    public AsrPoliceInsurance(){
+    public TmsPoliceInsurance(){
 
     }
     @Id

@@ -55,7 +55,7 @@ public class DriverMapper {
             tmsDriver.setTmsDriverSituation(DriverSituationMapper.toEntity(driver.getDriverSituation(),true));
             tmsDriver.setPrmDriverCreationUser(UserMapper.toEntity(driver.getCreationUser(),true));
             tmsDriver.setPrmDriverUpDateUser(UserMapper.toEntity(driver.getUpDateUser(),true));
-            tmsDriver.setDrvDriverBadges(DriverBadgeMapper.toEntities(driver.getDriverBadges(),true));
+            tmsDriver.setTmsDriverBadges(DriverBadgeMapper.toEntities(driver.getDriverBadges(),true));
         }
         return tmsDriver;
     }
@@ -75,7 +75,7 @@ public class DriverMapper {
             driver.setDriverSituation(DriverSituationMapper.toDto(tmsDriver.getTmsDriverSituation(),true));
             driver.setCreationUser(UserMapper.toDto(tmsDriver.getPrmDriverCreationUser(),true));
             driver.setUpDateUser(UserMapper.toDto(tmsDriver.getPrmDriverUpDateUser(),true));
-            driver.setDriverBadges(DriverBadgeMapper.toDtos(tmsDriver.getDrvDriverBadges(),true));
+            driver.setDriverBadges(DriverBadgeMapper.toDtos(tmsDriver.getTmsDriverBadges(),true));
         }
         return driver;
     }

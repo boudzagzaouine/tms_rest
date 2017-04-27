@@ -2,7 +2,7 @@ package com.sinno.ems.service.impl;
 
 
 import com.sinno.ems.dto.NatureIncident;
-import com.sinno.ems.entities.IncNatureIncident;
+import com.sinno.ems.entities.TmsNatureIncident;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
@@ -14,12 +14,10 @@ import com.sinno.ems.util.Search;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.plugin.dom.core.Attr;
 
 
 import org.springframework.data.domain.Pageable;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * Created by bouzi on 4/3/2017.
@@ -54,15 +52,15 @@ public class NatureIncidentServiceImpl implements NatureIncidentService {
     }
     @Override
     public List<NatureIncident> find(String search)throws AttributesNotFound,ErrorType{
-        return NatureIncidentMapper.toDtos(natureIncidentRepository.findAll(Search.expression(search,IncNatureIncident.class)), false);
+        return NatureIncidentMapper.toDtos(natureIncidentRepository.findAll(Search.expression(search,TmsNatureIncident.class)), false);
     }
     @Override
     public List<NatureIncident>find(String search, Pageable pageable)throws AttributesNotFound,ErrorType{
-        return NatureIncidentMapper.toDtos(natureIncidentRepository.findAll(Search.expression(search,IncNatureIncident.class),pageable),false);
+        return NatureIncidentMapper.toDtos(natureIncidentRepository.findAll(Search.expression(search,TmsNatureIncident.class),pageable),false);
     }
     @Override
     public Long size(String search)throws AttributesNotFound,ErrorType{
-        return natureIncidentRepository.count(Search.expression(search , IncNatureIncident.class));
+        return natureIncidentRepository.count(Search.expression(search , TmsNatureIncident.class));
     }
     @Override
     public void delete(Long id){

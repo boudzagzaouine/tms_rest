@@ -1,7 +1,7 @@
 package com.sinno.ems.service.impl;
 
 import com.sinno.ems.dto.MaintenancePlan;
-import com.sinno.ems.entities.MntMaintenancePlan;
+import com.sinno.ems.entities.TmsMaintenancePlan;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
@@ -50,16 +50,16 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     }
     @Override
     public List<MaintenancePlan> find(String search) throws AttributesNotFound, ErrorType {
-        return MaintenancePlanMapper.toDtos(maintenancePlanRepository.findAll(Search.expression(search, MntMaintenancePlan.class)), false);
+        return MaintenancePlanMapper.toDtos(maintenancePlanRepository.findAll(Search.expression(search, TmsMaintenancePlan.class)), false);
     }
 
     @Override
     public List<MaintenancePlan> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
-        return MaintenancePlanMapper.toDtos(maintenancePlanRepository.findAll(Search.expression(search, MntMaintenancePlan.class), pageable), false);
+        return MaintenancePlanMapper.toDtos(maintenancePlanRepository.findAll(Search.expression(search, TmsMaintenancePlan.class), pageable), false);
     }
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        return maintenancePlanRepository.count(Search.expression(search, MntMaintenancePlan.class));
+        return maintenancePlanRepository.count(Search.expression(search, TmsMaintenancePlan.class));
     }
 
     @Override

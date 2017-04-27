@@ -31,7 +31,7 @@ public class TmsDriver implements java.io.Serializable{
     @NotNull
     private TmsDriverSituation tmsDriverSituation;
 
-    private Set<DrvDriverBadge>drvDriverBadges;
+    private Set<TmsDriverBadge> tmsDriverBadges;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -200,11 +200,11 @@ public class TmsDriver implements java.io.Serializable{
         this.prmDriverUpDateUser = prmDriverUpDateUser;
     }
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "drvDriverBadgeBadge")
-    public Set<DrvDriverBadge> getDrvDriverBadges() {
-        return drvDriverBadges;
+    public Set<TmsDriverBadge> getTmsDriverBadges() {
+        return tmsDriverBadges;
     }
 
-    public void setDrvDriverBadges(Set<DrvDriverBadge> drvDriverBadges) {
-        this.drvDriverBadges = drvDriverBadges;
+    public void setTmsDriverBadges(Set<TmsDriverBadge> tmsDriverBadges) {
+        this.tmsDriverBadges = tmsDriverBadges;
     }
 }

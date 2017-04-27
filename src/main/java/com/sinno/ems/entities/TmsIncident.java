@@ -16,7 +16,7 @@ public class TmsIncident implements java.io.Serializable {
     private String prmIncidentCode;
     private Date prmIncidentTime;
     private String prmIncidentDescription;
-    private IncNatureIncident prmIncidentNature;
+    private TmsNatureIncident prmIncidentNature;
     private TmsRoad prmIncidentRoad;
     private TmsDriver prmIncidentDriver;
 
@@ -65,11 +65,11 @@ public class TmsIncident implements java.io.Serializable {
         this.prmIncidentDescription = prmIncidentDescription;
     }
 
-    public IncNatureIncident getPrmIncidentNature() {
+    public TmsNatureIncident getPrmIncidentNature() {
         return prmIncidentNature;
     }
 
-    public void setPrmIncidentNature(IncNatureIncident prmIncidentNature) {
+    public void setPrmIncidentNature(TmsNatureIncident prmIncidentNature) {
         this.prmIncidentNature = prmIncidentNature;
     }
     @ManyToOne(fetch = FetchType.LAZY)
