@@ -1,7 +1,7 @@
 package com.sinno.ems.mapper;
 
 import com.sinno.ems.dto.VehiculeStatus;
-import com.sinno.ems.entities.PrmVehicleStatus;
+import com.sinno.ems.entities.TmsVehicleStatus;
 
 import java.util.*;
 
@@ -35,80 +35,80 @@ public class VehicleStatusMapper {
     }
 
 
-    public static PrmVehicleStatus toEntity(VehiculeStatus vehiculeStatus , boolean lazy){
+    public static TmsVehicleStatus toEntity(VehiculeStatus vehiculeStatus , boolean lazy){
         if (null == vehiculeStatus) {
             return null;
         }
-        PrmVehicleStatus prmVehicleStatus = new PrmVehicleStatus();
+        TmsVehicleStatus tmsVehicleStatus = new TmsVehicleStatus();
 
-        prmVehicleStatus.setPrmVehiculeStatusId(vehiculeStatus.getId());
-        prmVehicleStatus.setPrmVehiculeStatusCode(vehiculeStatus.getCodeStatusVehicule()!=null ? vehiculeStatus.getCodeStatusVehicule().toUpperCase(): null);
-        prmVehicleStatus.setPrmVehiculeStatusDescritpion(vehiculeStatus.getDescritpion());
+        tmsVehicleStatus.setPrmVehiculeStatusId(vehiculeStatus.getId());
+        tmsVehicleStatus.setPrmVehiculeStatusCode(vehiculeStatus.getCodeStatusVehicule()!=null ? vehiculeStatus.getCodeStatusVehicule().toUpperCase(): null);
+        tmsVehicleStatus.setPrmVehiculeStatusDescritpion(vehiculeStatus.getDescritpion());
         if (!lazy) {
-            prmVehicleStatus.setPrmVehiculeStatusVehicules(VehicleMapper.toEntities(vehiculeStatus.getVehicules(),true));
+            tmsVehicleStatus.setPrmVehiculeStatusVehicules(VehicleMapper.toEntities(vehiculeStatus.getVehicules(),true));
 //
         }
-        return prmVehicleStatus;
+        return tmsVehicleStatus;
     }
 
-    public static VehiculeStatus toDto(PrmVehicleStatus prmVehicleStatus , boolean lazy){
-        if (null == prmVehicleStatus) {
+    public static VehiculeStatus toDto(TmsVehicleStatus tmsVehicleStatus, boolean lazy){
+        if (null == tmsVehicleStatus) {
             return null;
         }
         VehiculeStatus vehiculeStatus = new VehiculeStatus();
 
-        vehiculeStatus.setId(prmVehicleStatus.getPrmVehiculeStatusId());
-        vehiculeStatus.setCodeStatusVehicule(prmVehicleStatus.getPrmVehiculeStatusCode());
-        vehiculeStatus.setDescritpion(prmVehicleStatus.getPrmVehiculeStatusDescritpion());
+        vehiculeStatus.setId(tmsVehicleStatus.getPrmVehiculeStatusId());
+        vehiculeStatus.setCodeStatusVehicule(tmsVehicleStatus.getPrmVehiculeStatusCode());
+        vehiculeStatus.setDescritpion(tmsVehicleStatus.getPrmVehiculeStatusDescritpion());
         if (!lazy) {
-            vehiculeStatus.setVehicules(VehicleMapper.toDtos(prmVehicleStatus.getPrmVehiculeStatusVehicules(),true));
+            vehiculeStatus.setVehicules(VehicleMapper.toDtos(tmsVehicleStatus.getPrmVehiculeStatusVehicules(),true));
 //
         }
         return vehiculeStatus;
     }
 
-    public static List<VehiculeStatus>toDtos(List<PrmVehicleStatus>prmVehicleStatuses , boolean lazy){
-        if (null == prmVehicleStatuses) {
+    public static List<VehiculeStatus>toDtos(List<TmsVehicleStatus> tmsVehicleStatuses, boolean lazy){
+        if (null == tmsVehicleStatuses) {
             return null;
         }
         List<VehiculeStatus>vehiculeStatuses = new ArrayList<>();
 
-        for ( PrmVehicleStatus prmVehicleStatus:prmVehicleStatuses) {
-            vehiculeStatuses.add(toDto(prmVehicleStatus,lazy));
+        for ( TmsVehicleStatus tmsVehicleStatus : tmsVehicleStatuses) {
+            vehiculeStatuses.add(toDto(tmsVehicleStatus,lazy));
         }
         return vehiculeStatuses;
     }
 
 
-    public static List<VehiculeStatus>toDtos(Iterable<PrmVehicleStatus>prmVehicleStatuses , boolean lazy){
+    public static List<VehiculeStatus>toDtos(Iterable<TmsVehicleStatus>prmVehicleStatuses , boolean lazy){
         if (null == prmVehicleStatuses) {
             return null;
         }
         List<VehiculeStatus>vehiculeStatuses = new ArrayList<>();
 
-        for ( PrmVehicleStatus prmVehicleStatus:prmVehicleStatuses) {
-            vehiculeStatuses.add(toDto(prmVehicleStatus,lazy));
+        for ( TmsVehicleStatus tmsVehicleStatus :prmVehicleStatuses) {
+            vehiculeStatuses.add(toDto(tmsVehicleStatus,lazy));
         }
         return vehiculeStatuses;
     }
-    public static Set<PrmVehicleStatus>toEntities(Set<VehiculeStatus>vehiculeStatuses , boolean lazy){
+    public static Set<TmsVehicleStatus>toEntities(Set<VehiculeStatus>vehiculeStatuses , boolean lazy){
         if (null == vehiculeStatuses) {
             return null;
         }
-        Set<PrmVehicleStatus>prmVehicleStatuses = new HashSet<>();
+        Set<TmsVehicleStatus> tmsVehicleStatuses = new HashSet<>();
         for ( VehiculeStatus vehiculeStatus:vehiculeStatuses) {
-            prmVehicleStatuses.add(toEntity(vehiculeStatus,lazy));
+            tmsVehicleStatuses.add(toEntity(vehiculeStatus,lazy));
         }
-        return prmVehicleStatuses;
+        return tmsVehicleStatuses;
     }
 
-    public static Set<VehiculeStatus>toDtos(Set<PrmVehicleStatus>prmVehicleStatuses , boolean lazy){
-        if (null == prmVehicleStatuses) {
+    public static Set<VehiculeStatus>toDtos(Set<TmsVehicleStatus> tmsVehicleStatuses, boolean lazy){
+        if (null == tmsVehicleStatuses) {
             return null;
         }
         Set<VehiculeStatus>vehiculeStatuses = new HashSet<>();
-        for (PrmVehicleStatus prmVehicleStatus:prmVehicleStatuses) {
-            vehiculeStatuses.add(toDto(prmVehicleStatus , lazy));
+        for (TmsVehicleStatus tmsVehicleStatus : tmsVehicleStatuses) {
+            vehiculeStatuses.add(toDto(tmsVehicleStatus, lazy));
         }
         return  vehiculeStatuses;
 }

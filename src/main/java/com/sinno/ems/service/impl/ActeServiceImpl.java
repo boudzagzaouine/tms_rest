@@ -1,7 +1,7 @@
 package com.sinno.ems.service.impl;
 
 import com.sinno.ems.dto.Acte;
-import com.sinno.ems.entities.PrmActe;
+import com.sinno.ems.entities.TmsActe;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
@@ -60,15 +60,15 @@ public class ActeServiceImpl implements ActeService{
 
     @Override
     public List<Acte> find(String search) throws AttributesNotFound, ErrorType {
-        return ActeMapper.toDtos(acteRepository.findAll(Search.expression(search, PrmActe.class)), false);
+        return ActeMapper.toDtos(acteRepository.findAll(Search.expression(search, TmsActe.class)), false);
     }
     @Override
     public List<Acte> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
-        return ActeMapper.toDtos(acteRepository.findAll(Search.expression(search, PrmActe.class), pageable), false);
+        return ActeMapper.toDtos(acteRepository.findAll(Search.expression(search, TmsActe.class), pageable), false);
     }
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        return acteRepository.count(Search.expression(search, PrmActe.class));
+        return acteRepository.count(Search.expression(search, TmsActe.class));
     }
     @Override
     public void delete(Long id) {

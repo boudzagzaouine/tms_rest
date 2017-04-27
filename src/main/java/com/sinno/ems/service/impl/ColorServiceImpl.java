@@ -1,7 +1,7 @@
 package com.sinno.ems.service.impl;
 
 import com.sinno.ems.dto.Color;
-import com.sinno.ems.entities.PrmColor;
+import com.sinno.ems.entities.TmsColor;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
@@ -61,17 +61,17 @@ public class ColorServiceImpl implements ColorService {
 
     @Override
     public List<Color> find(String search) throws AttributesNotFound, ErrorType {
-        return ColorMapper.toDtos(colorRepository.findAll(Search.expression(search, PrmColor.class)), false);
+        return ColorMapper.toDtos(colorRepository.findAll(Search.expression(search, TmsColor.class)), false);
     }
 
     @Override
     public List<Color> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
-        return ColorMapper.toDtos(colorRepository.findAll(Search.expression(search, PrmColor.class), pageable), false);
+        return ColorMapper.toDtos(colorRepository.findAll(Search.expression(search, TmsColor.class), pageable), false);
     }
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        return colorRepository.count(Search.expression(search, PrmColor.class));
+        return colorRepository.count(Search.expression(search, TmsColor.class));
     }
 
     @Override

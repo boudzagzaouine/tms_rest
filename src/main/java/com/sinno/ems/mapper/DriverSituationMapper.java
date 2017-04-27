@@ -1,7 +1,7 @@
 package com.sinno.ems.mapper;
 
 import com.sinno.ems.dto.DriverSituation;
-import com.sinno.ems.entities.PrmDriverSituation;
+import com.sinno.ems.entities.TmsDriverSituation;
 
 import java.util.*;
 
@@ -31,70 +31,70 @@ public class DriverSituationMapper {
         return map.get(key);
     }
 
-    public static PrmDriverSituation toEntity(DriverSituation driversituation, boolean lazy) {
+    public static TmsDriverSituation toEntity(DriverSituation driversituation, boolean lazy) {
         if (null == driversituation) {
             return null;
         }
-        PrmDriverSituation prmDriverSituation = new PrmDriverSituation();
-        prmDriverSituation.setPrmDriverId(driversituation.getId());
-        prmDriverSituation.setPrmDriverSituationDescription(driversituation.getDescription());
-        prmDriverSituation.setPrmDriverSituationCode(driversituation.getCode());
+        TmsDriverSituation tmsDriverSituation = new TmsDriverSituation();
+        tmsDriverSituation.setPrmDriverId(driversituation.getId());
+        tmsDriverSituation.setPrmDriverSituationDescription(driversituation.getDescription());
+        tmsDriverSituation.setPrmDriverSituationCode(driversituation.getCode());
         if (!lazy) {
 
         }
-        return prmDriverSituation;
+        return tmsDriverSituation;
     }
 
-    public static DriverSituation toDto(PrmDriverSituation prmDriverSituation, boolean lazy) {
-        if (null == prmDriverSituation) {
+    public static DriverSituation toDto(TmsDriverSituation tmsDriverSituation, boolean lazy) {
+        if (null == tmsDriverSituation) {
             return null;
         }
         DriverSituation driverSituation = new DriverSituation();
-        driverSituation.setId(prmDriverSituation.getPrmDriverId());
-        driverSituation.setCode(prmDriverSituation.getPrmDriverSituationCode());
-        driverSituation.setDescription(prmDriverSituation.getPrmDriverSituationDescription());
+        driverSituation.setId(tmsDriverSituation.getPrmDriverId());
+        driverSituation.setCode(tmsDriverSituation.getPrmDriverSituationCode());
+        driverSituation.setDescription(tmsDriverSituation.getPrmDriverSituationDescription());
         if(!lazy){
 
         }
         return driverSituation;
     }
-    public static List<DriverSituation> toDtos(List<PrmDriverSituation> prmDriverSituations, boolean lazy) {
-        if (null == prmDriverSituations) {
+    public static List<DriverSituation> toDtos(List<TmsDriverSituation> tmsDriverSituations, boolean lazy) {
+        if (null == tmsDriverSituations) {
             return null;
         }
         List<DriverSituation> driverSituations = new ArrayList<>();
-        for (PrmDriverSituation prmColor : prmDriverSituations) {
+        for (TmsDriverSituation prmColor : tmsDriverSituations) {
             driverSituations.add(toDto(prmColor, lazy));
         }
         return driverSituations;
     }
 
-    public static List<DriverSituation> toDtos(Iterable<PrmDriverSituation> prmDriverSituations, boolean lazy) {
+    public static List<DriverSituation> toDtos(Iterable<TmsDriverSituation> prmDriverSituations, boolean lazy) {
         if (null == prmDriverSituations) {
             return null;
         }
         List<DriverSituation> colors = new ArrayList<>();
-        for (PrmDriverSituation prmDriverSituation : prmDriverSituations) {
-            colors.add(toDto(prmDriverSituation, lazy));
+        for (TmsDriverSituation tmsDriverSituation : prmDriverSituations) {
+            colors.add(toDto(tmsDriverSituation, lazy));
         }
         return colors;
     }
-    public static Set<PrmDriverSituation> toEntities(Set<DriverSituation> driverSituations, boolean lazy) {
+    public static Set<TmsDriverSituation> toEntities(Set<DriverSituation> driverSituations, boolean lazy) {
         if (null == driverSituations) {
             return null;
         }
-        Set<PrmDriverSituation>  prmDriverSituations= new HashSet<>();
+        Set<TmsDriverSituation> tmsDriverSituations = new HashSet<>();
         for (DriverSituation driverSituation : driverSituations) {
-            prmDriverSituations.add(toEntity(driverSituation, lazy));
+            tmsDriverSituations.add(toEntity(driverSituation, lazy));
         }
-        return prmDriverSituations;
+        return tmsDriverSituations;
     }
-    public static Set<DriverSituation> toDtos(Set<PrmDriverSituation> prmDriverSituations, boolean lazy) {
-        if (null == prmDriverSituations) {
+    public static Set<DriverSituation> toDtos(Set<TmsDriverSituation> tmsDriverSituations, boolean lazy) {
+        if (null == tmsDriverSituations) {
             return null;
         }
         Set<DriverSituation> driverSituations = new HashSet<>();
-        for (PrmDriverSituation prmColor : prmDriverSituations) {
+        for (TmsDriverSituation prmColor : tmsDriverSituations) {
             driverSituations.add(toDto(prmColor, lazy));
         }
         return driverSituations;

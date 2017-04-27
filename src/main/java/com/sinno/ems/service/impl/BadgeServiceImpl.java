@@ -1,7 +1,7 @@
 package com.sinno.ems.service.impl;
 
 import com.sinno.ems.dto.Badge;
-import com.sinno.ems.entities.PrmBadge;
+import com.sinno.ems.entities.TmsBadge;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
@@ -51,15 +51,15 @@ public class BadgeServiceImpl implements BadgeService {
     }
     @Override
     public List<Badge> find(String search) throws AttributesNotFound, ErrorType {
-        return BadgeMapper.toDtos(badgeRepository.findAll(Search.expression(search, PrmBadge.class)), false);
+        return BadgeMapper.toDtos(badgeRepository.findAll(Search.expression(search, TmsBadge.class)), false);
     }
     @Override
     public List<Badge> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
-        return BadgeMapper.toDtos(badgeRepository.findAll(Search.expression(search, PrmBadge.class), pageable), false);
+        return BadgeMapper.toDtos(badgeRepository.findAll(Search.expression(search, TmsBadge.class), pageable), false);
     }
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        return badgeRepository.count(Search.expression(search, PrmBadge.class));
+        return badgeRepository.count(Search.expression(search, TmsBadge.class));
     }
     @Override
     public void delete(Long id) {

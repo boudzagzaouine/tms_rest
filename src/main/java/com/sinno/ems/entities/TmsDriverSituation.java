@@ -10,13 +10,13 @@ import java.util.Set;
  */
 @Entity
 @Table(name="prm_DriverSituation",uniqueConstraints = @UniqueConstraint(columnNames={"prm_driversituationcode","prm_driverid"}))
-public class PrmDriverSituation implements java.io.Serializable {
+public class TmsDriverSituation implements java.io.Serializable {
     private long prmDriverId;
     @NotNull
     private String prmDriverSituationCode;
     private String prmDriverSituationDescription;
-    private Set<PrmDriver> prmDrivers;
-    public PrmDriverSituation(){
+    private Set<TmsDriver> tmsDrivers;
+    public TmsDriverSituation(){
 
     }
     @Id
@@ -52,11 +52,11 @@ public class PrmDriverSituation implements java.io.Serializable {
     }
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmDriverSituation")
 
-    public Set<PrmDriver> getPrmDrivers() {
-        return prmDrivers;
+    public Set<TmsDriver> getTmsDrivers() {
+        return tmsDrivers;
     }
 
-    public void setPrmDrivers(Set<PrmDriver> prmDrivers) {
-        this.prmDrivers = prmDrivers;
+    public void setTmsDrivers(Set<TmsDriver> tmsDrivers) {
+        this.tmsDrivers = tmsDrivers;
     }
 }

@@ -1,8 +1,7 @@
 package com.sinno.ems.mapper;
 
 import com.sinno.ems.dto.Driver;
-import com.sinno.ems.dto.User;
-import com.sinno.ems.entities.PrmDriver;
+import com.sinno.ems.entities.TmsDriver;
 
 import java.util.HashMap;
 import java.util.*;
@@ -41,85 +40,85 @@ public class DriverMapper {
         return map.get(key);
     }
 
-    public static PrmDriver toEntity(Driver driver, boolean lazy) {
+    public static TmsDriver toEntity(Driver driver, boolean lazy) {
         if (null == driver) {
             return null;
         }
-        PrmDriver prmDriver = new PrmDriver();
-        prmDriver.setPrmDriverId(driver.getId());
-        prmDriver.setPrmDriverPassportNumber(driver.getPassportNumber());
-        prmDriver.setPrmDriverDateCreation(driver.getDateCreation());
-        prmDriver.setPrmDriverDateUpDate(driver.getDateUpDate());
+        TmsDriver tmsDriver = new TmsDriver();
+        tmsDriver.setPrmDriverId(driver.getId());
+        tmsDriver.setPrmDriverPassportNumber(driver.getPassportNumber());
+        tmsDriver.setPrmDriverDateCreation(driver.getDateCreation());
+        tmsDriver.setPrmDriverDateUpDate(driver.getDateUpDate());
         if (!lazy) {
-            prmDriver.setPincidents(IncidentMapper.toEntities(driver.getIncidents(),true));
-            prmDriver.setPbadges(BadgeMapper.toEntities(driver.getBadges(),true));
-            prmDriver.setPrmDriverSituation(DriverSituationMapper.toEntity(driver.getDriverSituation(),true));
-            prmDriver.setPrmDriverCreationUser(UserMapper.toEntity(driver.getCreationUser(),true));
-            prmDriver.setPrmDriverUpDateUser(UserMapper.toEntity(driver.getUpDateUser(),true));
-            prmDriver.setDrvDriverBadges(DriverBadgeMapper.toEntities(driver.getDriverBadges(),true));
+            tmsDriver.setPincidents(IncidentMapper.toEntities(driver.getIncidents(),true));
+            tmsDriver.setPbadges(BadgeMapper.toEntities(driver.getBadges(),true));
+            tmsDriver.setTmsDriverSituation(DriverSituationMapper.toEntity(driver.getDriverSituation(),true));
+            tmsDriver.setPrmDriverCreationUser(UserMapper.toEntity(driver.getCreationUser(),true));
+            tmsDriver.setPrmDriverUpDateUser(UserMapper.toEntity(driver.getUpDateUser(),true));
+            tmsDriver.setDrvDriverBadges(DriverBadgeMapper.toEntities(driver.getDriverBadges(),true));
         }
-        return prmDriver;
+        return tmsDriver;
     }
 
-    public static Driver toDto(PrmDriver prmDriver, boolean lazy) {
-        if (null == prmDriver) {
+    public static Driver toDto(TmsDriver tmsDriver, boolean lazy) {
+        if (null == tmsDriver) {
             return null;
         }
         Driver driver = new Driver();
-        driver.setId(prmDriver.getPrmDriverId());
-        driver.setDateCreation(prmDriver.getPrmDriverDateCreation());
-        driver.setDateUpDate(prmDriver.getPrmDriverDateUpDate());
+        driver.setId(tmsDriver.getPrmDriverId());
+        driver.setDateCreation(tmsDriver.getPrmDriverDateCreation());
+        driver.setDateUpDate(tmsDriver.getPrmDriverDateUpDate());
 
         if (!lazy) {
-            driver.setIncidents(IncidentMapper.toDtos(prmDriver.getPincidents(),true));
-            driver.setBadges(BadgeMapper.toDtos(prmDriver.getPbadges(),true));
-            driver.setDriverSituation(DriverSituationMapper.toDto(prmDriver.getPrmDriverSituation(),true));
-            driver.setCreationUser(UserMapper.toDto(prmDriver.getPrmDriverCreationUser(),true));
-            driver.setUpDateUser(UserMapper.toDto(prmDriver.getPrmDriverUpDateUser(),true));
-            driver.setDriverBadges(DriverBadgeMapper.toDtos(prmDriver.getDrvDriverBadges(),true));
+            driver.setIncidents(IncidentMapper.toDtos(tmsDriver.getPincidents(),true));
+            driver.setBadges(BadgeMapper.toDtos(tmsDriver.getPbadges(),true));
+            driver.setDriverSituation(DriverSituationMapper.toDto(tmsDriver.getTmsDriverSituation(),true));
+            driver.setCreationUser(UserMapper.toDto(tmsDriver.getPrmDriverCreationUser(),true));
+            driver.setUpDateUser(UserMapper.toDto(tmsDriver.getPrmDriverUpDateUser(),true));
+            driver.setDriverBadges(DriverBadgeMapper.toDtos(tmsDriver.getDrvDriverBadges(),true));
         }
         return driver;
     }
 
-    public static List<Driver> toDtos(List<PrmDriver> prmDrivers, boolean lazy) {
-        if (null == prmDrivers) {
+    public static List<Driver> toDtos(List<TmsDriver> tmsDrivers, boolean lazy) {
+        if (null == tmsDrivers) {
             return null;
         }
         List<Driver> drivers = new ArrayList<>();
-        for (PrmDriver prmDriver : prmDrivers) {
-            drivers.add(toDto(prmDriver, lazy));
+        for (TmsDriver tmsDriver : tmsDrivers) {
+            drivers.add(toDto(tmsDriver, lazy));
 
         }
         return drivers;
     }
 
-    public static List<Driver> toDtos(Iterable<PrmDriver> prmDrivers, boolean lazy) {
+    public static List<Driver> toDtos(Iterable<TmsDriver> prmDrivers, boolean lazy) {
         if (null == prmDrivers) {
             return null;
         }
         List<Driver> drivers = new ArrayList<>();
-        for (PrmDriver prmDriver : prmDrivers) {
-            drivers.add(toDto(prmDriver, lazy));
+        for (TmsDriver tmsDriver : prmDrivers) {
+            drivers.add(toDto(tmsDriver, lazy));
         }
         return drivers;
     }
-    public static Set<PrmDriver> toEntities(Set<Driver>drivers,boolean lazy){
+    public static Set<TmsDriver> toEntities(Set<Driver>drivers, boolean lazy){
         if (null == drivers) {
             return null;
         }
-        Set<PrmDriver> prmDrivers = new HashSet<>();
+        Set<TmsDriver> tmsDrivers = new HashSet<>();
         for(Driver driver:drivers){
-            prmDrivers.add(toEntity(driver,lazy));
+            tmsDrivers.add(toEntity(driver,lazy));
         }
-        return prmDrivers;
+        return tmsDrivers;
     }
-    public static Set<Driver> toDtos(Set<PrmDriver> prmDrivers,boolean lazy){
-        if(null ==prmDrivers){
+    public static Set<Driver> toDtos(Set<TmsDriver> tmsDrivers, boolean lazy){
+        if(null == tmsDrivers){
             return null;
         }
         Set<Driver> drivers = new HashSet<>();
-        for(PrmDriver prmDriver:prmDrivers){
-            drivers.add(toDto(prmDriver,lazy));
+        for(TmsDriver tmsDriver : tmsDrivers){
+            drivers.add(toDto(tmsDriver,lazy));
         }
         return drivers;
     }

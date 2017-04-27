@@ -11,14 +11,14 @@ import java.util.Set;
 @Table(name="prm_badge",uniqueConstraints= @UniqueConstraint(columnNames = {"prm_badgecode","prm_badgeid"}))
 
 
-public class PrmBadge implements java.io.Serializable{
+public class TmsBadge implements java.io.Serializable{
     private long prmBadgeId;
     @NotNull
     private String prmBadgeCode;
     private String prmBadgeLibelle;
     private String prmBadgeDescription;
-    private Set<PrmVehicle> prmBadgeVehicule;
-    private Set<PrmDriver> prmBadgeDriver;
+    private Set<TmsVehicle> prmBadgeVehicule;
+    private Set<TmsDriver> prmBadgeDriver;
 
 
 
@@ -58,21 +58,21 @@ public class PrmBadge implements java.io.Serializable{
         this.prmBadgeLibelle = prmBadgeLibelle;
     }
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmVehicleBadges")
-    public Set<PrmVehicle> getPrmBadgeVehicule() {
+    public Set<TmsVehicle> getPrmBadgeVehicule() {
         return prmBadgeVehicule;
     }
 
-    public void setPrmBadgeVehicule(Set<PrmVehicle> prmBadgeVehicule) {
+    public void setPrmBadgeVehicule(Set<TmsVehicle> prmBadgeVehicule) {
         this.prmBadgeVehicule = prmBadgeVehicule;
     }
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "drvDriverBadges")
 
-    public Set<PrmDriver> getPrmBadgeDriver() {
+    public Set<TmsDriver> getPrmBadgeDriver() {
         return prmBadgeDriver;
     }
 
-    public void setPrmBadgeDriver(Set<PrmDriver> prmBadgeDriver) {
+    public void setPrmBadgeDriver(Set<TmsDriver> prmBadgeDriver) {
         this.prmBadgeDriver = prmBadgeDriver;
     }
 

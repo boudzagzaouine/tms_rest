@@ -1,8 +1,5 @@
 package com.sinno.ems.entities;
 
-import com.sinno.ems.dto.Acte;
-import com.sinno.ems.dto.Vehicule;
-
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,13 +16,13 @@ import java.util.Set;
 public class MntMaintenancePlan implements java.io.Serializable{
     private long mntMaintenancePlanId;
     @NotNull
-    private PrmVehicle vehicle;
+    private TmsVehicle vehicle;
     @Size(max = 30)
     @NotNull
     private String mntMaintenancePlanCode;
     @Size(max = 255)
     private String mntDescription;
-    private Set<PrmActe> mntMaintenancePlanActes;
+    private Set<TmsActe> mntMaintenancePlanActes;
 
     public MntMaintenancePlan(){
 
@@ -48,11 +45,11 @@ public class MntMaintenancePlan implements java.io.Serializable{
 
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmVehicleMaintenancePlan")
-    public PrmVehicle getVehicle() {
+    public TmsVehicle getVehicle() {
         return vehicle;
     }
 
-    public void setVehicle(PrmVehicle vehicle) {
+    public void setVehicle(TmsVehicle vehicle) {
         this.vehicle = vehicle;
     }
 
@@ -79,11 +76,11 @@ public class MntMaintenancePlan implements java.io.Serializable{
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "")
 
     @JoinColumn(name = "mnt_maintenanceplanvehicleid", nullable = false)
-    public Set<PrmActe> getMntMaintenancePlanActes() {
+    public Set<TmsActe> getMntMaintenancePlanActes() {
         return mntMaintenancePlanActes;
     }
 
-    public void setMntMaintenancePlanActes(Set<PrmActe> mntMaintenancePlanActes) {
+    public void setMntMaintenancePlanActes(Set<TmsActe> mntMaintenancePlanActes) {
         this.mntMaintenancePlanActes = mntMaintenancePlanActes;
     }
 

@@ -1,7 +1,5 @@
 package com.sinno.ems.entities;
 
-import com.sinno.ems.dto.Vehicule;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -16,7 +14,7 @@ import java.util.Date;
 public class AsrPoliceInsurance implements Serializable {
     private long asrPoliceInsuranceId;
     @NotNull
-    private PrmVehicle vehicules;
+    private TmsVehicle vehicules;
     @Size(max = 30)
     @NotNull
     private String asrPoliceInsuranceCode;
@@ -50,7 +48,7 @@ public class AsrPoliceInsurance implements Serializable {
         this.asrPoliceInsuranceId = asrPoliceInsuranceId;
     }
 
-    public void setVehicules(PrmVehicle vehicules) {
+    public void setVehicules(TmsVehicle vehicules) {
         this.vehicules = vehicules;
     }
 
@@ -117,7 +115,7 @@ public class AsrPoliceInsurance implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "asr_policeinsurancevehicle")
 
-    public PrmVehicle getVehicules() {
+    public TmsVehicle getVehicules() {
         return vehicules;
     }
 

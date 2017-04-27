@@ -1,8 +1,7 @@
 package com.sinno.ems.mapper;
 
 import com.sinno.ems.dto.Road;
-import com.sinno.ems.entities.PrmRoad;
-import org.springframework.security.access.method.P;
+import com.sinno.ems.entities.TmsRoad;
 
 import java.util.*;
 
@@ -40,86 +39,86 @@ public class RoadMapper {
         return map.get(key);
     }
 
-    public static PrmRoad toEntity(Road road, boolean lazy){
+    public static TmsRoad toEntity(Road road, boolean lazy){
         if (null == road) {
             return null;
         }
-        PrmRoad prmRoad = new PrmRoad();
-        prmRoad.setPrmRoadId(road.getId());
-        prmRoad.setPrmRoadCode(road.getCode() != null ? road.getCode().toUpperCase() : null );
-        prmRoad.setPrmRoadDuration(road.getDuration());
-        prmRoad.setPrmRoadCost(road.getCost());
-        prmRoad.setPrmRoadDistance(road.getDistance());
+        TmsRoad tmsRoad = new TmsRoad();
+        tmsRoad.setPrmRoadId(road.getId());
+        tmsRoad.setPrmRoadCode(road.getCode() != null ? road.getCode().toUpperCase() : null );
+        tmsRoad.setPrmRoadDuration(road.getDuration());
+        tmsRoad.setPrmRoadCost(road.getCost());
+        tmsRoad.setPrmRoadDistance(road.getDistance());
 
         if (!lazy) {
-          prmRoad.setPrmRoadIncident(IncidentMapper.toEntities(road.getIncidents(),true));
-          prmRoad.setPrmRoadPrincialDriver(DriverMapper.toEntity(road.getPrincipalDriver(),true));
-          prmRoad.setPrmRoadSuppleantDriver(DriverMapper.toEntity(road.getPrincipalDriver(),true));
+          tmsRoad.setPrmRoadIncident(IncidentMapper.toEntities(road.getIncidents(),true));
+          tmsRoad.setPrmRoadPrincialDriver(DriverMapper.toEntity(road.getPrincipalDriver(),true));
+          tmsRoad.setPrmRoadSuppleantDriver(DriverMapper.toEntity(road.getPrincipalDriver(),true));
           //
-          prmRoad.setPrmRoadVehicle(VehicleMapper.toEntity(road.getVehicule(),true));
+          tmsRoad.setPrmRoadVehicle(VehicleMapper.toEntity(road.getVehicule(),true));
         }
-        return prmRoad;
+        return tmsRoad;
     }
-    public static Road toDto(PrmRoad prmRoad , boolean lazy){
-        if (null == prmRoad) {
+    public static Road toDto(TmsRoad tmsRoad, boolean lazy){
+        if (null == tmsRoad) {
             return null;
         }
         Road road = new Road();
-        road.setId(prmRoad.getPrmRoadId());
-        road.setCode(prmRoad.getPrmRoadCode());
-        road.setDuration(prmRoad.getPrmRoadDuration());
-        road.setCost(prmRoad.getPrmRoadCost());
-        road.setDistance(prmRoad.getPrmRoadDistance());
+        road.setId(tmsRoad.getPrmRoadId());
+        road.setCode(tmsRoad.getPrmRoadCode());
+        road.setDuration(tmsRoad.getPrmRoadDuration());
+        road.setCost(tmsRoad.getPrmRoadCost());
+        road.setDistance(tmsRoad.getPrmRoadDistance());
 
         if (!lazy) {
-            road.setIncidents(IncidentMapper.toDtos(prmRoad.getPrmRoadIncident(),true));
-            road.setPrincipalDriver(DriverMapper.toDto(prmRoad.getPrmRoadPrincialDriver(),true));
-            road.setSuppleantDriver(DriverMapper.toDto(prmRoad.getPrmRoadPrincialDriver(),true));
+            road.setIncidents(IncidentMapper.toDtos(tmsRoad.getPrmRoadIncident(),true));
+            road.setPrincipalDriver(DriverMapper.toDto(tmsRoad.getPrmRoadPrincialDriver(),true));
+            road.setSuppleantDriver(DriverMapper.toDto(tmsRoad.getPrmRoadPrincialDriver(),true));
             //
-            road.setVehicule(VehicleMapper.toDto(prmRoad.getPrmRoadVehicle(),true));
+            road.setVehicule(VehicleMapper.toDto(tmsRoad.getPrmRoadVehicle(),true));
         }
         return road;
     }
 
-    public static List<Road>toDtos(List<PrmRoad> prmRoads , boolean lazy){
-        if (null == prmRoads) {
+    public static List<Road>toDtos(List<TmsRoad> tmsRoads, boolean lazy){
+        if (null == tmsRoads) {
             return null;
         }
         List<Road>roads = new ArrayList<>();
-        for (PrmRoad prmRoad : prmRoads) {
-            roads.add(toDto(prmRoad , lazy));
+        for (TmsRoad tmsRoad : tmsRoads) {
+            roads.add(toDto(tmsRoad, lazy));
         }
         return roads;
     }
 
-    public static List<Road> toDtos(Iterable<PrmRoad>prmRoads , boolean lazy){
+    public static List<Road> toDtos(Iterable<TmsRoad>prmRoads , boolean lazy){
         if (null == prmRoads) {
             return null;
         }
         List<Road>roads = new ArrayList<>();
-        for (PrmRoad prmRoad : prmRoads) {
-            roads.add(toDto(prmRoad , lazy));
+        for (TmsRoad tmsRoad : prmRoads) {
+            roads.add(toDto(tmsRoad, lazy));
         }
         return roads;
     }
 
-    public static Set<PrmRoad> toEntities(Set<Road>roads , boolean lazy){
+    public static Set<TmsRoad> toEntities(Set<Road>roads , boolean lazy){
         if (null == roads) {
             return null;
         }
-        Set<PrmRoad>prmRoads = new HashSet<>();
+        Set<TmsRoad> tmsRoads = new HashSet<>();
         for ( Road road:roads) {
-            prmRoads.add(toEntity(road , lazy));
+            tmsRoads.add(toEntity(road , lazy));
         }
-        return prmRoads;
+        return tmsRoads;
     }
-    public static Set<Road> toDtos(Set<PrmRoad>prmRoads , boolean lazy){
-        if (null == prmRoads) {
+    public static Set<Road> toDtos(Set<TmsRoad> tmsRoads, boolean lazy){
+        if (null == tmsRoads) {
             return null;
         }
         Set<Road>roads = new HashSet<>();
-        for ( PrmRoad prmRoad : prmRoads) {
-            roads.add(toDto(prmRoad , lazy));
+        for ( TmsRoad tmsRoad : tmsRoads) {
+            roads.add(toDto(tmsRoad, lazy));
         }
         return roads;
     }

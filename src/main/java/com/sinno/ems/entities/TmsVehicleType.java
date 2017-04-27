@@ -1,7 +1,5 @@
 package com.sinno.ems.entities;
 
-import com.sinno.ems.dto.Vehicule;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -11,7 +9,7 @@ import java.util.Set;
 /**
  * Created by bouzi on 3/15/2017.
  */
-public class PrmVehicleType implements Serializable {
+public class TmsVehicleType implements Serializable {
     private long prmVehicleTypeId;
     @Size(max = 30)
     @NotNull
@@ -20,9 +18,9 @@ public class PrmVehicleType implements Serializable {
     @NotNull
     private String prmVehicleTypeType;
     @NotNull
-    private Set<PrmVehicle> prmVehicleTypeVehicules;
+    private Set<TmsVehicle> tmsVehicleTypeVehicules;
 
-    public PrmVehicleType() {
+    public TmsVehicleType() {
 
     }
     @Id
@@ -53,12 +51,12 @@ public class PrmVehicleType implements Serializable {
         this.prmVehicleTypeType = prmVehicleTypeType;
     }
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmVehicleType")
-    public Set<PrmVehicle> getPrmVehicleTypeVehicules() {
-        return prmVehicleTypeVehicules;
+    public Set<TmsVehicle> getTmsVehicleTypeVehicules() {
+        return tmsVehicleTypeVehicules;
     }
 
-    public void setPrmVehicleTypeVehicules(Set<PrmVehicle> prmVehicleTypeVehicules) {
-        this.prmVehicleTypeVehicules = prmVehicleTypeVehicules;
+    public void setTmsVehicleTypeVehicules(Set<TmsVehicle> tmsVehicleTypeVehicules) {
+        this.tmsVehicleTypeVehicules = tmsVehicleTypeVehicules;
     }
 
 }

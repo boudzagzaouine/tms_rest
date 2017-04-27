@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * Created by bouzi on 3/15/2017.
  */
-public class PrmVehicle implements Serializable {
+public class TmsVehicle implements Serializable {
     private long prmVehicleId;
     @Size(max = 30)
     @NotNull
@@ -28,11 +28,11 @@ public class PrmVehicle implements Serializable {
     @Size(max = 255)
     private String prmVehicleModel;
     @NotNull
-    private PrmVehicleStatus prmVehicleStatus;
+    private TmsVehicleStatus tmsVehicleStatus;
     @NotNull
-    private PrmVehicleType prmVehicleType;
+    private TmsVehicleType tmsVehicleType;
     @NotNull
-    private Set<PrmBadge> prmVehicleBadges;
+    private Set<TmsBadge> prmVehicleBadges;
     @NotNull
     private AsrPoliceInsurance prmVehiclePoliceAssurance;
     @NotNull
@@ -47,7 +47,7 @@ public class PrmVehicle implements Serializable {
 
 
 
-    public PrmVehicle() {
+    public TmsVehicle() {
 
     }
 
@@ -113,28 +113,28 @@ public class PrmVehicle implements Serializable {
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_vehiclevehiclestatusid", nullable = false)
-    public PrmVehicleStatus getPrmVehicleStatus() {
-        return prmVehicleStatus;
+    public TmsVehicleStatus getTmsVehicleStatus() {
+        return tmsVehicleStatus;
     }
 
-    public void setPrmVehicleStatus(PrmVehicleStatus prmVehicleStatus) {
-        this.prmVehicleStatus = prmVehicleStatus;
+    public void setTmsVehicleStatus(TmsVehicleStatus tmsVehicleStatus) {
+        this.tmsVehicleStatus = tmsVehicleStatus;
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_vehiclevehicletypeid", nullable = false)
-    public PrmVehicleType getPrmVehicleType() {
-        return prmVehicleType;
+    public TmsVehicleType getTmsVehicleType() {
+        return tmsVehicleType;
     }
 
-    public void setPrmVehicleType(PrmVehicleType prmVehicleType) {
-        this.prmVehicleType = prmVehicleType;
+    public void setTmsVehicleType(TmsVehicleType tmsVehicleType) {
+        this.tmsVehicleType = tmsVehicleType;
     }
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmBadgeVehicule")
-    public Set<PrmBadge> getPrmVehicleBadges() {
+    public Set<TmsBadge> getPrmVehicleBadges() {
         return prmVehicleBadges;
     }
 
-    public void setPrmVehicleBadges(Set<PrmBadge> prmVehicleBadges) {
+    public void setPrmVehicleBadges(Set<TmsBadge> prmVehicleBadges) {
         this.prmVehicleBadges = prmVehicleBadges;
     }
     @ManyToOne(fetch = FetchType.LAZY)

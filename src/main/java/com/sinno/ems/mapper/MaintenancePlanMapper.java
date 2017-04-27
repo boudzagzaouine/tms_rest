@@ -2,8 +2,6 @@ package com.sinno.ems.mapper;
 
 import com.sinno.ems.dto.MaintenancePlan;
 import com.sinno.ems.entities.MntMaintenancePlan;
-import com.sinno.ems.entities.PrmActe;
-import sun.applet.Main;
 
 import java.util.*;
 

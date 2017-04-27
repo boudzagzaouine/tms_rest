@@ -1,7 +1,7 @@
 package com.sinno.ems.service.impl;
 
 import com.sinno.ems.dto.VehiculeType;
-import com.sinno.ems.entities.PrmVehicleType;
+import com.sinno.ems.entities.TmsVehicleType;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
@@ -57,17 +57,17 @@ public class VehicleTypeServiceImpl implements VehicleTypeService {
 
     @Override
     public List<VehiculeType> find(String search) throws AttributesNotFound, ErrorType {
-        return VehicleTypeMapper.toDtos(vehicleTypeRepository.findAll(Search.expression(search, PrmVehicleType.class)), false);
+        return VehicleTypeMapper.toDtos(vehicleTypeRepository.findAll(Search.expression(search, TmsVehicleType.class)), false);
     }
 
     @Override
     public List<VehiculeType> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
-        return VehicleTypeMapper.toDtos(vehicleTypeRepository.findAll(Search.expression(search, PrmVehicleType.class),pageable), false);
+        return VehicleTypeMapper.toDtos(vehicleTypeRepository.findAll(Search.expression(search, TmsVehicleType.class),pageable), false);
     }
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        return vehicleTypeRepository.count(Search.expression(search, PrmVehicleType.class));
+        return vehicleTypeRepository.count(Search.expression(search, TmsVehicleType.class));
     }
 
     @Override

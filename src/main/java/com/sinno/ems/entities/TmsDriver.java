@@ -1,14 +1,11 @@
 package com.sinno.ems.entities;
 
-import com.sinno.ems.dto.*;
-
 import javax.persistence.*;
 
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -17,14 +14,14 @@ import java.util.Set;
 @Entity
 @Table(name = "prm_driver", uniqueConstraints = @UniqueConstraint(columnNames = {"prm_driverecode","prm_driverid"}))
 
-public class PrmDriver implements java.io.Serializable{
+public class TmsDriver implements java.io.Serializable{
     private long prmDriverId;
 
     @Size(max = 255)
     private String prmDriverPassportNumber;
 
-    private Set<PrmIncident> pincidents;
-    private Set<PrmBadge> pbadges;
+    private Set<TmsIncident> pincidents;
+    private Set<TmsBadge> pbadges;
     //  private Adresse adresse;
   private Date prmDriverDateCreation;
     private Date prmDriverDateUpDate;
@@ -32,7 +29,7 @@ public class PrmDriver implements java.io.Serializable{
     private UsrUser prmDriverUpDateUser;
     @Size(max = 30)
     @NotNull
-    private PrmDriverSituation prmDriverSituation;
+    private TmsDriverSituation tmsDriverSituation;
 
     private Set<DrvDriverBadge>drvDriverBadges;
 
@@ -119,29 +116,29 @@ public class PrmDriver implements java.io.Serializable{
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmIncidentDriver")
 
-    public Set<PrmIncident> getPincidents() {
+    public Set<TmsIncident> getPincidents() {
         return pincidents;
     }
 
-    public void setPincidents(Set<PrmIncident> pincidents) {
+    public void setPincidents(Set<TmsIncident> pincidents) {
         this.pincidents = pincidents;
     }
    /* @Column(name="prm_roadDriver",nullable=false)
 
-    public Set<PrmRoad> getProads() {
+    public Set<TmsRoad> getProads() {
         return proads;
     }
 
-    public void setProads(Set<PrmRoad> proads) {
+    public void setProads(Set<TmsRoad> proads) {
         this.proads = proads;
     }*/
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmBadgeDriver")
-    public Set<PrmBadge> getPbadges() {
+    public Set<TmsBadge> getPbadges() {
         return pbadges;
     }
 
-    public void setPbadges(Set<PrmBadge> pbadges) {
+    public void setPbadges(Set<TmsBadge> pbadges) {
         this.pbadges = pbadges;
     }
 
@@ -159,12 +156,12 @@ public class PrmDriver implements java.io.Serializable{
         }*/
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_driversituationid")
-    public PrmDriverSituation getPrmDriverSituation() {
-        return prmDriverSituation;
+    public TmsDriverSituation getTmsDriverSituation() {
+        return tmsDriverSituation;
     }
 
-    public void setPrmDriverSituation(PrmDriverSituation prmDriverSituation) {
-        this.prmDriverSituation = prmDriverSituation;
+    public void setTmsDriverSituation(TmsDriverSituation tmsDriverSituation) {
+        this.tmsDriverSituation = tmsDriverSituation;
     }
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "prm_driverdatecreation")

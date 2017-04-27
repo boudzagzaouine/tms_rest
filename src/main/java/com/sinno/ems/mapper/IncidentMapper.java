@@ -1,7 +1,7 @@
 package com.sinno.ems.mapper;
 
 import com.sinno.ems.dto.Incident;
-import com.sinno.ems.entities.PrmIncident;
+import com.sinno.ems.entities.TmsIncident;
 
 import java.util.*;
 
@@ -35,75 +35,75 @@ public class IncidentMapper {
         return map.get(key);
     }
 
-    public static PrmIncident toEntity(Incident incident, boolean lazy) {
+    public static TmsIncident toEntity(Incident incident, boolean lazy) {
         if (null == incident) {
             return null;
         }
-        PrmIncident prmIncident = new PrmIncident();
-        prmIncident.setPrmIncidentId(incident.getId());
-        prmIncident.setPrmIncidentCode(incident.getCode());
-        prmIncident.setPrmIncidentTime(incident.getDateTime());
-        prmIncident.setPrmIncidentDescription(incident.getDescription());
+        TmsIncident tmsIncident = new TmsIncident();
+        tmsIncident.setPrmIncidentId(incident.getId());
+        tmsIncident.setPrmIncidentCode(incident.getCode());
+        tmsIncident.setPrmIncidentTime(incident.getDateTime());
+        tmsIncident.setPrmIncidentDescription(incident.getDescription());
         if (!lazy) {
-            prmIncident.setPrmIncidentNature(NatureIncidentMapper.toEntity(incident.getNatureIncident(),true));
-            prmIncident.setPrmIncidentRoad(RoadMapper.toEntity(incident.getRoad() , true));
-            prmIncident.setPrmIncidentDriver(DriverMapper.toEntity(incident.getDriver() , true));
+            tmsIncident.setPrmIncidentNature(NatureIncidentMapper.toEntity(incident.getNatureIncident(),true));
+            tmsIncident.setPrmIncidentRoad(RoadMapper.toEntity(incident.getRoad() , true));
+            tmsIncident.setPrmIncidentDriver(DriverMapper.toEntity(incident.getDriver() , true));
         }
-        return prmIncident;
+        return tmsIncident;
     }
 
-    public static Incident toDto(PrmIncident prmIncident, boolean lazy) {
-        if (null == prmIncident) {
+    public static Incident toDto(TmsIncident tmsIncident, boolean lazy) {
+        if (null == tmsIncident) {
             return null;
         }
         Incident incident = new Incident();
-        incident.setId(prmIncident.getPrmIncidentId());
-        incident.setCode(prmIncident.getPrmIncidentCode());
-        incident.setDateTime(prmIncident.getPrmIncidentTime());
-        incident.setDescription(prmIncident.getPrmIncidentDescription());
+        incident.setId(tmsIncident.getPrmIncidentId());
+        incident.setCode(tmsIncident.getPrmIncidentCode());
+        incident.setDateTime(tmsIncident.getPrmIncidentTime());
+        incident.setDescription(tmsIncident.getPrmIncidentDescription());
         if (!lazy) {
-            incident.setNatureIncident(NatureIncidentMapper.toDto(prmIncident.getPrmIncidentNature(),true));
-            incident.setRoad(RoadMapper.toDto( prmIncident.getPrmIncidentRoad(), true));
-            incident.setDriver(DriverMapper.toDto(prmIncident.getPrmIncidentDriver() , true));
+            incident.setNatureIncident(NatureIncidentMapper.toDto(tmsIncident.getPrmIncidentNature(),true));
+            incident.setRoad(RoadMapper.toDto( tmsIncident.getPrmIncidentRoad(), true));
+            incident.setDriver(DriverMapper.toDto(tmsIncident.getPrmIncidentDriver() , true));
         }
         return incident;
     }
-    public static List<Incident> toDtos(List<PrmIncident> prmIncidents, boolean lazy) {
+    public static List<Incident> toDtos(List<TmsIncident> tmsIncidents, boolean lazy) {
+        if (null == tmsIncidents) {
+            return null;
+        }
+        List<Incident> incidents = new ArrayList<>();
+        for (TmsIncident tmsIncident : tmsIncidents) {
+            incidents.add(toDto(tmsIncident, lazy));
+        }
+        return incidents;
+    }
+    public static List<Incident> toDtos(Iterable<TmsIncident> prmIncidents, boolean lazy) {
         if (null == prmIncidents) {
             return null;
         }
         List<Incident> incidents = new ArrayList<>();
-        for (PrmIncident prmIncident : prmIncidents) {
-            incidents.add(toDto(prmIncident, lazy));
+        for (TmsIncident tmsIncident : prmIncidents) {
+           incidents.add(toDto(tmsIncident, lazy));
         }
         return incidents;
     }
-    public static List<Incident> toDtos(Iterable<PrmIncident> prmIncidents, boolean lazy) {
-        if (null == prmIncidents) {
-            return null;
-        }
-        List<Incident> incidents = new ArrayList<>();
-        for (PrmIncident prmIncident : prmIncidents) {
-           incidents.add(toDto(prmIncident, lazy));
-        }
-        return incidents;
-    }
-    public static Set<PrmIncident> toEntities(Set<Incident> incidents, boolean lazy) {
+    public static Set<TmsIncident> toEntities(Set<Incident> incidents, boolean lazy) {
         if (null == incidents) {
             return null;
         }
-        Set<PrmIncident> prmIncidents = new HashSet<>();
+        Set<TmsIncident> tmsIncidents = new HashSet<>();
         for (Incident incident : incidents) {
-            prmIncidents.add(toEntity(incident, lazy));
+            tmsIncidents.add(toEntity(incident, lazy));
         }
-        return prmIncidents;
+        return tmsIncidents;
     }
-    public static Set<Incident> toDtos(Set<PrmIncident> prmIncidents, boolean lazy) {
-        if (null == prmIncidents) {
+    public static Set<Incident> toDtos(Set<TmsIncident> tmsIncidents, boolean lazy) {
+        if (null == tmsIncidents) {
             return null;
         }
         Set<Incident> incidents = new HashSet<>();
-        for (PrmIncident prmColor : prmIncidents) {
+        for (TmsIncident prmColor : tmsIncidents) {
             incidents.add(toDto(prmColor, lazy));
         }
         return incidents;

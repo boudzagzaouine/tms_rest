@@ -1,7 +1,5 @@
 package com.sinno.ems.entities;
 
-import com.sinno.ems.dto.Incident;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -16,7 +14,7 @@ public class IncNatureIncident implements java.io.Serializable  {
 
     private long incNatureIncidentId;
     @NotNull
-    private Set<PrmIncident> incidents;
+    private Set<TmsIncident> incidents;
     @Size(max = 30)
     @NotNull
     private String incNatureIncidentCode;
@@ -39,11 +37,11 @@ public class IncNatureIncident implements java.io.Serializable  {
     }
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmIncidentNature")
 
-    public Set<PrmIncident> getIncidents() {
+    public Set<TmsIncident> getIncidents() {
         return incidents;
     }
 
-    public void setIncidents(Set<PrmIncident> incidents) {
+    public void setIncidents(Set<TmsIncident> incidents) {
         this.incidents = incidents;
     }
     @Column(name = "inc_natureincidentcode", nullable = false, length = 30)

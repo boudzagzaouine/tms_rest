@@ -10,17 +10,17 @@ import java.util.Date;
 @Entity
 @Table(name="prm_incident",uniqueConstraints = @UniqueConstraint(columnNames = {"prm_incidentcode","prm_incidentid"}))
 
-public class PrmIncident implements java.io.Serializable {
+public class TmsIncident implements java.io.Serializable {
     private long prmIncidentId;
     @NotNull
     private String prmIncidentCode;
     private Date prmIncidentTime;
     private String prmIncidentDescription;
     private IncNatureIncident prmIncidentNature;
-    private PrmRoad prmIncidentRoad;
-    private PrmDriver prmIncidentDriver;
+    private TmsRoad prmIncidentRoad;
+    private TmsDriver prmIncidentDriver;
 
-    public PrmIncident(){
+    public TmsIncident(){
 
     }
     @Id
@@ -74,20 +74,20 @@ public class PrmIncident implements java.io.Serializable {
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_incidentroadid", nullable = false)
-    public PrmRoad getPrmIncidentRoad() {
+    public TmsRoad getPrmIncidentRoad() {
         return prmIncidentRoad;
     }
 
-    public void setPrmIncidentRoad(PrmRoad prmIncidentRoad) {
+    public void setPrmIncidentRoad(TmsRoad prmIncidentRoad) {
         this.prmIncidentRoad = prmIncidentRoad;
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_incidentdriverid", nullable = false)
-    public PrmDriver getPrmIncidentDriver() {
+    public TmsDriver getPrmIncidentDriver() {
         return prmIncidentDriver;
     }
 
-    public void setPrmIncidentDriver(PrmDriver prmIncidentDriver) {
+    public void setPrmIncidentDriver(TmsDriver prmIncidentDriver) {
         this.prmIncidentDriver = prmIncidentDriver;
     }
 

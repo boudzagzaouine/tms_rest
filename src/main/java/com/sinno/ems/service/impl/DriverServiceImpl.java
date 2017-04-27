@@ -1,12 +1,11 @@
 package com.sinno.ems.service.impl;
 
 import com.sinno.ems.dto.Driver;
-import com.sinno.ems.entities.PrmDriver;
+import com.sinno.ems.entities.TmsDriver;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.DriverMapper;
-import com.sinno.ems.repositories.BadgeRepository;
 import com.sinno.ems.repositories.DriverRepository;
 import com.sinno.ems.service.DriverService;
 import com.sinno.ems.util.EmsDate;
@@ -62,16 +61,16 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public List<Driver> find(String search) throws AttributesNotFound, ErrorType {
-        return DriverMapper.toDtos(driverRepository.findAll(Search.expression(search, PrmDriver.class)), false);
+        return DriverMapper.toDtos(driverRepository.findAll(Search.expression(search, TmsDriver.class)), false);
     }
     @Override
     public List<Driver> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
-        return DriverMapper.toDtos(driverRepository.findAll(Search.expression(search, PrmDriver.class), pageable), false);
+        return DriverMapper.toDtos(driverRepository.findAll(Search.expression(search, TmsDriver.class), pageable), false);
     }
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        return driverRepository.count(Search.expression(search, PrmDriver.class));
+        return driverRepository.count(Search.expression(search, TmsDriver.class));
     }
     @Override
     public void delete(Long id) {

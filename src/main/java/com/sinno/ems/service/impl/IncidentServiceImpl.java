@@ -1,7 +1,7 @@
 package com.sinno.ems.service.impl;
 
 import com.sinno.ems.dto.Incident;
-import com.sinno.ems.entities.PrmIncident;
+import com.sinno.ems.entities.TmsIncident;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
@@ -56,15 +56,15 @@ public class IncidentServiceImpl implements IncidentService {
     }
     @Override
     public List<Incident> find(String search) throws AttributesNotFound, ErrorType {
-        return IncidentMapper.toDtos(incidentRepository.findAll(Search.expression(search, PrmIncident.class)), false);
+        return IncidentMapper.toDtos(incidentRepository.findAll(Search.expression(search, TmsIncident.class)), false);
     }
     @Override
     public List<Incident> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
-        return IncidentMapper.toDtos(incidentRepository.findAll(Search.expression(search, PrmIncident.class), pageable), false);
+        return IncidentMapper.toDtos(incidentRepository.findAll(Search.expression(search, TmsIncident.class), pageable), false);
     }
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        return incidentRepository.count(Search.expression(search, PrmIncident.class));
+        return incidentRepository.count(Search.expression(search, TmsIncident.class));
     }
     @Override
     public void delete(Long id) {

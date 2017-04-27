@@ -1,7 +1,7 @@
 package com.sinno.ems.mapper;
 
 import com.sinno.ems.dto.Badge;
-import com.sinno.ems.entities.PrmBadge;
+import com.sinno.ems.entities.TmsBadge;
 
 import java.util.*;
 
@@ -31,74 +31,74 @@ public class BadgeMapper {
         return map.get(key);
     }
 
-    public static PrmBadge toEntity(Badge badge, boolean lazy) {
+    public static TmsBadge toEntity(Badge badge, boolean lazy) {
         if (null == badge) {
             return null;
         }
-        PrmBadge prmBadge = new PrmBadge();
-        prmBadge.setPrmBadgeCode(badge.getCode());
-        prmBadge.setPrmBadgeId(badge.getId());
-        prmBadge.setPrmBadgeDescription(badge.getDescription());
-        prmBadge.setPrmBadgeLibelle(badge.getLibelle());
+        TmsBadge tmsBadge = new TmsBadge();
+        tmsBadge.setPrmBadgeCode(badge.getCode());
+        tmsBadge.setPrmBadgeId(badge.getId());
+        tmsBadge.setPrmBadgeDescription(badge.getDescription());
+        tmsBadge.setPrmBadgeLibelle(badge.getLibelle());
         if (!lazy) {
 
         }
-        return prmBadge;
+        return tmsBadge;
     }
 
-    public static Badge toDto(PrmBadge prmBadge, boolean lazy) {
-        if (null == prmBadge) {
+    public static Badge toDto(TmsBadge tmsBadge, boolean lazy) {
+        if (null == tmsBadge) {
             return null;
         }
         Badge badge = new Badge();
-        badge.setId(prmBadge.getPrmBadgeId());
-        badge.setCode(prmBadge.getPrmBadgeCode());
-        badge.setDescription(prmBadge.getPrmBadgeDescription());
-        badge.setLibelle(prmBadge.getPrmBadgeLibelle());
+        badge.setId(tmsBadge.getPrmBadgeId());
+        badge.setCode(tmsBadge.getPrmBadgeCode());
+        badge.setDescription(tmsBadge.getPrmBadgeDescription());
+        badge.setLibelle(tmsBadge.getPrmBadgeLibelle());
         if (!lazy) {
 
         }
         return badge;
     }
 
-    public static List<Badge> toDtos(List<PrmBadge> prmBadges, boolean lazy) {
-        if (null == prmBadges) {
+    public static List<Badge> toDtos(List<TmsBadge> tmsBadges, boolean lazy) {
+        if (null == tmsBadges) {
             return null;
         }
         List<Badge> badges = new ArrayList<>();
-        for (PrmBadge prmBadge : prmBadges) {
-            badges.add(toDto(prmBadge, lazy));
+        for (TmsBadge tmsBadge : tmsBadges) {
+            badges.add(toDto(tmsBadge, lazy));
 
         }
         return badges;
     }
-    public static List<Badge> toDtos(Iterable<PrmBadge> prmBadges, boolean lazy) {
+    public static List<Badge> toDtos(Iterable<TmsBadge> prmBadges, boolean lazy) {
         if (null == prmBadges) {
             return null;
         }
         List<Badge> badges = new ArrayList<>();
-        for (PrmBadge prmBadge : prmBadges) {
-            badges.add(toDto(prmBadge, lazy));
+        for (TmsBadge tmsBadge : prmBadges) {
+            badges.add(toDto(tmsBadge, lazy));
         }
         return badges;
     }
-    public static Set<PrmBadge> toEntities(Set<Badge>badges, boolean lazy){
+    public static Set<TmsBadge> toEntities(Set<Badge>badges, boolean lazy){
         if (null == badges) {
             return null;
         }
-        Set<PrmBadge> prmDrivers = new HashSet<>();
+        Set<TmsBadge> prmDrivers = new HashSet<>();
         for(Badge badge:badges){
             prmDrivers.add(toEntity(badge,lazy));
         }
         return prmDrivers;
     }
-    public static Set<Badge> toDtos(Set<PrmBadge> prmBadges,boolean lazy){
-        if(null ==prmBadges){
+    public static Set<Badge> toDtos(Set<TmsBadge> tmsBadges, boolean lazy){
+        if(null == tmsBadges){
             return null;
         }
         Set<Badge> badges = new HashSet<>();
-        for(PrmBadge prmBadge:prmBadges){
-            badges.add(toDto(prmBadge,lazy));
+        for(TmsBadge tmsBadge : tmsBadges){
+            badges.add(toDto(tmsBadge,lazy));
         }
         return badges;
     }

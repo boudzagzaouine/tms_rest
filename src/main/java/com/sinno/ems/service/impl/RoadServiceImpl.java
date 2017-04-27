@@ -1,7 +1,7 @@
 package com.sinno.ems.service.impl;
 
 import com.sinno.ems.dto.Road;
-import com.sinno.ems.entities.PrmRoad;
+import com.sinno.ems.entities.TmsRoad;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
@@ -58,17 +58,17 @@ public class RoadServiceImpl implements RoadService {
 
     @Override
     public List<Road> find(String search) throws AttributesNotFound, ErrorType {
-        return RoadMapper.toDtos(roadRepository.findAll(Search.expression(search, PrmRoad.class)), false);
+        return RoadMapper.toDtos(roadRepository.findAll(Search.expression(search, TmsRoad.class)), false);
     }
 
     @Override
     public List<Road> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
-        return RoadMapper.toDtos(roadRepository.findAll(Search.expression(search, PrmRoad.class),pageable ), false);
+        return RoadMapper.toDtos(roadRepository.findAll(Search.expression(search, TmsRoad.class),pageable ), false);
     }
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        return roadRepository.count(Search.expression(search, PrmRoad.class));
+        return roadRepository.count(Search.expression(search, TmsRoad.class));
     }
 
     @Override

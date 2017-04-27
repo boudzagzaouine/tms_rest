@@ -15,9 +15,9 @@ import java.io.Serializable;
 public class DrvDriverBadge implements Serializable {
     private long drvDriverBadgeId;
     @NotNull
-    private PrmBadge drvDriverBadgeBadge;
+    private TmsBadge drvDriverBadgeBadge;
     @NotNull
-    private PrmDriver drvDriverBadgeDriver;
+    private TmsDriver drvDriverBadgeDriver;
 
     public DrvDriverBadge() {
 
@@ -35,20 +35,20 @@ public class DrvDriverBadge implements Serializable {
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "drv_driverbadgebadgeid", nullable = false)
-    public PrmBadge getDrvDriverBadgeBadge() {
+    public TmsBadge getDrvDriverBadgeBadge() {
         return drvDriverBadgeBadge;
     }
 
-    public void setDrvDriverBadgeBadge(PrmBadge drvDriverBadgeBadge) {
+    public void setDrvDriverBadgeBadge(TmsBadge drvDriverBadgeBadge) {
         this.drvDriverBadgeBadge = drvDriverBadgeBadge;
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "drv_driverbadgedriverid", nullable = false)
-    public PrmDriver getDrvDriverBadgeDriver() {
+    public TmsDriver getDrvDriverBadgeDriver() {
         return drvDriverBadgeDriver;
     }
 
-    public void setDrvDriverBadgeDriver(PrmDriver drvDriverBadgeDriver) {
+    public void setDrvDriverBadgeDriver(TmsDriver drvDriverBadgeDriver) {
         this.drvDriverBadgeDriver = drvDriverBadgeDriver;
     }
 }

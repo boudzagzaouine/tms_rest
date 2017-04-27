@@ -1,7 +1,7 @@
 package com.sinno.ems.mapper;
 
 import com.sinno.ems.dto.Vehicule;
-import com.sinno.ems.entities.PrmVehicle;
+import com.sinno.ems.entities.TmsVehicle;
 
 import java.util.*;
 
@@ -47,103 +47,103 @@ public class VehicleMapper {
         return map.get(key);
     }
 
-    public static PrmVehicle toEntity(Vehicule vehicule , boolean lazy){
+    public static TmsVehicle toEntity(Vehicule vehicule , boolean lazy){
         if (null == vehicule) {
             return null;
         }
-        PrmVehicle prmVehicle = new PrmVehicle();
-        prmVehicle.setPrmVehicleId(vehicule.getId());
-        prmVehicle.setPrmVehicleCode(vehicule.getCode() != null ? vehicule.getCode().toUpperCase() : null);
-        prmVehicle.setPrmVehicleNbreEssieux(vehicule.getNbreEssieux());
-        prmVehicle.setPrmVehicleEmptyWeight(vehicule.getEmptyWeight());
-        prmVehicle.setPrmVehicleDateOfRegistration(vehicule.getDateOfRegistration());
-        prmVehicle.setPrmVehicleBrand(vehicule.getBrand());
-        prmVehicle.setPrmVehicleModel(vehicule.getModel());
-        prmVehicle.setPrmVehicleMatricule(vehicule.getMatricule());
-        prmVehicle.setPrmVehicleDateCreation(vehicule.getDateCreation());
-        prmVehicle.setPrmVehicleDateUpDate(vehicule.getDateUpDate());
+        TmsVehicle tmsVehicle = new TmsVehicle();
+        tmsVehicle.setPrmVehicleId(vehicule.getId());
+        tmsVehicle.setPrmVehicleCode(vehicule.getCode() != null ? vehicule.getCode().toUpperCase() : null);
+        tmsVehicle.setPrmVehicleNbreEssieux(vehicule.getNbreEssieux());
+        tmsVehicle.setPrmVehicleEmptyWeight(vehicule.getEmptyWeight());
+        tmsVehicle.setPrmVehicleDateOfRegistration(vehicule.getDateOfRegistration());
+        tmsVehicle.setPrmVehicleBrand(vehicule.getBrand());
+        tmsVehicle.setPrmVehicleModel(vehicule.getModel());
+        tmsVehicle.setPrmVehicleMatricule(vehicule.getMatricule());
+        tmsVehicle.setPrmVehicleDateCreation(vehicule.getDateCreation());
+        tmsVehicle.setPrmVehicleDateUpDate(vehicule.getDateUpDate());
 
         if (!lazy) {
 
-            prmVehicle.setPrmVehicleBadges((BadgeMapper.toEntities(vehicule.getBadges(),true)));
-            prmVehicle.setPrmVehiclePoliceAssurance(PoliceInsuranceMapper.toEntity(vehicule.getPoliceAssurance(),true));
-            prmVehicle.setPrmVehicleMaintenancePlan(MaintenancePlanMapper.toEntity(vehicule.getMaintenancePlan(),true));
-            prmVehicle.setPrmVehicleCreationUser(UserMapper.toEntity(vehicule.getCreationUser(),true));
-            prmVehicle.setPrmVehicleUpDateUser(UserMapper.toEntity(vehicule.getUpDateUser(),true));
+            tmsVehicle.setPrmVehicleBadges((BadgeMapper.toEntities(vehicule.getBadges(),true)));
+            tmsVehicle.setPrmVehiclePoliceAssurance(PoliceInsuranceMapper.toEntity(vehicule.getPoliceAssurance(),true));
+            tmsVehicle.setPrmVehicleMaintenancePlan(MaintenancePlanMapper.toEntity(vehicule.getMaintenancePlan(),true));
+            tmsVehicle.setPrmVehicleCreationUser(UserMapper.toEntity(vehicule.getCreationUser(),true));
+            tmsVehicle.setPrmVehicleUpDateUser(UserMapper.toEntity(vehicule.getUpDateUser(),true));
 //
         }
-        return prmVehicle;
+        return tmsVehicle;
 
     }
 
-    public static Vehicule toDto(PrmVehicle prmVehicle , boolean lazy){
-        if (null == prmVehicle) {
+    public static Vehicule toDto(TmsVehicle tmsVehicle, boolean lazy){
+        if (null == tmsVehicle) {
             return null;
         }
         Vehicule vehicule = new Vehicule();
-        vehicule.setId(prmVehicle.getPrmVehicleId());
-        vehicule.setCode(prmVehicle.getPrmVehicleCode() );
-        vehicule.setNbreEssieux(prmVehicle.getPrmVehicleNbreEssieux());
-        vehicule.setEmptyWeight(prmVehicle.getPrmVehicleEmptyWeight());
-        vehicule.setDateOfRegistration(prmVehicle.getPrmVehicleDateOfRegistration());
-        vehicule.setBrand(prmVehicle.getPrmVehicleBrand());
-        vehicule.setModel(prmVehicle.getPrmVehicleModel());
-        vehicule.setMatricule(prmVehicle.getPrmVehicleMatricule());
-        vehicule.setDateCreation(prmVehicle.getPrmVehicleDateCreation());
-        vehicule.setDateUpDate(prmVehicle.getPrmVehicleDateUpDate());
+        vehicule.setId(tmsVehicle.getPrmVehicleId());
+        vehicule.setCode(tmsVehicle.getPrmVehicleCode() );
+        vehicule.setNbreEssieux(tmsVehicle.getPrmVehicleNbreEssieux());
+        vehicule.setEmptyWeight(tmsVehicle.getPrmVehicleEmptyWeight());
+        vehicule.setDateOfRegistration(tmsVehicle.getPrmVehicleDateOfRegistration());
+        vehicule.setBrand(tmsVehicle.getPrmVehicleBrand());
+        vehicule.setModel(tmsVehicle.getPrmVehicleModel());
+        vehicule.setMatricule(tmsVehicle.getPrmVehicleMatricule());
+        vehicule.setDateCreation(tmsVehicle.getPrmVehicleDateCreation());
+        vehicule.setDateUpDate(tmsVehicle.getPrmVehicleDateUpDate());
 
         if (!lazy) {
-           vehicule.setBadges(BadgeMapper.toDtos(prmVehicle.getPrmVehicleBadges(),true));
-           vehicule.setPoliceAssurance(PoliceInsuranceMapper.toDto(prmVehicle.getPrmVehiclePoliceAssurance(),true));
-           vehicule.setMaintenancePlan(MaintenancePlanMapper.toDto(prmVehicle.getPrmVehicleMaintenancePlan(),true));
-           vehicule.setCreationUser(UserMapper.toDto(prmVehicle.getPrmVehicleCreationUser(),true));
-           vehicule.setUpDateUser(UserMapper.toDto(prmVehicle.getPrmVehicleUpDateUser(),true));
+           vehicule.setBadges(BadgeMapper.toDtos(tmsVehicle.getPrmVehicleBadges(),true));
+           vehicule.setPoliceAssurance(PoliceInsuranceMapper.toDto(tmsVehicle.getPrmVehiclePoliceAssurance(),true));
+           vehicule.setMaintenancePlan(MaintenancePlanMapper.toDto(tmsVehicle.getPrmVehicleMaintenancePlan(),true));
+           vehicule.setCreationUser(UserMapper.toDto(tmsVehicle.getPrmVehicleCreationUser(),true));
+           vehicule.setUpDateUser(UserMapper.toDto(tmsVehicle.getPrmVehicleUpDateUser(),true));
 //
         }
         return  vehicule;
 
     }
 
-    public static List<Vehicule>toDtos(List<PrmVehicle> prmVehicles , boolean lazy){
+    public static List<Vehicule>toDtos(List<TmsVehicle> tmsVehicles, boolean lazy){
+        if (null == tmsVehicles) {
+            return null;
+        }
+        List<Vehicule>vehicules = new ArrayList<>();
+
+        for (TmsVehicle tmsVehicle : tmsVehicles) {
+            vehicules.add(toDto(tmsVehicle,lazy));
+        }
+        return  vehicules;
+    }
+    public static List<Vehicule>toDtos(Iterable<TmsVehicle>prmVehicles , boolean lazy){
         if (null == prmVehicles) {
             return null;
         }
         List<Vehicule>vehicules = new ArrayList<>();
 
-        for (PrmVehicle prmVehicle : prmVehicles) {
-            vehicules.add(toDto(prmVehicle,lazy));
-        }
-        return  vehicules;
-    }
-    public static List<Vehicule>toDtos(Iterable<PrmVehicle>prmVehicles , boolean lazy){
-        if (null == prmVehicles) {
-            return null;
-        }
-        List<Vehicule>vehicules = new ArrayList<>();
-
-        for (PrmVehicle prmVehicle : prmVehicles) {
-            vehicules.add(toDto(prmVehicle,lazy));
+        for (TmsVehicle tmsVehicle : prmVehicles) {
+            vehicules.add(toDto(tmsVehicle,lazy));
         }
         return  vehicules;
     }
 
-    public static Set<PrmVehicle>toEntities(Set<Vehicule>vehicules , boolean lazy){
+    public static Set<TmsVehicle>toEntities(Set<Vehicule>vehicules , boolean lazy){
         if (null == vehicules) {
             return null;
         }
-        Set<PrmVehicle> prmVehicles = new HashSet<>();
+        Set<TmsVehicle> tmsVehicles = new HashSet<>();
         for (Vehicule vehicule:vehicules) {
-            prmVehicles.add(toEntity(vehicule,lazy));
+            tmsVehicles.add(toEntity(vehicule,lazy));
         }
-        return prmVehicles;
+        return tmsVehicles;
     }
-    public static Set<Vehicule>toDtos(Set<PrmVehicle>prmVehicles , boolean lazy){
-        if (null == prmVehicles) {
+    public static Set<Vehicule>toDtos(Set<TmsVehicle> tmsVehicles, boolean lazy){
+        if (null == tmsVehicles) {
             return null;
         }
         Set<Vehicule>vehicules = new HashSet<>();
-        for (PrmVehicle prmVehicle:prmVehicles) {
-            vehicules.add(toDto(prmVehicle,lazy));
+        for (TmsVehicle tmsVehicle : tmsVehicles) {
+            vehicules.add(toDto(tmsVehicle,lazy));
         }
         return vehicules;
     }

@@ -1,6 +1,6 @@
 package com.sinno.ems.repositories;
 
-import com.sinno.ems.entities.PrmRoad;
+import com.sinno.ems.entities.TmsRoad;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 
@@ -8,6 +8,6 @@ import org.springframework.data.querydsl.QueryDslPredicateExecutor;
  * Created by bouzi on 3/27/2017.
  *
  */
-public interface RoadRepository extends JpaRepository<PrmRoad,Long>,
-        QueryDslPredicateExecutor<PrmRoad> {
+public interface RoadRepository extends JpaRepository<TmsRoad,Long>,
+        QueryDslPredicateExecutor<TmsRoad> {
 }

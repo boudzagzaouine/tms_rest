@@ -1,7 +1,7 @@
 package com.sinno.ems.mapper;
 
 import com.sinno.ems.dto.Acte;
-import com.sinno.ems.entities.PrmActe;
+import com.sinno.ems.entities.TmsActe;
 
 import java.util.*;
 
@@ -37,33 +37,33 @@ public class ActeMapper {
         return map.get(key);
     }
 
-    public static PrmActe toEntity(Acte acte, boolean lazy) {
+    public static TmsActe toEntity(Acte acte, boolean lazy) {
         if (null == acte) {
             return null;
         }
-        PrmActe prmActe = new PrmActe();
-        prmActe.setPrmActeId(acte.getId());
-        prmActe.setPrmActeCode(acte.getCode());
-        prmActe.setPrmActeNature(acte.getNature());
-        prmActe.setPrmActeDescription(acte.getDescription());
-        prmActe.setprmActedateLastAct(acte.getDateLastAct());
-        prmActe.setPrmActePeriodicity(acte.getPeriodicity());
+        TmsActe tmsActe = new TmsActe();
+        tmsActe.setPrmActeId(acte.getId());
+        tmsActe.setPrmActeCode(acte.getCode());
+        tmsActe.setPrmActeNature(acte.getNature());
+        tmsActe.setPrmActeDescription(acte.getDescription());
+        tmsActe.setprmActedateLastAct(acte.getDateLastAct());
+        tmsActe.setPrmActePeriodicity(acte.getPeriodicity());
         if (!lazy) {
 
         }
-        return prmActe;
+        return tmsActe;
 
     }
 
-    public static Acte toDto(PrmActe prmActe, boolean lazy) {
-        if (null == prmActe) {
+    public static Acte toDto(TmsActe tmsActe, boolean lazy) {
+        if (null == tmsActe) {
             return null;
         }
         Acte acte = new Acte();
-        acte.setId(prmActe.getPrmActeId());
-        acte.setCode(prmActe.getPrmActeCode());
-        acte.setNature(prmActe.getPrmActeNature());
-        acte.setDescription(prmActe.getPrmActeNature());
+        acte.setId(tmsActe.getPrmActeId());
+        acte.setCode(tmsActe.getPrmActeCode());
+        acte.setNature(tmsActe.getPrmActeNature());
+        acte.setDescription(tmsActe.getPrmActeNature());
         acte.setDateLastAct(acte.getDateLastAct());
         acte.setPeriodicity(acte.getPeriodicity());
         if(!lazy){
@@ -71,43 +71,43 @@ public class ActeMapper {
         }
         return acte;
     }
-    public static List<Acte> toDtos(List<PrmActe> prmActes, boolean lazy) {
-        if (null == prmActes) {
+    public static List<Acte> toDtos(List<TmsActe> tmsActes, boolean lazy) {
+        if (null == tmsActes) {
             return null;
         }
         List<Acte> actes = new ArrayList<>();
-        for (PrmActe prmActe : prmActes) {
-            actes.add(toDto(prmActe, lazy));
+        for (TmsActe tmsActe : tmsActes) {
+            actes.add(toDto(tmsActe, lazy));
 
         }
         return actes;
     }
-    public static List<Acte> toDtos(Iterable<PrmActe> prmActes, boolean lazy) {
+    public static List<Acte> toDtos(Iterable<TmsActe> prmActes, boolean lazy) {
         if (null == prmActes) {
             return null;
         }
         List<Acte> actes = new ArrayList<>();
-        for (PrmActe prmActe : prmActes) {
-            actes.add(toDto(prmActe, lazy));
+        for (TmsActe tmsActe : prmActes) {
+            actes.add(toDto(tmsActe, lazy));
         }
         return actes;
     }
-    public static Set<PrmActe> toEntities(Set<Acte>actes,boolean lazy){
+    public static Set<TmsActe> toEntities(Set<Acte>actes, boolean lazy){
         if (null == actes) {
             return null;
         }
-        Set<PrmActe> prmActes = new HashSet<>();
+        Set<TmsActe> tmsActes = new HashSet<>();
         for(Acte acte:actes){
-            prmActes.add(toEntity(acte,lazy));
+            tmsActes.add(toEntity(acte,lazy));
         }
-        return prmActes;
+        return tmsActes;
     }
-    public static Set<Acte> toDtos(Set<PrmActe> prmActes,boolean lazy){
-        if(null ==prmActes){
+    public static Set<Acte> toDtos(Set<TmsActe> tmsActes, boolean lazy){
+        if(null == tmsActes){
             return null;
         }
         Set<Acte> actes = new HashSet<>();
-        for(PrmActe prmDriver:prmActes){
+        for(TmsActe prmDriver: tmsActes){
             actes.add(toDto(prmDriver,lazy));
         }
         return actes;

@@ -13,7 +13,7 @@ import java.util.Date;
 @Entity
 @Table(name="prm_acte",uniqueConstraints = @UniqueConstraint(columnNames ={"prm_actecode,prm","prm_acteownerid"}))
 
-public class PrmActe implements java.io.Serializable {
+public class TmsActe implements java.io.Serializable {
     private long prmActeId;
     @NotNull
     private String prmActeCode;
@@ -53,9 +53,9 @@ public class PrmActe implements java.io.Serializable {
     @NotNull
     private Date prmActedateLastAct;
 
-    public PrmActe(){
+    public TmsActe(){
     }
-    public PrmActe(long prmActeId, String prmActeCode,String prmActeNature,String prmActeDescription,String prmActePeriodicity) {
+    public TmsActe(long prmActeId, String prmActeCode, String prmActeNature, String prmActeDescription, String prmActePeriodicity) {
         this.prmActeId = prmActeId;
         this.prmActeCode=prmActeCode;
         this.prmActeNature=prmActeNature;
