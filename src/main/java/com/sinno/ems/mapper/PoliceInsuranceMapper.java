@@ -14,14 +14,14 @@ public class PoliceInsuranceMapper {
     private static Map<String, String> map;
     static {
         map = new HashMap<>();
-        map.put("id","asrPoliceInsuranceId;");
-        map.put("code","asrPoliceInsuranceCode;");
-        map.put("policeNumber","asrPoliceInsuranceNumber;");
-        map.put("startDate","asrPoliceInsuranceStartDate;");
-        map.put("endDate","asrPoliceInsuranceEndDate;");
-        map.put("type","asrPoliceInsuranceType;");
-        map.put("phoneNumber","asrPoliceInsurancePhoneNumber;");
-        map.put("vehicul","asrPoliceInsurancevehicle;");
+        map.put("id","tmsPoliceInsuranceId;");
+        map.put("code","tmsPoliceInsuranceCode;");
+        map.put("policeNumber","tmsPoliceInsuranceNumber;");
+        map.put("startDate","tmsPoliceInsuranceStartDate;");
+        map.put("endDate","tmsPoliceInsuranceEndDate;");
+        map.put("type","tmsPoliceInsuranceType;");
+        map.put("phoneNumber","tmsPoliceInsurancePhoneNumber;");
+        map.put("vehicul","tmsPoliceInsurancevehicle;");
     }
 
     public static Map<String, String> getMap() {
@@ -37,13 +37,13 @@ public class PoliceInsuranceMapper {
             return null;
         }
         TmsPoliceInsurance tmsPoliceInsurance = new TmsPoliceInsurance();
-        tmsPoliceInsurance.setAsrPoliceInsuranceId(policeAssurance.getId());
-        tmsPoliceInsurance.setAsrPoliceInsuranceCode(policeAssurance.getCode() != null ? policeAssurance.getCode().toUpperCase(): null  );
-        tmsPoliceInsurance.setAsrPoliceInsuranceNumber(policeAssurance.getPoliceNumber());
-        tmsPoliceInsurance.setAsrPoliceInsuranceStartDate(policeAssurance.getStartDate());
-        tmsPoliceInsurance.setAsrPoliceInsuranceEndDate(policeAssurance.getEndDate());
-        tmsPoliceInsurance.setAsrPoliceInsuranceType(policeAssurance.getType());
-        tmsPoliceInsurance.setAsrPoliceInsurancePhoneNumber(policeAssurance.getPhoneNumber());
+        tmsPoliceInsurance.setTmsPoliceInsuranceId(policeAssurance.getId());
+        tmsPoliceInsurance.setTmsPoliceInsuranceCode(policeAssurance.getCode() != null ? policeAssurance.getCode().toUpperCase(): null  );
+        tmsPoliceInsurance.setTmsPoliceInsuranceNumber(policeAssurance.getPoliceNumber());
+        tmsPoliceInsurance.setTmsPoliceInsuranceStartDate(policeAssurance.getStartDate());
+        tmsPoliceInsurance.setTmsPoliceInsuranceEndDate(policeAssurance.getEndDate());
+        tmsPoliceInsurance.setTmsPoliceInsuranceType(policeAssurance.getType());
+        tmsPoliceInsurance.setTmsPoliceInsurancePhoneNumber(policeAssurance.getPhoneNumber());
         if (!lazy){
             tmsPoliceInsurance.setVehicules(VehicleMapper.toEntity(policeAssurance.getVehicule(),true));
         }
@@ -54,13 +54,13 @@ public class PoliceInsuranceMapper {
             return null;
         }
         PoliceAssurance policeAssurance = new PoliceAssurance();
-        policeAssurance.setId(tmsPoliceInsurance.getAsrPoliceInsuranceId());
-        policeAssurance.setCode(tmsPoliceInsurance.getAsrPoliceInsuranceCode());
-        policeAssurance.setPhoneNumber(tmsPoliceInsurance.getAsrPoliceInsurancePhoneNumber());
-        policeAssurance.setStartDate(tmsPoliceInsurance.getAsrPoliceInsuranceStartDate());
-        policeAssurance.setEndDate(tmsPoliceInsurance.getAsrPoliceInsuranceEndDate());
-        policeAssurance.setType(tmsPoliceInsurance.getAsrPoliceInsuranceType());
-        policeAssurance.setPhoneNumber(tmsPoliceInsurance.getAsrPoliceInsurancePhoneNumber());
+        policeAssurance.setId(tmsPoliceInsurance.getTmsPoliceInsuranceId());
+        policeAssurance.setCode(tmsPoliceInsurance.getTmsPoliceInsuranceCode());
+        policeAssurance.setPhoneNumber(tmsPoliceInsurance.getTmsPoliceInsurancePhoneNumber());
+        policeAssurance.setStartDate(tmsPoliceInsurance.getTmsPoliceInsuranceStartDate());
+        policeAssurance.setEndDate(tmsPoliceInsurance.getTmsPoliceInsuranceEndDate());
+        policeAssurance.setType(tmsPoliceInsurance.getTmsPoliceInsuranceType());
+        policeAssurance.setPhoneNumber(tmsPoliceInsurance.getTmsPoliceInsurancePhoneNumber());
         if (!lazy){
             policeAssurance.setVehicule(VehicleMapper.toDto(tmsPoliceInsurance.getVehicules(),true));
         }
@@ -76,12 +76,12 @@ public class PoliceInsuranceMapper {
         }
         return policeAssurances;
     }
-    public static List<PoliceAssurance>toDtos(Iterable<TmsPoliceInsurance>asrPoliceInsurances, boolean lazy){
-        if(null == asrPoliceInsurances){
+    public static List<PoliceAssurance>toDtos(Iterable<TmsPoliceInsurance>tmsPoliceInsurances, boolean lazy){
+        if(null == tmsPoliceInsurances){
             return null;
         }
         List<PoliceAssurance>policeAssurances = new ArrayList<>();
-        for (TmsPoliceInsurance tmsPoliceInsurance :asrPoliceInsurances) {
+        for (TmsPoliceInsurance tmsPoliceInsurance :tmsPoliceInsurances) {
             policeAssurances.add(toDto(tmsPoliceInsurance,lazy));
         }
         return policeAssurances;

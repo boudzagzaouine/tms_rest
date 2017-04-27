@@ -17,13 +17,13 @@ public class IncidentMapper {
 
     static {
         map = new HashMap<>();
-        map.put("id", "prmIncidentId");
-        map.put("code", "prmIncidentCode");
-        map.put("time", "prmIncidentTime");
-        map.put("description", "prmIncidentDescription");
-        map.put("nature", "prmIncidentNature");
-        map.put("road", "prmRoad");
-        map.put("driver", "prmDriver");
+        map.put("id", "tmsIncidentId");
+        map.put("code", "tmsIncidentCode");
+        map.put("time", "tmsIncidentTime");
+        map.put("description", "tmsIncidentDescription");
+        map.put("nature", "tmsIncidentNature");
+        map.put("road", "tmsIncidentRoad");
+        map.put("driver", "tmsIncidentDriver");
     }
 
     public static Map<String, String> getMap() {
@@ -40,14 +40,14 @@ public class IncidentMapper {
             return null;
         }
         TmsIncident tmsIncident = new TmsIncident();
-        tmsIncident.setPrmIncidentId(incident.getId());
-        tmsIncident.setPrmIncidentCode(incident.getCode());
-        tmsIncident.setPrmIncidentTime(incident.getDateTime());
-        tmsIncident.setPrmIncidentDescription(incident.getDescription());
+        tmsIncident.setTmsIncidentId(incident.getId());
+        tmsIncident.setTmsIncidentCode(incident.getCode());
+        tmsIncident.setTmsIncidentTime(incident.getDateTime());
+        tmsIncident.setTmsIncidentDescription(incident.getDescription());
         if (!lazy) {
-            tmsIncident.setPrmIncidentNature(NatureIncidentMapper.toEntity(incident.getNatureIncident(),true));
-            tmsIncident.setPrmIncidentRoad(RoadMapper.toEntity(incident.getRoad() , true));
-            tmsIncident.setPrmIncidentDriver(DriverMapper.toEntity(incident.getDriver() , true));
+            tmsIncident.setTmsIncidentNature(NatureIncidentMapper.toEntity(incident.getNatureIncident(),true));
+            tmsIncident.setTmsIncidentRoad(RoadMapper.toEntity(incident.getRoad() , true));
+            tmsIncident.setTmsIncidentDriver(DriverMapper.toEntity(incident.getDriver() , true));
         }
         return tmsIncident;
     }
@@ -57,14 +57,14 @@ public class IncidentMapper {
             return null;
         }
         Incident incident = new Incident();
-        incident.setId(tmsIncident.getPrmIncidentId());
-        incident.setCode(tmsIncident.getPrmIncidentCode());
-        incident.setDateTime(tmsIncident.getPrmIncidentTime());
-        incident.setDescription(tmsIncident.getPrmIncidentDescription());
+        incident.setId(tmsIncident.getTmsIncidentId());
+        incident.setCode(tmsIncident.getTmsIncidentCode());
+        incident.setDateTime(tmsIncident.getTmsIncidentTime());
+        incident.setDescription(tmsIncident.getTmsIncidentDescription());
         if (!lazy) {
-            incident.setNatureIncident(NatureIncidentMapper.toDto(tmsIncident.getPrmIncidentNature(),true));
-            incident.setRoad(RoadMapper.toDto( tmsIncident.getPrmIncidentRoad(), true));
-            incident.setDriver(DriverMapper.toDto(tmsIncident.getPrmIncidentDriver() , true));
+            incident.setNatureIncident(NatureIncidentMapper.toDto(tmsIncident.getTmsIncidentNature(),true));
+            incident.setRoad(RoadMapper.toDto( tmsIncident.getTmsIncidentRoad(), true));
+            incident.setDriver(DriverMapper.toDto(tmsIncident.getTmsIncidentDriver() , true));
         }
         return incident;
     }
@@ -78,12 +78,12 @@ public class IncidentMapper {
         }
         return incidents;
     }
-    public static List<Incident> toDtos(Iterable<TmsIncident> prmIncidents, boolean lazy) {
-        if (null == prmIncidents) {
+    public static List<Incident> toDtos(Iterable<TmsIncident> tmsIncidents, boolean lazy) {
+        if (null == tmsIncidents) {
             return null;
         }
         List<Incident> incidents = new ArrayList<>();
-        for (TmsIncident tmsIncident : prmIncidents) {
+        for (TmsIncident tmsIncident : tmsIncidents) {
            incidents.add(toDto(tmsIncident, lazy));
         }
         return incidents;
@@ -103,8 +103,8 @@ public class IncidentMapper {
             return null;
         }
         Set<Incident> incidents = new HashSet<>();
-        for (TmsIncident prmColor : tmsIncidents) {
-            incidents.add(toDto(prmColor, lazy));
+        for (TmsIncident tmsColor : tmsIncidents) {
+            incidents.add(toDto(tmsColor, lazy));
         }
         return incidents;
     }

@@ -16,10 +16,10 @@ public class NatureIncidentMapper {
     static {
         map = new HashMap<>();
 
-        map.put("id", "incNatureIncientId");
-        map.put("code", "incNatureIncientCode");
-        map.put("description", "incNatureIncientDescription");
-        map.put("incident", "incidents");
+        map.put("id", "tmsNatureIncientId");
+        map.put("code", "tmsNatureIncientCode");
+        map.put("description", "tmsNatureIncientDescription");
+        map.put("incident", "tmsidents");
     }
     public static Map<String, String> getMap() {
         return map;
@@ -67,12 +67,12 @@ public class NatureIncidentMapper {
         return natureIncidents;
     }
 
-    public static List<NatureIncident> toDtos(Iterable<TmsNatureIncident>incNatureIncidents , boolean lazy){
-        if (null == incNatureIncidents) {
+    public static List<NatureIncident> toDtos(Iterable<TmsNatureIncident>tmsNatureIncidents , boolean lazy){
+        if (null == tmsNatureIncidents) {
             return null;
         }
         List<NatureIncident> natureIncidents= new ArrayList<>();
-        for (TmsNatureIncident tmsNatureIncident : incNatureIncidents) {
+        for (TmsNatureIncident tmsNatureIncident : tmsNatureIncidents) {
             natureIncidents.add(toDto(tmsNatureIncident,lazy));
         }
         return natureIncidents;

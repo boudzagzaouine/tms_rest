@@ -17,10 +17,10 @@ public class BadgeMapper {
 
     static {
         map = new HashMap<>();
-        map.put("id", "prmBadgeId");
-        map.put("code", "prmBadgeCode");
-        map.put("libelle", "prmBadgeLibelle");
-        map.put("description", "prmBadgeDescription");
+        map.put("id", "tmsBadgeId");
+        map.put("code", "tmsBadgeCode");
+        map.put("libelle", "tmsBadgeLibelle");
+        map.put("description", "tmsBadgeDescription");
     }
 
     public static Map<String, String> getMap() {
@@ -36,10 +36,10 @@ public class BadgeMapper {
             return null;
         }
         TmsBadge tmsBadge = new TmsBadge();
-        tmsBadge.setPrmBadgeCode(badge.getCode());
-        tmsBadge.setPrmBadgeId(badge.getId());
-        tmsBadge.setPrmBadgeDescription(badge.getDescription());
-        tmsBadge.setPrmBadgeLibelle(badge.getLibelle());
+        tmsBadge.setTmsBadgeCode(badge.getCode());
+        tmsBadge.setTmsBadgeId(badge.getId());
+        tmsBadge.setTmsBadgeDescription(badge.getDescription());
+        tmsBadge.setTmsBadgeLibelle(badge.getLibelle());
         if (!lazy) {
 
         }
@@ -51,10 +51,10 @@ public class BadgeMapper {
             return null;
         }
         Badge badge = new Badge();
-        badge.setId(tmsBadge.getPrmBadgeId());
-        badge.setCode(tmsBadge.getPrmBadgeCode());
-        badge.setDescription(tmsBadge.getPrmBadgeDescription());
-        badge.setLibelle(tmsBadge.getPrmBadgeLibelle());
+        badge.setId(tmsBadge.getTmsBadgeId());
+        badge.setCode(tmsBadge.getTmsBadgeCode());
+        badge.setDescription(tmsBadge.getTmsBadgeDescription());
+        badge.setLibelle(tmsBadge.getTmsBadgeLibelle());
         if (!lazy) {
 
         }
@@ -72,12 +72,12 @@ public class BadgeMapper {
         }
         return badges;
     }
-    public static List<Badge> toDtos(Iterable<TmsBadge> prmBadges, boolean lazy) {
-        if (null == prmBadges) {
+    public static List<Badge> toDtos(Iterable<TmsBadge> tmsBadges, boolean lazy) {
+        if (null == tmsBadges) {
             return null;
         }
         List<Badge> badges = new ArrayList<>();
-        for (TmsBadge tmsBadge : prmBadges) {
+        for (TmsBadge tmsBadge : tmsBadges) {
             badges.add(toDto(tmsBadge, lazy));
         }
         return badges;
@@ -86,11 +86,11 @@ public class BadgeMapper {
         if (null == badges) {
             return null;
         }
-        Set<TmsBadge> prmDrivers = new HashSet<>();
+        Set<TmsBadge> tmsDrivers = new HashSet<>();
         for(Badge badge:badges){
-            prmDrivers.add(toEntity(badge,lazy));
+            tmsDrivers.add(toEntity(badge,lazy));
         }
-        return prmDrivers;
+        return tmsDrivers;
     }
     public static Set<Badge> toDtos(Set<TmsBadge> tmsBadges, boolean lazy){
         if(null == tmsBadges){

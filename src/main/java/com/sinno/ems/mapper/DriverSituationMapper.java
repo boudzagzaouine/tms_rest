@@ -17,9 +17,9 @@ public class DriverSituationMapper {
 
     static {
         map = new HashMap<>();
-        map.put("id", "prmDriverId");
-        map.put("code", "prmDriverSituationCode");
-        map.put("description", "prmDriverSituationDescription");
+        map.put("id", "tmsDriverId");
+        map.put("code", "tmsDriverSituationCode");
+        map.put("description", "tmsDriverSituationDescription");
     }
 
     public static Map<String, String> getMap() {
@@ -36,9 +36,9 @@ public class DriverSituationMapper {
             return null;
         }
         TmsDriverSituation tmsDriverSituation = new TmsDriverSituation();
-        tmsDriverSituation.setPrmDriverId(driversituation.getId());
-        tmsDriverSituation.setPrmDriverSituationDescription(driversituation.getDescription());
-        tmsDriverSituation.setPrmDriverSituationCode(driversituation.getCode());
+        tmsDriverSituation.setTmsDriverId(driversituation.getId());
+        tmsDriverSituation.setTmsDriverSituationDescription(driversituation.getDescription());
+        tmsDriverSituation.setTmsDriverSituationCode(driversituation.getCode());
         if (!lazy) {
 
         }
@@ -50,9 +50,9 @@ public class DriverSituationMapper {
             return null;
         }
         DriverSituation driverSituation = new DriverSituation();
-        driverSituation.setId(tmsDriverSituation.getPrmDriverId());
-        driverSituation.setCode(tmsDriverSituation.getPrmDriverSituationCode());
-        driverSituation.setDescription(tmsDriverSituation.getPrmDriverSituationDescription());
+        driverSituation.setId(tmsDriverSituation.getTmsDriverId());
+        driverSituation.setCode(tmsDriverSituation.getTmsDriverSituationCode());
+        driverSituation.setDescription(tmsDriverSituation.getTmsDriverSituationDescription());
         if(!lazy){
 
         }
@@ -63,18 +63,18 @@ public class DriverSituationMapper {
             return null;
         }
         List<DriverSituation> driverSituations = new ArrayList<>();
-        for (TmsDriverSituation prmColor : tmsDriverSituations) {
-            driverSituations.add(toDto(prmColor, lazy));
+        for (TmsDriverSituation tmsColor : tmsDriverSituations) {
+            driverSituations.add(toDto(tmsColor, lazy));
         }
         return driverSituations;
     }
 
-    public static List<DriverSituation> toDtos(Iterable<TmsDriverSituation> prmDriverSituations, boolean lazy) {
-        if (null == prmDriverSituations) {
+    public static List<DriverSituation> toDtos(Iterable<TmsDriverSituation> tmsDriverSituations, boolean lazy) {
+        if (null == tmsDriverSituations) {
             return null;
         }
         List<DriverSituation> colors = new ArrayList<>();
-        for (TmsDriverSituation tmsDriverSituation : prmDriverSituations) {
+        for (TmsDriverSituation tmsDriverSituation : tmsDriverSituations) {
             colors.add(toDto(tmsDriverSituation, lazy));
         }
         return colors;
@@ -94,8 +94,8 @@ public class DriverSituationMapper {
             return null;
         }
         Set<DriverSituation> driverSituations = new HashSet<>();
-        for (TmsDriverSituation prmColor : tmsDriverSituations) {
-            driverSituations.add(toDto(prmColor, lazy));
+        for (TmsDriverSituation tmsColor : tmsDriverSituations) {
+            driverSituations.add(toDto(tmsColor, lazy));
         }
         return driverSituations;
     }

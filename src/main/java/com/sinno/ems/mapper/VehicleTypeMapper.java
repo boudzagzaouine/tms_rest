@@ -16,10 +16,9 @@ public class VehicleTypeMapper {
     static {
         map = new HashMap<>();
 
-        map.put("id", "prmVehicleTypeId");
-        map.put("code", "prmVehicleTypeCode");
-        map.put("type", "prmVehicleTypeType");
-        map.put("vehicule", "vehicules");
+        map.put("id", "tmsVehicleTypeId");
+        map.put("code", "tmsVehicleTypeCode");
+        map.put("type", "tmsVehicleTypeType");
 
 
     }
@@ -38,9 +37,9 @@ public class VehicleTypeMapper {
         }
         TmsVehicleType tmsVehicleType = new TmsVehicleType();
 
-        tmsVehicleType.setPrmVehicleTypeId(vehiculeType.getId());
-        tmsVehicleType.setPrmVehicleTypeCode(vehiculeType.getCode() != null ? vehiculeType.getCode().toUpperCase():null );
-        tmsVehicleType.setPrmVehicleTypeType(vehiculeType.getType());
+        tmsVehicleType.setTmsVehicleTypeId(vehiculeType.getId());
+        tmsVehicleType.setTmsVehicleTypeCode(vehiculeType.getCode() != null ? vehiculeType.getCode().toUpperCase():null );
+        tmsVehicleType.setTmsVehicleTypeType(vehiculeType.getType());
         if (!lazy) {
            tmsVehicleType.setTmsVehicleTypeVehicules(VehicleMapper.toEntities(vehiculeType.getVehicules(),true));
 //
@@ -53,9 +52,9 @@ public class VehicleTypeMapper {
         }
         VehiculeType vehiculeType = new VehiculeType();
 
-        vehiculeType.setId(tmsVehicleType.getPrmVehicleTypeId());
-        vehiculeType.setCode(tmsVehicleType.getPrmVehicleTypeCode());
-        vehiculeType.setType(tmsVehicleType.getPrmVehicleTypeType());
+        vehiculeType.setId(tmsVehicleType.getTmsVehicleTypeId());
+        vehiculeType.setCode(tmsVehicleType.getTmsVehicleTypeCode());
+        vehiculeType.setType(tmsVehicleType.getTmsVehicleTypeType());
         if (!lazy) {
             vehiculeType.setVehicules(VehicleMapper.toDtos(tmsVehicleType.getTmsVehicleTypeVehicules(),true));
 //
@@ -74,12 +73,12 @@ public class VehicleTypeMapper {
         return vehiculeTypes;
     }
 
-    public static List<VehiculeType> toDtos(Iterable<TmsVehicleType>prmVehicleTypes , boolean lazy){
-        if (null == prmVehicleTypes) {
+    public static List<VehiculeType> toDtos(Iterable<TmsVehicleType>tmsVehicleTypes , boolean lazy){
+        if (null == tmsVehicleTypes) {
             return null;
         }
         List<VehiculeType>vehiculeTypes = new ArrayList<>();
-        for (TmsVehicleType tmsVehicleType :prmVehicleTypes) {
+        for (TmsVehicleType tmsVehicleType :tmsVehicleTypes) {
             vehiculeTypes.add(toDto(tmsVehicleType,lazy));
         }
         return vehiculeTypes;

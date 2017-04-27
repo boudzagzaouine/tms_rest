@@ -17,16 +17,16 @@ public class RoadMapper {
     static {
         map = new HashMap<>();
 
-        map.put("id", "prmRoadId");
-        map.put("code", "prmRoadCode");
-        map.put("duration", "prmRoadDuration");
-        map.put("cost", "prmRoadCost");
-        map.put("distance", "prmRoadDistance");
-        map.put("incidents", "prmRoadIncidents");
-        map.put("principalDriver", "prmRoadPrincipalDriver");
-        map.put("suppleantDriver", "prmRoadSuppleantDriver");
-        map.put("deliveries", "prmRoadDeliveries");
-        map.put("vehicule", "prmRoadVehicule");
+        map.put("id", "tmsRoadId");
+        map.put("code", "tmsRoadCode");
+        map.put("duration", "tmsRoadDuration");
+        map.put("cost", "tmsRoadCost");
+        map.put("distance", "tmsRoadDistance");
+        map.put("incidents", "tmsRoadIncidents");
+        map.put("principalDriver", "tmsRoadPrincipalDriver");
+        map.put("suppleantDriver", "tmsRoadSuppleantDriver");
+        map.put("deliveries", "tmsRoadDeliveries");
+        map.put("vehicule", "tmsRoadVehicule");
 
 
     }
@@ -44,18 +44,18 @@ public class RoadMapper {
             return null;
         }
         TmsRoad tmsRoad = new TmsRoad();
-        tmsRoad.setPrmRoadId(road.getId());
-        tmsRoad.setPrmRoadCode(road.getCode() != null ? road.getCode().toUpperCase() : null );
-        tmsRoad.setPrmRoadDuration(road.getDuration());
-        tmsRoad.setPrmRoadCost(road.getCost());
-        tmsRoad.setPrmRoadDistance(road.getDistance());
+        tmsRoad.setTmsRoadId(road.getId());
+        tmsRoad.setTmsRoadCode(road.getCode() != null ? road.getCode().toUpperCase() : null );
+        tmsRoad.setTmsRoadDuration(road.getDuration());
+        tmsRoad.setTmsRoadCost(road.getCost());
+        tmsRoad.setTmsRoadDistance(road.getDistance());
 
         if (!lazy) {
-          tmsRoad.setPrmRoadIncident(IncidentMapper.toEntities(road.getIncidents(),true));
-          tmsRoad.setPrmRoadPrincialDriver(DriverMapper.toEntity(road.getPrincipalDriver(),true));
-          tmsRoad.setPrmRoadSuppleantDriver(DriverMapper.toEntity(road.getPrincipalDriver(),true));
+          tmsRoad.setTmsRoadIncident(IncidentMapper.toEntities(road.getIncidents(),true));
+          tmsRoad.setTmsRoadPrincialDriver(DriverMapper.toEntity(road.getPrincipalDriver(),true));
+          tmsRoad.setTmsRoadSuppleantDriver(DriverMapper.toEntity(road.getPrincipalDriver(),true));
           //
-          tmsRoad.setPrmRoadVehicle(VehicleMapper.toEntity(road.getVehicule(),true));
+          tmsRoad.setTmsRoadVehicle(VehicleMapper.toEntity(road.getVehicule(),true));
         }
         return tmsRoad;
     }
@@ -64,18 +64,18 @@ public class RoadMapper {
             return null;
         }
         Road road = new Road();
-        road.setId(tmsRoad.getPrmRoadId());
-        road.setCode(tmsRoad.getPrmRoadCode());
-        road.setDuration(tmsRoad.getPrmRoadDuration());
-        road.setCost(tmsRoad.getPrmRoadCost());
-        road.setDistance(tmsRoad.getPrmRoadDistance());
+        road.setId(tmsRoad.getTmsRoadId());
+        road.setCode(tmsRoad.getTmsRoadCode());
+        road.setDuration(tmsRoad.getTmsRoadDuration());
+        road.setCost(tmsRoad.getTmsRoadCost());
+        road.setDistance(tmsRoad.getTmsRoadDistance());
 
         if (!lazy) {
-            road.setIncidents(IncidentMapper.toDtos(tmsRoad.getPrmRoadIncident(),true));
-            road.setPrincipalDriver(DriverMapper.toDto(tmsRoad.getPrmRoadPrincialDriver(),true));
-            road.setSuppleantDriver(DriverMapper.toDto(tmsRoad.getPrmRoadPrincialDriver(),true));
+            road.setIncidents(IncidentMapper.toDtos(tmsRoad.getTmsRoadIncident(),true));
+            road.setPrincipalDriver(DriverMapper.toDto(tmsRoad.getTmsRoadPrincialDriver(),true));
+            road.setSuppleantDriver(DriverMapper.toDto(tmsRoad.getTmsRoadPrincialDriver(),true));
             //
-            road.setVehicule(VehicleMapper.toDto(tmsRoad.getPrmRoadVehicle(),true));
+            road.setVehicule(VehicleMapper.toDto(tmsRoad.getTmsRoadVehicle(),true));
         }
         return road;
     }
@@ -91,12 +91,12 @@ public class RoadMapper {
         return roads;
     }
 
-    public static List<Road> toDtos(Iterable<TmsRoad>prmRoads , boolean lazy){
-        if (null == prmRoads) {
+    public static List<Road> toDtos(Iterable<TmsRoad>tmsRoads , boolean lazy){
+        if (null == tmsRoads) {
             return null;
         }
         List<Road>roads = new ArrayList<>();
-        for (TmsRoad tmsRoad : prmRoads) {
+        for (TmsRoad tmsRoad : tmsRoads) {
             roads.add(toDto(tmsRoad, lazy));
         }
         return roads;

@@ -17,15 +17,15 @@ public class ActeMapper {
 
     static {
         map = new HashMap<>();
-        map.put("id", "prmActeId");
-        map.put("code", "prmActeCode");
-        map.put("nature", "prmActeNature");
-        map.put("description", "prmActeDescription");
-        map.put("periodecity", "prmActePeriodecity");
-        map.put("duration", "prmActeDuration");
-        map.put("dateLastAct", "prmActeDateLastAct");
-        map.put("duration", "prmActeDuration");
-        map.put("maintenancePlans", "prmMaintenancePlans");
+        map.put("id", "tmsActeId");
+        map.put("code", "tmsActeCode");
+        map.put("nature", "tmsActeNature");
+        map.put("description", "tmsActeDescription");
+        map.put("periodecity", "tmsActePeriodecity");
+        map.put("duration", "tmsActeDuration");
+        map.put("dateLastAct", "tmsActeDateLastAct");
+        map.put("duration", "tmsActeDuration");
+        map.put("maintenancePlans", "tmsMaintenancePlans");
 
     }
 
@@ -42,12 +42,12 @@ public class ActeMapper {
             return null;
         }
         TmsActe tmsActe = new TmsActe();
-        tmsActe.setPrmActeId(acte.getId());
-        tmsActe.setPrmActeCode(acte.getCode());
-        tmsActe.setPrmActeNature(acte.getNature());
-        tmsActe.setPrmActeDescription(acte.getDescription());
-        tmsActe.setprmActedateLastAct(acte.getDateLastAct());
-        tmsActe.setPrmActePeriodicity(acte.getPeriodicity());
+        tmsActe.setTmsActeId(acte.getId());
+        tmsActe.setTmsActeCode(acte.getCode());
+        tmsActe.setTmsActeNature(acte.getNature());
+        tmsActe.setTmsActeDescription(acte.getDescription());
+        tmsActe.settmsActedateLastAct(acte.getDateLastAct());
+        tmsActe.setTmsActePeriodicity(acte.getPeriodicity());
         if (!lazy) {
 
         }
@@ -60,10 +60,10 @@ public class ActeMapper {
             return null;
         }
         Acte acte = new Acte();
-        acte.setId(tmsActe.getPrmActeId());
-        acte.setCode(tmsActe.getPrmActeCode());
-        acte.setNature(tmsActe.getPrmActeNature());
-        acte.setDescription(tmsActe.getPrmActeNature());
+        acte.setId(tmsActe.getTmsActeId());
+        acte.setCode(tmsActe.getTmsActeCode());
+        acte.setNature(tmsActe.getTmsActeNature());
+        acte.setDescription(tmsActe.getTmsActeNature());
         acte.setDateLastAct(acte.getDateLastAct());
         acte.setPeriodicity(acte.getPeriodicity());
         if(!lazy){
@@ -82,12 +82,12 @@ public class ActeMapper {
         }
         return actes;
     }
-    public static List<Acte> toDtos(Iterable<TmsActe> prmActes, boolean lazy) {
-        if (null == prmActes) {
+    public static List<Acte> toDtos(Iterable<TmsActe> tmsActes, boolean lazy) {
+        if (null == tmsActes) {
             return null;
         }
         List<Acte> actes = new ArrayList<>();
-        for (TmsActe tmsActe : prmActes) {
+        for (TmsActe tmsActe : tmsActes) {
             actes.add(toDto(tmsActe, lazy));
         }
         return actes;
@@ -107,8 +107,8 @@ public class ActeMapper {
             return null;
         }
         Set<Acte> actes = new HashSet<>();
-        for(TmsActe prmDriver: tmsActes){
-            actes.add(toDto(prmDriver,lazy));
+        for(TmsActe tmsDriver: tmsActes){
+            actes.add(toDto(tmsDriver,lazy));
         }
         return actes;
     }

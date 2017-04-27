@@ -55,7 +55,7 @@ public class UserMapper {
             return null;
         }
         User user = new User();
-       
+
         return user;
     }
 

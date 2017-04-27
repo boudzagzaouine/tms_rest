@@ -17,24 +17,24 @@ public class VehicleMapper {
     static {
         map = new HashMap<>();
 
-        map.put("id", "prmVehicleId");
-        map.put("code", "prmVehiclerCode");
-        map.put("nbreEssieux", "prmVehicleNbreEssieux");
-        map.put("emptyWeight", "prmVehicleEmtyWeight");
-        map.put("dateOfRegistration", "prmVehicleDateOfRegistration");
-        map.put("brand", "prmVehicleBrand");
-        map.put("model", "prmVehicleModel");
-        map.put("status", "prmVehicleStatus");
-        map.put("type", "prmVehicleType");
-        map.put("badges", "prmVehicleBadges");
-        map.put("policeAssurance", "prmVehiclePoliceInsurance");
-        map.put("maintenancePlan", "prmVehicleMaintenancePlan");
+        map.put("id", "tmsVehicleId");
+        map.put("code", "tmsVehiclerCode");
+        map.put("nbreEssieux", "tmsVehicleNbreEssieux");
+        map.put("emptyWeight", "tmsVehicleEmtyWeight");
+        map.put("dateOfRegistration", "tmsVehicleDateOfRegistration");
+        map.put("brand", "tmsVehicleBrand");
+        map.put("model", "tmsVehicleModel");
+        map.put("status", "tmsVehicleStatus");
+        map.put("type", "tmsVehicleType");
+        map.put("badges", "tmsVehicleBadges");
+        map.put("policeAssurance", "tmsVehiclePoliceInsurance");
+        map.put("maintenancePlan", "tmsVehicleMaintenancePlan");
 
-        map.put("matricule", "prmVehicleMatricule");
-        map.put("dateCreation", "prmVehicleDateCreation");
-        map.put("dateUpDate", "prmVehicleDateUpDate");
-        map.put("creationUser", "prmVehicleCreationUser");
-        map.put("upDateUser", "prmVehicleUpDateUser");
+        map.put("matricule", "tmsVehicleMatricule");
+        map.put("dateCreation", "tmsVehicleDateCreation");
+        map.put("dateUpDate", "tmsVehicleDateUpDate");
+        map.put("creationUser", "tmsVehicleCreationUser");
+        map.put("upDateUser", "tmsVehicleUpDateUser");
 
 
 
@@ -52,24 +52,24 @@ public class VehicleMapper {
             return null;
         }
         TmsVehicle tmsVehicle = new TmsVehicle();
-        tmsVehicle.setPrmVehicleId(vehicule.getId());
-        tmsVehicle.setPrmVehicleCode(vehicule.getCode() != null ? vehicule.getCode().toUpperCase() : null);
-        tmsVehicle.setPrmVehicleNbreEssieux(vehicule.getNbreEssieux());
-        tmsVehicle.setPrmVehicleEmptyWeight(vehicule.getEmptyWeight());
-        tmsVehicle.setPrmVehicleDateOfRegistration(vehicule.getDateOfRegistration());
-        tmsVehicle.setPrmVehicleBrand(vehicule.getBrand());
-        tmsVehicle.setPrmVehicleModel(vehicule.getModel());
-        tmsVehicle.setPrmVehicleMatricule(vehicule.getMatricule());
-        tmsVehicle.setPrmVehicleDateCreation(vehicule.getDateCreation());
-        tmsVehicle.setPrmVehicleDateUpDate(vehicule.getDateUpDate());
+        tmsVehicle.setTmsVehicleId(vehicule.getId());
+        tmsVehicle.setTmsVehicleCode(vehicule.getCode() != null ? vehicule.getCode().toUpperCase() : null);
+        tmsVehicle.setTmsVehicleNbreEssieux(vehicule.getNbreEssieux());
+        tmsVehicle.setTmsVehicleEmptyWeight(vehicule.getEmptyWeight());
+        tmsVehicle.setTmsVehicleDateOfRegistration(vehicule.getDateOfRegistration());
+        tmsVehicle.setTmsVehicleBrand(vehicule.getBrand());
+        tmsVehicle.setTmsVehicleModel(vehicule.getModel());
+        tmsVehicle.setTmsVehicleMatricule(vehicule.getMatricule());
+        tmsVehicle.setTmsVehicleDateCreation(vehicule.getDateCreation());
+        tmsVehicle.setTmsVehicleDateUpDate(vehicule.getDateUpDate());
 
         if (!lazy) {
 
-            tmsVehicle.setPrmVehicleBadges((BadgeMapper.toEntities(vehicule.getBadges(),true)));
-            tmsVehicle.setPrmVehiclePoliceAssurance(PoliceInsuranceMapper.toEntity(vehicule.getPoliceAssurance(),true));
-            tmsVehicle.setPrmVehicleMaintenancePlan(MaintenancePlanMapper.toEntity(vehicule.getMaintenancePlan(),true));
-            tmsVehicle.setPrmVehicleCreationUser(UserMapper.toEntity(vehicule.getCreationUser(),true));
-            tmsVehicle.setPrmVehicleUpDateUser(UserMapper.toEntity(vehicule.getUpDateUser(),true));
+            tmsVehicle.setTmsVehicleBadges((BadgeMapper.toEntities(vehicule.getBadges(),true)));
+            tmsVehicle.setTmsVehiclePoliceAssurance(PoliceInsuranceMapper.toEntity(vehicule.getPoliceAssurance(),true));
+            tmsVehicle.setTmsVehicleMaintenancePlan(MaintenancePlanMapper.toEntity(vehicule.getMaintenancePlan(),true));
+            tmsVehicle.setTmsVehicleCreationUser(UserMapper.toEntity(vehicule.getCreationUser(),true));
+            tmsVehicle.setTmsVehicleUpDateUser(UserMapper.toEntity(vehicule.getUpDateUser(),true));
 //
         }
         return tmsVehicle;
@@ -81,23 +81,23 @@ public class VehicleMapper {
             return null;
         }
         Vehicule vehicule = new Vehicule();
-        vehicule.setId(tmsVehicle.getPrmVehicleId());
-        vehicule.setCode(tmsVehicle.getPrmVehicleCode() );
-        vehicule.setNbreEssieux(tmsVehicle.getPrmVehicleNbreEssieux());
-        vehicule.setEmptyWeight(tmsVehicle.getPrmVehicleEmptyWeight());
-        vehicule.setDateOfRegistration(tmsVehicle.getPrmVehicleDateOfRegistration());
-        vehicule.setBrand(tmsVehicle.getPrmVehicleBrand());
-        vehicule.setModel(tmsVehicle.getPrmVehicleModel());
-        vehicule.setMatricule(tmsVehicle.getPrmVehicleMatricule());
-        vehicule.setDateCreation(tmsVehicle.getPrmVehicleDateCreation());
-        vehicule.setDateUpDate(tmsVehicle.getPrmVehicleDateUpDate());
+        vehicule.setId(tmsVehicle.getTmsVehicleId());
+        vehicule.setCode(tmsVehicle.getTmsVehicleCode() );
+        vehicule.setNbreEssieux(tmsVehicle.getTmsVehicleNbreEssieux());
+        vehicule.setEmptyWeight(tmsVehicle.getTmsVehicleEmptyWeight());
+        vehicule.setDateOfRegistration(tmsVehicle.getTmsVehicleDateOfRegistration());
+        vehicule.setBrand(tmsVehicle.getTmsVehicleBrand());
+        vehicule.setModel(tmsVehicle.getTmsVehicleModel());
+        vehicule.setMatricule(tmsVehicle.getTmsVehicleMatricule());
+        vehicule.setDateCreation(tmsVehicle.getTmsVehicleDateCreation());
+        vehicule.setDateUpDate(tmsVehicle.getTmsVehicleDateUpDate());
 
         if (!lazy) {
-           vehicule.setBadges(BadgeMapper.toDtos(tmsVehicle.getPrmVehicleBadges(),true));
-           vehicule.setPoliceAssurance(PoliceInsuranceMapper.toDto(tmsVehicle.getPrmVehiclePoliceAssurance(),true));
-           vehicule.setMaintenancePlan(MaintenancePlanMapper.toDto(tmsVehicle.getPrmVehicleMaintenancePlan(),true));
-           vehicule.setCreationUser(UserMapper.toDto(tmsVehicle.getPrmVehicleCreationUser(),true));
-           vehicule.setUpDateUser(UserMapper.toDto(tmsVehicle.getPrmVehicleUpDateUser(),true));
+           vehicule.setBadges(BadgeMapper.toDtos(tmsVehicle.getTmsVehicleBadges(),true));
+           vehicule.setPoliceAssurance(PoliceInsuranceMapper.toDto(tmsVehicle.getTmsVehiclePoliceAssurance(),true));
+           vehicule.setMaintenancePlan(MaintenancePlanMapper.toDto(tmsVehicle.getTmsVehicleMaintenancePlan(),true));
+           vehicule.setCreationUser(UserMapper.toDto(tmsVehicle.getTmsVehicleCreationUser(),true));
+           vehicule.setUpDateUser(UserMapper.toDto(tmsVehicle.getTmsVehicleUpDateUser(),true));
 //
         }
         return  vehicule;
@@ -115,13 +115,13 @@ public class VehicleMapper {
         }
         return  vehicules;
     }
-    public static List<Vehicule>toDtos(Iterable<TmsVehicle>prmVehicles , boolean lazy){
-        if (null == prmVehicles) {
+    public static List<Vehicule>toDtos(Iterable<TmsVehicle>tmsVehicles , boolean lazy){
+        if (null == tmsVehicles) {
             return null;
         }
         List<Vehicule>vehicules = new ArrayList<>();
 
-        for (TmsVehicle tmsVehicle : prmVehicles) {
+        for (TmsVehicle tmsVehicle : tmsVehicles) {
             vehicules.add(toDto(tmsVehicle,lazy));
         }
         return  vehicules;

@@ -36,13 +36,13 @@ public class MaintenancePlanMapper {
             return null;
         }
         TmsMaintenancePlan tmsMaintenancePlan = new TmsMaintenancePlan();
-       tmsMaintenancePlan.setMntMaintenancePlanId(maintenancePlan.getId());
+       tmsMaintenancePlan.setTmsMaintenancePlanId(maintenancePlan.getId());
        maintenancePlan.setCode(maintenancePlan.getCode() != null ? maintenancePlan.getCode().toUpperCase() : null );
        maintenancePlan.setDescription(maintenancePlan.getDescription());
 
         if (!lazy) {
           tmsMaintenancePlan.setVehicle(VehicleMapper.toEntity(maintenancePlan.getVehicule(),true));
-       tmsMaintenancePlan.setMntMaintenancePlanActes(ActeMapper.toEntities(maintenancePlan.getActes(),true));
+       tmsMaintenancePlan.setTmsMaintenancePlanActes(ActeMapper.toEntities(maintenancePlan.getActes(),true));
         }
         return tmsMaintenancePlan;
     }
@@ -53,12 +53,12 @@ public class MaintenancePlanMapper {
         }
         MaintenancePlan maintenancePlan = new MaintenancePlan();
 
-        maintenancePlan.setId(tmsMaintenancePlan.getMntMaintenancePlanId());
-        maintenancePlan.setCode(tmsMaintenancePlan.getMntMaintenancePlanCode());
-        maintenancePlan.setDescription(tmsMaintenancePlan.getMntDescription());
+        maintenancePlan.setId(tmsMaintenancePlan.getTmsMaintenancePlanId());
+        maintenancePlan.setCode(tmsMaintenancePlan.getTmsMaintenancePlanCode());
+        maintenancePlan.setDescription(tmsMaintenancePlan.getTmsDescription());
     if (!lazy){
         maintenancePlan.setVehicule(VehicleMapper.toDto(tmsMaintenancePlan.getVehicle(),true));
-        maintenancePlan.setActes(ActeMapper.toDtos(tmsMaintenancePlan.getMntMaintenancePlanActes(),true));
+        maintenancePlan.setActes(ActeMapper.toDtos(tmsMaintenancePlan.getTmsMaintenancePlanActes(),true));
     }
 
         return maintenancePlan;
