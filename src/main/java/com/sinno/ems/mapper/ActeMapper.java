@@ -45,7 +45,7 @@ public class ActeMapper {
         tmsActe.setTmsActeCode(acte.getCode());
         tmsActe.setTmsActeNature(acte.getNature());
         tmsActe.setTmsActeDescription(acte.getDescription());
-        tmsActe.settmsActedateLastAct(acte.getDateLastAct());
+        tmsActe.setTmsActedateLastAct(acte.getDateLastAct());
         tmsActe.setTmsActePeriodicity(acte.getPeriodicity());
         if (!lazy) {
         tmsActe.setTmsActeMaintenancePlan(MaintenancePlanMapper.toEntities(acte.getMaintenancePlans(),true));

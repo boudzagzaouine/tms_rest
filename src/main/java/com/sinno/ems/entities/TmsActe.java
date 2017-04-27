@@ -40,40 +40,33 @@ public class TmsActe implements java.io.Serializable {
     @Size(max = 240)
     @NotNull
     private String tmsActePeriodicity;
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsMaintenancePlanActes")
-    public Set<TmsMaintenancePlan> getTmsActeMaintenancePlan() {
-        return tmsActeMaintenancePlan;
-    }
-
-    public void setTmsActeMaintenancePlan(Set<TmsMaintenancePlan> tmsActeMaintenancePlan) {
-        this.tmsActeMaintenancePlan = tmsActeMaintenancePlan;
-    }
-
-    public void setTmsActePeriodicity(String tmsActePeriodicity) {
-        this.tmsActePeriodicity = tmsActePeriodicity;
-    }
-
-    public String getTmsActePeriodicity() {
-        return tmsActePeriodicity;
-    }
 
     @Size(max = 240)
     @NotNull
 
     private String tmsActeDuration;
-    @Size(max = 240)
-    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "tms_actedatelastact")
     private Date tmsActedateLastAct;
+
+    public void setTmsActedateLastAct(Date tmsActedateLastAct) {
+        this.tmsActedateLastAct = tmsActedateLastAct;
+    }
 
     public TmsActe(){
     }
-    public TmsActe(long tmsActeId, String tmsActeCode, String tmsActeNature, String tmsActeDescription, String tmsActePeriodicity) {
+
+    public TmsActe(long tmsActeId, String tmsActeCode, String tmsActeNature, Set<TmsMaintenancePlan> tmsActeMaintenancePlan, String tmsActeDescription, String tmsActePeriodicity, String tmsActeDuration, Date tmsActedateLastAct) {
         this.tmsActeId = tmsActeId;
-        this.tmsActeCode=tmsActeCode;
-        this.tmsActeNature=tmsActeNature;
-        this.tmsActeDescription=tmsActeDescription;
-        this.tmsActePeriodicity=tmsActePeriodicity;
+        this.tmsActeCode = tmsActeCode;
+        this.tmsActeNature = tmsActeNature;
+        this.tmsActeMaintenancePlan = tmsActeMaintenancePlan;
+        this.tmsActeDescription = tmsActeDescription;
+        this.tmsActePeriodicity = tmsActePeriodicity;
+        this.tmsActeDuration = tmsActeDuration;
+        this.tmsActedateLastAct = tmsActedateLastAct;
     }
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
@@ -112,9 +105,6 @@ public class TmsActe implements java.io.Serializable {
         return tmsActedateLastAct;
     }
 
-    public void settmsActedateLastAct(Date tmsActedateLastAct) {
-        this.tmsActedateLastAct = tmsActedateLastAct;
-    }
 
     public String getTmsActeDuration() {
         return tmsActeDuration;
@@ -127,10 +117,23 @@ public class TmsActe implements java.io.Serializable {
     public Date getTmsActedateLastAct() {
         return tmsActedateLastAct;
     }
-
-    public void setTmsActedateLastAct(Date tmsActedateLastAct) {
-        this.tmsActedateLastAct = tmsActedateLastAct;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsMaintenancePlanActes")
+    public Set<TmsMaintenancePlan> getTmsActeMaintenancePlan() {
+        return tmsActeMaintenancePlan;
     }
+
+    public void setTmsActeMaintenancePlan(Set<TmsMaintenancePlan> tmsActeMaintenancePlan) {
+        this.tmsActeMaintenancePlan = tmsActeMaintenancePlan;
+    }
+
+
+    public String getTmsActePeriodicity() {
+        return tmsActePeriodicity;
+    }
+    public void setTmsActePeriodicity(String tmsActePeriodicity) {
+        this.tmsActePeriodicity = tmsActePeriodicity;
+    }
+
 }
 
 
