@@ -12,21 +12,21 @@ import java.util.Set;
  * Created by khalil on 16/03/2017.
  */
 @Entity
-@Table(name = "prm_driver", uniqueConstraints = @UniqueConstraint(columnNames = {"prm_driverecode","prm_driverid"}))
+@Table(name = "tms_driver", uniqueConstraints = @UniqueConstraint(columnNames = {"tms_driverecode","tms_driverid"}))
 
 public class TmsDriver implements java.io.Serializable{
-    private long prmDriverId;
+    private long tmsDriverId;
 
     @Size(max = 255)
-    private String prmDriverPassportNumber;
+    private String tmsDriverPassportNumber;
 
     private Set<TmsIncident> pincidents;
     private Set<TmsBadge> pbadges;
     //  private Adresse adresse;
-  private Date prmDriverDateCreation;
-    private Date prmDriverDateUpDate;
-    private UsrUser prmDriverCreationUser;
-    private UsrUser prmDriverUpDateUser;
+  private Date tmsDriverDateCreation;
+    private Date tmsDriverDateUpDate;
+    private UsrUser tmsDriverCreationUser;
+    private UsrUser tmsDriverUpDateUser;
     @Size(max = 30)
     @NotNull
     private TmsDriverSituation tmsDriverSituation;
@@ -36,85 +36,85 @@ public class TmsDriver implements java.io.Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name = "prm_driverid", unique = true, nullable = false, precision = 10, scale = 0)
+    @Column(name = "tms_driverid", unique = true, nullable = false, precision = 10, scale = 0)
 
-    public long getPrmDriverId() {
-        return prmDriverId;
+    public long getTmsDriverId() {
+        return tmsDriverId;
     }
 
-    public void setPrmDriverId(long prmDriverId) {
-        this.prmDriverId = prmDriverId;
+    public void setTmsDriverId(long tmsDriverId) {
+        this.tmsDriverId = tmsDriverId;
     }
 
 
-    /* @Column(name = "prm_drivercode", nullable = false, length = 20)
+    /* @Column(name = "tms_drivercode", nullable = false, length = 20)
 
-   public String getPrmDriverCode() {
-        return prmDriverCode;
+   public String getTmsDriverCode() {
+        return tmsDriverCode;
     }
 
-    public void setPrmDriverCode(String prmDriverCode) {
-        this.prmDriverCode = prmDriverCode;
+    public void setTmsDriverCode(String tmsDriverCode) {
+        this.tmsDriverCode = tmsDriverCode;
     }
     */
 
-    @Column(name = "prm_driverpassportNumber", nullable = false, length = 20)
+    @Column(name = "tms_driverpassportNumber", nullable = false, length = 20)
 
-    public String getPrmDriverPassportNumber() {
-        return prmDriverPassportNumber;
+    public String getTmsDriverPassportNumber() {
+        return tmsDriverPassportNumber;
     }
 
-    public void setPrmDriverPassportNumber(String prmDriverPassportNumber) {
-        this.prmDriverPassportNumber = prmDriverPassportNumber;
+    public void setTmsDriverPassportNumber(String tmsDriverPassportNumber) {
+        this.tmsDriverPassportNumber = tmsDriverPassportNumber;
     }
-    /*  @Column(name = "prm_driverpassportLink", nullable = false, length = 20)
+    /*  @Column(name = "tms_driverpassportLink", nullable = false, length = 20)
 /*
-      public String getPrmDriverPassportLink() {
-          return prmDriverPassportLink;
+      public String getTmsDriverPassportLink() {
+          return tmsDriverPassportLink;
       }
 
-      public void setPrmDriverPassportLink(String prmDriverPassportLink) {
-          this.prmDriverPassportLink = prmDriverPassportLink;
+      public void setTmsDriverPassportLink(String tmsDriverPassportLink) {
+          this.tmsDriverPassportLink = tmsDriverPassportLink;
       }
-    @Column(name = "prm_prmDriverLastName", nullable = false, length = 20)
+    @Column(name = "tms_tmsDriverLastName", nullable = false, length = 20)
 
-    public String getPrmDriverLastName() {
-        return prmDriverLastName;
+    public String getTmsDriverLastName() {
+        return tmsDriverLastName;
     }
 
-    public void setPrmDriverLastName(String prmDriverLastName) {
-        this.prmDriverLastName = prmDriverLastName;
+    public void setTmsDriverLastName(String tmsDriverLastName) {
+        this.tmsDriverLastName = tmsDriverLastName;
     }
-    @Column(name = "prm_prmDriverFirstName", nullable = false, length = 20)
+    @Column(name = "tms_tmsDriverFirstName", nullable = false, length = 20)
 
-    public String getPrmDriverFirstName() {
-        return prmDriverFirstName;
+    public String getTmsDriverFirstName() {
+        return tmsDriverFirstName;
     }
 
-    public void setPrmDriverFirstName(String prmDriverFirstName) {
-        this.prmDriverFirstName = prmDriverFirstName;
+    public void setTmsDriverFirstName(String tmsDriverFirstName) {
+        this.tmsDriverFirstName = tmsDriverFirstName;
     }
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "prm_prmDriverBirthDay")
+    @Column(name = "tms_tmsDriverBirthDay")
 
-    public Date getPrmDriverBirthDay() {
-        return prmDriverBirthDay;
+    public Date getTmsDriverBirthDay() {
+        return tmsDriverBirthDay;
     }
 
-    public void setPrmDriverBirthDay(Date prmDriverBirthDay) {
-        this.prmDriverBirthDay = prmDriverBirthDay;
+    public void setTmsDriverBirthDay(Date tmsDriverBirthDay) {
+        this.tmsDriverBirthDay = tmsDriverBirthDay;
     }
-    @Column(name = "prm_prmDriverCellPhone", nullable = false, length = 20)
+    @Column(name = "tms_tmsDriverCellPhone", nullable = false, length = 20)
 
-    public String getPrmDriverCellPhone() {
-        return prmDriverCellPhone;
+    public String getTmsDriverCellPhone() {
+        return tmsDriverCellPhone;
     }
 
-    public void setPrmDriverCellPhone(String prmDriverCellPhone) {
-        this.prmDriverCellPhone = prmDriverCellPhone;
+    public void setTmsDriverCellPhone(String tmsDriverCellPhone) {
+        this.tmsDriverCellPhone = tmsDriverCellPhone;
     }*/
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmIncidentDriver")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsIncidentDriver")
 
     public Set<TmsIncident> getPincidents() {
         return pincidents;
@@ -123,7 +123,7 @@ public class TmsDriver implements java.io.Serializable{
     public void setPincidents(Set<TmsIncident> pincidents) {
         this.pincidents = pincidents;
     }
-   /* @Column(name="prm_roadDriver",nullable=false)
+   /* @Column(name="tms_roadDriver",nullable=false)
 
     public Set<TmsRoad> getProads() {
         return proads;
@@ -133,7 +133,7 @@ public class TmsDriver implements java.io.Serializable{
         this.proads = proads;
     }*/
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmBadgeDriver")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsBadgeDriver")
     public Set<TmsBadge> getPbadges() {
         return pbadges;
     }
@@ -145,7 +145,7 @@ public class TmsDriver implements java.io.Serializable{
 
 
     /*
-        @Column(name="prm_adresseDriver",nullable=false)
+        @Column(name="tms_adresseDriver",nullable=false)
 
         public Adresse getAdresse() {
             return adresse;
@@ -155,7 +155,7 @@ public class TmsDriver implements java.io.Serializable{
             this.adresse = adresse;
         }*/
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_driversituationid")
+    @JoinColumn(name = "tms_driversituationid")
     public TmsDriverSituation getTmsDriverSituation() {
         return tmsDriverSituation;
     }
@@ -164,42 +164,42 @@ public class TmsDriver implements java.io.Serializable{
         this.tmsDriverSituation = tmsDriverSituation;
     }
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "prm_driverdatecreation")
-    public Date getPrmDriverDateCreation() {
-        return prmDriverDateCreation;
+    @Column(name = "tms_driverdatecreation")
+    public Date getTmsDriverDateCreation() {
+        return tmsDriverDateCreation;
     }
 
-    public void setPrmDriverDateCreation(Date prmDriverDateCreation) {
-        this.prmDriverDateCreation = prmDriverDateCreation;
+    public void setTmsDriverDateCreation(Date tmsDriverDateCreation) {
+        this.tmsDriverDateCreation = tmsDriverDateCreation;
     }
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "prm_driverdateupdate")
-    public Date getPrmDriverDateUpDate() {
-        return prmDriverDateUpDate;
+    @Column(name = "tms_driverdateupdate")
+    public Date getTmsDriverDateUpDate() {
+        return tmsDriverDateUpDate;
     }
 
-    public void setPrmDriverDateUpDate(Date prmDriverDateUpDate) {
-        this.prmDriverDateUpDate = prmDriverDateUpDate;
+    public void setTmsDriverDateUpDate(Date tmsDriverDateUpDate) {
+        this.tmsDriverDateUpDate = tmsDriverDateUpDate;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_drivercreationuserid")
-    public UsrUser getPrmDriverCreationUser() {
-        return prmDriverCreationUser;
+    @JoinColumn(name = "tms_drivercreationuserid")
+    public UsrUser getTmsDriverCreationUser() {
+        return tmsDriverCreationUser;
     }
 
-    public void setPrmDriverCreationUser(UsrUser prmDriverCreationUser) {
-        this.prmDriverCreationUser = prmDriverCreationUser;
+    public void setTmsDriverCreationUser(UsrUser tmsDriverCreationUser) {
+        this.tmsDriverCreationUser = tmsDriverCreationUser;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_driverupdateuserid")
-    public UsrUser getPrmDriverUpDateUser() {
-        return prmDriverUpDateUser;
+    @JoinColumn(name = "tms_driverupdateuserid")
+    public UsrUser getTmsDriverUpDateUser() {
+        return tmsDriverUpDateUser;
     }
 
-    public void setPrmDriverUpDateUser(UsrUser prmDriverUpDateUser) {
-        this.prmDriverUpDateUser = prmDriverUpDateUser;
+    public void setTmsDriverUpDateUser(UsrUser tmsDriverUpDateUser) {
+        this.tmsDriverUpDateUser = tmsDriverUpDateUser;
     }
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "drvDriverBadgeBadge")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsDriverBadgeBadge")
     public Set<TmsDriverBadge> getTmsDriverBadges() {
         return tmsDriverBadges;
     }

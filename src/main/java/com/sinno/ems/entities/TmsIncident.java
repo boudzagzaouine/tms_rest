@@ -8,17 +8,17 @@ import java.util.Date;
  * Created by khalil on 22/03/2017.
  */
 @Entity
-@Table(name="prm_incident",uniqueConstraints = @UniqueConstraint(columnNames = {"prm_incidentcode","prm_incidentid"}))
+@Table(name="tms_incident",uniqueConstraints = @UniqueConstraint(columnNames = {"tms_incidentcode","tms_incidentid"}))
 
 public class TmsIncident implements java.io.Serializable {
-    private long prmIncidentId;
+    private long tmsIncidentId;
     @NotNull
-    private String prmIncidentCode;
-    private Date prmIncidentTime;
-    private String prmIncidentDescription;
-    private TmsNatureIncident prmIncidentNature;
-    private TmsRoad prmIncidentRoad;
-    private TmsDriver prmIncidentDriver;
+    private String tmsIncidentCode;
+    private Date tmsIncidentTime;
+    private String tmsIncidentDescription;
+    private TmsNatureIncident tmsIncidentNature;
+    private TmsRoad tmsIncidentRoad;
+    private TmsDriver tmsIncidentDriver;
 
     public TmsIncident(){
 
@@ -26,69 +26,69 @@ public class TmsIncident implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name = "prm_incidentid", unique = true, nullable = false, precision = 10, scale = 0)
+    @Column(name = "tms_incidentid", unique = true, nullable = false, precision = 10, scale = 0)
 
-    public long getPrmIncidentId() {
-        return prmIncidentId;
+    public long getTmsIncidentId() {
+        return tmsIncidentId;
     }
 
-    public void setPrmIncidentId(long prmIncidentId) {
-        this.prmIncidentId = prmIncidentId;
+    public void setTmsIncidentId(long tmsIncidentId) {
+        this.tmsIncidentId = tmsIncidentId;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "prm_incidentcode", nullable = false, length = 30)
+    @Column(name = "tms_incidentcode", nullable = false, length = 30)
 
-    public String getPrmIncidentCode() {
-        return prmIncidentCode;
+    public String getTmsIncidentCode() {
+        return tmsIncidentCode;
     }
 
-    public void setPrmIncidentCode(String prmIncidentCode) {
-        this.prmIncidentCode = prmIncidentCode;
+    public void setTmsIncidentCode(String tmsIncidentCode) {
+        this.tmsIncidentCode = tmsIncidentCode;
     }
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "prmIncidentTime")
+    @Column(name = "tmsIncidentTime")
 
-    public Date getPrmIncidentTime() {
-        return prmIncidentTime;
+    public Date getTmsIncidentTime() {
+        return tmsIncidentTime;
     }
 
-    public void setPrmIncidentTime(Date prmIncidentTime) {
-        this.prmIncidentTime = prmIncidentTime;
+    public void setTmsIncidentTime(Date tmsIncidentTime) {
+        this.tmsIncidentTime = tmsIncidentTime;
     }
-    @Column(name = "prm_incidentdescription", nullable = false, length = 30)
+    @Column(name = "tms_incidentdescription", nullable = false, length = 30)
 
-    public String getPrmIncidentDescription() {
-        return prmIncidentDescription;
-    }
-
-    public void setPrmIncidentDescription(String prmIncidentDescription) {
-        this.prmIncidentDescription = prmIncidentDescription;
+    public String getTmsIncidentDescription() {
+        return tmsIncidentDescription;
     }
 
-    public TmsNatureIncident getPrmIncidentNature() {
-        return prmIncidentNature;
+    public void setTmsIncidentDescription(String tmsIncidentDescription) {
+        this.tmsIncidentDescription = tmsIncidentDescription;
     }
 
-    public void setPrmIncidentNature(TmsNatureIncident prmIncidentNature) {
-        this.prmIncidentNature = prmIncidentNature;
+    public TmsNatureIncident getTmsIncidentNature() {
+        return tmsIncidentNature;
+    }
+
+    public void setTmsIncidentNature(TmsNatureIncident tmsIncidentNature) {
+        this.tmsIncidentNature = tmsIncidentNature;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_incidentroadid", nullable = false)
-    public TmsRoad getPrmIncidentRoad() {
-        return prmIncidentRoad;
+    @JoinColumn(name = "tms_incidentroadid", nullable = false)
+    public TmsRoad getTmsIncidentRoad() {
+        return tmsIncidentRoad;
     }
 
-    public void setPrmIncidentRoad(TmsRoad prmIncidentRoad) {
-        this.prmIncidentRoad = prmIncidentRoad;
+    public void setTmsIncidentRoad(TmsRoad tmsIncidentRoad) {
+        this.tmsIncidentRoad = tmsIncidentRoad;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_incidentdriverid", nullable = false)
-    public TmsDriver getPrmIncidentDriver() {
-        return prmIncidentDriver;
+    @JoinColumn(name = "tms_incidentdriverid", nullable = false)
+    public TmsDriver getTmsIncidentDriver() {
+        return tmsIncidentDriver;
     }
 
-    public void setPrmIncidentDriver(TmsDriver prmIncidentDriver) {
-        this.prmIncidentDriver = prmIncidentDriver;
+    public void setTmsIncidentDriver(TmsDriver tmsIncidentDriver) {
+        this.tmsIncidentDriver = tmsIncidentDriver;
     }
 
 

@@ -12,17 +12,17 @@ import java.util.Set;
  * Created by bouzi on 3/15/2017.
  */
 @Entity
-@Table(name = "mnt_maintenanceplan")
+@Table(name = "tms_maintenanceplan")
 public class TmsMaintenancePlan implements java.io.Serializable{
-    private long mntMaintenancePlanId;
+    private long tmsMaintenancePlanId;
     @NotNull
     private TmsVehicle vehicle;
     @Size(max = 30)
     @NotNull
-    private String mntMaintenancePlanCode;
+    private String tmsMaintenancePlanCode;
     @Size(max = 255)
-    private String mntDescription;
-    private Set<TmsActe> mntMaintenancePlanActes;
+    private String tmsDescription;
+    private Set<TmsActe> tmsMaintenancePlanActes;
 
     public TmsMaintenancePlan(){
 
@@ -32,19 +32,19 @@ public class TmsMaintenancePlan implements java.io.Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name = "mnt_maintenanceplanid", unique = true, nullable = false, precision = 10, scale = 0)
+    @Column(name = "tms_maintenanceplanid", unique = true, nullable = false, precision = 10, scale = 0)
 
 
-    public long getMntMaintenancePlanId() {
-        return mntMaintenancePlanId;
+    public long getTmsMaintenancePlanId() {
+        return tmsMaintenancePlanId;
     }
 
-    public void setMntMaintenancePlanId(long mntMaintenancePlanId) {
-        this.mntMaintenancePlanId = mntMaintenancePlanId;
+    public void setTmsMaintenancePlanId(long tmsMaintenancePlanId) {
+        this.tmsMaintenancePlanId = tmsMaintenancePlanId;
     }
 
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmVehicleMaintenancePlan")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsVehicleMaintenancePlan")
     public TmsVehicle getVehicle() {
         return vehicle;
     }
@@ -56,32 +56,31 @@ public class TmsMaintenancePlan implements java.io.Serializable{
 
 
 
-    public void setMntMaintenancePlanCode(String mntMaintenancePlanCode) {
-        this.mntMaintenancePlanCode = mntMaintenancePlanCode;
+    public void setTmsMaintenancePlanCode(String tmsMaintenancePlanCode) {
+        this.tmsMaintenancePlanCode = tmsMaintenancePlanCode;
     }
 
-    public void setMntDescription(String mntDescription) {
-        this.mntDescription = mntDescription;
+    public void setTmsDescription(String tmsDescription) {
+        this.tmsDescription = tmsDescription;
     }
 
-    @Column(name = "mnt_maintenanceplancode", nullable = false, length = 30)
-    public String getMntMaintenancePlanCode() {
-        return mntMaintenancePlanCode;
+    @Column(name = "tms_maintenanceplancode", nullable = false, length = 30)
+    public String getTmsMaintenancePlanCode() {
+        return tmsMaintenancePlanCode;
     }
 
-    @Column(name = "mntDescription")
-    public String getMntDescription() {
-        return mntDescription;
+    @Column(name = "tmsDescription")
+    public String getTmsDescription() {
+        return tmsDescription;
     }
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "")
 
-    @JoinColumn(name = "mnt_maintenanceplanvehicleid", nullable = false)
-    public Set<TmsActe> getMntMaintenancePlanActes() {
-        return mntMaintenancePlanActes;
+    public Set<TmsActe> getTmsMaintenancePlanActes() {
+        return tmsMaintenancePlanActes;
     }
 
-    public void setMntMaintenancePlanActes(Set<TmsActe> mntMaintenancePlanActes) {
-        this.mntMaintenancePlanActes = mntMaintenancePlanActes;
+    public void setTmsMaintenancePlanActes(Set<TmsActe> tmsMaintenancePlanActes) {
+        this.tmsMaintenancePlanActes = tmsMaintenancePlanActes;
     }
 
 }

@@ -15,29 +15,29 @@ import java.util.Set;
  */
 public class TmsRoad implements Serializable {
 
-    private long prmRoadId;
+    private long tmsRoadId;
     @Size(max = 30)
     @NotNull
-    private String prmRoadCode;
+    private String tmsRoadCode;
     @NotNull
     @Size(max = 30)
-    private BigDecimal prmRoadDuration;
+    private BigDecimal tmsRoadDuration;
     @NotNull
     @Size(max = 30)
-    private BigDecimal prmRoadCost;
+    private BigDecimal tmsRoadCost;
     @NotNull
     @Size(max = 30)
-    private BigDecimal prmRoadDistance;
+    private BigDecimal tmsRoadDistance;
     @Size(max = 30)
-    private Set<TmsIncident>prmRoadIncident;
+    private Set<TmsIncident>tmsRoadIncident;
     @NotNull
-    private TmsDriver prmRoadPrincialDriver;
+    private TmsDriver tmsRoadPrincialDriver;
     @NotNull
-    private TmsDriver prmRoadSuppleantDriver;
+    private TmsDriver tmsRoadSuppleantDriver;
     @NotNull
-    private Set<Delivery> prmRoadDelivery;
+    private Set<Delivery> tmsRoadDelivery;
     @NotNull
-    private TmsVehicle prmRoadVehicle;
+    private TmsVehicle tmsRoadVehicle;
 
     public TmsRoad() {
 
@@ -45,90 +45,90 @@ public class TmsRoad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq")
     @SequenceGenerator(name =  "seq")
-    @Column(name = "prm_roadid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getPrmRoadId() {
-        return prmRoadId;
+    @Column(name = "tms_roadid", unique = true, nullable = false, precision = 10, scale = 0)
+    public long getTmsRoadId() {
+        return tmsRoadId;
     }
 
-    public void setPrmRoadId(long prmRoadId) {
-        this.prmRoadId = prmRoadId;
+    public void setTmsRoadId(long tmsRoadId) {
+        this.tmsRoadId = tmsRoadId;
     }
-    @Column(name = "prm_roadcode", nullable = false, length = 30)
+    @Column(name = "tms_roadcode", nullable = false, length = 30)
 
-    public String getPrmRoadCode() {
-        return prmRoadCode;
-    }
-
-    public void setPrmRoadCode(String prmRoadCode) {
-        this.prmRoadCode = prmRoadCode;
-    }
-    @Column(name = "prm_roadduration", nullable = false, length = 30)
-    public BigDecimal getPrmRoadDuration() {
-        return prmRoadDuration;
+    public String getTmsRoadCode() {
+        return tmsRoadCode;
     }
 
-    public void setPrmRoadDuration(BigDecimal prmRoadDuration) {
-        this.prmRoadDuration = prmRoadDuration;
+    public void setTmsRoadCode(String tmsRoadCode) {
+        this.tmsRoadCode = tmsRoadCode;
     }
-    @Column(name = "prm_roadcost", nullable = false, length = 30)
-    public BigDecimal getPrmRoadCost() {
-        return prmRoadCost;
-    }
-
-    public void setPrmRoadCost(BigDecimal prmRoadCost) {
-        this.prmRoadCost = prmRoadCost;
-    }
-    @Column(name = "prm_roaddistance", nullable = false, length = 30)
-    public BigDecimal getPrmRoadDistance() {
-        return prmRoadDistance;
+    @Column(name = "tms_roadduration", nullable = false, length = 30)
+    public BigDecimal getTmsRoadDuration() {
+        return tmsRoadDuration;
     }
 
-    public void setPrmRoadDistance(BigDecimal prmRoadDistance) {
-        this.prmRoadDistance = prmRoadDistance;
+    public void setTmsRoadDuration(BigDecimal tmsRoadDuration) {
+        this.tmsRoadDuration = tmsRoadDuration;
     }
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmIncidentRoad")
-    public Set<TmsIncident> getPrmRoadIncident() {
-        return prmRoadIncident;
+    @Column(name = "tms_roadcost", nullable = false, length = 30)
+    public BigDecimal getTmsRoadCost() {
+        return tmsRoadCost;
     }
 
-    public void setPrmRoadIncident(Set<TmsIncident> prmRoadIncident) {
-        this.prmRoadIncident = prmRoadIncident;
+    public void setTmsRoadCost(BigDecimal tmsRoadCost) {
+        this.tmsRoadCost = tmsRoadCost;
+    }
+    @Column(name = "tms_roaddistance", nullable = false, length = 30)
+    public BigDecimal getTmsRoadDistance() {
+        return tmsRoadDistance;
+    }
+
+    public void setTmsRoadDistance(BigDecimal tmsRoadDistance) {
+        this.tmsRoadDistance = tmsRoadDistance;
+    }
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsIncidentRoad")
+    public Set<TmsIncident> getTmsRoadIncident() {
+        return tmsRoadIncident;
+    }
+
+    public void setTmsRoadIncident(Set<TmsIncident> tmsRoadIncident) {
+        this.tmsRoadIncident = tmsRoadIncident;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_roaddriverid", nullable = false)
-    public TmsDriver getPrmRoadPrincialDriver() {
-        return prmRoadPrincialDriver;
+    @JoinColumn(name = "tms_roaddriverid", nullable = false)
+    public TmsDriver getTmsRoadPrincialDriver() {
+        return tmsRoadPrincialDriver;
     }
 
-    public void setPrmRoadPrincialDriver(TmsDriver prmRoadPrincialDriver) {
-        this.prmRoadPrincialDriver = prmRoadPrincialDriver;
+    public void setTmsRoadPrincialDriver(TmsDriver tmsRoadPrincialDriver) {
+        this.tmsRoadPrincialDriver = tmsRoadPrincialDriver;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_roaddriverid", nullable = false)
-    public TmsDriver getPrmRoadSuppleantDriver() {
-        return prmRoadSuppleantDriver;
+    @JoinColumn(name = "tms_roaddriverid", nullable = false)
+    public TmsDriver getTmsRoadSuppleantDriver() {
+        return tmsRoadSuppleantDriver;
     }
 
-    public void setPrmRoadSuppleantDriver(TmsDriver prmRoadSuppleantDriver) {
-        this.prmRoadSuppleantDriver = prmRoadSuppleantDriver;
+    public void setTmsRoadSuppleantDriver(TmsDriver tmsRoadSuppleantDriver) {
+        this.tmsRoadSuppleantDriver = tmsRoadSuppleantDriver;
     }
     //TODO@OneToMany(fetch = FetchType.LAZY,mappedBy = "")
-    public Set<Delivery> getPrmRoadDelivery() {
-        return prmRoadDelivery;
+    public Set<Delivery> getTmsRoadDelivery() {
+        return tmsRoadDelivery;
     }
 
-    public void setPrmRoadDelivery(Set<Delivery> prmRoadDelivery) {
-        this.prmRoadDelivery = prmRoadDelivery;
+    public void setTmsRoadDelivery(Set<Delivery> tmsRoadDelivery) {
+        this.tmsRoadDelivery = tmsRoadDelivery;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_roadvehicleid", nullable = false)
+    @JoinColumn(name = "tms_roadvehicleid", nullable = false)
 
-    public TmsVehicle getPrmRoadVehicle() {
-        return prmRoadVehicle;
+    public TmsVehicle getTmsRoadVehicle() {
+        return tmsRoadVehicle;
     }
 
-    public void setPrmRoadVehicle(TmsVehicle prmRoadVehicle) {
-        this.prmRoadVehicle = prmRoadVehicle;
+    public void setTmsRoadVehicle(TmsVehicle tmsRoadVehicle) {
+        this.tmsRoadVehicle = tmsRoadVehicle;
     }
 
 

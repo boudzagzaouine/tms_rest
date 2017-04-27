@@ -11,13 +11,13 @@ import java.io.Serializable;
  private Driver driver;
  */
 @Entity
-@Table(name = "drv_driverbadge")
+@Table(name = "tms_driverbadge")
 public class TmsDriverBadge implements Serializable {
-    private long drvDriverBadgeId;
+    private long tmsDriverBadgeId;
     @NotNull
-    private TmsBadge drvDriverBadgeBadge;
+    private TmsBadge tmsDriverBadgeBadge;
     @NotNull
-    private TmsDriver drvDriverBadgeDriver;
+    private TmsDriver tmsDriverBadgeDriver;
 
     public TmsDriverBadge() {
 
@@ -25,30 +25,30 @@ public class TmsDriverBadge implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name="drv_driverbadgeid",unique = true, nullable = false, precision = 10, scale = 0)
-    public long getDrvDriverBadgeId() {
-        return drvDriverBadgeId;
+    @Column(name="tms_driverbadgeid",unique = true, nullable = false, precision = 10, scale = 0)
+    public long getTmsDriverBadgeId() {
+        return tmsDriverBadgeId;
     }
 
-    public void setDrvDriverBadgeId(long drvDriverBadgeId) {
-        this.drvDriverBadgeId = drvDriverBadgeId;
+    public void setTmsDriverBadgeId(long tmsDriverBadgeId) {
+        this.tmsDriverBadgeId = tmsDriverBadgeId;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "drv_driverbadgebadgeid", nullable = false)
-    public TmsBadge getDrvDriverBadgeBadge() {
-        return drvDriverBadgeBadge;
+    @JoinColumn(name = "tms_driverbadgebadgeid", nullable = false)
+    public TmsBadge getTmsDriverBadgeBadge() {
+        return tmsDriverBadgeBadge;
     }
 
-    public void setDrvDriverBadgeBadge(TmsBadge drvDriverBadgeBadge) {
-        this.drvDriverBadgeBadge = drvDriverBadgeBadge;
+    public void setTmsDriverBadgeBadge(TmsBadge tmsDriverBadgeBadge) {
+        this.tmsDriverBadgeBadge = tmsDriverBadgeBadge;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "drv_driverbadgedriverid", nullable = false)
-    public TmsDriver getDrvDriverBadgeDriver() {
-        return drvDriverBadgeDriver;
+    @JoinColumn(name = "tms_driverbadgedriverid", nullable = false)
+    public TmsDriver getTmsDriverBadgeDriver() {
+        return tmsDriverBadgeDriver;
     }
 
-    public void setDrvDriverBadgeDriver(TmsDriver drvDriverBadgeDriver) {
-        this.drvDriverBadgeDriver = drvDriverBadgeDriver;
+    public void setTmsDriverBadgeDriver(TmsDriver tmsDriverBadgeDriver) {
+        this.tmsDriverBadgeDriver = tmsDriverBadgeDriver;
     }
 }

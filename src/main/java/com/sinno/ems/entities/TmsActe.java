@@ -11,113 +11,113 @@ import java.util.Date;
  * Created by khalil on 15/03/2017.
  */
 @Entity
-@Table(name="prm_acte",uniqueConstraints = @UniqueConstraint(columnNames ={"prm_actecode,prm","prm_acteownerid"}))
+@Table(name="tms_acte",uniqueConstraints = @UniqueConstraint(columnNames ={"tms_actecode,tms","tms_acteownerid"}))
 
 public class TmsActe implements java.io.Serializable {
-    private long prmActeId;
+    private long tmsActeId;
     @NotNull
-    private String prmActeCode;
+    private String tmsActeCode;
     @Size(max = 255)
     @NotNull
-    private String prmActeNature;
+    private String tmsActeNature;
 
-    public void setPrmActeNature(String prmActeNature) {
-        this.prmActeNature = prmActeNature;
+    public void setTmsActeNature(String tmsActeNature) {
+        this.tmsActeNature = tmsActeNature;
     }
 
-    public String getPrmActeNature() {
-        return prmActeNature;
+    public String getTmsActeNature() {
+        return tmsActeNature;
     }
 
     @Size(max = 240)
 
     @NotNull
-    private String prmActeDescription;
+    private String tmsActeDescription;
     @Size(max = 240)
     @NotNull
-    private String prmActePeriodicity;
+    private String tmsActePeriodicity;
 
-    public void setPrmActePeriodicity(String prmActePeriodicity) {
-        this.prmActePeriodicity = prmActePeriodicity;
+    public void setTmsActePeriodicity(String tmsActePeriodicity) {
+        this.tmsActePeriodicity = tmsActePeriodicity;
     }
 
-    public String getPrmActePeriodicity() {
-        return prmActePeriodicity;
+    public String getTmsActePeriodicity() {
+        return tmsActePeriodicity;
     }
 
     @Size(max = 240)
     @NotNull
 
-    private String prmActeDuration;
+    private String tmsActeDuration;
     @Size(max = 240)
     @NotNull
-    private Date prmActedateLastAct;
+    private Date tmsActedateLastAct;
 
     public TmsActe(){
     }
-    public TmsActe(long prmActeId, String prmActeCode, String prmActeNature, String prmActeDescription, String prmActePeriodicity) {
-        this.prmActeId = prmActeId;
-        this.prmActeCode=prmActeCode;
-        this.prmActeNature=prmActeNature;
-        this.prmActeDescription=prmActeDescription;
-        this.prmActePeriodicity=prmActePeriodicity;
+    public TmsActe(long tmsActeId, String tmsActeCode, String tmsActeNature, String tmsActeDescription, String tmsActePeriodicity) {
+        this.tmsActeId = tmsActeId;
+        this.tmsActeCode=tmsActeCode;
+        this.tmsActeNature=tmsActeNature;
+        this.tmsActeDescription=tmsActeDescription;
+        this.tmsActePeriodicity=tmsActePeriodicity;
     }
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name = "prm_acteid", unique = true, nullable = false, precision = 10, scale = 0)
+    @Column(name = "tms_acteid", unique = true, nullable = false, precision = 10, scale = 0)
 
-    public long getPrmActeId() {
-        return prmActeId;
-    }
-
-    public void setPrmActeCode(String prmActeCode) {
-        this.prmActeCode = prmActeCode;
+    public long getTmsActeId() {
+        return tmsActeId;
     }
 
-    public void setPrmActeId(long prmActeId) {
-        this.prmActeId = prmActeId;
-    }
-    @Column(name = "prm_actecode", nullable = false, length = 30)
-    public String getPrmActeCode() {
-        return this.prmActeCode;
+    public void setTmsActeCode(String tmsActeCode) {
+        this.tmsActeCode = tmsActeCode;
     }
 
-    public void setPrmActeDescription(String prmActeDescription) {
-        this.prmActeDescription = prmActeDescription;
+    public void setTmsActeId(long tmsActeId) {
+        this.tmsActeId = tmsActeId;
     }
-    @Column(name = "prm_actedescription")
-    public String getPrmActeDescription() {
-        return this.prmActeDescription;
+    @Column(name = "tms_actecode", nullable = false, length = 30)
+    public String getTmsActeCode() {
+        return this.tmsActeCode;
     }
 
-    public void prmActeDescription(String prmActeDescription) {
-        this.prmActeDescription =prmActeDescription;
+    public void setTmsActeDescription(String tmsActeDescription) {
+        this.tmsActeDescription = tmsActeDescription;
+    }
+    @Column(name = "tms_actedescription")
+    public String getTmsActeDescription() {
+        return this.tmsActeDescription;
+    }
+
+    public void tmsActeDescription(String tmsActeDescription) {
+        this.tmsActeDescription =tmsActeDescription;
     }
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "prm_actecreationdate")
-    public Date prmActedateLastAct() {
-        return prmActedateLastAct;
+    @Column(name = "tms_actecreationdate")
+    public Date tmsActedateLastAct() {
+        return tmsActedateLastAct;
     }
 
-    public void setprmActedateLastAct(Date prmActedateLastAct) {
-        this.prmActedateLastAct = prmActedateLastAct;
+    public void settmsActedateLastAct(Date tmsActedateLastAct) {
+        this.tmsActedateLastAct = tmsActedateLastAct;
     }
 
-    public String getPrmActeDuration() {
-        return prmActeDuration;
+    public String getTmsActeDuration() {
+        return tmsActeDuration;
     }
 
-    public void setPrmActeDuration(String prmActeDuration) {
-        this.prmActeDuration = prmActeDuration;
+    public void setTmsActeDuration(String tmsActeDuration) {
+        this.tmsActeDuration = tmsActeDuration;
     }
 
-    public Date getPrmActedateLastAct() {
-        return prmActedateLastAct;
+    public Date getTmsActedateLastAct() {
+        return tmsActedateLastAct;
     }
 
-    public void setPrmActedateLastAct(Date prmActedateLastAct) {
-        this.prmActedateLastAct = prmActedateLastAct;
+    public void setTmsActedateLastAct(Date tmsActedateLastAct) {
+        this.tmsActedateLastAct = tmsActedateLastAct;
     }
 }
 

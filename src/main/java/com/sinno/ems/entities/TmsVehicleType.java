@@ -10,13 +10,13 @@ import java.util.Set;
  * Created by bouzi on 3/15/2017.
  */
 public class TmsVehicleType implements Serializable {
-    private long prmVehicleTypeId;
+    private long tmsVehicleTypeId;
     @Size(max = 30)
     @NotNull
-    private String prmVehicleTypeCode;
+    private String tmsVehicleTypeCode;
     @Size(max = 100)
     @NotNull
-    private String prmVehicleTypeType;
+    private String tmsVehicleTypeType;
     @NotNull
     private Set<TmsVehicle> tmsVehicleTypeVehicules;
 
@@ -26,31 +26,31 @@ public class TmsVehicleType implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name = "prm_vehicletypeid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getPrmVehicleTypeId() {
-        return prmVehicleTypeId;
+    @Column(name = "tms_vehicletypeid", unique = true, nullable = false, precision = 10, scale = 0)
+    public long getTmsVehicleTypeId() {
+        return tmsVehicleTypeId;
     }
 
-    public void setPrmVehicleTypeId(long prmVehicleTypeId) {
-        this.prmVehicleTypeId = prmVehicleTypeId;
+    public void setTmsVehicleTypeId(long tmsVehicleTypeId) {
+        this.tmsVehicleTypeId = tmsVehicleTypeId;
     }
-    @Column(name = "prm_vehicletypecode", nullable = false, length = 30)
-    public String getPrmVehicleTypeCode() {
-        return prmVehicleTypeCode;
-    }
-
-    public void setPrmVehicleTypeCode(String prmVehicleTypeCode) {
-        this.prmVehicleTypeCode = prmVehicleTypeCode;
-    }
-    @Column(name = "prm_vehicletypetype")
-    public String getPrmVehicleTypeType() {
-        return prmVehicleTypeType;
+    @Column(name = "tms_vehicletypecode", nullable = false, length = 30)
+    public String getTmsVehicleTypeCode() {
+        return tmsVehicleTypeCode;
     }
 
-    public void setPrmVehicleTypeType(String prmVehicleTypeType) {
-        this.prmVehicleTypeType = prmVehicleTypeType;
+    public void setTmsVehicleTypeCode(String tmsVehicleTypeCode) {
+        this.tmsVehicleTypeCode = tmsVehicleTypeCode;
     }
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmVehicleType")
+    @Column(name = "tms_vehicletypetype")
+    public String getTmsVehicleTypeType() {
+        return tmsVehicleTypeType;
+    }
+
+    public void setTmsVehicleTypeType(String tmsVehicleTypeType) {
+        this.tmsVehicleTypeType = tmsVehicleTypeType;
+    }
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsVehicleType")
     public Set<TmsVehicle> getTmsVehicleTypeVehicules() {
         return tmsVehicleTypeVehicules;
     }

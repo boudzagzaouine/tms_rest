@@ -8,17 +8,17 @@ import java.util.Set;
  * Created by khalil on 15/03/2017.
  */
 @Entity
-@Table(name="prm_badge",uniqueConstraints= @UniqueConstraint(columnNames = {"prm_badgecode","prm_badgeid"}))
+@Table(name="tms_badge",uniqueConstraints= @UniqueConstraint(columnNames = {"tms_badgecode","tms_badgeid"}))
 
 
 public class TmsBadge implements java.io.Serializable{
-    private long prmBadgeId;
+    private long tmsBadgeId;
     @NotNull
-    private String prmBadgeCode;
-    private String prmBadgeLibelle;
-    private String prmBadgeDescription;
-    private Set<TmsVehicle> prmBadgeVehicule;
-    private Set<TmsDriver> prmBadgeDriver;
+    private String tmsBadgeCode;
+    private String tmsBadgeLibelle;
+    private String tmsBadgeDescription;
+    private Set<TmsVehicle> tmsBadgeVehicule;
+    private Set<TmsDriver> tmsBadgeDriver;
 
 
 
@@ -26,54 +26,54 @@ public class TmsBadge implements java.io.Serializable{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
 
-    @Column(name = "prm_badgeid", unique = true, nullable = false, precision = 10, scale = 0)
+    @Column(name = "tms_badgeid", unique = true, nullable = false, precision = 10, scale = 0)
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_badgeid", nullable = false)
-    public long getPrmBadgeId() {
-        return prmBadgeId;
+    @JoinColumn(name = "tms_badgeid", nullable = false)
+    public long getTmsBadgeId() {
+        return tmsBadgeId;
     }
-    public void setPrmBadgeId(long prmBadgeId) {
-        this.prmBadgeId = prmBadgeId;
+    public void setTmsBadgeId(long tmsBadgeId) {
+        this.tmsBadgeId = tmsBadgeId;
     }
-    @Column(name = "prm_badgecode", nullable = false, length = 30)
-    public String getPrmBadgeCode() {
-        return prmBadgeCode;
+    @Column(name = "tms_badgecode", nullable = false, length = 30)
+    public String getTmsBadgeCode() {
+        return tmsBadgeCode;
     }
-    public void setPrmBadgeCode(String prmBadgeCode) {
-        this.prmBadgeCode = prmBadgeCode;
+    public void setTmsBadgeCode(String tmsBadgeCode) {
+        this.tmsBadgeCode = tmsBadgeCode;
     }
-    @Column(name = "prm_badgedescription",nullable=false,length=30)
-    public String getPrmBadgeDescription() {
-        return prmBadgeDescription;
+    @Column(name = "tms_badgedescription",nullable=false,length=30)
+    public String getTmsBadgeDescription() {
+        return tmsBadgeDescription;
     }
-    public void setPrmBadgeDescription(String prmBadgeDescription) {
-        this.prmBadgeDescription = prmBadgeDescription;
+    public void setTmsBadgeDescription(String tmsBadgeDescription) {
+        this.tmsBadgeDescription = tmsBadgeDescription;
     }
-    @Column(name="prm_badgelibelle",nullable=false,length=30)
-    public String getPrmBadgeLibelle() {
-        return prmBadgeLibelle;
+    @Column(name="tms_badgelibelle",nullable=false,length=30)
+    public String getTmsBadgeLibelle() {
+        return tmsBadgeLibelle;
     }
-    public void setPrmBadgeLibelle(String prmBadgeLibelle) {
-        this.prmBadgeLibelle = prmBadgeLibelle;
+    public void setTmsBadgeLibelle(String tmsBadgeLibelle) {
+        this.tmsBadgeLibelle = tmsBadgeLibelle;
     }
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmVehicleBadges")
-    public Set<TmsVehicle> getPrmBadgeVehicule() {
-        return prmBadgeVehicule;
-    }
-
-    public void setPrmBadgeVehicule(Set<TmsVehicle> prmBadgeVehicule) {
-        this.prmBadgeVehicule = prmBadgeVehicule;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsVehicleBadges")
+    public Set<TmsVehicle> getTmsBadgeVehicule() {
+        return tmsBadgeVehicule;
     }
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "drvDriverBadges")
-
-    public Set<TmsDriver> getPrmBadgeDriver() {
-        return prmBadgeDriver;
+    public void setTmsBadgeVehicule(Set<TmsVehicle> tmsBadgeVehicule) {
+        this.tmsBadgeVehicule = tmsBadgeVehicule;
     }
 
-    public void setPrmBadgeDriver(Set<TmsDriver> prmBadgeDriver) {
-        this.prmBadgeDriver = prmBadgeDriver;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsDriverBadges")
+
+    public Set<TmsDriver> getTmsBadgeDriver() {
+        return tmsBadgeDriver;
+    }
+
+    public void setTmsBadgeDriver(Set<TmsDriver> tmsBadgeDriver) {
+        this.tmsBadgeDriver = tmsBadgeDriver;
     }
 
 

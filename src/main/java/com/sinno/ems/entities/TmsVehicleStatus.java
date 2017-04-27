@@ -10,16 +10,16 @@ import java.util.Set;
  * Created by bouzi on 3/15/2017.
  */
 public class TmsVehicleStatus implements Serializable {
-    private long prmVehiculeStatusId;
+    private long tmsVehiculeStatusId;
     @Size(max = 30)
     @NotNull
-    private String prmVehiculeStatusCode;
+    private String tmsVehiculeStatusCode;
     @Size(max = 30)
-    private String prmVehiculeStatusActivity;
+    private String tmsVehiculeStatusActivity;
     @Size(max = 255)
-    private String prmVehiculeStatusDescritpion;
+    private String tmsVehiculeStatusDescritpion;
     @NotNull
-    private Set<TmsVehicle> prmVehiculeStatusVehicules;
+    private Set<TmsVehicle> tmsVehiculeStatusVehicules;
 
     public TmsVehicleStatus() {
 
@@ -28,45 +28,45 @@ public class TmsVehicleStatus implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name = "prm_vehiclestatusid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getPrmVehiculeStatusId() {
-        return prmVehiculeStatusId;
+    @Column(name = "tms_vehiclestatusid", unique = true, nullable = false, precision = 10, scale = 0)
+    public long getTmsVehiculeStatusId() {
+        return tmsVehiculeStatusId;
     }
 
-    public void setPrmVehiculeStatusId(long prmVehiculeStatusId) {
-        this.prmVehiculeStatusId = prmVehiculeStatusId;
+    public void setTmsVehiculeStatusId(long tmsVehiculeStatusId) {
+        this.tmsVehiculeStatusId = tmsVehiculeStatusId;
     }
-    @Column(name = "prm_vehiclestatuscode", nullable = false, length = 30)
-    public String getPrmVehiculeStatusCode() {
-        return prmVehiculeStatusCode;
-    }
-
-    public void setPrmVehiculeStatusCode(String prmVehiculeStatusCode) {
-        this.prmVehiculeStatusCode = prmVehiculeStatusCode;
-    }
-    @Column(name = "prm_vehiclestatusactivity", nullable = false, length = 30)
-    public String getPrmVehiculeStatusActivity() {
-        return prmVehiculeStatusActivity;
+    @Column(name = "tms_vehiclestatuscode", nullable = false, length = 30)
+    public String getTmsVehiculeStatusCode() {
+        return tmsVehiculeStatusCode;
     }
 
-    public void setPrmVehiculeStatusActivity(String prmVehiculeStatusActivity) {
-        this.prmVehiculeStatusActivity = prmVehiculeStatusActivity;
+    public void setTmsVehiculeStatusCode(String tmsVehiculeStatusCode) {
+        this.tmsVehiculeStatusCode = tmsVehiculeStatusCode;
     }
-    @Column(name = "prm_vehiclestatusdescription", nullable = false, length = 30)
-    public String getPrmVehiculeStatusDescritpion() {
-        return prmVehiculeStatusDescritpion;
-    }
-
-    public void setPrmVehiculeStatusDescritpion(String prmVehiculeStatusDescritpion) {
-        this.prmVehiculeStatusDescritpion = prmVehiculeStatusDescritpion;
-    }
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmVehicleStatus")
-    public Set<TmsVehicle> getPrmVehiculeStatusVehicules() {
-        return prmVehiculeStatusVehicules;
+    @Column(name = "tms_vehiclestatusactivity", nullable = false, length = 30)
+    public String getTmsVehiculeStatusActivity() {
+        return tmsVehiculeStatusActivity;
     }
 
-    public void setPrmVehiculeStatusVehicules(Set<TmsVehicle> prmVehiculeStatusVehicules) {
-        this.prmVehiculeStatusVehicules = prmVehiculeStatusVehicules;
+    public void setTmsVehiculeStatusActivity(String tmsVehiculeStatusActivity) {
+        this.tmsVehiculeStatusActivity = tmsVehiculeStatusActivity;
+    }
+    @Column(name = "tms_vehiclestatusdescription", nullable = false, length = 30)
+    public String getTmsVehiculeStatusDescritpion() {
+        return tmsVehiculeStatusDescritpion;
+    }
+
+    public void setTmsVehiculeStatusDescritpion(String tmsVehiculeStatusDescritpion) {
+        this.tmsVehiculeStatusDescritpion = tmsVehiculeStatusDescritpion;
+    }
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsVehicleStatus")
+    public Set<TmsVehicle> getTmsVehiculeStatusVehicules() {
+        return tmsVehiculeStatusVehicules;
+    }
+
+    public void setTmsVehiculeStatusVehicules(Set<TmsVehicle> tmsVehiculeStatusVehicules) {
+        this.tmsVehiculeStatusVehicules = tmsVehiculeStatusVehicules;
     }
 
 }

@@ -12,38 +12,38 @@ import java.util.Set;
  * Created by bouzi on 3/15/2017.
  */
 public class TmsVehicle implements Serializable {
-    private long prmVehicleId;
+    private long tmsVehicleId;
     @Size(max = 30)
     @NotNull
-    private String prmVehicleCode;
+    private String tmsVehicleCode;
     @Size(max = 30)
     @NotNull
-    private Long prmVehicleNbreEssieux;
+    private Long tmsVehicleNbreEssieux;
     @Size(max = 30)
     @NotNull
-    private BigDecimal prmVehicleEmptyWeight;
-    private Date prmVehicleDateOfRegistration;
+    private BigDecimal tmsVehicleEmptyWeight;
+    private Date tmsVehicleDateOfRegistration;
     @Size(max = 255)
-    private String prmVehicleBrand;
+    private String tmsVehicleBrand;
     @Size(max = 255)
-    private String prmVehicleModel;
+    private String tmsVehicleModel;
     @NotNull
     private TmsVehicleStatus tmsVehicleStatus;
     @NotNull
     private TmsVehicleType tmsVehicleType;
     @NotNull
-    private Set<TmsBadge> prmVehicleBadges;
+    private Set<TmsBadge> tmsVehicleBadges;
     @NotNull
-    private TmsPoliceInsurance prmVehiclePoliceAssurance;
+    private TmsPoliceInsurance tmsVehiclePoliceAssurance;
     @NotNull
-    private TmsMaintenancePlan prmVehicleMaintenancePlan;
+    private TmsMaintenancePlan tmsVehicleMaintenancePlan;
     @Size(max = 30)
     @NotNull
-    private String prmVehicleMatricule;
-    private Date prmVehicleDateCreation;
-    private Date prmVehicleDateUpDate;
-    private UsrUser prmVehicleCreationUser;
-    private UsrUser prmVehicleUpDateUser;
+    private String tmsVehicleMatricule;
+    private Date tmsVehicleDateCreation;
+    private Date tmsVehicleDateUpDate;
+    private UsrUser tmsVehicleCreationUser;
+    private UsrUser tmsVehicleUpDateUser;
 
 
 
@@ -54,65 +54,65 @@ public class TmsVehicle implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name = "prm_vehicleid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getPrmVehicleId() {
-        return prmVehicleId;
+    @Column(name = "tms_vehicleid", unique = true, nullable = false, precision = 10, scale = 0)
+    public long getTmsVehicleId() {
+        return tmsVehicleId;
     }
 
-    public void setPrmVehicleId(long prmVehicleId) {
-        this.prmVehicleId = prmVehicleId;
+    public void setTmsVehicleId(long tmsVehicleId) {
+        this.tmsVehicleId = tmsVehicleId;
     }
-    @Column(name = "prm_vehiclecode", nullable = false, length = 30)
-    public String getPrmVehicleCode() {
-        return prmVehicleCode;
-    }
-
-    public void setPrmVehicleCode(String prmVehicleCode) {
-        this.prmVehicleCode = prmVehicleCode;
-    }
-    @Column(name = "prm_vehiclenbreessieux", nullable = false, length = 30)
-    public Long getPrmVehicleNbreEssieux() {
-        return prmVehicleNbreEssieux;
+    @Column(name = "tms_vehiclecode", nullable = false, length = 30)
+    public String getTmsVehicleCode() {
+        return tmsVehicleCode;
     }
 
-    public void setPrmVehicleNbreEssieux(Long prmVehicleNbreEssieux) {
-        this.prmVehicleNbreEssieux = prmVehicleNbreEssieux;
+    public void setTmsVehicleCode(String tmsVehicleCode) {
+        this.tmsVehicleCode = tmsVehicleCode;
     }
-    @Column(name = "prm_vehicleemptyweight", nullable = false, length = 30)
-    public BigDecimal getPrmVehicleEmptyWeight() {
-        return prmVehicleEmptyWeight;
+    @Column(name = "tms_vehiclenbreessieux", nullable = false, length = 30)
+    public Long getTmsVehicleNbreEssieux() {
+        return tmsVehicleNbreEssieux;
     }
 
-    public void setPrmVehicleEmptyWeight(BigDecimal prmVehicleEmptyWeight) {
-        this.prmVehicleEmptyWeight = prmVehicleEmptyWeight;
+    public void setTmsVehicleNbreEssieux(Long tmsVehicleNbreEssieux) {
+        this.tmsVehicleNbreEssieux = tmsVehicleNbreEssieux;
+    }
+    @Column(name = "tms_vehicleemptyweight", nullable = false, length = 30)
+    public BigDecimal getTmsVehicleEmptyWeight() {
+        return tmsVehicleEmptyWeight;
+    }
+
+    public void setTmsVehicleEmptyWeight(BigDecimal tmsVehicleEmptyWeight) {
+        this.tmsVehicleEmptyWeight = tmsVehicleEmptyWeight;
     }
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "prm_vehicledateofregistration")
-    public Date getPrmVehicleDateOfRegistration() {
-        return prmVehicleDateOfRegistration;
+    @Column(name = "tms_vehicledateofregistration")
+    public Date getTmsVehicleDateOfRegistration() {
+        return tmsVehicleDateOfRegistration;
     }
 
-    public void setPrmVehicleDateOfRegistration(Date prmVehicleDateOfRegistration) {
-        this.prmVehicleDateOfRegistration = prmVehicleDateOfRegistration;
+    public void setTmsVehicleDateOfRegistration(Date tmsVehicleDateOfRegistration) {
+        this.tmsVehicleDateOfRegistration = tmsVehicleDateOfRegistration;
     }
-    @Column(name = "prm_vehiclebrand")
-    public String getPrmVehicleBrand() {
-        return prmVehicleBrand;
-    }
-
-    public void setPrmVehicleBrand(String prmVehicleBrand) {
-        this.prmVehicleBrand = prmVehicleBrand;
-    }
-    @Column(name = "prm_vehiclemodel")
-    public String getPrmVehicleModel() {
-        return prmVehicleModel;
+    @Column(name = "tms_vehiclebrand")
+    public String getTmsVehicleBrand() {
+        return tmsVehicleBrand;
     }
 
-    public void setPrmVehicleModel(String prmVehicleModel) {
-        this.prmVehicleModel = prmVehicleModel;
+    public void setTmsVehicleBrand(String tmsVehicleBrand) {
+        this.tmsVehicleBrand = tmsVehicleBrand;
+    }
+    @Column(name = "tms_vehiclemodel")
+    public String getTmsVehicleModel() {
+        return tmsVehicleModel;
+    }
+
+    public void setTmsVehicleModel(String tmsVehicleModel) {
+        this.tmsVehicleModel = tmsVehicleModel;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_vehiclevehiclestatusid", nullable = false)
+    @JoinColumn(name = "tms_vehiclevehiclestatusid", nullable = false)
     public TmsVehicleStatus getTmsVehicleStatus() {
         return tmsVehicleStatus;
     }
@@ -121,7 +121,7 @@ public class TmsVehicle implements Serializable {
         this.tmsVehicleStatus = tmsVehicleStatus;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_vehiclevehicletypeid", nullable = false)
+    @JoinColumn(name = "tms_vehiclevehicletypeid", nullable = false)
     public TmsVehicleType getTmsVehicleType() {
         return tmsVehicleType;
     }
@@ -129,74 +129,74 @@ public class TmsVehicle implements Serializable {
     public void setTmsVehicleType(TmsVehicleType tmsVehicleType) {
         this.tmsVehicleType = tmsVehicleType;
     }
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmBadgeVehicule")
-    public Set<TmsBadge> getPrmVehicleBadges() {
-        return prmVehicleBadges;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsBadgeVehicule")
+    public Set<TmsBadge> getTmsVehicleBadges() {
+        return tmsVehicleBadges;
     }
 
-    public void setPrmVehicleBadges(Set<TmsBadge> prmVehicleBadges) {
-        this.prmVehicleBadges = prmVehicleBadges;
+    public void setTmsVehicleBadges(Set<TmsBadge> tmsVehicleBadges) {
+        this.tmsVehicleBadges = tmsVehicleBadges;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_vehiclepoliceassuranceid", nullable = false)
-    public TmsPoliceInsurance getPrmVehiclePoliceAssurance() {
-        return prmVehiclePoliceAssurance;
+    @JoinColumn(name = "tms_vehiclepoliceassuranceid", nullable = false)
+    public TmsPoliceInsurance getTmsVehiclePoliceAssurance() {
+        return tmsVehiclePoliceAssurance;
     }
 
-    public void setPrmVehiclePoliceAssurance(TmsPoliceInsurance prmVehiclePoliceAssurance) {
-        this.prmVehiclePoliceAssurance = prmVehiclePoliceAssurance;
+    public void setTmsVehiclePoliceAssurance(TmsPoliceInsurance tmsVehiclePoliceAssurance) {
+        this.tmsVehiclePoliceAssurance = tmsVehiclePoliceAssurance;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_vehiclemaintenanceplanid", nullable = false)
-    public TmsMaintenancePlan getPrmVehicleMaintenancePlan() {
-        return prmVehicleMaintenancePlan;
+    @JoinColumn(name = "tms_vehiclemaintenanceplanid", nullable = false)
+    public TmsMaintenancePlan getTmsVehicleMaintenancePlan() {
+        return tmsVehicleMaintenancePlan;
     }
 
-    public void setPrmVehicleMaintenancePlan(TmsMaintenancePlan prmVehicleMaintenancePlan) {
-        this.prmVehicleMaintenancePlan = prmVehicleMaintenancePlan;
+    public void setTmsVehicleMaintenancePlan(TmsMaintenancePlan tmsVehicleMaintenancePlan) {
+        this.tmsVehicleMaintenancePlan = tmsVehicleMaintenancePlan;
     }
-    @Column(name = "prm_vehiclematricule")
-    public String getPrmVehicleMatricule() {
-        return prmVehicleMatricule;
+    @Column(name = "tms_vehiclematricule")
+    public String getTmsVehicleMatricule() {
+        return tmsVehicleMatricule;
     }
 
-    public void setPrmVehicleMatricule(String prmVehicleMatricule) {
-        this.prmVehicleMatricule = prmVehicleMatricule;
+    public void setTmsVehicleMatricule(String tmsVehicleMatricule) {
+        this.tmsVehicleMatricule = tmsVehicleMatricule;
     }
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "prm_vehicledatecreation")
-    public Date getPrmVehicleDateCreation() {
-        return prmVehicleDateCreation;
+    @Column(name = "tms_vehicledatecreation")
+    public Date getTmsVehicleDateCreation() {
+        return tmsVehicleDateCreation;
     }
 
-    public void setPrmVehicleDateCreation(Date prmVehicleDateCreation) {
-        this.prmVehicleDateCreation = prmVehicleDateCreation;
+    public void setTmsVehicleDateCreation(Date tmsVehicleDateCreation) {
+        this.tmsVehicleDateCreation = tmsVehicleDateCreation;
     }
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "prm_vehicledateupdate")
-    public Date getPrmVehicleDateUpDate() {
-        return prmVehicleDateUpDate;
+    @Column(name = "tms_vehicledateupdate")
+    public Date getTmsVehicleDateUpDate() {
+        return tmsVehicleDateUpDate;
     }
 
-    public void setPrmVehicleDateUpDate(Date prmVehicleDateUpDate) {
-        this.prmVehicleDateUpDate = prmVehicleDateUpDate;
+    public void setTmsVehicleDateUpDate(Date tmsVehicleDateUpDate) {
+        this.tmsVehicleDateUpDate = tmsVehicleDateUpDate;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_vehiclecreationuserid")
-    public UsrUser getPrmVehicleCreationUser() {
-        return prmVehicleCreationUser;
+    @JoinColumn(name = "tms_vehiclecreationuserid")
+    public UsrUser getTmsVehicleCreationUser() {
+        return tmsVehicleCreationUser;
     }
 
-    public void setPrmVehicleCreationUser(UsrUser prmVehicleCreationUser) {
-        this.prmVehicleCreationUser = prmVehicleCreationUser;
+    public void setTmsVehicleCreationUser(UsrUser tmsVehicleCreationUser) {
+        this.tmsVehicleCreationUser = tmsVehicleCreationUser;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_vehicleupdateuserid")
-    public UsrUser getPrmVehicleUpDateUser() {
-        return prmVehicleUpDateUser;
+    @JoinColumn(name = "tms_vehicleupdateuserid")
+    public UsrUser getTmsVehicleUpDateUser() {
+        return tmsVehicleUpDateUser;
     }
 
-    public void setPrmVehicleUpDateUser(UsrUser prmVehicleUpDateUser) {
-        this.prmVehicleUpDateUser = prmVehicleUpDateUser;
+    public void setTmsVehicleUpDateUser(UsrUser tmsVehicleUpDateUser) {
+        this.tmsVehicleUpDateUser = tmsVehicleUpDateUser;
     }
 }

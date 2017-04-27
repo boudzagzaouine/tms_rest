@@ -10,28 +10,28 @@ import java.util.Date;
  * Created by bouzi on 3/15/2017.
  */
 @Entity
-@Table(name = "asr_policeinsurance")
+@Table(name = "tms_policeinsurance")
 public class TmsPoliceInsurance implements Serializable {
-    private long asrPoliceInsuranceId;
+    private long tmsPoliceInsuranceId;
     @NotNull
     private TmsVehicle vehicules;
     @Size(max = 30)
     @NotNull
-    private String asrPoliceInsuranceCode;
+    private String tmsPoliceInsuranceCode;
     @Size(max = 30)
     @NotNull
-    private String asrPoliceInsuranceNumber;
+    private String tmsPoliceInsuranceNumber;
     @Size(max = 30)
     @NotNull
-    private String asrPoliceInsuranceType;
+    private String tmsPoliceInsuranceType;
     @Size(max = 15)
     @NotNull
 
-    private String asrPoliceInsurancePhoneNumber;
+    private String tmsPoliceInsurancePhoneNumber;
 
-    private Date asrPoliceInsuranceStartDate;
+    private Date tmsPoliceInsuranceStartDate;
 
-    private Date asrPoliceInsuranceEndDate;
+    private Date tmsPoliceInsuranceEndDate;
 
     public TmsPoliceInsurance(){
 
@@ -39,13 +39,13 @@ public class TmsPoliceInsurance implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name = "asr_policeinsuranceid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getAsrPoliceInsuranceId() {
-        return asrPoliceInsuranceId;
+    @Column(name = "tms_policeinsuranceid", unique = true, nullable = false, precision = 10, scale = 0)
+    public long getTmsPoliceInsuranceId() {
+        return tmsPoliceInsuranceId;
     }
 
-    public void setAsrPoliceInsuranceId(long asrPoliceInsuranceId) {
-        this.asrPoliceInsuranceId = asrPoliceInsuranceId;
+    public void setTmsPoliceInsuranceId(long tmsPoliceInsuranceId) {
+        this.tmsPoliceInsuranceId = tmsPoliceInsuranceId;
     }
 
     public void setVehicules(TmsVehicle vehicules) {
@@ -53,67 +53,67 @@ public class TmsPoliceInsurance implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "asr_policeinsuranceid", nullable = false)
+    @JoinColumn(name = "tms_policeinsuranceid", nullable = false)
 
-    @Column(name = "asr_policeinsurancecode", nullable = false, length = 30)
+    @Column(name = "tms_policeinsurancecode", nullable = false, length = 30)
 
-    public String getAsrPoliceInsuranceCode() {
-        return asrPoliceInsuranceCode;
+    public String getTmsPoliceInsuranceCode() {
+        return tmsPoliceInsuranceCode;
     }
 
-    public void setAsrPoliceInsuranceCode(String asrPoliceInsuranceCode) {
-        this.asrPoliceInsuranceCode = asrPoliceInsuranceCode;
+    public void setTmsPoliceInsuranceCode(String tmsPoliceInsuranceCode) {
+        this.tmsPoliceInsuranceCode = tmsPoliceInsuranceCode;
     }
 
-    @Column(name = "asr_policeinsuranceNumber", nullable = false, length = 30)
-    public String getAsrPoliceInsuranceNumber() {
-        return asrPoliceInsuranceNumber;
+    @Column(name = "tms_policeinsuranceNumber", nullable = false, length = 30)
+    public String getTmsPoliceInsuranceNumber() {
+        return tmsPoliceInsuranceNumber;
     }
 
-    public void setAsrPoliceInsuranceNumber(String asrPoliceInsuranceNumber) {
-        this.asrPoliceInsuranceNumber = asrPoliceInsuranceNumber;
+    public void setTmsPoliceInsuranceNumber(String tmsPoliceInsuranceNumber) {
+        this.tmsPoliceInsuranceNumber = tmsPoliceInsuranceNumber;
     }
 
-    @Column(name = "asr_policeinsuranceType", nullable = false, length = 30)
+    @Column(name = "tms_policeinsuranceType", nullable = false, length = 30)
 
-    public String getAsrPoliceInsuranceType() {
-        return asrPoliceInsuranceType;
+    public String getTmsPoliceInsuranceType() {
+        return tmsPoliceInsuranceType;
     }
 
-    public void setAsrPoliceInsuranceType(String asrPoliceInsuranceType) {
-        this.asrPoliceInsuranceType = asrPoliceInsuranceType;
+    public void setTmsPoliceInsuranceType(String tmsPoliceInsuranceType) {
+        this.tmsPoliceInsuranceType = tmsPoliceInsuranceType;
     }
 
-    @Column(name = "asr_policeinsurancephonenumber", nullable = false, length = 15)
-    public String getAsrPoliceInsurancePhoneNumber() {
-        return asrPoliceInsurancePhoneNumber;
+    @Column(name = "tms_policeinsurancephonenumber", nullable = false, length = 15)
+    public String getTmsPoliceInsurancePhoneNumber() {
+        return tmsPoliceInsurancePhoneNumber;
     }
 
-    public void setAsrPoliceInsurancePhoneNumber(String asrPoliceInsurancePhoneNumber) {
-        this.asrPoliceInsurancePhoneNumber = asrPoliceInsurancePhoneNumber;
-    }
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "asr_policeinsurancestartdate")
-    public Date getAsrPoliceInsuranceStartDate() {
-        return asrPoliceInsuranceStartDate;
-    }
-
-    public void setAsrPoliceInsuranceStartDate(Date asrPoliceInsuranceStartDate) {
-        this.asrPoliceInsuranceStartDate = asrPoliceInsuranceStartDate;
+    public void setTmsPoliceInsurancePhoneNumber(String tmsPoliceInsurancePhoneNumber) {
+        this.tmsPoliceInsurancePhoneNumber = tmsPoliceInsurancePhoneNumber;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "asr_policeinsuranceenddate")
-    public Date getAsrPoliceInsuranceEndDate() {
-        return asrPoliceInsuranceEndDate;
+    @Column(name = "tms_policeinsurancestartdate")
+    public Date getTmsPoliceInsuranceStartDate() {
+        return tmsPoliceInsuranceStartDate;
     }
 
-    public void setAsrPoliceInsuranceEndDate(Date asrPoliceInsuranceEndDate) {
-        this.asrPoliceInsuranceEndDate = asrPoliceInsuranceEndDate;
+    public void setTmsPoliceInsuranceStartDate(Date tmsPoliceInsuranceStartDate) {
+        this.tmsPoliceInsuranceStartDate = tmsPoliceInsuranceStartDate;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "tms_policeinsuranceenddate")
+    public Date getTmsPoliceInsuranceEndDate() {
+        return tmsPoliceInsuranceEndDate;
+    }
+
+    public void setTmsPoliceInsuranceEndDate(Date tmsPoliceInsuranceEndDate) {
+        this.tmsPoliceInsuranceEndDate = tmsPoliceInsuranceEndDate;
     }
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "asr_policeinsurancevehicle")
+    @Column(name = "tms_policeinsurancevehicle")
 
     public TmsVehicle getVehicules() {
         return vehicules;
