@@ -26,11 +26,11 @@ import java.util.List;
 public class MaintenancePlanController {
     @Autowired
     private MaintenanceService maintenanceService;
-    @PreAuthorize("hasAnyRole('MAINTENANCE_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('MAINTENANCE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
     public List<MaintenancePlan> getIncidents() {return maintenanceService.findAll();}
-    @PreAuthorize("hasAnyRole('MAINTENANCE_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('MAINTENANCE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<MaintenancePlan> getDrivers(@RequestParam int page, @RequestParam int size) {
@@ -38,37 +38,37 @@ public class MaintenancePlanController {
         Pageable pageable = new PageRequest(page, size,sort);
         return maintenanceService.findAll(pageable);
     }
-    @PreAuthorize("hasAnyRole('MAINTENANCE_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('MAINTENANCE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
     public Long size() {
         return maintenanceService.size();
     }
-    @PreAuthorize("hasAnyRole('MAINTENANCE_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('MAINTENANCE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
         return maintenanceService.size(search);
     }
-    @PreAuthorize("hasAnyRole('MAINTENANCE_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('MAINTENANCE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
         return maintenanceService.isExist(id);
     }
-    @PreAuthorize("hasAnyRole('MAINTENANCE_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('MAINTENANCE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
     public MaintenancePlan getDriver(@PathVariable("id") Long id) throws IdNotFound {
         return maintenanceService.findById(id);
     }
-    @PreAuthorize("hasAnyRole('MAINTENANCE_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('MAINTENANCE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
     public List<MaintenancePlan> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
         return maintenanceService.find(search);
     }
-    @PreAuthorize("hasAnyRole('INCIDENT_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('INCIDENT_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<MaintenancePlan> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {

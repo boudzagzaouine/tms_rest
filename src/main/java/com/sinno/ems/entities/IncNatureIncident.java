@@ -37,8 +37,7 @@ public class IncNatureIncident implements java.io.Serializable  {
     public void setIncNatureIncidentId(long incNatureIncidentId) {
         this.incNatureIncidentId = incNatureIncidentId;
     }
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "")
-    @JoinColumn(name = "inc_incidentid", nullable = false)
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmIncidentNature")
 
     public Set<PrmIncident> getIncidents() {
         return incidents;

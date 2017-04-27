@@ -1,12 +1,7 @@
 package com.sinno.ems.entities;
 
-import com.sinno.ems.dto.Driver;
-import com.sinno.ems.dto.NatureIncident;
-import com.sinno.ems.dto.Road;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
@@ -22,8 +17,8 @@ public class PrmIncident implements java.io.Serializable {
     private Date prmIncidentTime;
     private String prmIncidentDescription;
     private IncNatureIncident prmIncidentNature;
-    private PrmRoad prmRoad;
-    private PrmDriver prmDriver;
+    private PrmRoad prmIncidentRoad;
+    private PrmDriver prmIncidentDriver;
 
     public PrmIncident(){
 
@@ -77,21 +72,23 @@ public class PrmIncident implements java.io.Serializable {
     public void setPrmIncidentNature(IncNatureIncident prmIncidentNature) {
         this.prmIncidentNature = prmIncidentNature;
     }
-
-    public PrmRoad getPrmRoad() {
-        return prmRoad;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "prm_incidentroadid", nullable = false)
+    public PrmRoad getPrmIncidentRoad() {
+        return prmIncidentRoad;
     }
 
-    public void setPrmRoad(PrmRoad prmRoad) {
-        this.prmRoad = prmRoad;
+    public void setPrmIncidentRoad(PrmRoad prmIncidentRoad) {
+        this.prmIncidentRoad = prmIncidentRoad;
+    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "prm_incidentdriverid", nullable = false)
+    public PrmDriver getPrmIncidentDriver() {
+        return prmIncidentDriver;
     }
 
-    public PrmDriver getPrmDriver() {
-        return prmDriver;
-    }
-
-    public void setPrmDriver(PrmDriver prmDriver) {
-        this.prmDriver = prmDriver;
+    public void setPrmIncidentDriver(PrmDriver prmIncidentDriver) {
+        this.prmIncidentDriver = prmIncidentDriver;
     }
 
 

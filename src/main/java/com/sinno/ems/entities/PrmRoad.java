@@ -1,9 +1,6 @@
 package com.sinno.ems.entities;
 
 import com.sinno.ems.dto.Delivery;
-import com.sinno.ems.dto.Driver;
-import com.sinno.ems.dto.Incident;
-import com.sinno.ems.dto.Vehicule;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -38,7 +35,7 @@ public class PrmRoad implements Serializable {
     @NotNull
     private PrmDriver prmRoadSuppleantDriver;
     @NotNull
-    private Set<Delivery> prmRoadDeliveries;
+    private Set<Delivery> prmRoadDelivery;
     @NotNull
     private PrmVehicle prmRoadVehicle;
 
@@ -89,8 +86,7 @@ public class PrmRoad implements Serializable {
     public void setPrmRoadDistance(BigDecimal prmRoadDistance) {
         this.prmRoadDistance = prmRoadDistance;
     }
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_roadincidentid", nullable = false)
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmIncidentRoad")
     public Set<PrmIncident> getPrmRoadIncident() {
         return prmRoadIncident;
     }
@@ -116,14 +112,13 @@ public class PrmRoad implements Serializable {
     public void setPrmRoadSuppleantDriver(PrmDriver prmRoadSuppleantDriver) {
         this.prmRoadSuppleantDriver = prmRoadSuppleantDriver;
     }
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_roaddeliveryid", nullable = false)
-    public Set<Delivery> getPrmRoadDeliveries() {
-        return prmRoadDeliveries;
+    //TODO@OneToMany(fetch = FetchType.LAZY,mappedBy = "")
+    public Set<Delivery> getPrmRoadDelivery() {
+        return prmRoadDelivery;
     }
 
-    public void setPrmRoadDeliveries(Set<Delivery> prmRoadDeliveries) {
-        this.prmRoadDeliveries = prmRoadDeliveries;
+    public void setPrmRoadDelivery(Set<Delivery> prmRoadDelivery) {
+        this.prmRoadDelivery = prmRoadDelivery;
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_roadvehicleid", nullable = false)

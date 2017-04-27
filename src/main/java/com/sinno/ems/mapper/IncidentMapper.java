@@ -2,7 +2,6 @@ package com.sinno.ems.mapper;
 
 import com.sinno.ems.dto.Incident;
 import com.sinno.ems.entities.PrmIncident;
-import com.sinno.ems.entities.PrmRoad;
 
 import java.util.*;
 
@@ -47,8 +46,8 @@ public class IncidentMapper {
         prmIncident.setPrmIncidentDescription(incident.getDescription());
         if (!lazy) {
             prmIncident.setPrmIncidentNature(NatureIncidentMapper.toEntity(incident.getNatureIncident(),true));
-            prmIncident.setPrmRoad(RoadMapper.toEntity(incident.getRoad() , true));
-            prmIncident.setPrmDriver(DriverMapper.toEntity(incident.getDriver() , true));
+            prmIncident.setPrmIncidentRoad(RoadMapper.toEntity(incident.getRoad() , true));
+            prmIncident.setPrmIncidentDriver(DriverMapper.toEntity(incident.getDriver() , true));
         }
         return prmIncident;
     }
@@ -64,8 +63,8 @@ public class IncidentMapper {
         incident.setDescription(prmIncident.getPrmIncidentDescription());
         if (!lazy) {
             incident.setNatureIncident(NatureIncidentMapper.toDto(prmIncident.getPrmIncidentNature(),true));
-            incident.setRoad(RoadMapper.toDto( prmIncident.getPrmRoad(), true));
-            incident.setDriver(DriverMapper.toDto(prmIncident.getPrmDriver() , true));
+            incident.setRoad(RoadMapper.toDto( prmIncident.getPrmIncidentRoad(), true));
+            incident.setDriver(DriverMapper.toDto(prmIncident.getPrmIncidentDriver() , true));
         }
         return incident;
     }

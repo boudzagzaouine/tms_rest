@@ -26,13 +26,13 @@ import java.util.List;
 public class BadgeController {
     @Autowired
    private BadgeService badgeService;
-    @PreAuthorize("hasAnyRole('BADGE_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
     public List<Badge> getBadges() {
         return badgeService.findAll();
     }
-    @PreAuthorize("hasAnyRole('BADGE_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<Badge> getBadges(@RequestParam int page, @RequestParam int size) {
@@ -41,38 +41,38 @@ public class BadgeController {
         return badgeService.findAll(pageable);
 
     }
-    @PreAuthorize("hasAnyRole('BADGE_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
     public Long size() {
         return badgeService.size();
     }
-    @PreAuthorize("hasAnyRole('BADGE_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
         return badgeService.size(search);
     }
-    @PreAuthorize("hasAnyRole('BADGE_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
         return badgeService.isExist(id);
     }
-    @PreAuthorize("hasAnyRole('BADGE_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
     public Badge getBadge(@PathVariable("id") Long id) throws IdNotFound {
         return badgeService.findById(id);
     }
-    @PreAuthorize("hasAnyRole('BADGE_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
     public List<Badge> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
         return badgeService.find(search);
     }
 
-    @PreAuthorize("hasAnyRole('BADGE_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<Badge> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {

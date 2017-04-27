@@ -129,8 +129,7 @@ public class PrmVehicle implements Serializable {
     public void setPrmVehicleType(PrmVehicleType prmVehicleType) {
         this.prmVehicleType = prmVehicleType;
     }
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_vehiclebadgeid", nullable = false)
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmBadgeVehicule")
     public Set<PrmBadge> getPrmVehicleBadges() {
         return prmVehicleBadges;
     }

@@ -1,8 +1,5 @@
 package com.sinno.ems.entities;
 
-import com.sinno.ems.dto.Driver;
-import com.sinno.ems.dto.Vehicule;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
@@ -20,8 +17,8 @@ public class PrmBadge implements java.io.Serializable{
     private String prmBadgeCode;
     private String prmBadgeLibelle;
     private String prmBadgeDescription;
-    private Set<PrmVehicle> pvehicules;
-    private Set<PrmDriver> drivers;
+    private Set<PrmVehicle> prmBadgeVehicule;
+    private Set<PrmDriver> prmBadgeDriver;
 
 
 
@@ -60,24 +57,23 @@ public class PrmBadge implements java.io.Serializable{
     public void setPrmBadgeLibelle(String prmBadgeLibelle) {
         this.prmBadgeLibelle = prmBadgeLibelle;
     }
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "")
-    @Column(name="prm_vehiculebadgeid",nullable=false)
-    public Set<PrmVehicle> getPvehicules() {
-        return pvehicules;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmVehicleBadges")
+    public Set<PrmVehicle> getPrmBadgeVehicule() {
+        return prmBadgeVehicule;
     }
 
-    public void setPvehicules(Set<PrmVehicle> pvehicules) {
-        this.pvehicules = pvehicules;
+    public void setPrmBadgeVehicule(Set<PrmVehicle> prmBadgeVehicule) {
+        this.prmBadgeVehicule = prmBadgeVehicule;
     }
 
-    @Column(name="prm_driverbadgeid",nullable=false)
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "drvDriverBadges")
 
-    public Set<PrmDriver> getDrivers() {
-        return drivers;
+    public Set<PrmDriver> getPrmBadgeDriver() {
+        return prmBadgeDriver;
     }
 
-    public void setDrivers(Set<PrmDriver> drivers) {
-        this.drivers = drivers;
+    public void setPrmBadgeDriver(Set<PrmDriver> prmBadgeDriver) {
+        this.prmBadgeDriver = prmBadgeDriver;
     }
 
 

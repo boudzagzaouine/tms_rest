@@ -62,8 +62,7 @@ public class PrmVehicleStatus implements Serializable {
     public void setPrmVehiculeStatusDescritpion(String prmVehiculeStatusDescritpion) {
         this.prmVehiculeStatusDescritpion = prmVehiculeStatusDescritpion;
     }
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "")
-    @JoinColumn(name = "prm_vehiclestatusvehicleid", nullable = false)
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmVehicleStatus")
     public Set<PrmVehicle> getPrmVehiculeStatusVehicules() {
         return prmVehiculeStatusVehicules;
     }

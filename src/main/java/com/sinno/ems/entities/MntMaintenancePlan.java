@@ -47,8 +47,7 @@ public class MntMaintenancePlan implements java.io.Serializable{
     }
 
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "")
-    @JoinColumn(name = "mnt_maintenanceplanvehicleid", nullable = false)
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmVehicleMaintenancePlan")
     public PrmVehicle getVehicle() {
         return vehicle;
     }
@@ -77,7 +76,8 @@ public class MntMaintenancePlan implements java.io.Serializable{
     public String getMntDescription() {
         return mntDescription;
     }
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "")
+
     @JoinColumn(name = "mnt_maintenanceplanvehicleid", nullable = false)
     public Set<PrmActe> getMntMaintenancePlanActes() {
         return mntMaintenancePlanActes;

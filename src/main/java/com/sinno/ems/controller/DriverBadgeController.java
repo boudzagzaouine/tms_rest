@@ -31,7 +31,7 @@ public class DriverBadgeController {
     public List<DriverBadge> getNatureIncidents() {
         return driverBadgeService.findAll();
     }
-    @PreAuthorize("hasAnyRole('NATUREINCIDENT_VIEW')")
+    @PreAuthorize("hasAnyRole('DRIVERBADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<DriverBadge> getNatureIncidents(@RequestParam int page, @RequestParam int size) {
@@ -39,7 +39,7 @@ public class DriverBadgeController {
         Pageable pageable = new PageRequest(page, size,sort);
         return driverBadgeService.findAll(pageable);
     }
-    @PreAuthorize("hasAnyRole('NATUREINCIDENT_VIEW')")
+    @PreAuthorize("hasAnyRole('DRIVERBADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
     public Long size() {
@@ -52,7 +52,7 @@ public class DriverBadgeController {
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
         return driverBadgeService.size(search);
     }
-    @PreAuthorize("hasAnyRole('NATUREINCIDENT_VIEW')")
+    @PreAuthorize("hasAnyRole('DRIVERBADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {

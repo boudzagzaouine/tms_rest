@@ -24,11 +24,11 @@ import java.util.List;
 public class IncidentController {
     @Autowired
     private IncidentService incidentService;
-    @PreAuthorize("hasAnyRole('INCIDENT_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('INCIDENT_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
     public List<Incident> getIncidents() {return incidentService.findAll();}
-    @PreAuthorize("hasAnyRole('INCIDENT_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('INCIDENT_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<Incident> getDrivers(@RequestParam int page, @RequestParam int size) {
@@ -37,37 +37,37 @@ public class IncidentController {
          return incidentService.findAll(pageable);
 
     }
-    @PreAuthorize("hasAnyRole('INCIDENT_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('INCIDENT_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
     public Long size() {
         return incidentService.size();
     }
-    @PreAuthorize("hasAnyRole('INCIDENT_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('INCIDENT_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
         return incidentService.size(search);
     }
-    @PreAuthorize("hasAnyRole('INCIDENT_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('INCIDENT_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
         return incidentService.isExist(id);
     }
-    @PreAuthorize("hasAnyRole('INCIDENT_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('INCIDENT_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
     public Incident getDriver(@PathVariable("id") Long id) throws IdNotFound {
         return incidentService.findById(id);
     }
-    @PreAuthorize("hasAnyRole('INCIDENT_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('INCIDENT_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
     public List<Incident> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
         return incidentService.find(search);
     }
-    @PreAuthorize("hasAnyRole('INCIDENT_VIEW','PURSHASE_ORDER_LINE_VIEW','RECEPTION_LINE_VIEW','SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW','STOCK','SALE_ORDER_STOCK_VIEW','RECEPTION_STOCK_VIEW')")
+    @PreAuthorize("hasAnyRole('INCIDENT_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<Incident> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {

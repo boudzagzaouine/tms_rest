@@ -50,7 +50,7 @@ public class PrmDriverSituation implements java.io.Serializable {
     public void setPrmDriverSituationDescription(String prmDriverSituationDescription) {
         this.prmDriverSituationDescription = prmDriverSituationDescription;
     }
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmDriverSituation")
 
     public Set<PrmDriver> getPrmDrivers() {
         return prmDrivers;

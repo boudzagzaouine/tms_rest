@@ -117,8 +117,7 @@ public class PrmDriver implements java.io.Serializable{
         this.prmDriverCellPhone = prmDriverCellPhone;
     }*/
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmDriver")
-    @Column(name="prm_insidentDriver",nullable=false)
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmIncidentDriver")
 
     public Set<PrmIncident> getPincidents() {
         return pincidents;
@@ -137,8 +136,7 @@ public class PrmDriver implements java.io.Serializable{
         this.proads = proads;
     }*/
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "")
-    @Column(name="prm_badgeDriver",nullable=false)
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmBadgeDriver")
     public Set<PrmBadge> getPbadges() {
         return pbadges;
     }
@@ -204,7 +202,7 @@ public class PrmDriver implements java.io.Serializable{
     public void setPrmDriverUpDateUser(UsrUser prmDriverUpDateUser) {
         this.prmDriverUpDateUser = prmDriverUpDateUser;
     }
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "drvDriverBadgeBadge")
     public Set<DrvDriverBadge> getDrvDriverBadges() {
         return drvDriverBadges;
     }
