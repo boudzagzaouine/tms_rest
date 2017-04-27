@@ -1,6 +1,7 @@
 package com.sinno.ems.mapper;
 
 import com.sinno.ems.dto.Acte;
+import com.sinno.ems.dto.MaintenancePlan;
 import com.sinno.ems.entities.TmsActe;
 
 import java.util.*;
@@ -23,9 +24,7 @@ public class ActeMapper {
         map.put("description", "tmsActeDescription");
         map.put("periodecity", "tmsActePeriodecity");
         map.put("duration", "tmsActeDuration");
-        map.put("dateLastAct", "tmsActeDateLastAct");
-        map.put("duration", "tmsActeDuration");
-        map.put("maintenancePlans", "tmsMaintenancePlans");
+        map.put("dateLastAct", "tmsActedateLastAct");
 
     }
 
@@ -49,7 +48,7 @@ public class ActeMapper {
         tmsActe.settmsActedateLastAct(acte.getDateLastAct());
         tmsActe.setTmsActePeriodicity(acte.getPeriodicity());
         if (!lazy) {
-
+        tmsActe.setTmsActeMaintenancePlan(MaintenancePlanMapper.toEntities(acte.getMaintenancePlans(),true));
         }
         return tmsActe;
 
@@ -67,7 +66,7 @@ public class ActeMapper {
         acte.setDateLastAct(acte.getDateLastAct());
         acte.setPeriodicity(acte.getPeriodicity());
         if(!lazy){
-
+        acte.setMaintenancePlans(MaintenancePlanMapper.toDtos(tmsActe.getTmsActeMaintenancePlan(),true));
         }
         return acte;
     }

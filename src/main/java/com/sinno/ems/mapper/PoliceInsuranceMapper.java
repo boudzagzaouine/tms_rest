@@ -14,14 +14,14 @@ public class PoliceInsuranceMapper {
     private static Map<String, String> map;
     static {
         map = new HashMap<>();
-        map.put("id","tmsPoliceInsuranceId;");
-        map.put("code","tmsPoliceInsuranceCode;");
-        map.put("policeNumber","tmsPoliceInsuranceNumber;");
-        map.put("startDate","tmsPoliceInsuranceStartDate;");
-        map.put("endDate","tmsPoliceInsuranceEndDate;");
-        map.put("type","tmsPoliceInsuranceType;");
-        map.put("phoneNumber","tmsPoliceInsurancePhoneNumber;");
-        map.put("vehicul","tmsPoliceInsurancevehicle;");
+        map.put("id","tmsPoliceInsuranceId");
+        map.put("code","tmsPoliceInsuranceCode");
+        map.put("policeNumber","tmsPoliceInsuranceNumber");
+        map.put("startDate","tmsPoliceInsuranceStartDate");
+        map.put("endDate","tmsPoliceInsuranceEndDate");
+        map.put("type","tmsPoliceInsuranceType");
+        map.put("phoneNumber","tmsPoliceInsurancePhoneNumber");
+        map.put("vehicule","vehicules");
     }
 
     public static Map<String, String> getMap() {

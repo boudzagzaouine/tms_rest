@@ -40,7 +40,7 @@ public class DriverSituationMapper {
         tmsDriverSituation.setTmsDriverSituationDescription(driversituation.getDescription());
         tmsDriverSituation.setTmsDriverSituationCode(driversituation.getCode());
         if (!lazy) {
-
+        tmsDriverSituation.setTmsDrivers(DriverMapper.toEntities(driversituation.getDrivers(),true));
         }
         return tmsDriverSituation;
     }
@@ -54,7 +54,7 @@ public class DriverSituationMapper {
         driverSituation.setCode(tmsDriverSituation.getTmsDriverSituationCode());
         driverSituation.setDescription(tmsDriverSituation.getTmsDriverSituationDescription());
         if(!lazy){
-
+        driverSituation.setDrivers(DriverMapper.toDtos(tmsDriverSituation.getTmsDrivers(),true));
         }
         return driverSituation;
     }

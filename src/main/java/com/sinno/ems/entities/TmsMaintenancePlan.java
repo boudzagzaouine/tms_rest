@@ -16,7 +16,7 @@ import java.util.Set;
 public class TmsMaintenancePlan implements java.io.Serializable{
     private long tmsMaintenancePlanId;
     @NotNull
-    private TmsVehicle vehicle;
+    private TmsVehicle tmsMaintenancePlanVehicle;
     @Size(max = 30)
     @NotNull
     private String tmsMaintenancePlanCode;
@@ -45,12 +45,12 @@ public class TmsMaintenancePlan implements java.io.Serializable{
 
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsVehicleMaintenancePlan")
-    public TmsVehicle getVehicle() {
-        return vehicle;
+    public TmsVehicle getTmsMaintenancePlanVehicle() {
+        return tmsMaintenancePlanVehicle;
     }
 
-    public void setVehicle(TmsVehicle vehicle) {
-        this.vehicle = vehicle;
+    public void setTmsMaintenancePlanVehicle(TmsVehicle tmsMaintenancePlanVehicle) {
+        this.tmsMaintenancePlanVehicle = tmsMaintenancePlanVehicle;
     }
 
 

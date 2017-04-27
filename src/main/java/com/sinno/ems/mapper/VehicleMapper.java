@@ -18,16 +18,15 @@ public class VehicleMapper {
         map = new HashMap<>();
 
         map.put("id", "tmsVehicleId");
-        map.put("code", "tmsVehiclerCode");
+        map.put("code", "tmsVehicleCode");
         map.put("nbreEssieux", "tmsVehicleNbreEssieux");
-        map.put("emptyWeight", "tmsVehicleEmtyWeight");
+        map.put("emptyWeight", "tmsVehicleEmptyWeight");
         map.put("dateOfRegistration", "tmsVehicleDateOfRegistration");
         map.put("brand", "tmsVehicleBrand");
         map.put("model", "tmsVehicleModel");
         map.put("status", "tmsVehicleStatus");
         map.put("type", "tmsVehicleType");
-        map.put("badges", "tmsVehicleBadges");
-        map.put("policeAssurance", "tmsVehiclePoliceInsurance");
+        map.put("policeAssurance", "tmsVehiclePoliceAssurance");
         map.put("maintenancePlan", "tmsVehicleMaintenancePlan");
 
         map.put("matricule", "tmsVehicleMatricule");

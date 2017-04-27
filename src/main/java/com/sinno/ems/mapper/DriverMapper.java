@@ -20,15 +20,12 @@ public class DriverMapper {
         map = new HashMap<>();
         map.put("id", "tmsDriverId");
         map.put("passportNumber", "tmsDriverPassportNumber");
-        map.put("incidents", "tmsDriverIncidents");
-        map.put("badge", "tmsDriverBadge");
-        map.put("driversituation", "tmsDriversituation");
-
+        map.put("driversituation", "tmsDriverSituation");
         map.put("dateCreation", "tmsDriverDateCreation");
         map.put("dateUpDate", "tmsDriverDateUpDate");
         map.put("creationUser", "tmsDriverCreationUser");
         map.put("upDateUser", "tmsDriverUpDateUser");
-        map.put("driverBadges", "drvDriverBadges");
+
 
     }
 

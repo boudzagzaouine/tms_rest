@@ -16,11 +16,10 @@ public class MaintenancePlanMapper {
     static {
         map = new HashMap<>();
 
-        map.put("id", "mntMaintenancePlanId");
-        map.put("code", "mntMaintenancePlanCode");
-        map.put("description", "mntMaintenancePlanDescription");
-        map.put("vehicule", "vehicules");
-        map.put("acte", "mntMaintenancePlanActes");
+        map.put("id", "tmsMaintenancePlanId");
+        map.put("code", "tmsMaintenancePlanCode");
+        map.put("description", "tmsDescription");
+        map.put("vehicule", "tmsMaintenancePlanVehicle");
 
     }
     public static Map<String, String> getMap() {
@@ -41,7 +40,7 @@ public class MaintenancePlanMapper {
        maintenancePlan.setDescription(maintenancePlan.getDescription());
 
         if (!lazy) {
-          tmsMaintenancePlan.setVehicle(VehicleMapper.toEntity(maintenancePlan.getVehicule(),true));
+          tmsMaintenancePlan.setTmsMaintenancePlanVehicle(VehicleMapper.toEntity(maintenancePlan.getVehicule(),true));
        tmsMaintenancePlan.setTmsMaintenancePlanActes(ActeMapper.toEntities(maintenancePlan.getActes(),true));
         }
         return tmsMaintenancePlan;
@@ -57,7 +56,7 @@ public class MaintenancePlanMapper {
         maintenancePlan.setCode(tmsMaintenancePlan.getTmsMaintenancePlanCode());
         maintenancePlan.setDescription(tmsMaintenancePlan.getTmsDescription());
     if (!lazy){
-        maintenancePlan.setVehicule(VehicleMapper.toDto(tmsMaintenancePlan.getVehicle(),true));
+        maintenancePlan.setVehicule(VehicleMapper.toDto(tmsMaintenancePlan.getTmsMaintenancePlanVehicle(),true));
         maintenancePlan.setActes(ActeMapper.toDtos(tmsMaintenancePlan.getTmsMaintenancePlanActes(),true));
     }
 

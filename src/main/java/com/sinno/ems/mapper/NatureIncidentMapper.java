@@ -16,10 +16,9 @@ public class NatureIncidentMapper {
     static {
         map = new HashMap<>();
 
-        map.put("id", "tmsNatureIncientId");
-        map.put("code", "tmsNatureIncientCode");
-        map.put("description", "tmsNatureIncientDescription");
-        map.put("incident", "tmsidents");
+        map.put("id", "tmsNatureIncidentId");
+        map.put("code", "tmsNatureIncidentCode");
+        map.put("description", "tmsNatureIncidentDescription");
     }
     public static Map<String, String> getMap() {
         return map;

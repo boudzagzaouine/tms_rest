@@ -19,9 +19,10 @@ public class VehicleStatusMapper {
         map = new HashMap<>();
 
         map.put("id", "tmsVehicleStatusId");
-        map.put("codeStatusVehicule", "tmsVehicleStatusCodeStatusVehicule");
-        map.put("descritpion", "tmsVehicleStatusDescription");
-        map.put("vehicule", "vehicules");
+        map.put("codeStatusVehicule", "tmsVehiculeStatusCode");
+        map.put("activity", "tmsVehiculeStatusActivity");
+        map.put("descritpion", "tmsVehiculeStatusDescritpion");
+
 
 
     }
@@ -44,6 +45,7 @@ public class VehicleStatusMapper {
         tmsVehicleStatus.setTmsVehiculeStatusId(vehiculeStatus.getId());
         tmsVehicleStatus.setTmsVehiculeStatusCode(vehiculeStatus.getCodeStatusVehicule()!=null ? vehiculeStatus.getCodeStatusVehicule().toUpperCase(): null);
         tmsVehicleStatus.setTmsVehiculeStatusDescritpion(vehiculeStatus.getDescritpion());
+        tmsVehicleStatus.setTmsVehiculeStatusActivity(vehiculeStatus.getActivity());
         if (!lazy) {
             tmsVehicleStatus.setTmsVehiculeStatusVehicules(VehicleMapper.toEntities(vehiculeStatus.getVehicules(),true));
 //
@@ -60,6 +62,7 @@ public class VehicleStatusMapper {
         vehiculeStatus.setId(tmsVehicleStatus.getTmsVehiculeStatusId());
         vehiculeStatus.setCodeStatusVehicule(tmsVehicleStatus.getTmsVehiculeStatusCode());
         vehiculeStatus.setDescritpion(tmsVehicleStatus.getTmsVehiculeStatusDescritpion());
+        vehiculeStatus.setActivity(tmsVehicleStatus.getTmsVehiculeStatusActivity());
         if (!lazy) {
             vehiculeStatus.setVehicules(VehicleMapper.toDtos(tmsVehicleStatus.getTmsVehiculeStatusVehicules(),true));
 //

@@ -22,11 +22,10 @@ public class RoadMapper {
         map.put("duration", "tmsRoadDuration");
         map.put("cost", "tmsRoadCost");
         map.put("distance", "tmsRoadDistance");
-        map.put("incidents", "tmsRoadIncidents");
         map.put("principalDriver", "tmsRoadPrincipalDriver");
         map.put("suppleantDriver", "tmsRoadSuppleantDriver");
-        map.put("deliveries", "tmsRoadDeliveries");
-        map.put("vehicule", "tmsRoadVehicule");
+        map.put("vehicule", "tmsRoadVehicle");
+
 
 
     }
@@ -49,6 +48,7 @@ public class RoadMapper {
         tmsRoad.setTmsRoadDuration(road.getDuration());
         tmsRoad.setTmsRoadCost(road.getCost());
         tmsRoad.setTmsRoadDistance(road.getDistance());
+
 
         if (!lazy) {
           tmsRoad.setTmsRoadIncident(IncidentMapper.toEntities(road.getIncidents(),true));

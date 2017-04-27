@@ -1,10 +1,13 @@
 package com.sinno.ems.entities;
 
 
+
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.Set;
 
 
 /**
@@ -20,6 +23,7 @@ public class TmsActe implements java.io.Serializable {
     @Size(max = 255)
     @NotNull
     private String tmsActeNature;
+    private Set<TmsMaintenancePlan>tmsActeMaintenancePlan;
 
     public void setTmsActeNature(String tmsActeNature) {
         this.tmsActeNature = tmsActeNature;
@@ -36,6 +40,14 @@ public class TmsActe implements java.io.Serializable {
     @Size(max = 240)
     @NotNull
     private String tmsActePeriodicity;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsMaintenancePlanActes")
+    public Set<TmsMaintenancePlan> getTmsActeMaintenancePlan() {
+        return tmsActeMaintenancePlan;
+    }
+
+    public void setTmsActeMaintenancePlan(Set<TmsMaintenancePlan> tmsActeMaintenancePlan) {
+        this.tmsActeMaintenancePlan = tmsActeMaintenancePlan;
+    }
 
     public void setTmsActePeriodicity(String tmsActePeriodicity) {
         this.tmsActePeriodicity = tmsActePeriodicity;
