@@ -328,3 +328,6 @@ target/classes/com/sinno/ems/service/DriverService.class
 target/classes/com/sinno/ems/service/impl/ActeServiceImpl.class
 target/classes/com/sinno/ems/service/impl/BadgeServiceImpl.class
 target/classes/com/sinno/ems/service/impl/DriverServiceImpl.class
+
+target/**
+.idea/**

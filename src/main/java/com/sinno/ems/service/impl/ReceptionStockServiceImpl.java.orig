@@ -1,0 +1,636 @@
+package com.sinno.ems.service.impl;
+
+import com.google.common.collect.Lists;
+import com.sinno.ems.dto.*;
+import com.sinno.ems.entities.*;
+import com.sinno.ems.exception.AttributesNotFound;
+import com.sinno.ems.exception.ContainerException;
+import com.sinno.ems.exception.ErrorType;
+import com.sinno.ems.exception.IdNotFound;
+import com.sinno.ems.mapper.*;
+import com.sinno.ems.repositories.*;
+import com.sinno.ems.service.ReceptionStockService;
+import com.sinno.ems.util.EmsClone;
+import com.sinno.ems.util.EmsComprator;
+import com.sinno.ems.util.EmsDate;
+import com.sinno.ems.util.Search;
+import org.apache.commons.lang3.SerializationUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+import java.lang.Exception;
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+@Service
+public class ReceptionStockServiceImpl implements ReceptionStockService {
+
+    @Autowired
+    private ReceptionStockRepository receptionStockRepository;
+    @Autowired
+    private StockRepository stockRepository;
+    @Autowired
+    private ContainerRepository containerRepository;
+    @Autowired
+    private ReceptionLineRepository receptionLineRepository;
+    @Autowired
+    private PurshaseOrderLineRepository purshaseOrderLineRepository;
+    @Autowired
+    private OrderStatusRepository orderStatusRepository;
+    @Autowired
+    private ReceptionRepository receptionRepository;
+    @Autowired
+    private SettingRepository settingRepository;
+
+
+    @Override
+    public ReceptionStock save(ReceptionStock receptionStock) throws AttributesNotFound, ErrorType, ContainerException {
+        ReceptionLine receptionLine = receptionStock.getReceptionLine();
+        Stock stock = null;
+        if (null != receptionLine) { //test reception line si null ou non
+            receptionLine = ReceptionLineMapper.toDto(receptionLineRepository.findOne(receptionLine.getId()), false);
+            if (!checkStatus(receptionLine)) { // check status
+                return null;
+            }
+            receptionLine = compareRlineRStock(receptionLine, receptionStock);//comparer rception lin et reception stock
+        } else { //si reception line = null
+            receptionLine = ReceptionLineMapper.toDto(createReceptionLine(ReceptionStockMapper.toEntity(receptionStock, false), receptionStock.getQuantityReceived()), false);//creation reception line
+        }
+        if (receptionLine.getId() == 0) {//si une reception line nouvelle
+            Container container;
+            try {
+                container = createContainer(receptionStock); //il doit cree le conteunru
+            } catch (Exception e) {
+                throw new ContainerException("Code conteneur existe déja");
+            }
+
+            receptionLine = ReceptionLineMapper.toDto(receptionLineRepository.saveAndFlush(ReceptionLineMapper.toEntity(receptionLine, false)), false); //sauvgarder reception line
+            receptionStock.setReceptionDate(EmsDate.getDateNow());
+            receptionStock.setCreationDate(EmsDate.getDateNow());
+            receptionStock.setUpdateDate(EmsDate.getDateNow());
+            receptionStock.setReceptionLine(receptionLine);
+            receptionStock.setContainer(container);
+            stock = createStock(receptionStock);
+<<<<<<< HEAD
+        } else { //si une reception line exist deja
+            stock = checkStock(receptionStock); //chercher  un strock
+=======
+        } else {
+            stock = checkStock(receptionStock, false);
+>>>>>>> 444506e92b5c7b1d48964faafdf1475c334e0321
+            Container container;
+            if (null != stock) {
+                container = stock.getContainer();
+                stock.setQuantity(stock.getQuantity().add(receptionStock.getQuantityReceived()));
+                receptionStock.setContainer(container);
+            } else {
+                try {
+                    container = createContainer(receptionStock);
+                } catch (Exception e) {
+                    throw new ContainerException("Code conteneur existe déja");
+                }
+                receptionStock.setContainer(container);
+                stock = createStock(receptionStock);
+            }
+            receptionLine = checkQuantity(receptionLine, receptionStock, stock);
+
+        }
+
+        PurshaseOrderLine purshaseOrderLine = null;
+        if (null != receptionLine.getPurshaseOrderLine()) {
+            purshaseOrderLine = PurshaseOrderLineMapper.toDto(purshaseOrderLineRepository.findOne(receptionLine.getPurshaseOrderLine().getId()), false);
+        }
+        if (0 == receptionLine.getQuantityReceived().compareTo(receptionLine.getQuantity())) {
+            receptionLine.setOrderStatus(OrderStatusMapper.toDto(orderStatusRepository.findOne(1L), false));
+            if (null != purshaseOrderLine)
+                purshaseOrderLine.setOrderStatus(OrderStatusMapper.toDto(orderStatusRepository.findOne(1L), false));
+        }
+        //check if there's any block type
+        if (null != receptionStock.getBlockType()) {
+            Stock stkB = checkStock(receptionStock, true);
+            if (null == stkB) {
+                stkB = createStock(receptionStock);
+            } else {
+                if (!EmsComprator.compare(stkB.getBlockType(), receptionStock.getBlockType()))
+                    stkB = createStock(receptionStock);
+            }
+            if (null != receptionLine.getBlockedQuantity())
+                receptionLine.setBlockedQuantity(receptionStock.getBlockedQuantity().add(receptionLine.getBlockedQuantity()));
+            else
+                receptionLine.setBlockedQuantity(receptionStock.getBlockedQuantity());
+            receptionLine.setBlockType(receptionStock.getBlockType());
+            if (null != purshaseOrderLine) {
+                purshaseOrderLine.setBlockType(receptionLine.getBlockType());
+                purshaseOrderLine.setBlockedQuantity(receptionLine.getBlockedQuantity());
+            }
+            stkB.setBlockType(receptionStock.getBlockType());
+            if (null != stkB.getQuantity())
+                stkB.setQuantity(receptionStock.getBlockedQuantity().add(stkB.getQuantity()));
+            else
+                stkB.setQuantity(receptionStock.getBlockedQuantity());
+            stockRepository.saveAndFlush(StockMapper.toEntity(stkB, false));
+
+        }
+
+        receptionLine.setContainerCode(receptionStock.getContainer().getCode());
+        receptionLineRepository.saveAndFlush(ReceptionLineMapper.toEntity(receptionLine, false));
+        stockRepository.saveAndFlush(StockMapper.toEntity(stock, false));
+        if (null != purshaseOrderLine) {
+            purshaseOrderLine.setContainerCode(receptionStock.getContainer().getCode());
+            purshaseOrderLine.setQuantityReceived(receptionLine.getQuantityReceived());
+            purshaseOrderLineRepository.saveAndFlush(PurshaseOrderLineMapper.toEntity(purshaseOrderLine, false));
+        }
+        return ReceptionStockMapper.toDto(receptionStockRepository.saveAndFlush(ReceptionStockMapper.toEntity(receptionStock, false)), false);
+    }
+
+
+    private String getContainerCode() {
+        return String.format("%1$018d", containerRepository.getNextVal().get(0));
+    }
+
+    @Override
+    public Long size() {
+        return receptionStockRepository.count();
+    }
+
+    @Override
+    public Boolean isExist(Long id) {
+        return receptionStockRepository.exists(id);
+    }
+
+    @Override
+    public ReceptionStock findById(Long id) throws IdNotFound {
+        ReceptionStock receptionStock = ReceptionStockMapper.toDto(receptionStockRepository.findOne(id), false);
+        if (null != receptionStock) {
+            return receptionStock;
+        } else {
+            throw new IdNotFound(id);
+        }
+    }
+
+    @Override
+    public List<ReceptionStock> find(String search) throws AttributesNotFound, ErrorType {
+        return ReceptionStockMapper.toDtos(receptionStockRepository.findAll(Search.expression(search, RcpReceptionStock.class)), false);
+    }
+
+    @Override
+    public List<ReceptionStock> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
+        return ReceptionStockMapper.toDtos(receptionStockRepository.findAll(Search.expression(search, RcpReceptionStock.class), pageable), false);
+    }
+
+    @Override
+    public Long size(String search) throws AttributesNotFound, ErrorType {
+        return receptionStockRepository.count(Search.expression(search, RcpReceptionStock.class));
+    }
+
+    @Override
+    public void delete(Long id) {
+        receptionStockRepository.delete(id);
+    }
+
+    @Override
+    public void delete(ReceptionStock receptionStock) {
+        receptionStockRepository.delete(ReceptionStockMapper.toEntity(receptionStock, false));
+    }
+
+    @Override
+    public List<ReceptionStock> findAll() {
+        return ReceptionStockMapper.toDtos(receptionStockRepository.findAll(), false);
+    }
+
+    @Override
+    public List<ReceptionStock> findAll(Pageable pageable) {
+        return ReceptionStockMapper.toDtos(receptionStockRepository.findAll(pageable), false);
+    }
+
+    private Boolean checkStatus(ReceptionLine receptionLine) {
+        if (1 == receptionLine.getOrderStatus().getId()) {
+            return false;
+        }
+        return true;
+    }
+    //check if container already exist and used in stock
+
+    @Override
+    public Container checkContainer(ReceptionStock receptionStock) {
+        Container container = null;
+        try {
+            Iterable<StkContainer> containers = containerRepository.findAll(Search.expression("code:" + receptionStock.getContainer().getCode(), StkContainer.class));
+            if (null != containers && null != containers.iterator()) {
+                if (containers.iterator().hasNext()) {
+                    container = ContainerMapper.toDto(containers.iterator().next(), false);
+                }
+            }
+        } catch (AttributesNotFound attributesNotFound) {
+            //attributesNotFound.printStackTrace();
+        } catch (ErrorType errorType) {
+        }
+        if (null == container) {
+            return null;
+        } else {
+            if (null != checkStock(receptionStock, false)) {
+                return container;
+            } else {
+                return null;
+
+            }
+        }
+
+    }
+
+
+    private Container createContainer(ReceptionStock receptionStock) {
+        Container container;
+        Setting setting = SettingMapper.toDto(settingRepository.findOne(1L), false);
+        if (setting.getGestionConteneurs())
+            container = receptionStock.getContainer();
+        else {
+            container = new Container();
+            container.setCode(getContainerCode());
+        }
+        container.setLocation(receptionStock.getLocation());
+        container.setOwner(receptionStock.getOwner());
+        container.setWarehouse(receptionStock.getWarehouse());
+        container.setCreationDate(EmsDate.getDateNow());
+        container.setUpdateDate(EmsDate.getDateNow());
+        container.setReceptionDate(EmsDate.getDateNow());
+        return ContainerMapper.toDto(containerRepository.saveAndFlush(ContainerMapper.toEntity(container, false)), false);
+    }
+
+    private Stock createStock(ReceptionStock receptionStock) {
+        Stock stock = new Stock();
+        stock.setContainer(receptionStock.getContainer());
+        if (receptionStock.getBlockedQuantity() != null) {
+            stock.setQuantity(receptionStock.getQuantityReceived().subtract(receptionStock.getBlockedQuantity()));
+        } else {
+            stock.setQuantity(receptionStock.getQuantityReceived());
+        }
+        stock.setOwner(receptionStock.getOwner());
+        stock.setProduct(receptionStock.getProduct());
+        stock.setReceptionDate(EmsDate.getDateNow());
+        stock.setUom(receptionStock.getUom());
+        stock.setDluo(receptionStock.getDluo());
+        stock.setUom(receptionStock.getUom());
+        stock.setSupplier(receptionStock.getSupplier());
+        stock.setUpdateDate(EmsDate.getDateNow());
+        stock.setDlc(receptionStock.getDlc());
+        stock.setSerialNo(receptionStock.getSerialNo());
+        stock.setLot(receptionStock.getLot());
+        stock.setColor(receptionStock.getColor());
+        stock.setReceptionLine(receptionStock.getReceptionLine());
+        stock.setLocation(receptionStock.getLocation());
+        return stock;
+    }
+
+    private RcpReceptionLine createReceptionLine(RcpReceptionStock rcpReceptionStock, BigDecimal quantity) {
+
+        RcpReceptionLine rcpReceptionLine = new RcpReceptionLine();
+        try {
+            rcpReceptionLine.setRcpReceptionLineContainerCode(rcpReceptionStock.getStkContainer().getStkContainerCode());
+            rcpReceptionLine.setPdtProduct(rcpReceptionStock.getPdtProduct());
+            rcpReceptionLine.setPrmColor(rcpReceptionStock.getPrmColor());
+            rcpReceptionLine.setPdtUomReceived(rcpReceptionStock.getPdtUom());
+            rcpReceptionLine.setLocLocation(rcpReceptionStock.getLocLocation());
+            rcpReceptionLine.setOwnOwner(rcpReceptionStock.getOwnOwner());
+            rcpReceptionLine.setRcpReceptionLineDlc(rcpReceptionStock.getRcpReceptionStockDlc());
+            rcpReceptionLine.setRcpReceptionLineDluo(rcpReceptionStock.getRcpReceptionStockDluo());
+            rcpReceptionLine.setRcpReceptionLineQuantityReceived(quantity);
+            rcpReceptionLine.setRcpReceptionLineLot(rcpReceptionStock.getRcpReceptionStockLot());
+            rcpReceptionLine.setRcpReception(rcpReceptionStock.getRcpReception());
+            rcpReceptionLine.setWrhWarehouse(rcpReceptionStock.getWrhWarehouse());
+            rcpReceptionLine.setRcpReceptionLineCreationDate(EmsDate.getDateNow());
+            rcpReceptionLine.setRcpReceptionLineUpdateDate(EmsDate.getDateNow());
+            rcpReceptionLine.setRcpReceptionLineSerialNo(rcpReceptionStock.getRcpReceptionStockSerialNo());
+            rcpReceptionLine.setRcpReceptionLineReceptionDate(rcpReceptionStock.getRcpReceptionStockReceptionDate());
+            rcpReceptionLine.setRcpReceptionLineQuantity(new BigDecimal(0));
+            rcpReceptionLine.setPrmOrderStatus(orderStatusRepository.findOne(1L));
+            rcpReceptionLine.setRcpReception(rcpReceptionStock.getRcpReception());
+            ArrayList<RcpReceptionLine> rcpReceptionLines = Lists.newArrayList(receptionRepository.findOne(rcpReceptionStock.getRcpReception().getRcpReceptionId()).getRcpReceptionLines());
+            long lineNumber = (rcpReceptionLines == null || rcpReceptionLines.size() == 0) ? 1000 : (rcpReceptionLines.get(rcpReceptionLines.size() - 1).getRcpReceptionLineLineNumber() / 1000 + 1) * 1000;
+            rcpReceptionLine.setRcpReceptionLineLineNumber(lineNumber);
+            rcpReceptionLine.setRcpReceptionLineReceptionDate(EmsDate.getDateNow());
+            rcpReceptionLine.setRcpReceptionLineCreationDate(EmsDate.getDateNow());
+            rcpReceptionLine.setRcpReceptionLineUpdateDate(EmsDate.getDateNow());
+            rcpReceptionLine.setPrmOrderStatus(orderStatusRepository.findOne(1L));
+        } catch (Exception e) {
+            //e.printStackTrace();
+        }
+        return rcpReceptionLine;
+
+    }
+
+    private ReceptionStock checkControls(ReceptionStock receptionStock) {
+        Product product = receptionStock.getProduct();
+        if (null != product.getDlcControl())
+            if (!product.getDlcControl() && null != receptionStock.getDlc())
+                receptionStock.setDlc(null);
+
+        if (null != product.getDluoControl())
+            if (!product.getDluoControl() && null != receptionStock.getDluo())
+                receptionStock.setDluo(null);
+        if (null != product.getLotControl())
+            if (!product.getLotControl() && null != receptionStock.getLot())
+                receptionStock.setLot(null);
+        if (null != product.getColorControl())
+            if (!product.getColorControl() && null != receptionStock.getColor())
+                receptionStock.setColor(null);
+        if (null != product.getSerialNoControl())
+            if (!product.getSerialNoControl() && null != receptionStock.getSerialNo())
+                receptionStock.setSerialNo(null);
+        if (null != product.getWeightControl())
+            if (!product.getWeightControl() && null != receptionStock.getWeight())
+                receptionStock.setWeight(null);
+        if (null != product.getQualityOfControl())
+            if (!product.getQualityOfControl() && null != receptionStock.getQuality())
+                receptionStock.setQuality(null);
+
+        return receptionStock;
+    }
+
+    //search for stock if it exists with the same values as receptionStock
+    private Stock checkStock(ReceptionStock receptionStock, boolean checkBlockType) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar c = Calendar.getInstance();
+        if (null != receptionStock.getDlc())
+            c.setTime(receptionStock.getDlc());
+        Calendar c2 = Calendar.getInstance();
+        if (null != receptionStock.getDluo())
+            c2.setTime(receptionStock.getDluo());
+        StringBuffer search = new StringBuffer();
+        List<Stock> stocks = null;
+        if (null != receptionStock.getReceptionLine())
+            search.append("receptionLine.id:" + receptionStock.getReceptionLine().getId());
+        if (null != receptionStock.getProduct())
+            search.append(",product.id:" + receptionStock.getProduct().getId());
+        if (checkBlockType)
+            if (null != receptionStock.getBlockType())
+                search.append(",blockType.id:" + receptionStock.getBlockType().getId());
+        if (null != receptionStock.getLot())
+            search.append(",lot:" + receptionStock.getLot());
+        if (null != receptionStock.getColor())
+            search.append(",color.id:" + receptionStock.getColor().getId());
+        if (null != receptionStock.getDlc())
+            search.append(",dlc:" + format.format(c.getTime()));
+        if (null != receptionStock.getDluo())
+            search.append(",dluo:" + format.format(c2.getTime()));
+        if (null != receptionStock.getSerialNo())
+            search.append(",serialNo:" + receptionStock.getSerialNo());
+        if (null != receptionStock.getWeight())
+            search.append(",weight:" + receptionStock.getWeight());
+        if (null != receptionStock.getWeight())
+            search.append(",quality:" + receptionStock.getQuality());
+        if (null != receptionStock.getBlockType())
+            search.append(",blockType.id:" + receptionStock.getBlockType().getId());
+        if (null != receptionStock.getSupplier())
+            search.append(",supplier.id:" + receptionStock.getSupplier().getId());
+        if (null != receptionStock.getOwner())
+            search.append(",owner.id:" + receptionStock.getOwner().getId());
+        if (null != receptionStock.getContainer())
+            if (null != receptionStock.getContainer().getCode() || !receptionStock.getContainer().getCode().equals(""))
+                search.append(",container.code:" + receptionStock.getContainer().getCode());
+        try {
+            stocks = StockMapper.toDtos(stockRepository.findAll(Search.expression(search.toString(), StkStock.class)), false);
+        } catch (AttributesNotFound attributesNotFound) {
+            //attributesNotFound.printStackTrace();
+        } catch (ErrorType errorType) {
+            //e.printStackTrace();
+        }
+        if (stocks != null)
+            for (Stock stock : stocks)
+                if (EmsComprator.compare(receptionStock.getLocation(), stock.getLocation())
+                        && EmsComprator.compare(receptionStock.getUom(), stock.getUom())
+                        && EmsComprator.compare(receptionStock.getContainer().getCode(), stock.getContainer().getCode())
+                        && EmsComprator.compare(receptionStock.getDlc(), stock.getDlc())
+                        && EmsComprator.compare(receptionStock.getDluo(), stock.getDluo())
+                        && EmsComprator.compare(receptionStock.getLot(), stock.getLot())
+                        && EmsComprator.compare(receptionStock.getWeight(), stock.getWeight())
+                        && EmsComprator.compare(receptionStock.getQuality(), stock.getQuality())
+                        && EmsComprator.compare(receptionStock.getProduct(), stock.getProduct())
+                        && EmsComprator.compare(receptionStock.getBlockType(), stock.getBlockType())
+                        && EmsComprator.compare(receptionStock.getOwner(), stock.getOwner())
+                        && EmsComprator.compare(receptionStock.getColor(), stock.getColor())
+                        && EmsComprator.compare(receptionStock.getSerialNo(), stock.getSerialNo())
+                        && EmsComprator.compare(receptionStock.getSupplier(), stock.getSupplier())
+
+                        ) {
+                    if (checkBlockType) {
+                        if (EmsComprator.compare(receptionStock.getBlockType(), stock.getBlockType()))
+                            return stock;
+                    } else if (stock.getBlockType() == null) {
+                        return stock;
+                    }
+                }
+        return null;
+    }
+
+    private ReceptionLine compareRlineRStock(ReceptionLine receptionLine, ReceptionStock receptionStock) {
+        boolean check = true;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar c1 = Calendar.getInstance();
+        Calendar c2 = Calendar.getInstance();
+
+        if (null != receptionStock.getContainer())
+            if (!EmsComprator.compare(receptionLine.getContainerCode(), receptionStock.getContainer().getCode()))
+                check = false;
+        if (null != receptionLine.getSerialNo())
+            if (!EmsComprator.compare(receptionLine.getSerialNo(), receptionStock.getSerialNo()))
+                check = false;
+        if (null != receptionLine.getLot())
+            if (!EmsComprator.compare(receptionLine.getLot(), receptionStock.getLot()))
+                check = false;
+        if (null != receptionLine.getQuality())
+            if (!EmsComprator.compare(receptionLine.getQuality(), receptionStock.getQuality()))
+                check = false;
+        if (null != receptionLine.getWeight())
+            if (!EmsComprator.compare(receptionLine.getWeight(), receptionStock.getWeight()))
+                check = false;
+        if (null != receptionLine.getColor())
+            if (!EmsComprator.compare(receptionLine.getColor(), receptionStock.getColor()))
+                check = false;
+        if (null != receptionLine.getDlc()) {
+            if (null != receptionStock.getDlc()) {
+                c1.setTime(receptionLine.getDlc());
+                c2.setTime(receptionStock.getDlc());
+                if (!EmsComprator.compare(simpleDateFormat.format(c1.getTime()), simpleDateFormat.format(c2.getTime())))
+                    check = false;
+            }
+        }
+        if (null != receptionLine.getDluo()) {
+            if (null != receptionStock.getDluo()) {
+                c1.setTime(receptionLine.getDluo());
+                c2.setTime(receptionStock.getDluo());
+                if (!EmsComprator.compare(simpleDateFormat.format(c1.getTime()), simpleDateFormat.format(c2.getTime())))
+                    check = false;
+            }
+        }
+        if (!EmsComprator.compare(receptionLine.getProduct(), receptionStock.getProduct()))
+            check = false;
+        if (!EmsComprator.compare(receptionLine.getLocation(), receptionStock.getLocation()))
+            check = false;
+        if (!EmsComprator.compare(receptionLine.getOwner(), receptionLine.getOwner()))
+            check = false;
+        if (!EmsComprator.compare(receptionLine.getWarehouse(), receptionStock.getWarehouse()))
+            check = false;
+
+        if (check)
+            return checkUom(receptionStock, receptionLine);
+        else
+            return ReceptionLineMapper.toDto(createReceptionLine(ReceptionStockMapper.toEntity(receptionStock, false), receptionStock.getQuantityReceived()), false);
+
+    }
+
+    //compare  Uom recieved and Uom expected
+    //and update the received Quantity and received Uoms
+    private ReceptionLine checkUom(ReceptionStock receptionStock, ReceptionLine receptionLine) {
+        BigDecimal quantityReceivedOld = receptionLine.getQuantityReceived();
+        BigDecimal quantityReceived = receptionStock.getQuantityReceived();
+        BigDecimal blockedQuantity = receptionStock.getBlockedQuantity();
+        BigDecimal blockedQuantityOld = receptionLine.getBlockedQuantity();
+        if (null == quantityReceivedOld)
+            quantityReceivedOld = BigDecimal.ZERO;
+        if (null == quantityReceived)
+            quantityReceived = BigDecimal.ZERO;
+        if (null == blockedQuantity)
+            blockedQuantity = BigDecimal.ZERO;
+        if (null == blockedQuantityOld)
+            blockedQuantityOld = BigDecimal.ZERO;
+
+        if (!EmsComprator.compare(receptionLine.getUom(), receptionStock.getUom())) {
+            if (null == receptionLine.getUomReceived()) {
+                receptionLine.setUomReceived(receptionStock.getUom());
+                BigDecimal qteRecieved = convertUom(quantityReceived, receptionLine.getUom(), receptionStock.getUom(), receptionStock.getProduct()).add(quantityReceivedOld);
+                Pattern pattern = Pattern.compile("\\.0+");
+                Matcher matcher = pattern.matcher(qteRecieved.toString());
+                if (matcher.find() || !qteRecieved.toString().contains(".")) {
+                    receptionLine.setQuantityReceived(qteRecieved);
+                    return receptionLine;
+                } else {
+                    ReceptionLine receptionLine1 = ReceptionLineMapper.toDto(createReceptionLine(ReceptionStockMapper.toEntity(receptionStock, true), quantityReceived), false);
+                    return receptionLine1;
+                }
+            } else {
+                if (EmsComprator.compare(receptionLine.getUomReceived(), receptionStock.getUom())) {
+                    BigDecimal qteRecieved = convertUom(quantityReceived, receptionLine.getUom(), receptionStock.getUom(), receptionStock.getProduct()).add(quantityReceivedOld);
+                    Pattern pattern = Pattern.compile("\\.0+");
+                    Matcher matcher = pattern.matcher(qteRecieved.toString());
+                    if (matcher.find() || !qteRecieved.toString().contains(".")) {
+                        receptionLine.setQuantityReceived(qteRecieved);
+                        receptionLine.setUomReceived(receptionStock.getUom());
+                        return receptionLine;
+                    } else {
+                        ReceptionLine receptionLine1 = ReceptionLineMapper.toDto(createReceptionLine(ReceptionStockMapper.toEntity(receptionStock, true), quantityReceived), false);
+                        return receptionLine1;
+                    }
+                } else {
+                    ReceptionLine receptionLine1 = ReceptionLineMapper.toDto(createReceptionLine(ReceptionStockMapper.toEntity(receptionStock, true), quantityReceived), false);
+                    return receptionLine1;
+                }
+            }
+        } else {
+
+
+            if (null == receptionLine.getUomReceived()) {
+
+                receptionLine.setQuantityReceived(quantityReceivedOld.add(quantityReceived));
+                receptionLine.setUomReceived(receptionStock.getUomReceived());
+                return receptionLine;
+            } else {
+                if (EmsComprator.compare(receptionLine.getUomReceived(), receptionStock.getUom())) {
+                    receptionLine.setQuantityReceived(quantityReceivedOld.add(quantityReceived));
+                    receptionLine.setUomReceived(receptionStock.getUom());
+                    return receptionLine;
+                } else {
+                    ReceptionLine receptionLine1 = ReceptionLineMapper.toDto(createReceptionLine(ReceptionStockMapper.toEntity(receptionStock, true), quantityReceived), false);
+                    return receptionLine1;
+                }
+            }
+        }
+    }
+
+    //convert quantity recevied
+    private BigDecimal convertUom(BigDecimal qte, Uom uom, Uom uomReceived, Product product) {
+
+        List<ProductPack> productPacks = Lists.newArrayList(product.getProductPacks());
+        ProductPack received = new ProductPack();
+        ProductPack expected = new ProductPack();
+        ;
+
+        for (ProductPack productPack : productPacks) {
+            if (productPack.getUom().equals(uomReceived)) {
+                received = productPack;
+            }
+            if (productPack.getUom().equals(uom)) {
+                expected = productPack;
+            }
+        }
+        BigDecimal newQte = qte.multiply(received.getQuantity().divide(expected.getQuantity()));
+
+        return newQte;
+
+    }
+    //check if quantity recieved is greater than quantity expected and create new receptionLine ,stock and reception stock
+
+    private ReceptionLine checkQuantity(ReceptionLine receptionLine, ReceptionStock receptionStock, Stock stock) {
+        try {
+            BigDecimal quantityLine = receptionLine.getQuantity();
+
+            BigDecimal quantityReceived = receptionLine.getQuantityReceived();
+            BigDecimal qteRS = receptionStock.getQuantityReceived();
+            if (quantityReceived.compareTo(quantityLine) == 1) {
+<<<<<<< HEAD
+                BigDecimal qteR = quantityReceived.subtract(quantityLine);
+=======
+                BigDecimal qte = quantityReceived.subtract(quantityLine);
+                BigDecimal qteRSA = qteRS.subtract(qte);
+>>>>>>> 444506e92b5c7b1d48964faafdf1475c334e0321
+                BigDecimal qteC = new BigDecimal(0);
+                BigDecimal qteCA = new BigDecimal(0);
+                if (!EmsComprator.compare(receptionStock.getUom(), receptionLine.getUom())) {
+                    qteC = convertUom(qteR, receptionStock.getUom(), receptionLine.getUom(), receptionStock.getProduct());
+                } else {
+                    qteC = qteR;
+                }
+                if (!EmsComprator.compare(receptionStock.getUom(), receptionLine.getUom())) {
+                    qteCA = convertUom(qteRSA, receptionStock.getUom(), receptionLine.getUom(), receptionStock.getProduct());
+                } else {
+                    qteCA = qteRSA;
+                }
+
+
+                receptionLine.setQuantityReceived(quantityLine);
+                receptionStock.setQuantityReceived(qteCA);
+                stock.setQuantity(qteCA);
+
+                ReceptionLine line = ReceptionLineMapper.toDto(receptionLineRepository.saveAndFlush(createReceptionLine(ReceptionStockMapper.toEntity(receptionStock, false), qteC)), false);
+                ReceptionStock rs = null;
+                try {
+                    rs = EmsClone.clone(receptionStock, ReceptionStock.class);
+                } catch (IOException e) {
+                    return null;
+                }
+                rs.setId(0);
+                rs.setQuantityReceived(qteC);
+                rs.setReceptionLine(line);
+                rs.setCreationDate(EmsDate.getDateNow());
+                rs.setUpdateDate(EmsDate.getDateNow());
+                rs.setReceptionDate(EmsDate.getDateNow());
+                receptionStockRepository.saveAndFlush(ReceptionStockMapper.toEntity(rs, false));
+                Stock stk = createStock(rs);
+                stockRepository.saveAndFlush(StockMapper.toEntity(stk, false));
+
+            }
+        } catch (Exception e) {
+            //e.printStackTrace();
+        }
+        return receptionLine;
+    }
+
+
+}
