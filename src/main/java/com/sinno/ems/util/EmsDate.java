@@ -1,6 +1,5 @@
 package com.sinno.ems.util;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -18,16 +17,4 @@ public class EmsDate {
         return Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
 
     }
-
-
-    public static String getDateconcatenated() {
-
-        SimpleDateFormat simpleDateFormat =
-                new SimpleDateFormat("yyyyMMddhhmmss");
-        String dateAsString = simpleDateFormat.format(new Date());
-
-        return dateAsString;
-    }
-
-
 }

@@ -115,7 +115,7 @@ public class Search {
         if (null == search) {
             throw new AttributesNotFound("");
         }
-        Pattern pattern = Pattern.compile("([a-z]\\w+(\\.[a-z]\\w+)*)\\s*([:~<>])\\s*(((?!,).)*)\\s*,\\s*");
+        Pattern pattern = Pattern.compile("([a-z]\\w+(\\.[a-z]\\w+)*)\\s*([:~<>^])\\s*(((?!,).)*)\\s*,\\s*");
         Matcher matcher = pattern.matcher(search + ",");
         boolean patternTrue = false;
         while (matcher.find()) {

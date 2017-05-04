@@ -1,7 +1,6 @@
 package com.sinno.ems.mapper;
 
 import com.sinno.ems.dto.Acte;
-import com.sinno.ems.dto.MaintenancePlan;
 import com.sinno.ems.entities.TmsActe;
 
 import java.util.*;
@@ -47,8 +46,9 @@ public class ActeMapper {
         tmsActe.setTmsActeDescription(acte.getDescription());
         tmsActe.setTmsActedateLastAct(acte.getDateLastAct());
         tmsActe.setTmsActePeriodicity(acte.getPeriodicity());
+        tmsActe.setTmsActeDuration(acte.getDuration());
         if (!lazy) {
-        tmsActe.setTmsActeMaintenancePlan(MaintenancePlanMapper.toEntities(acte.getMaintenancePlans(),true));
+           // tmsActe.setTmsActeMaintenancePlan(MaintenancePlanMapper.toEntities(acte.getMaintenancePlans(), true));
         }
         return tmsActe;
 
@@ -63,13 +63,15 @@ public class ActeMapper {
         acte.setCode(tmsActe.getTmsActeCode());
         acte.setNature(tmsActe.getTmsActeNature());
         acte.setDescription(tmsActe.getTmsActeNature());
-        acte.setDateLastAct(acte.getDateLastAct());
-        acte.setPeriodicity(acte.getPeriodicity());
-        if(!lazy){
-        acte.setMaintenancePlans(MaintenancePlanMapper.toDtos(tmsActe.getTmsActeMaintenancePlan(),true));
+        acte.setDateLastAct(tmsActe.getTmsActedateLastAct());
+        acte.setPeriodicity(tmsActe.getTmsActePeriodicity());
+        acte.setDuration(tmsActe.getTmsActeDuration());
+        if (!lazy) {
+           // acte.setMaintenancePlans(MaintenancePlanMapper.toDtos(tmsActe.getTmsActeMaintenancePlan(), true));
         }
         return acte;
     }
+
     public static List<Acte> toDtos(List<TmsActe> tmsActes, boolean lazy) {
         if (null == tmsActes) {
             return null;
@@ -81,6 +83,7 @@ public class ActeMapper {
         }
         return actes;
     }
+
     public static List<Acte> toDtos(Iterable<TmsActe> tmsActes, boolean lazy) {
         if (null == tmsActes) {
             return null;
@@ -91,23 +94,25 @@ public class ActeMapper {
         }
         return actes;
     }
-    public static Set<TmsActe> toEntities(Set<Acte>actes, boolean lazy){
+
+    public static Set<TmsActe> toEntities(Set<Acte> actes, boolean lazy) {
         if (null == actes) {
             return null;
         }
         Set<TmsActe> tmsActes = new HashSet<>();
-        for(Acte acte:actes){
-            tmsActes.add(toEntity(acte,lazy));
+        for (Acte acte : actes) {
+            tmsActes.add(toEntity(acte, lazy));
         }
         return tmsActes;
     }
-    public static Set<Acte> toDtos(Set<TmsActe> tmsActes, boolean lazy){
-        if(null == tmsActes){
+
+    public static Set<Acte> toDtos(Set<TmsActe> tmsActes, boolean lazy) {
+        if (null == tmsActes) {
             return null;
         }
         Set<Acte> actes = new HashSet<>();
-        for(TmsActe tmsDriver: tmsActes){
-            actes.add(toDto(tmsDriver,lazy));
+        for (TmsActe tmsDriver : tmsActes) {
+            actes.add(toDto(tmsDriver, lazy));
         }
         return actes;
     }

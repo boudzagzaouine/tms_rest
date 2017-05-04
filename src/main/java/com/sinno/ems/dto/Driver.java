@@ -2,7 +2,6 @@ package com.sinno.ems.dto;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -13,22 +12,18 @@ public class Driver implements Serializable {
     private long id;
     private String code;
     private String passportNumber;
-    private String passportLink;
-    private String lastName;
-    private String firstName;
-    private Date birthDay;
-    private String cellPhone;
+
     private Set<Incident> incidents;
     private Set<Road> roads;
     private Set<Badge> badges;
-    private Adresse adresse;
+    private Address address;
     private DriverSituation driverSituation;
-    //TODO add contact
+    private Contact contact;
     private Date dateCreation;
     private Date dateUpDate;
     private User creationUser;
     private User upDateUser;
-    private Set<DriverBadge>driverBadges;
+    private Set<DriverBadge> driverBadges;
 
 
     public DriverSituation getDriverSituation() {
@@ -63,46 +58,6 @@ public class Driver implements Serializable {
         this.passportNumber = passportNumber;
     }
 
-    public String getPassportLink() {
-        return passportLink;
-    }
-
-    public void setPassportLink(String passportLink) {
-        this.passportLink = passportLink;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public Date getBirthDay() {
-        return birthDay;
-    }
-
-    public void setBirthDay(Date birthDay) {
-        this.birthDay = birthDay;
-    }
-
-    public String getCellPhone() {
-        return cellPhone;
-    }
-
-    public void setCellPhone(String cellPhone) {
-        this.cellPhone = cellPhone;
-    }
-
     public Set<Incident> getIncidents() {
         return incidents;
     }
@@ -127,12 +82,12 @@ public class Driver implements Serializable {
         this.badges = badges;
     }
 
-    public Adresse getAdresse() {
-        return adresse;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAdresse(Adresse adresse) {
-        this.adresse = adresse;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public Date getDateCreation() {
@@ -173,6 +128,14 @@ public class Driver implements Serializable {
 
     public void setDriverBadges(Set<DriverBadge> driverBadges) {
         this.driverBadges = driverBadges;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
     @Override

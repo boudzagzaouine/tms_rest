@@ -35,7 +35,7 @@ public class TmsNatureIncident implements java.io.Serializable  {
     public void setIncNatureIncidentId(long tmsNatureIncidentId) {
         this.tmsNatureIncidentId = tmsNatureIncidentId;
     }
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "prmIncidentNature")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsIncidentNature")
 
     public Set<TmsIncident> getIncidents() {
         return tmsidents;

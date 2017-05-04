@@ -12,14 +12,16 @@ import com.sinno.ems.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 
 /**
  * Created by bouzi on 4/4/2017.
  */
+@Service
 public class VehicleTypeServiceImpl implements VehicleTypeService {
     @Autowired
     private VehicleTypeRepository vehicleTypeRepository;

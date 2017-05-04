@@ -64,7 +64,7 @@ public class VehicleMapper {
 
         if (!lazy) {
 
-            tmsVehicle.setTmsVehicleBadges((BadgeMapper.toEntities(vehicule.getBadges(),true)));
+            tmsVehicle.setTmsBadge((BadgeMapper.toEntity(vehicule.getBadge(),true)));
             tmsVehicle.setTmsVehiclePoliceAssurance(PoliceInsuranceMapper.toEntity(vehicule.getPoliceAssurance(),true));
             tmsVehicle.setTmsVehicleMaintenancePlan(MaintenancePlanMapper.toEntity(vehicule.getMaintenancePlan(),true));
             tmsVehicle.setTmsVehicleCreationUser(UserMapper.toEntity(vehicule.getCreationUser(),true));
@@ -92,7 +92,7 @@ public class VehicleMapper {
         vehicule.setDateUpDate(tmsVehicle.getTmsVehicleDateUpDate());
 
         if (!lazy) {
-           vehicule.setBadges(BadgeMapper.toDtos(tmsVehicle.getTmsVehicleBadges(),true));
+           vehicule.setBadge(BadgeMapper.toDto(tmsVehicle.getTmsBadge(),true));
            vehicule.setPoliceAssurance(PoliceInsuranceMapper.toDto(tmsVehicle.getTmsVehiclePoliceAssurance(),true));
            vehicule.setMaintenancePlan(MaintenancePlanMapper.toDto(tmsVehicle.getTmsVehicleMaintenancePlan(),true));
            vehicule.setCreationUser(UserMapper.toDto(tmsVehicle.getTmsVehicleCreationUser(),true));

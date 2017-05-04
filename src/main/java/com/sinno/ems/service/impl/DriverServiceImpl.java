@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-
 import java.util.List;
 
 /**
@@ -32,10 +31,10 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public Driver save(Driver driver) {
         LOGGER.info("save Driver");
-        driver.setBirthDay(EmsDate.getDateNow());
+        driver.setDateUpDate(EmsDate.getDateNow());
         if(0<=driver.getId())
         {
-            driver.setBirthDay(EmsDate.getDateNow());
+            driver.setDateCreation(EmsDate.getDateNow());
         }
         return DriverMapper.toDto(driverRepository.saveAndFlush(DriverMapper.toEntity(driver, false)), false);
     }

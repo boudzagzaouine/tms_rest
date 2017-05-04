@@ -54,7 +54,7 @@ public class ConstraintException extends Exception {
                 String target = matcher.group(4) + "";
                 target=TableNames.getField(StringUtils.uncapitalize(target));
                 path =  TableNames.getField(StringUtils.uncapitalize(path));
-                String message = path +  " " + "est liï¿½ avec " + " " + target;
+                String message = path +  " " + "est lié avec " + " " + target;
                 Validator validator = new Validator();
                 validator.setField(field);
                 validator.setMessage(message);
@@ -62,7 +62,7 @@ public class ConstraintException extends Exception {
                 validators.add(validator);
             }
         } else if (msgCause.toLowerCase().indexOf("unique") > -1) {
-            Pattern pattern = Pattern.compile("(ERROR).*\\n.*Key \\((\\w+)\\)(.*)");
+            Pattern pattern = Pattern.compile("(ERROR||EURREUR).*\\n.*Key \\((\\w+)\\)(.*)");
             matcher = pattern.matcher(cause.getMessage());
             while (matcher.find()) {
                 String field = matcher.group(1) + "";
@@ -72,10 +72,10 @@ public class ConstraintException extends Exception {
                 String message =  " " ;
 
                 while(m.find()) {
-                    message= m.group(1)+" existe dï¿½ja";
+                    message= m.group(1)+" existe déja";
                 }
                 if (" ".equals(message)) {
-                	message = "Action impossible, cet objet existe dï¿½ja.";
+                	message = "Action impossible, cet objet existe déja.";
                 }
                 Validator validator = new Validator();
                 validator.setField(field);
@@ -84,14 +84,12 @@ public class ConstraintException extends Exception {
             }
 
         } else {
-            String	message = "Action impossible, cet objet est liï¿½ ï¿½ un enregistrement.";
+            String	message = "Action impossible, cet objet est lié à un enregistrement.";
             Validator validator = new Validator();
             validator.setField("");
             validator.setMessage(message);
             validators.add(validator);
-        	
         }
-        
     }
 
     @Override

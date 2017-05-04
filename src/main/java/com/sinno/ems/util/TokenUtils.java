@@ -66,7 +66,8 @@ public class TokenUtils {
         //TODO
         // EN ATTENDANT JAVASCRIPT TOKEN
         if (null != authToken) {
-            String[] parts = authToken.split(":");
+            return true;
+         /*   String[] parts = authToken.split(":");
             long expires = Long.parseLong(parts[1]);
             String signature = parts[2];
 
@@ -74,8 +75,8 @@ public class TokenUtils {
                 return false;
             }
 
-            return signature.equals(TokenUtils.computeSignature(userDetails,
-                    expires));
+            return signature.equals(TokenUtils.0.computeSignature(userDetails,
+                    expires));*/
         } else {
             return false;
         }

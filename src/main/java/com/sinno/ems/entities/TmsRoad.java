@@ -13,6 +13,8 @@ import java.util.Set;
  * Created by bouzi on 3/15/2017.
  *
  */
+@Entity
+@Table(name="tms_road")
 public class TmsRoad implements Serializable {
 
     private long tmsRoadId;
@@ -35,7 +37,7 @@ public class TmsRoad implements Serializable {
     @NotNull
     private TmsDriver tmsRoadSuppleantDriver;
     @NotNull
-    private Set<Delivery> tmsRoadDelivery;
+    private Set<CmdDelivery> cmdDeliveries;
     @NotNull
     private TmsVehicle tmsRoadVehicle;
 
@@ -104,7 +106,7 @@ public class TmsRoad implements Serializable {
         this.tmsRoadPrincialDriver = tmsRoadPrincialDriver;
     }
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_roaddriverid", nullable = false)
+    @JoinColumn(name = "tms_roadsecondarydriverid", nullable = false)
     public TmsDriver getTmsRoadSuppleantDriver() {
         return tmsRoadSuppleantDriver;
     }
@@ -112,14 +114,16 @@ public class TmsRoad implements Serializable {
     public void setTmsRoadSuppleantDriver(TmsDriver tmsRoadSuppleantDriver) {
         this.tmsRoadSuppleantDriver = tmsRoadSuppleantDriver;
     }
-    //TODO@OneToMany(fetch = FetchType.LAZY,mappedBy = "")
-    public Set<Delivery> getTmsRoadDelivery() {
-        return tmsRoadDelivery;
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsRoad")
+    public Set<CmdDelivery> getCmdDeliveries() {
+        return cmdDeliveries;
     }
 
-    public void setTmsRoadDelivery(Set<Delivery> tmsRoadDelivery) {
-        this.tmsRoadDelivery = tmsRoadDelivery;
+    public void setCmdDeliveries(Set<CmdDelivery> cmdDeliveries) {
+        this.cmdDeliveries = cmdDeliveries;
     }
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_roadvehicleid", nullable = false)
 

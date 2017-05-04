@@ -1,5 +1,7 @@
 package com.sinno.ems.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -28,14 +30,17 @@ public class TmsPoliceInsurance implements Serializable {
     @NotNull
 
     private String tmsPoliceInsurancePhoneNumber;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
 
     private Date tmsPoliceInsuranceStartDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
 
     private Date tmsPoliceInsuranceEndDate;
 
-    public TmsPoliceInsurance(){
+    public TmsPoliceInsurance() {
 
     }
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
@@ -48,12 +53,6 @@ public class TmsPoliceInsurance implements Serializable {
         this.tmsPoliceInsuranceId = tmsPoliceInsuranceId;
     }
 
-    public void setVehicules(TmsVehicle vehicules) {
-        this.vehicules = vehicules;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_policeinsuranceid", nullable = false)
 
     @Column(name = "tms_policeinsurancecode", nullable = false, length = 30)
 
@@ -65,7 +64,7 @@ public class TmsPoliceInsurance implements Serializable {
         this.tmsPoliceInsuranceCode = tmsPoliceInsuranceCode;
     }
 
-    @Column(name = "tms_policeinsuranceNumber", nullable = false, length = 30)
+    @Column(name = "tms_policeinsurancenumber", nullable = false, length = 30)
     public String getTmsPoliceInsuranceNumber() {
         return tmsPoliceInsuranceNumber;
     }
@@ -74,7 +73,7 @@ public class TmsPoliceInsurance implements Serializable {
         this.tmsPoliceInsuranceNumber = tmsPoliceInsuranceNumber;
     }
 
-    @Column(name = "tms_policeinsuranceType", nullable = false, length = 30)
+    @Column(name = "tms_policeinsurancetype", nullable = false, length = 30)
 
     public String getTmsPoliceInsuranceType() {
         return tmsPoliceInsuranceType;
@@ -112,12 +111,15 @@ public class TmsPoliceInsurance implements Serializable {
     public void setTmsPoliceInsuranceEndDate(Date tmsPoliceInsuranceEndDate) {
         this.tmsPoliceInsuranceEndDate = tmsPoliceInsuranceEndDate;
     }
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "tms_policeinsurancevehicle")
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_policeinsurancevehicleid")
 
     public TmsVehicle getVehicules() {
         return vehicules;
     }
 
-
+    public void setVehicules(TmsVehicle vehicules) {
+        this.vehicules = vehicules;
+    }
 }

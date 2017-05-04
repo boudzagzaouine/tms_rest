@@ -10,26 +10,25 @@ import java.util.List;
 
 public interface ColorService {
 
+    public Color save(Color color);
 
-    Color save(Color color);
+    public Long size();
 
-    Long size();
+    public Boolean isExist(Long id);
 
-    Boolean isExist(Long id);
+    public Color findById(Long id) throws IdNotFound;
 
-    Color findById(Long id) throws IdNotFound;
+    public List<Color> find(String search) throws AttributesNotFound, ErrorType;
 
-    List<Color> find(String search) throws AttributesNotFound, ErrorType;
+    public List<Color> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType;
 
-    List<Color> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType;
+    public Long size(String search) throws AttributesNotFound, ErrorType;
 
-    Long size(String search) throws AttributesNotFound, ErrorType;
+    public void delete(Long id);
 
-    void delete(Long id);
+    public void delete(Color color);
 
-    void delete(Color color);
+    public List<Color> findAll();
 
-    List<Color> findAll();
-
-    List<Color> findAll(Pageable pageable);
+    public List<Color> findAll(Pageable pageable);
 }

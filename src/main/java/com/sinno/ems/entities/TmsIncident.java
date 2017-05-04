@@ -35,7 +35,6 @@ public class TmsIncident implements java.io.Serializable {
     public void setTmsIncidentId(long tmsIncidentId) {
         this.tmsIncidentId = tmsIncidentId;
     }
-    @ManyToOne(fetch = FetchType.LAZY)
     @Column(name = "tms_incidentcode", nullable = false, length = 30)
 
     public String getTmsIncidentCode() {
@@ -64,7 +63,8 @@ public class TmsIncident implements java.io.Serializable {
     public void setTmsIncidentDescription(String tmsIncidentDescription) {
         this.tmsIncidentDescription = tmsIncidentDescription;
     }
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="tms_incidentnatureid")
     public TmsNatureIncident getTmsIncidentNature() {
         return tmsIncidentNature;
     }

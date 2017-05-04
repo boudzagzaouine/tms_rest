@@ -1,8 +1,6 @@
 package com.sinno.ems.entities;
 
 import javax.persistence.*;
-
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -12,18 +10,17 @@ import java.util.Set;
  * Created by khalil on 16/03/2017.
  */
 @Entity
-@Table(name = "tms_driver", uniqueConstraints = @UniqueConstraint(columnNames = {"tms_driverecode","tms_driverid"}))
+@Table(name = "tms_driver")
 
-public class TmsDriver implements java.io.Serializable{
+public class TmsDriver implements java.io.Serializable {
     private long tmsDriverId;
 
     @Size(max = 255)
     private String tmsDriverPassportNumber;
-
+    private PrmContact prmContact;
     private Set<TmsIncident> pincidents;
-    private Set<TmsBadge> pbadges;
-    //  private Adresse adresse;
-  private Date tmsDriverDateCreation;
+     private AdrAddress adrAddress;
+    private Date tmsDriverDateCreation;
     private Date tmsDriverDateUpDate;
     private UsrUser tmsDriverCreationUser;
     private UsrUser tmsDriverUpDateUser;
@@ -47,16 +44,7 @@ public class TmsDriver implements java.io.Serializable{
     }
 
 
-    /* @Column(name = "tms_drivercode", nullable = false, length = 20)
 
-   public String getTmsDriverCode() {
-        return tmsDriverCode;
-    }
-
-    public void setTmsDriverCode(String tmsDriverCode) {
-        this.tmsDriverCode = tmsDriverCode;
-    }
-    */
 
     @Column(name = "tms_driverpassportNumber", nullable = false, length = 20)
 
@@ -67,54 +55,9 @@ public class TmsDriver implements java.io.Serializable{
     public void setTmsDriverPassportNumber(String tmsDriverPassportNumber) {
         this.tmsDriverPassportNumber = tmsDriverPassportNumber;
     }
-    /*  @Column(name = "tms_driverpassportLink", nullable = false, length = 20)
-/*
-      public String getTmsDriverPassportLink() {
-          return tmsDriverPassportLink;
-      }
 
-      public void setTmsDriverPassportLink(String tmsDriverPassportLink) {
-          this.tmsDriverPassportLink = tmsDriverPassportLink;
-      }
-    @Column(name = "tms_tmsDriverLastName", nullable = false, length = 20)
 
-    public String getTmsDriverLastName() {
-        return tmsDriverLastName;
-    }
-
-    public void setTmsDriverLastName(String tmsDriverLastName) {
-        this.tmsDriverLastName = tmsDriverLastName;
-    }
-    @Column(name = "tms_tmsDriverFirstName", nullable = false, length = 20)
-
-    public String getTmsDriverFirstName() {
-        return tmsDriverFirstName;
-    }
-
-    public void setTmsDriverFirstName(String tmsDriverFirstName) {
-        this.tmsDriverFirstName = tmsDriverFirstName;
-    }
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "tms_tmsDriverBirthDay")
-
-    public Date getTmsDriverBirthDay() {
-        return tmsDriverBirthDay;
-    }
-
-    public void setTmsDriverBirthDay(Date tmsDriverBirthDay) {
-        this.tmsDriverBirthDay = tmsDriverBirthDay;
-    }
-    @Column(name = "tms_tmsDriverCellPhone", nullable = false, length = 20)
-
-    public String getTmsDriverCellPhone() {
-        return tmsDriverCellPhone;
-    }
-
-    public void setTmsDriverCellPhone(String tmsDriverCellPhone) {
-        this.tmsDriverCellPhone = tmsDriverCellPhone;
-    }*/
-
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsIncidentDriver")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tmsIncidentDriver")
 
     public Set<TmsIncident> getPincidents() {
         return pincidents;
@@ -123,37 +66,8 @@ public class TmsDriver implements java.io.Serializable{
     public void setPincidents(Set<TmsIncident> pincidents) {
         this.pincidents = pincidents;
     }
-   /* @Column(name="tms_roadDriver",nullable=false)
-
-    public Set<TmsRoad> getProads() {
-        return proads;
-    }
-
-    public void setProads(Set<TmsRoad> proads) {
-        this.proads = proads;
-    }*/
-
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsBadgeDriver")
-    public Set<TmsBadge> getPbadges() {
-        return pbadges;
-    }
-
-    public void setPbadges(Set<TmsBadge> pbadges) {
-        this.pbadges = pbadges;
-    }
 
 
-
-    /*
-        @Column(name="tms_adresseDriver",nullable=false)
-
-        public Adresse getAdresse() {
-            return adresse;
-        }
-
-        public void setAdresse(Adresse adresse) {
-            this.adresse = adresse;
-        }*/
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_driversituationid")
     public TmsDriverSituation getTmsDriverSituation() {
@@ -163,6 +77,7 @@ public class TmsDriver implements java.io.Serializable{
     public void setTmsDriverSituation(TmsDriverSituation tmsDriverSituation) {
         this.tmsDriverSituation = tmsDriverSituation;
     }
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "tms_driverdatecreation")
     public Date getTmsDriverDateCreation() {
@@ -172,6 +87,7 @@ public class TmsDriver implements java.io.Serializable{
     public void setTmsDriverDateCreation(Date tmsDriverDateCreation) {
         this.tmsDriverDateCreation = tmsDriverDateCreation;
     }
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "tms_driverdateupdate")
     public Date getTmsDriverDateUpDate() {
@@ -181,6 +97,7 @@ public class TmsDriver implements java.io.Serializable{
     public void setTmsDriverDateUpDate(Date tmsDriverDateUpDate) {
         this.tmsDriverDateUpDate = tmsDriverDateUpDate;
     }
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_drivercreationuserid")
     public UsrUser getTmsDriverCreationUser() {
@@ -190,6 +107,7 @@ public class TmsDriver implements java.io.Serializable{
     public void setTmsDriverCreationUser(UsrUser tmsDriverCreationUser) {
         this.tmsDriverCreationUser = tmsDriverCreationUser;
     }
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_driverupdateuserid")
     public UsrUser getTmsDriverUpDateUser() {
@@ -199,12 +117,31 @@ public class TmsDriver implements java.io.Serializable{
     public void setTmsDriverUpDateUser(UsrUser tmsDriverUpDateUser) {
         this.tmsDriverUpDateUser = tmsDriverUpDateUser;
     }
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsDriverBadgeBadge")
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tmsDriverBadgeDriver")
     public Set<TmsDriverBadge> getTmsDriverBadges() {
         return tmsDriverBadges;
     }
 
     public void setTmsDriverBadges(Set<TmsDriverBadge> tmsDriverBadges) {
         this.tmsDriverBadges = tmsDriverBadges;
+    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="tms_driveraddressid")
+    public AdrAddress getAdrAddress() {
+        return adrAddress;
+    }
+
+    public void setAdrAddress(AdrAddress adrAddress) {
+        this.adrAddress = adrAddress;
+    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="tms_drivercontactid")
+    public PrmContact getPrmContact() {
+        return prmContact;
+    }
+
+    public void setPrmContact(PrmContact prmContact) {
+        this.prmContact = prmContact;
     }
 }

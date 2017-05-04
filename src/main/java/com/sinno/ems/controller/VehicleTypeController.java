@@ -21,7 +21,7 @@ import java.util.List;
  * Created by bouzi on 4/4/2017.
  */
 @Controller
-@RequestMapping(value = "/vehicleType/")
+@RequestMapping(value = "/vehicleTypes/")
 public class VehicleTypeController {
     @Autowired
     private VehicleTypeService vehicleTypeService;

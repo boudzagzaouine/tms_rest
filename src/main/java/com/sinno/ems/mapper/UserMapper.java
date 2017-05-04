@@ -1,6 +1,8 @@
 package com.sinno.ems.mapper;
 
+import com.sinno.ems.dto.Agency;
 import com.sinno.ems.dto.User;
+import com.sinno.ems.dto.UserAgency;
 import com.sinno.ems.entities.UsrUser;
 
 import java.util.*;
@@ -46,7 +48,27 @@ public class UserMapper {
             return null;
         }
         UsrUser usrUser = new UsrUser();
-
+        usrUser.setUsrUserId(user.getId());
+        usrUser.setUsrUserCode(user.getCode() != null ? user.getCode().toUpperCase() : null);
+        usrUser.setUsrUserPassword(user.getPassword());
+        usrUser.setUsrUserName(user.getName());
+        usrUser.setUsrUserSurname(user.getSurname());
+        usrUser.setUsrUserDateOfBirth(user.getDateOfBirth());
+        usrUser.setUsrUserTel(user.getTel());
+        usrUser.setUsrUserPassport(user.getPassport());
+        usrUser.setUsrUserComment(user.getComment());
+        usrUser.setUsrUserIsActive(user.isActive());
+        usrUser.setUsrUserCreationDate(user.getCreationDate());
+        usrUser.setUsrUserUpdateDate(user.getUpdateDate());
+        usrUser.setUsrUserEmail(user.getEmail());
+        usrUser.setUsrUserType(user.getType());
+        if (!lazy) {
+            usrUser.setUsrAgency(AgencyMapper.toEntity(user.getAgency(), false));
+            usrUser.setUsrUserAgencies(UserAgencyMapper.toEntities(user.getAgencies(), false));
+            usrUser.setUsrUserGroup(UserGroupMapper.toEntity(user.getUserGroup(), false));
+            usrUser.setOwnOwner(OwnerMapper.toEntity(user.getOwner(), true));
+            usrUser.setUsrUserActions(UserActionsMapper.toEntities(user.getUserActions(), true));
+        }
         return usrUser;
     }
 
@@ -55,7 +77,27 @@ public class UserMapper {
             return null;
         }
         User user = new User();
-
+        user.setId(usrUser.getUsrUserId());
+        user.setCode(usrUser.getUsrUserCode());
+        user.setPassword(usrUser.getUsrUserPassword());
+        user.setName(usrUser.getUsrUserName());
+        user.setSurname(usrUser.getUsrUserSurname());
+        user.setDateOfBirth(usrUser.getUsrUserDateOfBirth());
+        user.setTel(usrUser.getUsrUserTel());
+        user.setPassport(usrUser.getUsrUserPassport());
+        user.setComment(usrUser.getUsrUserComment());
+        user.setActive(usrUser.getUsrUserIsActive());
+        user.setCreationDate(usrUser.getUsrUserCreationDate());
+        user.setUpdateDate(usrUser.getUsrUserUpdateDate());
+        user.setEmail(usrUser.getUsrUserEmail());
+        user.setType(usrUser.getUsrUserType());
+        if (!lazy) {
+            user.setAgency(AgencyMapper.toDto(usrUser.getUsrAgency(),false));
+            user.setAgencies(UserAgencyMapper.toDtos(usrUser.getUsrUserAgencies(), false));
+            user.setUserGroup(UserGroupMapper.toDto(usrUser.getUsrUserGroup(), false));
+            user.setOwner(OwnerMapper.toDto(usrUser.getOwnOwner(), true));
+            user.setUserActions(UserActionsMapper.toDtos(usrUser.getUsrUserActions(), true));
+        }
         return user;
     }
 

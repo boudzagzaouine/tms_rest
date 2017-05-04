@@ -1,9 +1,9 @@
 package com.sinno.ems.mapper;
 
+import com.sinno.ems.dto.Address;
 import com.sinno.ems.dto.Driver;
 import com.sinno.ems.entities.TmsDriver;
 
-import java.util.HashMap;
 import java.util.*;
 
 /**
@@ -23,6 +23,8 @@ public class DriverMapper {
         map.put("driversituation", "tmsDriverSituation");
         map.put("dateCreation", "tmsDriverDateCreation");
         map.put("dateUpDate", "tmsDriverDateUpDate");
+        map.put("contact","prmContact");
+        map.put("address","prmAddress");
         map.put("creationUser", "tmsDriverCreationUser");
         map.put("upDateUser", "tmsDriverUpDateUser");
 
@@ -47,8 +49,9 @@ public class DriverMapper {
         tmsDriver.setTmsDriverDateCreation(driver.getDateCreation());
         tmsDriver.setTmsDriverDateUpDate(driver.getDateUpDate());
         if (!lazy) {
+            tmsDriver.setAdrAddress(AddressMapper.toEntity(driver.getAddress(),true));
+            tmsDriver.setPrmContact(ContactMapper.toEntity(driver.getContact(),true));
             tmsDriver.setPincidents(IncidentMapper.toEntities(driver.getIncidents(),true));
-            tmsDriver.setPbadges(BadgeMapper.toEntities(driver.getBadges(),true));
             tmsDriver.setTmsDriverSituation(DriverSituationMapper.toEntity(driver.getDriverSituation(),true));
             tmsDriver.setTmsDriverCreationUser(UserMapper.toEntity(driver.getCreationUser(),true));
             tmsDriver.setTmsDriverUpDateUser(UserMapper.toEntity(driver.getUpDateUser(),true));
@@ -67,8 +70,9 @@ public class DriverMapper {
         driver.setDateUpDate(tmsDriver.getTmsDriverDateUpDate());
 
         if (!lazy) {
+            driver.setContact(ContactMapper.toDto(tmsDriver.getPrmContact(),true));
+            driver.setAddress(AddressMapper.toDto(tmsDriver.getAdrAddress(),true));
             driver.setIncidents(IncidentMapper.toDtos(tmsDriver.getPincidents(),true));
-            driver.setBadges(BadgeMapper.toDtos(tmsDriver.getPbadges(),true));
             driver.setDriverSituation(DriverSituationMapper.toDto(tmsDriver.getTmsDriverSituation(),true));
             driver.setCreationUser(UserMapper.toDto(tmsDriver.getTmsDriverCreationUser(),true));
             driver.setUpDateUser(UserMapper.toDto(tmsDriver.getTmsDriverUpDateUser(),true));

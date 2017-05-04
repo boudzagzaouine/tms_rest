@@ -12,9 +12,9 @@ import com.sinno.ems.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 /**
@@ -41,7 +41,7 @@ public class PoliceInsuranceServiceImpl implements PoliceInsuranceService {
         return policeInsuranceRepository.exists(id);
     }
     @Override
-    public PoliceAssurance findById(Long id)throws IdNotFound{
+    public PoliceAssurance findById(Long id)throws IdNotFound {
         PoliceAssurance policeAssurance = PoliceInsuranceMapper.toDto(policeInsuranceRepository.findOne(id),false);
         if(null != policeAssurance){
             return policeAssurance;
@@ -50,15 +50,15 @@ public class PoliceInsuranceServiceImpl implements PoliceInsuranceService {
         }
     }
     @Override
-    public List<PoliceAssurance> find(String search)throws AttributesNotFound,ErrorType{
+    public List<PoliceAssurance> find(String search)throws AttributesNotFound,ErrorType {
         return PoliceInsuranceMapper.toDtos(policeInsuranceRepository.findAll(Search.expression(search,TmsPoliceInsurance.class)), false);
     }
     @Override
-    public List<PoliceAssurance>find(String search, Pageable pageable)throws AttributesNotFound,ErrorType{
+    public List<PoliceAssurance>find(String search, Pageable pageable)throws AttributesNotFound,ErrorType {
         return PoliceInsuranceMapper.toDtos(policeInsuranceRepository.findAll(Search.expression(search,TmsPoliceInsurance.class),pageable),false);
     }
     @Override
-    public Long size(String search)throws AttributesNotFound,ErrorType{
+    public Long size(String search)throws AttributesNotFound,ErrorType {
         return policeInsuranceRepository.count(Search.expression(search , TmsPoliceInsurance.class));
     }
     @Override

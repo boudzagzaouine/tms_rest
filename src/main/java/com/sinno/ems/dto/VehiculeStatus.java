@@ -10,7 +10,7 @@ public class VehiculeStatus implements Serializable {
     private long id;
     private String codeStatusVehicule;
     private String activity; //roulant, disponible, en maintenance, Indisponible
-    private String descritpion;
+    private String description;
     private Set<Vehicule> vehicules;
 
     public Set<Vehicule> getVehicules() {
@@ -45,12 +45,12 @@ public class VehiculeStatus implements Serializable {
         this.activity = activity;
     }
 
-    public String getDescritpion() {
-        return descritpion;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescritpion(String descritpion) {
-        this.descritpion = descritpion;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override

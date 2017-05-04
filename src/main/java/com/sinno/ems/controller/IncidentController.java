@@ -20,7 +20,7 @@ import java.util.List;
  * Created by khalil on 04/04/2017.
  */
 @Controller
-@RequestMapping(value="/drivers")
+@RequestMapping(value="/incidents")
 public class IncidentController {
     @Autowired
     private IncidentService incidentService;

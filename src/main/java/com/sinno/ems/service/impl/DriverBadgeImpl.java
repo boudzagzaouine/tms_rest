@@ -7,7 +7,6 @@ import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.DriverBadgeMapper;
 import com.sinno.ems.repositories.DriverBadgeRepository;
-
 import com.sinno.ems.service.DriverBadgeService;
 import com.sinno.ems.util.Search;
 import org.slf4j.Logger;
@@ -42,7 +41,7 @@ public class DriverBadgeImpl implements DriverBadgeService {
         return driverBadgeRepository.exists(id);
     }
     @Override
-    public DriverBadge findById(Long id) throws IdNotFound{
+    public DriverBadge findById(Long id) throws IdNotFound {
         DriverBadge driverBadge = DriverBadgeMapper.toDto(driverBadgeRepository.findOne(id), false);
         if (null != driverBadge) {
             return driverBadge;

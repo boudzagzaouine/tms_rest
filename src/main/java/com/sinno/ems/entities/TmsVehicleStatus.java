@@ -9,6 +9,8 @@ import java.util.Set;
 /**
  * Created by bouzi on 3/15/2017.
  */
+@Entity
+@Table(name="tms_vehiculestatus")
 public class TmsVehicleStatus implements Serializable {
     private long tmsVehiculeStatusId;
     @Size(max = 30)

@@ -1,12 +1,13 @@
 package com.sinno.ems.service.impl;
 
 import com.sinno.ems.dto.Color;
-import com.sinno.ems.entities.TmsColor;
+import com.sinno.ems.entities.PrmColor;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.ColorMapper;
 import com.sinno.ems.repositories.ColorRepository;
+import com.sinno.ems.service.AddressService;
 import com.sinno.ems.service.ColorService;
 import com.sinno.ems.util.EmsDate;
 import com.sinno.ems.util.Search;
@@ -25,8 +26,6 @@ public class ColorServiceImpl implements ColorService {
     private ColorRepository colorRepository;
     private final static Logger LOGGER = LoggerFactory
             .getLogger(ColorService.class);
-
-
 
     @Override
     public Color save(Color color) {
@@ -61,17 +60,17 @@ public class ColorServiceImpl implements ColorService {
 
     @Override
     public List<Color> find(String search) throws AttributesNotFound, ErrorType {
-        return ColorMapper.toDtos(colorRepository.findAll(Search.expression(search, TmsColor.class)), false);
+        return ColorMapper.toDtos(colorRepository.findAll(Search.expression(search, PrmColor.class)), false);
     }
 
     @Override
     public List<Color> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
-        return ColorMapper.toDtos(colorRepository.findAll(Search.expression(search, TmsColor.class), pageable), false);
+        return ColorMapper.toDtos(colorRepository.findAll(Search.expression(search, PrmColor.class), pageable), false);
     }
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        return colorRepository.count(Search.expression(search, TmsColor.class));
+        return colorRepository.count(Search.expression(search, PrmColor.class));
     }
 
     @Override

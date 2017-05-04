@@ -12,7 +12,7 @@ public class Badge implements Serializable {
     private String libelle;
     private String description;
     private Set<Vehicule> vehicules;
-    private Set<Driver> drivers;
+    private Set<DriverBadge> driverBadges;
 
     public long getId() {
         return id;
@@ -54,12 +54,12 @@ public class Badge implements Serializable {
         this.vehicules = vehicules;
     }
 
-    public Set<Driver> getDrivers() {
-        return drivers;
+    public Set<DriverBadge> getDriverBadges() {
+        return driverBadges;
     }
 
-    public void setDrivers(Set<Driver> drivers) {
-        this.drivers = drivers;
+    public void setDriverBadges(Set<DriverBadge> driverBadges) {
+        this.driverBadges = driverBadges;
     }
 
     @Override

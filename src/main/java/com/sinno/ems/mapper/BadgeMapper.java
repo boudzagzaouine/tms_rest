@@ -41,7 +41,7 @@ public class BadgeMapper {
         tmsBadge.setTmsBadgeDescription(badge.getDescription());
         tmsBadge.setTmsBadgeLibelle(badge.getLibelle());
         if (!lazy) {
-            tmsBadge.setTmsBadgeDriver(DriverMapper.toEntities(badge.getDrivers(),true));
+            tmsBadge.setTmsDriverBadges(DriverBadgeMapper.toEntities(badge.getDriverBadges(),true));
             tmsBadge.setTmsBadgeVehicule(VehicleMapper.toEntities(badge.getVehicules(),true));
         }
         return tmsBadge;
@@ -57,7 +57,7 @@ public class BadgeMapper {
         badge.setDescription(tmsBadge.getTmsBadgeDescription());
         badge.setLibelle(tmsBadge.getTmsBadgeLibelle());
         if (!lazy) {
-            badge.setDrivers(DriverMapper.toDtos(tmsBadge.getTmsBadgeDriver(),true));
+            badge.setDriverBadges(DriverBadgeMapper.toDtos(tmsBadge.getTmsDriverBadges(),true));
             badge.setVehicules(VehicleMapper.toDtos(tmsBadge.getTmsBadgeVehicule(),true));
 
         }

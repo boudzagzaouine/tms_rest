@@ -20,7 +20,7 @@ import java.util.List;
  * Created by khalil on 26/04/2017.
  */
 @Controller
-@RequestMapping(value="/driverbadge/")
+@RequestMapping(value="/driverbadges/")
 
 public class DriverBadgeController {
     @Autowired

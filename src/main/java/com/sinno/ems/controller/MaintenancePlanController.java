@@ -4,7 +4,6 @@ import com.sinno.ems.dto.MaintenancePlan;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.service.IncidentService;
 import com.sinno.ems.service.MaintenanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -21,7 +20,7 @@ import java.util.List;
  * Created by khalil on 04/04/2017.
  */
 @Controller
-@RequestMapping(value="/maintenances")
+@RequestMapping(value="/maintenancePlans")
 
 public class MaintenancePlanController {
     @Autowired

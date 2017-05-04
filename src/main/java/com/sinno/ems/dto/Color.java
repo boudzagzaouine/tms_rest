@@ -2,6 +2,7 @@ package com.sinno.ems.dto;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 public class Color implements Serializable {
 

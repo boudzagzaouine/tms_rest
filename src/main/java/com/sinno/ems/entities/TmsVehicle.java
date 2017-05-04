@@ -11,6 +11,8 @@ import java.util.Set;
 /**
  * Created by bouzi on 3/15/2017.
  */
+@Entity
+@Table(name = "tms_vehicule")
 public class TmsVehicle implements Serializable {
     private long tmsVehicleId;
     @Size(max = 30)
@@ -32,7 +34,7 @@ public class TmsVehicle implements Serializable {
     @NotNull
     private TmsVehicleType tmsVehicleType;
     @NotNull
-    private Set<TmsBadge> tmsVehicleBadges;
+    private TmsBadge tmsBadge;
     @NotNull
     private TmsPoliceInsurance tmsVehiclePoliceAssurance;
     @NotNull
@@ -129,14 +131,16 @@ public class TmsVehicle implements Serializable {
     public void setTmsVehicleType(TmsVehicleType tmsVehicleType) {
         this.tmsVehicleType = tmsVehicleType;
     }
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsBadgeVehicule")
-    public Set<TmsBadge> getTmsVehicleBadges() {
-        return tmsVehicleBadges;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="tms_vehiclebadgeid",nullable = false)
+    public TmsBadge getTmsBadge() {
+        return tmsBadge;
     }
 
-    public void setTmsVehicleBadges(Set<TmsBadge> tmsVehicleBadges) {
-        this.tmsVehicleBadges = tmsVehicleBadges;
+    public void setTmsBadge(TmsBadge tmsBadge) {
+        this.tmsBadge = tmsBadge;
     }
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_vehiclepoliceassuranceid", nullable = false)
     public TmsPoliceInsurance getTmsVehiclePoliceAssurance() {

@@ -11,6 +11,8 @@ import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 public class CriteriaPredicate {
@@ -133,6 +135,14 @@ public class CriteriaPredicate {
         if (Long.TYPE == type || Long.class == type || Integer.TYPE == type || Integer.class == type || Short.class == type || Short.TYPE == type) {
             NumberPath<Long> path = entityPath.getNumber(criteria.getKey(),
                     Long.class);
+            if(criteria.getOperation().equals("^")){
+                String[] split = criteria.getValue().toString().split(";") ;
+                ArrayList<Long> numbers=new ArrayList<Long>();
+                for(int i=0;i<split.length;i++){
+                    numbers.add(Long.valueOf(split[i]));
+                }
+                return path.in(numbers);
+            }
             Long valueLong = Long.parseLong(criteria.getValue().toString());
             if (criteria.getOperation().equalsIgnoreCase(":")) {
                 return path.eq(valueLong);

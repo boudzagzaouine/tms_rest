@@ -14,7 +14,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-
 import java.util.List;
 
 /**
@@ -32,7 +31,7 @@ public class ActeController {
     @PreAuthorize("hasAnyRole('ACTE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
-    public List<Acte> getActes(@RequestParam int page,@RequestParam int size){
+    public List<Acte> getActes(@RequestParam int page, @RequestParam int size){
         Sort sort = new Sort(Sort.Direction.DESC,"prmActedateLastAct");
         Pageable pageable = new PageRequest(page,size,sort);
         return acteService.findAll(pageable);

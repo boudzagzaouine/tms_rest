@@ -92,7 +92,6 @@ public class CentralControllerHandler {
         return new ResponseEntity<WarehouseException>(e,HttpStatus.SEE_OTHER);
     }
 
-
     @ExceptionHandler({IdNotFound.class})
     public ResponseEntity<IdNotFound> handleIdNotFound(IdNotFound pe) {
         return new ResponseEntity<IdNotFound>(pe, HttpStatus.SEE_OTHER);

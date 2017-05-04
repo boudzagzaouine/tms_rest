@@ -18,7 +18,7 @@ public class Vehicule implements Serializable {
     private String model;
     private VehiculeStatus status;
     private VehiculeType type;
-    private Set<Badge> badges;
+    private Badge badge;
     private PoliceAssurance policeAssurance;
     private MaintenancePlan maintenancePlan;
     private String matricule;
@@ -99,12 +99,12 @@ public class Vehicule implements Serializable {
         this.type = type;
     }
 
-    public Set<Badge> getBadges() {
-        return badges;
+    public Badge getBadge() {
+        return badge;
     }
 
-    public void setBadges(Set<Badge> badges) {
-        this.badges = badges;
+    public void setBadge(Badge badge) {
+        this.badge = badge;
     }
 
     public PoliceAssurance getPoliceAssurance() {

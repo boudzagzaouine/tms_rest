@@ -19,4 +19,289 @@ import java.util.Set;
 @Table(name = "usr_user", uniqueConstraints = @UniqueConstraint(columnNames = "usr_useremail"))
 public class UsrUser implements java.io.Serializable {
 
+    private static final long serialVersionUID = -3952175616242893842L;
+
+    private long usrUserId;
+    @NotNull
+    private OwnOwner ownOwner;
+    @NotNull
+    private UsrUserGroup usrUserGroup;
+    @Size(max = 30)
+    @NotNull
+    private String usrUserCode;
+    @Size(max = 100)
+    @NotNull
+    private String usrUserPassword;
+    @Size(max = 50)
+    private String usrUserName;
+    @Size(max = 50)
+    private String usrUserSurname;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
+    private Date usrUserDateOfBirth;
+    @Size(max = 20)
+    private String usrUserTel;
+    @Size(max = 50)
+    private String usrUserPassport;
+    @Size(max = 255)
+    private String usrUserComment;
+    private Boolean usrUserIsActive;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
+    private Date usrUserCreationDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
+    private Date usrUserUpdateDate;
+    @Size(max = 100)
+    @Email
+    @NotNull
+    private String usrUserEmail;
+    private Long usrUserType;
+    private Boolean usrUserCommercial;
+    private UsrAgency usrAgency;
+    private String userUserColumns;
+    private Set<UsrUserActions> usrUserActions = new HashSet<UsrUserActions>(0);
+    private Set<UsrUserAgency> usrUserAgencies = new HashSet<>(0);
+
+
+    public UsrUser() {
+    }
+
+    public UsrUser(long usrUserId, OwnOwner ownOwner,
+                   UsrUserGroup usrUsergroup, String usrUsercode,
+                   String usrUserpassword) {
+        this.usrUserId = usrUserId;
+        this.ownOwner = ownOwner;
+        this.usrUserGroup = usrUsergroup;
+        this.usrUserCode = usrUsercode;
+        this.usrUserPassword = usrUserpassword;
+    }
+
+    public UsrUser(long usrUserId, OwnOwner ownOwner,
+                   UsrUserGroup usrUsergroup, String usrUsercode,
+                   String usrUserpassword, String usrUsername, String usrUsersurname,
+                   Date usrUserdateofbirth, String usrUsertel, String usrUserpassport,
+                   String usrUsercomment, Boolean usrUserisactive,
+                   Date usrUsercreationdate, Date usrUserupdatedate,
+                   String usrUserEmail, Set<UsrUserActions> usrUseractionses) {
+        this.usrUserId = usrUserId;
+        this.ownOwner = ownOwner;
+        this.usrUserGroup = usrUsergroup;
+        this.usrUserCode = usrUsercode;
+        this.usrUserPassword = usrUserpassword;
+        this.usrUserName = usrUsername;
+        this.usrUserSurname = usrUsersurname;
+        this.usrUserDateOfBirth = usrUserdateofbirth;
+        this.usrUserTel = usrUsertel;
+        this.usrUserPassport = usrUserpassport;
+        this.usrUserComment = usrUsercomment;
+        this.usrUserIsActive = usrUserisactive;
+        this.usrUserCreationDate = usrUsercreationdate;
+        this.usrUserUpdateDate = usrUserupdatedate;
+        this.setUsrUserEmail(usrUserEmail);
+        this.usrUserActions = usrUseractionses;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "seq_usr_user", allocationSize = 1)
+    @Column(name = "usr_userid", unique = true, nullable = false, precision = 10, scale = 0)
+    public long getUsrUserId() {
+        return this.usrUserId;
+    }
+
+    public void setUsrUserId(long usrUserId) {
+        this.usrUserId = usrUserId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "usr_userownerid", nullable = false)
+    public OwnOwner getOwnOwner() {
+        return this.ownOwner;
+    }
+
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "usr_usergroupid", nullable = false)
+    public UsrUserGroup getUsrUserGroup() {
+        return this.usrUserGroup;
+    }
+
+    public void setUsrUserGroup(UsrUserGroup usrUsergroup) {
+        this.usrUserGroup = usrUsergroup;
+    }
+
+    @Column(name = "usr_usercode", nullable = false, length = 30)
+    public String getUsrUserCode() {
+        return this.usrUserCode;
+    }
+
+    public void setUsrUserCode(String usrUsercode) {
+        this.usrUserCode = usrUsercode;
+    }
+
+    @Column(name = "usr_userpassword", nullable = false, length = 20)
+    public String getUsrUserPassword() {
+        return this.usrUserPassword;
+    }
+
+    public void setUsrUserPassword(String usrUserpassword) {
+        this.usrUserPassword = usrUserpassword;
+    }
+
+    @Column(name = "usr_username", length = 50)
+    public String getUsrUserName() {
+        return this.usrUserName;
+    }
+
+    public void setUsrUserName(String usrUsername) {
+        this.usrUserName = usrUsername;
+    }
+
+    @Column(name = "usr_usersurname", length = 50)
+    public String getUsrUserSurname() {
+        return this.usrUserSurname;
+    }
+
+    public void setUsrUserSurname(String usrUsersurname) {
+        this.usrUserSurname = usrUsersurname;
+    }
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "usr_userdateofbirth", length = 13)
+    public Date getUsrUserDateOfBirth() {
+        return this.usrUserDateOfBirth;
+    }
+
+    public void setUsrUserDateOfBirth(Date usrUserdateofbirth) {
+        this.usrUserDateOfBirth = usrUserdateofbirth;
+    }
+
+    @Column(name = "usr_usertel", length = 20)
+    public String getUsrUserTel() {
+        return this.usrUserTel;
+    }
+
+    public void setUsrUserTel(String usrUsertel) {
+        this.usrUserTel = usrUsertel;
+    }
+
+    @Column(name = "usr_userpassport", length = 50)
+    public String getUsrUserPassport() {
+        return this.usrUserPassport;
+    }
+
+    public void setUsrUserPassport(String usrUserpassport) {
+        this.usrUserPassport = usrUserpassport;
+    }
+
+    @Column(name = "usr_usercomment")
+    public String getUsrUserComment() {
+        return this.usrUserComment;
+    }
+
+    public void setUsrUserComment(String usrUsercomment) {
+        this.usrUserComment = usrUsercomment;
+    }
+
+    @Column(name = "usr_userisactive")
+    public Boolean getUsrUserIsActive() {
+        return this.usrUserIsActive;
+    }
+
+    public void setUsrUserIsActive(Boolean usrUserisactive) {
+        this.usrUserIsActive = usrUserisactive;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "usr_usercreationdate")
+    public Date getUsrUserCreationDate() {
+        return this.usrUserCreationDate;
+    }
+
+    public void setUsrUserCreationDate(Date usrUsercreationdate) {
+        this.usrUserCreationDate = usrUsercreationdate;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "usr_userupdatedate")
+    public Date getUsrUserUpdateDate() {
+        return this.usrUserUpdateDate;
+    }
+
+    public void setUsrUserUpdateDate(Date usrUserupdatedate) {
+        this.usrUserUpdateDate = usrUserupdatedate;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usrUser")
+    public Set<UsrUserActions> getUsrUserActions() {
+        return this.usrUserActions;
+    }
+
+    public void setUsrUserActions(Set<UsrUserActions> usrUseractionses) {
+        this.usrUserActions = usrUseractionses;
+    }
+
+    /**
+     * @return the usrUserEmail
+     */
+    @Column(name = "usr_useremail", unique = true)
+    public String getUsrUserEmail() {
+        return usrUserEmail;
+    }
+
+    /**
+     * @param usrUserEmail the usrUserEmail to set
+     */
+    public void setUsrUserEmail(String usrUserEmail) {
+        this.usrUserEmail = usrUserEmail;
+    }
+
+    @Column(name = "usr_usertype")
+
+    public Long getUsrUserType() {
+        return usrUserType;
+    }
+
+    public void setUsrUserType(Long usrUserType) {
+        this.usrUserType = usrUserType;
+    }
+
+    @Column(name = "usr_useriscommercial")
+    public Boolean getUsrUserCommercial() {
+        return usrUserCommercial;
+    }
+
+    public void setUsrUserCommercial(Boolean usrUserCommercial) {
+        this.usrUserCommercial = usrUserCommercial;
+    }
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usrUser")
+    public Set<UsrUserAgency> getUsrUserAgencies() {
+        return usrUserAgencies;
+    }
+
+    public void setUsrUserAgencies(Set<UsrUserAgency> usrUserAgencies) {
+        this.usrUserAgencies = usrUserAgencies;
+    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="usr_useragencyid")
+    public UsrAgency getUsrAgency() {
+        return usrAgency;
+    }
+
+    public void setUsrAgency(UsrAgency usrAgency) {
+        this.usrAgency = usrAgency;
+    }
+
+    @Column(name = "usr_usercolumns", length = Integer.MAX_VALUE - 10)
+    public String getUserUserColumns() {
+        return userUserColumns;
+    }
+
+    public void setUserUserColumns(String userUserColumns) {
+        this.userUserColumns = userUserColumns;
+    }
 }

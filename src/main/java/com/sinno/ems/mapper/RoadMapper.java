@@ -54,7 +54,7 @@ public class RoadMapper {
           tmsRoad.setTmsRoadIncident(IncidentMapper.toEntities(road.getIncidents(),true));
           tmsRoad.setTmsRoadPrincialDriver(DriverMapper.toEntity(road.getPrincipalDriver(),true));
           tmsRoad.setTmsRoadSuppleantDriver(DriverMapper.toEntity(road.getPrincipalDriver(),true));
-          //
+          tmsRoad.setCmdDeliveries(DeliveryMapper.toEntities(road.getDeliveries(),true));
           tmsRoad.setTmsRoadVehicle(VehicleMapper.toEntity(road.getVehicule(),true));
         }
         return tmsRoad;
@@ -74,7 +74,7 @@ public class RoadMapper {
             road.setIncidents(IncidentMapper.toDtos(tmsRoad.getTmsRoadIncident(),true));
             road.setPrincipalDriver(DriverMapper.toDto(tmsRoad.getTmsRoadPrincialDriver(),true));
             road.setSuppleantDriver(DriverMapper.toDto(tmsRoad.getTmsRoadPrincialDriver(),true));
-            //
+            road.setDeliveries(DeliveryMapper.toDtos(tmsRoad.getCmdDeliveries(),true));
             road.setVehicule(VehicleMapper.toDto(tmsRoad.getTmsRoadVehicle(),true));
         }
         return road;

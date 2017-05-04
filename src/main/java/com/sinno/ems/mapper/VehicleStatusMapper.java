@@ -44,7 +44,7 @@ public class VehicleStatusMapper {
 
         tmsVehicleStatus.setTmsVehiculeStatusId(vehiculeStatus.getId());
         tmsVehicleStatus.setTmsVehiculeStatusCode(vehiculeStatus.getCodeStatusVehicule()!=null ? vehiculeStatus.getCodeStatusVehicule().toUpperCase(): null);
-        tmsVehicleStatus.setTmsVehiculeStatusDescritpion(vehiculeStatus.getDescritpion());
+        tmsVehicleStatus.setTmsVehiculeStatusDescritpion(vehiculeStatus.getDescription());
         tmsVehicleStatus.setTmsVehiculeStatusActivity(vehiculeStatus.getActivity());
         if (!lazy) {
             tmsVehicleStatus.setTmsVehiculeStatusVehicules(VehicleMapper.toEntities(vehiculeStatus.getVehicules(),true));
@@ -61,7 +61,7 @@ public class VehicleStatusMapper {
 
         vehiculeStatus.setId(tmsVehicleStatus.getTmsVehiculeStatusId());
         vehiculeStatus.setCodeStatusVehicule(tmsVehicleStatus.getTmsVehiculeStatusCode());
-        vehiculeStatus.setDescritpion(tmsVehicleStatus.getTmsVehiculeStatusDescritpion());
+        vehiculeStatus.setDescription(tmsVehicleStatus.getTmsVehiculeStatusDescritpion());
         vehiculeStatus.setActivity(tmsVehicleStatus.getTmsVehiculeStatusActivity());
         if (!lazy) {
             vehiculeStatus.setVehicules(VehicleMapper.toDtos(tmsVehicleStatus.getTmsVehiculeStatusVehicules(),true));

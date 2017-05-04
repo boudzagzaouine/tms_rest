@@ -1,9 +1,6 @@
 package com.sinno.ems.entities;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Set;
@@ -16,13 +13,14 @@ import java.util.Set;
 public class TmsMaintenancePlan implements java.io.Serializable{
     private long tmsMaintenancePlanId;
     @NotNull
-    private TmsVehicle tmsMaintenancePlanVehicle;
+    private TmsVehicle tmsVehicle;
     @Size(max = 30)
     @NotNull
     private String tmsMaintenancePlanCode;
     @Size(max = 255)
     private String tmsDescription;
-    private Set<TmsActe> tmsMaintenancePlanActes;
+    //TODO
+/*    private Set<TmsActe> tmsMaintenancePlanActes;*/
 
     public TmsMaintenancePlan(){
 
@@ -33,8 +31,6 @@ public class TmsMaintenancePlan implements java.io.Serializable{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
     @Column(name = "tms_maintenanceplanid", unique = true, nullable = false, precision = 10, scale = 0)
-
-
     public long getTmsMaintenancePlanId() {
         return tmsMaintenancePlanId;
     }
@@ -44,43 +40,38 @@ public class TmsMaintenancePlan implements java.io.Serializable{
     }
 
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsVehicleMaintenancePlan")
-    public TmsVehicle getTmsMaintenancePlanVehicle() {
-        return tmsMaintenancePlanVehicle;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="tms_maintenanceplanvehiculeid")
+    public TmsVehicle getTmsVehicle() {
+        return tmsVehicle;
     }
 
-    public void setTmsMaintenancePlanVehicle(TmsVehicle tmsMaintenancePlanVehicle) {
-        this.tmsMaintenancePlanVehicle = tmsMaintenancePlanVehicle;
-    }
-
-
-
-
-    public void setTmsMaintenancePlanCode(String tmsMaintenancePlanCode) {
-        this.tmsMaintenancePlanCode = tmsMaintenancePlanCode;
-    }
-
-    public void setTmsDescription(String tmsDescription) {
-        this.tmsDescription = tmsDescription;
+    public void setTmsVehicle(TmsVehicle tmsVehicle) {
+        this.tmsVehicle = tmsVehicle;
     }
 
     @Column(name = "tms_maintenanceplancode", nullable = false, length = 30)
     public String getTmsMaintenancePlanCode() {
         return tmsMaintenancePlanCode;
     }
-
+    public void setTmsMaintenancePlanCode(String tmsMaintenancePlanCode) {
+        this.tmsMaintenancePlanCode = tmsMaintenancePlanCode;
+    }
     @Column(name = "tmsDescription")
     public String getTmsDescription() {
         return tmsDescription;
     }
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "")
+    public void setTmsDescription(String tmsDescription) {
+        this.tmsDescription = tmsDescription;
+    }
 
+  /*  @OneToMany(fetch = FetchType.LAZY,mappedBy = "")
     public Set<TmsActe> getTmsMaintenancePlanActes() {
         return tmsMaintenancePlanActes;
     }
 
     public void setTmsMaintenancePlanActes(Set<TmsActe> tmsMaintenancePlanActes) {
         this.tmsMaintenancePlanActes = tmsMaintenancePlanActes;
-    }
+    }*/
 
 }

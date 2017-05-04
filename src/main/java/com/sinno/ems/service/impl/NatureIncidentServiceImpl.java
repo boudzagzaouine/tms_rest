@@ -9,14 +9,12 @@ import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.NatureIncidentMapper;
 import com.sinno.ems.repositories.NatureIncidentRepository;
 import com.sinno.ems.service.NatureIncidentService;
-
 import com.sinno.ems.util.Search;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-
-import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 /**
@@ -42,7 +40,7 @@ public class NatureIncidentServiceImpl implements NatureIncidentService {
         return natureIncidentRepository.exists(id);
     }
     @Override
-    public NatureIncident findById(Long id)throws IdNotFound{
+    public NatureIncident findById(Long id)throws IdNotFound {
         NatureIncident natureIncident = NatureIncidentMapper.toDto(natureIncidentRepository.findOne(id),false);
         if(null != natureIncident){
             return natureIncident;
@@ -51,15 +49,15 @@ public class NatureIncidentServiceImpl implements NatureIncidentService {
         }
     }
     @Override
-    public List<NatureIncident> find(String search)throws AttributesNotFound,ErrorType{
+    public List<NatureIncident> find(String search)throws AttributesNotFound,ErrorType {
         return NatureIncidentMapper.toDtos(natureIncidentRepository.findAll(Search.expression(search,TmsNatureIncident.class)), false);
     }
     @Override
-    public List<NatureIncident>find(String search, Pageable pageable)throws AttributesNotFound,ErrorType{
+    public List<NatureIncident>find(String search, Pageable pageable)throws AttributesNotFound,ErrorType {
         return NatureIncidentMapper.toDtos(natureIncidentRepository.findAll(Search.expression(search,TmsNatureIncident.class),pageable),false);
     }
     @Override
-    public Long size(String search)throws AttributesNotFound,ErrorType{
+    public Long size(String search)throws AttributesNotFound,ErrorType {
         return natureIncidentRepository.count(Search.expression(search , TmsNatureIncident.class));
     }
     @Override

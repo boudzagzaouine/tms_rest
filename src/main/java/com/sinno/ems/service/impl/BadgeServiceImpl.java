@@ -13,12 +13,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by khalil on 03/04/2017.
  */
+@Service
 public class BadgeServiceImpl implements BadgeService {
     @Autowired
     private BadgeRepository badgeRepository;
@@ -41,7 +43,7 @@ public class BadgeServiceImpl implements BadgeService {
         return badgeRepository.exists(id);
     }
     @Override
-    public Badge findById(Long id) throws IdNotFound{
+    public Badge findById(Long id) throws IdNotFound {
         Badge badge = BadgeMapper.toDto(badgeRepository.findOne(id), false);
         if (null != badge) {
             return badge;
