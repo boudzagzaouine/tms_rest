@@ -52,7 +52,6 @@ public class Product implements Serializable {
     private Product product;
     private BlockType blockType;
     private Set<Image> images;
-    private Supplier supplier;
     private Boolean dlcControl;
     private Boolean lotControl;
     private String desc;
@@ -386,14 +385,6 @@ public class Product implements Serializable {
 
     public void setImages(Set<Image> images) {
         this.images = images;
-    }
-
-    public Supplier getSupplier() {
-        return supplier;
-    }
-
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
     }
 
     public Boolean getDlcControl() {
