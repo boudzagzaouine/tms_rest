@@ -26,9 +26,7 @@ public class User implements Serializable {
     private Date dateOfBirth;
     private Long type;
     private Boolean commercial;
-    private Agency agency;
     private String columns;
-    private Set<UserAgency> agencies=new HashSet<>(0);
 
     public String getName() {
         return name;
@@ -180,21 +178,9 @@ public class User implements Serializable {
         this.userActions = userActions;
     }
 
-    public Set<UserAgency> getAgencies() {
-        return agencies;
-    }
 
-    public void setAgencies(Set<UserAgency> agencies) {
-        this.agencies = agencies;
-    }
 
-    public Agency getAgency() {
-        return agency;
-    }
 
-    public void setAgency(Agency agency) {
-        this.agency = agency;
-    }
 
     public String getColumns() {
         return columns;

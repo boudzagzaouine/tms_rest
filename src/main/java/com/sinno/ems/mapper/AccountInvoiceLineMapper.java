@@ -1,9 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.AccountInvoice;
-import com.sinno.ems.dto.AccountInvoiceLine;
-import com.sinno.ems.entities.InvAccountInvoiceLine;
-
 import java.util.*;
 
 /**

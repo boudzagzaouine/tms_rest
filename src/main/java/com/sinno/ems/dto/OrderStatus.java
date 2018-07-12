@@ -13,16 +13,10 @@ public class OrderStatus implements Serializable {
     private boolean orderType;
     private Boolean archivable;
     private Organisation organisation;
-    private Set<SaleOrderArc> saleOrderArcs;
     private Set<SaleOrder> saleOrders;
-    private Set<PurshaseOrderArc> purshaseOrderArcs;
-    private Set<ReceptionLineArc> receptionLineArcs;
-    private Set<PurshaseOrderLineArc> purshaseOrderLineArcs;
-    private Set<SaleOrderLineArc> saleOrderLineArcs;
+
     private Set<SaleOrderLine> saleOrderLines;
-    private Set<PurshaseOrder> purshaseOrders;
-    private Set<PurshaseOrderLine> purshaseOrderLines;
-    private Set<ReceptionLine> receptionLines;
+
 
     public long getId() {
         return id;
@@ -48,14 +42,6 @@ public class OrderStatus implements Serializable {
         this.saleOrders = saleOrders;
     }
 
-    public Set<SaleOrderArc> getSaleOrderArcs() {
-        return saleOrderArcs;
-    }
-
-    public void setSaleOrderArcs(Set<SaleOrderArc> saleOrderArcs) {
-        this.saleOrderArcs = saleOrderArcs;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -64,37 +50,9 @@ public class OrderStatus implements Serializable {
         this.description = description;
     }
 
-    public Set<PurshaseOrderArc> getPurshaseOrderArcs() {
-        return purshaseOrderArcs;
-    }
 
-    public void setPurshaseOrderArcs(Set<PurshaseOrderArc> purshaseOrderArcs) {
-        this.purshaseOrderArcs = purshaseOrderArcs;
-    }
 
-    public Set<ReceptionLineArc> getReceptionLineArcs() {
-        return receptionLineArcs;
-    }
 
-    public void setReceptionLineArcs(Set<ReceptionLineArc> receptionLineArcs) {
-        this.receptionLineArcs = receptionLineArcs;
-    }
-
-    public Set<PurshaseOrderLineArc> getPurshaseOrderLineArcs() {
-        return purshaseOrderLineArcs;
-    }
-
-    public void setPurshaseOrderLineArcs(Set<PurshaseOrderLineArc> purshaseOrderLineArcs) {
-        this.purshaseOrderLineArcs = purshaseOrderLineArcs;
-    }
-
-    public Set<SaleOrderLineArc> getSaleOrderLineArcs() {
-        return saleOrderLineArcs;
-    }
-
-    public void setSaleOrderLineArcs(Set<SaleOrderLineArc> saleOrderLineArcs) {
-        this.saleOrderLineArcs = saleOrderLineArcs;
-    }
 
     public Set<SaleOrderLine> getSaleOrderLines() {
         return saleOrderLines;
@@ -104,21 +62,6 @@ public class OrderStatus implements Serializable {
         this.saleOrderLines = saleOrderLines;
     }
 
-    public Set<PurshaseOrder> getPurshaseOrders() {
-        return purshaseOrders;
-    }
-
-    public void setPurshaseOrders(Set<PurshaseOrder> purshaseOrders) {
-        this.purshaseOrders = purshaseOrders;
-    }
-
-    public Set<PurshaseOrderLine> getPurshaseOrderLines() {
-        return purshaseOrderLines;
-    }
-
-    public void setPurshaseOrderLines(Set<PurshaseOrderLine> purshaseOrderLines) {
-        this.purshaseOrderLines = purshaseOrderLines;
-    }
 
     public boolean isOrderType() {
         return orderType;
@@ -128,13 +71,7 @@ public class OrderStatus implements Serializable {
         this.orderType = orderType;
     }
 
-    public Set<ReceptionLine> getReceptionLines() {
-        return receptionLines;
-    }
 
-    public void setReceptionLines(Set<ReceptionLine> receptionLines) {
-        this.receptionLines = receptionLines;
-    }
 
     public Boolean getArchivable() {
         return archivable;

@@ -1,9 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.InvoiceTerm;
-import com.sinno.ems.dto.Supplier;
-import com.sinno.ems.entities.RcpSupplier;
-
 import java.util.*;
 
 public class SupplierMapper {

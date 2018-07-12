@@ -1,7 +1,5 @@
 package com.sinno.ems.repositories;
 
-import com.sinno.ems.dto.PaymentAccountInvoice;
-import com.sinno.ems.entities.InvPaymentAccountInvoice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 

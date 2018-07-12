@@ -11,13 +11,11 @@ public class SaleOrderStock implements Serializable {
      */
     private static final long serialVersionUID = -2739578864662727893L;
 
-    private Location location;
     private long id;
     private Long lineNumber;
     private Owner owner;
     private Date updateDate;
     private Date creationDate;
-    private Warehouse warehouse;
     private Product product;
     private BlockType blockType;
     private Date dlc;
@@ -39,13 +37,6 @@ public class SaleOrderStock implements Serializable {
     private BigDecimal weight;
     private ProductDimension productDimension;
 
-    public Location getLocation() {
-        return this.location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
     public Long getId() {
         return this.id;
@@ -87,13 +78,6 @@ public class SaleOrderStock implements Serializable {
         this.creationDate = creationDate;
     }
 
-    public Warehouse getWarehouse() {
-        return this.warehouse;
-    }
-
-    public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
-    }
 
     public Product getProduct() {
         return this.product;

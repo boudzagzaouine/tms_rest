@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.MsgReceive;
-import com.sinno.ems.entities.PrmMsgReceive;
-
 import java.util.*;
 
 /**

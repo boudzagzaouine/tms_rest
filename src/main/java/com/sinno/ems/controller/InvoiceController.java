@@ -1,12 +1,9 @@
 package com.sinno.ems.controller;
 
-import com.sinno.ems.dto.GenerateInvoice;
-import com.sinno.ems.dto.Invoice;
 import com.sinno.ems.dto.Owner;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.repositories.OwnerRepository;
 import com.sinno.ems.service.InvoiceService;
 import com.sinno.ems.service.OwnerService;
 import com.sinno.ems.service.UserDetailsServiceWarehouse;
@@ -16,8 +13,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 

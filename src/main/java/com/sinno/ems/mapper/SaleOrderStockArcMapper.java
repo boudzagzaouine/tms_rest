@@ -3,13 +3,6 @@
  */
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.DeliveryArc;
-import com.sinno.ems.dto.DeliveryLineArc;
-import com.sinno.ems.dto.SaleOrderStockArc;
-import com.sinno.ems.dto.SaleOrderStockArc;
-import com.sinno.ems.entities.CmdSaleOrderStockArc;
-import com.sinno.ems.entities.CmdSaleOrderStockArc;
-
 import java.util.*;
 
 /**

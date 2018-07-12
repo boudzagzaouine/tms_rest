@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.PurshaseOrderLineArc;
-import com.sinno.ems.entities.RcpPurshaseOrderLineArc;
-
 import java.util.*;
 
 public class PurshaseOrderLineArcMapper {

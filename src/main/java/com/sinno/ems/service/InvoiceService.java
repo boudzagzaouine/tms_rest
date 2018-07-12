@@ -1,7 +1,5 @@
 package com.sinno.ems.service;
 
-import com.sinno.ems.dto.GenerateInvoice;
-import com.sinno.ems.dto.Invoice;
 import com.sinno.ems.dto.Owner;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;

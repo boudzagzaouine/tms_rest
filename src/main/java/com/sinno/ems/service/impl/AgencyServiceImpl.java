@@ -1,12 +1,9 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.Agency;
-import com.sinno.ems.entities.UsrAgency;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.AgencyMapper;
-import com.sinno.ems.repositories.AgencyRepository;
 import com.sinno.ems.service.AgencyService;
 import com.sinno.ems.util.EmsDate;
 import com.sinno.ems.util.Search;

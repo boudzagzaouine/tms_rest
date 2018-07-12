@@ -40,7 +40,6 @@ public class Owner implements Serializable {
     private String currency;
     private Date firstInvoiceDate;
     private byte[] image;
-    private Wallet wallet;
 
 
     public long getId() {
@@ -300,13 +299,6 @@ public class Owner implements Serializable {
         this.image = image;
     }
 
-    public Wallet getWallet() {
-        return wallet;
-    }
-
-    public void setWallet(Wallet wallet) {
-        this.wallet = wallet;
-    }
 
     @Override
     public boolean equals(Object object) {

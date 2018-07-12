@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.Edi;
-import com.sinno.ems.entities.PrmEdi;
-
 import java.util.*;
 
 public class EdiMapper {

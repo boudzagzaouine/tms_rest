@@ -1,7 +1,6 @@
 package com.sinno.ems.mapper;
 
 import com.sinno.ems.dto.ProductSupplier;
-import com.sinno.ems.entities.PdtProductSupplier;
 
 import java.util.*;
 

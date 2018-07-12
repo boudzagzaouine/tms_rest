@@ -1,8 +1,6 @@
 package com.sinno.ems.service.impl;
 
 import com.google.common.collect.Lists;
-import com.sinno.ems.dto.CountOwnerWareHouses;
-import com.sinno.ems.dto.Warehouse;
 import com.sinno.ems.entities.*;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
@@ -10,7 +8,6 @@ import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.exception.WarehouseException;
 import com.sinno.ems.mapper.WarehouseMapper;
 import com.sinno.ems.repositories.*;
-import com.sinno.ems.service.ProductService;
 import com.sinno.ems.service.WarehouseService;
 import com.sinno.ems.util.EmsDate;
 import com.sinno.ems.util.Search;

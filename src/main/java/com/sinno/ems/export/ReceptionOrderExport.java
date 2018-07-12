@@ -1,6 +1,5 @@
 package com.sinno.ems.export;
 
-import com.sinno.ems.entities.RcpReception;
 import com.sinno.ems.mapper.wms.ReceptionOrderMapperWMS;
 import com.sinno.ems.util.EmsDate;
 import com.sinno.wms.crud.convert.ConvertManagerPre;

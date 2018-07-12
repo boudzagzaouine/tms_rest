@@ -3,8 +3,6 @@
  */
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.Invoice;
-import com.sinno.ems.entities.InvInvoice;
 import com.sinno.ems.util.EmsDate;
 
 import java.util.*;

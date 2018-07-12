@@ -1,8 +1,6 @@
 package com.sinno.ems.mapper;
 
 import com.sinno.ems.dto.*;
-import com.sinno.ems.entities.CmdDeliveryLine;
-import com.sinno.ems.entities.CmdDeliveryLineArc;
 
 import java.util.*;
 

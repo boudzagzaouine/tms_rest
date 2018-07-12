@@ -30,33 +30,7 @@ public class PdtUom implements java.io.Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
 
     private Date pdtUomUpdateDate;
-    private Set<CmdSaleOrderLine> cmdSaleOrderLines = new HashSet<CmdSaleOrderLine>(
-            0);
-    private Set<CmdSaleOrderStock> cmdSaleOrderStocks = new HashSet<CmdSaleOrderStock>(
-            0);
-    private Set<RcpPurshaseOrderLine> rcpPurshaseOrderLines = new HashSet<RcpPurshaseOrderLine>(
-            0);
-    private Set<CmdSaleOrderLineArc> cmdSaleOrderLineArcs = new HashSet<CmdSaleOrderLineArc>(
-            0);
-    private Set<StkStockReserved> stkStockReserveds = new HashSet<StkStockReserved>(
-            0);
-    private Set<RcpReceptionLine> rcpReceptionLines = new HashSet<RcpReceptionLine>(
-            0);
-    private Set<CmdSaleOrderStockArc> cmdSaleOrderStockArcs = new HashSet<CmdSaleOrderStockArc>(
-            0);
-    private Set<PdtProduct> pdtProductsForPdtProductUomSaleId = new HashSet<PdtProduct>(
-            0);
-    private Set<PdtProduct> pdtProductsForPdtProductUomBaseId = new HashSet<PdtProduct>(
-            0);
-    private Set<PdtProduct> pdtProductsForPdtProductUomPurshaseId = new HashSet<PdtProduct>(
-            0);
-    private Set<PdtProductPack> pdtProductPacks = new HashSet<PdtProductPack>(0);
-    private Set<StkStockArc> stkStockArcs = new HashSet<StkStockArc>(0);
-    private Set<RcpPurshaseOrderLineArc> rcpPurshaseOrderLineArcs = new HashSet<RcpPurshaseOrderLineArc>(
-            0);
-    private Set<StkStock> stkStocks = new HashSet<StkStock>(0);
-    private Set<RcpReceptionLineArc> rcpReceptionLineArcs = new HashSet<RcpReceptionLineArc>(
-            0);
+
 
     public PdtUom() {
     }
@@ -65,45 +39,6 @@ public class PdtUom implements java.io.Serializable {
         this.pdtUomId = pdtUomId;
         this.ownOwner = ownOwner;
         this.pdtUomCode = pdtUomCode;
-    }
-
-    public PdtUom(long pdtUomId, OwnOwner ownOwner, String pdtUomCode,
-                  String pdtUomDescription, Date pdtUomCreationDate,
-                  Date pdtUomUpdateDate, Set<CmdSaleOrderLine> cmdSaleOrderLines,
-                  Set<CmdSaleOrderStock> cmdSaleOrderStocks,
-                  Set<RcpPurshaseOrderLine> rcpPurshaseOrderLines,
-                  Set<CmdSaleOrderLineArc> cmdSaleOrderLineArcs,
-                  Set<StkStockReserved> stkStockReserveds,
-                  Set<RcpReceptionLine> rcpReceptionLines,
-                  Set<CmdSaleOrderStockArc> cmdSaleOrderStockArcs,
-                  Set<PdtProduct> pdtProductsForPdtProductUomSaleId,
-                  Set<PdtProduct> pdtProductsForPdtProductUomBaseId,
-                  Set<PdtProduct> pdtProductsForPdtProductUomPurshaseId,
-                  Set<PdtProductPack> pdtProductPacks, Set<StkStockArc> stkStockArcs,
-                  Set<RcpPurshaseOrderLineArc> rcpPurshaseOrderLineArcs,
-                  Set<StkStock> stkStocks,
-                  Set<RcpReceptionLineArc> rcpReceptionLineArcs) {
-        this.pdtUomId = pdtUomId;
-        this.ownOwner = ownOwner;
-        this.pdtUomCode = pdtUomCode;
-        this.pdtUomDescription = pdtUomDescription;
-        this.pdtUomCreationDate = pdtUomCreationDate;
-        this.pdtUomUpdateDate = pdtUomUpdateDate;
-        this.cmdSaleOrderLines = cmdSaleOrderLines;
-        this.cmdSaleOrderStocks = cmdSaleOrderStocks;
-        this.rcpPurshaseOrderLines = rcpPurshaseOrderLines;
-        this.cmdSaleOrderLineArcs = cmdSaleOrderLineArcs;
-        this.stkStockReserveds = stkStockReserveds;
-        this.rcpReceptionLines = rcpReceptionLines;
-        this.cmdSaleOrderStockArcs = cmdSaleOrderStockArcs;
-        this.pdtProductsForPdtProductUomSaleId = pdtProductsForPdtProductUomSaleId;
-        this.pdtProductsForPdtProductUomBaseId = pdtProductsForPdtProductUomBaseId;
-        this.pdtProductsForPdtProductUomPurshaseId = pdtProductsForPdtProductUomPurshaseId;
-        this.pdtProductPacks = pdtProductPacks;
-        this.stkStockArcs = stkStockArcs;
-        this.rcpPurshaseOrderLineArcs = rcpPurshaseOrderLineArcs;
-        this.stkStocks = stkStocks;
-        this.rcpReceptionLineArcs = rcpReceptionLineArcs;
     }
 
     @Id
@@ -166,148 +101,7 @@ public class PdtUom implements java.io.Serializable {
         this.pdtUomUpdateDate = pdtUomUpdateDate;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtUom")
-    public Set<CmdSaleOrderLine> getCmdSaleOrderLines() {
-        return this.cmdSaleOrderLines;
-    }
 
-    public void setCmdSaleOrderLines(Set<CmdSaleOrderLine> cmdSaleOrderLines) {
-        this.cmdSaleOrderLines = cmdSaleOrderLines;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtUom")
-    public Set<CmdSaleOrderStock> getCmdSaleOrderStocks() {
-        return this.cmdSaleOrderStocks;
-    }
-
-    public void setCmdSaleOrderStocks(Set<CmdSaleOrderStock> cmdSaleOrderStocks) {
-        this.cmdSaleOrderStocks = cmdSaleOrderStocks;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtUom")
-    public Set<RcpPurshaseOrderLine> getRcpPurshaseOrderLines() {
-        return this.rcpPurshaseOrderLines;
-    }
-
-    public void setRcpPurshaseOrderLines(
-            Set<RcpPurshaseOrderLine> rcpPurshaseOrderLines) {
-        this.rcpPurshaseOrderLines = rcpPurshaseOrderLines;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtUom")
-    public Set<CmdSaleOrderLineArc> getCmdSaleOrderLineArcs() {
-        return this.cmdSaleOrderLineArcs;
-    }
-
-    public void setCmdSaleOrderLineArcs(
-            Set<CmdSaleOrderLineArc> cmdSaleOrderLineArcs) {
-        this.cmdSaleOrderLineArcs = cmdSaleOrderLineArcs;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtUom")
-    public Set<StkStockReserved> getStkStockReserveds() {
-        return this.stkStockReserveds;
-    }
-
-    public void setStkStockReserveds(Set<StkStockReserved> stkStockReserveds) {
-        this.stkStockReserveds = stkStockReserveds;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtUom")
-    public Set<RcpReceptionLine> getRcpReceptionLines() {
-        return this.rcpReceptionLines;
-    }
-
-    public void setRcpReceptionLines(Set<RcpReceptionLine> rcpReceptionLines) {
-        this.rcpReceptionLines = rcpReceptionLines;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtUom")
-    public Set<CmdSaleOrderStockArc> getCmdSaleOrderStockArcs() {
-        return this.cmdSaleOrderStockArcs;
-    }
-
-    public void setCmdSaleOrderStockArcs(
-            Set<CmdSaleOrderStockArc> cmdSaleOrderStockArcs) {
-        this.cmdSaleOrderStockArcs = cmdSaleOrderStockArcs;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtUomByPdtProductUomSaleId")
-    public Set<PdtProduct> getPdtProductsForPdtProductUomSaleId() {
-        return this.pdtProductsForPdtProductUomSaleId;
-    }
-
-    public void setPdtProductsForPdtProductUomSaleId(
-            Set<PdtProduct> pdtProductsForPdtProductUomSaleId) {
-        this.pdtProductsForPdtProductUomSaleId = pdtProductsForPdtProductUomSaleId;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtUomByPdtProductUomBaseId")
-    public Set<PdtProduct> getPdtProductsForPdtProductUomBaseId() {
-        return this.pdtProductsForPdtProductUomBaseId;
-    }
-
-    public void setPdtProductsForPdtProductUomBaseId(
-            Set<PdtProduct> pdtProductsForPdtProductUomBaseId) {
-        this.pdtProductsForPdtProductUomBaseId = pdtProductsForPdtProductUomBaseId;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtUomByPdtProductUomPurshaseId")
-    public Set<PdtProduct> getPdtProductsForPdtProductUomPurshaseId() {
-        return this.pdtProductsForPdtProductUomPurshaseId;
-    }
-
-    public void setPdtProductsForPdtProductUomPurshaseId(
-            Set<PdtProduct> pdtProductsForPdtProductUomPurshaseId) {
-        this.pdtProductsForPdtProductUomPurshaseId = pdtProductsForPdtProductUomPurshaseId;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtUom")
-    public Set<PdtProductPack> getPdtProductPacks() {
-        return this.pdtProductPacks;
-    }
-
-    public void setPdtProductPacks(Set<PdtProductPack> pdtProductPacks) {
-        this.pdtProductPacks = pdtProductPacks;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtUom")
-    public Set<StkStockArc> getStkStockArcs() {
-        return this.stkStockArcs;
-    }
-
-    public void setStkStockArcs(Set<StkStockArc> stkStockArcs) {
-        this.stkStockArcs = stkStockArcs;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtUom")
-    public Set<RcpPurshaseOrderLineArc> getRcpPurshaseOrderLineArcs() {
-        return this.rcpPurshaseOrderLineArcs;
-    }
-
-    public void setRcpPurshaseOrderLineArcs(
-            Set<RcpPurshaseOrderLineArc> rcpPurshaseOrderLineArcs) {
-        this.rcpPurshaseOrderLineArcs = rcpPurshaseOrderLineArcs;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtUom")
-    public Set<StkStock> getStkStocks() {
-        return this.stkStocks;
-    }
-
-    public void setStkStocks(Set<StkStock> stkStocks) {
-        this.stkStocks = stkStocks;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtUom")
-    public Set<RcpReceptionLineArc> getRcpReceptionLineArcs() {
-        return this.rcpReceptionLineArcs;
-    }
-
-    public void setRcpReceptionLineArcs(
-            Set<RcpReceptionLineArc> rcpReceptionLineArcs) {
-        this.rcpReceptionLineArcs = rcpReceptionLineArcs;
-    }
     @Override
     public boolean equals(Object object) {
         boolean result = false;

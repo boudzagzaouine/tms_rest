@@ -1,7 +1,5 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.Process;
-import com.sinno.ems.entities.PdtProcess;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;

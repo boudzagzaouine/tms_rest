@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.AssetSupplier;
-import com.sinno.ems.entities.RcpAssetSupplier;
-
 import java.util.*;
 
 /**

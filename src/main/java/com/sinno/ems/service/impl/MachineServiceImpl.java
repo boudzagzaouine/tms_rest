@@ -1,12 +1,9 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.Machine;
-import com.sinno.ems.entities.PdtMachine;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.MachineMapper;
-import com.sinno.ems.repositories.MachineRepository;
 import com.sinno.ems.service.MachineService;
 import com.sinno.ems.util.EmsDate;
 import com.sinno.ems.util.Search;

@@ -1,7 +1,6 @@
 package com.sinno.ems.mapper;
 
 import com.sinno.ems.dto.Currency;
-import com.sinno.ems.entities.PrmCurrency;
 
 import java.util.*;
 

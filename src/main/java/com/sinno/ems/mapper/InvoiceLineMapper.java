@@ -3,9 +3,6 @@
  */
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.InvoiceLine;
-import com.sinno.ems.entities.InvInvoiceLine;
-
 import java.util.*;
 
 

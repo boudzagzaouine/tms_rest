@@ -1,6 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.Column;
 import com.sinno.ems.entities.PrmColumn;
 
 import java.util.*;

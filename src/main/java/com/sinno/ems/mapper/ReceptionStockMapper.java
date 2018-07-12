@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.ReceptionStock;
-import com.sinno.ems.entities.RcpReceptionStock;
-
 import java.util.*;
 
 public class ReceptionStockMapper {

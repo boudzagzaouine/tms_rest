@@ -3,7 +3,6 @@ package com.sinno.ems.service.impl;
 import com.sinno.ems.dto.*;
 import com.sinno.ems.entities.CmdAccount;
 import com.sinno.ems.entities.PrmContact;
-import com.sinno.ems.entities.PrmMsgSend;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;

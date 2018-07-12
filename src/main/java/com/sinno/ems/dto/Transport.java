@@ -28,7 +28,6 @@ public class Transport implements Serializable {
     private String variable9;
     private String variable10;
     private Contact contact;
-    private Edi edi;
     private BigDecimal siret;
     private Date creationDate;
     private String description;
@@ -36,14 +35,8 @@ public class Transport implements Serializable {
     private Boolean active;
     private Set<SaleOrder> saleOrders;
     private Set<Account> accounts;
-    private Set<Reception> receptions;
-    private Set<Supplier> suppliers;
-    private Set<SaleOrderArc> saleOrderArcs;
-    private Set<PurshaseOrderArc> purshaseOrderArcs;
-    private Set<ReceptionArc> receptionArcs;
-    private Set<SaleOrderLineArc> saleOrderLineArcs;
+
     private Set<SaleOrderLine> saleOrderLines;
-    private Set<PurshaseOrder> purshaseOrders;
 
     public long getId() {
         return id;
@@ -165,13 +158,6 @@ public class Transport implements Serializable {
         this.contact = contact;
     }
 
-    public Edi getEdi() {
-        return edi;
-    }
-
-    public void setEdi(Edi edi) {
-        this.edi = edi;
-    }
 
     public BigDecimal getSiret() {
         return siret;
@@ -213,53 +199,7 @@ public class Transport implements Serializable {
         this.accounts = accounts;
     }
 
-    public Set<Reception> getReceptions() {
-        return receptions;
-    }
 
-    public void setReceptions(Set<Reception> receptions) {
-        this.receptions = receptions;
-    }
-
-    public Set<Supplier> getSuppliers() {
-        return suppliers;
-    }
-
-    public void setSuppliers(Set<Supplier> suppliers) {
-        this.suppliers = suppliers;
-    }
-
-    public Set<SaleOrderArc> getSaleOrderArcs() {
-        return saleOrderArcs;
-    }
-
-    public void setSaleOrderArcs(Set<SaleOrderArc> saleOrderArcs) {
-        this.saleOrderArcs = saleOrderArcs;
-    }
-
-    public Set<PurshaseOrderArc> getPurshaseOrderArcs() {
-        return purshaseOrderArcs;
-    }
-
-    public void setPurshaseOrderArcs(Set<PurshaseOrderArc> purshaseOrderArcs) {
-        this.purshaseOrderArcs = purshaseOrderArcs;
-    }
-
-    public Set<ReceptionArc> getReceptionArcs() {
-        return receptionArcs;
-    }
-
-    public void setReceptionArcs(Set<ReceptionArc> receptionArcs) {
-        this.receptionArcs = receptionArcs;
-    }
-
-    public Set<SaleOrderLineArc> getSaleOrderLineArcs() {
-        return saleOrderLineArcs;
-    }
-
-    public void setSaleOrderLineArcs(Set<SaleOrderLineArc> saleOrderLineArcs) {
-        this.saleOrderLineArcs = saleOrderLineArcs;
-    }
 
     public Set<SaleOrderLine> getSaleOrderLines() {
         return saleOrderLines;
@@ -269,15 +209,8 @@ public class Transport implements Serializable {
         this.saleOrderLines = saleOrderLines;
     }
 
-    public Set<PurshaseOrder> getPurshaseOrders() {
-        return purshaseOrders;
-    }
 
-    public void setPurshaseOrders(Set<PurshaseOrder> purshaseOrders) {
-        this.purshaseOrders = purshaseOrders;
-    }
-
-    public Address getAddress() {
+        public Address getAddress() {
         return address;
     }
 

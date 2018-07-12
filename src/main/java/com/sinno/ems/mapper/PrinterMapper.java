@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.Printer;
-import com.sinno.ems.entities.PrmPrinter;
-
 import java.util.*;
 
 /**

@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.MachineProcess;
-import com.sinno.ems.entities.PdtMachineProcess;
-
 import java.util.*;
 
 /**

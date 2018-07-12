@@ -1,12 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.PreparationLine;
-import com.sinno.ems.dto.Preparation;
-import com.sinno.ems.dto.PreparationLine;
-import com.sinno.ems.entities.CmdPreparation;
-import com.sinno.ems.entities.CmdPreparationLine;
-import com.sinno.ems.entities.CmdPreparationLine;
-
 import java.util.*;
 
 /**

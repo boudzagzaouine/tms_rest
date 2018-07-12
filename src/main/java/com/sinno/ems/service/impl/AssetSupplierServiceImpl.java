@@ -1,12 +1,9 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.AssetSupplier;
-import com.sinno.ems.entities.RcpAssetSupplier;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.AssetSupplierMapper;
-import com.sinno.ems.repositories.AssetSupplierRepository;
 import com.sinno.ems.service.AssetSupplierService;
 import com.sinno.ems.util.EmsDate;
 import com.sinno.ems.util.Search;

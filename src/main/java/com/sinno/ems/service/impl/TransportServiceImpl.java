@@ -2,7 +2,6 @@ package com.sinno.ems.service.impl;
 
 import com.sinno.ems.dto.*;
 import com.sinno.ems.entities.OwnOwner;
-import com.sinno.ems.entities.PrmMsgSend;
 import com.sinno.ems.entities.TrpTransport;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
@@ -14,7 +13,6 @@ import com.sinno.ems.mapper.OwnerMapper;
 import com.sinno.ems.mapper.TransportMapper;
 import com.sinno.ems.mapperWms.MapperCarrer;
 import com.sinno.ems.repositories.*;
-import com.sinno.ems.service.ProductService;
 import com.sinno.ems.service.TransportService;
 import com.sinno.ems.util.EmsDate;
 import com.sinno.ems.util.Search;

@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.InvoiceStatus;
-import com.sinno.ems.entities.PrmInvoiceStatus;
-
 import java.util.*;
 
 /**

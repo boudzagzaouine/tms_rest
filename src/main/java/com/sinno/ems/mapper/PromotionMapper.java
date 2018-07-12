@@ -1,10 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.ProductPack;
-import com.sinno.ems.dto.Promotion;
-import com.sinno.ems.entities.PmtPromotion;
-import com.sinno.ems.entities.PmtPromotion;
-
 import java.util.*;
 
 /**

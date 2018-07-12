@@ -1,6 +1,5 @@
 package com.sinno.ems.controller;
 
-import com.sinno.ems.dto.Zone;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;

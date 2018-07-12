@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.StockException;
-import com.sinno.ems.entities.StkStockException;
-
 import java.util.*;
 
 /**

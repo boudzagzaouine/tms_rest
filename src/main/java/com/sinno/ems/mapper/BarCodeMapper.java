@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.BarCode;
-import com.sinno.ems.entities.PrmBarCode;
-
 import java.util.*;
 
 /**

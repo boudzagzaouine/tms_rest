@@ -1,12 +1,9 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.Bank;
-import com.sinno.ems.entities.PrmBank;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.BankMapper;
-import com.sinno.ems.repositories.BankRepository;
 import com.sinno.ems.service.BankService;
 import com.sinno.ems.util.EmsDate;
 import com.sinno.ems.util.Search;

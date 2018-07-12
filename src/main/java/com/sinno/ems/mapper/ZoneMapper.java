@@ -3,9 +3,6 @@
  */
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.Zone;
-import com.sinno.ems.entities.LocZone;
-
 import java.util.*;
 
 /**

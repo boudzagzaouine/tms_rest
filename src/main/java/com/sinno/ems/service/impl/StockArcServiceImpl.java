@@ -1,14 +1,10 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.Location;
-import com.sinno.ems.dto.StockArc;
-import com.sinno.ems.entities.StkStockArc;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.StockArcMapper;
 import com.sinno.ems.repositories.StockArcRepository;
-import com.sinno.ems.service.ProductService;
 import com.sinno.ems.service.StockArcService;
 import com.sinno.ems.util.Search;
 import org.slf4j.Logger;

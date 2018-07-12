@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.WarrantyPeriod;
-import com.sinno.ems.entities.PrmWarrantyPeriod;
-
 import java.util.*;
 
 /**

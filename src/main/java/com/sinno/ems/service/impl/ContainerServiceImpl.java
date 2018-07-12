@@ -3,7 +3,6 @@ package com.sinno.ems.service.impl;
 import java.math.BigInteger;
 import java.util.List;
 
-import com.sinno.ems.service.AddressService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,16 +10,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sinno.ems.dto.Container;
-import com.sinno.ems.dto.ContainerArc;
 import com.sinno.ems.entities.StkContainerView;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.ContainerArcMapper;
 import com.sinno.ems.mapper.ContainerMapper;
-import com.sinno.ems.repositories.ContainerArcRepository;
-import com.sinno.ems.repositories.ContainerRepository;
-import com.sinno.ems.repositories.ContainerViewRepository;
 import com.sinno.ems.service.ContainerService;
 import com.sinno.ems.util.EmsDate;
 import com.sinno.ems.util.Search;

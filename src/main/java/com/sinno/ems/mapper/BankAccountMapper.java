@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.BankAccount;
-import com.sinno.ems.entities.PrmBankAccount;
-
 import java.util.*;
 
 /**

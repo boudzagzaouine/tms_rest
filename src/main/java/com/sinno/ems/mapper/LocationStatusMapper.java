@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.LocationStatus;
-import com.sinno.ems.entities.PrmLocationStatus;
-
 import java.util.*;
 
 /**

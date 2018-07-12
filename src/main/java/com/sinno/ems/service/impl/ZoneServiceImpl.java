@@ -1,17 +1,10 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.Zone;
-import com.sinno.ems.dto.ZoneWarehouse;
-import com.sinno.ems.entities.LocZone;
-import com.sinno.ems.entities.LocZoneWarehouse;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.ZoneMapper;
 import com.sinno.ems.mapper.ZoneWarehouseMapper;
-import com.sinno.ems.repositories.ZoneRepository;
-import com.sinno.ems.repositories.ZoneWarehouseRepository;
-import com.sinno.ems.service.ProductService;
 import com.sinno.ems.service.ZoneService;
 import com.sinno.ems.util.EmsDate;
 import com.sinno.ems.util.Search;

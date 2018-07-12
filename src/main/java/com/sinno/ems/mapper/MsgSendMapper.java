@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.MsgSend;
-import com.sinno.ems.entities.PrmMsgSend;
-
 import java.util.*;
 
 /**

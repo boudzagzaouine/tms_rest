@@ -3,9 +3,6 @@
  */
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.Location;
-import com.sinno.ems.entities.LocLocation;
-
 import java.util.*;
 
 /**

@@ -2,19 +2,15 @@ package com.sinno.ems.service.impl;
 
 import com.sinno.ems.dto.*;
 import com.sinno.ems.entities.CmdSaleOrder;
-import com.sinno.ems.entities.PrmMsgSend;
-import com.sinno.ems.entities.StkContainerArc;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.*;
 import com.sinno.ems.mapperWms.MapperSaleOrder;
 import com.sinno.ems.repositories.*;
-import com.sinno.ems.service.ProductService;
 import com.sinno.ems.service.SaleOrderService;
 import com.sinno.ems.util.EmsDate;
 import com.sinno.ems.util.Search;
-import com.sinno.wms.crud.convertbasic.ConvertManagerSaleOdrerLine;
 import com.sinno.wms.crud.convertbasic.ConvertManagerSaleOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +21,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.File;
 import java.lang.Exception;
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;

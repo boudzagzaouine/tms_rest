@@ -8,7 +8,6 @@ public class Container implements Serializable {
 
     private static final long serialVersionUID = 426913869261007618L;
 
-    private Location location;
     private long id;
     private Owner owner;
     private String code;
@@ -25,20 +24,11 @@ public class Container implements Serializable {
     private String variable9;
     private String variable10;
     private Set<Stock> stocks;
-    private Set<StockArc> stockArcs;
     private Date creationDate;
-    private Set<SaleOrderStockArc> saleOrderStockArcs;
     private Set<SaleOrderStock> saleOrderStocks;
     private Date receptionDate;
-    private Warehouse warehouse;
 
-    public Location getLocation() {
-        return location;
-    }
 
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
     public long getId() {
         return id;
@@ -174,13 +164,7 @@ public class Container implements Serializable {
         this.stocks = stocks;
     }
 
-    public Set<StockArc> getStockArcs() {
-        return stockArcs;
-    }
 
-    public void setStockArcs(Set<StockArc> stockArcs) {
-        this.stockArcs = stockArcs;
-    }
 
     public Date getCreationDate() {
         return creationDate;
@@ -190,13 +174,7 @@ public class Container implements Serializable {
         this.creationDate = creationDate;
     }
 
-    public Set<SaleOrderStockArc> getSaleOrderStockArcs() {
-        return saleOrderStockArcs;
-    }
 
-    public void setSaleOrderStockArcs(Set<SaleOrderStockArc> saleOrderStockArcs) {
-        this.saleOrderStockArcs = saleOrderStockArcs;
-    }
 
     public Set<SaleOrderStock> getSaleOrderStocks() {
         return saleOrderStocks;
@@ -212,14 +190,6 @@ public class Container implements Serializable {
 
     public void setReceptionDate(Date receptionDate) {
         this.receptionDate = receptionDate;
-    }
-
-    public Warehouse getWarehouse() {
-        return warehouse;
-    }
-
-    public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
     }
 
     @Override

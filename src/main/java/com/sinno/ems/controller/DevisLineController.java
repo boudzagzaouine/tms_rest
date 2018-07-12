@@ -4,7 +4,6 @@ package com.sinno.ems.controller;
  * Created by Enissay on 06/12/2016.
  */
 
-import com.sinno.ems.dto.DevisLine;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;

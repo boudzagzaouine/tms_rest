@@ -65,7 +65,6 @@ public class PdtProductPack implements java.io.Serializable {
     private Date pdtProductPackUpdateDate;
     private BigDecimal pdtProductPackWidth;
     private Boolean pdtProductPackWeightControl;
-    private PrmCurrency prmCurrency;
 
     public PdtProductPack() {
     }
@@ -241,13 +240,5 @@ public class PdtProductPack implements java.io.Serializable {
     public void setPdtProductPurshasePrice(BigDecimal pdtProductPurshasePrice) {
         this.pdtProductPurshasePrice = pdtProductPurshasePrice;
     }
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="pdt_productpackcurrencyid")
-    public PrmCurrency getPrmCurrency() {
-        return prmCurrency;
-    }
 
-    public void setPrmCurrency(PrmCurrency prmCurrency) {
-        this.prmCurrency = prmCurrency;
-    }
 }

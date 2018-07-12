@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.ReceptionLine;
-import com.sinno.ems.entities.RcpReceptionLine;
-
 import java.util.*;
 
 public class ReceptionLineMapper {

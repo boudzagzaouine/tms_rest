@@ -13,15 +13,10 @@ public class OrderType implements Serializable {
     private String code;
     private Date updateDate;
     private Set<SaleOrder> saleOrders;
-    private Set<Reception> receptions;
     private Date creationDate;
-    private Set<SaleOrderArc> saleOrderArcs;
     private String description;
     private Long flow;
     private Boolean active;
-    private Set<PurshaseOrderArc> purshaseOrderArcs;
-    private Set<ReceptionArc> receptionArcs;
-    private Set<PurshaseOrder> purshaseOrders;
     private Organisation organisation;
 
 
@@ -57,13 +52,7 @@ public class OrderType implements Serializable {
         this.saleOrders = saleOrders;
     }
 
-    public Set<Reception> getReceptions() {
-        return receptions;
-    }
 
-    public void setReceptions(Set<Reception> receptions) {
-        this.receptions = receptions;
-    }
 
     public Date getCreationDate() {
         return creationDate;
@@ -71,14 +60,6 @@ public class OrderType implements Serializable {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
-    }
-
-    public Set<SaleOrderArc> getSaleOrderArcs() {
-        return saleOrderArcs;
-    }
-
-    public void setSaleOrderArcs(Set<SaleOrderArc> saleOrderArcs) {
-        this.saleOrderArcs = saleOrderArcs;
     }
 
     public String getDescription() {
@@ -89,29 +70,8 @@ public class OrderType implements Serializable {
         this.description = description;
     }
 
-    public Set<PurshaseOrderArc> getPurshaseOrderArcs() {
-        return purshaseOrderArcs;
-    }
 
-    public void setPurshaseOrderArcs(Set<PurshaseOrderArc> purshaseOrderArcs) {
-        this.purshaseOrderArcs = purshaseOrderArcs;
-    }
 
-    public Set<ReceptionArc> getReceptionArcs() {
-        return receptionArcs;
-    }
-
-    public void setReceptionArcs(Set<ReceptionArc> receptionArcs) {
-        this.receptionArcs = receptionArcs;
-    }
-
-    public Set<PurshaseOrder> getPurshaseOrders() {
-        return purshaseOrders;
-    }
-
-    public void setPurshaseOrders(Set<PurshaseOrder> purshaseOrders) {
-        this.purshaseOrders = purshaseOrders;
-    }
 
     public Long getFlow() {
         return flow;

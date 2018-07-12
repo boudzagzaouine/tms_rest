@@ -12,7 +12,6 @@ public class SaleOrderLine implements Serializable {
      */
     private static final long serialVersionUID = -8747248049547537558L;
 
-    private Location location;
     private long id;
     private Long lineNumber;
     private Owner owner;
@@ -31,7 +30,6 @@ public class SaleOrderLine implements Serializable {
     private String variable10;
     private Date creationDate;
     private String description;
-    private Warehouse warehouse;
     private Product product;
     private BlockType blockType;
     private Color color;
@@ -45,14 +43,12 @@ public class SaleOrderLine implements Serializable {
     private OrderStatus orderStatus;
     private BigDecimal quantity;
     private Uom uom;
-    private Set<StockReserved> stockReserveds;
-    private Set<SaleOrderStockArc> saleOrderStockArcs;
+
     private Set<SaleOrderStock> saleOrderStocks;
     private String comment;
     private String quality;
     private BigDecimal weight;
     private String containerCode;
-    private DevisLine devisLine;
     private BigDecimal totalPriceHT;
     private BigDecimal totalPriceTTC;
     private Vat vat;
@@ -63,13 +59,6 @@ public class SaleOrderLine implements Serializable {
     private ProductDimension productDimension;
 
 
-    public Location getLocation() {
-        return this.location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
     public long getId() {
         return this.id;
@@ -215,13 +204,6 @@ public class SaleOrderLine implements Serializable {
         this.description = description;
     }
 
-    public Warehouse getWarehouse() {
-        return this.warehouse;
-    }
-
-    public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
-    }
 
     public Product getProduct() {
         return this.product;
@@ -327,33 +309,7 @@ public class SaleOrderLine implements Serializable {
         this.uom = uom;
     }
 
-    /**
-     * @return the stockReserveds
-     */
-    public Set<StockReserved> getStockReserveds() {
-        return stockReserveds;
-    }
 
-    /**
-     * @param stockReserveds the stockReserveds to set
-     */
-    public void setStockReserveds(Set<StockReserved> stockReserveds) {
-        this.stockReserveds = stockReserveds;
-    }
-
-    /**
-     * @return the saleOrderStockArcs
-     */
-    public Set<SaleOrderStockArc> getSaleOrderStockArcs() {
-        return saleOrderStockArcs;
-    }
-
-    /**
-     * @param saleOrderStockArcs the saleOrderStockArcs to set
-     */
-    public void setSaleOrderStockArcs(Set<SaleOrderStockArc> saleOrderStockArcs) {
-        this.saleOrderStockArcs = saleOrderStockArcs;
-    }
 
     /**
      * @return the saleOrderStocks
@@ -401,13 +357,6 @@ public class SaleOrderLine implements Serializable {
         this.containerCode = containerCode;
     }
 
-    public DevisLine getDevisLine() {
-        return devisLine;
-    }
-
-    public void setDevisLine(DevisLine devisLine) {
-        this.devisLine = devisLine;
-    }
 
     public BigDecimal getTotalPriceHT() {
         return totalPriceHT;

@@ -1,6 +1,5 @@
 package com.sinno.ems.export;
 
-import com.sinno.ems.entities.RcpSupplier;
 import com.sinno.ems.mapper.wms.SupplierMapperWMS;
 import com.sinno.ems.util.EmsDate;
 import com.sinno.wms.crud.convert.ConvertManagerSup;

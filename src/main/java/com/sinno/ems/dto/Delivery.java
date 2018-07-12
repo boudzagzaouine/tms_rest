@@ -13,7 +13,6 @@ public class Delivery {
     private String code;
     private String description;
     private Account Account;
-    private Warehouse warehouse;
     private Transport transport;
     private Owner owner;
     private OrderStatus orderStatus;
@@ -27,8 +26,6 @@ public class Delivery {
     private Long containerCount;
     private Address deliveryAddress;
     private Address invoiceAddress;
-    private Location location;
-    private Reception reception;
     private String transportTel;
     private String remarks;
     private String transportContact;
@@ -36,7 +33,6 @@ public class Delivery {
     private Set<DeliveryLine> lines;
     private String transfertCode;
     private Boolean sendedToWms;
-    private Preparation preparation;
     private BigDecimal discount;
     private BigDecimal totalPriceHT;
     private BigDecimal totalPriceTTC;
@@ -79,13 +75,7 @@ public class Delivery {
         Account = account;
     }
 
-    public Warehouse getWarehouse() {
-        return warehouse;
-    }
 
-    public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
-    }
 
     public Transport getTransport() {
         return transport;
@@ -175,13 +165,6 @@ public class Delivery {
         this.invoiceAddress = invoiceAddress;
     }
 
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
     public Set<DeliveryLine> getLines() {
         return lines;
@@ -191,13 +174,7 @@ public class Delivery {
         this.lines = lines;
     }
 
-    public Reception getReception() {
-        return reception;
-    }
 
-    public void setReception(Reception reception) {
-        this.reception = reception;
-    }
 
     public String getTransportTel() {
         return transportTel;
@@ -264,13 +241,6 @@ public class Delivery {
         return sendedToWms;
     }
 
-    public Preparation getPreparation() {
-        return preparation;
-    }
-
-    public void setPreparation(Preparation preparation) {
-        this.preparation = preparation;
-    }
 
     public BigDecimal getDiscount() {
         return discount;

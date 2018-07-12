@@ -1,10 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.StockArc;
-import com.sinno.ems.dto.StockArc;
-import com.sinno.ems.entities.StkStockArc;
-import com.sinno.ems.entities.StkStockArc;
-
 import java.util.*;
 
 public class StockArcMapper {

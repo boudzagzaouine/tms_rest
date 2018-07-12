@@ -1,13 +1,9 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.InvoiceArc;
-import com.sinno.ems.entities.InvInvoiceArc;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.InvoiceArcMapper;
-import com.sinno.ems.repositories.InvoiceArcRepository;
-import com.sinno.ems.service.AddressService;
 import com.sinno.ems.service.InvoiceArcService;
 import com.sinno.ems.util.Search;
 import org.slf4j.Logger;

@@ -1,7 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.Devis;
-import com.sinno.ems.entities.CmdDevis;
 import com.sinno.ems.util.EmsDate;
 
 import java.util.*;

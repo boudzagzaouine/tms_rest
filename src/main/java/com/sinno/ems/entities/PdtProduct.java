@@ -23,7 +23,6 @@ import java.util.Set;
 public class PdtProduct implements java.io.Serializable {
 
     private long pdtProductId;
-    private LocLocation locLocation;
     @NotNull
     private OwnOwner ownOwner;
     private PdtProduct pdtProductParent;
@@ -34,7 +33,6 @@ public class PdtProduct implements java.io.Serializable {
     private PdtUom pdtUomByPdtProductUomPurshaseId;
     private PrmBlockType prmBlockType;
     private Set<PrmImage> prmImages;
-    private RcpSupplier rcpSupplier;
     private WrhWarehouse wrhWarehouse;
 
     @Size(max = 30)
@@ -132,7 +130,6 @@ public class PdtProduct implements java.io.Serializable {
     private String pdtProductVariable10;
     private Boolean pdtProductQualityOfControl;
     private BigDecimal pdtProductSamplingPercentage;
-    private LocLocation pickingLocLocation;
     private PdtUom pickingPdtUom;
     private BigDecimal pdtMinimalThreshold;
     private BigDecimal pdtCapacity;
@@ -143,47 +140,20 @@ public class PdtProduct implements java.io.Serializable {
     private Boolean pdtProductReqRec;
     private Boolean pdtProductWarrantyManagement;
     private BigDecimal pdtProductDiscount;
-    private PrmWarrantyPeriod prmWarrantyPeriod;
-    private PrmCurrency prmCurrencySale;
-    private PrmCurrency prmCurrencyPurshase;
+
     /* private Boolean pdtProductRawProduct;
      private Boolean pdtProductFinalProduct;
      private Boolean pdtProductSemiFinalProduct;
      private Boolean pdtProductKitComponent;*/
     private PdtProductForm pdtProductForm;
     private Boolean pdtProductDimension;
-    private PdtProcess pdtProcess;
 
-    private Set<CmdSaleOrderLineArc> cmdSaleOrderLineArcs = new HashSet<CmdSaleOrderLineArc>(
-            0);
-    private Set<CmdSaleOrderStock> cmdSaleOrderStocks = new HashSet<CmdSaleOrderStock>(
-            0);
-    private Set<RcpReceptionStock> rcpReceptionStocks = new HashSet<RcpReceptionStock>(
-            0);
-    private Set<CmdSaleOrderStockArc> cmdSaleOrderStockArcs = new HashSet<CmdSaleOrderStockArc>(
-            0);
-    private Set<PdtProduct> pdtProducts = new HashSet<PdtProduct>(0);
-    private Set<RcpReceptionLine> rcpReceptionLines = new HashSet<RcpReceptionLine>(
-            0);
-    private Set<PdtProduct> pdtProducts_1 = new HashSet<PdtProduct>(0);
-    private Set<StkStockArc> stkStockArcs = new HashSet<StkStockArc>(0);
-    private Set<CmdSaleOrderLine> cmdSaleOrderLines = new HashSet<CmdSaleOrderLine>(
-            0);
-    private Set<StkStockReserved> stkStockReserveds = new HashSet<StkStockReserved>(
-            0);
-    private Set<RcpReceptionLineArc> rcpReceptionLineArcs = new HashSet<RcpReceptionLineArc>(
-            0);
-    private Set<PdtAlias> pdtAliases = new HashSet<PdtAlias>(0);
-    private Set<PdtProductPack> pdtProductPacks = new HashSet<PdtProductPack>(0);
-    private Set<RcpReceptionStockArc> rcpReceptionStockArcs = new HashSet<RcpReceptionStockArc>(
-            0);
-    private Set<StkStock> stkStocks = new HashSet<StkStock>(0);
-    private Set<RcpPurshaseOrderLine> rcpPurshaseOrderLines = new HashSet<RcpPurshaseOrderLine>(
-            0);
-    private Set<RcpPurshaseOrderLineArc> rcpPurshaseOrderLineArcs = new HashSet<RcpPurshaseOrderLineArc>(
-            0);
+
+
+
     private Set<PdtProductDimension> pdtProductDimensions = new HashSet<PdtProductDimension>(0);
     private Long pdtProductVersion;
+    private Set<PdtProductPack> pdtProductPacks;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -197,15 +167,7 @@ public class PdtProduct implements java.io.Serializable {
         this.pdtProductId = pdtProductId;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pdt_productlocationid")
-    public LocLocation getLocLocation() {
-        return this.locLocation;
-    }
 
-    public void setLocLocation(LocLocation locLocation) {
-        this.locLocation = locLocation;
-    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pdt_productaliasid")
@@ -309,16 +271,6 @@ public class PdtProduct implements java.io.Serializable {
 
     public void setPrmImages(Set<PrmImage> prmImages) {
         this.prmImages = prmImages;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pdt_productdefaultsupplierid")
-    public RcpSupplier getRcpSupplier() {
-        return this.rcpSupplier;
-    }
-
-    public void setRcpSupplier(RcpSupplier rcpSupplier) {
-        this.rcpSupplier = rcpSupplier;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -679,116 +631,6 @@ public class PdtProduct implements java.io.Serializable {
         this.pdtProductVariable10 = pdtProductVariable10;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct")
-    public Set<CmdSaleOrderLineArc> getCmdSaleOrderLineArcs() {
-        return this.cmdSaleOrderLineArcs;
-    }
-
-    public void setCmdSaleOrderLineArcs(
-            Set<CmdSaleOrderLineArc> cmdSaleOrderLineArcs) {
-        this.cmdSaleOrderLineArcs = cmdSaleOrderLineArcs;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct")
-    public Set<CmdSaleOrderStock> getCmdSaleOrderStocks() {
-        return this.cmdSaleOrderStocks;
-    }
-
-    public void setCmdSaleOrderStocks(Set<CmdSaleOrderStock> cmdSaleOrderStocks) {
-        this.cmdSaleOrderStocks = cmdSaleOrderStocks;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct")
-    public Set<RcpReceptionStock> getRcpReceptionStocks() {
-        return this.rcpReceptionStocks;
-    }
-
-    public void setRcpReceptionStocks(Set<RcpReceptionStock> rcpReceptionStocks) {
-        this.rcpReceptionStocks = rcpReceptionStocks;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct")
-    public Set<CmdSaleOrderStockArc> getCmdSaleOrderStockArcs() {
-        return this.cmdSaleOrderStockArcs;
-    }
-
-    public void setCmdSaleOrderStockArcs(
-            Set<CmdSaleOrderStockArc> cmdSaleOrderStockArcs) {
-        this.cmdSaleOrderStockArcs = cmdSaleOrderStockArcs;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProductParent")
-    public Set<PdtProduct> getPdtProducts() {
-        return this.pdtProducts;
-    }
-
-    public void setPdtProducts(Set<PdtProduct> pdtProducts) {
-        this.pdtProducts = pdtProducts;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct")
-    public Set<RcpReceptionLine> getRcpReceptionLines() {
-        return this.rcpReceptionLines;
-    }
-
-    public void setRcpReceptionLines(Set<RcpReceptionLine> rcpReceptionLines) {
-        this.rcpReceptionLines = rcpReceptionLines;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProductParent")
-    public Set<PdtProduct> getPdtProducts_1() {
-        return this.pdtProducts_1;
-    }
-
-    public void setPdtProducts_1(Set<PdtProduct> pdtProducts_1) {
-        this.pdtProducts_1 = pdtProducts_1;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct")
-    public Set<StkStockArc> getStkStockArcs() {
-        return this.stkStockArcs;
-    }
-
-    public void setStkStockArcs(Set<StkStockArc> stkStockArcs) {
-        this.stkStockArcs = stkStockArcs;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct")
-    public Set<CmdSaleOrderLine> getCmdSaleOrderLines() {
-        return this.cmdSaleOrderLines;
-    }
-
-    public void setCmdSaleOrderLines(Set<CmdSaleOrderLine> cmdSaleOrderLines) {
-        this.cmdSaleOrderLines = cmdSaleOrderLines;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct")
-    public Set<StkStockReserved> getStkStockReserveds() {
-        return this.stkStockReserveds;
-    }
-
-    public void setStkStockReserveds(Set<StkStockReserved> stkStockReserveds) {
-        this.stkStockReserveds = stkStockReserveds;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct")
-    public Set<RcpReceptionLineArc> getRcpReceptionLineArcs() {
-        return this.rcpReceptionLineArcs;
-    }
-
-    public void setRcpReceptionLineArcs(
-            Set<RcpReceptionLineArc> rcpReceptionLineArcs) {
-        this.rcpReceptionLineArcs = rcpReceptionLineArcs;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct")
-    public Set<PdtAlias> getPdtAliases() {
-        return this.pdtAliases;
-    }
-
-    public void setPdtAliases(Set<PdtAlias> pdtAliases) {
-        this.pdtAliases = pdtAliases;
-    }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct", cascade = CascadeType.ALL)
     public Set<PdtProductPack> getPdtProductPacks() {
@@ -799,44 +641,8 @@ public class PdtProduct implements java.io.Serializable {
         this.pdtProductPacks = pdtProductPacks;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct")
-    public Set<RcpReceptionStockArc> getRcpReceptionStockArcs() {
-        return this.rcpReceptionStockArcs;
-    }
 
-    public void setRcpReceptionStockArcs(
-            Set<RcpReceptionStockArc> rcpReceptionStockArcs) {
-        this.rcpReceptionStockArcs = rcpReceptionStockArcs;
-    }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct")
-    public Set<StkStock> getStkStocks() {
-        return this.stkStocks;
-    }
-
-    public void setStkStocks(Set<StkStock> stkStocks) {
-        this.stkStocks = stkStocks;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct")
-    public Set<RcpPurshaseOrderLine> getRcpPurshaseOrderLines() {
-        return this.rcpPurshaseOrderLines;
-    }
-
-    public void setRcpPurshaseOrderLines(
-            Set<RcpPurshaseOrderLine> rcpPurshaseOrderLines) {
-        this.rcpPurshaseOrderLines = rcpPurshaseOrderLines;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct")
-    public Set<RcpPurshaseOrderLineArc> getRcpPurshaseOrderLineArcs() {
-        return this.rcpPurshaseOrderLineArcs;
-    }
-
-    public void setRcpPurshaseOrderLineArcs(
-            Set<RcpPurshaseOrderLineArc> rcpPurshaseOrderLineArcs) {
-        this.rcpPurshaseOrderLineArcs = rcpPurshaseOrderLineArcs;
-    }
 
     @Column(name = "pdt_productiskit")
     public Boolean getPdtProductIsKit() {
@@ -876,15 +682,6 @@ public class PdtProduct implements java.io.Serializable {
         this.pdtProductPack = pdtProductPack;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "pdt_productpickinglocationid")
-    public LocLocation getPickingLocLocation() {
-        return pickingLocLocation;
-    }
-
-    public void setPickingLocLocation(LocLocation pickingLocLocation) {
-        this.pickingLocLocation = pickingLocLocation;
-    }
 
     @ManyToOne
     @JoinColumn(name = "pdt_productpickinguomid")
@@ -972,17 +769,6 @@ public class PdtProduct implements java.io.Serializable {
         this.pdtProductDiscount = pdtProductDiscount;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pdt_productwarrantyperiodid")
-
-    public PrmWarrantyPeriod getPrmWarrantyPeriod() {
-        return prmWarrantyPeriod;
-    }
-
-    public void setPrmWarrantyPeriod(PrmWarrantyPeriod prmWarrantyPeriod) {
-        this.prmWarrantyPeriod = prmWarrantyPeriod;
-    }
-
     @Column(name = "pdt_productpurshasepriceub")
 
     public BigDecimal getPdtProductPurshasePriceUB() {
@@ -993,15 +779,7 @@ public class PdtProduct implements java.io.Serializable {
         this.pdtProductPurshasePriceUB = pdtProductPurshasePriceUB;
     }
 
-    @JoinColumn(name = "pdt_productcurrencyid")
-    @ManyToOne(fetch = FetchType.LAZY)
-    public PrmCurrency getPrmCurrencySale() {
-        return prmCurrencySale;
-    }
 
-    public void setPrmCurrencySale(PrmCurrency prmCurrencySale) {
-        this.prmCurrencySale = prmCurrencySale;
-    }
 
     @JoinColumn(name = "pdt_productformid")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -1013,15 +791,7 @@ public class PdtProduct implements java.io.Serializable {
         this.pdtProductForm = pdtProductForm;
     }
 
-    @JoinColumn(name = "pdt_productcurrencypurshaseid")
-    @ManyToOne(fetch = FetchType.LAZY)
-    public PrmCurrency getPrmCurrencyPurshase() {
-        return prmCurrencyPurshase;
-    }
 
-    public void setPrmCurrencyPurshase(PrmCurrency prmCurrencyPurshase) {
-        this.prmCurrencyPurshase = prmCurrencyPurshase;
-    }
 
     @Column(name = "pdt_productdimension")
     public Boolean getPdtProductDimension() {
@@ -1065,13 +835,5 @@ public class PdtProduct implements java.io.Serializable {
     public void setPdtProductVersion(Long pdtProductVersion) {
         this.pdtProductVersion = pdtProductVersion;
     }
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="pdt_productprocessid")
-    public PdtProcess getPdtProcess() {
-        return pdtProcess;
-    }
 
-    public void setPdtProcess(PdtProcess pdtProcess) {
-        this.pdtProcess = pdtProcess;
-    }
 }

@@ -1,6 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.AssetAccount;
 import com.sinno.ems.entities.CmdAssetAccount;
 
 import java.util.*;

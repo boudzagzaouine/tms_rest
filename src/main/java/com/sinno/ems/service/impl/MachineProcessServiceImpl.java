@@ -1,12 +1,9 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.MachineProcess;
-import com.sinno.ems.entities.PdtMachineProcess;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.MachineProcessMapper;
-import com.sinno.ems.repositories.MachineProcessRepository;
 import com.sinno.ems.service.MachineProcessService;
 import com.sinno.ems.util.Search;
 import org.slf4j.Logger;

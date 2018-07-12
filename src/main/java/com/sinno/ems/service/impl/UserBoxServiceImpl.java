@@ -1,6 +1,5 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.UserBox;
 import com.sinno.ems.entities.UsrUserBox;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;

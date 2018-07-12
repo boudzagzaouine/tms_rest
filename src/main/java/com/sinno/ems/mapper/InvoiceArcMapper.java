@@ -3,9 +3,6 @@
  */
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.InvoiceArc;
-import com.sinno.ems.dto.InvoiceLineArc;
-import com.sinno.ems.entities.InvInvoiceArc;
 import com.sinno.ems.util.EmsDate;
 
 import java.util.*;

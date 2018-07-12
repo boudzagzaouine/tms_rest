@@ -8,7 +8,6 @@ public class Stock implements Serializable {
 
     private static final long serialVersionUID = -1872267403174822706L;
 
-    private Location location;
     private long id;
     private Owner owner;
     private Date updateDate;
@@ -26,7 +25,6 @@ public class Stock implements Serializable {
     private Date receptionDate;
     private Product product;
     private BlockType blockType;
-    private Supplier supplier;
     private Color color;
     private Date dlc;
     private Date dluo;
@@ -36,20 +34,12 @@ public class Stock implements Serializable {
     private BigDecimal quantity;
     private Uom uom;
     private Boolean kit;
-    private ReceptionLine receptionLine;
-    private ReceptionStock receptionStock;
+
     private String quality;
     private BigDecimal weight;
     private String comment;
     private ProductDimension productDimension;
 
-    public Location getLocation() {
-        return this.location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
     public long getId() {
         return this.id;
@@ -194,13 +184,6 @@ public class Stock implements Serializable {
         this.blockType = blockType;
     }
 
-    public Supplier getSupplier() {
-        return this.supplier;
-    }
-
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
-    }
 
     public Color getColor() {
         return this.color;
@@ -290,13 +273,7 @@ public class Stock implements Serializable {
         this.weight = weight;
     }
 
-    public ReceptionLine getReceptionLine() {
-        return receptionLine;
-    }
 
-    public void setReceptionLine(ReceptionLine receptionLine) {
-        this.receptionLine = receptionLine;
-    }
 
     public String getComment() {
         return comment;
@@ -306,13 +283,6 @@ public class Stock implements Serializable {
         this.comment = comment;
     }
 
-    public ReceptionStock getReceptionStock() {
-        return receptionStock;
-    }
-
-    public void setReceptionStock(ReceptionStock receptionStock) {
-        this.receptionStock = receptionStock;
-    }
 
     public ProductDimension getProductDimension() {
         return productDimension;

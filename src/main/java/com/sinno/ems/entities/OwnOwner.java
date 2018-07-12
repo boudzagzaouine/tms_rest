@@ -85,7 +85,6 @@ public class OwnOwner implements java.io.Serializable {
     @NotNull
     private Date ownOwnerFirstInvoiceDate;
     private byte[] ownOwnerImage;
-    private PrmWallet prmWallet;
 
     public OwnOwner() {
     }
@@ -391,15 +390,6 @@ public class OwnOwner implements java.io.Serializable {
         this.ownOwnerImage = ownOwnerImage;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    @JoinColumn(name="own_ownerwalletid")
-    public PrmWallet getPrmWallet() {
-        return prmWallet;
-    }
-
-    public void setPrmWallet(PrmWallet prmWallet) {
-        this.prmWallet = prmWallet;
-    }
 
     @Override
     public boolean equals(Object object) {

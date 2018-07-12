@@ -24,10 +24,8 @@ public class Contact implements Serializable {
     private String variable10;
     private String tel1;
     private String tel2;
-    private Set<Invoice> invoices;
     private Set<Supplier> suppliers;
     private Date creationDate;
-    private Set<InvoiceArc> invoiceArcs;
     private String surName;
     private String fax;
     private Set<Transport> transports;
@@ -168,13 +166,6 @@ public class Contact implements Serializable {
         this.tel2 = tel2;
     }
 
-    public Set<Invoice> getInvoices() {
-        return invoices;
-    }
-
-    public void setInvoices(Set<Invoice> invoices) {
-        this.invoices = invoices;
-    }
 
     public Set<Supplier> getSuppliers() {
         return suppliers;
@@ -192,13 +183,6 @@ public class Contact implements Serializable {
         this.creationDate = creationDate;
     }
 
-    public Set<InvoiceArc> getInvoiceArcs() {
-        return invoiceArcs;
-    }
-
-    public void setInvoiceArcs(Set<InvoiceArc> invoiceArcs) {
-        this.invoiceArcs = invoiceArcs;
-    }
 
     public String getSurName() {
         return surName;

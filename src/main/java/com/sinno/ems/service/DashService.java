@@ -7,12 +7,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import com.sinno.ems.dto.BarCode;
-import com.sinno.ems.entities.DashCommercial;
-import com.sinno.ems.entities.DashContainer;
-import com.sinno.ems.entities.DashInvoice;
-import com.sinno.ems.entities.DashResult;
-
 /**
  * @author Sinno
  *

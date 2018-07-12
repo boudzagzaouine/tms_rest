@@ -1,7 +1,5 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.Devis;
-import com.sinno.ems.entities.CmdDevis;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;

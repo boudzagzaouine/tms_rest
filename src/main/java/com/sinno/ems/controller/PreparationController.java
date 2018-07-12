@@ -1,6 +1,5 @@
 package com.sinno.ems.controller;
 
-import com.sinno.ems.dto.Preparation;
 import com.sinno.ems.dto.SaleOrder;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;

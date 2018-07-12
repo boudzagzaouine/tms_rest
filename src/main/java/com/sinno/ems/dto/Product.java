@@ -11,7 +11,6 @@ public class Product implements Serializable {
     private static final long serialVersionUID = 2190494089191881319L;
 
     private long id;
-    private Location location;
     private Owner owner;
     private Uom uomByProductUomSale;
     private Uom uomByProductUomBase;
@@ -50,7 +49,6 @@ public class Product implements Serializable {
     private BigDecimal expeditionPrice;
     private BigDecimal conditionningPrice;
     private Long paletConditionning;
-    private Warehouse warehouse;
     private Product product;
     private BlockType blockType;
     private Set<Image> images;
@@ -72,22 +70,11 @@ public class Product implements Serializable {
     private Boolean dimension;
     private Set<Product> products;
     private Set<Stock> stocks;
-    private Set<StockArc> stockArcs;
     private Set<Alias> aliases;
-    private Set<StockReserved> stockReserveds;
-    private Set<ReceptionLine> receptionLines;
-    private Set<ReceptionLineArc> receptionLineArcs;
-    private Set<PurshaseOrderLineArc> purshaseOrderLineArcs;
-    private Set<SaleOrderStockArc> saleOrderStockArcs;
-    private Set<SaleOrderLineArc> saleOrderLineArcs;
     private Set<SaleOrderLine> saleOrderLines;
-    private Set<PurshaseOrderLine> purshaseOrderLines;
     private Set<SaleOrderStock> saleOrderStocks;
-    private Set<ReceptionStockArc> receptionStockArcs;
     private Set<Product> products_1;
     private Set<ProductPack> productPacks;
-    private Set<ReceptionStock> receptionStocks;
-    private Location pickingLocation;
     private Uom pickingUom;
     private BigDecimal minimalThreshold;
     private BigDecimal capacity;
@@ -95,7 +82,6 @@ public class Product implements Serializable {
     private ProductPack productPack;
     private Boolean warrantyManagement;
     private BigDecimal discount;
-    private WarrantyPeriod warrantyPeriod;
     private BigDecimal soldPrice;
     private Currency currency;
     private ProductForm productForm;
@@ -124,13 +110,6 @@ public class Product implements Serializable {
         this.id = id;
     }
 
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
     public Owner getOwner() {
         return owner;
@@ -384,13 +363,6 @@ public class Product implements Serializable {
         this.paletConditionning = paletConditionning;
     }
 
-    public Warehouse getWarehouse() {
-        return warehouse;
-    }
-
-    public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
-    }
 
     public Product getProduct() {
         return product;
@@ -516,13 +488,6 @@ public class Product implements Serializable {
         this.stocks = stocks;
     }
 
-    public Set<StockArc> getStockArcs() {
-        return stockArcs;
-    }
-
-    public void setStockArcs(Set<StockArc> stockArcs) {
-        this.stockArcs = stockArcs;
-    }
 
     public Set<Alias> getAliases() {
         return aliases;
@@ -532,53 +497,7 @@ public class Product implements Serializable {
         this.aliases = aliases;
     }
 
-    public Set<StockReserved> getStockReserveds() {
-        return stockReserveds;
-    }
 
-    public void setStockReserveds(Set<StockReserved> stockReserveds) {
-        this.stockReserveds = stockReserveds;
-    }
-
-    public Set<ReceptionLine> getReceptionLines() {
-        return receptionLines;
-    }
-
-    public void setReceptionLines(Set<ReceptionLine> receptionLines) {
-        this.receptionLines = receptionLines;
-    }
-
-    public Set<ReceptionLineArc> getReceptionLineArcs() {
-        return receptionLineArcs;
-    }
-
-    public void setReceptionLineArcs(Set<ReceptionLineArc> receptionLineArcs) {
-        this.receptionLineArcs = receptionLineArcs;
-    }
-
-    public Set<PurshaseOrderLineArc> getPurshaseOrderLineArcs() {
-        return purshaseOrderLineArcs;
-    }
-
-    public void setPurshaseOrderLineArcs(Set<PurshaseOrderLineArc> purshaseOrderLineArcs) {
-        this.purshaseOrderLineArcs = purshaseOrderLineArcs;
-    }
-
-    public Set<SaleOrderStockArc> getSaleOrderStockArcs() {
-        return saleOrderStockArcs;
-    }
-
-    public void setSaleOrderStockArcs(Set<SaleOrderStockArc> saleOrderStockArcs) {
-        this.saleOrderStockArcs = saleOrderStockArcs;
-    }
-
-    public Set<SaleOrderLineArc> getSaleOrderLineArcs() {
-        return saleOrderLineArcs;
-    }
-
-    public void setSaleOrderLineArcs(Set<SaleOrderLineArc> saleOrderLineArcs) {
-        this.saleOrderLineArcs = saleOrderLineArcs;
-    }
 
     public Set<SaleOrderLine> getSaleOrderLines() {
         return saleOrderLines;
@@ -588,13 +507,6 @@ public class Product implements Serializable {
         this.saleOrderLines = saleOrderLines;
     }
 
-    public Set<PurshaseOrderLine> getPurshaseOrderLines() {
-        return purshaseOrderLines;
-    }
-
-    public void setPurshaseOrderLines(Set<PurshaseOrderLine> purshaseOrderLines) {
-        this.purshaseOrderLines = purshaseOrderLines;
-    }
 
     public Set<SaleOrderStock> getSaleOrderStocks() {
         return saleOrderStocks;
@@ -604,13 +516,6 @@ public class Product implements Serializable {
         this.saleOrderStocks = saleOrderStocks;
     }
 
-    public Set<ReceptionStockArc> getReceptionStockArcs() {
-        return receptionStockArcs;
-    }
-
-    public void setReceptionStockArcs(Set<ReceptionStockArc> receptionStockArcs) {
-        this.receptionStockArcs = receptionStockArcs;
-    }
 
     public Set<Product> getProducts_1() {
         return products_1;
@@ -628,13 +533,7 @@ public class Product implements Serializable {
         this.productPacks = productPacks;
     }
 
-    public Set<ReceptionStock> getReceptionStocks() {
-        return receptionStocks;
-    }
 
-    public void setReceptionStocks(Set<ReceptionStock> receptionStocks) {
-        this.receptionStocks = receptionStocks;
-    }
 
     public Long getRaisonToOut() {
         return raisonToOut;
@@ -690,14 +589,6 @@ public class Product implements Serializable {
 
     public Boolean getKit() {
         return kit;
-    }
-
-    public Location getPickingLocation() {
-        return pickingLocation;
-    }
-
-    public void setPickingLocation(Location pickingLocation) {
-        this.pickingLocation = pickingLocation;
     }
 
     public Uom getPickingUom() {
@@ -781,13 +672,7 @@ public class Product implements Serializable {
         this.discount = discount;
     }
 
-    public WarrantyPeriod getWarrantyPeriod() {
-        return warrantyPeriod;
-    }
 
-    public void setWarrantyPeriod(WarrantyPeriod warrantyPeriod) {
-        this.warrantyPeriod = warrantyPeriod;
-    }
 
     public BigDecimal getSoldPrice() {
         return soldPrice;

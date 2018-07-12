@@ -1,12 +1,9 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.AccountLitigation;
-import com.sinno.ems.entities.InvAccountLitigation;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.AccountLitigationMapper;
-import com.sinno.ems.repositories.AccountLitigationRepository;
 import com.sinno.ems.service.AccountLitigationService;
 import com.sinno.ems.util.EmsDate;
 import com.sinno.ems.util.Search;

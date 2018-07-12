@@ -1,6 +1,5 @@
 package com.sinno.ems.controller;
 
-import com.sinno.ems.dto.ReceptionStock;
 import com.sinno.ems.exception.*;
 import com.sinno.ems.service.ReceptionStockService;
 import org.springframework.beans.factory.annotation.Autowired;

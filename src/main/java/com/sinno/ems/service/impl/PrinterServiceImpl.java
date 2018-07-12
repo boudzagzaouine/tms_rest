@@ -1,13 +1,10 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.Printer;
-import com.sinno.ems.entities.PrmPrinter;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.PrinterMapper;
 import com.sinno.ems.repositories.PrinterRepository;
-import com.sinno.ems.service.AddressService;
 import com.sinno.ems.service.PrinterService;
 import com.sinno.ems.util.Search;
 import org.slf4j.Logger;

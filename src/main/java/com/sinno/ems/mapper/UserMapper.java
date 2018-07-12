@@ -1,8 +1,6 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.Agency;
 import com.sinno.ems.dto.User;
-import com.sinno.ems.dto.UserAgency;
 import com.sinno.ems.entities.UsrUser;
 
 import java.util.*;

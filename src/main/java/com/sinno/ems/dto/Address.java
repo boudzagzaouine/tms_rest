@@ -39,19 +39,7 @@ public class Address implements Serializable {
     private String variable8;
     private String variable9;
     private String variable10;
-    private Set<Account> accountsForAccountInvoicesAddress;
-    private Set<Account> accountsForAccountDeliveryAddress;
-    private Set<SaleOrder> saleOrdersForSaleOrderDeliveryAddress;
-    private Set<SaleOrderArc> saleOrderArcsForSaleOrderInvoiceAddress;
-    private Set<SaleOrder> saleOrdersForSaleOrderInvoiceAddress;
-    private Set<SaleOrderArc> saleOrderArcsForSaleOrderDeliveryAddress;
-    private Set<Invoice> invoices;
-    private Set<InvoiceArc> invoiceArcs;
-    private Set<Reception> receptions;
-    private Set<ReceptionArc> receptionArcs;
-    private Set<PurshaseOrder> purshaseOrders;
-    private Set<PurshaseOrderArc> purshaseOrderArcs;
-    private Set<Warehouse> warehouses;
+
 
     private Long addressType;
 
@@ -232,208 +220,6 @@ public class Address implements Serializable {
         this.digiCode = digiCode;
     }
 
-    /**
-     * @return the line2
-     */
-    public String getLine2() {
-        return line2;
-    }
-
-    /**
-     * @param line2 the line2 to set
-     */
-    public void setLine2(String line2) {
-        this.line2 = line2;
-    }
-
-    /**
-     * @return the accountsForAccountInvoicesAddress
-     */
-    public Set<Account> getAccountsForAccountInvoicesAddress() {
-        return accountsForAccountInvoicesAddress;
-    }
-
-    /**
-     * @param accountsForAccountInvoicesAddress the accountsForAccountInvoicesAddress to set
-     */
-    public void setAccountsForAccountInvoicesAddress(
-            Set<Account> accountsForAccountInvoicesAddress) {
-        this.accountsForAccountInvoicesAddress = accountsForAccountInvoicesAddress;
-    }
-
-    /**
-     * @return the accountsForAccountDeliveryAddress
-     */
-    public Set<Account> getAccountsForAccountDeliveryAddress() {
-        return accountsForAccountDeliveryAddress;
-    }
-
-    /**
-     * @param accountsForAccountDeliveryAddress the accountsForAccountDeliveryAddress to set
-     */
-    public void setAccountsForAccountDeliveryAddress(
-            Set<Account> accountsForAccountDeliveryAddress) {
-        this.accountsForAccountDeliveryAddress = accountsForAccountDeliveryAddress;
-    }
-
-    /**
-     * @return the saleOrdersForSaleOrderDeliveryAddress
-     */
-    public Set<SaleOrder> getSaleOrdersForSaleOrderDeliveryAddress() {
-        return saleOrdersForSaleOrderDeliveryAddress;
-    }
-
-    /**
-     * @param saleOrdersForSaleOrderDeliveryAddress the saleOrdersForSaleOrderDeliveryAddress to set
-     */
-    public void setSaleOrdersForSaleOrderDeliveryAddress(
-            Set<SaleOrder> saleOrdersForSaleOrderDeliveryAddress) {
-        this.saleOrdersForSaleOrderDeliveryAddress = saleOrdersForSaleOrderDeliveryAddress;
-    }
-
-    /**
-     * @return the saleOrderArcsForSaleOrderInvoiceAddress
-     */
-    public Set<SaleOrderArc> getSaleOrderArcsForSaleOrderInvoiceAddress() {
-        return saleOrderArcsForSaleOrderInvoiceAddress;
-    }
-
-    /**
-     * @param saleOrderArcsForSaleOrderInvoiceAddress the saleOrderArcsForSaleOrderInvoiceAddress to set
-     */
-    public void setSaleOrderArcsForSaleOrderInvoiceAddress(
-            Set<SaleOrderArc> saleOrderArcsForSaleOrderInvoiceAddress) {
-        this.saleOrderArcsForSaleOrderInvoiceAddress = saleOrderArcsForSaleOrderInvoiceAddress;
-    }
-
-    /**
-     * @return the saleOrdersForSaleOrderInvoiceAddress
-     */
-    public Set<SaleOrder> getSaleOrdersForSaleOrderInvoiceAddress() {
-        return saleOrdersForSaleOrderInvoiceAddress;
-    }
-
-    /**
-     * @param saleOrdersForSaleOrderInvoiceAddress the saleOrdersForSaleOrderInvoiceAddress to set
-     */
-    public void setSaleOrdersForSaleOrderInvoiceAddress(
-            Set<SaleOrder> saleOrdersForSaleOrderInvoiceAddress) {
-        this.saleOrdersForSaleOrderInvoiceAddress = saleOrdersForSaleOrderInvoiceAddress;
-    }
-
-    /**
-     * @return the saleOrderArcsForSaleOrderDeliveryAddress
-     */
-    public Set<SaleOrderArc> getSaleOrderArcsForSaleOrderDeliveryAddress() {
-        return saleOrderArcsForSaleOrderDeliveryAddress;
-    }
-
-    /**
-     * @param saleOrderArcsForSaleOrderDeliveryAddress the saleOrderArcsForSaleOrderDeliveryAddress to set
-     */
-    public void setSaleOrderArcsForSaleOrderDeliveryAddress(
-            Set<SaleOrderArc> saleOrderArcsForSaleOrderDeliveryAddress) {
-        this.saleOrderArcsForSaleOrderDeliveryAddress = saleOrderArcsForSaleOrderDeliveryAddress;
-    }
-
-    /**
-     * @return the invoices
-     */
-    public Set<Invoice> getInvoices() {
-        return invoices;
-    }
-
-    /**
-     * @param invoices the invoices to set
-     */
-    public void setInvoices(Set<Invoice> invoices) {
-        this.invoices = invoices;
-    }
-
-    /**
-     * @return the invoiceArcs
-     */
-    public Set<InvoiceArc> getInvoiceArcs() {
-        return invoiceArcs;
-    }
-
-    /**
-     * @param invoiceArcs the invoiceArcs to set
-     */
-    public void setInvoiceArcs(Set<InvoiceArc> invoiceArcs) {
-        this.invoiceArcs = invoiceArcs;
-    }
-
-    /**
-     * @return the receptions
-     */
-    public Set<Reception> getReceptions() {
-        return receptions;
-    }
-
-    /**
-     * @param receptions the receptions to set
-     */
-    public void setReceptions(Set<Reception> receptions) {
-        this.receptions = receptions;
-    }
-
-    /**
-     * @return the receptionArcs
-     */
-    public Set<ReceptionArc> getReceptionArcs() {
-        return receptionArcs;
-    }
-
-    /**
-     * @param receptionArcs the receptionArcs to set
-     */
-    public void setReceptionArcs(Set<ReceptionArc> receptionArcs) {
-        this.receptionArcs = receptionArcs;
-    }
-
-    /**
-     * @return the purshaseOrders
-     */
-    public Set<PurshaseOrder> getPurshaseOrders() {
-        return purshaseOrders;
-    }
-
-    /**
-     * @param purshaseOrders the purshaseOrders to set
-     */
-    public void setPurshaseOrders(Set<PurshaseOrder> purshaseOrders) {
-        this.purshaseOrders = purshaseOrders;
-    }
-
-    /**
-     * @return the purshaseOrderArcs
-     */
-    public Set<PurshaseOrderArc> getPurshaseOrderArcs() {
-        return purshaseOrderArcs;
-    }
-
-    /**
-     * @param purshaseOrderArcs the purshaseOrderArcs to set
-     */
-    public void setPurshaseOrderArcs(Set<PurshaseOrderArc> purshaseOrderArcs) {
-        this.purshaseOrderArcs = purshaseOrderArcs;
-    }
-
-    /**
-     * @return the warehouses
-     */
-    public Set<Warehouse> getWarehouses() {
-        return warehouses;
-    }
-
-    /**
-     * @param warehouses the warehouses to set
-     */
-    public void setWarehouses(Set<Warehouse> warehouses) {
-        this.warehouses = warehouses;
-    }
-
 
     public Long getAddressType() {
         return addressType;
@@ -441,6 +227,14 @@ public class Address implements Serializable {
 
     public void setAddressType(Long addressType) {
         this.addressType = addressType;
+    }
+
+    public String getLine2() {
+        return line2;
+    }
+
+    public void setLine2(String line2) {
+        this.line2 = line2;
     }
 
     @Override

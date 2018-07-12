@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.Wallet;
-import com.sinno.ems.entities.PrmWallet;
-
 import java.util.*;
 
 /**

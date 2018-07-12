@@ -2,7 +2,6 @@ package com.sinno.ems.service.impl;
 
 import java.util.List;
 
-import com.sinno.ems.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +11,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.sinno.ems.dto.Container;
-import com.sinno.ems.dto.Location;
 import com.sinno.ems.dto.Product;
 import com.sinno.ems.dto.Stock;
-import com.sinno.ems.dto.StockArc;
 import com.sinno.ems.entities.StkStockView;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
@@ -25,7 +22,6 @@ import com.sinno.ems.mapper.ContainerMapper;
 import com.sinno.ems.mapper.LocationMapper;
 import com.sinno.ems.mapper.StockArcMapper;
 import com.sinno.ems.mapper.StockMapper;
-import com.sinno.ems.repositories.ContainerRepository;
 import com.sinno.ems.repositories.LocationRepository;
 import com.sinno.ems.repositories.SettingRepository;
 import com.sinno.ems.repositories.StockArcRepository;
@@ -115,7 +111,7 @@ public class StockServiceImpl implements StockService {
         }
         if (null != product.getQualityOfControl()) {
             if (product.getQualityOfControl() && null == stock.getQuality()) {
-                throw new ProductControls("Qualité");
+                throw new ProductControls("Qualitï¿½");
             }
         }
 

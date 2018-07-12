@@ -1,12 +1,10 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.WarrantyPeriod;
 import com.sinno.ems.entities.PdtUom;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.WarrantyPeriodMapper;
-import com.sinno.ems.repositories.WarrantyPeriodRepository;
 import com.sinno.ems.service.UomService;
 import com.sinno.ems.service.WarrantyPeriodService;
 import com.sinno.ems.util.EmsDate;

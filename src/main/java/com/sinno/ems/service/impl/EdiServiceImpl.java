@@ -1,13 +1,10 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.Edi;
-import com.sinno.ems.entities.PrmEdi;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.EdiMapper;
 import com.sinno.ems.repositories.EdiRepository;
-import com.sinno.ems.service.AddressService;
 import com.sinno.ems.service.EdiService;
 import com.sinno.ems.util.Search;
 import org.slf4j.Logger;

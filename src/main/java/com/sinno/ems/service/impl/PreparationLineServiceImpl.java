@@ -1,15 +1,11 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.PreparationLine;
-import com.sinno.ems.entities.CmdPreparationLine;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.PreparationLineMapper;
 import com.sinno.ems.repositories.PreparationLineRepository;
-import com.sinno.ems.service.LocationStatusService;
 import com.sinno.ems.service.PreparationLineService;
-import com.sinno.ems.service.PreparationService;
 import com.sinno.ems.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

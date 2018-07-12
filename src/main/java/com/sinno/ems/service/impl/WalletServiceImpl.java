@@ -1,7 +1,5 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.Wallet;
-import com.sinno.ems.entities.PrmWallet;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;

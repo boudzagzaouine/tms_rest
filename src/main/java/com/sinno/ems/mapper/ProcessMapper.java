@@ -1,11 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.MachineProcess;
-import com.sinno.ems.dto.Process;
-import com.sinno.ems.entities.CmdSaleOrder;
-import com.sinno.ems.entities.PdtProcess;
-import com.sinno.ems.util.EmsDate;
-
 import java.util.*;
 
 /**

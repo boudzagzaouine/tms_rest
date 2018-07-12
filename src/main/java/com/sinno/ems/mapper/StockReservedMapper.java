@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.StockReserved;
-import com.sinno.ems.entities.StkStockReserved;
-
 import java.util.*;
 
 public class StockReservedMapper {

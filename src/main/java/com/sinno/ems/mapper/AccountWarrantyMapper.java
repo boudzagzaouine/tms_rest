@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.AccountWarranty;
-import com.sinno.ems.entities.PdtAccountWarranty;
-
 import java.util.*;
 
 /**

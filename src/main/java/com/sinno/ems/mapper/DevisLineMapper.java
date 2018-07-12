@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.DevisLine;
-import com.sinno.ems.entities.CmdDevisLine;
-
 import java.util.*;
 
 /**

@@ -1,6 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.UserBox;
 import com.sinno.ems.entities.UsrUserBox;
 
 import java.util.*;

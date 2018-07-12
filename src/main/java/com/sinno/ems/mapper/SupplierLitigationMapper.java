@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.SupplierLitigation;
-import com.sinno.ems.entities.InvSupplierLitigation;
-
 import java.util.*;
 
 /**

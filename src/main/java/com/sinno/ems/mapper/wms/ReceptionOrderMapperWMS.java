@@ -1,7 +1,5 @@
 package com.sinno.ems.mapper.wms;
 
-import com.sinno.ems.entities.RcpReception;
-import com.sinno.ems.entities.RcpReceptionLine;
 import com.sinno.wms.crud.model.pre.ReceptionOrderHeader;
 import com.sinno.wms.crud.model.pre.ReceptionOrderLines;
 
@@ -60,13 +58,13 @@ public class ReceptionOrderMapperWMS {
         receptionOrderLines.setSerial(rcpReceptionLine.getRcpReceptionLineSerialNo());
         receptionOrderLines.setOwnerCode(rcpReceptionLine.getOwnOwner().getOwnOwnerCode());
         receptionOrderLines.setContainerNo(rcpReceptionLine.getRcpReceptionLineContainerCode());
-            if(rcpReceptionLine.getPrmBlockType().getPrmBlockTypeDescription().equals("Endommagé")) {
+            if(rcpReceptionLine.getPrmBlockType().getPrmBlockTypeDescription().equals("Endommagï¿½")) {
                 receptionOrderLines.setStockStatusCode("BRK");
             }
-            else if(rcpReceptionLine.getPrmBlockType().getPrmBlockTypeDescription().equals("Périmé")){
+            else if(rcpReceptionLine.getPrmBlockType().getPrmBlockTypeDescription().equals("Pï¿½rimï¿½")){
                 receptionOrderLines.setStockStatusCode("EXP");
             }
-            else if(rcpReceptionLine.getPrmBlockType().getPrmBlockTypeDescription().equals("Caché")){
+            else if(rcpReceptionLine.getPrmBlockType().getPrmBlockTypeDescription().equals("Cachï¿½")){
                 receptionOrderLines.setStockStatusCode("HID");
             }
         receptionOrderLines.setReqManipulation(false);

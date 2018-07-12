@@ -1,6 +1,5 @@
 package com.sinno.ems.service;
 
-import com.sinno.ems.entities.NotificationStockProduct;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;

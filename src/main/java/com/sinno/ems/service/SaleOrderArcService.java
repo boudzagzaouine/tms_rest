@@ -1,6 +1,5 @@
 package com.sinno.ems.service;
 
-import com.sinno.ems.dto.SaleOrderArc;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;

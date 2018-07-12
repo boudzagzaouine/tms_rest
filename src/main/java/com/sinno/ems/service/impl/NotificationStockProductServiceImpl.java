@@ -1,6 +1,5 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.entities.NotificationStockProduct;
 import com.sinno.ems.repositories.NotificationStockProductRepository;
 import com.sinno.ems.service.NotificationStockProductService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,20 +1,12 @@
 package com.sinno.ems.service.impl;
 
 import com.sinno.ems.dto.Product;
-import com.sinno.ems.dto.PurshaseOrderLine;
-import com.sinno.ems.dto.Setting;
-import com.sinno.ems.entities.RcpPurshaseOrderLine;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.exception.ProductControls;
 import com.sinno.ems.mapper.PurshaseOrderLineMapper;
-import com.sinno.ems.mapper.SettingMapper;
-import com.sinno.ems.repositories.ContainerRepository;
-import com.sinno.ems.repositories.PurshaseOrderLineRepository;
 import com.sinno.ems.repositories.SettingRepository;
-import com.sinno.ems.service.ProductService;
-import com.sinno.ems.service.PurshaseOrderLineArcService;
 import com.sinno.ems.service.PurshaseOrderLineService;
 import com.sinno.ems.util.EmsDate;
 import com.sinno.ems.util.Search;
@@ -92,7 +84,7 @@ public class PurshaseOrderLineServiceImpl implements PurshaseOrderLineService {
         }
         if (null != product.getQualityOfControl()) {
             if (product.getQualityOfControl() && null == purshaseOrderLine.getQuality()) {
-                throw new ProductControls("Qualité");
+                throw new ProductControls("Qualitï¿½");
             }
         }
 

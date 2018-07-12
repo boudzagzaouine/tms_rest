@@ -1,8 +1,6 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.Location;
 import com.sinno.ems.dto.Stock;
-import com.sinno.ems.entities.LocLocation;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
@@ -10,7 +8,6 @@ import com.sinno.ems.mapper.LocationMapper;
 import com.sinno.ems.mapper.StockMapper;
 import com.sinno.ems.repositories.LocationRepository;
 import com.sinno.ems.repositories.StockRepository;
-import com.sinno.ems.service.AddressService;
 import com.sinno.ems.service.LocationService;
 import com.sinno.ems.util.EmsDate;
 import com.sinno.ems.util.Search;

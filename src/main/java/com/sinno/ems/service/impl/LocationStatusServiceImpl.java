@@ -1,14 +1,10 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.Location;
-import com.sinno.ems.dto.LocationStatus;
-import com.sinno.ems.entities.PrmLocationStatus;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.LocationStatusMapper;
 import com.sinno.ems.repositories.LocationStatusRepository;
-import com.sinno.ems.service.AddressService;
 import com.sinno.ems.service.LocationStatusService;
 import com.sinno.ems.util.Search;
 import org.slf4j.Logger;

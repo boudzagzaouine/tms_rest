@@ -1,12 +1,9 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.InvoiceTerm;
-import com.sinno.ems.entities.InvInvoiceTerm;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.InvoiceTermMapper;
-import com.sinno.ems.repositories.InvoiceTermRepository;
 import com.sinno.ems.service.InvoiceTermService;
 import com.sinno.ems.util.EmsDate;
 import com.sinno.ems.util.Search;

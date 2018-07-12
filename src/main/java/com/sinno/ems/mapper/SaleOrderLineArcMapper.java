@@ -3,11 +3,6 @@
  */
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.ContainerArc;
-import com.sinno.ems.dto.SaleOrderArc;
-import com.sinno.ems.dto.SaleOrderLineArc;
-import com.sinno.ems.entities.CmdSaleOrderLineArc;
-
 import java.util.*;
 
 /**

@@ -2,7 +2,6 @@ package com.sinno.ems.service.impl;
 
 import com.google.common.collect.Lists;
 import com.sinno.ems.dto.*;
-import com.sinno.ems.entities.CmdPreparation;
 import com.sinno.ems.entities.StkStockView;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;

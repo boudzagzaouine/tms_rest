@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.Agency;
-import com.sinno.ems.entities.UsrAgency;
-
 import java.util.*;
 
 /**

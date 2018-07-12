@@ -1,6 +1,5 @@
 package com.sinno.ems.mapper.wms;
 
-import com.sinno.ems.entities.RcpSupplier;
 import com.sinno.wms.crud.model.sup.Suppliers;
 
 public class SupplierMapperWMS {

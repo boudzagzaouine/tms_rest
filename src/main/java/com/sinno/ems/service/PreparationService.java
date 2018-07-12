@@ -1,9 +1,6 @@
 package com.sinno.ems.service;
 
-import com.sinno.ems.dto.Preparation;
-import com.sinno.ems.dto.PreparationLine;
 import com.sinno.ems.dto.SaleOrder;
-import com.sinno.ems.dto.StockReserved;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;

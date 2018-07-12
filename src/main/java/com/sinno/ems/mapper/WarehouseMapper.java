@@ -3,7 +3,6 @@
  */
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.Warehouse;
 import com.sinno.ems.entities.WrhWarehouse;
 
 import java.util.*;

@@ -1,14 +1,11 @@
 package com.sinno.ems.service.impl;
 
 import com.sinno.ems.dto.ProductSupplier;
-import com.sinno.ems.dto.ProductSupplier;
-import com.sinno.ems.entities.PdtProductSupplier;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.ProductSupplierMapper;
 import com.sinno.ems.repositories.ProductSupplierRepository;
-import com.sinno.ems.service.ProductSupplierService;
 import com.sinno.ems.service.ProductSupplierService;
 import com.sinno.ems.util.Search;
 import org.slf4j.Logger;

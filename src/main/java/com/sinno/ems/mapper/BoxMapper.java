@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.Box;
-import com.sinno.ems.entities.UsrBox;
-
 import java.util.*;
 
 /**

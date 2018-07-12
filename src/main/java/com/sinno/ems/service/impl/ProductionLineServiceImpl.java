@@ -1,7 +1,5 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.ProductionLine;
-import com.sinno.ems.entities.PrcProductionLine;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;

@@ -1,8 +1,5 @@
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.Variable;
-import com.sinno.ems.entities.PrmVariable;
-
 import java.util.*;
 
 /**

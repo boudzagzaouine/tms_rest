@@ -1,12 +1,10 @@
 package com.sinno.ems.service.impl;
 
 import com.sinno.ems.dto.Currency;
-import com.sinno.ems.entities.PrmCurrency;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.CurrencyMapper;
-import com.sinno.ems.repositories.CurrencyRepository;
 import com.sinno.ems.service.CurrencyService;
 import com.sinno.ems.util.EmsDate;
 import com.sinno.ems.util.Search;

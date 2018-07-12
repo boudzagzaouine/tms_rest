@@ -3,9 +3,6 @@
  */
 package com.sinno.ems.mapper;
 
-import com.sinno.ems.dto.MovementType;
-import com.sinno.ems.entities.InvMovementType;
-
 import java.util.*;
 
 /**

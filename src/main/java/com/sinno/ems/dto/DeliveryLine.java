@@ -19,7 +19,6 @@ public class DeliveryLine {
     private Uom uom;
     private BigDecimal quantityServed;
     private BlockType blockType;
-    private Warehouse warehouse;
     private Container container;
     private OrderStatus orderStatus;
     private String serialNo;
@@ -34,9 +33,7 @@ public class DeliveryLine {
     private Delivery delivery;
     private String quality;
     private BigDecimal weight;
-    private Location location;
     private String containerCode;
-    private PreparationLine preparationLine;
     private BigDecimal totalPriceHT;
     private BigDecimal totalPriceTTC;
     private Vat vat;
@@ -48,13 +45,6 @@ public class DeliveryLine {
     public DeliveryLine() {
     }
 
-    public PreparationLine getPreparationLine() {
-        return preparationLine;
-    }
-
-    public void setPreparationLine(PreparationLine preparationLine) {
-        this.preparationLine = preparationLine;
-    }
 
     public long getId() {
         return id;
@@ -128,13 +118,6 @@ public class DeliveryLine {
         this.blockType = blockType;
     }
 
-    public Warehouse getWarehouse() {
-        return warehouse;
-    }
-
-    public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
-    }
 
     public Container getContainer() {
         return container;
@@ -248,13 +231,6 @@ public class DeliveryLine {
         this.weight = weight;
     }
 
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
     public String getContainerCode() {
         return containerCode;

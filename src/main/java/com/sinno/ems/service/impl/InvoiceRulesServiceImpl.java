@@ -1,13 +1,9 @@
 package com.sinno.ems.service.impl;
 
-import com.sinno.ems.dto.InvoiceRules;
-import com.sinno.ems.entities.InvInvoiceRules;
 import com.sinno.ems.exception.AttributesNotFound;
 import com.sinno.ems.exception.ErrorType;
 import com.sinno.ems.exception.IdNotFound;
 import com.sinno.ems.mapper.InvoiceRulesMapper;
-import com.sinno.ems.repositories.InvoiceRulesRepository;
-import com.sinno.ems.service.AddressService;
 import com.sinno.ems.service.InvoiceRulesService;
 import com.sinno.ems.util.Search;
 import org.slf4j.Logger;
