@@ -332,3 +332,7 @@ target/classes/com/sinno/ems/service/impl/DriverServiceImpl.class
 target/**
 .idea/**
 /ems-rest-gestco.iml
+/.classpath
+/.project
+/.settings/org.eclipse.jdt.core.prefs
+/.settings/org.eclipse.m2e.core.prefs
