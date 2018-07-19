@@ -1,0 +1,22 @@
+spring:
+  datasource:
+           tomcat:
+             test-while-idle: true
+             validation-query: SELECT 1
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+    show-sql: true
+    generate-ddl: true
+    database: postgresql
+    properties:
+      hibernate:
+        default_schema: ems_tpv
+        format_sql: true
+        generate_statistics: true
+  jooq:
+    sql-dialect: org.hibernate.dialect.PostgreSQLDialect
+
+
