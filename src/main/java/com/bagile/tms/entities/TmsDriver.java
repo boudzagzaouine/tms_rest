@@ -16,12 +16,19 @@ public class TmsDriver implements java.io.Serializable {
     private long tmsDriverId;
 
     @Size(max = 255)
-    private String tmsDriverPassportNumber;
+    private String codeDriver;
     private com.sinno.ems.entities.PrmContact prmContact;
-    private Set<TmsIncident> pincidents;
-     private AdrAddress adrAddress;
-    private Date tmsDriverDateCreation;
-    private Date tmsDriverDateUpDate;
+    private int idDriver;
+    private String cin;
+    private String lastName;
+    private String firstName;
+    private string tel;
+    private Date yearBorn;
+    private Badge badge;
+    private Date lastMedicalVisit;
+    private Zone workArea;
+    private Vacation vacation;
+    private double commission;
     private UsrUser tmsDriverCreationUser;
     private UsrUser tmsDriverUpDateUser;
     @Size(max = 30)
@@ -33,7 +40,8 @@ public class TmsDriver implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name = "tms_driverid", unique = true, nullable = false, precision = 10, scale = 0)
+    @Column(name = "tms_idDriver", unique = true, nullable = false, precision = 10, scale = 0)
+    @Column(name = "tms_idDriver", unique = true, nullable = false, precision = 10, scale = 0)
 
     public long getTmsDriverId() {
         return tmsDriverId;
@@ -44,7 +52,53 @@ public class TmsDriver implements java.io.Serializable {
     }
 
 
+    public String getCodeDriver() {
+        return codeDriver;
+    }
 
+    public int getIdDriver() {
+        return idDriver;
+    }
+
+    public String getCin() {
+        return cin;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public string getTel() {
+        return tel;
+    }
+
+    public Date getYearBorn() {
+        return yearBorn;
+    }
+
+    public Badge getBadge() {
+        return badge;
+    }
+
+    public Date getLastMedicalVisit() {
+        return lastMedicalVisit;
+    }
+
+    public Zone getWorkArea() {
+        return workArea;
+    }
+
+    public Vacation getVacation() {
+        return vacation;
+    }
+
+    public double getCommission() {
+        return commission;
+    }
 
     @Column(name = "tms_driverpassportNumber", nullable = false, length = 20)
 
