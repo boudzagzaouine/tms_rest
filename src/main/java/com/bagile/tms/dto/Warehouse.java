@@ -1,8 +1,7 @@
-package com.sinno.ems.dto;
+package com.bagile.tms.dto;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
 public class Warehouse implements Serializable {
 

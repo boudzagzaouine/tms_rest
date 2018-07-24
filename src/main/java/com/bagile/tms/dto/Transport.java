@@ -1,4 +1,4 @@
-package com.sinno.ems.dto;
+package com.bagile.tms.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -27,7 +27,7 @@ public class Transport implements Serializable {
     private String variable8;
     private String variable9;
     private String variable10;
-    private Contact contact;
+    private com.sinno.ems.dto.Contact contact;
     private BigDecimal siret;
     private Date creationDate;
     private String description;
@@ -150,11 +150,11 @@ public class Transport implements Serializable {
         this.variable10 = variable10;
     }
 
-    public Contact getContact() {
+    public com.sinno.ems.dto.Contact getContact() {
         return contact;
     }
 
-    public void setContact(Contact contact) {
+    public void setContact(com.sinno.ems.dto.Contact contact) {
         this.contact = contact;
     }
 

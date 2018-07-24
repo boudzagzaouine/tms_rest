@@ -1,4 +1,4 @@
-package com.sinno.ems.dto;
+package com.bagile.tms.dto;
 
 import java.math.BigDecimal;
 import java.util.Date;

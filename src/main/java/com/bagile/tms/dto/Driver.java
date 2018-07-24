@@ -1,4 +1,4 @@
-package com.sinno.ems.dto;
+package com.bagile.tms.dto;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -18,7 +18,7 @@ public class Driver implements Serializable {
     private Set<Badge> badges;
     private Address address;
     private DriverSituation driverSituation;
-    private Contact contact;
+    private com.sinno.ems.dto.Contact contact;
     private Date dateCreation;
     private Date dateUpDate;
     private User creationUser;
@@ -130,11 +130,11 @@ public class Driver implements Serializable {
         this.driverBadges = driverBadges;
     }
 
-    public Contact getContact() {
+    public com.sinno.ems.dto.Contact getContact() {
         return contact;
     }
 
-    public void setContact(Contact contact) {
+    public void setContact(com.sinno.ems.dto.Contact contact) {
         this.contact = contact;
     }
 

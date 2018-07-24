@@ -1,9 +1,8 @@
-package com.sinno.ems.dto;
+package com.bagile.tms.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Set;
 
 /**
  * Created by yasser on 22/09/2016.

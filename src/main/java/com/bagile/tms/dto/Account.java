@@ -1,4 +1,4 @@
-package com.sinno.ems.dto;
+package com.bagile.tms.dto;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -56,7 +56,7 @@ public class Account implements Serializable {
     private String variable10;
 
     private Set<SaleOrder> saleOrders;
-    private Contact contact;
+    private com.sinno.ems.dto.Contact contact;
     private String description;
     private String password;
 
@@ -245,7 +245,7 @@ public class Account implements Serializable {
         this.saleOrders = saleOrders;
     }
 
-    public Contact getContact() {
+    public com.sinno.ems.dto.Contact getContact() {
         return contact;
     }
 
@@ -257,7 +257,7 @@ public class Account implements Serializable {
         this.description = description;
     }
 
-    public void setContact(Contact contact) {
+    public void setContact(com.sinno.ems.dto.Contact contact) {
         this.contact = contact;
     }
 

@@ -1,4 +1,4 @@
-package com.sinno.ems.dto;
+package com.bagile.tms.dto;
 
 /**
  * Created by bouzi on 4/25/2017.
