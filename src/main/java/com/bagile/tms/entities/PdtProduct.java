@@ -31,9 +31,7 @@ public class PdtProduct implements java.io.Serializable {
     private PdtUom pdtUomByPdtProductUomSaleId;
     private PdtUom pdtUomByPdtProductUomBaseId;
     private PdtUom pdtUomByPdtProductUomPurshaseId;
-    private PrmBlockType prmBlockType;
     private Set<PrmImage> prmImages;
-    private WrhWarehouse wrhWarehouse;
 
     @Size(max = 30)
     @NotNull
@@ -138,20 +136,12 @@ public class PdtProduct implements java.io.Serializable {
     private PdtProductPack pdtProductPack;
     private Boolean pdtProductReqExp;
     private Boolean pdtProductReqRec;
-    private Boolean pdtProductWarrantyManagement;
     private BigDecimal pdtProductDiscount;
 
-    /* private Boolean pdtProductRawProduct;
-     private Boolean pdtProductFinalProduct;
-     private Boolean pdtProductSemiFinalProduct;
-     private Boolean pdtProductKitComponent;*/
-    private PdtProductForm pdtProductForm;
-    private Boolean pdtProductDimension;
 
 
 
 
-    private Set<PdtProductDimension> pdtProductDimensions = new HashSet<PdtProductDimension>(0);
     private Long pdtProductVersion;
     private Set<PdtProductPack> pdtProductPacks;
 
@@ -254,16 +244,6 @@ public class PdtProduct implements java.io.Serializable {
         this.pdtUomByPdtProductUomPurshaseId = pdtUomByPdtProductUomPurshaseId;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pdt_productdefaultblocktypeid")
-    public PrmBlockType getPrmBlockType() {
-        return this.prmBlockType;
-    }
-
-    public void setPrmBlockType(PrmBlockType prmBlockType) {
-        this.prmBlockType = prmBlockType;
-    }
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct", cascade = CascadeType.ALL, orphanRemoval = true)
     public Set<PrmImage> getPrmImages() {
         return prmImages;
@@ -271,16 +251,6 @@ public class PdtProduct implements java.io.Serializable {
 
     public void setPrmImages(Set<PrmImage> prmImages) {
         this.prmImages = prmImages;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pdt_productwarehouseid")
-    public WrhWarehouse getWrhWarehouse() {
-        return this.wrhWarehouse;
-    }
-
-    public void setWrhWarehouse(WrhWarehouse wrhWarehouse) {
-        this.wrhWarehouse = wrhWarehouse;
     }
 
     @Column(name = "pdt_productsuppoflife", precision = 12, scale = 0)
@@ -750,15 +720,6 @@ public class PdtProduct implements java.io.Serializable {
         this.pdtProductControlWeight = pdtProductControlWeight;
     }
 
-    @Column(name = "pdt_productwarrantymanagement")
-
-    public Boolean getPdtProductWarrantyManagement() {
-        return pdtProductWarrantyManagement;
-    }
-
-    public void setPdtProductWarrantyManagement(Boolean pdtProductWarrantyManagement) {
-        this.pdtProductWarrantyManagement = pdtProductWarrantyManagement;
-    }
 
     @Column(name = "pdt_productdiscount")
     public BigDecimal getPdtProductDiscount() {
@@ -779,37 +740,6 @@ public class PdtProduct implements java.io.Serializable {
         this.pdtProductPurshasePriceUB = pdtProductPurshasePriceUB;
     }
 
-
-
-    @JoinColumn(name = "pdt_productformid")
-    @ManyToOne(fetch = FetchType.LAZY)
-    public PdtProductForm getPdtProductForm() {
-        return pdtProductForm;
-    }
-
-    public void setPdtProductForm(PdtProductForm pdtProductForm) {
-        this.pdtProductForm = pdtProductForm;
-    }
-
-
-
-    @Column(name = "pdt_productdimension")
-    public Boolean getPdtProductDimension() {
-        return pdtProductDimension;
-    }
-
-    public void setPdtProductDimension(Boolean pdtProductDimension) {
-        this.pdtProductDimension = pdtProductDimension;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct", cascade = CascadeType.ALL,orphanRemoval = true)
-    public Set<PdtProductDimension> getPdtProductDimensions() {
-        return pdtProductDimensions;
-    }
-
-    public void setPdtProductDimensions(Set<PdtProductDimension> pdtProductDimensions) {
-        this.pdtProductDimensions = pdtProductDimensions;
-    }
 
     @Column(name = "pdt_productcoefficient")
     public BigDecimal getPdtProductCoefficient() {

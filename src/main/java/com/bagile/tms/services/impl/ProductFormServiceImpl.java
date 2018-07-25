@@ -1,17 +1,17 @@
 package com.bagile.tms.services.impl;
 
-import com.sinno.ems.dto.ProductForm;
-import com.sinno.ems.dto.ProductForm;
-import com.sinno.ems.entities.PdtProductForm;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.ProductFormMapper;
-import com.sinno.ems.repositories.ProductFormRepository;
-import com.sinno.ems.service.ProductFormService;
-import com.sinno.ems.service.ProductFormService;
-import com.sinno.ems.util.EmsDate;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.dto.ProductForm;
+import com.bagile.tms.dto.ProductForm;
+import com.bagile.tms.entities.PdtProductForm;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.ProductFormMapper;
+import com.bagile.tms.repositories.ProductFormRepository;
+import com.bagile.tms.services.ProductFormService;
+import com.bagile.tms.services.ProductFormService;
+import com.bagile.tms.util.EmsDate;
+import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,12 +50,12 @@ public class ProductFormServiceImpl implements ProductFormService {
 
     @Override
     public Boolean isExist(Long id) {
-        return productFormRepository.exists(id);
+        return productFormRepository.existsById(id);
     }
 
     @Override
     public ProductForm findById(Long id) throws IdNotFound {
-        ProductForm productForm = ProductFormMapper.toDto(productFormRepository.findOne(id), false);
+        ProductForm productForm = ProductFormMapper.toDto(productFormRepository.findById(id).get(), false);
         if (null != productForm) {
             return productForm;
         } else {
@@ -83,7 +83,7 @@ public class ProductFormServiceImpl implements ProductFormService {
     @Override
     public void delete(Long id) {
         LOGGER.info("delete ProductForm");
-        productFormRepository.delete(id);
+        productFormRepository.deleteById(id);
     }
 
     @Override

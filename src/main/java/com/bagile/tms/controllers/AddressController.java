@@ -1,11 +1,11 @@
 package com.bagile.tms.controllers;
 
-import com.sinno.ems.dto.Address;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.service.AddressService;
-import com.sinno.ems.service.UserDetailsServiceWarehouse;
+import com.bagile.tms.dto.Address;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.services.AddressService;
+import com.bagile.tms.services.UserDetailsServiceWarehouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -97,7 +97,7 @@ public class AddressController {
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<Address> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-       // Pageable pageable = new PageRequest(page, size);
+       // Pageable pageable = PageRequest.of(page, size);
         if (null == userDetailsService.getOwners()) {
             return null;
         }

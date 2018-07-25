@@ -1,9 +1,9 @@
 package com.bagile.tms.controllers;
 
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.service.UserGroupWarehouseService;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.services.UserGroupWarehouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -32,7 +32,7 @@ public class UserGroupWarehouseController {
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<UserGroupWarehouse> getUserGroupWarehouses(@RequestParam int page, @RequestParam int size) {
-        Pageable pageable = new PageRequest(page, size);
+        Pageable pageable = PageRequest.of(page, size);
         return userGroupWarehouseService.findAll(pageable);
     }
 
@@ -76,7 +76,7 @@ public class UserGroupWarehouseController {
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<UserGroupWarehouse> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Pageable pageable = new PageRequest(page, size);
+        Pageable pageable = PageRequest.of(page, size);
         return userGroupWarehouseService.find(search, pageable);
     }
 

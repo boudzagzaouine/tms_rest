@@ -19,45 +19,27 @@ import java.util.Date;
 public class StkStock implements java.io.Serializable {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private long stkStockId;
-    private LocLocation locLocation;
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    private long stkStockId;
     @NotNull
     private OwnOwner ownOwner;
     @NotNull
     private PdtProduct pdtProduct;
     private PdtUom pdtUom;
-    private PrmBlockType prmBlockType;
-    private PrmColor prmColor;
-    private RcpSupplier rcpSupplier;
+
     private StkContainer stkContainer;
 
     @Max(999999999)
     @NotNull
     private BigDecimal stkStockQuantity;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-
-    private Date stkStockDlc;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-
-    private Date stkStockDluo;
-    @Size(max = 255)
-    private String stkStockSerialNo;
-    @Size(max = 255)
-    private String stkStockLot;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date stkStockReceptionDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date stkStockCreationDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date stkStockUpdateDate;
-
-    //TODO
-    private Boolean stkStockKit;
-
     @Size(max = 255)
     private String stkStockVariable1;
     @Size(max = 255)
@@ -78,77 +60,14 @@ public class StkStock implements java.io.Serializable {
     private String stkStockVariable9;
     @Size(max = 255)
     private String stkStockVariable10;
-    @Size(max = 50)
-    private String stkStockQuality;
-    @Max(999999999)
-    private BigDecimal stkStockWeight;
-    private RcpReceptionLine rcpReceptionLine;
-    private RcpReceptionStock rcpReceptionStock;
+
+
     @Size(max = 255)
     private String stkStockComment;
-    private PdtProductDimension pdtProductDimension;
+    private Boolean stkStockActive;
 
 
     public StkStock() {
-    }
-
-    @Column(name = "stk_stockkit")
-    public Boolean getStkStockKit() {
-        return stkStockKit;
-    }
-
-    public void setStkStockKit(Boolean stkStockKit) {
-        this.stkStockKit = stkStockKit;
-    }
-
-    public StkStock(long stkStockId, OwnOwner ownOwner, PdtProduct pdtProduct,
-                    BigDecimal stkStockQuantity) {
-        this.stkStockId = stkStockId;
-        this.ownOwner = ownOwner;
-        this.pdtProduct = pdtProduct;
-        this.stkStockQuantity = stkStockQuantity;
-    }
-
-    public StkStock(long stkStockId, LocLocation locLocation,
-                    OwnOwner ownOwner, PdtProduct pdtProduct, PdtUom pdtUom,
-                    PrmBlockType prmBlockType, PrmColor prmColor,
-                    RcpSupplier rcpSupplier, StkContainer stkContainer,
-                    BigDecimal stkStockQuantity,
-                    Date stkStockDlc, Date stkStockDluo, String stkStockSerialNo,
-                    String stkStockLot, Date stkStockReceptionDate,
-                    Date stkStockCreationDate, Date stkStockUpdateDate,
-                    String stkStockVariable1, String stkStockVariable2,
-                    String stkStockVariable3, String stkStockVariable4,
-                    String stkStockVariable5, String stkStockVariable6,
-                    String stkStockVariable7, String stkStockVariable8,
-                    String stkStockVariable9, String stkStockVariable10) {
-        this.stkStockId = stkStockId;
-        this.locLocation = locLocation;
-        this.ownOwner = ownOwner;
-        this.pdtProduct = pdtProduct;
-        this.pdtUom = pdtUom;
-        this.prmBlockType = prmBlockType;
-        this.prmColor = prmColor;
-        this.rcpSupplier = rcpSupplier;
-        this.stkContainer = stkContainer;
-        this.stkStockQuantity = stkStockQuantity;
-        this.stkStockDlc = stkStockDlc;
-        this.stkStockDluo = stkStockDluo;
-        this.stkStockSerialNo = stkStockSerialNo;
-        this.stkStockLot = stkStockLot;
-        this.stkStockReceptionDate = stkStockReceptionDate;
-        this.stkStockCreationDate = stkStockCreationDate;
-        this.stkStockUpdateDate = stkStockUpdateDate;
-        this.stkStockVariable1 = stkStockVariable1;
-        this.stkStockVariable2 = stkStockVariable2;
-        this.stkStockVariable3 = stkStockVariable3;
-        this.stkStockVariable4 = stkStockVariable4;
-        this.stkStockVariable5 = stkStockVariable5;
-        this.stkStockVariable6 = stkStockVariable6;
-        this.stkStockVariable7 = stkStockVariable7;
-        this.stkStockVariable8 = stkStockVariable8;
-        this.stkStockVariable9 = stkStockVariable9;
-        this.stkStockVariable10 = stkStockVariable10;
     }
 
     @Id
@@ -161,16 +80,6 @@ public class StkStock implements java.io.Serializable {
 
     public void setStkStockId(long stkStockId) {
         this.stkStockId = stkStockId;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "stk_stocklocationid")
-    public LocLocation getLocLocation() {
-        return this.locLocation;
-    }
-
-    public void setLocLocation(LocLocation locLocation) {
-        this.locLocation = locLocation;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -203,35 +112,6 @@ public class StkStock implements java.io.Serializable {
         this.pdtUom = pdtUom;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "stk_stockblockid")
-    public PrmBlockType getPrmBlockType() {
-        return this.prmBlockType;
-    }
-
-    public void setPrmBlockType(PrmBlockType prmBlockType) {
-        this.prmBlockType = prmBlockType;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "stk_stockcolorid")
-    public PrmColor getPrmColor() {
-        return this.prmColor;
-    }
-
-    public void setPrmColor(PrmColor prmColor) {
-        this.prmColor = prmColor;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "stk_stocksupplierid")
-    public RcpSupplier getRcpSupplier() {
-        return this.rcpSupplier;
-    }
-
-    public void setRcpSupplier(RcpSupplier rcpSupplier) {
-        this.rcpSupplier = rcpSupplier;
-    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "stk_stockcontainerid")
@@ -250,44 +130,6 @@ public class StkStock implements java.io.Serializable {
 
     public void setStkStockQuantity(BigDecimal stkStockQuantity) {
         this.stkStockQuantity = stkStockQuantity;
-    }
-
-    @Temporal(TemporalType.DATE)
-    @Column(name = "stk_stockdlc", length = 13)
-    public Date getStkStockDlc() {
-        return this.stkStockDlc;
-    }
-
-    public void setStkStockDlc(Date stkStockDlc) {
-        this.stkStockDlc = stkStockDlc;
-    }
-
-    @Temporal(TemporalType.DATE)
-    @Column(name = "stk_stockdluo", length = 13)
-    public Date getStkStockDluo() {
-        return this.stkStockDluo;
-    }
-
-    public void setStkStockDluo(Date stkStockDluo) {
-        this.stkStockDluo = stkStockDluo;
-    }
-
-    @Column(name = "stk_stockserialno", length = 50)
-    public String getStkStockSerialNo() {
-        return this.stkStockSerialNo;
-    }
-
-    public void setStkStockSerialNo(String stkStockSerialNo) {
-        this.stkStockSerialNo = stkStockSerialNo;
-    }
-
-    @Column(name = "stk_stocklot", length = 50)
-    public String getStkStockLot() {
-        return this.stkStockLot;
-    }
-
-    public void setStkStockLot(String stkStockLot) {
-        this.stkStockLot = stkStockLot;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -410,51 +252,7 @@ public class StkStock implements java.io.Serializable {
         this.stkStockVariable10 = stkStockVariable10;
     }
 
-    @Column(name = "stk_stockquality", length = 50)
-
-    public String getStkStockQuality() {
-        return stkStockQuality;
-    }
-
-    public void setStkStockQuality(String stkStockQuality) {
-        this.stkStockQuality = stkStockQuality;
-    }
-
-    @Column(name = "stk_stockweight", precision = 10, scale = 0)
-
-    public BigDecimal getStkStockWeight() {
-        return stkStockWeight;
-    }
-
-    public void setStkStockWeight(BigDecimal stkStockWeight) {
-        this.stkStockWeight = stkStockWeight;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "stk_stockreceptionlineid")
-    public RcpReceptionLine getRcpReceptionLine() {
-        return rcpReceptionLine;
-    }
-
-    public void setRcpReceptionLine(RcpReceptionLine rcpReceptionLine) {
-        this.rcpReceptionLine = rcpReceptionLine;
-    }
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "stk_stockreceptionstockid")
-    public RcpReceptionStock getRcpReceptionStock() {
-        return rcpReceptionStock;
-    }
-
-    public void setRcpReceptionStock(RcpReceptionStock rcpReceptionStock) {
-        this.rcpReceptionStock = rcpReceptionStock;
-    }
-
-
     @Column(name = "stk_stockcomment", length = 255)
-
-
     public String getStkStockComment() {
         return stkStockComment;
     }
@@ -462,13 +260,13 @@ public class StkStock implements java.io.Serializable {
     public void setStkStockComment(String stkStockComment) {
         this.stkStockComment = stkStockComment;
     }
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "stk_stockproductdimensionid")
-    public PdtProductDimension getPdtProductDimension() {
-        return pdtProductDimension;
+
+    @Column(name = "stk_stockactive")
+    public Boolean getStkStockActive() {
+        return stkStockActive;
     }
 
-    public void setPdtProductDimension(PdtProductDimension pdtProductDimension) {
-        this.pdtProductDimension = pdtProductDimension;
+    public void setStkStockActive(Boolean stkStockActive) {
+        this.stkStockActive = stkStockActive;
     }
 }

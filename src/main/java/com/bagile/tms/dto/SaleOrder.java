@@ -39,24 +39,18 @@ public class SaleOrder implements Serializable {
     private Date expectedDate;
     private OrderType orderType;
     private String remarks;
-    private Set<SaleOrderStock> stocks;
     private Set<SaleOrderLine> lines;
     private Address AddressBySaleOrderDeliveryAddress;
     private Address AddressBySaleOrderInvoiceAddress;
     private Long cmdSaleOrderNumberLine;
     private Long cmdSaleOrderNumberLineCmd;
     private String transportTel;
-    private String transfertCode;
-    private Boolean sendedToWms;
-    private BigDecimal discount;
-    private BigDecimal totalPriceHT;
-    private BigDecimal totalPriceTTC;
-    private User user;
-    private BigDecimal vat;
-
+    private Boolean active;
+    private Warehouse warehouse;
+    private Warehouse warehouseDestination;
 
     public long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(long id) {
@@ -64,7 +58,7 @@ public class SaleOrder implements Serializable {
     }
 
     public Owner getOwner() {
-        return this.owner;
+        return owner;
     }
 
     public void setOwner(Owner owner) {
@@ -72,7 +66,7 @@ public class SaleOrder implements Serializable {
     }
 
     public Transport getTransport() {
-        return this.transport;
+        return transport;
     }
 
     public void setTransport(Transport transport) {
@@ -80,7 +74,7 @@ public class SaleOrder implements Serializable {
     }
 
     public String getCode() {
-        return this.code;
+        return code;
     }
 
     public void setCode(String code) {
@@ -88,7 +82,7 @@ public class SaleOrder implements Serializable {
     }
 
     public Date getUpdateDate() {
-        return this.updateDate;
+        return updateDate;
     }
 
     public void setUpdateDate(Date updateDate) {
@@ -96,7 +90,7 @@ public class SaleOrder implements Serializable {
     }
 
     public String getVariable1() {
-        return this.variable1;
+        return variable1;
     }
 
     public void setVariable1(String variable1) {
@@ -104,7 +98,7 @@ public class SaleOrder implements Serializable {
     }
 
     public String getVariable2() {
-        return this.variable2;
+        return variable2;
     }
 
     public void setVariable2(String variable2) {
@@ -112,7 +106,7 @@ public class SaleOrder implements Serializable {
     }
 
     public String getVariable3() {
-        return this.variable3;
+        return variable3;
     }
 
     public void setVariable3(String variable3) {
@@ -120,7 +114,7 @@ public class SaleOrder implements Serializable {
     }
 
     public String getVariable4() {
-        return this.variable4;
+        return variable4;
     }
 
     public void setVariable4(String variable4) {
@@ -128,7 +122,7 @@ public class SaleOrder implements Serializable {
     }
 
     public String getVariable5() {
-        return this.variable5;
+        return variable5;
     }
 
     public void setVariable5(String variable5) {
@@ -136,7 +130,7 @@ public class SaleOrder implements Serializable {
     }
 
     public String getVariable6() {
-        return this.variable6;
+        return variable6;
     }
 
     public void setVariable6(String variable6) {
@@ -144,7 +138,7 @@ public class SaleOrder implements Serializable {
     }
 
     public String getVariable7() {
-        return this.variable7;
+        return variable7;
     }
 
     public void setVariable7(String variable7) {
@@ -152,7 +146,7 @@ public class SaleOrder implements Serializable {
     }
 
     public String getVariable8() {
-        return this.variable8;
+        return variable8;
     }
 
     public void setVariable8(String variable8) {
@@ -160,7 +154,7 @@ public class SaleOrder implements Serializable {
     }
 
     public String getVariable9() {
-        return this.variable9;
+        return variable9;
     }
 
     public void setVariable9(String variable9) {
@@ -168,7 +162,7 @@ public class SaleOrder implements Serializable {
     }
 
     public String getVariable10() {
-        return this.variable10;
+        return variable10;
     }
 
     public void setVariable10(String variable10) {
@@ -176,7 +170,7 @@ public class SaleOrder implements Serializable {
     }
 
     public Short getContainers() {
-        return this.containers;
+        return containers;
     }
 
     public void setContainers(Short containers) {
@@ -184,7 +178,7 @@ public class SaleOrder implements Serializable {
     }
 
     public Date getCreationDate() {
-        return this.creationDate;
+        return creationDate;
     }
 
     public void setCreationDate(Date creationDate) {
@@ -192,17 +186,15 @@ public class SaleOrder implements Serializable {
     }
 
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-
-
     public Account getAccount() {
-        return this.account;
+        return account;
     }
 
     public void setAccount(Account account) {
@@ -210,7 +202,7 @@ public class SaleOrder implements Serializable {
     }
 
     public Date getLoadDate() {
-        return this.loadDate;
+        return loadDate;
     }
 
     public void setLoadDate(Date loadDate) {
@@ -218,7 +210,7 @@ public class SaleOrder implements Serializable {
     }
 
     public String getCustomerCode() {
-        return this.customerCode;
+        return customerCode;
     }
 
     public void setCustomerCode(String customerCode) {
@@ -226,7 +218,7 @@ public class SaleOrder implements Serializable {
     }
 
     public OrderStatus getOrderStatus() {
-        return this.orderStatus;
+        return orderStatus;
     }
 
     public void setOrderStatus(OrderStatus orderStatus) {
@@ -234,7 +226,7 @@ public class SaleOrder implements Serializable {
     }
 
     public String getTransportContact() {
-        return this.transportContact;
+        return transportContact;
     }
 
     public void setTransportContact(String transportContact) {
@@ -242,7 +234,7 @@ public class SaleOrder implements Serializable {
     }
 
     public String getImmatriculation() {
-        return this.immatriculation;
+        return immatriculation;
     }
 
     public void setImmatriculation(String immatriculation) {
@@ -250,7 +242,7 @@ public class SaleOrder implements Serializable {
     }
 
     public Date getExpectedDate() {
-        return this.expectedDate;
+        return expectedDate;
     }
 
     public void setExpectedDate(Date expectedDate) {
@@ -258,7 +250,7 @@ public class SaleOrder implements Serializable {
     }
 
     public OrderType getOrderType() {
-        return this.orderType;
+        return orderType;
     }
 
     public void setOrderType(OrderType orderType) {
@@ -266,46 +258,19 @@ public class SaleOrder implements Serializable {
     }
 
     public String getRemarks() {
-        return this.remarks;
+        return remarks;
     }
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
     }
 
-    public String getTransfertCode() {
-        return transfertCode;
-    }
-
-    public void setTransfertCode(String transfertCode) {
-        this.transfertCode = transfertCode;
-    }
-
-
-    /**
-     * @return the lines
-     */
     public Set<SaleOrderLine> getLines() {
         return lines;
     }
 
-    /**
-     * @param lines the lines to set
-     */
     public void setLines(Set<SaleOrderLine> lines) {
         this.lines = lines;
-    }
-
-
-    public Set<SaleOrderStock> getStocks() {
-        return stocks;
-    }
-
-    /**
-     * @param stocks the stocks to set
-     */
-    public void setStocks(Set<SaleOrderStock> stocks) {
-        this.stocks = stocks;
     }
 
     public Address getAddressBySaleOrderDeliveryAddress() {
@@ -348,54 +313,20 @@ public class SaleOrder implements Serializable {
         this.transportTel = transportTel;
     }
 
-    public Boolean getSendedToWms() {
-        return sendedToWms;
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setSendedToWms(Boolean sendedToWms) {
-        this.sendedToWms = sendedToWms;
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
-
-    public BigDecimal getDiscount() {
-        return discount;
+    public Warehouse getWarehouse() {
+        return warehouse;
     }
 
-    public void setDiscount(BigDecimal discount) {
-        this.discount = discount;
-    }
-
-
-    public BigDecimal getTotalPriceHT() {
-        return totalPriceHT;
-    }
-
-    public void setTotalPriceHT(BigDecimal totalPriceHT) {
-        this.totalPriceHT = totalPriceHT;
-    }
-
-    public BigDecimal getTotalPriceTTC() {
-        return totalPriceTTC;
-    }
-
-    public void setTotalPriceTTC(BigDecimal totalPriceTTC) {
-        this.totalPriceTTC = totalPriceTTC;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public BigDecimal getVat() {
-        return vat;
-    }
-
-    public void setVat(BigDecimal vat) {
-        this.vat = vat;
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
     }
 
     @Override
@@ -420,4 +351,11 @@ public class SaleOrder implements Serializable {
         return hash;
     }
 
+    public Warehouse getWarehouseDestination() {
+        return warehouseDestination;
+    }
+
+    public void setWarehouseDestination(Warehouse warehouseDestination) {
+        this.warehouseDestination = warehouseDestination;
+    }
 }

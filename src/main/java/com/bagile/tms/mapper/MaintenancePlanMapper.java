@@ -1,7 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.MaintenancePlan;
-import com.sinno.ems.entities.TmsMaintenancePlan;
+import com.bagile.tms.dto.MaintenancePlan;
+import com.bagile.tms.entities.TmsMaintenancePlan;
 
 import java.util.*;
 

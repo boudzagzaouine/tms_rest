@@ -24,20 +24,14 @@ public class Stock implements Serializable {
     private Date creationDate;
     private Date receptionDate;
     private Product product;
-    private BlockType blockType;
-    private Date dlc;
-    private Date dluo;
-    private String serialNo;
-    private String lot;
     private Container container;
     private BigDecimal quantity;
     private Uom uom;
-    private Boolean kit;
 
     private String quality;
     private BigDecimal weight;
     private String comment;
-    private ProductDimension productDimension;
+    private Boolean active;
 
 
     public long getId() {
@@ -160,60 +154,12 @@ public class Stock implements Serializable {
         this.receptionDate = receptionDate;
     }
 
-    /*public Warehouse getWarehouse() {
-         return this.warehouse;
-    }
-
-    public void setWarehouse(Warehouse warehouse) {
-         this.warehouse = warehouse;
-    }*/
     public Product getProduct() {
         return this.product;
     }
 
     public void setProduct(Product product) {
         this.product = product;
-    }
-
-    public BlockType getBlockType() {
-        return this.blockType;
-    }
-
-    public void setBlockType(BlockType blockType) {
-        this.blockType = blockType;
-    }
-
-
-    public Date getDlc() {
-        return this.dlc;
-    }
-
-    public void setDlc(Date dlc) {
-        this.dlc = dlc;
-    }
-
-    public Date getDluo() {
-        return this.dluo;
-    }
-
-    public void setDluo(Date dluo) {
-        this.dluo = dluo;
-    }
-
-    public String getSerialNo() {
-        return this.serialNo;
-    }
-
-    public void setSerialNo(String serialNo) {
-        this.serialNo = serialNo;
-    }
-
-    public String getLot() {
-        return this.lot;
-    }
-
-    public void setLot(String lot) {
-        this.lot = lot;
     }
 
     public Container getContainer() {
@@ -240,13 +186,6 @@ public class Stock implements Serializable {
         this.uom = uom;
     }
 
-    public Boolean getKit() {
-        return kit;
-    }
-
-    public void setKit(Boolean kit) {
-        this.kit = kit;
-    }
 
     public String getQuality() {
         return quality;
@@ -264,8 +203,6 @@ public class Stock implements Serializable {
         this.weight = weight;
     }
 
-
-
     public String getComment() {
         return comment;
     }
@@ -274,14 +211,14 @@ public class Stock implements Serializable {
         this.comment = comment;
     }
 
-
-    public ProductDimension getProductDimension() {
-        return productDimension;
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setProductDimension(ProductDimension productDimension) {
-        this.productDimension = productDimension;
+    public void setActive(Boolean active) {
+        this.active = active;
     }
+
     @Override
     public boolean equals(Object object) {
         boolean result = false;

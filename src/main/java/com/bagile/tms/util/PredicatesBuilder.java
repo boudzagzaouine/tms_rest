@@ -4,7 +4,7 @@
 package com.bagile.tms.util;
 
 import com.mysema.query.types.expr.BooleanExpression;
-import com.sinno.ems.exception.ErrorType;
+import com.bagile.tms.exceptions.ErrorType;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.sinno.ems.entities;
+package com.bagile.tms.entities;
 
 // Generated 8 mars 2015 01:55:29 by Hibernate Tools 4.3.1
 
@@ -64,8 +64,7 @@ public class PrmContact implements java.io.Serializable {
     private String prmContactComment;
     private Boolean prmContactActive;
     private OwnOwner ownOwner;
-    private Set<RcpSupplier> rcpSuppliers = new HashSet<RcpSupplier>(0);
-    private Set<TrpTransport> trpTransports = new HashSet<TrpTransport>(0);
+
 
 
     public PrmContact() {
@@ -274,23 +273,6 @@ public class PrmContact implements java.io.Serializable {
         this.prmContactVariable10 = prmContactVariable10;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "prmContact")
-    public Set<RcpSupplier> getRcpSuppliers() {
-        return this.rcpSuppliers;
-    }
-
-    public void setRcpSuppliers(Set<RcpSupplier> rcpSuppliers) {
-        this.rcpSuppliers = rcpSuppliers;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "prmContact")
-    public Set<TrpTransport> getTrpTransports() {
-        return this.trpTransports;
-    }
-
-    public void setTrpTransports(Set<TrpTransport> trpTransports) {
-        this.trpTransports = trpTransports;
-    }
     @Column(name = "prm_contactactive")
 
     public Boolean getPrmContactActive() {

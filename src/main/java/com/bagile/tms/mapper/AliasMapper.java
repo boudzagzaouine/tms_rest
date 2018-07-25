@@ -1,7 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.Alias;
-import com.sinno.ems.entities.PdtAlias;
+import com.bagile.tms.dto.Alias;
+import com.bagile.tms.entities.PdtAlias;
 
 import java.util.*;
 

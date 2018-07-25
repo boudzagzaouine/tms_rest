@@ -1,10 +1,10 @@
 package com.bagile.tms.controllers;
 
-import com.sinno.ems.dto.NatureIncident;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.service.NatureIncidentService;
+import com.bagile.tms.dto.NatureIncident;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.services.NatureIncidentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -38,7 +38,7 @@ public class NatureIncidentController {
     @ResponseBody
     public List<NatureIncident> getNatureIncidents(@RequestParam int page, @RequestParam int size) {
         Sort sort = new Sort(Sort.Direction.DESC/*, "prmColorUpdateDate"*/);
-        Pageable pageable = new PageRequest(page, size,sort);
+        Pageable pageable = PageRequest.of(page, size,sort);
         return natureIncidentService.findAll(pageable);
 
     }
@@ -82,7 +82,7 @@ public class NatureIncidentController {
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<NatureIncident> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Pageable pageable = new PageRequest(page, size);
+        Pageable pageable = PageRequest.of(page, size);
         return natureIncidentService.find(search, pageable);
     }
 

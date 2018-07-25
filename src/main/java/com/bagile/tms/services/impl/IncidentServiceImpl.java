@@ -1,15 +1,15 @@
 package com.bagile.tms.services.impl;
 
-import com.sinno.ems.dto.Incident;
-import com.sinno.ems.entities.TmsIncident;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.IncidentMapper;
-import com.sinno.ems.repositories.IncidentRepository;
-import com.sinno.ems.service.IncidentService;
-import com.sinno.ems.util.EmsDate;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.dto.Incident;
+import com.bagile.tms.entities.TmsIncident;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.IncidentMapper;
+import com.bagile.tms.repositories.IncidentRepository;
+import com.bagile.tms.services.IncidentService;
+import com.bagile.tms.util.EmsDate;
+import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,12 +44,12 @@ public class IncidentServiceImpl implements IncidentService {
 
     @Override
     public Boolean isExist(Long id) {
-        return incidentRepository.exists(id);
+        return incidentRepository.existsById(id);
     }
 
     @Override
     public Incident findById(Long id) throws IdNotFound {
-        Incident incident = IncidentMapper.toDto(incidentRepository.findOne(id), false);
+        Incident incident = IncidentMapper.toDto(incidentRepository.findById(id).get(), false);
         if (null != incident) {
             return incident;
         } else {
@@ -71,7 +71,7 @@ public class IncidentServiceImpl implements IncidentService {
     @Override
     public void delete(Long id) {
         LOGGER.info("save Incident");
-        incidentRepository.delete(id);
+        incidentRepository.deleteById(id);
     }
     @Override
     public void delete(Incident incident) {

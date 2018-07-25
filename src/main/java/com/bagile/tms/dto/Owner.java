@@ -32,12 +32,7 @@ public class Owner implements Serializable {
     private String email;
     private String primaryTel;
     private String secondaryTel;
-    private Long invoiceType;
-    private String invoiceTerm;
-    private Boolean relevantVat;
-    private BigDecimal vat;
     private Organisation organisation;
-    private String currency;
     private Date firstInvoiceDate;
     private byte[] image;
 
@@ -187,30 +182,6 @@ public class Owner implements Serializable {
         this.description = description;
     }
 
-    public String getInvoiceTerm() {
-        return invoiceTerm;
-    }
-
-    public void setInvoiceTerm(String invoiceTerm) {
-        this.invoiceTerm = invoiceTerm;
-    }
-
-    public Boolean getRelevantVat() {
-        return relevantVat;
-    }
-
-    public void setRelevantVat(Boolean relevantVat) {
-        this.relevantVat = relevantVat;
-    }
-
-    public BigDecimal getVat() {
-        return vat;
-    }
-
-    public void setVat(BigDecimal vat) {
-        this.vat = vat;
-    }
-
     public Address getAddress() {
         return address;
     }
@@ -219,28 +190,12 @@ public class Owner implements Serializable {
         this.address = address;
     }
 
-    public Long getInvoiceType() {
-        return invoiceType;
-    }
-
-    public void setInvoiceType(Long invoiceType) {
-        this.invoiceType = invoiceType;
-    }
-
     public Organisation getOrganisation() {
         return organisation;
     }
 
     public void setOrganisation(Organisation organisation) {
         this.organisation = organisation;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
     }
 
     public String getName() {

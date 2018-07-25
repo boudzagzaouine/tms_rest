@@ -1,11 +1,11 @@
 package com.bagile.tms.repositories;
 
-import com.sinno.ems.entities.OwnOwner;
+import com.bagile.tms.entities.OwnOwner;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 public interface OwnerRepository extends JpaRepository<OwnOwner, Long>,
-		QueryDslPredicateExecutor<OwnOwner> {
+		QuerydslPredicateExecutor<OwnOwner> {
 	OwnOwner findByOwnOwnerCode(String ownOwnerCode);
 
 }

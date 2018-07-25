@@ -1,7 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.Owner;
-import com.sinno.ems.entities.OwnOwner;
+import com.bagile.tms.dto.Owner;
+import com.bagile.tms.entities.OwnOwner;
 
 import java.util.*;
 
@@ -59,8 +59,35 @@ public class OwnerMapper {
         }
         OwnOwner ownOwner = new OwnOwner();
 
+        ownOwner.setOwnOwnerId(owner.getId());
+        ownOwner.setOwnOwnerCode(owner.getCode() != null ? owner.getCode().toUpperCase() : null);
+        ownOwner.setOwnOwnerName(owner.getName());
+        ownOwner.setOwnOwnerSurname(owner.getSurname());
+        ownOwner.setOwnOwnerEmail(owner.getEmail());
+        ownOwner.setOwnOwnerPrimaryTel(owner.getPrimaryTel());
+        ownOwner.setOwnOwnerSecondaryTel(owner.getSecondaryTel());
+        ownOwner.setOwnOwnerDescription(owner.getDescription());
+        ownOwner.setOwnOwnerSiret(owner.getSiret());
+        ownOwner.setOwnOwnerComment(owner.getComment());
+        ownOwner.setOwnOwnerIsActive(owner.getActive());
+        ownOwner.setOwnOwnerCreationDate(owner.getCreationDate());
+        ownOwner.setOwnOwnerUpdateDate(owner.getUpdateDate());
+        ownOwner.setOwnOwnerVariable1(owner.getVariable1());
+        ownOwner.setOwnOwnerVariable2(owner.getVariable2());
+        ownOwner.setOwnOwnerVariable3(owner.getVariable3());
+        ownOwner.setOwnOwnerVariable4(owner.getVariable4());
+        ownOwner.setOwnOwnerVariable5(owner.getVariable5());
+        ownOwner.setOwnOwnerVariable6(owner.getVariable6());
+        ownOwner.setOwnOwnerVariable7(owner.getVariable7());
+        ownOwner.setOwnOwnerVariable8(owner.getVariable8());
+        ownOwner.setOwnOwnerVariable9(owner.getVariable9());
+        ownOwner.setOwnOwnerVariable10(owner.getVariable10());
+
+        ownOwner.setOwnOwnerImage(owner.getImage());
 
         if (!lazy) {
+            ownOwner.setOrgOrganisation(OrganisationMapper.toEntity(owner.getOrganisation(), true));
+            ownOwner.setAdrAddress(AddressMapper.toEntity(owner.getAddress(), true));
         }
 
         return ownOwner;
@@ -72,8 +99,35 @@ public class OwnerMapper {
         }
         Owner owner = new Owner();
 
+        owner.setId(ownOwner.getOwnOwnerId());
+        owner.setCode(ownOwner.getOwnOwnerCode());
+        owner.setName(ownOwner.getOwnOwnerName());
+        owner.setSurname(ownOwner.getOwnOwnerSurname());
+        owner.setEmail(ownOwner.getOwnOwnerEmail());
+        owner.setPrimaryTel(ownOwner.getOwnOwnerPrimaryTel());
+        owner.setSecondaryTel(ownOwner.getOwnOwnerSecondaryTel());
+        owner.setDescription(ownOwner.getOwnOwnerDescription());
+        owner.setSiret(ownOwner.getOwnOwnerSiret());
+        owner.setComment(ownOwner.getOwnOwnerComment());
+        owner.setActive(ownOwner.getOwnOwnerIsActive());
+        owner.setCreationDate(ownOwner.getOwnOwnerCreationDate());
+        owner.setUpdateDate(ownOwner.getOwnOwnerUpdateDate());
+        owner.setVariable1(ownOwner.getOwnOwnerVariable1());
+        owner.setVariable2(ownOwner.getOwnOwnerVariable2());
+        owner.setVariable3(ownOwner.getOwnOwnerVariable3());
+        owner.setVariable4(ownOwner.getOwnOwnerVariable4());
+        owner.setVariable5(ownOwner.getOwnOwnerVariable5());
+        owner.setVariable6(ownOwner.getOwnOwnerVariable6());
+        owner.setVariable7(ownOwner.getOwnOwnerVariable7());
+        owner.setVariable8(ownOwner.getOwnOwnerVariable8());
+        owner.setVariable9(ownOwner.getOwnOwnerVariable9());
+        owner.setVariable10(ownOwner.getOwnOwnerVariable10());
+        owner.setImage(ownOwner.getOwnOwnerImage());
+
 
         if (!lazy) {
+            owner.setAddress(AddressMapper.toDto(ownOwner.getAdrAddress(), true));
+            owner.setOrganisation(OrganisationMapper.toDto(ownOwner.getOrgOrganisation(), true));
 
         }
 

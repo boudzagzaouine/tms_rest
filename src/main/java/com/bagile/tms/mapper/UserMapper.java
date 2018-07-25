@@ -1,7 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.User;
-import com.sinno.ems.entities.UsrUser;
+import com.bagile.tms.dto.User;
+import com.bagile.tms.entities.UsrUser;
 
 import java.util.*;
 
@@ -61,11 +61,8 @@ public class UserMapper {
         usrUser.setUsrUserEmail(user.getEmail());
         usrUser.setUsrUserType(user.getType());
         if (!lazy) {
-            usrUser.setUsrAgency(AgencyMapper.toEntity(user.getAgency(), false));
-            usrUser.setUsrUserAgencies(UserAgencyMapper.toEntities(user.getAgencies(), false));
             usrUser.setUsrUserGroup(UserGroupMapper.toEntity(user.getUserGroup(), false));
             usrUser.setOwnOwner(OwnerMapper.toEntity(user.getOwner(), true));
-            usrUser.setUsrUserActions(UserActionsMapper.toEntities(user.getUserActions(), true));
         }
         return usrUser;
     }
@@ -90,11 +87,8 @@ public class UserMapper {
         user.setEmail(usrUser.getUsrUserEmail());
         user.setType(usrUser.getUsrUserType());
         if (!lazy) {
-            user.setAgency(AgencyMapper.toDto(usrUser.getUsrAgency(),false));
-            user.setAgencies(UserAgencyMapper.toDtos(usrUser.getUsrUserAgencies(), false));
             user.setUserGroup(UserGroupMapper.toDto(usrUser.getUsrUserGroup(), false));
             user.setOwner(OwnerMapper.toDto(usrUser.getOwnOwner(), true));
-            user.setUserActions(UserActionsMapper.toDtos(usrUser.getUsrUserActions(), true));
         }
         return user;
     }

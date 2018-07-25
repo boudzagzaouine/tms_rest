@@ -1,7 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.OrderStatus;
-import com.sinno.ems.entities.PrmOrderStatus;
+import com.bagile.tms.dto.OrderStatus;
+import com.bagile.tms.entities.PrmOrderStatus;
 
 import java.util.*;
 

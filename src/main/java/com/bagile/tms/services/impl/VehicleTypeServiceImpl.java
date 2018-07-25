@@ -1,14 +1,14 @@
 package com.bagile.tms.services.impl;
 
-import com.sinno.ems.dto.VehiculeType;
-import com.sinno.ems.entities.TmsVehicleType;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.VehicleTypeMapper;
-import com.sinno.ems.repositories.VehicleTypeRepository;
-import com.sinno.ems.service.VehicleTypeService;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.dto.VehiculeType;
+import com.bagile.tms.entities.TmsVehicleType;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.VehicleTypeMapper;
+import com.bagile.tms.repositories.VehicleTypeRepository;
+import com.bagile.tms.services.VehicleTypeService;
+import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,12 +44,12 @@ public class VehicleTypeServiceImpl implements VehicleTypeService {
 
     @Override
     public Boolean isExist(Long id) {
-        return vehicleTypeRepository.exists(id);
+        return vehicleTypeRepository.existsById(id);
     }
 
     @Override
     public VehiculeType findById(Long id) throws IdNotFound {
-        VehiculeType vehiculeType = VehicleTypeMapper.toDto(vehicleTypeRepository.findOne(id), false);
+        VehiculeType vehiculeType = VehicleTypeMapper.toDto(vehicleTypeRepository.findById(id).get(), false);
         if (null != vehiculeType) {
             return vehiculeType;
         } else {
@@ -75,7 +75,7 @@ public class VehicleTypeServiceImpl implements VehicleTypeService {
     @Override
     public void delete(Long id) {
         LOGGER.info("save VehiculeType");
-        vehicleTypeRepository.delete(id);
+        vehicleTypeRepository.deleteById(id);
     }
 
     @Override

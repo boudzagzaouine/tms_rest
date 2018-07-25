@@ -1,7 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.VehiculeType;
-import com.sinno.ems.entities.TmsVehicleType;
+import com.bagile.tms.dto.VehiculeType;
+import com.bagile.tms.entities.TmsVehicleType;
 
 import java.util.*;
 

@@ -1,12 +1,9 @@
 package com.bagile.tms.controllers;
 
-import com.sinno.ems.dto.Product;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.exception.WarehouseException;
-import com.sinno.ems.service.ProductService;
-import com.sinno.ems.service.UserDetailsServiceWarehouse;
+import com.bagile.tms.dto.Product;
+import com.bagile.tms.exceptions.*;
+import com.bagile.tms.services.ProductService;
+import com.bagile.tms.services.UserDetailsServiceWarehouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
@@ -114,21 +111,21 @@ public class ProductController {
     @PreAuthorize("hasRole('PRODUCT_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Product add(@RequestBody Product product) {
+    public Product add(@RequestBody Product product) throws IdNotFound {
         return productService.save(product);
     }
 
     @PreAuthorize("hasRole('PRODUCT_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Product set(@RequestBody Product product) {
+    public Product set(@RequestBody Product product) throws IdNotFound {
         return productService.save(product);
     }
 
     @PreAuthorize("hasRole('PRODUCT_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@RequestBody Product product) {
+    public void delete(@RequestBody Product product) throws CustomException {
 
         productService.delete(product);
     }
@@ -136,7 +133,7 @@ public class ProductController {
     @PreAuthorize("hasRole('PRODUCT_DELETE')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@PathVariable Long id)throws WarehouseException {
+    public void delete(@PathVariable Long id) throws WarehouseException, CustomException {
         productService.delete(id);
     }
 

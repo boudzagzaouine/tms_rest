@@ -1,11 +1,11 @@
 package com.bagile.tms.controllers;
 
-import com.sinno.ems.dto.Account;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.service.AccountService;
-import com.sinno.ems.service.UserDetailsServiceWarehouse;
+import com.bagile.tms.dto.Account;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.services.AccountService;
+import com.bagile.tms.services.UserDetailsServiceWarehouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
@@ -148,11 +148,6 @@ public class AccountController {
         accountService.delete(id);
     }
 
-    //@PreAuthorize("hasRole('ACCOUNT_LOGIN')")
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
-    @ResponseBody
-    public Account login(@RequestParam(value = "code") String code, @RequestParam(value = "password") String password){
-        return accountService.login(code,password);
-    }
+
 
 }

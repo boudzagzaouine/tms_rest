@@ -1,10 +1,10 @@
 package com.bagile.tms.controllers;
 
-import com.sinno.ems.dto.OrderType;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.service.OrderTypeService;
+import com.bagile.tms.dto.OrderType;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.services.OrderTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -35,7 +35,7 @@ public class OrderTypeController {
     @ResponseBody
     public List<OrderType> getOrderTypes(@RequestParam int page, @RequestParam int size) {
         Sort sort = new Sort(Sort.Direction.DESC, "prmOrderTypeUpdateDate");
-        Pageable pageable = new PageRequest(page, size,sort);
+        Pageable pageable = PageRequest.of(page, size,sort);
         return orderTypeService.findAll(pageable);
     }
 

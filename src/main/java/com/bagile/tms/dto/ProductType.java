@@ -14,11 +14,8 @@ public class ProductType implements Serializable {
     private Date updateDate;
     private Date creationDate;
     private String description;
-    private Vat vat;
     private Set<ProductType> productTypes;
     private ProductType productType;
-    private Set<Product> productsForProductType;
-    private Set<Product> productsForProductSubType;
 
     public long getId() {
         return id;
@@ -82,30 +79,6 @@ public class ProductType implements Serializable {
 
     public void setProductType(ProductType productType) {
         this.productType = productType;
-    }
-
-    public Set<Product> getProductsForProductType() {
-        return productsForProductType;
-    }
-
-    public void setProductsForProductType(Set<Product> productsForProductType) {
-        this.productsForProductType = productsForProductType;
-    }
-
-    public Set<Product> getProductsForProductSubType() {
-        return productsForProductSubType;
-    }
-
-    public void setProductsForProductSubType(Set<Product> productsForProductSubType) {
-        this.productsForProductSubType = productsForProductSubType;
-    }
-
-    public Vat getVat() {
-        return vat;
-    }
-
-    public void setVat(Vat vat) {
-        this.vat = vat;
     }
 
     @Override

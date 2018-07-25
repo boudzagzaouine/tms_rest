@@ -1,9 +1,9 @@
 package com.bagile.tms.config;
 
-import com.sinno.ems.config.filter.AuthenticationTokenProcessingFilter;
-import com.sinno.ems.config.filter.CustomAccessDeniedHandler;
-import com.sinno.ems.config.filter.CustomAuthenticationEntryPoint;
-import com.sinno.ems.config.filter.SimpleCORSFilter;
+import com.bagile.tms.config.filter.AuthenticationTokenProcessingFilter;
+import com.bagile.tms.config.filter.CustomAccessDeniedHandler;
+import com.bagile.tms.config.filter.CustomAuthenticationEntryPoint;
+import com.bagile.tms.config.filter.SimpleCORSFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;

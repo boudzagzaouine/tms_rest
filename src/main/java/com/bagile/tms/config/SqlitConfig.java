@@ -23,7 +23,7 @@ import java.util.HashMap;
  *
  */
 @Configuration
-@EnableJpaRepositories(basePackages = {"com.sinno.ems.sqlite.repositories"})
+@EnableJpaRepositories(basePackages = {"com.bagile.tms.sqlite.repositories"})
 @EnableTransactionManagement
 @Import({SecurityConfig.class})
 @PropertySource(value = {"classpath:application.properties"})
@@ -38,7 +38,7 @@ public class SqlitConfig {
     	    	
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(sqliteDataSource());
-        em.setPackagesToScan("com.sinno.ems.sqlite.entities");
+        em.setPackagesToScan("com.bagile.tms.sqlite.entities");
  
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setGenerateDdl(Boolean.FALSE);

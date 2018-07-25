@@ -33,21 +33,13 @@ public class CmdDeliveryLine {
     private PdtUom pdtUom;
     @Max(999999999)
     private BigDecimal cmdDeliveryLineQuantityServed;
-    private PrmBlockType prmBlockType;
     @NotNull
     private WrhWarehouse wrhWarehouse;
 
     private StkContainer cmdDeliveryLineContainer;
 
     private PrmOrderStatus prmOrderStatus;
-    @Size(max = 255)
-    private String cmdDeliveryLineSerialNo;
-    @Size(max = 255)
-    private String cmdDeliveryLineLot;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date cmdDeliveryLineDlc;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date cmdDeliveryLineDluo;
+
     private String cmdDeliveryLineComment;
     @NotNull
     private OwnOwner ownOwner;
@@ -58,16 +50,9 @@ public class CmdDeliveryLine {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date cmdDeliveryLineUpdateDate;
-    private String cmdDeliveryLineQuality;
-    @Max(999999999)
-    private BigDecimal cmdDeliveryLineWeight;
+
     private String cmdDeliveryLineContainerCode;
-    private BigDecimal cmdDeliveryLineSalePrice;
-    private BigDecimal cmdDeliveryLineDiscount;
-    private BigDecimal cmdDeliveryLineTotalPriceHT;
-    private BigDecimal cmdDeliveryLineTotalPriceTTC;
-    private PdtProductDimension pdtProductDimension;
-    private Set<CmdSaleOrderStock> cmdSaleOrderStocks=new HashSet<CmdSaleOrderStock>(0);
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -124,15 +109,7 @@ public class CmdDeliveryLine {
     public void setCmdDeliveryLineQuantityServed(BigDecimal cmdDeliveryLineQuantityServed) {
         this.cmdDeliveryLineQuantityServed = cmdDeliveryLineQuantityServed;
     }
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cmd_deliverylineblocktypeid")
-    public PrmBlockType getPrmBlockType() {
-        return prmBlockType;
-    }
 
-    public void setPrmBlockType(PrmBlockType prmBlockType) {
-        this.prmBlockType = prmBlockType;
-    }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cmd_deliverylinecontainerid")
     public StkContainer getCmdDeliveryLineContainer() {
@@ -142,39 +119,7 @@ public class CmdDeliveryLine {
     public void setCmdDeliveryLineContainer(StkContainer cmdDeliveryLineContainer) {
         this.cmdDeliveryLineContainer = cmdDeliveryLineContainer;
     }
-    @Column(name = "cmd_deliverylineserialno", length = 50)
-    public String getCmdDeliveryLineSerialNo() {
-        return cmdDeliveryLineSerialNo;
-    }
 
-    public void setCmdDeliveryLineSerialNo(String cmdDeliveryLineSerialNo) {
-        this.cmdDeliveryLineSerialNo = cmdDeliveryLineSerialNo;
-    }
-    @Column(name = "cmd_deliverylinelot", length = 50)
-    public String getCmdDeliveryLineLot() {
-        return cmdDeliveryLineLot;
-    }
-
-    public void setCmdDeliveryLineLot(String cmdDeliveryLineLot) {
-        this.cmdDeliveryLineLot = cmdDeliveryLineLot;
-    }
-    
-    public Date getCmdDeliveryLineDlc() {
-        return cmdDeliveryLineDlc;
-    }
-
-    public void setCmdDeliveryLineDlc(Date cmdDeliveryLineDlc) {
-        this.cmdDeliveryLineDlc = cmdDeliveryLineDlc;
-    }
-    @Temporal(TemporalType.DATE)
-    @Column(name = "cmd_deliverylinedluo", length = 13)
-    public Date getCmdDeliveryLineDluo() {
-        return cmdDeliveryLineDluo;
-    }
-
-    public void setCmdDeliveryLineDluo(Date cmdDeliveryLineDluo) {
-        this.cmdDeliveryLineDluo = cmdDeliveryLineDluo;
-    }
 
     @Column(name = "cmd_deliverylinecomment", length = 255)
     public String getCmdDeliveryLineComment() {
@@ -258,25 +203,7 @@ public class CmdDeliveryLine {
     public void setCmdDelivery(CmdDelivery cmdDelivery) {
         this.cmdDelivery = cmdDelivery;
     }
-
-    @Column(name = "cmd_deliverylinequality",length = 50)
-
-    public String getCmdDeliveryLineQuality() {
-        return cmdDeliveryLineQuality;
-    }
-
-    public void setCmdDeliveryLineQuality(String cmdDeliveryLineQuality) {
-        this.cmdDeliveryLineQuality = cmdDeliveryLineQuality;
-    }
-    @Column(name = "cmd_deliverylineweight",precision = 10,scale =0 )
-
-    public BigDecimal getCmdDeliveryLineWeight() {
-        return cmdDeliveryLineWeight;
-    }
-
-    public void setCmdDeliveryLineWeight(BigDecimal cmdDeliveryLineWeight) {
-        this.cmdDeliveryLineWeight = cmdDeliveryLineWeight;
-    }
+    @Column(name = "cmd_deliverylinecontainercode" )
 
     public String getCmdDeliveryLineContainerCode() {
         return cmdDeliveryLineContainerCode;
@@ -285,60 +212,5 @@ public class CmdDeliveryLine {
     public void setCmdDeliveryLineContainerCode(String cmdDeliveryLineContainerCode) {
         this.cmdDeliveryLineContainerCode = cmdDeliveryLineContainerCode;
     }
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cmd_deliverylinepreparationlineid")
 
-    @Column(name = "cmd_deliverylinesaleprice")
-    public BigDecimal getCmdDeliveryLineSalePrice() {
-        return cmdDeliveryLineSalePrice;
-    }
-
-    public void setCmdDeliveryLineSalePrice(BigDecimal cmdDeliveryLineSalePrice) {
-        this.cmdDeliveryLineSalePrice = cmdDeliveryLineSalePrice;
-    }
-
-    @Column(name = "cmd_deliverylinediscount")
-    public BigDecimal getCmdDeliveryLineDiscount() {
-        return cmdDeliveryLineDiscount;
-    }
-
-    public void setCmdDeliveryLineDiscount(BigDecimal cmdDeliveryLineDiscount) {
-        this.cmdDeliveryLineDiscount = cmdDeliveryLineDiscount;
-    }
-
-    @Column(name = "cmd_deliverylinepriceht")
-
-    public BigDecimal getCmdDeliveryLineTotalPriceHT() {
-        return cmdDeliveryLineTotalPriceHT;
-    }
-
-    public void setCmdDeliveryLineTotalPriceHT(BigDecimal cmdDeliveryLineTotalPriceHT) {
-        this.cmdDeliveryLineTotalPriceHT = cmdDeliveryLineTotalPriceHT;
-    }
-
-    @Column(name = "cmd_deliverylinepricettc")
-
-    public BigDecimal getCmdDeliveryLineTotalPriceTTC() {
-        return cmdDeliveryLineTotalPriceTTC;
-    }
-
-    public void setCmdDeliveryLineTotalPriceTTC(BigDecimal cmdDeliveryLineTotalPriceTTC) {
-        this.cmdDeliveryLineTotalPriceTTC = cmdDeliveryLineTotalPriceTTC;
-    }
-
-    public PdtProductDimension getPdtProductDimension() {
-        return pdtProductDimension;
-    }
-
-    public void setPdtProductDimension(PdtProductDimension pdtProductDimension) {
-        this.pdtProductDimension = pdtProductDimension;
-    }
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "cmdDeliveryLine")
-    public Set<CmdSaleOrderStock> getCmdSaleOrderStocks() {
-        return cmdSaleOrderStocks;
-    }
-
-    public void setCmdSaleOrderStocks(Set<CmdSaleOrderStock> cmdSaleOrderStocks) {
-        this.cmdSaleOrderStocks = cmdSaleOrderStocks;
-    }
 }

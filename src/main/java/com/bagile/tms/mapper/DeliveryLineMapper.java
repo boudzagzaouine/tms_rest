@@ -1,7 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.DeliveryLine;
-import com.sinno.ems.entities.CmdDeliveryLine;
+import com.bagile.tms.dto.DeliveryLine;
+import com.bagile.tms.entities.CmdDeliveryLine;
 
 import java.util.*;
 
@@ -66,36 +66,22 @@ public class DeliveryLineMapper {
         cdl.setCmdDeliveryLineProductDescription(deliveryLine.getProductDescription());
         cdl.setCmdDeliveryLineOrderQuantity(deliveryLine.getOrderedQuantity());
         cdl.setCmdDeliveryLineQuantityServed(deliveryLine.getQuantityServed());
-        cdl.setCmdDeliveryLineSerialNo(deliveryLine.getSerialNo());
-        cdl.setCmdDeliveryLineLot(deliveryLine.getLot());
-        cdl.setCmdDeliveryLineDlc(deliveryLine.getDlc());
-        cdl.setCmdDeliveryLineDluo(deliveryLine.getDluo());
+
         cdl.setCmdDeliveryLineComment(deliveryLine.getComment());
         cdl.setCmdDeliveryLineCreationDate(deliveryLine.getCreationDate());
         cdl.setCmdDeliveryLineUpdateDate(deliveryLine.getUpdateDate());
-        cdl.setCmdDeliveryLineWeight(deliveryLine.getWeight());
-        cdl.setCmdDeliveryLineQuality(deliveryLine.getQuality());
         cdl.setCmdDeliveryLineContainerCode(deliveryLine.getContainerCode());
-        cdl.setCmdDeliveryLineSalePrice(deliveryLine.getSalePrice());
-        cdl.setCmdDeliveryLineTotalPriceHT(deliveryLine.getTotalPriceHT());
-        cdl.setCmdDeliveryLineTotalPriceTTC(deliveryLine.getTotalPriceTTC());
-        cdl.setCmdDeliveryLineDiscount(deliveryLine.getDiscount());
+
         if (!lazy) {
-            cdl.setPdtProductDimension(ProductDimensionMapper.toEntity(deliveryLine.getProductDimension(),true));
-            cdl.setPrmVat(VatMapper.toEntity(deliveryLine.getVat(), true));
-            cdl.setLocLocation(LocationMapper.toEntity(deliveryLine.getLocation(), true));
+
             cdl.setCmdDelivery(DeliveryMapper.toEntity(deliveryLine.getDelivery(), true));
             cdl.setCmdSaleOrderLine(SaleOrderLineMapper.toEntity(deliveryLine.getSaleOrderLine(), true));
             cdl.setPdtProduct(ProductMapper.toEntity(deliveryLine.getProduct(), true));
             cdl.setPdtUom(UomMapper.toEntity(deliveryLine.getUom(), true));
-            cdl.setPrmBlockType(BlockTypeMapper.toEntity(deliveryLine.getBlockType(), true));
             cdl.setWrhWarehouse(WarehouseMapper.toEntity(deliveryLine.getWarehouse(), true));
             cdl.setPrmOrderStatus(OrderStatusMapper.toEntity(deliveryLine.getOrderStatus(), true));
-            cdl.setCmdDeliveryLineColor(ColorMapper.toEntity(deliveryLine.getColor(), true));
             cdl.setOwnOwner(OwnerMapper.toEntity(deliveryLine.getOwner(), true));
             cdl.setCmdDeliveryLineContainer(ContainerMapper.toEntity(deliveryLine.getContainer(), true));
-            cdl.setCmdPreparationLine(PreparationLineMapper.toEntity(deliveryLine.getPreparationLine(), true));
-            cdl.setCmdSaleOrderStocks(SaleOrderStockMapper.toEntities(deliveryLine.getSaleOrderStocks(),true));
         }
         return cdl;
     }
@@ -110,36 +96,21 @@ public class DeliveryLineMapper {
         dl.setProductDescription(cmdDeliveryLine.getCmdDeliveryLineProductDescription());
         dl.setOrderedQuantity(cmdDeliveryLine.getCmdDeliveryLineOrderQuantity());
         dl.setQuantityServed(cmdDeliveryLine.getCmdDeliveryLineQuantityServed());
-        dl.setSerialNo(cmdDeliveryLine.getCmdDeliveryLineSerialNo());
-        dl.setLot(cmdDeliveryLine.getCmdDeliveryLineLot());
-        dl.setDlc(cmdDeliveryLine.getCmdDeliveryLineDlc());
-        dl.setDluo(cmdDeliveryLine.getCmdDeliveryLineDluo());
         dl.setComment(cmdDeliveryLine.getCmdDeliveryLineComment());
         dl.setCreationDate(cmdDeliveryLine.getCmdDeliveryLineCreationDate());
         dl.setUpdateDate(cmdDeliveryLine.getCmdDeliveryLineUpdateDate());
-        dl.setWeight(cmdDeliveryLine.getCmdDeliveryLineWeight());
-        dl.setQuality(cmdDeliveryLine.getCmdDeliveryLineQuality());
         dl.setContainerCode(cmdDeliveryLine.getCmdDeliveryLineContainerCode());
-        dl.setDiscount(cmdDeliveryLine.getCmdDeliveryLineDiscount());
-        dl.setSalePrice(cmdDeliveryLine.getCmdDeliveryLineSalePrice());
-        dl.setTotalPriceHT(cmdDeliveryLine.getCmdDeliveryLineTotalPriceHT());
-        dl.setTotalPriceTTC(cmdDeliveryLine.getCmdDeliveryLineTotalPriceTTC());
+
         if (!lazy) {
-            dl.setProductDimension(ProductDimensionMapper.toDto(cmdDeliveryLine.getPdtProductDimension(),true));
-            dl.setVat(VatMapper.toDto(cmdDeliveryLine.getPrmVat(), true));
-            dl.setLocation(LocationMapper.toDto(cmdDeliveryLine.getLocLocation(), true));
+
             dl.setDelivery(DeliveryMapper.toDto(cmdDeliveryLine.getCmdDelivery(), true));
             dl.setSaleOrderLine(SaleOrderLineMapper.toDto(cmdDeliveryLine.getCmdSaleOrderLine(), true));
             dl.setProduct(ProductMapper.toDto(cmdDeliveryLine.getPdtProduct(), true));
             dl.setUom(UomMapper.toDto(cmdDeliveryLine.getPdtUom(), true));
-            dl.setBlockType(BlockTypeMapper.toDto(cmdDeliveryLine.getPrmBlockType(), true));
             dl.setWarehouse(WarehouseMapper.toDto(cmdDeliveryLine.getWrhWarehouse(), true));
             dl.setOrderStatus(OrderStatusMapper.toDto(cmdDeliveryLine.getPrmOrderStatus(), true));
-            dl.setColor(ColorMapper.toDto(cmdDeliveryLine.getCmdDeliveryLineColor(), true));
             dl.setOwner(OwnerMapper.toDto(cmdDeliveryLine.getOwnOwner(), true));
             dl.setContainer(ContainerMapper.toDto(cmdDeliveryLine.getCmdDeliveryLineContainer(), true));
-            dl.setPreparationLine(PreparationLineMapper.toDto(cmdDeliveryLine.getCmdPreparationLine(), true));
-            dl.setSaleOrderStocks(SaleOrderStockMapper.toDtos(cmdDeliveryLine.getCmdSaleOrderStocks(),true));
         }
         return dl;
     }

@@ -1,9 +1,10 @@
-package com.sinno.ems.service;
+package com.bagile.tms.services;
 
-import com.sinno.ems.dto.Contact;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
+
+import com.bagile.tms.dto.Contact;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -33,6 +34,4 @@ public interface ContactService {
     List<Contact> findAll() throws AttributesNotFound, ErrorType;
 
     List<Contact> findAll(Pageable pageable) throws AttributesNotFound, ErrorType;
-
-    String getNextVal();
 }

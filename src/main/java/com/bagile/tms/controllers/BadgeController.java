@@ -1,10 +1,10 @@
 package com.bagile.tms.controllers;
 
-import com.sinno.ems.dto.Badge;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.service.BadgeService;
+import com.bagile.tms.dto.Badge;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.services.BadgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -35,7 +35,7 @@ public class BadgeController {
     @ResponseBody
     public List<Badge> getBadges(@RequestParam int page, @RequestParam int size) {
         Sort sort = new Sort(Sort.Direction.DESC, "prmColorUpdateDate");
-        Pageable pageable = new PageRequest(page, size,sort);
+        Pageable pageable = PageRequest.of(page, size,sort);
         return badgeService.findAll(pageable);
 
     }
@@ -74,7 +74,7 @@ public class BadgeController {
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<Badge> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Pageable pageable = new PageRequest(page, size);
+        Pageable pageable = PageRequest.of(page, size);
         return badgeService.find(search, pageable);
     }
     @PreAuthorize("hasRole('BADGE_CREATE')")

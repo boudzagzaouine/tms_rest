@@ -3,7 +3,7 @@
  */
 package com.bagile.tms.util;
 
-import com.sinno.ems.config.ApplicationContextHolder;
+import com.bagile.tms.config.ApplicationContextHolder;
 import org.springframework.context.ApplicationContext;
 
 import javax.validation.ConstraintValidator;

@@ -1,23 +1,15 @@
 package com.bagile.tms.services.impl;
 
-import com.sinno.ems.dto.*;
-import com.sinno.ems.entities.OwnOwner;
-import com.sinno.ems.entities.TrpTransport;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.export.TransportExport;
-import com.sinno.ems.mapper.AddressMapper;
-import com.sinno.ems.mapper.ContactMapper;
-import com.sinno.ems.mapper.OwnerMapper;
-import com.sinno.ems.mapper.TransportMapper;
-import com.sinno.ems.mapperWms.MapperCarrer;
-import com.sinno.ems.repositories.*;
-import com.sinno.ems.service.TransportService;
-import com.sinno.ems.util.EmsDate;
-import com.sinno.ems.util.Search;
-import com.sinno.wms.crud.convertbasic.ConvertManagerCarrier;
-import com.sinno.wms.crud.modelbasic.carriers.Carrier;
+import com.bagile.tms.dto.Transport;
+import com.bagile.tms.entities.TrpTransport;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.TransportMapper;
+import com.bagile.tms.repositories.TransportRepository;
+import com.bagile.tms.services.TransportService;
+import com.bagile.tms.util.EmsDate;
+import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +17,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.ServletContext;
-import java.io.File;
-import java.lang.Exception;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -41,19 +27,6 @@ public class TransportServiceImpl implements TransportService {
     @Autowired
     private TransportRepository transportRepository;
 
-    @Autowired
-    private MsgSendRepository msgSendRepository;
-
-    @Autowired
-    private ServletContext servletContext;
-    @Autowired
-    private AddressRepository addressRepository;
-    @Autowired
-    private ContactRepository contactRepository;
-    @Autowired
-    private OwnerRepository ownerRepository;
-    @Autowired
-    private SettingRepository settingRepository;
    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmssS") ;
     private final static Logger LOGGER = LoggerFactory
             .getLogger(TransportService.class);
@@ -68,83 +41,11 @@ public class TransportServiceImpl implements TransportService {
         }
         TrpTransport trp = TransportMapper.toEntity(transport, false);
         TrpTransport trpTransport = transportRepository.saveAndFlush(trp);
-        Transport transportt = TransportMapper.toDto(trpTransport, false);
-        boolean syncWms = settingRepository.findOne(2L).getPrmSettingValue().equals("1") ? true : false;
-        if (syncWms) {
-            PrmMsgSend msgSend = null;
-            msgSend = getPrmMsgSend();
-            if (null != msgSend && msgSend.isPrmMsgSendActive()) {
-                TransportExport.export(msgSend.getPrmMsgSendPath(), trpTransport, "F", servletContext);
-            }
 
-            if (null != msgSend && msgSend.isPrmMsgSendActive() && "xls".equals(msgSend.getPrmMsgSendFormat().trim())) {
-
-                writeFileTransport(msgSend.getPrmMsgSendPath(), transport);
-                writeFileTransport(msgSend.getPrmMsgSendArcPath(), transport);
-            }
-        }
-        return transportt;
-    }
-
-    private PrmMsgSend getPrmMsgSend() {
-        PrmMsgSend msgSend ;
-        try {
-            Iterable<PrmMsgSend> msgSends = msgSendRepository.findAll(Search.expression("fileType:CAR", PrmMsgSend.class));
-            if (null != msgSends && null != msgSends.iterator()) {
-                if (msgSends.iterator().hasNext()) {
-                    return msgSends.iterator().next();
-                }
-            }
-        } catch (AttributesNotFound attributesNotFound) {
-            //attributesNotFound.printStackTrace();
-        } catch (ErrorType errorType) {
-            //e.printStackTrace();
-        } catch (Exception e) {
-            //e.printStackTrace();
-        }
-        return null;
-    }
-
-    private void writeFileTransport(String path,Transport tran) {
-        try {
-            //   String date = new SimpleDateFormat("yyyyMMddHHmmssS").format(Calendar.getInstance().getTime());
-            path= path.replace("\\", File.separator);
-            String langue="FR";
-            com.sinno.wms.crud.modelbasic.carriers.Carrier transport = com.sinno.ems.mapperWms.MapperCarrer.convertToWmsDto(tran);
-            ConvertManagerCarrier.writeFileCarrier(path+File.separator+"IAG01"+dateFormat.format(new Date())+".xls",langue, transport);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void writeFileTransport(String path,List<Transport> transports) {
-        try {
-            //   String date = new SimpleDateFormat("yyyyMMddHHmmssS").format(Calendar.getInstance().getTime());
-            path= path.replace("\\", File.separator);
-            String langue="FR";
-            List<Carrier> carrierlist = new ArrayList<>();
-            for (Transport tran:transports ) {
-                carrierlist.add(com.sinno.ems.mapperWms.MapperCarrer.convertToWmsDto(tran));
-            }
-            ConvertManagerCarrier.writeFileCarrier(path+File.separator+"IAG01"+dateFormat.format(new Date())+".xls",langue, carrierlist);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        return TransportMapper.toDto(trpTransport,true);
     }
 
 
-    public void readFileTransport(com.sinno.wms.crud.modelbasic.carriers.Carrier car) {
-
-        try {
-            car = ConvertManagerCarrier.readFileCarrier("IAG01.xls").get(0);
-            Transport transport = new Transport();
-            transport = MapperCarrer.convertToEmsDto(transport,car);
-            transportRepository.saveAndFlush(TransportMapper.toEntity(transport, false));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public Long size() {
@@ -160,12 +61,12 @@ public class TransportServiceImpl implements TransportService {
 
     @Override
     public Boolean isExist(Long id) {
-        return transportRepository.exists(id);
+        return transportRepository.existsById(id);
     }
 
     @Override
     public Transport findById(Long id) throws IdNotFound {
-        Transport transport = TransportMapper.toDto(transportRepository.findOne(id), false);
+        Transport transport = TransportMapper.toDto(transportRepository.findById(id).get(), false);
         if (null != transport) {
             return transport;
         } else {
@@ -211,34 +112,16 @@ public class TransportServiceImpl implements TransportService {
     @Override
     public void delete(Long id) {
         LOGGER.info("delete Transport");
-        TrpTransport trpTransport = transportRepository.findOne(id);
+        TrpTransport trpTransport = transportRepository.findById(id).get();
         trpTransport.setTrpTransportIsActive(false);
         transportRepository.saveAndFlush(trpTransport);
     }
 
     @Override
     public void delete(Transport transport) {
-        LOGGER.info("delete Transport");
-        TrpTransport trpTransport = transportRepository.findOne(transport.getId());
-        trpTransport.setTrpTransportIsActive(false);
-        transportRepository.saveAndFlush(trpTransport);
-        //transportRepository.delete(TransportMapper.toEntity(transport, false));
-
-        PrmMsgSend msgSend = null;
-        try {
-            Iterable<PrmMsgSend> msgSends = msgSendRepository.findAll(Search.expression("fileType:CAR", PrmMsgSend.class));
-            if (null != msgSends && null != msgSends.iterator()) {
-                msgSend = msgSends.iterator().next();
-            }
-        } catch (AttributesNotFound attributesNotFound) {
-            //attributesNotFound.printStackTrace();
-        } catch (ErrorType errorType) {
-            //e.printStackTrace();
-        }
-        if (null != msgSend && msgSend.isPrmMsgSendActive()) {
-            TransportExport.export(msgSend.getPrmMsgSendPath(), trpTransport, "M", servletContext);
-        }
+        delete(transport.getId());
     }
+
 
     @Override
     public List<Transport> findAll() {
@@ -250,67 +133,4 @@ public class TransportServiceImpl implements TransportService {
         return find("", page, size);
     }
 
-    @Transactional
-    @Override
-    public Transport loadWmsTransport(com.sinno.wms.crud.modelbasic.carriers.Carrier carrier) {
-        Transport emsTransport = TransportMapper.toDto(transportRepository.findByTrpTransportCode(carrier.getCarrier_Code()), false);
-        com.sinno.ems.dto.Contact contact = com.sinno.ems.mapper.ContactMapper.toDto(contactRepository.findByPrmContactName(carrier.getContact_Name()), false);
-        Address address = AddressMapper.toDto(addressRepository.findByAdrAddressCode(carrier.getAddress()), false);
-        String s="name:"+carrier.getContact_Name()+",surName:"+carrier.getContact_surName()+",email:"+carrier.getContact_mail();
-        Owner owner = null;
-        try {
-            owner = OwnerMapper.toDto(ownerRepository.findOne(Search.expression("organisation.id:1", OwnOwner.class)), false);
-        } catch (AttributesNotFound attributesNotFound) {
-            attributesNotFound.printStackTrace();
-        } catch (ErrorType errorType) {
-            errorType.printStackTrace();
-        }
-        if (null == emsTransport) {
-            emsTransport = new Transport();
-            emsTransport.setCreationDate(EmsDate.getDateNow());
-        }
-        if (null == contact) {
-            contact = new com.sinno.ems.dto.Contact();
-            contact.setName(carrier.getContact_Name());
-            contact.setActive(true);
-            contact.setCreationDate(EmsDate.getDateNow());
-            contact.setUpdateDate(EmsDate.getDateNow());
-            contact.setSurName(carrier.getContact_surName());
-            contact.setTel1(carrier.getTelephone());
-            contact.setTel2(carrier.getContact_second_phone());
-            contact.setContactType(1L);
-            contact.setFax(carrier.getFax());
-            contact.setOwner(owner);
-            contact = com.sinno.ems.mapper.ContactMapper.toDto(contactRepository.saveAndFlush(com.sinno.ems.mapper.ContactMapper.toEntity(contact, false)), false);
-        }
-        if (null == address) {
-            address = new Address();
-            address.setCode(carrier.getAddress());
-            address.setCreationDate(EmsDate.getDateNow());
-            address.setUpdateDate(EmsDate.getDateNow());
-            address.setZip(carrier.getPostal_Code());
-            address.setLine1(carrier.getAddress_line1());
-            address.setLine2(carrier.getAddress_line2());
-            address.setCity(carrier.getCity());
-            address.setCountry(carrier.getCountry());
-            address.setOwner(owner);
-            address = AddressMapper.toDto(addressRepository.saveAndFlush(AddressMapper.toEntity(address, false)), false);
-        }
-        if (null != emsTransport) {
-            emsTransport = MapperCarrer.convertToEmsDto(emsTransport, carrier);
-
-            emsTransport.setAddress(address);
-            emsTransport.setContact(contact);
-            emsTransport.setActive(true);
-            emsTransport = TransportMapper.toDto(transportRepository.saveAndFlush(TransportMapper.toEntity(emsTransport, false)), false);
-            return emsTransport;
-        }
-        return null;
-    }
-
-    @Override
-    public List<Transport> exportWmsTransport(List<Transport> transports) {
-        writeFileTransport(null != getPrmMsgSend()? getPrmMsgSend().getPrmMsgSendPath() : "wms", transports);
-        return transports;
-    }
 }

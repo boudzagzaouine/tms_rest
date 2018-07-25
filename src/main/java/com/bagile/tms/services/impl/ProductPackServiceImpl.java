@@ -1,19 +1,19 @@
 package com.bagile.tms.services.impl;
 
-import com.sinno.ems.dto.Product;
-import com.sinno.ems.dto.ProductPack;
-import com.sinno.ems.entities.PdtProductPack;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.ProductMapper;
-import com.sinno.ems.mapper.ProductPackMapper;
-import com.sinno.ems.mapper.UomMapper;
-import com.sinno.ems.repositories.ProductPackRepository;
-import com.sinno.ems.repositories.ProductRepository;
-import com.sinno.ems.service.ProductPackService;
-import com.sinno.ems.util.EmsDate;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.dto.Product;
+import com.bagile.tms.dto.ProductPack;
+import com.bagile.tms.entities.PdtProductPack;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.ProductMapper;
+import com.bagile.tms.mapper.ProductPackMapper;
+import com.bagile.tms.mapper.UomMapper;
+import com.bagile.tms.repositories.ProductPackRepository;
+import com.bagile.tms.repositories.ProductRepository;
+import com.bagile.tms.services.ProductPackService;
+import com.bagile.tms.util.EmsDate;
+import com.bagile.tms.util.Search;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,12 +84,12 @@ public class ProductPackServiceImpl implements ProductPackService {
 
     @Override
     public Boolean isExist(Long id) {
-        return productPackRepository.exists(id);
+        return productPackRepository.existsById(id);
     }
 
     @Override
     public ProductPack findById(Long id) throws IdNotFound {
-        ProductPack productPack = ProductPackMapper.toDto(productPackRepository.findOne(id), false);
+        ProductPack productPack = ProductPackMapper.toDto(productPackRepository.findById(id).get(), false);
         if (null != productPack) {
             return productPack;
         } else {
@@ -116,7 +116,7 @@ public class ProductPackServiceImpl implements ProductPackService {
     @Override
     public void delete(Long id) {
         LOGGER.info("delete ProductPack");
-        productPackRepository.delete(id);
+        productPackRepository.deleteById(id);
     }
 
     @Override

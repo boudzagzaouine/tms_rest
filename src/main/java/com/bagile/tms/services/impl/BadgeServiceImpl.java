@@ -1,14 +1,14 @@
 package com.bagile.tms.services.impl;
 
-import com.sinno.ems.dto.Badge;
-import com.sinno.ems.entities.TmsBadge;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.BadgeMapper;
-import com.sinno.ems.repositories.BadgeRepository;
-import com.sinno.ems.service.BadgeService;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.dto.Badge;
+import com.bagile.tms.entities.TmsBadge;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.BadgeMapper;
+import com.bagile.tms.repositories.BadgeRepository;
+import com.bagile.tms.services.BadgeService;
+import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,11 +40,11 @@ public class BadgeServiceImpl implements BadgeService {
     }
     @Override
     public Boolean isExist(Long id) {
-        return badgeRepository.exists(id);
+        return badgeRepository.existsById(id);
     }
     @Override
     public Badge findById(Long id) throws IdNotFound {
-        Badge badge = BadgeMapper.toDto(badgeRepository.findOne(id), false);
+        Badge badge = BadgeMapper.toDto(badgeRepository.findById(id).get(), false);
         if (null != badge) {
             return badge;
         } else {
@@ -66,7 +66,7 @@ public class BadgeServiceImpl implements BadgeService {
     @Override
     public void delete(Long id) {
         LOGGER.info("save Badge");
-        badgeRepository.delete(id);
+        badgeRepository.deleteById(id);
     }
     @Override
     public void delete(Badge badge) {

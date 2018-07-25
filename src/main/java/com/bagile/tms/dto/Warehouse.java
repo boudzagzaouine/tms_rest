@@ -18,6 +18,7 @@ public class Warehouse implements Serializable {
     private Date creationDate;
     private String telephone;
     private Boolean active;
+    private String email;
 
 
     public long getId() {
@@ -125,5 +126,13 @@ public class Warehouse implements Serializable {
         hash = 7 * hash + (int) this.id;
         hash = 7 * hash + (int) this.id;
         return hash;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

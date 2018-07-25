@@ -1,10 +1,10 @@
 package com.bagile.tms.controllers;
 
-import com.sinno.ems.dto.UserGroupOwner;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.service.UserGroupOwnerService;
+import com.bagile.tms.dto.UserGroupOwner;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.services.UserGroupOwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -33,7 +33,7 @@ public class UserGroupOwnerController {
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<UserGroupOwner> getUserGroupOwners(@RequestParam int page, @RequestParam int size) {
-        Pageable pageable = new PageRequest(page, size);
+        Pageable pageable = PageRequest.of(page, size);
         return userGroupOwnerService.findAll(pageable);
     }
 
@@ -75,7 +75,7 @@ public class UserGroupOwnerController {
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<UserGroupOwner> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Pageable pageable = new PageRequest(page, size);
+        Pageable pageable = PageRequest.of(page, size);
         return userGroupOwnerService.find(search, pageable);
     }
 

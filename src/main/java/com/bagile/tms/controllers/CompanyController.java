@@ -1,11 +1,11 @@
 package com.bagile.tms.controllers;
 
-import com.sinno.ems.dto.Company;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.service.CompanyService;
-import com.sinno.ems.service.UserDetailsServiceWarehouse;
+import com.bagile.tms.dto.Company;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.services.CompanyService;
+import com.bagile.tms.services.UserDetailsServiceWarehouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
@@ -44,7 +44,7 @@ public class CompanyController {
     @ResponseBody
     public List<Company> getCompanys(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         Sort sort = new Sort(Sort.Direction.DESC, "cmdCompanyUpdateDate");
-        Pageable pageable = new PageRequest(page, size, sort);
+        Pageable pageable = PageRequest.of(page, size, sort);
         if (null == userDetailsService.getOwners()) {
             return null;
         }
@@ -105,7 +105,7 @@ public class CompanyController {
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<Company> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Pageable pageable = new PageRequest(page, size);
+        Pageable pageable = PageRequest.of(page, size);
         if (null == userDetailsService.getOwners()) {
             return null;
         }

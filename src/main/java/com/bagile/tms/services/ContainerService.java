@@ -1,9 +1,9 @@
 package com.bagile.tms.services;
 
-import com.sinno.ems.dto.Container;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
+import com.bagile.tms.dto.Container;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
 import org.springframework.data.domain.Pageable;
 
 import java.math.BigInteger;
@@ -19,6 +19,10 @@ public interface ContainerService {
 
     public Container findById(Long id) throws IdNotFound;
 
+    Container findOne(String search) throws AttributesNotFound, ErrorType;
+
+    Container findByCode(String code);
+
     public List<Container> find(String search) throws AttributesNotFound, ErrorType;
 
     public List<Container> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType;
@@ -33,5 +37,7 @@ public interface ContainerService {
 
     public List<Container> findAll(Pageable pageable);
 
-    public BigInteger getNextVal();
+    public String getNextVal();
+
+
 }

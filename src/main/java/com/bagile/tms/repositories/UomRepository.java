@@ -1,10 +1,10 @@
 package com.bagile.tms.repositories;
 
-import com.sinno.ems.entities.PdtUom;
+import com.bagile.tms.entities.PdtUom;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 public interface UomRepository extends JpaRepository<PdtUom, Long>,
-		QueryDslPredicateExecutor<PdtUom> {
+		QuerydslPredicateExecutor<PdtUom> {
 	public PdtUom findByPdtUomCode(String pdtUomCode);
 }

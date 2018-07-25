@@ -1,9 +1,9 @@
 package com.bagile.tms.repositories;
 
-import com.sinno.ems.entities.CmdDelivery;
+import com.bagile.tms.entities.CmdDelivery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 public interface DeliveryRepository extends JpaRepository<CmdDelivery, Long>,
-        QueryDslPredicateExecutor<CmdDelivery> {
+        QuerydslPredicateExecutor<CmdDelivery> {
     @Query(value="select nextval('schema_ems.seq_delivery_code')",nativeQuery = true)
     public List<BigInteger> getNextVal();
 }

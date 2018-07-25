@@ -1,10 +1,10 @@
 package com.bagile.tms.services;
 
-import com.sinno.ems.dto.Stock;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.exception.ProductControls;
+import com.bagile.tms.dto.Stock;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.exceptions.ProductControls;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;

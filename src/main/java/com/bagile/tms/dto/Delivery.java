@@ -32,12 +32,7 @@ public class Delivery {
     private String immatriculation;
     private Set<DeliveryLine> lines;
     private String transfertCode;
-    private Boolean sendedToWms;
-    private BigDecimal discount;
-    private BigDecimal totalPriceHT;
-    private BigDecimal totalPriceTTC;
-    private BigDecimal vat;
-    private Road road;
+    private Warehouse warehouse;
 
     public Delivery() {
     }
@@ -66,14 +61,13 @@ public class Delivery {
         this.description = description;
     }
 
-    public com.sinno.ems.dto.Account getAccount() {
+    public com.bagile.tms.dto.Account getAccount() {
         return Account;
     }
 
-    public void setAccount(com.sinno.ems.dto.Account account) {
+    public void setAccount(com.bagile.tms.dto.Account account) {
         Account = account;
     }
-
 
 
     public Transport getTransport() {
@@ -174,7 +168,6 @@ public class Delivery {
     }
 
 
-
     public String getTransportTel() {
         return transportTel;
     }
@@ -224,63 +217,6 @@ public class Delivery {
         this.immatriculation = immatriculation;
     }
 
-    public String getTransfertCode() {
-        return transfertCode;
-    }
-
-    public void setTransfertCode(String transfertCode) {
-        this.transfertCode = transfertCode;
-    }
-
-    public void setSendedToWms(Boolean sendedToWms) {
-        this.sendedToWms = sendedToWms;
-    }
-
-    public Boolean getSendedToWms() {
-        return sendedToWms;
-    }
-
-
-    public BigDecimal getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(BigDecimal discount) {
-        this.discount = discount;
-    }
-
-    public BigDecimal getTotalPriceHT() {
-        return totalPriceHT;
-    }
-
-    public void setTotalPriceHT(BigDecimal totalPriceHT) {
-        this.totalPriceHT = totalPriceHT;
-    }
-
-    public BigDecimal getTotalPriceTTC() {
-        return totalPriceTTC;
-    }
-
-    public void setTotalPriceTTC(BigDecimal totalPriceTTC) {
-        this.totalPriceTTC = totalPriceTTC;
-    }
-
-
-    public BigDecimal getVat() {
-        return vat;
-    }
-
-    public void setVat(BigDecimal vat) {
-        this.vat = vat;
-    }
-
-    public Road getRoad() {
-        return road;
-    }
-
-    public void setRoad(Road road) {
-        this.road = road;
-    }
 
     @Override
     public boolean equals(Object object) {
@@ -296,6 +232,14 @@ public class Delivery {
         return result;
     }
 
+    public String getTransfertCode() {
+        return transfertCode;
+    }
+
+    public void setTransfertCode(String transfertCode) {
+        this.transfertCode = transfertCode;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
@@ -304,4 +248,12 @@ public class Delivery {
         return hash;
     }
 
+
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
+    }
 }

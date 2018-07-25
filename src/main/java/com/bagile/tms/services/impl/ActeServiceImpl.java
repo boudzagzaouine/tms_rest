@@ -1,15 +1,15 @@
 package com.bagile.tms.services.impl;
 
-import com.sinno.ems.dto.Acte;
-import com.sinno.ems.entities.TmsActe;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.ActeMapper;
-import com.sinno.ems.repositories.ActeRepository;
-import com.sinno.ems.service.ActeService;
-import com.sinno.ems.util.EmsDate;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.dto.Acte;
+import com.bagile.tms.entities.TmsActe;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.ActeMapper;
+import com.bagile.tms.repositories.ActeRepository;
+import com.bagile.tms.services.ActeService;
+import com.bagile.tms.util.EmsDate;
+import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,11 +45,11 @@ public class ActeServiceImpl implements ActeService{
     }
     @Override
     public Boolean isExist(Long id) {
-        return acteRepository.exists(id);
+        return acteRepository.existsById(id);
     }
     @Override
     public Acte findById(Long id) throws IdNotFound {
-       Acte acte = ActeMapper.toDto(acteRepository.findOne(id), false);
+       Acte acte = ActeMapper.toDto(acteRepository.findById(id).get(), false);
         if (null != acte) {
             return acte;
         } else {
@@ -72,7 +72,7 @@ public class ActeServiceImpl implements ActeService{
     @Override
     public void delete(Long id) {
         LOGGER.info("save Acte");
-        acteRepository.delete(id);
+        acteRepository.deleteById(id);
     }
 
     @Override

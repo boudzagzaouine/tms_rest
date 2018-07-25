@@ -1,11 +1,11 @@
 package com.bagile.tms.controllers;
 
-import com.sinno.ems.dto.Owner;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.service.OwnerService;
-import com.sinno.ems.service.UserDetailsServiceWarehouse;
+import com.bagile.tms.dto.Owner;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.services.OwnerService;
+import com.bagile.tms.services.UserDetailsServiceWarehouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
@@ -156,10 +156,4 @@ public class OwnerController {
         return ownerService.findAllForHabilitation();
     }
 
-    @PreAuthorize("hasRole('OWNER_VIEW')")
-    @RequestMapping(method = RequestMethod.GET, value = "/getLastInvoiceDate",produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public String getLastInvoiceDate(@RequestParam(value = "id") Long id) {
-        return ownerService.getLastInvoiceDate(id);
-    }
 }

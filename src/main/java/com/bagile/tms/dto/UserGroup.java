@@ -15,6 +15,7 @@ public class UserGroup implements Serializable {
     private Long type;
     private Set<GroupHabilitation> groupHabilitations;
     private Set<UserGroupOwner> userGroupOwners;
+    private Set<UserGroupWarehouse> userGroupWarehouses;
 
     public long getId() {
         return id;
@@ -102,5 +103,13 @@ public class UserGroup implements Serializable {
         hash = 7 * hash + (int) this.id;
         hash = 7 * hash + (int) this.id;
         return hash;
+    }
+
+    public void setUserGroupWarehouses(Set<UserGroupWarehouse> userGroupWarehouses) {
+        this.userGroupWarehouses = userGroupWarehouses;
+    }
+
+    public Set<UserGroupWarehouse> getUserGroupWarehouses() {
+        return userGroupWarehouses;
     }
 }

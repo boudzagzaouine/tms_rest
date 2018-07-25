@@ -1,12 +1,12 @@
 package com.bagile.tms.repositories;
 
-import com.sinno.ems.entities.CmdDeliveryLine;
+import com.bagile.tms.entities.CmdDeliveryLine;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 /**
  * Created by Enissay on 21/04/2016.
  */
 public interface DeliveryLineRepository extends JpaRepository<CmdDeliveryLine, Long>,
-        QueryDslPredicateExecutor<CmdDeliveryLine> {
+        QuerydslPredicateExecutor<CmdDeliveryLine> {
 }

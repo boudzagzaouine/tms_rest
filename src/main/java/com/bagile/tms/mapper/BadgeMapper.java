@@ -1,7 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.Badge;
-import com.sinno.ems.entities.TmsBadge;
+import com.bagile.tms.dto.Badge;
+import com.bagile.tms.entities.TmsBadge;
 
 import java.util.*;
 

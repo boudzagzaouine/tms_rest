@@ -3,7 +3,6 @@ package com.bagile.tms.entities;
 // Generated 8 mars 2015 01:55:29 by Hibernate Tools 4.3.1
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -17,7 +16,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "usr_habilitation", uniqueConstraints = @UniqueConstraint(columnNames = "usr_habilitationcode"))
-public class UsrHabilitation implements java.io.Serializable, GrantedAuthority {
+public class UsrHabilitation implements java.io.Serializable/*, GrantedAuthority*/ {
 
     private static final long serialVersionUID = -5912577005612840837L;
 
@@ -89,13 +88,13 @@ public class UsrHabilitation implements java.io.Serializable, GrantedAuthority {
         this.usrHabilitationUpdateDate = usrHabilitationUpdateDate;
     }
 
-    @Override
-    public String getAuthority() {
-        return getUsrHabilitationCode();
-    }
-
-    public void setAuthority(String authority) {
-    }
+//    @Override
+//    public String getAuthority() {
+//        return getUsrHabilitationCode();
+//    }
+//
+//    public void setAuthority(String authority) {
+//    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usr_habilitation_parent")

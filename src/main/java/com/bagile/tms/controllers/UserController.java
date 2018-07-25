@@ -1,10 +1,10 @@
 package com.bagile.tms.controllers;
 
-import com.sinno.ems.dto.User;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.service.UserService;
+import com.bagile.tms.dto.User;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -35,7 +35,7 @@ public class UserController {
     @ResponseBody
     public List<User> getUsers(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         Sort sort = new Sort(Sort.Direction.DESC, "usrUserUpdateDate");
-        Pageable pageable = new PageRequest(page, size,sort);
+        Pageable pageable = PageRequest.of(page, size,sort);
         return userService.findAll(pageable);
     }
 
@@ -76,7 +76,7 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<User> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Pageable pageable = new PageRequest(page, size);
+        Pageable pageable = PageRequest.of(page, size);
         return userService.find(search, pageable);
     }
 

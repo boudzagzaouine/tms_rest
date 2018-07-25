@@ -1,9 +1,9 @@
 package com.bagile.tms.repositories;
 
-import com.sinno.ems.entities.PdtKit;
+import com.bagile.tms.entities.PdtKit;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 public interface KitRepository extends JpaRepository<PdtKit, Long>,
-        QueryDslPredicateExecutor<PdtKit> {
+        QuerydslPredicateExecutor<PdtKit> {
 }

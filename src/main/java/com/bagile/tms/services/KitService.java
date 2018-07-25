@@ -1,9 +1,9 @@
 package com.bagile.tms.services;
 
-import com.sinno.ems.dto.Kit;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
+import com.bagile.tms.dto.Kit;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;

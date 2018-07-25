@@ -1,10 +1,10 @@
 package com.bagile.tms.repositories;
 
-import com.sinno.ems.entities.PrmSetting;
+import com.bagile.tms.entities.PrmSetting;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 public interface SettingRepository extends JpaRepository<PrmSetting, Long>,
-        QueryDslPredicateExecutor<PrmSetting> {
+        QuerydslPredicateExecutor<PrmSetting> {
 
 }

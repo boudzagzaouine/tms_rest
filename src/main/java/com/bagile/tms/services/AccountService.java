@@ -1,9 +1,9 @@
 package com.bagile.tms.services;
 
-import com.sinno.ems.dto.Account;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
+import com.bagile.tms.dto.Account;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
 
 import java.util.List;
 
@@ -16,6 +16,8 @@ public interface AccountService {
     public Boolean isExist(Long id);
 
     public Account findById(Long id) throws IdNotFound;
+
+    Account findOne(String search) throws AttributesNotFound, ErrorType;
 
     public List<Account> find(String search) throws AttributesNotFound, ErrorType;
 
@@ -31,9 +33,4 @@ public interface AccountService {
 
     public List<Account> findAll(int page, int size) throws AttributesNotFound, ErrorType;
 
-    public Account loadWmsAccount(com.sinno.wms.crud.modelbasic.accounts.Account account);
-
-    public List<Account> exportWmsAccount(List<Account> account);
-
-    Account login(String code, String password);
 }

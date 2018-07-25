@@ -1,15 +1,15 @@
 package com.bagile.tms.services.impl;
 
-import com.sinno.ems.dto.UserGroup;
-import com.sinno.ems.entities.UsrUserGroup;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.UserGroupMapper;
-import com.sinno.ems.repositories.UserGroupRepository;
-import com.sinno.ems.service.ProductService;
-import com.sinno.ems.service.UserGroupService;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.dto.UserGroup;
+import com.bagile.tms.entities.UsrUserGroup;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.UserGroupMapper;
+import com.bagile.tms.repositories.UserGroupRepository;
+import com.bagile.tms.services.ProductService;
+import com.bagile.tms.services.UserGroupService;
+import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,12 +40,12 @@ public class UserGroupServiceImpl implements UserGroupService {
 
     @Override
     public Boolean isExist(Long id) {
-        return userGroupRepository.exists(id);
+        return userGroupRepository.existsById(id);
     }
 
     @Override
     public UserGroup findById(Long id) throws IdNotFound {
-        UserGroup userGroup = UserGroupMapper.toDto(userGroupRepository.findOne(id), false);
+        UserGroup userGroup = UserGroupMapper.toDto(userGroupRepository.findById(id).get(), false);
         if (null != userGroup) {
             return userGroup;
         } else {
@@ -71,7 +71,7 @@ public class UserGroupServiceImpl implements UserGroupService {
     @Override
     public void delete(Long id) {
         LOGGER.info("delete UserGroup");
-        userGroupRepository.delete(id);
+        userGroupRepository.deleteById(id);
     }
 
     @Override

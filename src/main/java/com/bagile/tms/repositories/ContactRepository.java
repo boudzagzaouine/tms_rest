@@ -1,10 +1,10 @@
 package com.bagile.tms.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
-public interface ContactRepository extends JpaRepository<com.sinno.ems.entities.PrmContact, Long>,
-        QueryDslPredicateExecutor<com.sinno.ems.entities.PrmContact> {
+public interface ContactRepository extends JpaRepository<com.bagile.tms.entities.PrmContact, Long>,
+        QuerydslPredicateExecutor<com.bagile.tms.entities.PrmContact> {
 
-    public com.sinno.ems.entities.PrmContact findByPrmContactName(String prmContactName);
+    public com.bagile.tms.entities.PrmContact findByPrmContactName(String prmContactName);
 }

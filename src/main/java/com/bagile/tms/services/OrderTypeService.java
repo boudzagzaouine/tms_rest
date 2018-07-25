@@ -1,9 +1,9 @@
 package com.bagile.tms.services;
 
-import com.sinno.ems.dto.OrderType;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
+import com.bagile.tms.dto.OrderType;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -17,6 +17,8 @@ public interface OrderTypeService {
     public Boolean isExist(Long id);
 
     public OrderType findById(Long id) throws IdNotFound;
+
+    OrderType findOne(String search) throws AttributesNotFound, ErrorType;
 
     public List<OrderType> find(String search) throws AttributesNotFound, ErrorType;
 

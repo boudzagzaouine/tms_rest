@@ -1,9 +1,9 @@
 package com.bagile.tms.repositories;
 
-import com.sinno.ems.entities.UsrGroupHabilitation;
+import com.bagile.tms.entities.UsrGroupHabilitation;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 public interface GroupHabilitationRepository extends JpaRepository<UsrGroupHabilitation, Long>,
-		QueryDslPredicateExecutor<UsrGroupHabilitation> {
+		QuerydslPredicateExecutor<UsrGroupHabilitation> {
 }

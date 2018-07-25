@@ -3,10 +3,11 @@
  */
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.Account;
-import com.sinno.ems.entities.CmdAccount;
+import com.bagile.tms.dto.Account;
+import com.bagile.tms.entities.CmdAccount;
 
 import java.util.*;
+
 
 /**
  * @author aelguezzar
@@ -83,11 +84,7 @@ public class AccountMapper {
         if (!lazy) {
             account.setCompany(CompanyMapper.toDto(cmdAccount.getCmdCompany(), true));
             account.setOwner(OwnerMapper.toDto(cmdAccount.getOwnOwner(), true));
-            account.setContact(com.sinno.ems.mapper.ContactMapper.toDto(cmdAccount.getPrmContact(), true));
-            account.setInvoiceTerm(InvoiceTermMapper.toDto(cmdAccount.getInvInvoiceTerm(), true));
-            //account.setSaleOrderArcs(SaleOrderArcMapper.toDtos(cmdAccount.getCmdSaleOrderArcs(), true));
-            //account.setSaleOrders(SaleOrderMapper.toDtos(cmdAccount.getCmdSaleOrders(), true));
-            //account.setStockReserveds(StockReservedMapper.toDtos(cmdAccount.getStkStockReserveds(), true));
+            account.setContact(ContactMapper.toDto(cmdAccount.getPrmContact(), true));
             account.setTransport(TransportMapper.toDto(cmdAccount.getTrpTransport(), true));
             account.setAddressByAccountDeliveryAddress(AddressMapper.toDto(cmdAccount.getAdrAddressByCmdAccountDeliveryAddressId(), true));
         }
@@ -120,13 +117,9 @@ public class AccountMapper {
         cmdAccount.setCmdAccountName(account.getName());
         cmdAccount.setCmdAccountPassword(account.getPassword());
         if (!lazy) {
-            cmdAccount.setInvInvoiceTerm(InvoiceTermMapper.toEntity(account.getInvoiceTerm(), true));
             cmdAccount.setCmdCompany(CompanyMapper.toEntity(account.getCompany(), true));
-            cmdAccount.setPrmContact(com.sinno.ems.mapper.ContactMapper.toEntity(account.getContact(), true));
-            //cmdAccount.setCmdSaleOrderArcs(SaleOrderArcMapper.toEntities(account.getSaleOrderArcs(), true));
-            //cmdAccount.setCmdSaleOrders(SaleOrderMapper.toEntities(account.getSaleOrders(), true));
+            cmdAccount.setPrmContact(ContactMapper.toEntity(account.getContact(), true));
             cmdAccount.setOwnOwner(OwnerMapper.toEntity(account.getOwner(), true));
-            //cmdAccount.setStkStockReserveds(StockReservedMapper.toEntities(account.getStockReserveds(), true));
             cmdAccount.setTrpTransport(TransportMapper.toEntity(account.getTransport(), true));
             cmdAccount.setAdrAddressByCmdAccountDeliveryAddressId(AddressMapper.toEntity(account.getAddressByAccountDeliveryAddress(), true));
         }

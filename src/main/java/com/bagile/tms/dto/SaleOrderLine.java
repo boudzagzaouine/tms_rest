@@ -30,37 +30,20 @@ public class SaleOrderLine implements Serializable {
     private String variable10;
     private Date creationDate;
     private String description;
+    private String containerCode;
     private Product product;
-    private BlockType blockType;
-    private Date dlc;
-    private Date dluo;
-    private String serialNo;
-    private String lot;
     private SaleOrder saleOrder;
-    private Container container;
     private BigDecimal quantityServed;
     private OrderStatus orderStatus;
     private BigDecimal quantity;
     private Uom uom;
+    private Warehouse warehouse;
 
-    private Set<SaleOrderStock> saleOrderStocks;
     private String comment;
-    private String quality;
-    private BigDecimal weight;
-    private String containerCode;
-    private BigDecimal totalPriceHT;
-    private BigDecimal totalPriceTTC;
-    private Vat vat;
-    private BigDecimal discount;
-    private BigDecimal salePrice;
-    private SaleOrderLine saleOrderLine;
-    private Set<SaleOrderLine> commentLines;
-    private ProductDimension productDimension;
-
 
 
     public long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(long id) {
@@ -68,7 +51,7 @@ public class SaleOrderLine implements Serializable {
     }
 
     public Long getLineNumber() {
-        return this.lineNumber;
+        return lineNumber;
     }
 
     public void setLineNumber(Long lineNumber) {
@@ -76,7 +59,7 @@ public class SaleOrderLine implements Serializable {
     }
 
     public Owner getOwner() {
-        return this.owner;
+        return owner;
     }
 
     public void setOwner(Owner owner) {
@@ -84,7 +67,7 @@ public class SaleOrderLine implements Serializable {
     }
 
     public Date getDate() {
-        return this.date;
+        return date;
     }
 
     public void setDate(Date date) {
@@ -92,7 +75,7 @@ public class SaleOrderLine implements Serializable {
     }
 
     public Transport getTransport() {
-        return this.transport;
+        return transport;
     }
 
     public void setTransport(Transport transport) {
@@ -100,7 +83,7 @@ public class SaleOrderLine implements Serializable {
     }
 
     public Date getUpdateDate() {
-        return this.updateDate;
+        return updateDate;
     }
 
     public void setUpdateDate(Date updateDate) {
@@ -108,7 +91,7 @@ public class SaleOrderLine implements Serializable {
     }
 
     public String getVariable1() {
-        return this.variable1;
+        return variable1;
     }
 
     public void setVariable1(String variable1) {
@@ -116,7 +99,7 @@ public class SaleOrderLine implements Serializable {
     }
 
     public String getVariable2() {
-        return this.variable2;
+        return variable2;
     }
 
     public void setVariable2(String variable2) {
@@ -124,7 +107,7 @@ public class SaleOrderLine implements Serializable {
     }
 
     public String getVariable3() {
-        return this.variable3;
+        return variable3;
     }
 
     public void setVariable3(String variable3) {
@@ -132,7 +115,7 @@ public class SaleOrderLine implements Serializable {
     }
 
     public String getVariable4() {
-        return this.variable4;
+        return variable4;
     }
 
     public void setVariable4(String variable4) {
@@ -140,7 +123,7 @@ public class SaleOrderLine implements Serializable {
     }
 
     public String getVariable5() {
-        return this.variable5;
+        return variable5;
     }
 
     public void setVariable5(String variable5) {
@@ -148,7 +131,7 @@ public class SaleOrderLine implements Serializable {
     }
 
     public String getVariable6() {
-        return this.variable6;
+        return variable6;
     }
 
     public void setVariable6(String variable6) {
@@ -156,7 +139,7 @@ public class SaleOrderLine implements Serializable {
     }
 
     public String getVariable7() {
-        return this.variable7;
+        return variable7;
     }
 
     public void setVariable7(String variable7) {
@@ -164,7 +147,7 @@ public class SaleOrderLine implements Serializable {
     }
 
     public String getVariable8() {
-        return this.variable8;
+        return variable8;
     }
 
     public void setVariable8(String variable8) {
@@ -172,7 +155,7 @@ public class SaleOrderLine implements Serializable {
     }
 
     public String getVariable9() {
-        return this.variable9;
+        return variable9;
     }
 
     public void setVariable9(String variable9) {
@@ -180,7 +163,7 @@ public class SaleOrderLine implements Serializable {
     }
 
     public String getVariable10() {
-        return this.variable10;
+        return variable10;
     }
 
     public void setVariable10(String variable10) {
@@ -188,7 +171,7 @@ public class SaleOrderLine implements Serializable {
     }
 
     public Date getCreationDate() {
-        return this.creationDate;
+        return creationDate;
     }
 
     public void setCreationDate(Date creationDate) {
@@ -196,148 +179,11 @@ public class SaleOrderLine implements Serializable {
     }
 
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-
-    public Product getProduct() {
-        return this.product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public BlockType getBlockType() {
-        return this.blockType;
-    }
-
-    public void setBlockType(BlockType blockType) {
-        this.blockType = blockType;
-    }
-
-    public Date getDlc() {
-        return this.dlc;
-    }
-
-    public void setDlc(Date dlc) {
-        this.dlc = dlc;
-    }
-
-    public Date getDluo() {
-        return this.dluo;
-    }
-
-    public void setDluo(Date dluo) {
-        this.dluo = dluo;
-    }
-
-    public String getSerialNo() {
-        return this.serialNo;
-    }
-
-    public void setSerialNo(String serialNo) {
-        this.serialNo = serialNo;
-    }
-
-    public String getLot() {
-        return this.lot;
-    }
-
-    public void setLot(String lot) {
-        this.lot = lot;
-    }
-
-    public SaleOrder getSaleOrder() {
-        return this.saleOrder;
-    }
-
-    public void setSaleOrder(SaleOrder saleOrder) {
-        this.saleOrder = saleOrder;
-    }
-
-    public Container getContainer() {
-        return container;
-    }
-
-    public void setContainer(Container container) {
-        this.container = container;
-    }
-
-    public BigDecimal getQuantityServed() {
-        return this.quantityServed;
-    }
-
-    public void setQuantityServed(BigDecimal quantityServed) {
-        this.quantityServed = quantityServed;
-    }
-
-    public OrderStatus getOrderStatus() {
-        return this.orderStatus;
-    }
-
-    public void setOrderStatus(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
-    public BigDecimal getQuantity() {
-        return this.quantity;
-    }
-
-    public void setQuantity(BigDecimal quantity) {
-        this.quantity = quantity;
-    }
-
-    public Uom getUom() {
-        return this.uom;
-    }
-
-    public void setUom(Uom uom) {
-        this.uom = uom;
-    }
-
-
-
-    /**
-     * @return the saleOrderStocks
-     */
-    public Set<SaleOrderStock> getSaleOrderStocks() {
-        return saleOrderStocks;
-    }
-
-    /**
-     * @param saleOrderStocks the saleOrderStocks to set
-     */
-    public void setSaleOrderStocks(Set<SaleOrderStock> saleOrderStocks) {
-        this.saleOrderStocks = saleOrderStocks;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public String getQuality() {
-        return quality;
-    }
-
-    public void setQuality(String quality) {
-        this.quality = quality;
-    }
-
-    public BigDecimal getWeight() {
-        return weight;
-    }
-
-    public void setWeight(BigDecimal weight) {
-        this.weight = weight;
     }
 
     public String getContainerCode() {
@@ -348,67 +194,69 @@ public class SaleOrderLine implements Serializable {
         this.containerCode = containerCode;
     }
 
-
-    public BigDecimal getTotalPriceHT() {
-        return totalPriceHT;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setTotalPriceHT(BigDecimal totalPriceHT) {
-        this.totalPriceHT = totalPriceHT;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public BigDecimal getTotalPriceTTC() {
-        return totalPriceTTC;
+
+
+    public SaleOrder getSaleOrder() {
+        return saleOrder;
     }
 
-    public void setTotalPriceTTC(BigDecimal totalPriceTTC) {
-        this.totalPriceTTC = totalPriceTTC;
+    public void setSaleOrder(SaleOrder saleOrder) {
+        this.saleOrder = saleOrder;
     }
 
-    public Vat getVat() {
-        return vat;
+    public BigDecimal getQuantityServed() {
+        return quantityServed;
     }
 
-    public void setVat(Vat vat) {
-        this.vat = vat;
+    public void setQuantityServed(BigDecimal quantityServed) {
+        this.quantityServed = quantityServed;
     }
 
-    public BigDecimal getDiscount() {
-        return discount;
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
     }
 
-    public void setDiscount(BigDecimal discount) {
-        this.discount = discount;
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
-    public BigDecimal getSalePrice() {
-        return salePrice;
+    public BigDecimal getQuantity() {
+        return quantity;
     }
 
-    public void setSalePrice(BigDecimal salePrice) {
-        this.salePrice = salePrice;
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
     }
 
-    public SaleOrderLine getSaleOrderLine() {
-        return saleOrderLine;
+    public Uom getUom() {
+        return uom;
     }
 
-    public void setSaleOrderLine(SaleOrderLine saleOrderLine) {
-        this.saleOrderLine = saleOrderLine;
+    public void setUom(Uom uom) {
+        this.uom = uom;
     }
 
-    public Set<SaleOrderLine> getCommentLines() {
-        return commentLines;
+    public String getComment() {
+        return comment;
     }
 
-    public void setCommentLines(Set<SaleOrderLine> commentLines) {
-        this.commentLines = commentLines;
-    }
-    public ProductDimension getProductDimension() {
-        return productDimension;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
-    public void setProductDimension(ProductDimension productDimension) {
-        this.productDimension = productDimension;
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
     }
 }

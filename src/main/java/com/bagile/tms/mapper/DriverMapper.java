@@ -1,7 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.Driver;
-import com.sinno.ems.entities.TmsDriver;
+import com.bagile.tms.dto.Driver;
+import com.bagile.tms.entities.TmsDriver;
 
 import java.util.*;
 
@@ -49,7 +49,7 @@ public class DriverMapper {
         tmsDriver.setTmsDriverDateUpDate(driver.getDateUpDate());
         if (!lazy) {
             tmsDriver.setAdrAddress(AddressMapper.toEntity(driver.getAddress(),true));
-            tmsDriver.setPrmContact(com.sinno.ems.mapper.ContactMapper.toEntity(driver.getContact(),true));
+            tmsDriver.setPrmContact(com.bagile.tms.mapper.ContactMapper.toEntity(driver.getContact(),true));
             tmsDriver.setPincidents(IncidentMapper.toEntities(driver.getIncidents(),true));
             tmsDriver.setTmsDriverSituation(DriverSituationMapper.toEntity(driver.getDriverSituation(),true));
             tmsDriver.setTmsDriverCreationUser(UserMapper.toEntity(driver.getCreationUser(),true));
@@ -69,7 +69,7 @@ public class DriverMapper {
         driver.setDateUpDate(tmsDriver.getTmsDriverDateUpDate());
 
         if (!lazy) {
-            driver.setContact(com.sinno.ems.mapper.ContactMapper.toDto(tmsDriver.getPrmContact(),true));
+            driver.setContact(com.bagile.tms.mapper.ContactMapper.toDto(tmsDriver.getPrmContact(),true));
             driver.setAddress(AddressMapper.toDto(tmsDriver.getAdrAddress(),true));
             driver.setIncidents(IncidentMapper.toDtos(tmsDriver.getPincidents(),true));
             driver.setDriverSituation(DriverSituationMapper.toDto(tmsDriver.getTmsDriverSituation(),true));

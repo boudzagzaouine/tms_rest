@@ -1,16 +1,16 @@
 package com.bagile.tms.services.impl;
 
-import com.sinno.ems.dto.Address;
-import com.sinno.ems.entities.AdrAddress;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.AddressMapper;
-import com.sinno.ems.repositories.AddressRepository;
-import com.sinno.ems.service.AccountService;
-import com.sinno.ems.service.AddressService;
-import com.sinno.ems.util.EmsDate;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.dto.Address;
+import com.bagile.tms.entities.AdrAddress;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.AddressMapper;
+import com.bagile.tms.repositories.AddressRepository;
+import com.bagile.tms.services.AccountService;
+import com.bagile.tms.services.AddressService;
+import com.bagile.tms.util.EmsDate;
+import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,12 +45,12 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public Boolean isExist(Long id) {
-        return addressRepository.exists(id);
+        return addressRepository.existsById(id);
     }
 
     @Override
     public Address findById(Long id) throws IdNotFound {
-        Address address = AddressMapper.toDto(addressRepository.findOne(id), false);
+        Address address = AddressMapper.toDto(addressRepository.findById(id).get(), false);
         if (null != address) {
             return address;
         } else {
@@ -78,7 +78,7 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public void delete(Long id) {
         LOGGER.info("delete Address");
-        addressRepository.delete(id);
+        addressRepository.deleteById(id);
     }
 
     @Override

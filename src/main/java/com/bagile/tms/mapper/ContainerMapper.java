@@ -1,8 +1,8 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.Container;
-import com.sinno.ems.entities.StkContainer;
-import com.sinno.ems.entities.StkContainerView;
+import com.bagile.tms.dto.Container;
+import com.bagile.tms.entities.StkContainer;
+import com.bagile.tms.entities.StkContainerView;
 
 import java.util.*;
 

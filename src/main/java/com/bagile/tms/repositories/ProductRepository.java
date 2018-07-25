@@ -1,9 +1,9 @@
 package com.bagile.tms.repositories;
 
-import com.sinno.ems.entities.PdtProduct;
+import com.bagile.tms.entities.PdtProduct;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
@@ -11,7 +11,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<PdtProduct, Long>,
-		QueryDslPredicateExecutor<PdtProduct> {
+		QuerydslPredicateExecutor<PdtProduct> {
 	@Query(value="select nextval('schema_ems.seq_product_code')",nativeQuery = true)
 	public List<BigInteger> getNextVal();
 

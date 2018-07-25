@@ -1,7 +1,7 @@
 package com.bagile.tms.config.core;
 
-import com.sinno.ems.config.AppConfig;
-import com.sinno.ems.config.filter.SimpleCORSFilter;
+import com.bagile.tms.config.AppConfig;
+import com.bagile.tms.config.filter.SimpleCORSFilter;
 import net.bull.javamelody.MonitoringFilter;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;

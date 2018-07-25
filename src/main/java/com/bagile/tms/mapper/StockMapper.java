@@ -1,8 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.Stock;
-import com.sinno.ems.entities.StkStock;
-import com.sinno.ems.entities.StkStockView;
+import com.bagile.tms.dto.Stock;
+import com.bagile.tms.entities.StkStock;
 
 import java.util.*;
 
@@ -24,7 +23,7 @@ public class StockMapper {
         map.put("color", "prmColor");
         map.put("supplier", "rcpSupplier");
         map.put("container", "stkContainer");
-       // map.put("warehouse", "wrhWarehouse");
+        // map.put("warehouse", "wrhWarehouse");
         map.put("quantity", "stkStockQuantity");
         map.put("dlc", "stkStockDlc");
         map.put("dluo", "stkStockDluo");
@@ -44,15 +43,12 @@ public class StockMapper {
         map.put("variable9", "stkStockVariable9");
         map.put("variable10", "stkStockVariable10");
         map.put("kit", "stkStockKit");
-        map.put("receptionStock","rcpReceptionStock");
-        map.put("receptionLine","rcpReceptionLine");
-        map.put("weight","stkStockWeight");
-        map.put("quality","stkStockQuality");
-        map.put("comment","stkStockComment");
-        map.put("receptionStock","rcpReceptionStock");
+        map.put("receptionLine", "rcpReceptionLine");
+        map.put("weight", "stkStockWeight");
+        map.put("quality", "stkStockQuality");
+        map.put("comment", "stkStockComment");
+        map.put("receptionStock", "rcpReceptionStock");
         map.put("productDimension", "pdtProductDimension");
-
-
 
 
     }
@@ -73,10 +69,7 @@ public class StockMapper {
         StkStock stkStock = new StkStock();
         stkStock.setStkStockId(stock.getId());
         stkStock.setStkStockQuantity(stock.getQuantity());
-        stkStock.setStkStockDlc(stock.getDlc());
-        stkStock.setStkStockDluo(stock.getDluo());
-        stkStock.setStkStockSerialNo(stock.getSerialNo());
-        stkStock.setStkStockLot(stock.getLot());
+
         stkStock.setStkStockReceptionDate(stock.getReceptionDate());
         stkStock.setStkStockCreationDate(stock.getCreationDate());
         stkStock.setStkStockUpdateDate(stock.getUpdateDate());
@@ -90,22 +83,14 @@ public class StockMapper {
         stkStock.setStkStockVariable8(stock.getVariable8());
         stkStock.setStkStockVariable9(stock.getVariable9());
         stkStock.setStkStockVariable10(stock.getVariable10());
-        stkStock.setStkStockKit(stock.getKit());
-        stkStock.setStkStockQuality(stock.getQuality());
-        stkStock.setStkStockWeight(stock.getWeight());
+
         stkStock.setStkStockComment(stock.getComment());
+        stkStock.setStkStockActive(stock.getActive());
         if (!lazy) {
-            stkStock.setPdtProductDimension(ProductDimensionMapper.toEntity(stock.getProductDimension(),true));
             stkStock.setPdtProduct(ProductMapper.toEntity(stock.getProduct(), true));
             stkStock.setOwnOwner(OwnerMapper.toEntity(stock.getOwner(), true));
-            stkStock.setRcpSupplier(SupplierMapper.toEntity(stock.getSupplier(), true));
-            stkStock.setPrmBlockType(BlockTypeMapper.toEntity(stock.getBlockType(), true));
-            stkStock.setPrmColor(ColorMapper.toEntity(stock.getColor(), true));
             stkStock.setPdtUom(UomMapper.toEntity(stock.getUom(), true));
-            stkStock.setLocLocation(LocationMapper.toEntity(stock.getLocation(), true));
             stkStock.setStkContainer(ContainerMapper.toEntity(stock.getContainer(), true));
-            stkStock.setRcpReceptionLine(ReceptionLineMapper.toEntity(stock.getReceptionLine(),true));
-            stkStock.setRcpReceptionStock(ReceptionStockMapper.toEntity(stock.getReceptionStock(),true));
 
 
             //stkStock.setWrhWarehouse(WarehouseMapper.toEntity(stock.getWarehouse(), true));
@@ -120,10 +105,7 @@ public class StockMapper {
         Stock stock = new Stock();
         stock.setId(stkStock.getStkStockId());
         stock.setQuantity(stkStock.getStkStockQuantity());
-        stock.setDlc(stkStock.getStkStockDlc());
-        stock.setDluo(stkStock.getStkStockDluo());
-        stock.setSerialNo(stkStock.getStkStockSerialNo());
-        stock.setLot(stkStock.getStkStockLot());
+
         stock.setReceptionDate(stkStock.getStkStockReceptionDate());
         stock.setCreationDate(stkStock.getStkStockCreationDate());
         stock.setUpdateDate(stkStock.getStkStockUpdateDate());
@@ -137,73 +119,19 @@ public class StockMapper {
         stock.setVariable8(stkStock.getStkStockVariable8());
         stock.setVariable9(stkStock.getStkStockVariable9());
         stock.setVariable10(stkStock.getStkStockVariable10());
-        stock.setKit(stkStock.getStkStockKit());
-        stock.setQuality(stkStock.getStkStockQuality());
-        stock.setWeight(stkStock.getStkStockWeight());
         stock.setComment(stkStock.getStkStockComment());
+        stock.setActive(stkStock.getStkStockActive());
         if (!lazy) {
-            stock.setProductDimension(ProductDimensionMapper.toDto(stkStock.getPdtProductDimension(),true));
             stock.setProduct(ProductMapper.toDto(stkStock.getPdtProduct(), true));
             stock.setOwner(OwnerMapper.toDto(stkStock.getOwnOwner(), true));
-            stock.setSupplier(SupplierMapper.toDto(stkStock.getRcpSupplier(), true));
-            stock.setBlockType(BlockTypeMapper.toDto(stkStock.getPrmBlockType(), true));
-            stock.setColor(ColorMapper.toDto(stkStock.getPrmColor(), true));
             stock.setUom(UomMapper.toDto(stkStock.getPdtUom(), true));
-            stock.setLocation(LocationMapper.toDto(stkStock.getLocLocation(), true));
             stock.setContainer(ContainerMapper.toDto(stkStock.getStkContainer(), true));
-            stock.setReceptionLine(ReceptionLineMapper.toDto(stkStock.getRcpReceptionLine(),true));
-            stock.setReceptionStock(ReceptionStockMapper.toDto(stkStock.getRcpReceptionStock(),true));
 
             // stock.setWarehouse(WarehouseMapper.toDto(stkStock.getWrhWarehouse(), true));
         }
         return stock;
     }
 
-    public static Stock toViewDto(StkStockView stkStock, boolean lazy) {
-        if (null == stkStock) {
-            return null;
-        }
-        Stock stock = new Stock();
-        stock.setId(stkStock.getStkStockId());
-        stock.setQuantity(stkStock.getStkStockQuantity());
-        stock.setDlc(stkStock.getStkStockDlc());
-        stock.setDluo(stkStock.getStkStockDluo());
-        stock.setSerialNo(stkStock.getStkStockSerialNo());
-        stock.setLot(stkStock.getStkStockLot());
-        stock.setReceptionDate(stkStock.getStkStockReceptionDate());
-        stock.setCreationDate(stkStock.getStkStockCreationDate());
-        stock.setUpdateDate(stkStock.getStkStockUpdateDate());
-        stock.setVariable1(stkStock.getStkStockVariable1());
-        stock.setVariable2(stkStock.getStkStockVariable2());
-        stock.setVariable3(stkStock.getStkStockVariable3());
-        stock.setVariable4(stkStock.getStkStockVariable4());
-        stock.setVariable5(stkStock.getStkStockVariable5());
-        stock.setVariable6(stkStock.getStkStockVariable6());
-        stock.setVariable7(stkStock.getStkStockVariable7());
-        stock.setVariable8(stkStock.getStkStockVariable8());
-        stock.setVariable9(stkStock.getStkStockVariable9());
-        stock.setVariable10(stkStock.getStkStockVariable10());
-        stock.setKit(stkStock.getStkStockKit());
-        stock.setQuality(stkStock.getStkStockQuality());
-        stock.setWeight(stkStock.getStkStockWeight());
-        stock.setComment(stkStock.getStkStockComment());
-        if (!lazy) {
-            stock.setProductDimension(ProductDimensionMapper.toDto(stkStock.getPdtProductDimension(),true));
-            stock.setProduct(ProductMapper.toDto(stkStock.getPdtProduct(), true));
-            stock.setOwner(OwnerMapper.toDto(stkStock.getOwnOwner(), true));
-            stock.setSupplier(SupplierMapper.toDto(stkStock.getRcpSupplier(), true));
-            stock.setBlockType(BlockTypeMapper.toDto(stkStock.getPrmBlockType(), true));
-            stock.setColor(ColorMapper.toDto(stkStock.getPrmColor(), true));
-            stock.setUom(UomMapper.toDto(stkStock.getPdtUom(), true));
-            stock.setLocation(LocationMapper.toDto(stkStock.getLocLocation(), true));
-            stock.setContainer(ContainerMapper.toDto(stkStock.getStkContainer(), true));
-            stock.setReceptionLine(ReceptionLineMapper.toDto(stkStock.getRcpReceptionLine(),true));
-            stock.setReceptionStock(ReceptionStockMapper.toDto(stkStock.getRcpReceptionStock(),true));
-
-            // stock.setWarehouse(WarehouseMapper.toDto(stkStock.getWrhWarehouse(), true));
-        }
-        return stock;
-    }
 
     public static List<Stock> toDtos(List<StkStock> stkStocks, boolean lazy) {
         if (null == stkStocks) {
@@ -215,16 +143,7 @@ public class StockMapper {
         }
         return stocks;
     }
-    public static List<Stock> toViewDtos(List<StkStockView> stkStocks, boolean lazy) {
-        if (null == stkStocks) {
-            return null;
-        }
-        List<Stock> stocks = new ArrayList<>();
-        for (StkStockView stkStock : stkStocks) {
-            stocks.add(toViewDto(stkStock, lazy));
-        }
-        return stocks;
-    }
+
     public static List<Stock> toDtos(Iterable<StkStock> stkStocks, boolean lazy) {
         if (null == stkStocks) {
             return null;
@@ -235,16 +154,7 @@ public class StockMapper {
         }
         return stocks;
     }
-    public static List<Stock> toViewDtos(Iterable<StkStockView> stkStocks, boolean lazy) {
-        if (null == stkStocks) {
-            return null;
-        }
-        List<Stock> stocks = new ArrayList<>();
-        for (StkStockView stkStock : stkStocks) {
-            stocks.add(toViewDto(stkStock, lazy));
-        }
-        return stocks;
-    }
+
     public static Set<StkStock> toEntities(Set<Stock> stocks, boolean lazy) {
         if (null == stocks) {
             return null;

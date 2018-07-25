@@ -1,16 +1,16 @@
-package com.sinno.ems.service.impl;
+package com.bagile.tms.service.impl;
 
-import com.sinno.ems.dto.Contact;
-import com.sinno.ems.entities.PrmContact;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.ContactMapper;
-import com.sinno.ems.repositories.ContactRepository;
-import com.sinno.ems.service.ContactService;
-import com.sinno.ems.service.SettingService;
-import com.sinno.ems.util.EmsDate;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.dto.Contact;
+import com.bagile.tms.entities.PrmContact;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.ContactMapper;
+import com.bagile.tms.repositories.ContactRepository;
+import com.bagile.tms.services.ContactService;
+import com.bagile.tms.services.SettingService;
+import com.bagile.tms.util.EmsDate;
+import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,12 +53,12 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public Boolean isExist(Long id) {
-        return contactRepository.exists(id);
+        return contactRepository.existsById(id);
     }
 
     @Override
     public Contact findById(Long id) throws IdNotFound {
-        Contact contact = ContactMapper.toDto(contactRepository.findOne(id), false);
+        Contact contact = ContactMapper.toDto(contactRepository.findById(id).get(), false);
         if (null != contact) {
             return contact;
         } else {
@@ -89,7 +89,7 @@ public class ContactServiceImpl implements ContactService {
     }
     @Override
     public Contact findOne(String search) throws AttributesNotFound, ErrorType {
-        return ContactMapper.toDto(contactRepository.findOne(Search.expression(search, PrmContact.class)), false);
+        return ContactMapper.toDto(contactRepository.findOne(Search.expression(search, PrmContact.class)).get(), false);
 
     }
     @Override
@@ -106,7 +106,7 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public void delete(Long id) {
         LOGGER.info("delete Contact");
-        PrmContact prmContact=contactRepository.findOne(id);
+        PrmContact prmContact=contactRepository.findById(id).get();
         prmContact.setPrmContactActive(false);
         contactRepository.saveAndFlush(prmContact);
     }
@@ -128,10 +128,5 @@ public class ContactServiceImpl implements ContactService {
         return find("",pageable);
     }
 
-    @Override
-    public String getNextVal() {
-        String code = settingService.generateCodeContact();
-        return code != null && !code.equals("") ?
-                code + contactRepository.getNextVal() : "";
-    }
+
 }

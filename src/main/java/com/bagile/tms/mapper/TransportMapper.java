@@ -3,8 +3,8 @@
  */
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.Transport;
-import com.sinno.ems.entities.TrpTransport;
+import com.bagile.tms.dto.Transport;
+import com.bagile.tms.entities.TrpTransport;
 
 import java.util.*;
 
@@ -77,19 +77,8 @@ public class TransportMapper {
         transport.setActive(trpTransport.getTrpTransportIsActive());
         transport.setName(trpTransport.getTrpTransportName());
         if (!lazy) {
-            transport.setEdi(EdiMapper.toDto(trpTransport.getPrmEdi(), true));
-            transport.setContact(com.sinno.ems.mapper.ContactMapper.toDto(trpTransport.getPrmContact(), true));
+            transport.setContact(com.bagile.tms.mapper.ContactMapper.toDto(trpTransport.getPrmContact(), true));
             transport.setAddress(AddressMapper.toDto(trpTransport.getAdrAddress(), true));
-//            transport.setSaleOrderLineArcs(SaleOrderLineArcMapper.toDtos(trpTransport.getCmdSaleOrderLineArcs(), true));
-//            transport.setAccounts(AccountMapper.toDtos(trpTransport.getCmdAccounts(), true));
-//            transport.setPurshaseOrderArcs(PurshaseOrderArcMapper.toDtos(trpTransport.getRcpPurshaseOrderArcs(), true));
-//            transport.setPurshaseOrders(PurshaseOrderMapper.toDtos(trpTransport.getRcpPurshaseOrders(), true));
-//            transport.setReceptionArcs(ReceptionArcMapper.toDtos(trpTransport.getRcpReceptionArcs(), true));
-//            transport.setReceptions(ReceptionMapper.toDtos(trpTransport.getRcpReceptions(), true));
-//            transport.setSaleOrderArcs(SaleOrderArcMapper.toDtos(trpTransport.getCmdSaleOrderArcs(), true));
-//            transport.setSaleOrderLines(SaleOrderLineMapper.toDtos(trpTransport.getCmdSaleOrderLines(), true));
-//            transport.setSaleOrders(SaleOrderMapper.toDtos(trpTransport.getCmdSaleOrders(), true));
-//            transport.setSuppliers(SupplierMapper.toDtos(trpTransport.getRcpSuppliers(), true));
         }
         return transport;
     }
@@ -119,19 +108,8 @@ public class TransportMapper {
         trpTransport.setTrpTransportVariable10(transport.getVariable10());
         trpTransport.setTrpTransportIsActive(transport.getActive());
         if (!lazy) {
-            trpTransport.setPrmEdi(EdiMapper.toEntity(transport.getEdi(), true));
-            trpTransport.setPrmContact(com.sinno.ems.mapper.ContactMapper.toEntity(transport.getContact(), true));
+            trpTransport.setPrmContact(com.bagile.tms.mapper.ContactMapper.toEntity(transport.getContact(), true));
             trpTransport.setAdrAddress(AddressMapper.toEntity(transport.getAddress(), true));
-//            trpTransport.setCmdSaleOrderArcs(SaleOrderArcMapper.toEntities(transport.getSaleOrderArcs(), true));
-//            trpTransport.setCmdAccounts(AccountMapper.toEntities(transport.getAccounts(), true));
-//            trpTransport.setCmdSaleOrderLineArcs(SaleOrderLineArcMapper.toEntities(transport.getSaleOrderLineArcs(), true));
-//            trpTransport.setCmdSaleOrderLines(SaleOrderLineMapper.toEntities(transport.getSaleOrderLines(), true));
-//            trpTransport.setCmdSaleOrders(SaleOrderMapper.toEntities(transport.getSaleOrders(), true));
-//            trpTransport.setRcpPurshaseOrderArcs(PurshaseOrderArcMapper.toEntities(transport.getPurshaseOrderArcs(), true));
-//            trpTransport.setRcpPurshaseOrders(PurshaseOrderMapper.toEntities(transport.getPurshaseOrders(), true));
-//            trpTransport.setRcpReceptionArcs(ReceptionArcMapper.toEntities(transport.getReceptionArcs(), true));
-//            trpTransport.setRcpReceptions(ReceptionMapper.toEntities(transport.getReceptions(), true));
-//            trpTransport.setRcpSuppliers(SupplierMapper.toEntities(transport.getSuppliers(), true));
         }
         return trpTransport;
     }

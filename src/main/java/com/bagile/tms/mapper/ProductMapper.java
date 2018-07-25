@@ -1,8 +1,8 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.Product;
-import com.sinno.ems.entities.PdtProduct;
-import com.sinno.ems.util.EmsDate;
+import com.bagile.tms.dto.Product;
+import com.bagile.tms.entities.PdtProduct;
+import com.bagile.tms.util.EmsDate;
 
 import java.util.*;
 
@@ -87,7 +87,7 @@ public class ProductMapper {
         map.put("dimension", "pdtProductDimension");
         map.put("coefficient", "pdtProductCoefficient");
         map.put("productionCost", "pdtProductProductionCost");
-        map.put("process","pdtProcess");
+        map.put("process", "pdtProcess");
 
     }
 
@@ -153,34 +153,22 @@ public class ProductMapper {
         pdtProduct.setPdtProductReqExp(product.getReqExp());
         pdtProduct.setPdtProductReqRec(product.getReqRec());
         pdtProduct.setPdtProductControlWeight(product.getWeightControl());
-        pdtProduct.setPdtProductWarrantyManagement(product.getWarrantyManagement());
         pdtProduct.setPdtProductDiscount(product.getDiscount());
-        pdtProduct.setPdtProductDimension(product.getDimension());
-            pdtProduct.setPdtProductVersion(product.getVersion());
+        pdtProduct.setPdtProductVersion(product.getVersion());
         if (!lazy) {
-            pdtProduct.setPdtProcess(ProcessMapper.toEntity(product.getProcess(),false));
-            pdtProduct.setPrmCurrencyPurshase(CurrencyMapper.toEntity(product.getCurrencyPurshase(), false));
-            pdtProduct.setPrmCurrencySale(CurrencyMapper.toEntity(product.getCurrency(), true));
-            pdtProduct.setPrmWarrantyPeriod(WarrantyPeriodMapper.toEntity(product.getWarrantyPeriod(), true));
+
             pdtProduct.setPdtProductPack(ProductPackMapper.toEntity(product.getProductPack(), true));
             pdtProduct.setPickingPdtUom(UomMapper.toEntity(product.getPickingUom(), true));
-            pdtProduct.setPickingLocLocation(LocationMapper.toEntity(product.getPickingLocation(), true));
             pdtProduct.setPdtAlias(AliasMapper.toEntity(product.getAlias(), true));
             pdtProduct.setOwnOwner(OwnerMapper.toEntity(product.getOwner(), true));
             pdtProduct.setPdtProductTypeByPdtProductTypeId(ProductTypeMapper.toEntity(product.getProductType(), true));
             pdtProduct.setPdtProductTypeByPdtProductSubTypeId(ProductTypeMapper.toEntity(product.getProductSubType(), true));
-            pdtProduct.setRcpSupplier(SupplierMapper.toEntity(product.getSupplier(), true));
-            pdtProduct.setPrmBlockType(BlockTypeMapper.toEntity(product.getBlockType(), true));
             pdtProduct.setPdtUomByPdtProductUomBaseId(UomMapper.toEntity(product.getUomByProductUomBase(), true));
             pdtProduct.setPdtUomByPdtProductUomPurshaseId(UomMapper.toEntity(product.getUomByProductUomPurshase(), true));
             pdtProduct.setPdtUomByPdtProductUomSaleId(UomMapper.toEntity(product.getUomByProductUomSale(), true));
             pdtProduct.setPdtProductParent(toEntity(product.getProduct(), true));
-            pdtProduct.setLocLocation(LocationMapper.toEntity(product.getLocation(), true));
-            pdtProduct.setWrhWarehouse(WarehouseMapper.toEntity(product.getWarehouse(), true));
             pdtProduct.setPrmImages(ImageMapper.toEntities(product.getImages(), false));
-            pdtProduct.setPdtProductDimensions(ProductDimensionMapper.toEntities(product.getProductDimensions(),false));
             pdtProduct.setPdtProductPacks(ProductPackMapper.toEntities(product.getProductPacks(), false));
-            pdtProduct.setPdtProductForm(ProductFormMapper.toEntity(product.getProductForm(), false));
 //            pdtProduct.setCmdSaleOrderLineArcs(SaleOrderLineArcMapper.toEntities(product.getSaleOrderLineArcs(), true));
 //            pdtProduct.setCmdSaleOrderStocks(SaleOrderStockMapper.toEntities(product.getSaleOrderStocks(), true));
 //            pdtProduct.setRcpReceptionStocks(ReceptionStockMapper.toEntities(product.getReceptionStocks(), true));
@@ -206,7 +194,6 @@ public class ProductMapper {
         if (null != pdtProduct.getPdtProductPacks()) {
             pdtProduct.getPdtProductPacks().stream().forEach(il -> {
                 il.setPdtProduct(pdtProduct);
-                il.setPrmCurrency(pdtProduct.getPrmCurrencySale());
                 il.setOwnOwner(pdtProduct.getOwnOwner());
                 if (il.getPdtAlias() != null) {
                     il.getPdtAlias().setOwnOwner(pdtProduct.getOwnOwner());
@@ -224,11 +211,7 @@ public class ProductMapper {
                 image.setPdtProduct(pdtProduct);
             });
         }
-        if (null != pdtProduct.getPdtProductDimensions()) {
-            pdtProduct.getPdtProductDimensions().stream().forEach(dimension -> {
-                dimension.setPdtProduct(pdtProduct);
-            });
-        }
+
     }
 
     public static Product toDto(PdtProduct pdtProduct, boolean lazy) {
@@ -239,8 +222,6 @@ public class ProductMapper {
         product.setId(pdtProduct.getPdtProductId());
         product.setCode(pdtProduct.getPdtProductCode());
         product.setMaterialABCCode(pdtProduct.getPdtProductMaterialABCCode());
-        product.setSupplier(SupplierMapper.toDto(pdtProduct.getRcpSupplier(), true));
-        product.setBlockType(BlockTypeMapper.toDto(pdtProduct.getPrmBlockType(), true));
         product.setDlcControl(pdtProduct.getPdtProductDlcControl());
         product.setDluoControl(pdtProduct.getPdtProductDluoControl());
         product.setSerialNoControl(pdtProduct.getPdtProductSerialNoControl());
@@ -287,18 +268,10 @@ public class ProductMapper {
         product.setReqExp(pdtProduct.getPdtProductReqExp());
         product.setReqRec(pdtProduct.getPdtProductReqRec());
         product.setWeightControl(pdtProduct.getPdtProductControlWeight());
-        product.setWarrantyManagement(pdtProduct.getPdtProductWarrantyManagement());
         product.setDiscount(pdtProduct.getPdtProductDiscount());
-        product.setDimension(pdtProduct.getPdtProductDimension());
         product.setVersion(pdtProduct.getPdtProductVersion());
         if (!lazy) {
-            product.setProcess(ProcessMapper.toDto(pdtProduct.getPdtProcess(),false));
-            product.setCurrencyPurshase(CurrencyMapper.toDto(pdtProduct.getPrmCurrencyPurshase(), false));
-            product.setProductForm(ProductFormMapper.toDto(pdtProduct.getPdtProductForm(), true));
-            product.setCurrency(CurrencyMapper.toDto(pdtProduct.getPrmCurrencySale(), true));
-            product.setWarrantyPeriod(WarrantyPeriodMapper.toDto(pdtProduct.getPrmWarrantyPeriod(), true));
             product.setProductPack(ProductPackMapper.toDto(pdtProduct.getPdtProductPack(), true));
-            product.setPickingLocation(LocationMapper.toDto(pdtProduct.getPickingLocLocation(), true));
             product.setPickingUom(UomMapper.toDto(pdtProduct.getPickingPdtUom(), true));
             product.setAlias(AliasMapper.toDto(pdtProduct.getPdtAlias(), true));
             product.setOwner(OwnerMapper.toDto(pdtProduct.getOwnOwner(), true));
@@ -308,11 +281,8 @@ public class ProductMapper {
             product.setUomByProductUomPurshase(UomMapper.toDto(pdtProduct.getPdtUomByPdtProductUomPurshaseId(), true));
             product.setUomByProductUomSale(UomMapper.toDto(pdtProduct.getPdtUomByPdtProductUomSaleId(), true));
             product.setProduct(toDto(pdtProduct.getPdtProductParent(), true));
-            product.setLocation(LocationMapper.toDto(pdtProduct.getLocLocation(), true));
-            product.setWarehouse(WarehouseMapper.toDto(pdtProduct.getWrhWarehouse(), true));
             product.setImages(ImageMapper.toDtos(pdtProduct.getPrmImages(), false));
             product.setProductPacks(ProductPackMapper.toDtos(pdtProduct.getPdtProductPacks(), false));
-            product.setProductDimensions(ProductDimensionMapper.toDtos(pdtProduct.getPdtProductDimensions(),false));
 //            product.setSaleOrderLineArcs(SaleOrderLineArcMapper.toDtos(pdtProduct.getCmdSaleOrderLineArcs(), true));
 //            product.setSaleOrderStocks(SaleOrderStockMapper.toDtos(pdtProduct.getCmdSaleOrderStocks(), true));
 //            product.setReceptionStocks(ReceptionStockMapper.toDtos(pdtProduct.getRcpReceptionStocks(), true));

@@ -1,7 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.ProductType;
-import com.sinno.ems.entities.PdtProductType;
+import com.bagile.tms.dto.ProductType;
+import com.bagile.tms.entities.PdtProductType;
 
 import java.util.*;
 
@@ -42,7 +42,6 @@ public class ProductTypeMapper {
         pdtProductType.setPdtProductTypeCreationDate(productType.getCreationDate());
         pdtProductType.setPdtProductTypeUpdateDate(productType.getUpdateDate());
         if (!lazy) {
-            pdtProductType.setPrmVat(VatMapper.toEntity(productType.getVat(), true));
             pdtProductType.setPdtProductTypeParent(toEntity(productType.getProductType(), true));
             pdtProductType.setOwnOwner(OwnerMapper.toEntity(productType.getOwner(), true));
 //            pdtProductType.setPdtProductTypes(toEntities(productType.getProductTypes(), true));
@@ -65,7 +64,6 @@ public class ProductTypeMapper {
         productType.setCreationDate(pdtProductType.getPdtProductTypeCreationDate());
         productType.setUpdateDate(pdtProductType.getPdtProductTypeUpdateDate());
         if (!lazy) {
-            productType.setVat(VatMapper.toDto(pdtProductType.getPrmVat(), true));
             productType.setProductType(toDto(pdtProductType.getPdtProductTypeParent(), true));
             productType.setOwner(OwnerMapper.toDto(pdtProductType.getOwnOwner(), true));
 //            productType.setProductTypes(toDtos(pdtProductType.getPdtProductTypes(), true));

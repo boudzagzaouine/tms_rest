@@ -1,19 +1,16 @@
 package com.bagile.tms.services.impl;
 
-import com.sinno.ems.dto.User;
-import com.sinno.ems.entities.EmsLicenceId;
-import com.sinno.ems.entities.EmsLicense;
-import com.sinno.ems.entities.UsrUser;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.UserMapper;
-import com.sinno.ems.repositories.UserRepository;
-import com.sinno.ems.service.EmsLicenceService;
-import com.sinno.ems.service.OrganisationService;
-import com.sinno.ems.service.UserService;
-import com.sinno.ems.util.EmsDate;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.dto.User;
+import com.bagile.tms.entities.UsrUser;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.UserMapper;
+import com.bagile.tms.repositories.UserRepository;
+import com.bagile.tms.services.OrganisationService;
+import com.bagile.tms.services.UserService;
+import com.bagile.tms.util.EmsDate;
+import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +24,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private EmsLicenceService emsLicenceService;
-    @Autowired
-    private OrganisationService organisationService;
-
     private final static Logger LOGGER = LoggerFactory
             .getLogger(UserService.class);
 
@@ -40,7 +32,6 @@ public class UserServiceImpl implements UserService {
         LOGGER.info("save User");
         user.setUpdateDate(EmsDate.getDateNow());
         user.setType(1L);
-        user = checkNumberOfLincensedUsers(user);
         if (0 >= user.getId()) {
             user.setCreationDate(EmsDate.getDateNow());
         }
@@ -61,12 +52,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Boolean isExist(Long id) {
-        return userRepository.exists(id);
+        return userRepository.existsById(id);
     }
 
     @Override
     public User findById(Long id) throws IdNotFound {
-        User user = UserMapper.toDto(userRepository.findOne(id), false);
+        User user = UserMapper.toDto(userRepository.findById(id).get(), false);
         if (null != user) {
             return user;
         } else {
@@ -120,7 +111,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(Long id) {
         LOGGER.info("delete User");
-        UsrUser usrUser = userRepository.findOne(id);
+        UsrUser usrUser = userRepository.findById(id).get();
         usrUser.setUsrUserIsActive(false);
         userRepository.saveAndFlush(usrUser);
     }
@@ -148,37 +139,5 @@ public class UserServiceImpl implements UserService {
         return UserMapper.toDto(userRepository.findByUsrUserEmailAndUsrUserPasswordAndUsrUserIsActive(email, password, true), false);
     }
 
-    private User checkNumberOfLincensedUsers(User user) {
-        String account = null;
-        String module = "3PL";
-        try {
-            account = organisationService.findById(1L).getCode();
-        } catch (IdNotFound idNotFound) {
-            idNotFound.printStackTrace();
-        }
-        EmsLicenceId emsLicenceId = new EmsLicenceId();
-        emsLicenceId.setAccount(account);
-        emsLicenceId.setModule(module);
-        EmsLicense emsLicense = null;
 
-        try {
-            emsLicense = emsLicenceService.findById(emsLicenceId);
-
-            if (null != emsLicense) {
-                List<User> users = find("type:1,active:true");
-                if (emsLicense.getUsersNumber() > users.size()) {
-                    user.setActive(true);
-                } else {
-                    user.setActive(false);
-                }
-            }
-        } catch (AttributesNotFound attributesNotFound) {
-            attributesNotFound.printStackTrace();
-        } catch (ErrorType errorType) {
-            errorType.printStackTrace();
-        } catch (IdNotFound idNotFound) {
-            idNotFound.printStackTrace();
-        }
-        return user;
-    }
 }

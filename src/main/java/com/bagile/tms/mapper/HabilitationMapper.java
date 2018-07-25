@@ -1,7 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.Habilitation;
-import com.sinno.ems.entities.UsrHabilitation;
+import com.bagile.tms.dto.Habilitation;
+import com.bagile.tms.entities.UsrHabilitation;
 
 import java.util.*;
 
@@ -44,7 +44,7 @@ public class HabilitationMapper {
         usrHabilitation.setUsrHabilitationDescription(habilitation.getDescription());
         usrHabilitation.setUsrHabilitationCreationDate(habilitation.getCreationDate());
         usrHabilitation.setUsrHabilitationUpdateDate(habilitation.getUpdateDate());
-        usrHabilitation.setAuthority(habilitation.getAuthority());
+       // usrHabilitation.setAuthority(habilitation.getAuthority());
         usrHabilitation.setUsrHabilitationActive(habilitation.getActive());
         usrHabilitation.setUsrHabilitationLabelFR(habilitation.getLabelFR());
         usrHabilitation.setUsrHabilitationLabelEN(habilitation.getLabelEN());
@@ -65,7 +65,7 @@ public class HabilitationMapper {
         habilitation.setDescription(usrHabilitation.getUsrHabilitationDescription());
         habilitation.setCreationDate(usrHabilitation.getUsrHabilitationCreationDate());
         habilitation.setUpdateDate(usrHabilitation.getUsrHabilitationUpdateDate());
-        habilitation.setAuthority(usrHabilitation.getAuthority());
+       // habilitation.setAuthority(usrHabilitation.getAuthority());
         habilitation.setActive(usrHabilitation.getUsrHabilitationActive());
         habilitation.setLabelEN(usrHabilitation.getUsrHabilitationLabelEN());
         habilitation.setLabelFR(usrHabilitation.getUsrHabilitationLabelFR());

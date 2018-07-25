@@ -1,14 +1,14 @@
 package com.bagile.tms.services.impl;
 
-import com.sinno.ems.dto.Road;
-import com.sinno.ems.entities.TmsRoad;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.RoadMapper;
-import com.sinno.ems.repositories.RoadRepository;
-import com.sinno.ems.service.RoadService;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.dto.Road;
+import com.bagile.tms.entities.TmsRoad;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.RoadMapper;
+import com.bagile.tms.repositories.RoadRepository;
+import com.bagile.tms.services.RoadService;
+import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,12 +43,12 @@ public class RoadServiceImpl implements RoadService {
 
     @Override
     public Boolean isExist(Long id) {
-        return roadRepository.exists(id);
+        return roadRepository.existsById(id);
     }
 
     @Override
     public Road findById(Long id) throws IdNotFound {
-        Road road = RoadMapper.toDto(roadRepository.findOne(id), false);
+        Road road = RoadMapper.toDto(roadRepository.findById(id).get(), false);
         if (null != road) {
             return road;
         } else {
@@ -74,7 +74,7 @@ public class RoadServiceImpl implements RoadService {
     @Override
     public void delete(Long id) {
         LOGGER.info("save Road");
-        roadRepository.delete(id);
+        roadRepository.deleteById(id);
     }
 
     @Override

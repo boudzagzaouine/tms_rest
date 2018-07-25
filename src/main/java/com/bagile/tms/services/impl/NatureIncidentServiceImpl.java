@@ -1,15 +1,15 @@
 package com.bagile.tms.services.impl;
 
 
-import com.sinno.ems.dto.NatureIncident;
-import com.sinno.ems.entities.TmsNatureIncident;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.NatureIncidentMapper;
-import com.sinno.ems.repositories.NatureIncidentRepository;
-import com.sinno.ems.service.NatureIncidentService;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.dto.NatureIncident;
+import com.bagile.tms.entities.TmsNatureIncident;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.NatureIncidentMapper;
+import com.bagile.tms.repositories.NatureIncidentRepository;
+import com.bagile.tms.services.NatureIncidentService;
+import com.bagile.tms.util.Search;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -37,11 +37,11 @@ public class NatureIncidentServiceImpl implements NatureIncidentService {
     }
     @Override
     public Boolean isExist(Long id){
-        return natureIncidentRepository.exists(id);
+        return natureIncidentRepository.existsById(id);
     }
     @Override
     public NatureIncident findById(Long id)throws IdNotFound {
-        NatureIncident natureIncident = NatureIncidentMapper.toDto(natureIncidentRepository.findOne(id),false);
+        NatureIncident natureIncident = NatureIncidentMapper.toDto(natureIncidentRepository.findById(id).get(),false);
         if(null != natureIncident){
             return natureIncident;
         }else {
@@ -63,7 +63,7 @@ public class NatureIncidentServiceImpl implements NatureIncidentService {
     @Override
     public void delete(Long id){
         LOGGER.info("save NatureIncident");
-        natureIncidentRepository.delete(id);
+        natureIncidentRepository.deleteById(id);
     }
     @Override
     public void delete(NatureIncident natureIncident){

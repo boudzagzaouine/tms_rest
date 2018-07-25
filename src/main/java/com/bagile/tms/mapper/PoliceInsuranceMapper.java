@@ -1,7 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.PoliceAssurance;
-import com.sinno.ems.entities.TmsPoliceInsurance;
+import com.bagile.tms.dto.PoliceAssurance;
+import com.bagile.tms.entities.TmsPoliceInsurance;
 
 import java.util.*;
 

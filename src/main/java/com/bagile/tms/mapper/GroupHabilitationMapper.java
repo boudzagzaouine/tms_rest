@@ -1,7 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.GroupHabilitation;
-import com.sinno.ems.entities.UsrGroupHabilitation;
+import com.bagile.tms.dto.GroupHabilitation;
+import com.bagile.tms.entities.UsrGroupHabilitation;
 
 import java.util.*;
 

@@ -56,7 +56,7 @@ public class Account implements Serializable {
     private String variable10;
 
     private Set<SaleOrder> saleOrders;
-    private com.sinno.ems.dto.Contact contact;
+    private Contact contact;
     private String description;
     private String password;
 
@@ -245,7 +245,7 @@ public class Account implements Serializable {
         this.saleOrders = saleOrders;
     }
 
-    public com.sinno.ems.dto.Contact getContact() {
+    public Contact getContact() {
         return contact;
     }
 
@@ -257,7 +257,7 @@ public class Account implements Serializable {
         this.description = description;
     }
 
-    public void setContact(com.sinno.ems.dto.Contact contact) {
+    public void setContact(Contact contact) {
         this.contact = contact;
     }
 

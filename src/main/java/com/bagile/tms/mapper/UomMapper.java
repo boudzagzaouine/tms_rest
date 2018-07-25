@@ -1,7 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.Uom;
-import com.sinno.ems.entities.PdtUom;
+import com.bagile.tms.dto.Uom;
+import com.bagile.tms.entities.PdtUom;
 
 import java.util.*;
 
@@ -42,21 +42,6 @@ public class UomMapper {
         uom.setUpdateDate(pdtUom.getPdtUomUpdateDate());
         if (!lazy) {
             uom.setOwner(OwnerMapper.toDto(pdtUom.getOwnOwner(), true));
-//            uom.setSaleOrderLines(SaleOrderLineMapper.toDtos(pdtUom.getCmdSaleOrderLines(), true));
-//            uom.setSaleOrderStocks(SaleOrderStockMapper.toDtos(pdtUom.getCmdSaleOrderStocks(), true));
-//            uom.setPurshaseOrderLines(PurshaseOrderLineMapper.toDtos(pdtUom.getRcpPurshaseOrderLines(), true));
-//            uom.setSaleOrderLineArcs(SaleOrderLineArcMapper.toDtos(pdtUom.getCmdSaleOrderLineArcs(), true));
-//            uom.setStockReserveds(StockReservedMapper.toDtos(pdtUom.getStkStockReserveds(), true));
-//            uom.setReceptionLines(ReceptionLineMapper.toDtos(pdtUom.getRcpReceptionLines(), true));
-//            uom.setSaleOrderStockArcs(SaleOrderStockArcMapper.toDtos(pdtUom.getCmdSaleOrderStockArcs(), true));
-//            uom.setProductsForProductUomSale(ProductMapper.toDtos(pdtUom.getPdtProductsForPdtProductUomSaleId(), true));
-//            uom.setProductsForProductUomBase(ProductMapper.toDtos(pdtUom.getPdtProductsForPdtProductUomBaseId(), true));
-//            uom.setProductsForProductUomPurshase(ProductMapper.toDtos(pdtUom.getPdtProductsForPdtProductUomPurshaseId(), true));
-//            uom.setProductPacks(ProductPackMapper.toDtos(pdtUom.getPdtProductPacks(), true));
-//            uom.setStockArcs(StockArcMapper.toDtos(pdtUom.getStkStockArcs(), true));
-//            uom.setPurshaseOrderLineArcs(PurshaseOrderLineArcMapper.toDtos(pdtUom.getRcpPurshaseOrderLineArcs(), true));
-//            uom.setStocks(StockMapper.toDtos(pdtUom.getStkStocks(), true));
-//            uom.setReceptionLineArcs(ReceptionLineArcMapper.toDtos(pdtUom.getRcpReceptionLineArcs(), true));
         }
         return uom;
     }
@@ -85,21 +70,6 @@ public class UomMapper {
         pdtUom.setPdtUomUpdateDate(uom.getUpdateDate());
         if (!lazy) {
             pdtUom.setOwnOwner(OwnerMapper.toEntity(uom.getOwner(), true));
-//            pdtUom.setCmdSaleOrderLines(SaleOrderLineMapper.toEntities(uom.getSaleOrderLines(), true));
-//            pdtUom.setCmdSaleOrderStocks(SaleOrderStockMapper.toEntities(uom.getSaleOrderStocks(), true));
-//            pdtUom.setRcpPurshaseOrderLines(PurshaseOrderLineMapper.toEntities(uom.getPurshaseOrderLines(), true));
-//            pdtUom.setCmdSaleOrderLineArcs(SaleOrderLineArcMapper.toEntities(uom.getSaleOrderLineArcs(), true));
-//            pdtUom.setStkStockReserveds(StockReservedMapper.toEntities(uom.getStockReserveds(), true));
-//            pdtUom.setRcpReceptionLines(ReceptionLineMapper.toEntities(uom.getReceptionLines(), true));
-//            pdtUom.setCmdSaleOrderStockArcs(SaleOrderStockArcMapper.toEntities(uom.getSaleOrderStockArcs(), true));
-//            pdtUom.setPdtProductsForPdtProductUomSaleId(ProductMapper.toEntities(uom.getProductsForProductUomSale(), true));
-//            pdtUom.setPdtProductsForPdtProductUomBaseId(ProductMapper.toEntities(uom.getProductsForProductUomBase(), true));
-//            pdtUom.setPdtProductsForPdtProductUomPurshaseId(ProductMapper.toEntities(uom.getProductsForProductUomPurshase(), true));
-//            pdtUom.setPdtProductPacks(ProductPackMapper.toEntities(uom.getProductPacks(), true));
-//            pdtUom.setStkStockArcs(StockArcMapper.toEntities(uom.getStockArcs(), true));
-//            pdtUom.setRcpPurshaseOrderLineArcs(PurshaseOrderLineArcMapper.toEntities(uom.getPurshaseOrderLineArcs(), true));
-//            pdtUom.setStkStocks(StockMapper.toEntities(uom.getStocks(), true));
-//            pdtUom.setRcpReceptionLineArcs(ReceptionLineArcMapper.toEntities(uom.getReceptionLineArcs(), true));
         }
         return pdtUom;
     }

@@ -1,7 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.Acte;
-import com.sinno.ems.entities.TmsActe;
+import com.bagile.tms.dto.Acte;
+import com.bagile.tms.entities.TmsActe;
 
 import java.util.*;
 

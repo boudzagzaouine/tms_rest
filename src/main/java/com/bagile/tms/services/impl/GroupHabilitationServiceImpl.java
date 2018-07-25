@@ -1,15 +1,15 @@
 package com.bagile.tms.services.impl;
 
-import com.sinno.ems.dto.GroupHabilitation;
-import com.sinno.ems.entities.UsrGroupHabilitation;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.GroupHabilitationMapper;
-import com.sinno.ems.repositories.GroupHabilitationRepository;
-import com.sinno.ems.service.AddressService;
-import com.sinno.ems.service.GroupHabilitationService;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.dto.GroupHabilitation;
+import com.bagile.tms.entities.UsrGroupHabilitation;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.GroupHabilitationMapper;
+import com.bagile.tms.repositories.GroupHabilitationRepository;
+import com.bagile.tms.services.AddressService;
+import com.bagile.tms.services.GroupHabilitationService;
+import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +39,12 @@ public class GroupHabilitationServiceImpl implements GroupHabilitationService {
 
     @Override
     public Boolean isExist(Long id) {
-        return groupHabilitationRepository.exists(id);
+        return groupHabilitationRepository.existsById(id);
     }
 
     @Override
     public GroupHabilitation findById(Long id) throws IdNotFound {
-        GroupHabilitation groupHabilitation = GroupHabilitationMapper.toDto(groupHabilitationRepository.findOne(id), false);
+        GroupHabilitation groupHabilitation = GroupHabilitationMapper.toDto(groupHabilitationRepository.findById(id).get(), false);
         if (null != groupHabilitation) {
             return groupHabilitation;
         } else {
@@ -70,7 +70,7 @@ public class GroupHabilitationServiceImpl implements GroupHabilitationService {
     @Override
     public void delete(Long id) {
         LOGGER.info("delete GroupHabilitation");
-        groupHabilitationRepository.delete(id);
+        groupHabilitationRepository.deleteById(id);
     }
 
     @Override

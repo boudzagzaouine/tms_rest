@@ -1,10 +1,10 @@
 package com.bagile.tms.controllers;
 
-import com.sinno.ems.dto.Incident;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.service.IncidentService;
+import com.bagile.tms.dto.Incident;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.services.IncidentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -33,7 +33,7 @@ public class IncidentController {
     @ResponseBody
     public List<Incident> getDrivers(@RequestParam int page, @RequestParam int size) {
         Sort sort = new Sort(Sort.Direction.DESC, "prmColorUpdateDate");
-        Pageable pageable = new PageRequest(page, size,sort);
+        Pageable pageable = PageRequest.of(page, size,sort);
          return incidentService.findAll(pageable);
 
     }
@@ -71,7 +71,7 @@ public class IncidentController {
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<Incident> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Pageable pageable = new PageRequest(page, size);
+        Pageable pageable = PageRequest.of(page, size);
         return incidentService.find(search, pageable);
 
     }

@@ -33,7 +33,7 @@ import java.util.Properties;
 @EnableCaching
 @EnableAsync
 @EnableWebMvc
-@EnableJpaRepositories(basePackages = {"com.sinno.ems.repositories"})
+@EnableJpaRepositories(basePackages = {"com.bagile.tms.repositories"})
 @EnableTransactionManagement
 @Import({SecurityConfig.class})
 @PropertySource(value = {"classpath:application.properties"})
@@ -71,7 +71,7 @@ public class AppConfig {
 
         factory.setDataSource(dataSource());
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("com.sinno.ems.entities");
+        factory.setPackagesToScan("com.bagile.tms.entities");
 
         Properties jpaProperties = new Properties();
         // jpaProperties.put("hibernate.hbm2ddl.auto",
@@ -86,7 +86,7 @@ public class AppConfig {
         jpaProperties.put("hibernate.enable_lazy_load_no_trans",
                 env.getProperty("hibernate.enable_lazy_load_no_trans"));
         // props.setProperty("connection_pool_size", "1");
-        // props.setProperty("packagesToScan", "com.sinno.ems.model");
+        // props.setProperty("packagesToScan", "com.bagile.tms.model");
         // props.setProperty("hibernate.format_sql",
         // env.getProperty("hibernate.format_sql"));
 

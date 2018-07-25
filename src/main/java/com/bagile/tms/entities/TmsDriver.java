@@ -17,7 +17,7 @@ public class TmsDriver implements java.io.Serializable {
 
     @Size(max = 255)
     private String codeDriver;
-    private com.sinno.ems.entities.PrmContact prmContact;
+    private com.bagile.tms.entities.PrmContact prmContact;
     private int idDriver;
     private String cin;
     private String lastName;
@@ -191,11 +191,11 @@ public class TmsDriver implements java.io.Serializable {
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="tms_drivercontactid")
-    public com.sinno.ems.entities.PrmContact getPrmContact() {
+    public com.bagile.tms.entities.PrmContact getPrmContact() {
         return prmContact;
     }
 
-    public void setPrmContact(com.sinno.ems.entities.PrmContact prmContact) {
+    public void setPrmContact(com.bagile.tms.entities.PrmContact prmContact) {
         this.prmContact = prmContact;
     }
 }

@@ -21,7 +21,7 @@ import java.util.Set;
 public class TrpTransport implements java.io.Serializable {
 
     private long trpTransportId;
-    private com.sinno.ems.entities.PrmContact prmContact;
+    private com.bagile.tms.entities.PrmContact prmContact;
     @Size(max = 30)
     @NotNull
     private String trpTransportCode;
@@ -33,7 +33,6 @@ public class TrpTransport implements java.io.Serializable {
     private BigDecimal trpTransportSiret;
     @Size(max = 255)
     private String trpTransportComment;
-    private PrmEdi prmEdi;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
 
     private Date trpTransportCreationDate;
@@ -63,79 +62,12 @@ public class TrpTransport implements java.io.Serializable {
     private String trpTransportVariable9;
     @Size(max = 255)
     private String trpTransportVariable10;
-    private Set<RcpSupplier> rcpSuppliers = new HashSet<RcpSupplier>(0);
-    private Set<RcpPurshaseOrder> rcpPurshaseOrders = new HashSet<RcpPurshaseOrder>(
-            0);
-    private Set<CmdAccount> cmdAccounts = new HashSet<CmdAccount>(0);
-    private Set<RcpReceptionArc> rcpReceptionArcs = new HashSet<RcpReceptionArc>(
-            0);
-    private Set<RcpReception> rcpReceptions = new HashSet<RcpReception>(0);
-    private Set<RcpPurshaseOrderArc> rcpPurshaseOrderArcs = new HashSet<RcpPurshaseOrderArc>(
-            0);
-    private Set<CmdSaleOrderArc> cmdSaleOrderArcs = new HashSet<CmdSaleOrderArc>(
-            0);
-    private Set<CmdSaleOrder> cmdSaleOrders = new HashSet<CmdSaleOrder>(0);
-    private Set<CmdSaleOrderLine> cmdSaleOrderLines = new HashSet<CmdSaleOrderLine>(
-            0);
-    private Set<CmdSaleOrderLineArc> cmdSaleOrderLineArcs = new HashSet<CmdSaleOrderLineArc>(
-            0);
+
+
 
     public TrpTransport() {
     }
 
-    public TrpTransport(long trpTransportId, String trpTransportCode) {
-        this.trpTransportId = trpTransportId;
-        this.trpTransportCode = trpTransportCode;
-    }
-
-    public TrpTransport(long trpTransportId, com.sinno.ems.entities.PrmContact prmContact,
-                        String trpTransportCode, String trpTransportDescription,
-                        BigDecimal trpTransportSiret, String trpTransportComment,
-                        PrmEdi prmEdi, Date trpTransportCreationDate,
-                        Date trpTransportUpdateDate, String trpTransportVariable1,
-                        String trpTransportVariable2, String trpTransportVariable3,
-                        String trpTransportVariable4, String trpTransportVariable5,
-                        String trpTransportVariable6, String trpTransportVariable7,
-                        String trpTransportVariable8, String trpTransportVariable9,
-                        String trpTransportVariable10, Set<RcpSupplier> rcpSuppliers,
-                        Set<RcpPurshaseOrder> rcpPurshaseOrders,
-                        Set<CmdAccount> cmdAccounts, Set<RcpReceptionArc> rcpReceptionArcs,
-                        Set<RcpReception> rcpReceptions,
-                        Set<RcpPurshaseOrderArc> rcpPurshaseOrderArcs,
-                        Set<CmdSaleOrderArc> cmdSaleOrderArcs,
-                        Set<CmdSaleOrder> cmdSaleOrders,
-                        Set<CmdSaleOrderLine> cmdSaleOrderLines,
-                        Set<CmdSaleOrderLineArc> cmdSaleOrderLineArcs) {
-        this.trpTransportId = trpTransportId;
-        this.prmContact = prmContact;
-        this.trpTransportCode = trpTransportCode;
-        this.trpTransportDescription = trpTransportDescription;
-        this.trpTransportSiret = trpTransportSiret;
-        this.trpTransportComment = trpTransportComment;
-        this.prmEdi = prmEdi;
-        this.trpTransportCreationDate = trpTransportCreationDate;
-        this.trpTransportUpdateDate = trpTransportUpdateDate;
-        this.trpTransportVariable1 = trpTransportVariable1;
-        this.trpTransportVariable2 = trpTransportVariable2;
-        this.trpTransportVariable3 = trpTransportVariable3;
-        this.trpTransportVariable4 = trpTransportVariable4;
-        this.trpTransportVariable5 = trpTransportVariable5;
-        this.trpTransportVariable6 = trpTransportVariable6;
-        this.trpTransportVariable7 = trpTransportVariable7;
-        this.trpTransportVariable8 = trpTransportVariable8;
-        this.trpTransportVariable9 = trpTransportVariable9;
-        this.trpTransportVariable10 = trpTransportVariable10;
-        this.rcpSuppliers = rcpSuppliers;
-        this.rcpPurshaseOrders = rcpPurshaseOrders;
-        this.cmdAccounts = cmdAccounts;
-        this.rcpReceptionArcs = rcpReceptionArcs;
-        this.rcpReceptions = rcpReceptions;
-        this.rcpPurshaseOrderArcs = rcpPurshaseOrderArcs;
-        this.cmdSaleOrderArcs = cmdSaleOrderArcs;
-        this.cmdSaleOrders = cmdSaleOrders;
-        this.cmdSaleOrderLines = cmdSaleOrderLines;
-        this.cmdSaleOrderLineArcs = cmdSaleOrderLineArcs;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -151,11 +83,11 @@ public class TrpTransport implements java.io.Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "trp_transportcontactid")
-    public com.sinno.ems.entities.PrmContact getPrmContact() {
+    public com.bagile.tms.entities.PrmContact getPrmContact() {
         return this.prmContact;
     }
 
-    public void setPrmContact(com.sinno.ems.entities.PrmContact prmContact) {
+    public void setPrmContact(com.bagile.tms.entities.PrmContact prmContact) {
         this.prmContact = prmContact;
     }
 
@@ -213,15 +145,7 @@ public class TrpTransport implements java.io.Serializable {
         this.trpTransportComment = trpTransportComment;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "trp_transportediid")
-    public PrmEdi getPrmEdi() {
-        return this.prmEdi;
-    }
 
-    public void setPrmEdi(PrmEdi prmEdi) {
-        this.prmEdi = prmEdi;
-    }
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "trp_transportcreationdate")
@@ -331,98 +255,6 @@ public class TrpTransport implements java.io.Serializable {
 
     public void setTrpTransportVariable10(String trpTransportVariable10) {
         this.trpTransportVariable10 = trpTransportVariable10;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "trpTransport")
-    public Set<RcpSupplier> getRcpSuppliers() {
-        return this.rcpSuppliers;
-    }
-
-    public void setRcpSuppliers(Set<RcpSupplier> rcpSuppliers) {
-        this.rcpSuppliers = rcpSuppliers;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "trpTransport")
-    public Set<RcpPurshaseOrder> getRcpPurshaseOrders() {
-        return this.rcpPurshaseOrders;
-    }
-
-    public void setRcpPurshaseOrders(Set<RcpPurshaseOrder> rcpPurshaseOrders) {
-        this.rcpPurshaseOrders = rcpPurshaseOrders;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "trpTransport")
-    public Set<CmdAccount> getCmdAccounts() {
-        return this.cmdAccounts;
-    }
-
-    public void setCmdAccounts(Set<CmdAccount> cmdAccounts) {
-        this.cmdAccounts = cmdAccounts;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "trpTransport")
-    public Set<RcpReceptionArc> getRcpReceptionArcs() {
-        return this.rcpReceptionArcs;
-    }
-
-    public void setRcpReceptionArcs(Set<RcpReceptionArc> rcpReceptionArcs) {
-        this.rcpReceptionArcs = rcpReceptionArcs;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "trpTransport")
-    public Set<RcpReception> getRcpReceptions() {
-        return this.rcpReceptions;
-    }
-
-    public void setRcpReceptions(Set<RcpReception> rcpReceptions) {
-        this.rcpReceptions = rcpReceptions;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "trpTransport")
-    public Set<RcpPurshaseOrderArc> getRcpPurshaseOrderArcs() {
-        return this.rcpPurshaseOrderArcs;
-    }
-
-    public void setRcpPurshaseOrderArcs(
-            Set<RcpPurshaseOrderArc> rcpPurshaseOrderArcs) {
-        this.rcpPurshaseOrderArcs = rcpPurshaseOrderArcs;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "trpTransport")
-    public Set<CmdSaleOrderArc> getCmdSaleOrderArcs() {
-        return this.cmdSaleOrderArcs;
-    }
-
-    public void setCmdSaleOrderArcs(Set<CmdSaleOrderArc> cmdSaleOrderArcs) {
-        this.cmdSaleOrderArcs = cmdSaleOrderArcs;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "trpTransport")
-    public Set<CmdSaleOrder> getCmdSaleOrders() {
-        return this.cmdSaleOrders;
-    }
-
-    public void setCmdSaleOrders(Set<CmdSaleOrder> cmdSaleOrders) {
-        this.cmdSaleOrders = cmdSaleOrders;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "trpTransport")
-    public Set<CmdSaleOrderLine> getCmdSaleOrderLines() {
-        return this.cmdSaleOrderLines;
-    }
-
-    public void setCmdSaleOrderLines(Set<CmdSaleOrderLine> cmdSaleOrderLines) {
-        this.cmdSaleOrderLines = cmdSaleOrderLines;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "trpTransport")
-    public Set<CmdSaleOrderLineArc> getCmdSaleOrderLineArcs() {
-        return this.cmdSaleOrderLineArcs;
-    }
-
-    public void setCmdSaleOrderLineArcs(
-            Set<CmdSaleOrderLineArc> cmdSaleOrderLineArcs) {
-        this.cmdSaleOrderLineArcs = cmdSaleOrderLineArcs;
     }
 
     @Column(name = "trp_transportname")

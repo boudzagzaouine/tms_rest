@@ -1,14 +1,14 @@
 package com.bagile.tms.services.impl;
 
-import com.sinno.ems.dto.UserGroupOwner;
-import com.sinno.ems.entities.UsrUserGroupOwner;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.UserGroupOwnerMapper;
-import com.sinno.ems.repositories.UserGroupOwnerRepository;
-import com.sinno.ems.service.UserGroupOwnerService;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.dto.UserGroupOwner;
+import com.bagile.tms.entities.UsrUserGroupOwner;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.UserGroupOwnerMapper;
+import com.bagile.tms.repositories.UserGroupOwnerRepository;
+import com.bagile.tms.services.UserGroupOwnerService;
+import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +38,12 @@ public class UserGroupOwnerServiceImpl implements UserGroupOwnerService {
 
     @Override
     public Boolean isExist(Long id) {
-        return userGroupOwnerRepository.exists(id);
+        return userGroupOwnerRepository.existsById(id);
     }
 
     @Override
     public UserGroupOwner findById(Long id) throws IdNotFound {
-        UserGroupOwner userGroupOwner = UserGroupOwnerMapper.toDto(userGroupOwnerRepository.findOne(id), false);
+        UserGroupOwner userGroupOwner = UserGroupOwnerMapper.toDto(userGroupOwnerRepository.findById(id).get(), false);
         if (null != userGroupOwner) {
             return userGroupOwner;
         } else {
@@ -69,7 +69,7 @@ public class UserGroupOwnerServiceImpl implements UserGroupOwnerService {
     @Override
     public void delete(Long id) {
         LOGGER.info("delete UserGroupOwner");
-        userGroupOwnerRepository.delete(id);
+        userGroupOwnerRepository.deleteById(id);
     }
 
     @Override

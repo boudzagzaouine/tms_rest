@@ -56,14 +56,9 @@ public class CmdDelivery {
     private String cmdDeliveryImmatriculation;
     @Size(max = 50)
     private String cmdDeliveryTransfertCode;
-    private Boolean cmdDeliverySendedToEms;
-    private BigDecimal cmdDeliveryTotalPriceHT;
-    private BigDecimal cmdDeliveryTotalPriceTTC;
-    private BigDecimal cmdDeliveryDiscount;
-    private BigDecimal cmdDeliveryVat;
-    private PdtProductDimension pdtProductDimension ;
-    private TmsRoad tmsRoad;
+
     private Set<CmdDeliveryLine> cmdDeliveryLines = new HashSet<CmdDeliveryLine>(0);
+    private Long cmdDeliveryContainerCount;
 
 
     @Id
@@ -289,67 +284,12 @@ public class CmdDelivery {
         this.cmdDeliveryTransfertCode = cmdDeliveryTransfertCode;
     }
 
-    @Column(name = "cmd_deliverysendedtowms")
-    public Boolean getCmdDeliverySendedToEms() {
-        return cmdDeliverySendedToEms;
+    @Column(name = "cmd_deliverycontainercount", precision = 12, scale = 0)
+    public void setCmdDeliveryContainerCount(Long cmdDeliveryContainerCount) {
+        this.cmdDeliveryContainerCount = cmdDeliveryContainerCount;
     }
 
-    public void setCmdDeliverySendedToEms(Boolean cmdDeliverySendedToEms) {
-        this.cmdDeliverySendedToEms = cmdDeliverySendedToEms;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cmd_deliverypreparationid")
-
-
-    @Column(name = "cmd_deliverytotalpriceht")
-
-    public BigDecimal getCmdDeliveryTotalPriceHT() {
-        return cmdDeliveryTotalPriceHT;
-    }
-
-    public void setCmdDeliveryTotalPriceHT(BigDecimal cmdDeliveryTotalPriceHT) {
-        this.cmdDeliveryTotalPriceHT = cmdDeliveryTotalPriceHT;
-    }
-
-    @Column(name = "cmd_deliverytotalpricettc")
-
-    public BigDecimal getCmdDeliveryTotalPriceTTC() {
-        return cmdDeliveryTotalPriceTTC;
-    }
-
-    public void setCmdDeliveryTotalPriceTTC(BigDecimal cmdDeliveryTotalPriceTTC) {
-        this.cmdDeliveryTotalPriceTTC = cmdDeliveryTotalPriceTTC;
-    }
-
-    @Column(name = "cmd_deliverydiscount")
-
-    public BigDecimal getCmdDeliveryDiscount() {
-        return cmdDeliveryDiscount;
-    }
-
-    public void setCmdDeliveryDiscount(BigDecimal cmdDeliveryDiscount) {
-        this.cmdDeliveryDiscount = cmdDeliveryDiscount;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cmd_deliverycurrencyid")
-
-    @Column(name="cmd_deliveryvat")
-    public BigDecimal getCmdDeliveryVat() {
-        return cmdDeliveryVat;
-    }
-
-    public void setCmdDeliveryVat(BigDecimal cmdDeliveryVat) {
-        this.cmdDeliveryVat = cmdDeliveryVat;
-    }
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="cmd_deliveryroadid")
-    public TmsRoad getTmsRoad() {
-        return tmsRoad;
-    }
-
-    public void setTmsRoad(TmsRoad tmsRoad) {
-        this.tmsRoad = tmsRoad;
+    public Long getCmdDeliveryContainerCount() {
+        return cmdDeliveryContainerCount;
     }
 }

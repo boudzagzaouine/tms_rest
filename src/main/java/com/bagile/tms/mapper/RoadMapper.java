@@ -1,7 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.Road;
-import com.sinno.ems.entities.TmsRoad;
+import com.bagile.tms.dto.Road;
+import com.bagile.tms.entities.TmsRoad;
 
 import java.util.*;
 

@@ -1,9 +1,9 @@
 package com.bagile.tms.repositories;
 
-import com.sinno.ems.entities.UsrUserActions;
+import com.bagile.tms.entities.UsrUserActions;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 public interface UserActionsRepository extends JpaRepository<UsrUserActions, Long>,
-		QueryDslPredicateExecutor<UsrUserActions> {
+		QuerydslPredicateExecutor<UsrUserActions> {
 }

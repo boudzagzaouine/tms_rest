@@ -1,16 +1,16 @@
 package com.bagile.tms.services.impl;
 
-import com.sinno.ems.dto.Habilitation;
-import com.sinno.ems.entities.UsrHabilitation;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.HabilitationMapper;
-import com.sinno.ems.repositories.HabilitationRepository;
-import com.sinno.ems.service.AddressService;
-import com.sinno.ems.service.HabilitationService;
-import com.sinno.ems.util.EmsDate;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.dto.Habilitation;
+import com.bagile.tms.entities.UsrHabilitation;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.HabilitationMapper;
+import com.bagile.tms.repositories.HabilitationRepository;
+import com.bagile.tms.services.AddressService;
+import com.bagile.tms.services.HabilitationService;
+import com.bagile.tms.util.EmsDate;
+import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,12 +44,12 @@ public class HabilitationServiceImpl implements HabilitationService {
 
     @Override
     public Boolean isExist(Long id) {
-        return habilitationRepository.exists(id);
+        return habilitationRepository.existsById(id);
     }
 
     @Override
     public Habilitation findById(Long id) throws IdNotFound {
-        Habilitation habilitation = HabilitationMapper.toDto(habilitationRepository.findOne(id), false);
+        Habilitation habilitation = HabilitationMapper.toDto(habilitationRepository.findById(id).get(), false);
         if (null != habilitation) {
             return habilitation;
         } else {
@@ -75,7 +75,7 @@ public class HabilitationServiceImpl implements HabilitationService {
     @Override
     public void delete(Long id) {
         LOGGER.info("delete Habilitation");
-        habilitationRepository.delete(id);
+        habilitationRepository.deleteById(id);
     }
 
     @Override

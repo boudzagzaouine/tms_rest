@@ -1,10 +1,10 @@
 package com.bagile.tms.services;
 
-import com.sinno.ems.dto.Delivery;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.exception.WarehouseException;
+import com.bagile.tms.dto.Delivery;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.exceptions.WarehouseException;
 import org.springframework.data.domain.Pageable;
 
 import java.math.BigInteger;
@@ -37,5 +37,4 @@ public interface DeliveryService {
     public List<Delivery> findAll(Pageable pageable);
     public BigInteger getNextVal();
 
-    List<Delivery> exportWmsSaleOrder(List<Delivery> deliveries);
 }

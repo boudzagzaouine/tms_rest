@@ -3,9 +3,9 @@
  */
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.SaleOrder;
-import com.sinno.ems.entities.CmdSaleOrder;
-import com.sinno.ems.util.EmsDate;
+import com.bagile.tms.dto.SaleOrder;
+import com.bagile.tms.entities.CmdSaleOrder;
+import com.bagile.tms.util.EmsDate;
 
 import java.util.*;
 
@@ -99,14 +99,8 @@ public class SaleOrderMapper {
         saleOrder.setCmdSaleOrderNumberLine(cmdSaleOrder.getCmdSaleOrderNumberLine());
         saleOrder.setCmdSaleOrderNumberLineCmd(cmdSaleOrder.getCmdSaleOrderNumberLineCmd());
         saleOrder.setTransportTel(cmdSaleOrder.getCmdSaleOrderTransportTel());
-        saleOrder.setTransfertCode(cmdSaleOrder.getCmdSaleOrderTransfertCode());
-        saleOrder.setSendedToWms(cmdSaleOrder.getCmdSaleOrderSendedToWms());
-        saleOrder.setDiscount(cmdSaleOrder.getCmdSaleOrderDiscount());
-        saleOrder.setTotalPriceTTC(cmdSaleOrder.getCmdSaleOrderTotalPriceTTC());
-        saleOrder.setTotalPriceHT(cmdSaleOrder.getCmdSaleOrderTotalPriceHT());
-        saleOrder.setVat(cmdSaleOrder.getCmdSaleOrderVat());
+
         if (!lazy) {
-            saleOrder.setCurrency(CurrencyMapper.toDto(cmdSaleOrder.getPrmCurrency(), true));
             saleOrder.setLines(SaleOrderLineMapper.toDtos(cmdSaleOrder.getCmdSaleOrderLines(), false));
             saleOrder.setAccount(AccountMapper.toDto(cmdSaleOrder.getCmdAccount(), true));
             saleOrder.setOrderStatus(OrderStatusMapper.toDto(cmdSaleOrder.getPrmOrderStatus(), true));
@@ -117,12 +111,8 @@ public class SaleOrderMapper {
 //            saleOrder.setStocks(SaleOrderStockMapper.toDtos(cmdSaleOrder.getCmdSaleOrderStocks(), true));
             saleOrder.setAddressBySaleOrderDeliveryAddress(AddressMapper.toDto(cmdSaleOrder.getAdrAddressByCmdSaleOrderDeliveryAddressId(), true));
             saleOrder.setAddressBySaleOrderInvoiceAddress(AddressMapper.toDto(cmdSaleOrder.getAdrAddressByCmdSaleOrderInvoiceAddressId(), true));
-            saleOrder.setSupplier(SupplierMapper.toDto(cmdSaleOrder.getRcpSupplier(), true));
             saleOrder.setTransport(TransportMapper.toDto(cmdSaleOrder.getTrpTransport(), true));
             saleOrder.setWarehouse(WarehouseMapper.toDto(cmdSaleOrder.getWrhWarehouseSource(), true));
-            saleOrder.setWarehouseDestination(WarehouseMapper.toDto(cmdSaleOrder.getWrhWarehouseDestination(), true));
-            saleOrder.setDevis(DevisMapper.toDto(cmdSaleOrder.getCmdDevis(), true));
-            saleOrder.setUser(UserMapper.toDto(cmdSaleOrder.getUsrUser(), true));
         }
         return saleOrder;
     }
@@ -157,30 +147,18 @@ public class SaleOrderMapper {
         cmdSaleOrder.setCmdSaleOrderNumberLineCmd(saleOrder.getCmdSaleOrderNumberLineCmd());
         cmdSaleOrder.setCmdSaleOrderNumberLine(saleOrder.getCmdSaleOrderNumberLine());
         cmdSaleOrder.setCmdSaleOrderTransportTel(saleOrder.getTransportTel());
-        cmdSaleOrder.setCmdSaleOrderTransfertCode(saleOrder.getTransfertCode());
-        cmdSaleOrder.setCmdSaleOrderSendedToWms(saleOrder.getSendedToWms());
-        cmdSaleOrder.setCmdSaleOrderTotalPriceHT(saleOrder.getTotalPriceHT());
-        cmdSaleOrder.setCmdSaleOrderTotalPriceTTC(saleOrder.getTotalPriceTTC());
-        cmdSaleOrder.setCmdSaleOrderDiscount(saleOrder.getDiscount());
-        cmdSaleOrder.setCmdSaleOrderVat(saleOrder.getVat());
+
         if (!lazy) {
-            cmdSaleOrder.setPrmCurrency(CurrencyMapper.toEntity(saleOrder.getCurrency(), true));
-            cmdSaleOrder.setUsrUser(UserMapper.toEntity(saleOrder.getUser(), true));
             cmdSaleOrder.setCmdAccount(AccountMapper.toEntity(saleOrder.getAccount(), true));
             cmdSaleOrder.setCmdSaleOrderLines(SaleOrderLineMapper.toEntities(saleOrder.getLines(), false));
-//            cmdSaleOrder.setCmdSaleOrderStockArcs(SaleOrderStockArcMapper.toEntities(saleOrder.getStockArcs(), true));
-//            cmdSaleOrder.setCmdSaleOrderStocks(SaleOrderStockMapper.toEntities(saleOrder.getStocks(), true));
             cmdSaleOrder.setAdrAddressByCmdSaleOrderDeliveryAddressId(AddressMapper.toEntity(saleOrder.getAddressBySaleOrderDeliveryAddress(), true));
             cmdSaleOrder.setAdrAddressByCmdSaleOrderInvoiceAddressId(AddressMapper.toEntity(saleOrder.getAddressBySaleOrderInvoiceAddress(), true));
             cmdSaleOrder.setOwnOwner(OwnerMapper.toEntity(saleOrder.getOwner(), true));
             cmdSaleOrder.setPrmOrderStatus(OrderStatusMapper.toEntity(saleOrder.getOrderStatus(), true));
             cmdSaleOrder.setPrmOrderType(OrderTypeMapper.toEntity(saleOrder.getOrderType(), true));
-            cmdSaleOrder.setRcpSupplier(SupplierMapper.toEntity(saleOrder.getSupplier(), true));
-            //cmdSaleOrder.setStkStockReserveds(StockReservedMapper.toEntities(saleOrder.getStockReserveds(), true));
             cmdSaleOrder.setTrpTransport(TransportMapper.toEntity(saleOrder.getTransport(), true));
             cmdSaleOrder.setWrhWarehouseSource(WarehouseMapper.toEntity(saleOrder.getWarehouse(), true));
             cmdSaleOrder.setWrhWarehouseDestination(WarehouseMapper.toEntity(saleOrder.getWarehouseDestination(), true));
-            cmdSaleOrder.setCmdDevis(DevisMapper.toEntity(saleOrder.getDevis(), true));
             oneToMany(cmdSaleOrder);
         }
         return cmdSaleOrder;

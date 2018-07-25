@@ -1,6 +1,6 @@
 package com.bagile.tms.repositories;
 
-import com.sinno.ems.entities.OrgOrganisation;
+import com.bagile.tms.entities.OrgOrganisation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

@@ -1,10 +1,10 @@
 package com.bagile.tms.controllers;
 
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.service.UserDetailsServiceWarehouse;
-import com.sinno.ems.service.WarehouseService;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.services.UserDetailsServiceWarehouse;
+import com.bagile.tms.services.WarehouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
@@ -40,7 +40,7 @@ public class WarehouseController {
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<Warehouse> getWarehouses(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        // Pageable pageable = new PageRequest(page, size);
+        // Pageable pageable = PageRequest.of(page, size);
         if (null == userDetailsService.getCodeWarehouses()) {
             return null;
         }

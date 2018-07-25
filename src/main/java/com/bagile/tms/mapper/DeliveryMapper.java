@@ -1,8 +1,8 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.Delivery;
-import com.sinno.ems.entities.CmdDelivery;
-import com.sinno.ems.util.EmsDate;
+import com.bagile.tms.dto.Delivery;
+import com.bagile.tms.entities.CmdDelivery;
+import com.bagile.tms.util.EmsDate;
 
 import java.util.*;
 
@@ -71,16 +71,9 @@ public class DeliveryMapper {
         cmdDelivery.setCmdDeliveryUpdateDate(delivery.getUpdateDate());
         cmdDelivery.setCmdDeliveryCreationDate(delivery.getCreationDate());
         cmdDelivery.setCmdDeliveryTransfertCode(delivery.getTransfertCode());
-        cmdDelivery.setCmdDeliveryComment(delivery.getComment());
-        cmdDelivery.setCmdDeliverySendedToEms(delivery.getSendedToWms());
-        cmdDelivery.setCmdDeliveryDiscount(delivery.getDiscount());
-        cmdDelivery.setCmdDeliveryTotalPriceHT(delivery.getTotalPriceHT());
-        cmdDelivery.setCmdDeliveryTotalPriceTTC(delivery.getTotalPriceTTC());
-        cmdDelivery.setCmdDeliveryVat(delivery.getVat());
+
         if (!lazy) {
-            cmdDelivery.setTmsRoad(RoadMapper.toEntity(delivery.getRoad(),true));
-            cmdDelivery.setPrmCurrency(CurrencyMapper.toEntity(delivery.getCurrency(), true));
-            cmdDelivery.setLocLocation(LocationMapper.toEntity(delivery.getLocation(), true));
+
             cmdDelivery.setCmdAccount(AccountMapper.toEntity(delivery.getAccount(), true));
             cmdDelivery.setWrhWarehouse(WarehouseMapper.toEntity(delivery.getWarehouse(), true));
             cmdDelivery.setTrpTransport(TransportMapper.toEntity(delivery.getTransport(), true));
@@ -91,8 +84,7 @@ public class DeliveryMapper {
             cmdDelivery.setPrmOrderType(OrderTypeMapper.toEntity(delivery.getOrderType(), true));
             cmdDelivery.setPrmOrderStatus(OrderStatusMapper.toEntity(delivery.getOrderStatus(), true));
             cmdDelivery.setCmdDeliveryLines(DeliveryLineMapper.toEntities(delivery.getLines(), false));
-            cmdDelivery.setRcpReception(ReceptionMapper.toEntity(delivery.getReception(), true));
-            cmdDelivery.setCmdPreparation(PreparationMapper.toEntity(delivery.getPreparation(), true));
+
             oneToMany(cmdDelivery);
         }
         return cmdDelivery;
@@ -106,7 +98,6 @@ public class DeliveryMapper {
 //                    rl.setCmdDeliveryLineOrderQuantity(rl.getCmdDevisLine().getCmdSaleOrderLineQuantity());
                 rl.setCmdDeliveryLineUpdateDate(EmsDate.getDateNow());
                 rl.setOwnOwner(cmdDelivery.getOwnOwner());
-                rl.setLocLocation(cmdDelivery.getLocLocation());
                 rl.setWrhWarehouse(cmdDelivery.getWrhWarehouse());
                 if (0 >= rl.getCmdDeliveryLineId()) {
                     rl.setCmdDeliveryLineCreationDate(EmsDate.getDateNow());
@@ -132,15 +123,9 @@ public class DeliveryMapper {
         delivery.setCreationDate(cmdDelivery.getCmdDeliveryCreationDate());
         delivery.setTransfertCode(cmdDelivery.getCmdDeliveryTransfertCode());
         delivery.setComment(cmdDelivery.getCmdDeliveryComment());
-        delivery.setSendedToWms(cmdDelivery.getCmdDeliverySendedToEms());
-        delivery.setTotalPriceTTC(cmdDelivery.getCmdDeliveryTotalPriceTTC());
-        delivery.setTotalPriceHT(cmdDelivery.getCmdDeliveryTotalPriceHT());
-        delivery.setDiscount(cmdDelivery.getCmdDeliveryDiscount());
-        delivery.setVat(cmdDelivery.getCmdDeliveryVat());
+
         if (!lazy) {
-            delivery.setRoad(RoadMapper.toDto(cmdDelivery.getTmsRoad(),true));
-            delivery.setCurrency(CurrencyMapper.toDto(cmdDelivery.getPrmCurrency(), true));
-            delivery.setLocation(LocationMapper.toDto(cmdDelivery.getLocLocation(), true));
+
             delivery.setAccount(AccountMapper.toDto(cmdDelivery.getCmdAccount(), true));
             delivery.setWarehouse(WarehouseMapper.toDto(cmdDelivery.getWrhWarehouse(), true));
             delivery.setTransport(TransportMapper.toDto(cmdDelivery.getTrpTransport(), true));
@@ -151,8 +136,7 @@ public class DeliveryMapper {
             delivery.setOrderType(OrderTypeMapper.toDto(cmdDelivery.getPrmOrderType(), true));
             delivery.setOrderStatus(OrderStatusMapper.toDto(cmdDelivery.getPrmOrderStatus(), true));
             delivery.setLines(DeliveryLineMapper.toDtos(cmdDelivery.getCmdDeliveryLines(), false));
-            delivery.setReception(ReceptionMapper.toDto(cmdDelivery.getRcpReception(), true));
-            delivery.setPreparation(PreparationMapper.toDto(cmdDelivery.getCmdPreparation(), true));
+
         }
         return delivery;
     }

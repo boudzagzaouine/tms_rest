@@ -1,7 +1,8 @@
-package com.sinno.ems.mapper;
+package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.Contact;
-import com.sinno.ems.entities.PrmContact;
+import com.bagile.tms.dto.Contact;
+import com.bagile.tms.entities.PrmContact;
+
 
 import java.util.*;
 

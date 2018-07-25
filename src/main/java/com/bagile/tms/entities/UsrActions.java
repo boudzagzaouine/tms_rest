@@ -33,18 +33,6 @@ public class UsrActions implements java.io.Serializable {
     public UsrActions() {
     }
 
-    public UsrActions(long usrActionsId, String usrActionsCode) {
-        this.usrActionsId = usrActionsId;
-        this.usrActionsCode = usrActionsCode;
-    }
-
-    public UsrActions(long usrActionsId, String usrActionsCode,
-                      Date usrActionsCreationDate, Set<UsrUserActions> usrUserActionses) {
-        this.usrActionsId = usrActionsId;
-        this.usrActionsCode = usrActionsCode;
-        this.usrActionsCreationDate = usrActionsCreationDate;
-        this.usrUserActionses = usrUserActionses;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")

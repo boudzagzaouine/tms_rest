@@ -3,8 +3,8 @@
  */
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.Company;
-import com.sinno.ems.entities.CmdCompany;
+import com.bagile.tms.dto.Company;
+import com.bagile.tms.entities.CmdCompany;
 
 import java.util.*;
 

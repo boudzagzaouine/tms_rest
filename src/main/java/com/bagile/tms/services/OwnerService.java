@@ -1,9 +1,9 @@
 package com.bagile.tms.services;
 
-import com.sinno.ems.dto.Owner;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
+import com.bagile.tms.dto.Owner;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
 
 import java.util.List;
 
@@ -32,10 +32,4 @@ public interface OwnerService {
     public List<Owner> findAll() throws AttributesNotFound, ErrorType;
 
     public List<Owner> findAll(int page, int size) throws AttributesNotFound, ErrorType;
-
-    public Owner loadWmsOwner(com.sinno.wms.crud.modelbasic.owners.Owner owner);
-
-     List<Owner> exportWmsOwner(List<Owner> owners);
-
-    String getLastInvoiceDate(Long id);
 }

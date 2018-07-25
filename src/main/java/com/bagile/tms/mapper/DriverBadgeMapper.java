@@ -1,7 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.DriverBadge;
-import com.sinno.ems.entities.TmsDriverBadge;
+import com.bagile.tms.dto.DriverBadge;
+import com.bagile.tms.entities.TmsDriverBadge;
 
 import java.util.*;
 

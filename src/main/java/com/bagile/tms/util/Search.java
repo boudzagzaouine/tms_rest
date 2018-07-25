@@ -1,8 +1,8 @@
 package com.bagile.tms.util;
 
 import com.mysema.query.types.expr.BooleanExpression;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -29,7 +29,7 @@ public class Search {
         	name = "Container";
         }
         if (search.indexOf('.') == -1) {
-            Class<?> cls = Class.forName("com.sinno.ems.mapper." + name + "Mapper");
+            Class<?> cls = Class.forName("com.bagile.tms.mapper." + name + "Mapper");
             //Object mapper = cls.newInstance();
             Method method = cls.getDeclaredMethod("getField", String.class);
             field = (String) method.invoke(null, search);
@@ -37,11 +37,11 @@ public class Search {
 
             StringTokenizer stringTokenizer = new StringTokenizer(search, ".");
             String str = (String) stringTokenizer.nextElement();
-            Class<?> cls = Class.forName("com.sinno.ems.mapper." + name + "Mapper");
+            Class<?> cls = Class.forName("com.bagile.tms.mapper." + name + "Mapper");
             //Object mapper = cls.newInstance();
             Method method = cls.getDeclaredMethod("getField", String.class);
             field = (String) method.invoke(null, str);
-            cls = Class.forName("com.sinno.ems.dto." + name);
+            cls = Class.forName("com.bagile.tms.dto." + name);
             Class<?> type = cls.getDeclaredField(str).getType();
             if (type.getTypeName().toString().equals("java.util.Set")) {
                 ParameterizedType parameterizedType = (ParameterizedType) cls.getDeclaredField(str).getGenericType();
@@ -50,11 +50,11 @@ public class Search {
             while (stringTokenizer.hasMoreElements()) {
                 str = (String) stringTokenizer.nextElement();
                 name = type.getSimpleName();
-                cls = Class.forName("com.sinno.ems.mapper." + name + "Mapper");
+                cls = Class.forName("com.bagile.tms.mapper." + name + "Mapper");
                 //mapper = cls.newInstance();
                 method = cls.getDeclaredMethod("getField", String.class);
                 field += "." + (String) method.invoke(null, str);
-                cls = Class.forName("com.sinno.ems.dto." + name);
+                cls = Class.forName("com.bagile.tms.dto." + name);
                 type = cls.getDeclaredField(str).getType();
                 if (type.getTypeName().toString().equals("java.util.Set")) {
                     ParameterizedType parameterizedType = (ParameterizedType) cls.getDeclaredField(str).getGenericType();
@@ -86,7 +86,7 @@ public class Search {
     public static String getFieldDto(String name, String search) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchFieldException {
         String field = "";
         if (search.indexOf('.') == -1) {
-            Class<?> cls = Class.forName("com.sinno.ems.mapper." + name + "Mapper");
+            Class<?> cls = Class.forName("com.bagile.tms.mapper." + name + "Mapper");
             Object mapper = cls.newInstance();
             Method method = cls.getDeclaredMethod("getMap");
             Map<String, String> map = (HashMap<String, String>) method.invoke(mapper);
@@ -95,13 +95,13 @@ public class Search {
             StringTokenizer stringTokenizer = new StringTokenizer(search, ".");
             String field0 = (String) stringTokenizer.nextElement();
             String field1 = (String) stringTokenizer.nextElement();
-            Class<?> cls = Class.forName("com.sinno.ems.mapper." + name + "Mapper");
+            Class<?> cls = Class.forName("com.bagile.tms.mapper." + name + "Mapper");
             Object mapper = cls.newInstance();
             Method method = cls.getDeclaredMethod("getMap", String.class);
             Map<String, String> map = (HashMap<String, String>) method.invoke(mapper);
             field = search(map, field0);
-            cls = Class.forName("com.sinno.ems.dto." + name);
-            cls = Class.forName("com.sinno.ems.mapper." + cls.getDeclaredField(field0).getType().getSimpleName() + "Mapper");
+            cls = Class.forName("com.bagile.tms.dto." + name);
+            cls = Class.forName("com.bagile.tms.mapper." + cls.getDeclaredField(field0).getType().getSimpleName() + "Mapper");
             Object mapper2 = cls.newInstance();
             method = cls.getDeclaredMethod("getMap");
             map = (HashMap<String, String>) method.invoke(mapper2);
@@ -138,11 +138,11 @@ public class Search {
         String name = "Stock";
         StringTokenizer stringTokenizer = new StringTokenizer(search, ".");
         String str = (String) stringTokenizer.nextElement();
-        Class<?> cls = Class.forName("com.sinno.ems.mapper." + name + "Mapper");
+        Class<?> cls = Class.forName("com.bagile.tms.mapper." + name + "Mapper");
         Object mapper = cls.newInstance();
         Method method = cls.getDeclaredMethod("getField", String.class);
         String field = (String) method.invoke(mapper, str);
-        cls = Class.forName("com.sinno.ems.dto." + name);
+        cls = Class.forName("com.bagile.tms.dto." + name);
         Class<?> type = cls.getDeclaredField(str).getType();
         if (type.getTypeName().toString().equals("java.util.Set")) {
             ParameterizedType parameterizedType = (ParameterizedType) cls.getDeclaredField(str).getGenericType();
@@ -151,11 +151,11 @@ public class Search {
         while (stringTokenizer.hasMoreElements()) {
             str = (String) stringTokenizer.nextElement();
             name = type.getSimpleName();
-            cls = Class.forName("com.sinno.ems.mapper." + name + "Mapper");
+            cls = Class.forName("com.bagile.tms.mapper." + name + "Mapper");
             mapper = cls.newInstance();
             method = cls.getDeclaredMethod("getField", String.class);
             field += "." + (String) method.invoke(mapper, str);
-            cls = Class.forName("com.sinno.ems.dto." + name);
+            cls = Class.forName("com.bagile.tms.dto." + name);
             type = cls.getDeclaredField(str).getType();
             if (type.getTypeName().toString().equals("java.util.Set")) {
                 ParameterizedType parameterizedType = (ParameterizedType) cls.getDeclaredField(str).getGenericType();

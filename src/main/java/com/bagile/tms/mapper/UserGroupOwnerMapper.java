@@ -3,8 +3,8 @@
  */
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.UserGroupOwner;
-import com.sinno.ems.entities.UsrUserGroupOwner;
+import com.bagile.tms.dto.UserGroupOwner;
+import com.bagile.tms.entities.UsrUserGroupOwner;
 
 import java.util.*;
 

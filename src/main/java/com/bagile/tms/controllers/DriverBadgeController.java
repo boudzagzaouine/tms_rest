@@ -1,10 +1,10 @@
 package com.bagile.tms.controllers;
 
-import com.sinno.ems.dto.DriverBadge;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.service.DriverBadgeService;
+import com.bagile.tms.dto.DriverBadge;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.services.DriverBadgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -36,7 +36,7 @@ public class DriverBadgeController {
     @ResponseBody
     public List<DriverBadge> getNatureIncidents(@RequestParam int page, @RequestParam int size) {
         Sort sort = new Sort(Sort.Direction.DESC,"drvDriverBadge");
-        Pageable pageable = new PageRequest(page, size,sort);
+        Pageable pageable = PageRequest.of(page, size,sort);
         return driverBadgeService.findAll(pageable);
     }
     @PreAuthorize("hasAnyRole('DRIVERBADGE_VIEW')")
@@ -76,7 +76,7 @@ public class DriverBadgeController {
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<DriverBadge> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Pageable pageable = new PageRequest(page, size);
+        Pageable pageable = PageRequest.of(page, size);
         return driverBadgeService.find(search, pageable);
     }
 

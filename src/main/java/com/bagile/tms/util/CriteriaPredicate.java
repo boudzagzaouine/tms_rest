@@ -2,7 +2,7 @@ package com.bagile.tms.util;
 
 import com.mysema.query.types.expr.BooleanExpression;
 import com.mysema.query.types.path.*;
-import com.sinno.ems.exception.ErrorType;
+import com.bagile.tms.exceptions.ErrorType;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;

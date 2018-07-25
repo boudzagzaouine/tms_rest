@@ -33,7 +33,6 @@ public class PdtProductType implements java.io.Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
 
     private Date pdtProductTypeUpdateDate;
-    private PrmVat prmVat;
     private Set<PdtProductType> pdtProductTypes = new HashSet<PdtProductType>(0);
     private Set<PdtProduct> pdtProductsForPdtProductTypeId = new HashSet<PdtProduct>(
             0);
@@ -165,14 +164,4 @@ public class PdtProductType implements java.io.Serializable {
         this.pdtProductsForPdtProductSubTypeId = pdtProductsForPdtProductSubTypeId;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pdt_producttypevatid")
-
-    public PrmVat getPrmVat() {
-        return prmVat;
-    }
-
-    public void setPrmVat(PrmVat prmVat) {
-        this.prmVat = prmVat;
-    }
 }

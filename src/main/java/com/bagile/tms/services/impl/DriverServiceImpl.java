@@ -1,15 +1,15 @@
 package com.bagile.tms.services.impl;
 
-import com.sinno.ems.dto.Driver;
-import com.sinno.ems.entities.TmsDriver;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.DriverMapper;
-import com.sinno.ems.repositories.DriverRepository;
-import com.sinno.ems.service.DriverService;
-import com.sinno.ems.util.EmsDate;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.dto.Driver;
+import com.bagile.tms.entities.TmsDriver;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.DriverMapper;
+import com.bagile.tms.repositories.DriverRepository;
+import com.bagile.tms.services.DriverService;
+import com.bagile.tms.util.EmsDate;
+import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,12 +45,12 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public Boolean isExist(Long id) {
-        return driverRepository.exists(id);
+        return driverRepository.existsById(id);
     }
 
     @Override
     public Driver findById(Long id) throws IdNotFound {
-        Driver driver = DriverMapper.toDto(driverRepository.findOne(id), false);
+        Driver driver = DriverMapper.toDto(driverRepository.findById(id).get(), false);
         if (null != driver) {
             return driver;
         } else {
@@ -74,7 +74,7 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public void delete(Long id) {
         LOGGER.info("save Driver");
-        driverRepository.delete(id);
+        driverRepository.deleteById(id);
     }
 
     @Override

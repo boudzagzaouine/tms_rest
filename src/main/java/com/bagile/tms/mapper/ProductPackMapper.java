@@ -1,7 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.ProductPack;
-import com.sinno.ems.entities.PdtProductPack;
+import com.bagile.tms.dto.ProductPack;
+import com.bagile.tms.entities.PdtProductPack;
 
 import java.util.*;
 
@@ -63,7 +63,6 @@ public class ProductPackMapper {
         pdtProductPack.setPdtProductPackWidth(productPack.getWidth());
         pdtProductPack.setPdtProductPackWeightControl(productPack.getWeightControl());
         if (!lazy) {
-            pdtProductPack.setPrmCurrency(CurrencyMapper.toEntity(productPack.getCurrency(), true));
             pdtProductPack.setPdtProduct(ProductMapper.toEntity(productPack.getProduct(), true));
             pdtProductPack.setPdtAlias(AliasMapper.toEntity(productPack.getAlias(), true));
             pdtProductPack.setOwnOwner(OwnerMapper.toEntity(productPack.getOwner(), true));
@@ -92,7 +91,6 @@ public class ProductPackMapper {
         productPack.setWeightControl(pdtProductPack.getPdtProductPackWeightControl());
         productPack.setPurshasePrice(pdtProductPack.getPdtProductPurshasePrice());
         if (!lazy) {
-            productPack.setCurrency(CurrencyMapper.toDto(pdtProductPack.getPrmCurrency(), true));
             productPack.setProduct(ProductMapper.toDto(pdtProductPack.getPdtProduct(), true));
             productPack.setAlias(AliasMapper.toDto(pdtProductPack.getPdtAlias(), true));
             productPack.setOwner(OwnerMapper.toDto(pdtProductPack.getOwnOwner(), true));

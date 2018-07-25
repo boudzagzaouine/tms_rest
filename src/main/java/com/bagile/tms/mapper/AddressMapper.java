@@ -3,8 +3,8 @@
  */
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.Address;
-import com.sinno.ems.entities.AdrAddress;
+import com.bagile.tms.dto.Address;
+import com.bagile.tms.entities.AdrAddress;
 
 import java.util.*;
 
@@ -83,25 +83,6 @@ public class AddressMapper {
         address.setAddressType(adrAddress.getAddAddressType());
         if (!lazy) {
             address.setOwner(OwnerMapper.toDto(adrAddress.getOwnOwner(), true));
-//            address.setWarehouses(WarehouseMapper.toDtos(adrAddress.getWrhWarehouses(), true));
-//            address.setAccountsForAccountDeliveryAddress(
-//                    AccountMapper.toDtos(adrAddress.getCmdAccountsForCmdAccountDeliveryAddressId(), true));
-//            address.setAccountsForAccountInvoicesAddress(
-//                    AccountMapper.toDtos(adrAddress.getCmdAccountsForCmdAccountInvoicesAddressId(), true));
-//            address.setInvoiceArcs(InvoiceArcMapper.toDtos(adrAddress.getInvInvoiceArcs(), true));
-//            address.setInvoices(InvoiceMapper.toDtos(adrAddress.getInvInvoices(), true));
-//            address.setPurshaseOrderArcs(PurshaseOrderArcMapper.toDtos(adrAddress.getRcpPurshaseOrderArcs(), true));
-//            address.setPurshaseOrders(PurshaseOrderMapper.toDtos(adrAddress.getRcpPurshaseOrders(), true));
-//            address.setReceptionArcs(ReceptionArcMapper.toDtos(adrAddress.getRcpReceptionArcs(), true));
-//            address.setReceptions(ReceptionMapper.toDtos(adrAddress.getRcpReceptions(), true));
-//            address.setSaleOrderArcsForSaleOrderDeliveryAddress(
-//                    SaleOrderArcMapper.toDtos(adrAddress.getCmdSaleOrderArcsForCmdSaleOrderDeliveryAddressId(), true));
-//            address.setSaleOrderArcsForSaleOrderInvoiceAddress(
-//                    SaleOrderArcMapper.toDtos(adrAddress.getCmdSaleOrderArcsForCmdSaleOrderInvoiceAddressId(), true));
-//            address.setSaleOrdersForSaleOrderDeliveryAddress(
-//                    SaleOrderMapper.toDtos(adrAddress.getCmdSaleOrdersForCmdSaleOrderDeliveryAddressId(), true));
-//            address.setSaleOrdersForSaleOrderInvoiceAddress(
-//                    SaleOrderMapper.toDtos(adrAddress.getCmdSaleOrdersForCmdSaleOrderInvoiceAddressId(), true));
         }
         return address;
     }
@@ -136,25 +117,6 @@ public class AddressMapper {
         adrAddress.setAddAddressType(address.getAddressType());
         if (!lazy) {
             adrAddress.setOwnOwner(OwnerMapper.toEntity(address.getOwner(), true));
-//            adrAddress.setCmdAccountsForCmdAccountDeliveryAddressId(
-//                    AccountMapper.toEntities(address.getAccountsForAccountDeliveryAddress(), true));
-//            adrAddress.setCmdAccountsForCmdAccountInvoicesAddressId(
-//                    AccountMapper.toEntities(address.getAccountsForAccountInvoicesAddress(), true));
-//            adrAddress.setCmdSaleOrderArcsForCmdSaleOrderDeliveryAddressId(
-//                    SaleOrderArcMapper.toEntities(address.getSaleOrderArcsForSaleOrderDeliveryAddress(), true));
-//            adrAddress.setCmdSaleOrderArcsForCmdSaleOrderInvoiceAddressId(
-//                    SaleOrderArcMapper.toEntities(address.getSaleOrderArcsForSaleOrderInvoiceAddress(), true));
-//            adrAddress.setCmdSaleOrdersForCmdSaleOrderDeliveryAddressId(
-//                    SaleOrderMapper.toEntities(address.getSaleOrdersForSaleOrderDeliveryAddress(), true));
-//            adrAddress.setCmdSaleOrdersForCmdSaleOrderInvoiceAddressId(
-//                    SaleOrderMapper.toEntities(address.getSaleOrdersForSaleOrderInvoiceAddress(), true));
-//            adrAddress.setInvInvoiceArcs(InvoiceArcMapper.toEntities(address.getInvoiceArcs(), true));
-//            adrAddress.setInvInvoices(InvoiceMapper.toEntities(address.getInvoices(), true));
-//            adrAddress.setRcpPurshaseOrderArcs(PurshaseOrderArcMapper.toEntities(address.getPurshaseOrderArcs(), true));
-//            adrAddress.setRcpPurshaseOrders(PurshaseOrderMapper.toEntities(address.getPurshaseOrders(), true));
-//            adrAddress.setRcpReceptionArcs(ReceptionArcMapper.toEntities(address.getReceptionArcs(), true));
-//            adrAddress.setRcpReceptions(ReceptionMapper.toEntities(address.getReceptions(), true));
-//            adrAddress.setWrhWarehouses(WarehouseMapper.toEntities(address.getWarehouses(), true));
         }
         return adrAddress;
     }

@@ -27,14 +27,12 @@ public class Transport implements Serializable {
     private String variable8;
     private String variable9;
     private String variable10;
-    private com.sinno.ems.dto.Contact contact;
+    private com.bagile.tms.dto.Contact contact;
     private BigDecimal siret;
     private Date creationDate;
     private String description;
     private Address address;
     private Boolean active;
-    private Set<SaleOrder> saleOrders;
-    private Set<Account> accounts;
 
     private Set<SaleOrderLine> saleOrderLines;
 
@@ -150,11 +148,11 @@ public class Transport implements Serializable {
         this.variable10 = variable10;
     }
 
-    public com.sinno.ems.dto.Contact getContact() {
+    public com.bagile.tms.dto.Contact getContact() {
         return contact;
     }
 
-    public void setContact(com.sinno.ems.dto.Contact contact) {
+    public void setContact(com.bagile.tms.dto.Contact contact) {
         this.contact = contact;
     }
 
@@ -182,24 +180,6 @@ public class Transport implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public Set<SaleOrder> getSaleOrders() {
-        return saleOrders;
-    }
-
-    public void setSaleOrders(Set<SaleOrder> saleOrders) {
-        this.saleOrders = saleOrders;
-    }
-
-    public Set<Account> getAccounts() {
-        return accounts;
-    }
-
-    public void setAccounts(Set<Account> accounts) {
-        this.accounts = accounts;
-    }
-
-
 
     public Set<SaleOrderLine> getSaleOrderLines() {
         return saleOrderLines;

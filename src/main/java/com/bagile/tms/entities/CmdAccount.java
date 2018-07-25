@@ -32,7 +32,7 @@ public class CmdAccount implements Serializable {
     private AdrAddress adrAddressByCmdAccountDeliveryAddressId;
     private TrpTransport trpTransport;
     @NotNull
-    private com.sinno.ems.entities.PrmContact prmContact;
+    private PrmContact prmContact;
     @NotNull
     @Size(max = 30)
     private String cmdAccountCode;
@@ -101,11 +101,11 @@ public class CmdAccount implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY )
     @JoinColumn(name = "cmd_accountcontactid", nullable = false)
-    public com.sinno.ems.entities.PrmContact getPrmContact() {
+    public PrmContact getPrmContact() {
         return prmContact;
     }
 
-    public void setPrmContact(com.sinno.ems.entities.PrmContact prmContact) {
+    public void setPrmContact(PrmContact prmContact) {
         this.prmContact = prmContact;
     }
 

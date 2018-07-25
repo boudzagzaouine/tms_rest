@@ -1,14 +1,14 @@
 package com.bagile.tms.repositories;
 
-import com.sinno.ems.entities.PdtProduct;
-import com.sinno.ems.entities.PdtProductPack;
-import com.sinno.ems.entities.PdtUom;
+import com.bagile.tms.entities.PdtProduct;
+import com.bagile.tms.entities.PdtProductPack;
+import com.bagile.tms.entities.PdtUom;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 import java.util.List;
 
 public interface ProductPackRepository extends JpaRepository<PdtProductPack, Long>,
-		QueryDslPredicateExecutor<PdtProductPack> {
+		QuerydslPredicateExecutor<PdtProductPack> {
 	public List<PdtProductPack> findByPdtUomAndPdtProduct(PdtUom pdtUom, PdtProduct pdtProduct);
 }

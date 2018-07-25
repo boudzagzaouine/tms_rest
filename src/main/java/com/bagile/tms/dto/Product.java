@@ -50,7 +50,6 @@ public class Product implements Serializable {
     private BigDecimal conditionningPrice;
     private Long paletConditionning;
     private Product product;
-    private BlockType blockType;
     private Set<Image> images;
     private Boolean dlcControl;
     private Boolean lotControl;
@@ -66,12 +65,10 @@ public class Product implements Serializable {
     private BigDecimal samplingPercentage;
     private Boolean ReqRec;
     private Boolean ReqExp;
-    private Boolean dimension;
     private Set<Product> products;
     private Set<Stock> stocks;
     private Set<Alias> aliases;
     private Set<SaleOrderLine> saleOrderLines;
-    private Set<SaleOrderStock> saleOrderStocks;
     private Set<Product> products_1;
     private Set<ProductPack> productPacks;
     private Uom pickingUom;
@@ -79,7 +76,6 @@ public class Product implements Serializable {
     private BigDecimal capacity;
     private Boolean isReception;
     private ProductPack productPack;
-    private Boolean warrantyManagement;
     private BigDecimal discount;
     private BigDecimal soldPrice;
     private ProductForm productForm;
@@ -91,9 +87,7 @@ public class Product implements Serializable {
     private BigDecimal quantityToReceive;
     private BigDecimal coefficient;
     private BigDecimal productionCost;
-    private Set<ProductDimension> productDimensions=new HashSet<ProductDimension>(0);
     private Long version;
-    private Process process;
 /*    private Boolean finalProduct;
     private Boolean kitComponent;
     private Boolean rawProduct;
@@ -369,15 +363,7 @@ public class Product implements Serializable {
         this.product = product;
     }
 
-    public BlockType getBlockType() {
-        return blockType;
-    }
-
-    public void setBlockType(BlockType blockType) {
-        this.blockType = blockType;
-    }
-
-    public Set<Image> getImages() {
+      public Set<Image> getImages() {
         return images;
     }
 
@@ -495,16 +481,6 @@ public class Product implements Serializable {
     public void setSaleOrderLines(Set<SaleOrderLine> saleOrderLines) {
         this.saleOrderLines = saleOrderLines;
     }
-
-
-    public Set<SaleOrderStock> getSaleOrderStocks() {
-        return saleOrderStocks;
-    }
-
-    public void setSaleOrderStocks(Set<SaleOrderStock> saleOrderStocks) {
-        this.saleOrderStocks = saleOrderStocks;
-    }
-
 
     public Set<Product> getProducts_1() {
         return products_1;
@@ -645,13 +621,6 @@ public class Product implements Serializable {
         this.weightControl = weightControl;
     }
 
-    public Boolean getWarrantyManagement() {
-        return warrantyManagement;
-    }
-
-    public void setWarrantyManagement(Boolean warrantyManagement) {
-        this.warrantyManagement = warrantyManagement;
-    }
 
     public BigDecimal getDiscount() {
         return discount;
@@ -727,21 +696,7 @@ public class Product implements Serializable {
         this.productForm = productForm;
     }
 
-    public Boolean getDimension() {
-        return dimension;
-    }
 
-    public void setDimension(Boolean dimension) {
-        this.dimension = dimension;
-    }
-
-    public Set<ProductDimension> getProductDimensions() {
-        return productDimensions;
-    }
-
-    public void setProductDimensions(Set<ProductDimension> productDimensions) {
-        this.productDimensions = productDimensions;
-    }
 
     public BigDecimal getCoefficient() {
         return coefficient;
@@ -766,13 +721,7 @@ public class Product implements Serializable {
         this.version = version;
     }
 
-    public Process getProcess() {
-        return process;
-    }
 
-    public void setProcess(Process process) {
-        this.process = process;
-    }
 
     @Override
     public boolean equals(Object object) {

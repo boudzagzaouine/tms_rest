@@ -1,20 +1,20 @@
 package com.bagile.tms.services.impl;
 
 import com.google.common.collect.Lists;
-import com.sinno.ems.dto.*;
-import com.sinno.ems.entities.*;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.exception.WarehouseException;
-import com.sinno.ems.export.ProductExport;
-import com.sinno.ems.mapper.*;
-import com.sinno.ems.mapperWms.MapperProduct;
-import com.sinno.ems.repositories.*;
-import com.sinno.ems.service.ProductPackService;
-import com.sinno.ems.service.ProductService;
-import com.sinno.ems.util.EmsDate;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.dto.*;
+import com.bagile.tms.entities.*;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.exceptions.WarehouseException;
+import com.bagile.tms.export.ProductExport;
+import com.bagile.tms.mapper.*;
+import com.bagile.tms.mapperWms.MapperProduct;
+import com.bagile.tms.repositories.*;
+import com.bagile.tms.services.ProductPackService;
+import com.bagile.tms.services.ProductService;
+import com.bagile.tms.util.EmsDate;
+import com.bagile.tms.util.Search;
 import com.sinno.wms.crud.convertbasic.ConvertManagerProduct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -173,7 +173,7 @@ public class ProductServiceImpl implements ProductService {
                         && pdtPack.getUom().getId() == product
                         .getUomByProductUomBase().getId()) {
                     long id = pdtPack.getId();
-                    pdtPack = ProductPackMapper.toDto(productPackRepository.findOne(id), false);
+                    pdtPack = ProductPackMapper.toDto(productPackRepository.findById(id).get(), false);
                     pdtPack = packFromProduct(product, pdtPack.getAlias(), mode);
                     pdtPack.setId(id);
                     LOGGER.info("save ProductPack");
@@ -240,7 +240,7 @@ public class ProductServiceImpl implements ProductService {
             //  String date = new SimpleDateFormat("yyyyMMddHHmmssS").format(Calendar.getInstance().getTime());
             path = path.replace("\\", File.separator);
             String langue = "FR";
-            com.sinno.wms.crud.modelbasic.products.Product product = com.sinno.ems.mapperWms.MapperProduct.convertToWmsDto(pro);
+            com.sinno.wms.crud.modelbasic.products.Product product = com.bagile.tms.mapperWms.MapperProduct.convertToWmsDto(pro);
             ConvertManagerProduct.writeFileProduct(path + File.separator + "IPR01" + dateFormat.format(new Date()) + ".xls", langue, product);
         } catch (Exception e) {
             e.printStackTrace();
@@ -256,7 +256,7 @@ public class ProductServiceImpl implements ProductService {
             String langue = "FR";
             List<com.sinno.wms.crud.modelbasic.products.Product> productList = new ArrayList<>();
             for (Product pro : products) {
-                productList.add(com.sinno.ems.mapperWms.MapperProduct.convertToWmsDto(pro));
+                productList.add(com.bagile.tms.mapperWms.MapperProduct.convertToWmsDto(pro));
             }
             ConvertManagerProduct.writeFileProduct(path + File.separator + "IPR01" + dateFormat.format(new Date()) + ".xls", langue, productList);
         } catch (Exception e) {
@@ -293,12 +293,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Boolean isExist(Long id) {
-        return productRepository.exists(id);
+        return productRepository.existsById(id);
     }
 
     @Override
     public Product findById(Long id) throws IdNotFound {
-        Product product =setQuantities( ProductMapper.toDto(productRepository.findOne(id),
+        Product product =setQuantities( ProductMapper.toDto(productRepository.findById(id).get(),
                 false));
         if (null != product) {
             return product;
@@ -352,7 +352,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void delete(Long id) throws WarehouseException {
         LOGGER.info("delete Product");
-        PdtProduct pdtProduct = productRepository.findOne(id);
+        PdtProduct pdtProduct = productRepository.findById(id).get();
         if (checkBeforeDelete(id)) {
             pdtProduct.setPdtProductIsActive(false);
             productRepository.saveAndFlush(pdtProduct);

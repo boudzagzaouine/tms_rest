@@ -1,11 +1,11 @@
-package com.sinno.ems.controller;
+package com.bagile.tms.controller;
 
-import com.sinno.ems.dto.Contact;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.service.ContactService;
-import com.sinno.ems.service.UserDetailsServiceWarehouse;
+import com.bagile.tms.dto.Contact;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.services.ContactService;
+import com.bagile.tms.services.UserDetailsServiceWarehouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
@@ -45,7 +45,7 @@ public class ContactController {
     @ResponseBody
     public List<Contact> getContacts(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         Sort sort = new Sort(Sort.Direction.DESC, "prmContactUpdateDate");
-        Pageable pageable = new PageRequest(page, size, sort);
+        Pageable pageable = PageRequest.of(page, size, sort);
         if (null == userDetailsService.getOwners()) {
             return null;
         }
@@ -108,7 +108,7 @@ public class ContactController {
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<Contact> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Pageable pageable = new PageRequest(page, size);
+        Pageable pageable = PageRequest.of(page, size);
         if (null == userDetailsService.getOwners()) {
             return null;
         }
@@ -147,10 +147,4 @@ public class ContactController {
         contactService.delete(id);
     }
 
-    @PreAuthorize("hasRole('CONTACT_CREATE')")
-    @RequestMapping(method = RequestMethod.GET, value = "/nextval")
-    @ResponseBody
-    public String nextVal() {
-        return contactService.getNextVal();
-    }
 }

@@ -1,16 +1,16 @@
 package com.bagile.tms.services.impl;
 
-import com.sinno.ems.dto.Uom;
-import com.sinno.ems.entities.PdtUom;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.UomMapper;
-import com.sinno.ems.repositories.UomRepository;
-import com.sinno.ems.service.ProductService;
-import com.sinno.ems.service.UomService;
-import com.sinno.ems.util.EmsDate;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.dto.Uom;
+import com.bagile.tms.entities.PdtUom;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.UomMapper;
+import com.bagile.tms.repositories.UomRepository;
+import com.bagile.tms.services.ProductService;
+import com.bagile.tms.services.UomService;
+import com.bagile.tms.util.EmsDate;
+import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,12 +46,12 @@ public class UomServiceImpl implements UomService {
 
     @Override
     public Boolean isExist(Long id) {
-        return uomRepository.exists(id);
+        return uomRepository.existsById(id);
     }
 
     @Override
     public Uom findById(Long id) throws IdNotFound {
-        Uom uom = UomMapper.toDto(uomRepository.findOne(id), false);
+        Uom uom = UomMapper.toDto(uomRepository.findById(id).get(), false);
         if (null != uom) {
             return uom;
         } else {
@@ -79,7 +79,7 @@ public class UomServiceImpl implements UomService {
     @Override
     public void delete(Long id) {
         LOGGER.info("delete UOM");
-        uomRepository.delete(id);
+        uomRepository.deleteById(id);
     }
 
     @Override

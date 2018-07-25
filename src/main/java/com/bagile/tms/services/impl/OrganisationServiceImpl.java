@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.sinno.ems.dto.Organisation;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.OrganisationMapper;
-import com.sinno.ems.repositories.OrganisationRepository;
-import com.sinno.ems.service.AddressService;
-import com.sinno.ems.service.OrganisationService;
+import com.bagile.tms.dto.Organisation;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.OrganisationMapper;
+import com.bagile.tms.repositories.OrganisationRepository;
+import com.bagile.tms.services.AddressService;
+import com.bagile.tms.services.OrganisationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class OrganisationServiceImpl implements OrganisationService {
 
     @Override
     public Organisation findById(Long id) throws IdNotFound {
-        Organisation organisation = OrganisationMapper.toDto(organisationRepository.findOne(id), false);
+        Organisation organisation = OrganisationMapper.toDto(organisationRepository.findById(id).get(), false);
         if (null != organisation) {
             return organisation;
         } else {

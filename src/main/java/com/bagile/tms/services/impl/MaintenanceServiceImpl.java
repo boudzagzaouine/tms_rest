@@ -1,14 +1,14 @@
 package com.bagile.tms.services.impl;
 
-import com.sinno.ems.dto.MaintenancePlan;
-import com.sinno.ems.entities.TmsMaintenancePlan;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.MaintenancePlanMapper;
-import com.sinno.ems.repositories.MaintenancePlanRepository;
-import com.sinno.ems.service.MaintenanceService;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.dto.MaintenancePlan;
+import com.bagile.tms.entities.TmsMaintenancePlan;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.MaintenancePlanMapper;
+import com.bagile.tms.repositories.MaintenancePlanRepository;
+import com.bagile.tms.services.MaintenanceService;
+import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +38,12 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 
     @Override
     public Boolean isExist(Long id) {
-        return maintenancePlanRepository.exists(id);
+        return maintenancePlanRepository.existsById(id);
     }
 
     @Override
     public MaintenancePlan findById(Long id) throws IdNotFound {
-        MaintenancePlan maintenancePlan = MaintenancePlanMapper.toDto(maintenancePlanRepository.findOne(id), false);
+        MaintenancePlan maintenancePlan = MaintenancePlanMapper.toDto(maintenancePlanRepository.findById(id).get().get(), false);
         if (null != maintenancePlan) {
             return maintenancePlan;
         } else {
@@ -67,7 +67,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     @Override
     public void delete(Long id) {
         LOGGER.info("save Maintenance");
-        maintenancePlanRepository.delete(id);
+        maintenancePlanRepository.deleteById(id);
     }
 
     @Override

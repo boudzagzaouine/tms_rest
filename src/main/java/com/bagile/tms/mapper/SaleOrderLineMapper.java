@@ -3,9 +3,8 @@
  */
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.SaleOrderLine;
-import com.sinno.ems.entities.CmdSaleOrderLine;
-import com.sinno.ems.util.EmsDate;
+import com.bagile.tms.dto.SaleOrderLine;
+import com.bagile.tms.entities.CmdSaleOrderLine;
 
 import java.util.*;
 
@@ -80,14 +79,11 @@ public class SaleOrderLineMapper {
         saleOrderLine.setCreationDate(cmdSaleOrderLine.getCmdSaleOrderLineCreationDate());
         saleOrderLine.setDate(cmdSaleOrderLine.getCmdSaleOrderLineDate());
         saleOrderLine.setDescription(cmdSaleOrderLine.getCmdSaleOrderLineDescription());
-        saleOrderLine.setDlc(cmdSaleOrderLine.getCmdSaleOrderLineDlc());
-        saleOrderLine.setDluo(cmdSaleOrderLine.getCmdSaleOrderLineDluo());
+
         saleOrderLine.setId(cmdSaleOrderLine.getCmdSaleOrderLineId());
         saleOrderLine.setLineNumber(cmdSaleOrderLine.getCmdSaleOrderLineLineNumber());
-        saleOrderLine.setLot(cmdSaleOrderLine.getCmdSaleOrderLineLot());
         saleOrderLine.setQuantity(cmdSaleOrderLine.getCmdSaleOrderLineQuantity());
         saleOrderLine.setQuantityServed(cmdSaleOrderLine.getCmdSaleOrderLineQuantityServed());
-        saleOrderLine.setSerialNo(cmdSaleOrderLine.getCmdSaleOrderLineSerialNo());
         saleOrderLine.setUpdateDate(cmdSaleOrderLine.getCmdSaleOrderLineUpdateDate());
         saleOrderLine.setVariable1(cmdSaleOrderLine.getCmdSaleOrderLineVariable1());
         saleOrderLine.setVariable2(cmdSaleOrderLine.getCmdSaleOrderLineVariable2());
@@ -100,21 +96,8 @@ public class SaleOrderLineMapper {
         saleOrderLine.setVariable9(cmdSaleOrderLine.getCmdSaleOrderLineVariable9());
         saleOrderLine.setVariable10(cmdSaleOrderLine.getCmdSaleOrderLineVariable10());
         saleOrderLine.setComment(cmdSaleOrderLine.getCmdSaleOrderLineComment());
-        saleOrderLine.setQuality(cmdSaleOrderLine.getCmdSaleOrderLineQuality());
-        saleOrderLine.setWeight(cmdSaleOrderLine.getCmdSaleOrderLineWeight());
         saleOrderLine.setContainerCode(cmdSaleOrderLine.getCmdSaleOrderLineContainerCode());
-        saleOrderLine.setTotalPriceHT(cmdSaleOrderLine.getCmdSaleOrderLineTotalPriceHT());
-        saleOrderLine.setTotalPriceTTC(cmdSaleOrderLine.getCmdSaleOrderLineTotalPriceTTC());
-        saleOrderLine.setDiscount(cmdSaleOrderLine.getCmdSaleOrderLineDiscount());
-        saleOrderLine.setSalePrice(cmdSaleOrderLine.getCmdSaleOrderLineSalePrice());
         if (!lazy) {
-            saleOrderLine.setProductDimension(ProductDimensionMapper.toDto(cmdSaleOrderLine.getPdtProductDimension(),true));
-
-            saleOrderLine.setVat(VatMapper.toDto(cmdSaleOrderLine.getPrmVat(), true));
-            saleOrderLine.setContainer(ContainerMapper.toDto(cmdSaleOrderLine.getStkContainer(), true));
-            saleOrderLine.setBlockType(BlockTypeMapper.toDto(cmdSaleOrderLine.getPrmBlockType(), true));
-            saleOrderLine.setColor(ColorMapper.toDto(cmdSaleOrderLine.getPrmColor(), true));
-            saleOrderLine.setLocation(LocationMapper.toDto(cmdSaleOrderLine.getLocLocation(), true));
             saleOrderLine.setOrderStatus(OrderStatusMapper.toDto(cmdSaleOrderLine.getPrmOrderStatus(), true));
             saleOrderLine.setOwner(OwnerMapper.toDto(cmdSaleOrderLine.getOwnOwner(), true));
             saleOrderLine.setProduct(ProductMapper.toDto(cmdSaleOrderLine.getPdtProduct(), true));
@@ -125,9 +108,6 @@ public class SaleOrderLineMapper {
             saleOrderLine.setTransport(TransportMapper.toDto(cmdSaleOrderLine.getTrpTransport(), true));
             saleOrderLine.setUom(UomMapper.toDto(cmdSaleOrderLine.getPdtUom(), true));
             saleOrderLine.setWarehouse(WarehouseMapper.toDto(cmdSaleOrderLine.getWrhWarehouse(), true));
-            saleOrderLine.setDevisLine(DevisLineMapper.toDto(cmdSaleOrderLine.getCmdDevisLine(), true));
-            saleOrderLine.setSaleOrderLine(toDto(cmdSaleOrderLine.getCmdSaleOrderLine(), true));
-            saleOrderLine.setCommentLines(toDtos(cmdSaleOrderLine.getCmdSaleOrderCommentLines(), true));
         }
         return saleOrderLine;
     }
@@ -140,14 +120,10 @@ public class SaleOrderLineMapper {
         cmdSaleOrderLine.setCmdSaleOrderLineCreationDate(saleOrderLine.getCreationDate());
         cmdSaleOrderLine.setCmdSaleOrderLineDate(saleOrderLine.getDate());
         cmdSaleOrderLine.setCmdSaleOrderLineDescription(saleOrderLine.getDescription());
-        cmdSaleOrderLine.setCmdSaleOrderLineDlc(saleOrderLine.getDlc());
-        cmdSaleOrderLine.setCmdSaleOrderLineDluo(saleOrderLine.getDluo());
         cmdSaleOrderLine.setCmdSaleOrderLineId(saleOrderLine.getId());
         cmdSaleOrderLine.setCmdSaleOrderLineLineNumber(saleOrderLine.getLineNumber());
-        cmdSaleOrderLine.setCmdSaleOrderLineLot(saleOrderLine.getLot());
         cmdSaleOrderLine.setCmdSaleOrderLineQuantity(saleOrderLine.getQuantity());
         cmdSaleOrderLine.setCmdSaleOrderLineQuantityServed(saleOrderLine.getQuantityServed());
-        cmdSaleOrderLine.setCmdSaleOrderLineSerialNo(saleOrderLine.getSerialNo());
         cmdSaleOrderLine.setCmdSaleOrderLineUpdateDate(saleOrderLine.getUpdateDate());
         cmdSaleOrderLine.setCmdSaleOrderLineVariable1(saleOrderLine.getVariable1());
         cmdSaleOrderLine.setCmdSaleOrderLineVariable2(saleOrderLine.getVariable2());
@@ -160,35 +136,19 @@ public class SaleOrderLineMapper {
         cmdSaleOrderLine.setCmdSaleOrderLineVariable9(saleOrderLine.getVariable9());
         cmdSaleOrderLine.setCmdSaleOrderLineVariable10(saleOrderLine.getVariable10());
         cmdSaleOrderLine.setCmdSaleOrderLineComment(saleOrderLine.getComment());
-        cmdSaleOrderLine.setCmdSaleOrderLineQuality(saleOrderLine.getQuality());
-        cmdSaleOrderLine.setCmdSaleOrderLineWeight(saleOrderLine.getWeight());
         cmdSaleOrderLine.setCmdSaleOrderLineContainerCode(saleOrderLine.getContainerCode());
-        cmdSaleOrderLine.setCmdSaleOrderLineTotalPriceHT(saleOrderLine.getTotalPriceHT());
-        cmdSaleOrderLine.setCmdSaleOrderLineTotalPriceTTC(saleOrderLine.getTotalPriceTTC());
-        cmdSaleOrderLine.setCmdSaleOrderLineDiscount(saleOrderLine.getDiscount());
-        cmdSaleOrderLine.setCmdSaleOrderLineSalePrice(saleOrderLine.getSalePrice());
         if (!lazy) {
-            cmdSaleOrderLine.setPdtProductDimension(ProductDimensionMapper.toEntity(saleOrderLine.getProductDimension(),true));
 
-            cmdSaleOrderLine.setPrmVat(VatMapper.toEntity(saleOrderLine.getVat(), true));
-            cmdSaleOrderLine.setStkContainer(ContainerMapper.toEntity(saleOrderLine.getContainer(), true));
             cmdSaleOrderLine.setCmdSaleOrder(SaleOrderMapper.toEntity(saleOrderLine.getSaleOrder(), true));
 //            cmdSaleOrderLine.setCmdSaleOrderStockArcs(SaleOrderStockArcMapper.toEntities(saleOrderLine.getSaleOrderStockArcs(), true));
 //            cmdSaleOrderLine.setCmdSaleOrderStocks(SaleOrderStockMapper.toEntities(saleOrderLine.getSaleOrderStocks(), true));
-            cmdSaleOrderLine.setLocLocation(LocationMapper.toEntity(saleOrderLine.getLocation(), true));
             cmdSaleOrderLine.setOwnOwner(OwnerMapper.toEntity(saleOrderLine.getOwner(), true));
             cmdSaleOrderLine.setPdtProduct(ProductMapper.toEntity(saleOrderLine.getProduct(), true));
             cmdSaleOrderLine.setPdtUom(UomMapper.toEntity(saleOrderLine.getUom(), true));
-            cmdSaleOrderLine.setPrmBlockType(BlockTypeMapper.toEntity(saleOrderLine.getBlockType(), true));
-            cmdSaleOrderLine.setPrmColor(ColorMapper.toEntity(saleOrderLine.getColor(), true));
             cmdSaleOrderLine.setPrmOrderStatus(OrderStatusMapper.toEntity(saleOrderLine.getOrderStatus(), true));
 //            cmdSaleOrderLine.setStkStockReserveds(StockReservedMapper.toEntities(saleOrderLine.getStockReserveds(), true));
             cmdSaleOrderLine.setTrpTransport(TransportMapper.toEntity(saleOrderLine.getTransport(), true));
             cmdSaleOrderLine.setWrhWarehouse(WarehouseMapper.toEntity(saleOrderLine.getWarehouse(), true));
-            cmdSaleOrderLine.setCmdDevisLine(DevisLineMapper.toEntity(saleOrderLine.getDevisLine(), true));
-            cmdSaleOrderLine.setCmdSaleOrderLine(toEntity(saleOrderLine.getSaleOrderLine(), true));
-            cmdSaleOrderLine.setCmdSaleOrderCommentLines(toEntities(saleOrderLine.getCommentLines(), true));
-            oneToMany(cmdSaleOrderLine);
         }
         return cmdSaleOrderLine;
     }
@@ -237,17 +197,6 @@ public class SaleOrderLineMapper {
         return saleOrderLines;
     }
 
-    public static void oneToMany(CmdSaleOrderLine saleOrderLine) {
-        if (null != saleOrderLine.getCmdSaleOrderCommentLines()) {
-            saleOrderLine.getCmdSaleOrderCommentLines().stream().forEach(sl -> {
-                sl.setCmdSaleOrderLine(saleOrderLine);
-                sl.setCmdSaleOrderLineUpdateDate(EmsDate.getDateNow());
-                if (0 >= sl.getCmdSaleOrderLineId()) {
-                    sl.setCmdSaleOrderLineCreationDate(EmsDate.getDateNow());
-                }
-            });
-        }
-    }
 
 
 }

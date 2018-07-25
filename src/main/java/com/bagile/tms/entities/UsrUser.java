@@ -57,50 +57,13 @@ public class UsrUser implements java.io.Serializable {
     @NotNull
     private String usrUserEmail;
     private Long usrUserType;
-    private Boolean usrUserCommercial;
-    private UsrAgency usrAgency;
     private String userUserColumns;
     private Set<UsrUserActions> usrUserActions = new HashSet<UsrUserActions>(0);
-    private Set<UsrUserAgency> usrUserAgencies = new HashSet<>(0);
 
 
     public UsrUser() {
     }
 
-    public UsrUser(long usrUserId, OwnOwner ownOwner,
-                   UsrUserGroup usrUsergroup, String usrUsercode,
-                   String usrUserpassword) {
-        this.usrUserId = usrUserId;
-        this.ownOwner = ownOwner;
-        this.usrUserGroup = usrUsergroup;
-        this.usrUserCode = usrUsercode;
-        this.usrUserPassword = usrUserpassword;
-    }
-
-    public UsrUser(long usrUserId, OwnOwner ownOwner,
-                   UsrUserGroup usrUsergroup, String usrUsercode,
-                   String usrUserpassword, String usrUsername, String usrUsersurname,
-                   Date usrUserdateofbirth, String usrUsertel, String usrUserpassport,
-                   String usrUsercomment, Boolean usrUserisactive,
-                   Date usrUsercreationdate, Date usrUserupdatedate,
-                   String usrUserEmail, Set<UsrUserActions> usrUseractionses) {
-        this.usrUserId = usrUserId;
-        this.ownOwner = ownOwner;
-        this.usrUserGroup = usrUsergroup;
-        this.usrUserCode = usrUsercode;
-        this.usrUserPassword = usrUserpassword;
-        this.usrUserName = usrUsername;
-        this.usrUserSurname = usrUsersurname;
-        this.usrUserDateOfBirth = usrUserdateofbirth;
-        this.usrUserTel = usrUsertel;
-        this.usrUserPassport = usrUserpassport;
-        this.usrUserComment = usrUsercomment;
-        this.usrUserIsActive = usrUserisactive;
-        this.usrUserCreationDate = usrUsercreationdate;
-        this.usrUserUpdateDate = usrUserupdatedate;
-        this.setUsrUserEmail(usrUserEmail);
-        this.usrUserActions = usrUseractionses;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -270,31 +233,6 @@ public class UsrUser implements java.io.Serializable {
         this.usrUserType = usrUserType;
     }
 
-    @Column(name = "usr_useriscommercial")
-    public Boolean getUsrUserCommercial() {
-        return usrUserCommercial;
-    }
-
-    public void setUsrUserCommercial(Boolean usrUserCommercial) {
-        this.usrUserCommercial = usrUserCommercial;
-    }
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usrUser")
-    public Set<UsrUserAgency> getUsrUserAgencies() {
-        return usrUserAgencies;
-    }
-
-    public void setUsrUserAgencies(Set<UsrUserAgency> usrUserAgencies) {
-        this.usrUserAgencies = usrUserAgencies;
-    }
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="usr_useragencyid")
-    public UsrAgency getUsrAgency() {
-        return usrAgency;
-    }
-
-    public void setUsrAgency(UsrAgency usrAgency) {
-        this.usrAgency = usrAgency;
-    }
 
     @Column(name = "usr_usercolumns", length = Integer.MAX_VALUE - 10)
     public String getUserUserColumns() {

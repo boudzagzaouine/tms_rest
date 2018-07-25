@@ -1,13 +1,13 @@
 package com.bagile.tms.services.impl;
 
-import com.sinno.ems.entities.UsrUserGroupWarehouse;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.UserGroupWarehouseMapper;
-import com.sinno.ems.repositories.UserGroupWarehouseRepository;
-import com.sinno.ems.service.UserGroupWarehouseService;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.entities.UsrUserGroupWarehouse;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.UserGroupWarehouseMapper;
+import com.bagile.tms.repositories.UserGroupWarehouseRepository;
+import com.bagile.tms.services.UserGroupWarehouseService;
+import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,12 +37,12 @@ public class UserGroupWarehouseServiceImpl implements UserGroupWarehouseService 
 
     @Override
     public Boolean isExist(Long id) {
-        return userGroupWarehouseRepository.exists(id);
+        return userGroupWarehouseRepository.existsById(id);
     }
 
     @Override
     public UserGroupWarehouse findById(Long id) throws IdNotFound {
-        UserGroupWarehouse userGroupWarehouse = UserGroupWarehouseMapper.toDto(userGroupWarehouseRepository.findOne(id), false);
+        UserGroupWarehouse userGroupWarehouse = UserGroupWarehouseMapper.toDto(userGroupWarehouseRepository.findById(id).get(), false);
         if (null != userGroupWarehouse) {
             return userGroupWarehouse;
         } else {
@@ -68,7 +68,7 @@ public class UserGroupWarehouseServiceImpl implements UserGroupWarehouseService 
     @Override
     public void delete(Long id) {
         LOGGER.info("delete UserGroupWarehouse");
-        userGroupWarehouseRepository.delete(id);
+        userGroupWarehouseRepository.deleteById(id);
     }
 
     @Override

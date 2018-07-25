@@ -1,7 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.Image;
-import com.sinno.ems.entities.PrmImage;
+import com.bagile.tms.dto.Image;
+import com.bagile.tms.entities.PrmImage;
 
 import java.util.*;
 

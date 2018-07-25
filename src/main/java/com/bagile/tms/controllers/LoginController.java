@@ -1,7 +1,7 @@
 package com.bagile.tms.controllers;
 
-import com.sinno.ems.dto.User;
-import com.sinno.ems.service.UserService;
+import com.bagile.tms.dto.User;
+import com.bagile.tms.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

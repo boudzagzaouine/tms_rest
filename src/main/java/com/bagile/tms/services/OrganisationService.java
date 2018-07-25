@@ -1,7 +1,7 @@
 package com.bagile.tms.services;
 
-import com.sinno.ems.dto.Organisation;
-import com.sinno.ems.exception.IdNotFound;
+import com.bagile.tms.dto.Organisation;
+import com.bagile.tms.exceptions.IdNotFound;
 
 /**
  * Created by Enissay on 14/04/2016.

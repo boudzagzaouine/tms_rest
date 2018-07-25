@@ -18,7 +18,7 @@ public class Driver implements Serializable {
     private Set<Badge> badges;
     private Address address;
     private DriverSituation driverSituation;
-    private com.sinno.ems.dto.Contact contact;
+    private com.bagile.tms.dto.Contact contact;
     private Date dateCreation;
     private Date dateUpDate;
     private User creationUser;
@@ -130,11 +130,11 @@ public class Driver implements Serializable {
         this.driverBadges = driverBadges;
     }
 
-    public com.sinno.ems.dto.Contact getContact() {
+    public com.bagile.tms.dto.Contact getContact() {
         return contact;
     }
 
-    public void setContact(com.sinno.ems.dto.Contact contact) {
+    public void setContact(com.bagile.tms.dto.Contact contact) {
         this.contact = contact;
     }
 

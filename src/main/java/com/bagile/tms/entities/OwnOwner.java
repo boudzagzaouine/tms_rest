@@ -57,19 +57,6 @@ public class OwnOwner implements java.io.Serializable {
     @Size(max = 255)
     private String ownOwnerVariable10;
 
-    @NotNull
-    @Max(999999999)
-    private Long ownOwnerTypeInvoice;
-    @NotNull
-    @Size(max = 100)
-    private String ownOwnerInvoiceTerm;
-    @NotNull
-    @Size(max = 50)
-    private String ownOwnerCurrency;
-    @NotNull
-    private Boolean ownOwnerRelevantVat;
-    @Max(999999999)
-    private BigDecimal ownOwnerVat;
 
     private OrgOrganisation orgOrganisation;
     @NotNull
@@ -83,7 +70,6 @@ public class OwnOwner implements java.io.Serializable {
     private String ownOwnerPrimaryTel;
     private String ownOwnerSecondaryTel;
     @NotNull
-    private Date ownOwnerFirstInvoiceDate;
     private byte[] ownOwnerImage;
 
     public OwnOwner() {
@@ -108,49 +94,7 @@ public class OwnOwner implements java.io.Serializable {
         this.ownOwnerId = ownOwnerId;
     }
 
-    public void setOwnOwnerTypeInvoice(Long ownOwnerTypeInvoice) {
-        this.ownOwnerTypeInvoice = ownOwnerTypeInvoice;
-    }
 
-    @Column(name = "own_ownertypeinvoice", nullable = false, precision = 10, scale = 0)
-    public Long getOwnOwnerTypeInvoice() {
-        return ownOwnerTypeInvoice;
-    }
-
-    public void setOwnOwnerInvoiceTerm(String ownOwnerInvoiceTerm) {
-        this.ownOwnerInvoiceTerm = ownOwnerInvoiceTerm;
-    }
-
-    @Column(name = "own_ownerinvoiceterm", nullable = false, length = 100)
-    public String getOwnOwnerInvoiceTerm() {
-        return ownOwnerInvoiceTerm;
-    }
-
-    @Column(name = "own_ownervat", precision = 12, scale = 5)
-    public BigDecimal getOwnOwnerVat() {
-        return ownOwnerVat;
-    }
-
-    public void setOwnOwnerCurrency(String ownOwnerCurrency) {
-        this.ownOwnerCurrency = ownOwnerCurrency;
-    }
-    @Column(name = "own_ownercurrency", nullable = false, length = 50)
-    public String getOwnOwnerCurrency() {
-        return ownOwnerCurrency;
-    }
-
-    public void setOwnOwnerRelevantVat(Boolean ownOwnerRelevantVat) {
-        this.ownOwnerRelevantVat = ownOwnerRelevantVat;
-    }
-
-    @Column(name = "own_ownerrelevantvat")
-    public Boolean getOwnOwnerRelevantVat() {
-        return ownOwnerRelevantVat;
-    }
-
-    public void setOwnOwnerVat(BigDecimal ownOwnerVat) {
-        this.ownOwnerVat = ownOwnerVat;
-    }
 
     @Column(name = "own_ownercode", unique = true, nullable = false, length = 30)
 
@@ -371,15 +315,6 @@ public class OwnOwner implements java.io.Serializable {
 
     public void setOwnOwnerSecondaryTel(String ownOwnerSecondaryTel) {
         this.ownOwnerSecondaryTel = ownOwnerSecondaryTel;
-    }
-    @Column(name = "own_ownerfirstinvoicedate",nullable = false)
-
-    public Date getOwnOwnerFirstInvoiceDate() {
-        return ownOwnerFirstInvoiceDate;
-    }
-
-    public void setOwnOwnerFirstInvoiceDate(Date ownOwnerFirstInvoiceDate) {
-        this.ownOwnerFirstInvoiceDate = ownOwnerFirstInvoiceDate;
     }
     @Column(name="own_ownerimage", nullable = false)
     public byte[] getOwnOwnerImage() {

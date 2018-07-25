@@ -1,11 +1,11 @@
 package com.bagile.tms.repositories;
 
-import com.sinno.ems.entities.CmdCompany;
+import com.bagile.tms.entities.CmdCompany;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 public interface CompanyRepository extends JpaRepository<CmdCompany, Long>,
-		QueryDslPredicateExecutor<CmdCompany> {
+		QuerydslPredicateExecutor<CmdCompany> {
 
 	public CmdCompany findByCmdCompanyCode(String cmdCompanyCode);
 

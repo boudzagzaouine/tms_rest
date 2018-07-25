@@ -1,14 +1,14 @@
 package com.bagile.tms.services.impl;
 
-import com.sinno.ems.dto.PoliceAssurance;
-import com.sinno.ems.entities.TmsPoliceInsurance;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.PoliceInsuranceMapper;
-import com.sinno.ems.repositories.PoliceInsuranceRepository;
-import com.sinno.ems.service.PoliceInsuranceService;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.dto.PoliceAssurance;
+import com.bagile.tms.entities.TmsPoliceInsurance;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.PoliceInsuranceMapper;
+import com.bagile.tms.repositories.PoliceInsuranceRepository;
+import com.bagile.tms.services.PoliceInsuranceService;
+import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,11 +38,11 @@ public class PoliceInsuranceServiceImpl implements PoliceInsuranceService {
     }
     @Override
     public Boolean isExist(Long id){
-        return policeInsuranceRepository.exists(id);
+        return policeInsuranceRepository.existsById(id);
     }
     @Override
     public PoliceAssurance findById(Long id)throws IdNotFound {
-        PoliceAssurance policeAssurance = PoliceInsuranceMapper.toDto(policeInsuranceRepository.findOne(id),false);
+        PoliceAssurance policeAssurance = PoliceInsuranceMapper.toDto(policeInsuranceRepository.findById(id).get(),false);
         if(null != policeAssurance){
             return policeAssurance;
         }else {
@@ -64,7 +64,7 @@ public class PoliceInsuranceServiceImpl implements PoliceInsuranceService {
     @Override
     public void delete(Long id){
         LOGGER.info("save PoliceAssurance");
-        policeInsuranceRepository.delete(id);
+        policeInsuranceRepository.deleteById(id);
     }
     @Override
     public void delete(PoliceAssurance policeAssurance){

@@ -1,16 +1,15 @@
 package com.bagile.tms.services.impl;
 
-import com.sinno.ems.dto.OrderType;
-import com.sinno.ems.entities.PrmOrderType;
-import com.sinno.ems.exception.AttributesNotFound;
-import com.sinno.ems.exception.ErrorType;
-import com.sinno.ems.exception.IdNotFound;
-import com.sinno.ems.mapper.OrderTypeMapper;
-import com.sinno.ems.repositories.OrderTypeRepository;
-import com.sinno.ems.service.AddressService;
-import com.sinno.ems.service.OrderTypeService;
-import com.sinno.ems.util.EmsDate;
-import com.sinno.ems.util.Search;
+import com.bagile.tms.dto.OrderType;
+import com.bagile.tms.entities.PrmOrderType;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.OrderTypeMapper;
+import com.bagile.tms.repositories.OrderTypeRepository;
+import com.bagile.tms.services.OrderTypeService;
+import com.bagile.tms.util.EmsDate;
+import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,17 +45,22 @@ public class OrderTypeServiceImpl implements OrderTypeService {
 
     @Override
     public Boolean isExist(Long id) {
-        return orderTypeRepository.exists(id);
+        return orderTypeRepository.existsById(id);
     }
 
     @Override
     public OrderType findById(Long id) throws IdNotFound {
-        OrderType orderType = OrderTypeMapper.toDto(orderTypeRepository.findOne(id), false);
+        OrderType orderType = OrderTypeMapper.toDto(orderTypeRepository.findById(id).get(), false);
         if (null != orderType) {
             return orderType;
         } else {
             throw new IdNotFound(id);
         }
+    }
+
+    @Override
+    public OrderType findOne(String search) throws AttributesNotFound, ErrorType {
+        return OrderTypeMapper.toDto(orderTypeRepository.findOne(Search.expression(search, PrmOrderType.class)).get(), false);
     }
 
     @Override
@@ -79,7 +83,7 @@ public class OrderTypeServiceImpl implements OrderTypeService {
     @Override
     public void delete(Long id) {
         LOGGER.info("delete OrderType");
-        orderTypeRepository.delete(id);
+        orderTypeRepository.deleteById(id);
     }
 
     @Override

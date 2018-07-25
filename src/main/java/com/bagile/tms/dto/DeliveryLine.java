@@ -18,28 +18,16 @@ public class DeliveryLine {
     private BigDecimal orderedQuantity;
     private Uom uom;
     private BigDecimal quantityServed;
-    private BlockType blockType;
     private Container container;
     private OrderStatus orderStatus;
-    private String serialNo;
-    private String lot;
-    private Date dlc;
-    private Date dluo;
     private String comment;
     private Owner owner;
     private Date creationDate;
     private Date updateDate;
     private Delivery delivery;
-    private String quality;
-    private BigDecimal weight;
     private String containerCode;
-    private BigDecimal totalPriceHT;
-    private BigDecimal totalPriceTTC;
-    private Vat vat;
-    private BigDecimal discount;
-    private BigDecimal salePrice;
-    private ProductDimension productDimension;
-    private Set<SaleOrderStock> saleOrderStocks;
+    private Warehouse warehouse;
+
 
     public DeliveryLine() {
     }
@@ -109,15 +97,6 @@ public class DeliveryLine {
         this.quantityServed = quantityServed;
     }
 
-    public BlockType getBlockType() {
-        return blockType;
-    }
-
-    public void setBlockType(BlockType blockType) {
-        this.blockType = blockType;
-    }
-
-
     public Container getContainer() {
         return container;
     }
@@ -132,38 +111,6 @@ public class DeliveryLine {
 
     public void setOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
-    }
-
-    public String getSerialNo() {
-        return serialNo;
-    }
-
-    public void setSerialNo(String serialNo) {
-        this.serialNo = serialNo;
-    }
-
-    public String getLot() {
-        return lot;
-    }
-
-    public void setLot(String lot) {
-        this.lot = lot;
-    }
-
-    public Date getDlc() {
-        return dlc;
-    }
-
-    public void setDlc(Date dlc) {
-        this.dlc = dlc;
-    }
-
-    public Date getDluo() {
-        return dluo;
-    }
-
-    public void setDluo(Date dluo) {
-        this.dluo = dluo;
     }
 
     public String getComment() {
@@ -206,22 +153,13 @@ public class DeliveryLine {
         this.delivery = delivery;
     }
 
-    public String getQuality() {
-        return quality;
+    public Warehouse getWarehouse() {
+        return warehouse;
     }
 
-    public void setQuality(String quality) {
-        this.quality = quality;
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
     }
-
-    public BigDecimal getWeight() {
-        return weight;
-    }
-
-    public void setWeight(BigDecimal weight) {
-        this.weight = weight;
-    }
-
 
     public String getContainerCode() {
         return containerCode;
@@ -231,59 +169,4 @@ public class DeliveryLine {
         this.containerCode = containerCode;
     }
 
-    public BigDecimal getTotalPriceHT() {
-        return totalPriceHT;
-    }
-
-    public void setTotalPriceHT(BigDecimal totalPriceHT) {
-        this.totalPriceHT = totalPriceHT;
-    }
-
-    public BigDecimal getTotalPriceTTC() {
-        return totalPriceTTC;
-    }
-
-    public void setTotalPriceTTC(BigDecimal totalPriceTTC) {
-        this.totalPriceTTC = totalPriceTTC;
-    }
-
-    public Vat getVat() {
-        return vat;
-    }
-
-    public void setVat(Vat vat) {
-        this.vat = vat;
-    }
-
-    public BigDecimal getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(BigDecimal discount) {
-        this.discount = discount;
-    }
-
-    public BigDecimal getSalePrice() {
-        return salePrice;
-    }
-
-    public void setSalePrice(BigDecimal salePrice) {
-        this.salePrice = salePrice;
-    }
-
-    public ProductDimension getProductDimension() {
-        return productDimension;
-    }
-
-    public void setProductDimension(ProductDimension productDimension) {
-        this.productDimension = productDimension;
-    }
-
-    public Set<SaleOrderStock> getSaleOrderStocks() {
-        return saleOrderStocks;
-    }
-
-    public void setSaleOrderStocks(Set<SaleOrderStock> saleOrderStocks) {
-        this.saleOrderStocks = saleOrderStocks;
-    }
 }

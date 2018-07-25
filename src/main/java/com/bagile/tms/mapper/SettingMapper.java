@@ -3,8 +3,8 @@
  */
 package com.bagile.tms.mapper;
 
-import com.sinno.ems.dto.Setting;
-import com.sinno.ems.entities.PrmSetting;
+import com.bagile.tms.dto.Setting;
+import com.bagile.tms.entities.PrmSetting;
 
 import java.util.*;
 
