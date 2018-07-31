@@ -18,7 +18,7 @@ public class TmsBadge implements java.io.Serializable {
     private String tmsBadgeLibelle;
     private String tmsBadgeDescription;
     private Set<TmsVehicle> tmsBadgeVehicule;
-    private Set<TmsDriverBadge> tmsDriverBadges;
+    private Set<TmsBadge> tmsDriverBadges;
 
 
     @Id
@@ -70,11 +70,11 @@ public class TmsBadge implements java.io.Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tmsDriverBadgeBadge")
 
-    public Set<TmsDriverBadge> getTmsDriverBadges() {
+    public Set<TmsBadge> getTmsDriverBadges() {
         return tmsDriverBadges;
     }
 
-    public void setTmsDriverBadges(Set<TmsDriverBadge> tmsDriverBadges) {
+    public void setTmsDriverBadges(Set<TmsBadge> tmsDriverBadges) {
         this.tmsDriverBadges = tmsDriverBadges;
     }
 

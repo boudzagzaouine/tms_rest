@@ -5,12 +5,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Set;
 
-/**
- * Created by bouzi on 3/15/2017.
- *
- */
 @Entity
 @Table(name="tms_road")
 public class TmsRoad implements Serializable {
@@ -20,7 +17,6 @@ public class TmsRoad implements Serializable {
     @NotNull
     private String tmsRoadCode;
     @NotNull
-    @Size(max = 30)
     private BigDecimal tmsRoadDuration;
     @NotNull
     @Size(max = 30)
@@ -29,15 +25,23 @@ public class TmsRoad implements Serializable {
     @Size(max = 30)
     private BigDecimal tmsRoadDistance;
     @Size(max = 30)
-    private Set<TmsIncident>tmsRoadIncident;
+    private TmsDriver Driver;
     @NotNull
-    private TmsDriver tmsRoadPrincialDriver;
+    private TmsDriver adjunct;
+    private Date date;
     @NotNull
-    private TmsDriver tmsRoadSuppleantDriver;
+    private TmsRoadState roadState;
     @NotNull
-    private Set<CmdDelivery> cmdDeliveries;
+    private CmdSaleOrder saleOrder;
     @NotNull
-    private TmsVehicle tmsRoadVehicle;
+    private AdrAddress stockAdress;
+    @NotNull
+    private TmsVehicle vehicle;
+    @NotNull
+    private Date roadDate;
+    private Date tmsRoadCreationDate;
+    private UsrUser tmsRoadCreationUser;
+    private UsrUser tmsRoadUpDateUser;
 
     public TmsRoad() {
 

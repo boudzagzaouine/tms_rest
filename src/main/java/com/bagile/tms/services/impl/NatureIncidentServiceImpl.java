@@ -2,7 +2,6 @@ package com.bagile.tms.services.impl;
 
 
 import com.bagile.tms.dto.NatureIncident;
-import com.bagile.tms.entities.TmsNatureIncident;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;

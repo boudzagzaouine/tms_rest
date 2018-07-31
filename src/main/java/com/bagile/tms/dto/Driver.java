@@ -1,38 +1,34 @@
 package com.bagile.tms.dto;
 
+import com.bagile.tms.entities.*;
+
+import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Set;
 
-/**
- * Created by yasser on 22/09/2016.
- */
+
 public class Driver implements Serializable {
 
     private long id;
+    @Size(max = 255)
     private String code;
-    private String passportNumber;
+    @Size(max = 30)
+    private String cin;
+    @Size(max = 30)
+    private Date date;
+    private TmsBadge badge;
+    private Date lastMedicalVisit;
+    private TmsZone workArea;
+    private TmsVacation vacation;
+    private BigDecimal commission;
+    private PrmContact contact;
+    private Date creationDate;
+    private UsrUser creationUser;
+    private UsrUser upDateDate;
 
-    private Set<Incident> incidents;
-    private Set<Road> roads;
-    private Set<Badge> badges;
-    private Address address;
-    private DriverSituation driverSituation;
-    private com.bagile.tms.dto.Contact contact;
-    private Date dateCreation;
-    private Date dateUpDate;
-    private User creationUser;
-    private User upDateUser;
-    private Set<DriverBadge> driverBadges;
-
-
-    public DriverSituation getDriverSituation() {
-        return driverSituation;
-    }
-
-    public void setDriverSituation(DriverSituation driverSituation) {
-        this.driverSituation = driverSituation;
-    }
 
     public long getId() {
         return id;
@@ -50,96 +46,96 @@ public class Driver implements Serializable {
         this.code = code;
     }
 
-    public String getPassportNumber() {
-        return passportNumber;
+    public String getCin() {
+        return cin;
     }
 
-    public void setPassportNumber(String passportNumber) {
-        this.passportNumber = passportNumber;
+    public void setCin(String cin) {
+        this.cin = cin;
     }
 
-    public Set<Incident> getIncidents() {
-        return incidents;
+    public Date getDate() {
+        return date;
     }
 
-    public void setIncidents(Set<Incident> incidents) {
-        this.incidents = incidents;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public Set<Road> getRoads() {
-        return roads;
+    public TmsBadge getBadge() {
+        return badge;
     }
 
-    public void setRoads(Set<Road> roads) {
-        this.roads = roads;
+    public void setBadge(TmsBadge badge) {
+        this.badge = badge;
     }
 
-    public Set<Badge> getBadges() {
-        return badges;
+    public Date getLastMedicalVisit() {
+        return lastMedicalVisit;
     }
 
-    public void setBadges(Set<Badge> badges) {
-        this.badges = badges;
+    public void setLastMedicalVisit(Date lastMedicalVisit) {
+        this.lastMedicalVisit = lastMedicalVisit;
     }
 
-    public Address getAddress() {
-        return address;
+    public TmsZone getWorkArea() {
+        return workArea;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setWorkArea(TmsZone workArea) {
+        this.workArea = workArea;
     }
 
-    public Date getDateCreation() {
-        return dateCreation;
+    public TmsVacation getVacation() {
+        return vacation;
     }
 
-    public void setDateCreation(Date dateCreation) {
-        this.dateCreation = dateCreation;
+    public void setVacation(TmsVacation vacation) {
+        this.vacation = vacation;
     }
 
-    public Date getDateUpDate() {
-        return dateUpDate;
+    public BigDecimal getCommission() {
+        return commission;
     }
 
-    public void setDateUpDate(Date dateUpDate) {
-        this.dateUpDate = dateUpDate;
+    public void setCommission(BigDecimal commission) {
+        this.commission = commission;
     }
 
-    public User getCreationUser() {
-        return creationUser;
-    }
-
-    public void setCreationUser(User creationUser) {
-        this.creationUser = creationUser;
-    }
-
-    public User getUpDateUser() {
-        return upDateUser;
-    }
-
-    public void setUpDateUser(User upDateUser) {
-        this.upDateUser = upDateUser;
-    }
-
-    public Set<DriverBadge> getDriverBadges() {
-        return driverBadges;
-    }
-
-    public void setDriverBadges(Set<DriverBadge> driverBadges) {
-        this.driverBadges = driverBadges;
-    }
-
-    public com.bagile.tms.dto.Contact getContact() {
+    public PrmContact getContact() {
         return contact;
     }
 
-    public void setContact(com.bagile.tms.dto.Contact contact) {
+    public void setContact(PrmContact contact) {
         this.contact = contact;
     }
 
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public UsrUser getCreationUser() {
+        return creationUser;
+    }
+
+    public void setCreationUser(UsrUser creationUser) {
+        this.creationUser = creationUser;
+    }
+
+    public UsrUser getUpDateDate() {
+        return upDateDate;
+    }
+
+    public void setUpDateDate(UsrUser upDateDate) {
+        this.upDateDate = upDateDate;
+    }
+
     @Override
-    public boolean equals(Object object) {
+    public boolean equals(Object o) {
         boolean result = false;
         if (object == null || object.getClass() != getClass()) {
             result = false;
@@ -150,13 +146,11 @@ public class Driver implements Serializable {
             }
         }
         return result;
-    }
+    };
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 7 * hash + (int) this.id;
-        hash = 7 * hash + (int) this.id;
-        return hash;
+
+        return Objects.hash(getId(), getCode(), getCin(), getDate(), getBadge(), getLastMedicalVisit(), getWorkArea(), getVacation(), getCommission(), getContact(), getCreationDate(), getCreationUser(), getUpDateDate());
     }
 }

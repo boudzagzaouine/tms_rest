@@ -3,45 +3,40 @@ package com.bagile.tms.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 
-/**
- * Created by khalil on 16/03/2017.
- */
 @Entity
 @Table(name = "tms_driver")
-
 public class TmsDriver implements java.io.Serializable {
-    private long tmsDriverId;
 
+    private long tmsDriverId;
     @Size(max = 255)
-    private String codeDriver;
-    private com.bagile.tms.entities.PrmContact prmContact;
-    private int idDriver;
-    private String cin;
-    private String lastName;
-    private String firstName;
-    private string tel;
-    private Date yearBorn;
-    private Badge badge;
+    private String tmsDriverCode;
+    private String tmsDriverCin;
+    private Date birthDate;
+    private TmsBadge Driverbadge;
     private Date lastMedicalVisit;
-    private Zone workArea;
-    private Vacation vacation;
-    private double commission;
+    private TmsZone workArea;
+    private TmsVacation vacation;
+    private BigDecimal commission;
+    private PrmContact contact;
+    private Date tmsDriverCreationDate;
     private UsrUser tmsDriverCreationUser;
-    private UsrUser tmsDriverUpDateUser;
+    private UsrUser tmsDriverUpDateDate;
+
     @Size(max = 30)
     @NotNull
-    private TmsDriverSituation tmsDriverSituation;
+   /* private TmsDriverSituation tmsDriverSituation;
 
-    private Set<TmsDriverBadge> tmsDriverBadges;
+    private Set<TmsDriverBadge> tmsDriverBadges;*/
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq")
-    @Column(name = "tms_idDriver", unique = true, nullable = false, precision = 10, scale = 0)
-    @Column(name = "tms_idDriver", unique = true, nullable = false, precision = 10, scale = 0)
+    @SequenceGenerator(name = "seq", sequenceName = "tms_driversequence")
+    @Column(name = "tms_driverid", unique = true, nullable = false, precision = 10, scale = 0)
+
 
     public long getTmsDriverId() {
         return tmsDriverId;
@@ -51,119 +46,105 @@ public class TmsDriver implements java.io.Serializable {
         this.tmsDriverId = tmsDriverId;
     }
 
-
-    public String getCodeDriver() {
-        return codeDriver;
+    @Column(name = "tms_drivercode", nullable = false, unique = true)
+    public String getTmsDriverCode() {
+        return tmsDriverCode;
     }
 
-    public int getIdDriver() {
-        return idDriver;
+
+    @Column(name = "tms_drivercin")
+    public String getTmsDriverCin() {
+        return tmsDriverCin;
     }
 
-    public String getCin() {
-        return cin;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "tms_driverbirthdate")
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public string getTel() {
-        return tel;
-    }
-
-    public Date getYearBorn() {
-        return yearBorn;
-    }
-
-    public Badge getBadge() {
+    @OneToOne(fetch = FetchType.LAZY)
+    public TmsBadge getBadge() {
         return badge;
     }
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="tms_driverlastmedicalvisit")
     public Date getLastMedicalVisit() {
         return lastMedicalVisit;
     }
 
-    public Zone getWorkArea() {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_driverworkareaid")
+    public TmsZone getWorkArea() {
         return workArea;
     }
 
-    public Vacation getVacation() {
+    @OneToMany(fetch=FetchType.LAZY)
+    @JoinColumn(name="tms_drivervacation")
+    public TmsVacation getVacation() {
         return vacation;
     }
 
-    public double getCommission() {
+    @OneToMany(fetch=FetchType.LAZY)
+    @JoinColumn(name="tms_commission")
+    public BigDecimal getCommission() {
         return commission;
     }
 
-    @Column(name = "tms_driverpassportNumber", nullable = false, length = 20)
-
-    public String getTmsDriverPassportNumber() {
-        return tmsDriverPassportNumber;
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="tms_drivercode")
+    public void setTmsDriverCode(String tmsDriverCode) {
+        this.tmsDriverCode = tmsDriverCode;
     }
 
-    public void setTmsDriverPassportNumber(String tmsDriverPassportNumber) {
-        this.tmsDriverPassportNumber = tmsDriverPassportNumber;
-    }
-
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tmsIncidentDriver")
-
-    public Set<TmsIncident> getPincidents() {
-        return pincidents;
-    }
-
-    public void setPincidents(Set<TmsIncident> pincidents) {
-        this.pincidents = pincidents;
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="tms_drivercontact")
+    public PrmContact getPrmContact() {
+        return prmContact;
     }
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_driversituationid")
-    public TmsDriverSituation getTmsDriverSituation() {
-        return tmsDriverSituation;
+    @JoinColumn(name="tms_drivercin")
+    public void setTmsDriverCin(String tmsDriverCin) {
+        this.tmsDriverCin = tmsDriverCin;
+    }
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="tms_driverbadge")
+    public void setBadge(TmsBadge badge) {
+        this.badge = badge;
     }
 
-    public void setTmsDriverSituation(TmsDriverSituation tmsDriverSituation) {
-        this.tmsDriverSituation = tmsDriverSituation;
+    @JoinColumn(name="tms_driverlastmedicalvisit")
+    public void setLastMedicalVisit(Date lastMedicalVisit) {
+        this.lastMedicalVisit = lastMedicalVisit;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "tms_driverdatecreation")
-    public Date getTmsDriverDateCreation() {
-        return tmsDriverDateCreation;
+
+    public void setWorkArea(TmsZone workArea) {
+        this.workArea = workArea;
     }
 
-    public void setTmsDriverDateCreation(Date tmsDriverDateCreation) {
-        this.tmsDriverDateCreation = tmsDriverDateCreation;
+    public void setVacation(TmsVacation vacation) {
+        this.vacation = vacation;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "tms_driverdateupdate")
-    public Date getTmsDriverDateUpDate() {
-        return tmsDriverDateUpDate;
+    public void setCommission(BigDecimal commission) {
+        this.commission = commission;
     }
 
-    public void setTmsDriverDateUpDate(Date tmsDriverDateUpDate) {
-        this.tmsDriverDateUpDate = tmsDriverDateUpDate;
+    public PrmContact getContact() {
+        return contact;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_drivercreationuserid")
+    public void setContact(PrmContact contact) {
+        this.contact = contact;
+    }
+
     public UsrUser getTmsDriverCreationUser() {
         return tmsDriverCreationUser;
     }
 
-    public void setTmsDriverCreationUser(UsrUser tmsDriverCreationUser) {
-        this.tmsDriverCreationUser = tmsDriverCreationUser;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_driverupdateuserid")
     public UsrUser getTmsDriverUpDateUser() {
         return tmsDriverUpDateUser;
     }
@@ -172,27 +153,16 @@ public class TmsDriver implements java.io.Serializable {
         this.tmsDriverUpDateUser = tmsDriverUpDateUser;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tmsDriverBadgeDriver")
-    public Set<TmsDriverBadge> getTmsDriverBadges() {
+    public Set<TmsBadge> getTmsDriverBadges() {
         return tmsDriverBadges;
     }
 
-    public void setTmsDriverBadges(Set<TmsDriverBadge> tmsDriverBadges) {
+    public void setTmsBadges(Set<TmsBadge> tmsDriverBadges) {
         this.tmsDriverBadges = tmsDriverBadges;
     }
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="tms_driveraddressid")
-    public AdrAddress getAdrAddress() {
-        return adrAddress;
-    }
 
-    public void setAdrAddress(AdrAddress adrAddress) {
-        this.adrAddress = adrAddress;
-    }
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="tms_drivercontactid")
-    public com.bagile.tms.entities.PrmContact getPrmContact() {
-        return prmContact;
+    public void setTmsDriverCreationUser(UsrUser tmsDriverCreationUser) {
+        this.tmsDriverCreationUser = tmsDriverCreationUser;
     }
 
     public void setPrmContact(com.bagile.tms.entities.PrmContact prmContact) {

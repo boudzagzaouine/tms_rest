@@ -1,7 +1,6 @@
 package com.bagile.tms.services.impl;
 
 import com.bagile.tms.dto.DriverBadge;
-import com.bagile.tms.entities.TmsDriverBadge;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;

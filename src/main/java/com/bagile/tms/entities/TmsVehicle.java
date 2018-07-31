@@ -7,45 +7,25 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-/**
- * Created by bouzi on 3/15/2017.
- */
 @Entity
 @Table(name = "tms_vehicule")
 public class TmsVehicle implements Serializable {
     private long tmsVehicleId;
     @Size(max = 30)
     @NotNull
+    private String registrationNumber;
+    @Size(max = 30)
+    @NotNull
+    private TmsBadge badge;
     private String tmsVehicleCode;
-    @Size(max = 30)
-    @NotNull
-    private Long tmsVehicleNbreEssieux;
-    @Size(max = 30)
-    @NotNull
-    private BigDecimal tmsVehicleEmptyWeight;
-    private Date tmsVehicleDateOfRegistration;
-    @Size(max = 255)
-    private String tmsVehicleBrand;
-    @Size(max = 255)
-    private String tmsVehicleModel;
-    @NotNull
-    private TmsVehicleStatus tmsVehicleStatus;
-    @NotNull
-    private TmsVehicleType tmsVehicleType;
-    @NotNull
-    private TmsBadge tmsBadge;
-    @NotNull
-    private TmsPoliceInsurance tmsVehiclePoliceAssurance;
-    @NotNull
-    private TmsMaintenancePlan tmsVehicleMaintenancePlan;
-    @Size(max = 30)
-    @NotNull
-    private String tmsVehicleMatricule;
-    private Date tmsVehicleDateCreation;
-    private Date tmsVehicleDateUpDate;
-    private UsrUser tmsVehicleCreationUser;
-    private UsrUser tmsVehicleUpDateUser;
+    private Date technicalVisit;
 
+    private TmsCategory categoryvehicle;
+    private TmsTraffic drivingLicence;
+
+    private Date tmsRoadCreationDate;
+    private UsrUser tmsRoadCreationUser;
+    private UsrUser tmsRoadUpDateDate;
 
 
     public TmsVehicle() {
@@ -58,6 +38,38 @@ public class TmsVehicle implements Serializable {
     @Column(name = "tms_vehicleid", unique = true, nullable = false, precision = 10, scale = 0)
     public long getTmsVehicleId() {
         return tmsVehicleId;
+    }
+
+    public String getMatricule() {
+        return matricule;
+    }
+
+    public void setMatricule(String matricule) {
+        this.matricule = matricule;
+    }
+
+    public TmsBadge getBadge() {
+        return badge;
+    }
+
+    public void setBadge(TmsBadge badge) {
+        this.badge = badge;
+    }
+
+    public Date getTechnicalVisit() {
+        return technicalVisit;
+    }
+
+    public void setTechnicalVisit(Date technicalVisit) {
+        this.technicalVisit = technicalVisit;
+    }
+
+    public TmsCategory getCategoryvehicle() {
+        return categoryvehicle;
+    }
+
+    public void setCategoryvehicle(TmsCategory categoryvehicle) {
+        this.categoryvehicle = categoryvehicle;
     }
 
     public void setTmsVehicleId(long tmsVehicleId) {
@@ -140,15 +152,6 @@ public class TmsVehicle implements Serializable {
         this.tmsBadge = tmsBadge;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_vehiclepoliceassuranceid", nullable = false)
-    public TmsPoliceInsurance getTmsVehiclePoliceAssurance() {
-        return tmsVehiclePoliceAssurance;
-    }
-
-    public void setTmsVehiclePoliceAssurance(TmsPoliceInsurance tmsVehiclePoliceAssurance) {
-        this.tmsVehiclePoliceAssurance = tmsVehiclePoliceAssurance;
-    }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_vehiclemaintenanceplanid", nullable = false)
     public TmsMaintenancePlan getTmsVehicleMaintenancePlan() {

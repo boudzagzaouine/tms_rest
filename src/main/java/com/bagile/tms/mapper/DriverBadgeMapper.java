@@ -1,7 +1,6 @@
 package com.bagile.tms.mapper;
 
 import com.bagile.tms.dto.DriverBadge;
-import com.bagile.tms.entities.TmsDriverBadge;
 
 import java.util.*;
 

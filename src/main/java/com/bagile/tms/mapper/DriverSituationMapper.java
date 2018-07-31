@@ -1,7 +1,6 @@
 package com.bagile.tms.mapper;
 
 import com.bagile.tms.dto.DriverSituation;
-import com.bagile.tms.entities.TmsDriverSituation;
 
 import java.util.*;
 

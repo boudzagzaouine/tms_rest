@@ -1,7 +1,6 @@
 package com.bagile.tms.mapper;
 
 import com.bagile.tms.dto.Incident;
-import com.bagile.tms.entities.TmsIncident;
 
 import java.util.*;
 

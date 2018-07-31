@@ -25,7 +25,6 @@ public class Container implements Serializable {
     private String variable10;
     private Set<Stock> stocks;
     private Date creationDate;
-    private Set<SaleOrderStock> saleOrderStocks;
     private Date receptionDate;
 
 
@@ -172,16 +171,6 @@ public class Container implements Serializable {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
-    }
-
-
-
-    public Set<SaleOrderStock> getSaleOrderStocks() {
-        return saleOrderStocks;
-    }
-
-    public void setSaleOrderStocks(Set<SaleOrderStock> saleOrderStocks) {
-        this.saleOrderStocks = saleOrderStocks;
     }
 
     public Date getReceptionDate() {

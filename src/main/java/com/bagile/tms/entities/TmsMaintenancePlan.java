@@ -3,6 +3,7 @@ package com.bagile.tms.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 /**
  * Created by bouzi on 3/15/2017.
@@ -17,9 +18,22 @@ public class TmsMaintenancePlan implements java.io.Serializable{
     @NotNull
     private String tmsMaintenancePlanCode;
     @Size(max = 255)
-    private String tmsDescription;
-    //TODO
-/*    private Set<TmsActe> tmsMaintenancePlanActes;*/
+    private String tmsDescriptif;
+
+    private Date date;
+    @NotNull
+    private TmsMaintenanceState state;
+    @NotNull
+    private String title;
+    @NotNull
+
+    private Date tmsMaintenanceCreationDate;
+
+    private UsrUser tmsMaintenanceCreationUser;
+
+    private UsrUser tmsMaintenanceUpDateDate;
+
+    private TmsTypeMaintenance typeMaintenance;
 
     public TmsMaintenancePlan(){
 
@@ -29,7 +43,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name = "tms_maintenanceplanid", unique = true, nullable = false, precision = 10, scale = 0)
+    @Column(name = "tms_maintenanceplanId", unique = true, nullable = false, precision = 10, scale = 0)
     public long getTmsMaintenancePlanId() {
         return tmsMaintenancePlanId;
     }
