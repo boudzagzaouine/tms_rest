@@ -1,6 +1,7 @@
 package com.bagile.tms.dto;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Address implements Serializable {
@@ -38,7 +39,8 @@ public class Address implements Serializable {
     private String variable8;
     private String variable9;
     private String variable10;
-
+    private BigDecimal latitude;
+    private BigDecimal longitude;
 
     private Long addressType;
 
@@ -234,6 +236,22 @@ public class Address implements Serializable {
 
     public void setLine2(String line2) {
         this.line2 = line2;
+    }
+
+    public BigDecimal getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(BigDecimal latitude) {
+        this.latitude = latitude;
+    }
+
+    public BigDecimal getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(BigDecimal longitude) {
+        this.longitude = longitude;
     }
 
     @Override

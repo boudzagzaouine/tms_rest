@@ -33,6 +33,7 @@ public class Delivery {
     private Set<DeliveryLine> lines;
     private String transfertCode;
     private Warehouse warehouse;
+    private Boolean active;
 
     public Delivery() {
     }
@@ -238,6 +239,14 @@ public class Delivery {
 
     public void setTransfertCode(String transfertCode) {
         this.transfertCode = transfertCode;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     @Override
