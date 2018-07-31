@@ -33,16 +33,6 @@ public class PrmOrderType implements java.io.Serializable {
     private Boolean prmOrderTypeActive;
     private OrgOrganisation orgOrganisation ;
 
-    private Set<RcpPurshaseOrderArc> rcpPurshaseOrderArcs = new HashSet<RcpPurshaseOrderArc>(
-            0);
-    private Set<RcpReceptionArc> rcpReceptionArcs = new HashSet<RcpReceptionArc>(
-            0);
-    private Set<RcpPurshaseOrder> rcpPurshaseOrders = new HashSet<RcpPurshaseOrder>(
-            0);
-    private Set<CmdSaleOrder> cmdSaleOrders = new HashSet<CmdSaleOrder>(0);
-    private Set<RcpReception> rcpReceptions = new HashSet<RcpReception>(0);
-    private Set<CmdSaleOrderArc> cmdSaleOrderArcs = new HashSet<CmdSaleOrderArc>(
-            0);
 
     public PrmOrderType() {
     }
@@ -52,26 +42,6 @@ public class PrmOrderType implements java.io.Serializable {
         this.prmOrderTypeCode = prmOrderTypeCode;
     }
 
-    public PrmOrderType(long prmOrderTypeId, String prmOrderTypeCode,
-                        String prmOrderTypeDescription, Date prmOrderTypeCreationDate,
-                        Date prmOrderTypeUpdateDate,
-                        Set<RcpPurshaseOrderArc> rcpPurshaseOrderArcs,
-                        Set<RcpReceptionArc> rcpReceptionArcs,
-                        Set<RcpPurshaseOrder> rcpPurshaseOrders,
-                        Set<CmdSaleOrder> cmdSaleOrders, Set<RcpReception> rcpReceptions,
-                        Set<CmdSaleOrderArc> cmdSaleOrderArcs) {
-        this.prmOrderTypeId = prmOrderTypeId;
-        this.prmOrderTypeCode = prmOrderTypeCode;
-        this.prmOrderTypeDescription = prmOrderTypeDescription;
-        this.prmOrderTypeCreationDate = prmOrderTypeCreationDate;
-        this.prmOrderTypeUpdateDate = prmOrderTypeUpdateDate;
-        this.rcpPurshaseOrderArcs = rcpPurshaseOrderArcs;
-        this.rcpReceptionArcs = rcpReceptionArcs;
-        this.rcpPurshaseOrders = rcpPurshaseOrders;
-        this.cmdSaleOrders = cmdSaleOrders;
-        this.rcpReceptions = rcpReceptions;
-        this.cmdSaleOrderArcs = cmdSaleOrderArcs;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -123,60 +93,6 @@ public class PrmOrderType implements java.io.Serializable {
         this.prmOrderTypeUpdateDate = prmOrderTypeUpdateDate;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "prmOrderType")
-    public Set<RcpPurshaseOrderArc> getRcpPurshaseOrderArcs() {
-        return this.rcpPurshaseOrderArcs;
-    }
-
-    public void setRcpPurshaseOrderArcs(
-            Set<RcpPurshaseOrderArc> rcpPurshaseOrderArcs) {
-        this.rcpPurshaseOrderArcs = rcpPurshaseOrderArcs;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "prmOrderType")
-    public Set<RcpReceptionArc> getRcpReceptionArcs() {
-        return this.rcpReceptionArcs;
-    }
-
-    public void setRcpReceptionArcs(Set<RcpReceptionArc> rcpReceptionArcs) {
-        this.rcpReceptionArcs = rcpReceptionArcs;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "prmOrderType")
-    public Set<RcpPurshaseOrder> getRcpPurshaseOrders() {
-        return this.rcpPurshaseOrders;
-    }
-
-    public void setRcpPurshaseOrders(Set<RcpPurshaseOrder> rcpPurshaseOrders) {
-        this.rcpPurshaseOrders = rcpPurshaseOrders;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "prmOrderType")
-    public Set<CmdSaleOrder> getCmdSaleOrders() {
-        return this.cmdSaleOrders;
-    }
-
-    public void setCmdSaleOrders(Set<CmdSaleOrder> cmdSaleOrders) {
-        this.cmdSaleOrders = cmdSaleOrders;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "prmOrderType")
-    public Set<RcpReception> getRcpReceptions() {
-        return this.rcpReceptions;
-    }
-
-    public void setRcpReceptions(Set<RcpReception> rcpReceptions) {
-        this.rcpReceptions = rcpReceptions;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "prmOrderType")
-    public Set<CmdSaleOrderArc> getCmdSaleOrderArcs() {
-        return this.cmdSaleOrderArcs;
-    }
-
-    public void setCmdSaleOrderArcs(Set<CmdSaleOrderArc> cmdSaleOrderArcs) {
-        this.cmdSaleOrderArcs = cmdSaleOrderArcs;
-    }
 
     @Column(name = "prm_ordertypeflow", precision = 2, scale = 0)
     public Long getPrmOrderTypeFlow() {

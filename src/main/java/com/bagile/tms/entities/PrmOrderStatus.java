@@ -25,25 +25,7 @@ public class PrmOrderStatus implements java.io.Serializable {
     private boolean prmOrderStatusOrderType;
     private Boolean prmOrderStatusArchivable;
     private OrgOrganisation orgOrganisation;
-    private Set<RcpPurshaseOrder> rcpPurshaseOrders = new HashSet<RcpPurshaseOrder>(
-            0);
-    private Set<RcpReceptionLineArc> rcpReceptionLineArcs = new HashSet<RcpReceptionLineArc>(
-            0);
-    private Set<CmdSaleOrderLine> cmdSaleOrderLines = new HashSet<CmdSaleOrderLine>(
-            0);
-    private Set<RcpReceptionLine> rcpReceptionLines = new HashSet<RcpReceptionLine>(
-            0);
-    private Set<RcpPurshaseOrderLineArc> rcpPurshaseOrderLineArcs = new HashSet<RcpPurshaseOrderLineArc>(
-            0);
-    private Set<RcpPurshaseOrderLine> rcpPurshaseOrderLines = new HashSet<RcpPurshaseOrderLine>(
-            0);
-    private Set<CmdSaleOrderLineArc> cmdSaleOrderLineArcs = new HashSet<CmdSaleOrderLineArc>(
-            0);
-    private Set<CmdSaleOrderArc> cmdSaleOrderArcs = new HashSet<CmdSaleOrderArc>(
-            0);
-    private Set<RcpPurshaseOrderArc> rcpPurshaseOrderArcs = new HashSet<RcpPurshaseOrderArc>(
-            0);
-    private Set<CmdSaleOrder> cmdSaleOrders = new HashSet<CmdSaleOrder>(0);
+
 
     public PrmOrderStatus() {
     }
@@ -55,33 +37,6 @@ public class PrmOrderStatus implements java.io.Serializable {
         this.prmOrderStatusOrderType = prmOrderStatusOrderType;
     }
 
-    public PrmOrderStatus(long prmOrderStatusId, String prmOrderStatusCode,
-                          String prmOrderStatusDescription, boolean prmOrderStatusOrderType,
-                          Set<RcpPurshaseOrder> rcpPurshaseOrders,
-                          Set<RcpReceptionLineArc> rcpReceptionLineArcs,
-                          Set<CmdSaleOrderLine> cmdSaleOrderLines,
-                          Set<RcpReceptionLine> rcpReceptionLines,
-                          Set<RcpPurshaseOrderLineArc> rcpPurshaseOrderLineArcs,
-                          Set<RcpPurshaseOrderLine> rcpPurshaseOrderLines,
-                          Set<CmdSaleOrderLineArc> cmdSaleOrderLineArcs,
-                          Set<CmdSaleOrderArc> cmdSaleOrderArcs,
-                          Set<RcpPurshaseOrderArc> rcpPurshaseOrderArcs,
-                          Set<CmdSaleOrder> cmdSaleOrders) {
-        this.prmOrderStatusId = prmOrderStatusId;
-        this.prmOrderStatusCode = prmOrderStatusCode;
-        this.prmOrderStatusDescription = prmOrderStatusDescription;
-        this.prmOrderStatusOrderType = prmOrderStatusOrderType;
-        this.rcpPurshaseOrders = rcpPurshaseOrders;
-        this.rcpReceptionLineArcs = rcpReceptionLineArcs;
-        this.cmdSaleOrderLines = cmdSaleOrderLines;
-        this.rcpReceptionLines = rcpReceptionLines;
-        this.rcpPurshaseOrderLineArcs = rcpPurshaseOrderLineArcs;
-        this.rcpPurshaseOrderLines = rcpPurshaseOrderLines;
-        this.cmdSaleOrderLineArcs = cmdSaleOrderLineArcs;
-        this.cmdSaleOrderArcs = cmdSaleOrderArcs;
-        this.rcpPurshaseOrderArcs = rcpPurshaseOrderArcs;
-        this.cmdSaleOrders = cmdSaleOrders;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -130,100 +85,7 @@ public class PrmOrderStatus implements java.io.Serializable {
         this.prmOrderStatusArchivable = prmOrderStatusArchivable;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "prmOrderStatus")
-    public Set<RcpPurshaseOrder> getRcpPurshaseOrders() {
-        return this.rcpPurshaseOrders;
-    }
 
-    public void setRcpPurshaseOrders(Set<RcpPurshaseOrder> rcpPurshaseOrders) {
-        this.rcpPurshaseOrders = rcpPurshaseOrders;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "prmOrderStatus")
-    public Set<RcpReceptionLineArc> getRcpReceptionLineArcs() {
-        return this.rcpReceptionLineArcs;
-    }
-
-    public void setRcpReceptionLineArcs(
-            Set<RcpReceptionLineArc> rcpReceptionLineArcs) {
-        this.rcpReceptionLineArcs = rcpReceptionLineArcs;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "prmOrderStatus")
-    public Set<CmdSaleOrderLine> getCmdSaleOrderLines() {
-        return this.cmdSaleOrderLines;
-    }
-
-    public void setCmdSaleOrderLines(Set<CmdSaleOrderLine> cmdSaleOrderLines) {
-        this.cmdSaleOrderLines = cmdSaleOrderLines;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "prmOrderStatus")
-    public Set<RcpReceptionLine> getRcpReceptionLines() {
-        return this.rcpReceptionLines;
-    }
-
-    public void setRcpReceptionLines(Set<RcpReceptionLine> rcpReceptionLines) {
-        this.rcpReceptionLines = rcpReceptionLines;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "prmOrderStatus")
-    public Set<RcpPurshaseOrderLineArc> getRcpPurshaseOrderLineArcs() {
-        return this.rcpPurshaseOrderLineArcs;
-    }
-
-    public void setRcpPurshaseOrderLineArcs(
-            Set<RcpPurshaseOrderLineArc> rcpPurshaseOrderLineArcs) {
-        this.rcpPurshaseOrderLineArcs = rcpPurshaseOrderLineArcs;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "prmOrderStatus")
-    public Set<RcpPurshaseOrderLine> getRcpPurshaseOrderLines() {
-        return this.rcpPurshaseOrderLines;
-    }
-
-    public void setRcpPurshaseOrderLines(
-            Set<RcpPurshaseOrderLine> rcpPurshaseOrderLines) {
-        this.rcpPurshaseOrderLines = rcpPurshaseOrderLines;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "prmOrderStatus")
-    public Set<CmdSaleOrderLineArc> getCmdSaleOrderLineArcs() {
-        return this.cmdSaleOrderLineArcs;
-    }
-
-    public void setCmdSaleOrderLineArcs(
-            Set<CmdSaleOrderLineArc> cmdSaleOrderLineArcs) {
-        this.cmdSaleOrderLineArcs = cmdSaleOrderLineArcs;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "prmOrderStatus")
-    public Set<CmdSaleOrderArc> getCmdSaleOrderArcs() {
-        return this.cmdSaleOrderArcs;
-    }
-
-    public void setCmdSaleOrderArcs(Set<CmdSaleOrderArc> cmdSaleOrderArcs) {
-        this.cmdSaleOrderArcs = cmdSaleOrderArcs;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "prmOrderStatus")
-    public Set<RcpPurshaseOrderArc> getRcpPurshaseOrderArcs() {
-        return this.rcpPurshaseOrderArcs;
-    }
-
-    public void setRcpPurshaseOrderArcs(
-            Set<RcpPurshaseOrderArc> rcpPurshaseOrderArcs) {
-        this.rcpPurshaseOrderArcs = rcpPurshaseOrderArcs;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "prmOrderStatus")
-    public Set<CmdSaleOrder> getCmdSaleOrders() {
-        return this.cmdSaleOrders;
-    }
-
-    public void setCmdSaleOrders(Set<CmdSaleOrder> cmdSaleOrders) {
-        this.cmdSaleOrders = cmdSaleOrders;
-    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_orderstatusorganisationid")
