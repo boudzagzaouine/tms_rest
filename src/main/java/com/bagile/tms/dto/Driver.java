@@ -137,10 +137,10 @@ public class Driver implements Serializable {
     @Override
     public boolean equals(Object o) {
         boolean result = false;
-        if (object == null || object.getClass() != getClass()) {
+        if (o == null || o.getClass() != getClass()) {
             result = false;
         } else {
-            Driver obj = (Driver) object;
+            Driver obj = (Driver) o;
             if (this.id == obj.getId()) {
                 result = true;
             }
