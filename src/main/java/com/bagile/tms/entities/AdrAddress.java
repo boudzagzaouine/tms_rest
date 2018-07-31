@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -79,7 +80,8 @@ public class AdrAddress implements java.io.Serializable {
     private String adrAddressVariable9;
     @Size(max = 255)
     private String adrAddressVariable10;
-
+    private BigDecimal adrAddressLongitude;
+    private BigDecimal adrAddressLatitude;
 
     public void setAddAddressType(Long addAddressType) {
         this.addAddressType = addAddressType;
@@ -310,6 +312,21 @@ public class AdrAddress implements java.io.Serializable {
     public void setAdrAddressVariable10(String adrAddressVariable10) {
         this.adrAddressVariable10 = adrAddressVariable10;
     }
+    @Column(name = "adr_addresslongitude")
+    public BigDecimal getAdrAddressLongitude() {
+        return adrAddressLongitude;
+    }
 
+    public void setAdrAddressLongitude(BigDecimal adrAddressLongitude) {
+        this.adrAddressLongitude = adrAddressLongitude;
+    }
+    @Column(name = "adr_addresslatitude")
 
+    public BigDecimal getAdrAddressLatitude() {
+        return adrAddressLatitude;
+    }
+
+    public void setAdrAddressLatitude(BigDecimal adrAddressLatitude) {
+        this.adrAddressLatitude = adrAddressLatitude;
+    }
 }

@@ -297,7 +297,6 @@ public class CmdAccount implements Serializable {
         this.cmdAccountVariable10 = cmdAccountVariable10;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cmdAccount")
 
     @Column(name = "cmd_accountname")
     public String getCmdAccountName() {
@@ -307,9 +306,6 @@ public class CmdAccount implements Serializable {
     public void setCmdAccountName(String cmdAccountName) {
         this.cmdAccountName = cmdAccountName;
     }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cmd_accountinvoicetermid")
 
     @Column(name = "cmd_accountpassword")
     public String getCmdAccountPassword() {
