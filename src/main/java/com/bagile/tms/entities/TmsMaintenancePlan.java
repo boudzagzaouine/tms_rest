@@ -18,13 +18,13 @@ public class TmsMaintenancePlan implements java.io.Serializable{
     @NotNull
     private String tmsMaintenancePlanCode;
     @Size(max = 255)
-    private String tmsDescriptif;
+    private String tmsMaintenancePlanDescriptif;
 
-    private Date date;
+    private Date tmsMaintenancePlanDate;
     @NotNull
-    private TmsMaintenanceState state;
+    private TmsMaintenanceState tmsMaintenancePlanState;
     @NotNull
-    private String title;
+    private String tmsMaintenancePlantitle;
     @NotNull
 
     private Date tmsMaintenanceCreationDate;
@@ -44,6 +44,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
     @Column(name = "tms_maintenanceplanId", unique = true, nullable = false, precision = 10, scale = 0)
+
     public long getTmsMaintenancePlanId() {
         return tmsMaintenancePlanId;
     }
@@ -52,9 +53,6 @@ public class TmsMaintenancePlan implements java.io.Serializable{
         this.tmsMaintenancePlanId = tmsMaintenancePlanId;
     }
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="tms_maintenanceplanvehiculeid")
     public TmsVehicle getTmsVehicle() {
         return tmsVehicle;
     }
@@ -63,28 +61,75 @@ public class TmsMaintenancePlan implements java.io.Serializable{
         this.tmsVehicle = tmsVehicle;
     }
 
-    @Column(name = "tms_maintenanceplancode", nullable = false, length = 30)
     public String getTmsMaintenancePlanCode() {
         return tmsMaintenancePlanCode;
     }
+
     public void setTmsMaintenancePlanCode(String tmsMaintenancePlanCode) {
         this.tmsMaintenancePlanCode = tmsMaintenancePlanCode;
     }
-    @Column(name = "tmsDescription")
-    public String getTmsDescription() {
-        return tmsDescription;
-    }
-    public void setTmsDescription(String tmsDescription) {
-        this.tmsDescription = tmsDescription;
+
+    public String getTmsMaintenancePlanDescriptif() {
+        return tmsMaintenancePlanDescriptif;
     }
 
-  /*  @OneToMany(fetch = FetchType.LAZY,mappedBy = "")
-    public Set<TmsActe> getTmsMaintenancePlanActes() {
-        return tmsMaintenancePlanActes;
+    public void setTmsMaintenancePlanDescriptif(String tmsMaintenancePlanDescriptif) {
+        this.tmsMaintenancePlanDescriptif = tmsMaintenancePlanDescriptif;
     }
 
-    public void setTmsMaintenancePlanActes(Set<TmsActe> tmsMaintenancePlanActes) {
-        this.tmsMaintenancePlanActes = tmsMaintenancePlanActes;
-    }*/
+    public Date getTmsMaintenancePlanDate() {
+        return tmsMaintenancePlanDate;
+    }
 
+    public void setTmsMaintenancePlanDate(Date tmsMaintenancePlanDate) {
+        this.tmsMaintenancePlanDate = tmsMaintenancePlanDate;
+    }
+
+    public TmsMaintenanceState getTmsMaintenancePlanState() {
+        return tmsMaintenancePlanState;
+    }
+
+    public void setTmsMaintenancePlanState(TmsMaintenanceState tmsMaintenancePlanState) {
+        this.tmsMaintenancePlanState = tmsMaintenancePlanState;
+    }
+
+    public String getTmsMaintenancePlantitle() {
+        return tmsMaintenancePlantitle;
+    }
+
+    public void setTmsMaintenancePlantitle(String tmsMaintenancePlantitle) {
+        this.tmsMaintenancePlantitle = tmsMaintenancePlantitle;
+    }
+
+    public Date getTmsMaintenanceCreationDate() {
+        return tmsMaintenanceCreationDate;
+    }
+
+    public void setTmsMaintenanceCreationDate(Date tmsMaintenanceCreationDate) {
+        this.tmsMaintenanceCreationDate = tmsMaintenanceCreationDate;
+    }
+
+    public UsrUser getTmsMaintenanceCreationUser() {
+        return tmsMaintenanceCreationUser;
+    }
+
+    public void setTmsMaintenanceCreationUser(UsrUser tmsMaintenanceCreationUser) {
+        this.tmsMaintenanceCreationUser = tmsMaintenanceCreationUser;
+    }
+
+    public UsrUser getTmsMaintenanceUpDateDate() {
+        return tmsMaintenanceUpDateDate;
+    }
+
+    public void setTmsMaintenanceUpDateDate(UsrUser tmsMaintenanceUpDateDate) {
+        this.tmsMaintenanceUpDateDate = tmsMaintenanceUpDateDate;
+    }
+
+    public TmsTypeMaintenance getTypeMaintenance() {
+        return typeMaintenance;
+    }
+
+    public void setTypeMaintenance(TmsTypeMaintenance typeMaintenance) {
+        this.typeMaintenance = typeMaintenance;
+    }
 }

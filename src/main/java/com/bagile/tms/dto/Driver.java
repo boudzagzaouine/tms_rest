@@ -19,7 +19,8 @@ public class Driver implements Serializable {
     private String cin;
     @Size(max = 30)
     private Date date;
-    private TmsBadge badge;
+    //private TmsBadge badge;
+    private Set<TmsBadge> Badges;
     private Date lastMedicalVisit;
     private TmsZone workArea;
     private TmsVacation vacation;
@@ -62,12 +63,12 @@ public class Driver implements Serializable {
         this.date = date;
     }
 
-    public TmsBadge getBadge() {
-        return badge;
+    public Set<TmsBadge> getBadges() {
+        return Badges;
     }
 
-    public void setBadge(TmsBadge badge) {
-        this.badge = badge;
+    public void setBadges(Set<TmsBadge> badges) {
+        Badges = badges;
     }
 
     public Date getLastMedicalVisit() {
@@ -132,25 +133,5 @@ public class Driver implements Serializable {
 
     public void setUpDateDate(UsrUser upDateDate) {
         this.upDateDate = upDateDate;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        boolean result = false;
-        if (object == null || object.getClass() != getClass()) {
-            result = false;
-        } else {
-            Driver obj = (Driver) object;
-            if (this.id == obj.getId()) {
-                result = true;
-            }
-        }
-        return result;
-    };
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(getId(), getCode(), getCin(), getDate(), getBadge(), getLastMedicalVisit(), getWorkArea(), getVacation(), getCommission(), getContact(), getCreationDate(), getCreationUser(), getUpDateDate());
     }
 }

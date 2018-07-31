@@ -4,44 +4,36 @@ import javax.persistence.*;
 import java.util.Set;
 
 public class TmsZone {
-    private int idZone;
-    private String zoneName;
-    private Set<TmsDriver> tmsDrivers;
+    private int tmsZoneId;
+    private String tmsZoneName;
+    private Set<TmsDriver> tmsZoneDrivers;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
     @Column(name = "tms_idZone", unique = true, nullable = false, scale = 0)
-    public int getIdZone() {
-        return idZone;
+
+    public int getTmsZoneId() {
+        return tmsZoneId;
     }
 
-    public void setIdZone(int idZone) {
-        this.idZone = idZone;
+    public void setTmsZoneId(int tmsZoneId) {
+        this.tmsZoneId = tmsZoneId;
     }
 
-    public String getZoneName() {
-        return zoneName;
+    public String getTmsZoneName() {
+        return tmsZoneName;
     }
 
-    public void setZoneName(String zoneName) {
-        this.zoneName = zoneName;
+    public void setTmsZoneName(String tmsZoneName) {
+        this.tmsZoneName = tmsZoneName;
     }
 
-    @OneToMany(FetchType=FetchType.LAZY,mappedBy = "workArea")
-    public Set<TmsDriver> getTmsDrivers() {
-        return tmsDrivers;
+    public Set<TmsDriver> getTmsZoneDrivers() {
+        return tmsZoneDrivers;
     }
 
-    public void setTmsDrivers(Set<TmsDriver> tmsDrivers) {
-        this.tmsDrivers = tmsDrivers;
-    }
-
-    @Override
-    public String toString() {
-        return "TmsZone{" +
-                "idZone=" + idZone +
-                ", zoneName='" + zoneName + '\'' +
-                '}';
+    public void setTmsZoneDrivers(Set<TmsDriver> tmsZoneDrivers) {
+        this.tmsZoneDrivers = tmsZoneDrivers;
     }
 }

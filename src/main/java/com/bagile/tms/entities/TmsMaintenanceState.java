@@ -14,7 +14,7 @@ import java.util.Date;
     public class TmsMaintenanceState implements java.io.Serializable{
     private long idMaintenanceState;
     @NotNull
-    private String state;
+    private String tmsMaintenanceState;
     @NotNull
 
     public TmsMaintenanceState() { }
@@ -23,18 +23,19 @@ import java.util.Date;
     @SequenceGenerator(name = "seq")
     @Column(name = "tms_maintenanceStateId", unique = true, nullable = false, precision = 10, scale = 0)
 
-    public int getIdMaintenance() {
-        return idMaintenance;
-    }
-    public void setIdMaintenance(int idMaintenance) {
-        this.idMaintenance = idMaintenance;
-    }
+        public long getIdMaintenanceState() {
+            return idMaintenanceState;
+        }
 
-    public String getState() {
-        return state;
-    }
+        public void setIdMaintenanceState(long idMaintenanceState) {
+            this.idMaintenanceState = idMaintenanceState;
+        }
 
-    public void setState(String state) {
-        this.state = state;
+        public String getTmsMaintenanceState() {
+            return tmsMaintenanceState;
+        }
+
+        public void setTmsMaintenanceState(String tmsMaintenanceState) {
+            this.tmsMaintenanceState = tmsMaintenanceState;
+        }
     }
-}

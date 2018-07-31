@@ -4,55 +4,48 @@ import javax.persistence.*;
 import java.util.Date;
 
 public class TmsVacation {
-    private int idVacation;
-    private Date debutVacation;
-    private Date finVacation;
-    private String type;
+    private int tmsVacationId;
+    private Date tmsVacationBegin;
+    private Date tmsVacationEnd;
+    private String tmsVacationType;
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
     @Column(name = "tms_idVacation", unique = true, nullable = false, scale = 0)
 
-    public int getIdVacation() {
-        return idVacation;
+    public int getTmsVacationId() {
+        return tmsVacationId;
     }
 
-    public void setIdVacation(int idVacation) {
-        this.idVacation = idVacation;
+    public void setTmsVacationId(int tmsVacationId) {
+        this.tmsVacationId = tmsVacationId;
     }
 
-    public Date getDebutVacation() {
-        return debutVacation;
+    public Date getTmsVacationBegin() {
+        return tmsVacationBegin;
     }
 
-    public void setDebutVacation(Date debutVacation) {
-        this.debutVacation = debutVacation;
+    public void setTmsVacationBegin(Date tmsVacationBegin) {
+        this.tmsVacationBegin = tmsVacationBegin;
     }
 
-    public Date getFinVacation() {
-        return finVacation;
+    public Date getTmsVacationEnd() {
+        return tmsVacationEnd;
     }
 
-    public void setFinVacation(Date finVacation) {
-        this.finVacation = finVacation;
+    public void setTmsVacationEnd(Date tmsVacationEnd) {
+        this.tmsVacationEnd = tmsVacationEnd;
     }
 
-    public String getType() {
-        return type;
+    public String getTmsVacationType() {
+        return tmsVacationType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTmsVacationType(String tmsVacationType) {
+        this.tmsVacationType = tmsVacationType;
     }
 
-    @Override
-    public String toString() {
-        return "TmsVacation{" +
-                "idVacation=" + idVacation +
-                ", debutVacation=" + debutVacation +
-                ", finVacation=" + finVacation +
-                ", type='" + type + '\'' +
-                '}';
-    }
 }

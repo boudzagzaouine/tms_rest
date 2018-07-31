@@ -4,28 +4,29 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 public class TmsTypeMaintenance {
-    private int idTypeMaintenance;
+    private int tmsTypeMaintenanceId;
     @NotNull
-    private String type;
+    private String tmsTypeMaintenancetype;
     @NotNull
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
     @Column(name = "tms_TypeMaintenanceId", unique = true, nullable = false, precision = 10, scale = 0)
-    public int getIdTypeMaintenance() {
-        return idTypeMaintenance;
+
+    public int getTmsTypeMaintenanceId() {
+        return tmsTypeMaintenanceId;
     }
 
-    public void setIdTypeMaintenance(int idTypeMaintenance) {
-        this.idTypeMaintenance = idTypeMaintenance;
+    public void setTmsTypeMaintenanceId(int tmsTypeMaintenanceId) {
+        this.tmsTypeMaintenanceId = tmsTypeMaintenanceId;
     }
 
-    public String getType() {
-        return type;
+    public String getTmsTypeMaintenancetype() {
+        return tmsTypeMaintenancetype;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTmsTypeMaintenancetype(String tmsTypeMaintenancetype) {
+        this.tmsTypeMaintenancetype = tmsTypeMaintenancetype;
     }
 }

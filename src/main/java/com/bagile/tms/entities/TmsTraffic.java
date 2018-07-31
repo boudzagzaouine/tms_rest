@@ -3,31 +3,31 @@ package com.bagile.tms.entities;
 import java.util.Date;
 
 public class TmsTraffic {
-    private int idTraffic;
-    private boolean active;
-    private Date date;
+    private int tmsTrafficId;
+    private boolean tmsTrafficActive;
+    private Date tmsTrafficDate;
 
-    public int getIdTraffic() {
-        return idTraffic;
+    public int getTmsTrafficId() {
+        return tmsTrafficId;
     }
 
-    public void setIdTraffic(int idTraffic) {
-        this.idTraffic = idTraffic;
+    public void setTmsTrafficId(int tmsTrafficId) {
+        this.tmsTrafficId = tmsTrafficId;
     }
 
-    public boolean isActive() {
-        return active;
+    public boolean isTmsTrafficActive() {
+        return tmsTrafficActive;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setTmsTrafficActive(boolean tmsTrafficActive) {
+        this.tmsTrafficActive = tmsTrafficActive;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getTmsTrafficDate() {
+        return tmsTrafficDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setTmsTrafficDate(Date tmsTrafficDate) {
+        this.tmsTrafficDate = tmsTrafficDate;
     }
 }
