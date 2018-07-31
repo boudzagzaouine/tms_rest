@@ -3,7 +3,6 @@
  */
 package com.bagile.tms.util;
 
-import com.bagile.tms.config.ApplicationContextHolder;
 import org.springframework.context.ApplicationContext;
 
 import javax.validation.ConstraintValidator;
@@ -25,7 +24,6 @@ public class UniqueIDValidator implements ConstraintValidator<Unique, String> {
         nameFunction = constraintAnnotation.nameFunction();
         message = constraintAnnotation.message();
         service = constraintAnnotation.service();
-        applicationContext = ApplicationContextHolder.getContext();
 
     }
 

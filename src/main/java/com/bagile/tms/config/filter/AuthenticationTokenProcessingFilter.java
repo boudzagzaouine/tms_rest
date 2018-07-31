@@ -35,7 +35,7 @@ public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
         String authToken = this.extractAuthTokenFromRequest(httpRequest);
         String userName = TokenUtils.getUserNameFromToken(authToken);
         User user = null;
-        if (null != SecurityContextHolder.getContext() && null != SecurityContextHolder.getContext().getAuthentication()) {
+        if (null != SecurityContextHolder.getContext() && null != SecurityContextHolder.getContext().getAuthentication() && !"anonymousUser".equals(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString())) {
             user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         }
         if (userName != null && user == null) {

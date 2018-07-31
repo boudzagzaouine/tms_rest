@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-@Service
+@Service @Transactional
 public class SaleOrderServiceImpl implements SaleOrderService, AddActive {
 
     @Autowired

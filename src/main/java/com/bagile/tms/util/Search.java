@@ -1,8 +1,8 @@
 package com.bagile.tms.util;
 
-import com.mysema.query.types.expr.BooleanExpression;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
+import com.querydsl.core.types.dsl.BooleanExpression;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

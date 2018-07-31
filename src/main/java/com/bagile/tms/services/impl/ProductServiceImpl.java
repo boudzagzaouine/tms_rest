@@ -1,53 +1,44 @@
 package com.bagile.tms.services.impl;
 
-import com.google.common.collect.Lists;
-import com.bagile.tms.dto.*;
-import com.bagile.tms.entities.*;
+import com.bagile.tms.dto.Alias;
+import com.bagile.tms.dto.Product;
+import com.bagile.tms.dto.ProductPack;
+import com.bagile.tms.entities.PdtProduct;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.exceptions.WarehouseException;
-import com.bagile.tms.export.ProductExport;
-import com.bagile.tms.mapper.*;
-import com.bagile.tms.mapperWms.MapperProduct;
+import com.bagile.tms.mapper.ProductMapper;
 import com.bagile.tms.repositories.*;
-import com.bagile.tms.services.ProductPackService;
 import com.bagile.tms.services.ProductService;
 import com.bagile.tms.util.EmsDate;
 import com.bagile.tms.util.Search;
-import com.sinno.wms.crud.convertbasic.ConvertManagerProduct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.ServletContext;
-import java.io.File;
-import java.lang.Exception;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
+@Service @Transactional
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
     @Autowired
     private ProductPackRepository productPackRepository;
-    @Autowired
-    private ProductPackService productPackService;
+
     @Autowired
     private AliasRepository aliasRepository;
-    @Autowired
-    private MsgSendRepository msgSendRepository;
+
     @Autowired
     private ServletContext servletContext;
     @Autowired
@@ -58,16 +49,12 @@ public class ProductServiceImpl implements ProductService {
     private OwnerRepository ownerRepository;
     @Autowired
     private StockRepository stockRepository;
-    @Autowired
-    private PurshaseOrderLineRepository purshaseOrderLineRepository;
-    @Autowired
-    private ReceptionLineRepository receptionLineRepository;
+
     @Autowired
     private SaleOrderLineRepository saleOrderLineRepository;
     @Autowired
     private DeliveryLineRepository deliveryLineRepository;
-    @Autowired
-    private SupplierRepository supplierRepository;
+
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmssSS");
     private final static Logger LOGGER = LoggerFactory
             .getLogger(ProductService.class);
@@ -77,218 +64,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public Product save(Product product) {
-        LOGGER.info("save Product");
-        String mode = "U";
-        product.setUpdateDate(EmsDate.getDateNow());
-        String codeProduct = product.getCode();
-        if (0 >= product.getId()) {
-            mode = "I";
-            product.setCreationDate(EmsDate.getDateNow());
-        }
-
-        Alias aliasTmp = product.getAlias();
-        product.setAlias(null);
-        // SAVE PRODUCT
-        PdtProduct pdtProduct = ProductMapper.toEntity(product, false);
-        pdtProduct = productRepository.saveAndFlush(pdtProduct);
-        product = ProductMapper.toDto(pdtProduct, false);
-        if ("I".equals(mode)) {
-            // SAVE DEFAULT ALIAS
-            Alias defaultAlias = aliasFromProduct(product, mode);
-            LOGGER.info("save Alias");
-            defaultAlias = AliasMapper.toDto(aliasRepository
-                            .saveAndFlush(AliasMapper.toEntity(defaultAlias, false)),
-                    false);
-
-            // SAVE DEFAULT PACK
-            ProductPack defaultProductPack = packFromProduct(product,
-                    defaultAlias, mode);
-            defaultProductPack.setSalePrice(product.getSalePriceUB());
-            LOGGER.info("save ProductPack");
-            defaultProductPack = ProductPackMapper.toDto(productPackRepository
-                    .saveAndFlush(ProductPackMapper.toEntity(
-                            defaultProductPack, false)), false);
-
-            // SAVE ALIAS IF EXIST
-            if (null != aliasTmp && !aliasTmp.getEanCode().isEmpty()) {
-                String eanCode = aliasTmp.getEanCode();
-                aliasTmp = aliasFromProduct(product, mode);
-                aliasTmp.setEanCode(eanCode);
-                LOGGER.info("save Alias");
-                aliasTmp = AliasMapper.toDto(aliasRepository
-                                .saveAndFlush(AliasMapper.toEntity(aliasTmp, false)),
-                        false);
-                product.setAlias(aliasTmp);
-                LOGGER.info("save Product");
-                pdtProduct = productRepository.saveAndFlush(ProductMapper
-                        .toEntity(product, false));
-                product = ProductMapper.toDto(pdtProduct, false);
-
-                // SAVE PRODUCT PACK ALIAS
-                ProductPack aliasProductPack = packFromProduct(product,
-                        aliasTmp, mode);
-                LOGGER.info("save ProductPack");
-                aliasProductPack = ProductPackMapper.toDto(
-                        productPackRepository.saveAndFlush(ProductPackMapper
-                                .toEntity(aliasProductPack, false)), false);
-            }
-        } else {
-            // UPDATE ALIAS
-            if (null != aliasTmp && !aliasTmp.getEanCode().isEmpty()) {
-                long id = aliasTmp.getId();
-                String eanCode = aliasTmp.getEanCode();
-                aliasTmp = aliasFromProduct(product, mode);
-                aliasTmp.setId(id);
-                aliasTmp.setEanCode(eanCode);
-                List<ProductPack> productPacks = null;
-                try {
-                    productPacks = productPackService.find("alias.id:" + aliasTmp.getId() + ",product.id:" + product.getId());
-                } catch (AttributesNotFound attributesNotFound) {
-                    attributesNotFound.printStackTrace();
-                } catch (ErrorType errorType) {
-                    errorType.printStackTrace();
-                }
-                if (productPacks.isEmpty()) {
-                    ProductPack productPack = packFromProduct(product, aliasTmp, mode);
-                    productPackService.save(productPack);
-
-                }
-                LOGGER.info("save Alias");
-                aliasTmp = AliasMapper.toDto(aliasRepository
-                                .saveAndFlush(AliasMapper.toEntity(aliasTmp, false)),
-                        false);
-                product.setAlias(aliasTmp);
-                LOGGER.info("save Product");
-                pdtProduct = productRepository.saveAndFlush(ProductMapper
-                        .toEntity(product, false));
-                product = ProductMapper.toDto(pdtProduct, false);
-            }
-
-            // UPDATE PACK
-            Set<ProductPack> listProdctPacks = new HashSet<>();
-            for (ProductPack pdtPack : product.getProductPacks()) {
-                if (null != pdtPack
-                        && null != pdtPack.getUom()
-                        && null != product.getUomByProductUomBase()
-                        && pdtPack.getUom().getId() == product
-                        .getUomByProductUomBase().getId()) {
-                    long id = pdtPack.getId();
-                    pdtPack = ProductPackMapper.toDto(productPackRepository.findById(id).get(), false);
-                    pdtPack = packFromProduct(product, pdtPack.getAlias(), mode);
-                    pdtPack.setId(id);
-                    LOGGER.info("save ProductPack");
-                    pdtPack = ProductPackMapper.toDto(productPackRepository
-                            .saveAndFlush(ProductPackMapper.toEntity(pdtPack,
-                                    false)), false);
-                    listProdctPacks.add(pdtPack);
-                }
-            }
-            if (listProdctPacks.size() > 0) {
-                product.setProductPacks(listProdctPacks);
-            } else {
-                product.setProductPacks(null);
-            }
-        }
-        PrmSetting wmsSync = settingRepository.findOne(2L);
-        boolean syncWms = wmsSync != null && wmsSync.getPrmSettingValue().equals("1") ? true : false;
-
-        if (syncWms) {
-            PrmMsgSend msgSend = getPrmMsgSend();
-            if (null != msgSend && msgSend.isPrmMsgSendActive()) {
-                ProductExport.export(msgSend.getPrmMsgSendPath(), pdtProduct,
-                        codeProduct, "F", servletContext);
-            }
-
-
-        /*   com.sinno.wms.crud.modelbasic.products.Product pro = new com.sinno.wms.crud.modelbasic.products.Product();
-            if (null != ConvertManagerProduct.readFileProduct("Products.xls") && ConvertManagerProduct.readFileProduct("Products.xls").size() > 0) {
-                pro = ConvertManagerProduct.readFileProduct("Products.xls").get(0);
-                product = MapperProduct.convertToEmsDto(pro);
-                productRepository.saveAndFlush(ProductMapper.toEntity(product, false));
-            }   */
-
-            if (null != msgSend && msgSend.isPrmMsgSendActive() && "xls".equals(msgSend.getPrmMsgSendFormat().trim())) {
-
-                writeFileProduct(msgSend.getPrmMsgSendPath(), product);
-                writeFileProduct(msgSend.getPrmMsgSendArcPath(), product);
-            }
-
-        }
 
         return product;
-    }
-
-    private PrmMsgSend getPrmMsgSend() {
-        try {
-            Iterable<PrmMsgSend> msgSends = msgSendRepository.findAll(Search
-                    .expression("fileType:PRO", PrmMsgSend.class));
-            if (null != msgSends && null != msgSends.iterator()) {
-                if (msgSends.iterator().hasNext()) {
-                    return msgSends.iterator().next();
-                }
-            }
-        } catch (AttributesNotFound attributesNotFound) {
-        } catch (ErrorType errorType) {
-        }
-        return null;
-    }
-
-
-    private void writeFileProduct(String path, Product pro) {
-
-        try {
-            //  String date = new SimpleDateFormat("yyyyMMddHHmmssS").format(Calendar.getInstance().getTime());
-            path = path.replace("\\", File.separator);
-            String langue = "FR";
-            com.sinno.wms.crud.modelbasic.products.Product product = com.bagile.tms.mapperWms.MapperProduct.convertToWmsDto(pro);
-            ConvertManagerProduct.writeFileProduct(path + File.separator + "IPR01" + dateFormat.format(new Date()) + ".xls", langue, product);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    private void writeFileProduct(String path, List<Product> products) {
-
-        try {
-            //  String date = new SimpleDateFormat("yyyyMMddHHmmssS").format(Calendar.getInstance().getTime());
-            path = path.replace("\\", File.separator);
-            String langue = "FR";
-            List<com.sinno.wms.crud.modelbasic.products.Product> productList = new ArrayList<>();
-            for (Product pro : products) {
-                productList.add(com.bagile.tms.mapperWms.MapperProduct.convertToWmsDto(pro));
-            }
-            ConvertManagerProduct.writeFileProduct(path + File.separator + "IPR01" + dateFormat.format(new Date()) + ".xls", langue, productList);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-
-    public void readFileProduct(com.sinno.wms.crud.modelbasic.products.Product pro) {
-        try {
-            pro = ConvertManagerProduct.readFileProduct("IPR01.xls").get(0);
-            Product product = new Product();
-            product = MapperProduct.convertToEmsDto(product, pro);
-            productRepository.saveAndFlush(ProductMapper.toEntity(product, false));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @Override
-    public Long size() {
-        try {
-            return size("");
-        } catch (AttributesNotFound attributesNotFound) {
-            // attributesNotFound.printStackTrace();
-        } catch (ErrorType errorType) {
-            // e.printStackTrace();
-        }
-        return 0L;
     }
 
     @Override
@@ -350,44 +127,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void delete(Long id) throws WarehouseException {
+    public void delete(Long id) {
         LOGGER.info("delete Product");
         PdtProduct pdtProduct = productRepository.findById(id).get();
-        if (checkBeforeDelete(id)) {
-            pdtProduct.setPdtProductIsActive(false);
-            productRepository.saveAndFlush(pdtProduct);
-        } else {
-            LOGGER.error("delete Product");
-            throw new WarehouseException("impossible de supprimer " + pdtProduct.getPdtProductCode());
-        }
+
 
     }
 
     @Override
     public void delete(Product product) {
         LOGGER.info("delete Product");
-        PdtProduct pdtProduct = productRepository.findOne(product.getId());
+        PdtProduct pdtProduct = productRepository.findById(product.getId()).get();
         pdtProduct.setPdtProductIsActive(false);
         productRepository.saveAndFlush(pdtProduct);
         // productRepository.delete(ProductMapper.toEntity(product, false));
         String codeProduct = "";
-        PrmMsgSend msgSend = null;
-        try {
-            Iterable<PrmMsgSend> msgSends = msgSendRepository.findAll(Search
-                    .expression("fileType:PRO", PrmMsgSend.class));
-            if (null != msgSends && null != msgSends.iterator()
-                    && msgSends.iterator().hasNext()) {
-                msgSend = msgSends.iterator().next();
-            }
-        } catch (AttributesNotFound attributesNotFound) {
-            // attributesNotFound.printStackTrace();
-        } catch (ErrorType errorType) {
-            // e.printStackTrace();
-        }
-        if (null != msgSend && msgSend.isPrmMsgSendActive()) {
-            ProductExport.export(msgSend.getPrmMsgSendPath(), pdtProduct,
-                    codeProduct, "M", servletContext);
-        }
+
     }
 
     @Override
@@ -402,9 +157,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public BigInteger getNextVal() {
+    public String getNextVal() {
         List<BigInteger> objects = productRepository.getNextVal();
-        return objects.get(0);
+        return objects.get(0).toString();
 
     }
 
@@ -439,114 +194,6 @@ public class ProductServiceImpl implements ProductService {
         return pack;
     }
 
-    @Transactional
-    public Product loadWmsProduct(com.sinno.wms.crud.modelbasic.products.Product product) {
-        PdtProduct pdtProduct = productRepository.findByPdtProductCode(product.getProduct_code());
-        Product pdt = null;
-
-        ProductType productType = ProductTypeMapper.toDto(productTypeRepository.findByPdtProductTypeCode(product.getProduct_type_code()), false);
-        List<Uom> uoms = null;
-        try {
-            uoms = UomMapper.toDtos(uomRepository.findAll(Search.expression("code:" + product.getUom_base_code() + ",owner.code:" + product.getOwner_code(), PdtUom.class)), false);
-        } catch (AttributesNotFound attributesNotFound) {
-            attributesNotFound.printStackTrace();
-        } catch (ErrorType errorType) {
-            errorType.printStackTrace();
-        }
-
-        Uom uom = uoms.size() > 0 ? uoms.get(0) : null;
-        Owner owner = OwnerMapper.toDto(ownerRepository.findByOwnOwnerCode(product.getOwner_code()), false);
-        Supplier supplier = SupplierMapper.toDto(supplierRepository.findByRcpSupplierCode(product.getDefault_supplier()), false);
-        ProductType productUnderType = ProductTypeMapper.toDto(productTypeRepository.findByPdtProductTypeCode(product.getProduct_under_type_code()), false);
-        List<Uom> uomSales = null;
-        try {
-            uomSales = UomMapper.toDtos(uomRepository.findAll(Search.expression("code:" + product.getSales_unit() + ",owner.code:" + product.getOwner_code(), PdtUom.class)), false);
-        } catch (AttributesNotFound attributesNotFound) {
-            attributesNotFound.printStackTrace();
-        } catch (ErrorType errorType) {
-            errorType.printStackTrace();
-        }
-        Uom uomSale = uomSales.size() > 0 ? uomSales.get(0) : null;
-        List<Uom> uomPursahses = null;
-        try {
-            uomPursahses = UomMapper.toDtos(uomRepository.findAll(Search.expression("code:" + product.getPurchase_unit() + ",owner.code:" + product.getOwner_code(), PdtUom.class)), false);
-        } catch (AttributesNotFound attributesNotFound) {
-            attributesNotFound.printStackTrace();
-        } catch (ErrorType errorType) {
-            errorType.printStackTrace();
-        }
-        Uom uomPurshase = uomPursahses.size() > 0 ? uomPursahses.get(0) : null;
-
-
-        if (null != pdtProduct) {
-            pdt = ProductMapper.toDto(pdtProduct, false);
-        } else {
-            // NEW PRODUCT
-            pdt = new Product();
-            pdt.setCreationDate(EmsDate.getDateNow());
-        }
-        if (null == uom) {
-            //NEW UOM
-            uom = new Uom();
-            uom.setCode(product.getBase_unit_price());
-            uom.setOwner(owner);
-            uom = UomMapper.toDto(uomRepository.saveAndFlush(UomMapper.toEntity(uom, false)), false);
-        }
-
-        if (null != pdt) {
-            pdt = MapperProduct.convertToEmsDto(pdt, product);
-            pdt.setUpdateDate(EmsDate.getDateNow());
-            pdt.setProductType(productType);
-            pdt.setUomByProductUomBase(uom);
-            pdt.setUomByProductUomPurshase(uomPurshase);
-            pdt.setUomByProductUomSale(uomSale);
-            if (null == pdt.getAlias()) {
-                Alias alias = new Alias();
-                alias.setEanCode(product.getProduct_pseudo());
-                pdt.setAlias(alias);
-            } else {
-                pdt.getAlias().setEanCode(product.getProduct_pseudo());
-            }
-            pdt.setProductSubType(productUnderType);
-            pdt.setSupplier(supplier);
-            pdt.setOwner(owner);
-            pdt = save(pdt);
-            return pdt;
-        }
-        return null;
-    }
-
-    @Override
-    public List<Product> exportWmsProduct(List<Product> products) {
-        writeFileProduct(null != getPrmMsgSend() ? getPrmMsgSend().getPrmMsgSendPath() : System.getenv("APPDATA"), products);
-        return products;
-    }
-
-    private Boolean checkBeforeDelete(Long id) {
-        String search = "warehouse.id:" + id;
-
-        try {
-            ArrayList<StkStock> stkStocks = Lists.newArrayList(stockRepository.findAll(Search.expression(search, StkStock.class)));
-            ArrayList<RcpReceptionLine> rcpReceptions = Lists.newArrayList(receptionLineRepository.findAll(Search.expression(search, RcpReception.class)));
-            ArrayList<RcpPurshaseOrderLine> rcpPurshaseOrders = Lists.newArrayList(purshaseOrderLineRepository.findAll(Search.expression(search, RcpPurshaseOrder.class)));
-            ArrayList<CmdDeliveryLine> cmdDeliveries = Lists.newArrayList(deliveryLineRepository.findAll(Search.expression(search, CmdDelivery.class)));
-            ArrayList<CmdSaleOrderLine> cmdSaleOrders = Lists.newArrayList(saleOrderLineRepository.findAll(Search.expression(search, CmdSaleOrder.class)));
-            if ((null == stkStocks || 0 == stkStocks.size())
-                    && (null == rcpPurshaseOrders || 0 == rcpPurshaseOrders.size())
-                    && (null == cmdDeliveries || 0 == cmdDeliveries.size())
-                    && (null == rcpReceptions || 0 == rcpReceptions.size())
-                    && (null == cmdSaleOrders || 0 == cmdSaleOrders.size())
-                    ) {
-                return true;
-            }
-
-        } catch (AttributesNotFound attributesNotFound) {
-            //attributesNotFound.printStackTrace();
-        } catch (ErrorType errorType) {
-            //e.printStackTrace();
-        }
-        return false;
-    }
 
     @Override
     public BigDecimal stockQuantity(Long id) {

@@ -14,7 +14,7 @@ public class DBConfig {
 	        dataSourceBuilder.driverClassName("org.postgresql.Driver");
 	        dataSourceBuilder.url("jdbc:postgresql://localhost:5432/emsdb");
 	        dataSourceBuilder.username("postgres");
-	        dataSourceBuilder.password("postgres");
+	        dataSourceBuilder.password("password");
 	        return dataSourceBuilder.build();   
 	}
 }

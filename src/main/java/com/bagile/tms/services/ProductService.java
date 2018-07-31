@@ -18,13 +18,10 @@ public interface ProductService {
 
     Product save(Product product) throws IdNotFound;
 
-    Long size();
-
     Boolean isExist(Long id);
 
     Product findById(Long id) throws IdNotFound;
 
-    Product findOne(String search) throws AttributesNotFound, ErrorType;
 
     List<Product> find(String search) throws AttributesNotFound, ErrorType;
 
@@ -41,11 +38,6 @@ public interface ProductService {
     List<Product> findAll(int page, int size) throws AttributesNotFound, ErrorType;
     
     String getNextVal();
-
-
-
-    BigDecimal convertQuantityByUom(BigDecimal qte, ProductPack packExpected, ProductPack packServed);
-
     BigDecimal stockQuantity(Long id);
 
     BigDecimal reservedQuantity(Long id);
@@ -56,13 +48,5 @@ public interface ProductService {
 
     BigDecimal quantityToReceive(Long id);
 
-    Product findByCode(String code);
 
-    BigDecimal convertQuantityByUom(BigDecimal qte, Uom uom, Uom uomServed, Product product);
-
-    BigDecimal quantityToReceive(Long id, String date) throws ParseException;
-
-    BigDecimal getMaxSalePrice();
-
-    BigDecimal getMinSalePrice();
 }

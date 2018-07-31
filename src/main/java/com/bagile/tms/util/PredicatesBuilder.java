@@ -3,8 +3,8 @@
  */
 package com.bagile.tms.util;
 
-import com.mysema.query.types.expr.BooleanExpression;
 import com.bagile.tms.exceptions.ErrorType;
+import com.querydsl.core.types.dsl.BooleanExpression;
 
 import java.util.ArrayList;
 import java.util.List;

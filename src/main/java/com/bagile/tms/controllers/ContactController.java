@@ -1,4 +1,4 @@
-package com.bagile.tms.controller;
+package com.bagile.tms.controllers;
 
 import com.bagile.tms.dto.Contact;
 import com.bagile.tms.exceptions.AttributesNotFound;

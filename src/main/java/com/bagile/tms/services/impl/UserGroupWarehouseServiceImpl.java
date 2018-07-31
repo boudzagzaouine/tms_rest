@@ -1,5 +1,6 @@
 package com.bagile.tms.services.impl;
 
+import com.bagile.tms.dto.UserGroupWarehouse;
 import com.bagile.tms.entities.UsrUserGroupWarehouse;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
@@ -13,10 +14,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
+@Service @Transactional
 public class UserGroupWarehouseServiceImpl implements UserGroupWarehouseService {
 
     @Autowired

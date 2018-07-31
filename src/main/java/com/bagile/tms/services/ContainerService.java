@@ -37,7 +37,6 @@ public interface ContainerService {
 
     public List<Container> findAll(Pageable pageable);
 
-    public String getNextVal();
 
 
 }

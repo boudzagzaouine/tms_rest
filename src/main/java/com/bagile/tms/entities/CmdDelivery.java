@@ -59,6 +59,7 @@ public class CmdDelivery {
 
     private Set<CmdDeliveryLine> cmdDeliveryLines = new HashSet<CmdDeliveryLine>(0);
     private Long cmdDeliveryContainerCount;
+    private Boolean cmdDeliveryActive;
 
 
     @Id
@@ -73,7 +74,7 @@ public class CmdDelivery {
         this.cmdDeliveryId = cmdDeliveryId;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cmd_deliverysaleorderid")
     public CmdSaleOrder getCmdSaleOrder() {
         return cmdSaleOrder;
@@ -83,7 +84,7 @@ public class CmdDelivery {
         this.cmdSaleOrder = cmdSaleOrder;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cmd_deliveryordertypeid")
     public PrmOrderType getPrmOrderType() {
         return prmOrderType;
@@ -93,7 +94,7 @@ public class CmdDelivery {
         this.prmOrderType = prmOrderType;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cmd_deliveryaccountid")
     public CmdAccount getCmdAccount() {
         return cmdAccount;
@@ -103,7 +104,7 @@ public class CmdDelivery {
         this.cmdAccount = cmdAccount;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cmd_deliverywarehouseid")
     public WrhWarehouse getWrhWarehouse() {
         return wrhWarehouse;
@@ -113,7 +114,7 @@ public class CmdDelivery {
         this.wrhWarehouse = wrhWarehouse;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cmd_deliverytransportid")
     public TrpTransport getTrpTransport() {
         return trpTransport;
@@ -123,7 +124,7 @@ public class CmdDelivery {
         this.trpTransport = trpTransport;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cmd_deliveryaddressbycmdsaleorderdeliveryaddressid")
     public AdrAddress getAdrAddressByCmdSaleOrderDeliveryAddressId() {
         return adrAddressByCmdSaleOrderDeliveryAddressId;
@@ -133,7 +134,7 @@ public class CmdDelivery {
         this.adrAddressByCmdSaleOrderDeliveryAddressId = adrAddressByCmdSaleOrderDeliveryAddressId;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cmd_deliveryaddressbycmdsaleorderinvoiceaddressid")
     public AdrAddress getAdrAddressByCmdSaleOrderInvoiceAddressId() {
         return adrAddressByCmdSaleOrderInvoiceAddressId;
@@ -143,7 +144,7 @@ public class CmdDelivery {
         this.adrAddressByCmdSaleOrderInvoiceAddressId = adrAddressByCmdSaleOrderInvoiceAddressId;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cmd_deliveryownerid", nullable = false)
     public OwnOwner getOwnOwner() {
         return ownOwner;
@@ -153,7 +154,7 @@ public class CmdDelivery {
         this.ownOwner = ownOwner;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cmd_deliveryorderstatusid")
     public PrmOrderStatus getPrmOrderStatus() {
         return prmOrderStatus;
@@ -200,7 +201,7 @@ public class CmdDelivery {
     public void setCmdDeliveryDescription(String cmdDeliveryDescription) {
         this.cmdDeliveryDescription = cmdDeliveryDescription;
     }
-
+    @Column(name = "cmd_deliverycode")
     public String getCmdDeliveryCode() {
         return cmdDeliveryCode;
     }
@@ -291,5 +292,13 @@ public class CmdDelivery {
 
     public Long getCmdDeliveryContainerCount() {
         return cmdDeliveryContainerCount;
+    }
+    @Column(name = "cmd_deliveryactive")
+    public Boolean getCmdDeliveryActive() {
+        return cmdDeliveryActive;
+    }
+
+    public void setCmdDeliveryActive(Boolean cmdDeliveryActive) {
+        this.cmdDeliveryActive = cmdDeliveryActive;
     }
 }

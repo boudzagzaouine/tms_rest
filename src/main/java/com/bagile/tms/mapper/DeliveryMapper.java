@@ -43,6 +43,7 @@ public class DeliveryMapper {
         map.put("transfertCode", "cmdDeliveryTransfertCode");
         map.put("preparation", "cmdPreparation");
         map.put("road", "tmsRoad");
+        map.put("active", "cmdDeliveryActive");
 
 
     }
@@ -71,6 +72,7 @@ public class DeliveryMapper {
         cmdDelivery.setCmdDeliveryUpdateDate(delivery.getUpdateDate());
         cmdDelivery.setCmdDeliveryCreationDate(delivery.getCreationDate());
         cmdDelivery.setCmdDeliveryTransfertCode(delivery.getTransfertCode());
+        cmdDelivery.setCmdDeliveryActive(delivery.getActive());
 
         if (!lazy) {
 
@@ -123,6 +125,7 @@ public class DeliveryMapper {
         delivery.setCreationDate(cmdDelivery.getCmdDeliveryCreationDate());
         delivery.setTransfertCode(cmdDelivery.getCmdDeliveryTransfertCode());
         delivery.setComment(cmdDelivery.getCmdDeliveryComment());
+        delivery.setActive(cmdDelivery.getCmdDeliveryActive());
 
         if (!lazy) {
 

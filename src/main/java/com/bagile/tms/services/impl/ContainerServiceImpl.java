@@ -17,11 +17,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
 import java.util.List;
 
-@Service
+@Service @Transactional
 public class ContainerServiceImpl implements ContainerService,AddActive {
 
     @Autowired
@@ -124,14 +125,6 @@ public class ContainerServiceImpl implements ContainerService,AddActive {
         return ContainerMapper.toDtos(containerRepository.findAll(pageable), false);
     }
 
-    /**
-     * generate container code and write it  on 18 numeric's number
-     * @return
-     */
-    @Override
-    public String getNextVal() {
-        List<BigInteger> objects = containerRepository.getNextVal();
-        return String.format("%1$018d", objects.get(0));
-    }
+
 
 }

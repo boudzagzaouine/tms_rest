@@ -146,12 +146,6 @@ public class ContainerController {
         containerService.delete(id);
     }
 
-    @PreAuthorize("hasRole('CONTAINER_CREATE')")
-    @RequestMapping(method = RequestMethod.GET, value = "/nextval")
-    @ResponseBody
-    public String nextVal()
-    {
-        return String.format("%1$018d",containerService.getNextVal());
-    }
+
 
 }

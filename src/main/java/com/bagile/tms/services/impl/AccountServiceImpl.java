@@ -20,12 +20,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.ServletContext;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-@Service
+@Service @Transactional
 public class AccountServiceImpl implements AccountService, AddActive {
 
     @Autowired
@@ -157,7 +158,7 @@ public class AccountServiceImpl implements AccountService, AddActive {
     public List<Account> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
         search = addActiveToSearch(search);
         Sort sort = new Sort(Sort.Direction.DESC, "cmdAccountUpdateDate");
-        Pageable pageable = new PageRequest(page, size, sort);
+        Pageable pageable =  PageRequest.of(page, size, sort);
         return AccountMapper.toDtos(accountRepository.findAll(Search.expression(search, CmdAccount.class), pageable), false);
     }
 

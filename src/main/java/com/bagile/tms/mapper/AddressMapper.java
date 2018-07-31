@@ -12,40 +12,42 @@ import java.util.*;
  * @author aelguezzar
  */
 public class AddressMapper {
-        private AddressMapper(){
+    private AddressMapper() {
 
-        }
+    }
+
     private static Map<String, String> map;
 
     public static Map<String, String> getMap() {
         return map;
     }
+
     static {
         map = new HashMap<>();
-        map.put("id","adrAddressId");
-        map.put("owner","ownOwner");
-        map.put("code","adrAddressCode");
-        map.put("contactTel","adrAddressContactTel");
-        map.put("line1","adrAddressLine1");
-        map.put("line2","adrAdressLine2");
-        map.put("zip","adrAddressZip");
-        map.put("city","adrAddressCity");
-        map.put("state","adrAddressState");
-        map.put("country","adrAddressCountry");
-        map.put("digiCode","adrAddressDigiCode");
-        map.put("creationDate","adrAddressCreationDate");
-        map.put("updateDate","adrAddressUpdateDate");
-        map.put("variable1","adrAddressVariable1");
-        map.put("variable2","adrAddressVariable2");
-        map.put("variable3","adrAddressVariable3");
-        map.put("variable4","adrAddressVariable4");
-        map.put("variable5","adrAddressVariable5");
-        map.put("variable6","adrAddressVariable6");
-        map.put("variable7","adrAddressVariable7");
-        map.put("variable8","adrAddressVariable8");
-        map.put("variable9","adrAddressVariable9");
-        map.put("variable10","adrAddressVariable10");
-        map.put("typeAddress","adrAddressType");
+        map.put("id", "adrAddressId");
+        map.put("owner", "ownOwner");
+        map.put("code", "adrAddressCode");
+        map.put("contactTel", "adrAddressContactTel");
+        map.put("line1", "adrAddressLine1");
+        map.put("line2", "adrAdressLine2");
+        map.put("zip", "adrAddressZip");
+        map.put("city", "adrAddressCity");
+        map.put("state", "adrAddressState");
+        map.put("country", "adrAddressCountry");
+        map.put("digiCode", "adrAddressDigiCode");
+        map.put("creationDate", "adrAddressCreationDate");
+        map.put("updateDate", "adrAddressUpdateDate");
+        map.put("variable1", "adrAddressVariable1");
+        map.put("variable2", "adrAddressVariable2");
+        map.put("variable3", "adrAddressVariable3");
+        map.put("variable4", "adrAddressVariable4");
+        map.put("variable5", "adrAddressVariable5");
+        map.put("variable6", "adrAddressVariable6");
+        map.put("variable7", "adrAddressVariable7");
+        map.put("variable8", "adrAddressVariable8");
+        map.put("variable9", "adrAddressVariable9");
+        map.put("variable10", "adrAddressVariable10");
+        map.put("typeAddress", "adrAddressType");
 
     }
 
@@ -81,6 +83,8 @@ public class AddressMapper {
         address.setVariable9(adrAddress.getAdrAddressVariable9());
         address.setVariable10(adrAddress.getAdrAddressVariable10());
         address.setAddressType(adrAddress.getAddAddressType());
+        address.setLatitude(adrAddress.getAdrAddressLatitude());
+        address.setLongitude(adrAddress.getAdrAddressLongitude());
         if (!lazy) {
             address.setOwner(OwnerMapper.toDto(adrAddress.getOwnOwner(), true));
         }
@@ -93,7 +97,7 @@ public class AddressMapper {
         }
         AdrAddress adrAddress = new AdrAddress();
         adrAddress.setAdrAddressCity(address.getCity());
-        adrAddress.setAdrAddressCode(address.getCode()!=null?address.getCode().toUpperCase():null);
+        adrAddress.setAdrAddressCode(address.getCode() != null ? address.getCode().toUpperCase() : null);
         adrAddress.setAdrAddressContactTel(address.getContactTel());
         adrAddress.setAdrAddressCountry(address.getCountry());
         adrAddress.setAdrAddressCreationDate(address.getCreationDate());
@@ -115,6 +119,8 @@ public class AddressMapper {
         adrAddress.setAdrAddressVariable9(address.getVariable9());
         adrAddress.setAdrAddressVariable10(address.getVariable10());
         adrAddress.setAddAddressType(address.getAddressType());
+        adrAddress.setAdrAddressLatitude(address.getLatitude());
+        adrAddress.setAdrAddressLongitude(address.getLongitude());
         if (!lazy) {
             adrAddress.setOwnOwner(OwnerMapper.toEntity(address.getOwner(), true));
         }
