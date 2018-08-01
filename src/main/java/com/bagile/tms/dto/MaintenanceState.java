@@ -7,23 +7,24 @@ import com.bagile.tms.entities.UsrUser;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
-/**
- * Created by yasser on 22/09/2016.
- */
-public class MaintenancePlan implements Serializable {
+public class MaintenanceState {
 
     private long id;
+
     private Vehicle vehicle;
+
     private String code;
+
     private String descriptif;
 
     private Date date;
+
     private MaintenanceState state;
+
     private String title;
+
 
     private Date creationDate;
 
@@ -31,7 +32,7 @@ public class MaintenancePlan implements Serializable {
 
     private UsrUser upDateDate;
 
-    private TmsTypeMaintenance typeMaintenance;
+    private TypeMaintenance typeMaintenance;
 
     public long getId() {
         return id;
@@ -113,11 +114,11 @@ public class MaintenancePlan implements Serializable {
         this.upDateDate = upDateDate;
     }
 
-    public TmsTypeMaintenance getTypeMaintenance() {
+    public TypeMaintenance getTypeMaintenance() {
         return typeMaintenance;
     }
 
-    public void setTypeMaintenance(TmsTypeMaintenance typeMaintenance) {
+    public void setTypeMaintenance(TypeMaintenance typeMaintenance) {
         this.typeMaintenance = typeMaintenance;
     }
 }

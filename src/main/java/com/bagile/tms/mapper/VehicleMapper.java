@@ -1,13 +1,8 @@
 package com.bagile.tms.mapper;
 
-import com.bagile.tms.dto.Vehicule;
 import com.bagile.tms.entities.TmsVehicle;
 
 import java.util.*;
-
-/**
- * Created by bouzi on 3/23/2017.
- */
 
 public class VehicleMapper {
     public VehicleMapper() {
@@ -114,11 +109,11 @@ public class VehicleMapper {
         }
         return  vehicules;
     }
-    public static List<Vehicule>toDtos(Iterable<TmsVehicle>tmsVehicles , boolean lazy){
+    public static List<Vehicle>toDtos(Iterable<TmsVehicle>tmsVehicles , boolean lazy){
         if (null == tmsVehicles) {
             return null;
         }
-        List<Vehicule>vehicules = new ArrayList<>();
+        List<Vehicle>vehicules = new ArrayList<>();
 
         for (TmsVehicle tmsVehicle : tmsVehicles) {
             vehicules.add(toDto(tmsVehicle,lazy));
@@ -140,10 +135,10 @@ public class VehicleMapper {
         if (null == tmsVehicles) {
             return null;
         }
-        Set<Vehicule>vehicules = new HashSet<>();
+        Set<Vehicle>vehicules = new HashSet<>();
         for (TmsVehicle tmsVehicle : tmsVehicles) {
             vehicules.add(toDto(tmsVehicle,lazy));
         }
-        return vehicules;
+        return vehicles;
     }
 }

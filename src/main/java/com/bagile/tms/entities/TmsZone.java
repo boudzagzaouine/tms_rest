@@ -3,17 +3,20 @@ package com.bagile.tms.entities;
 import javax.persistence.*;
 import java.util.Set;
 
+@Entity
+@Table(name = "tms_zone",uniqueConstraints = @UniqueConstraint(columnNames = {"tms_zoneId"}))
+
 public class TmsZone {
-    private int tmsZoneId;
+    private long tmsZoneId;
     private String tmsZoneName;
     private Set<TmsDriver> tmsZoneDrivers;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name = "tms_idZone", unique = true, nullable = false, scale = 0)
+    @Column(name = "tms_zoneId", unique = true, nullable = false, scale = 0)
 
-    public int getTmsZoneId() {
+    public long getTmsZoneId() {
         return tmsZoneId;
     }
 
@@ -21,6 +24,7 @@ public class TmsZone {
         this.tmsZoneId = tmsZoneId;
     }
 
+    @Column(name = "tms_zonename")
     public String getTmsZoneName() {
         return tmsZoneName;
     }
@@ -29,6 +33,7 @@ public class TmsZone {
         this.tmsZoneName = tmsZoneName;
     }
 
+    @Column(name = "tms_zonedrivers")
     public Set<TmsDriver> getTmsZoneDrivers() {
         return tmsZoneDrivers;
     }

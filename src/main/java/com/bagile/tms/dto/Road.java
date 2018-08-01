@@ -1,23 +1,43 @@
 package com.bagile.tms.dto;
 
+import com.bagile.tms.entities.*;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Set;
 
-/**
- * Created by yasser on 22/09/2016.
- */
 public class Road implements Serializable {
+
     private long id;
+
     private String code;
+
     private BigDecimal duration;
+
     private BigDecimal cost;
+
     private BigDecimal distance;
-    private Set<Incident> incidents;
-    private Driver PrincipalDriver;
-    private Driver suppleantDriver;
-    private Set<Delivery> deliveries;
-    private Vehicule vehicule;
+
+    private TmsDriver driver;
+
+    private Driver adjunct;
+    private Date date;
+
+    private RoadState state;
+
+    private SaleOrder saleOrder;
+
+    private Address stockAdress;
+
+    private Vehicle tmsRoadVehicle;
+
+    private Date roadDate;
+    private Date creationDate;
+    private User creationUser;
+    private User upDateUser;
 
     public long getId() {
         return id;
@@ -59,65 +79,91 @@ public class Road implements Serializable {
         this.distance = distance;
     }
 
-    public Set<Incident> getIncidents() {
-        return incidents;
+    public TmsDriver getDriver() {
+        return driver;
     }
 
-    public void setIncidents(Set<Incident> incidents) {
-        this.incidents = incidents;
+    public void setDriver(TmsDriver driver) {
+        this.driver = driver;
     }
 
-    public Driver getPrincipalDriver() {
-        return PrincipalDriver;
+    public Driver getAdjunct() {
+        return adjunct;
     }
 
-    public void setPrincipalDriver(Driver principalDriver) {
-        PrincipalDriver = principalDriver;
+    public void setAdjunct(Driver adjunct) {
+        this.adjunct = adjunct;
     }
 
-    public Driver getSuppleantDriver() {
-        return suppleantDriver;
+    public Date getDate() {
+        return date;
     }
 
-    public void setSuppleantDriver(Driver suppleantDriver) {
-        this.suppleantDriver = suppleantDriver;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public Set<Delivery> getDeliveries() {
-        return deliveries;
+    public RoadState getState() {
+        return state;
     }
 
-    public void setDeliveries(Set<Delivery> deliveries) {
-        this.deliveries = deliveries;
+    public void setState(RoadState state) {
+        this.state = state;
     }
 
-    public Vehicule getVehicule() {
-        return vehicule;
+    public SaleOrder getSaleOrder() {
+        return saleOrder;
     }
 
-    public void setVehicule(Vehicule vehicule) {
-        this.vehicule = vehicule;
+    public void setSaleOrder(SaleOrder saleOrder) {
+        this.saleOrder = saleOrder;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        boolean result = false;
-        if (object == null || object.getClass() != getClass()) {
-            result = false;
-        } else {
-            Road obj = (Road) object;
-            if (this.id == obj.getId()) {
-                result = true;
-            }
-        }
-        return result;
+    public Address getStockAdress() {
+        return stockAdress;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 7 * hash + (int) this.id;
-        hash = 7 * hash + (int) this.id;
-        return hash;
+    public void setStockAdress(Address stockAdress) {
+        this.stockAdress = stockAdress;
+    }
+
+    public Vehicle getTmsRoadVehicle() {
+        return tmsRoadVehicle;
+    }
+
+    public void setTmsRoadVehicle(Vehicle tmsRoadVehicle) {
+        this.tmsRoadVehicle = tmsRoadVehicle;
+    }
+
+    public Date getRoadDate() {
+        return roadDate;
+    }
+
+    public void setRoadDate(Date roadDate) {
+        this.roadDate = roadDate;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public User getCreationUser() {
+        return creationUser;
+    }
+
+    public void setCreationUser(User creationUser) {
+        this.creationUser = creationUser;
+    }
+
+    public User getUpDateUser() {
+        return upDateUser;
+    }
+
+    public void setUpDateUser(User upDateUser) {
+        this.upDateUser = upDateUser;
     }
 }

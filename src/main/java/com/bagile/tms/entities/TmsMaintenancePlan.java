@@ -9,7 +9,7 @@ import java.util.Date;
  * Created by bouzi on 3/15/2017.
  */
 @Entity
-@Table(name = "tms_maintenanceplan")
+@Table(name = "tms_maintenanceplan", uniqueConstraints = @UniqueConstraint(columnNames = {"tms_maintenanceplanId","tms_maintenancepalncode"}))
 public class TmsMaintenancePlan implements java.io.Serializable{
     private long tmsMaintenancePlanId;
     @NotNull
@@ -31,7 +31,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
 
     private UsrUser tmsMaintenanceCreationUser;
 
-    private UsrUser tmsMaintenanceUpDateDate;
+    private UsrUser tmsMaintenanceUpDateUser;
 
     private TmsTypeMaintenance typeMaintenance;
 
@@ -53,6 +53,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
         this.tmsMaintenancePlanId = tmsMaintenancePlanId;
     }
 
+    @Column(name = "tms_vehicle", unique = true, nullable = false)
     public TmsVehicle getTmsVehicle() {
         return tmsVehicle;
     }
@@ -61,6 +62,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
         this.tmsVehicle = tmsVehicle;
     }
 
+    @Column(name = "tms_maintenanceplancode", unique = true, nullable = false, precision = 10, scale = 0)
     public String getTmsMaintenancePlanCode() {
         return tmsMaintenancePlanCode;
     }
@@ -69,6 +71,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
         this.tmsMaintenancePlanCode = tmsMaintenancePlanCode;
     }
 
+    @Column(name = "tms_maintenanceplandescriptif", unique = true, nullable = false)
     public String getTmsMaintenancePlanDescriptif() {
         return tmsMaintenancePlanDescriptif;
     }
@@ -77,6 +80,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
         this.tmsMaintenancePlanDescriptif = tmsMaintenancePlanDescriptif;
     }
 
+    @Column(name = "tms_maintenanceplandate", unique = true, nullable = false, precision = 10, scale = 0)
     public Date getTmsMaintenancePlanDate() {
         return tmsMaintenancePlanDate;
     }
@@ -85,6 +89,8 @@ public class TmsMaintenancePlan implements java.io.Serializable{
         this.tmsMaintenancePlanDate = tmsMaintenancePlanDate;
     }
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @Column(name = "tms_maintenanceplanstate", unique = true, nullable = false)
     public TmsMaintenanceState getTmsMaintenancePlanState() {
         return tmsMaintenancePlanState;
     }
@@ -93,6 +99,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
         this.tmsMaintenancePlanState = tmsMaintenancePlanState;
     }
 
+    @Column(name = "tms_maintenanceplantitle")
     public String getTmsMaintenancePlantitle() {
         return tmsMaintenancePlantitle;
     }
@@ -101,6 +108,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
         this.tmsMaintenancePlantitle = tmsMaintenancePlantitle;
     }
 
+    @Column(name = "tms_maintenanceplancreationdate", unique = true, nullable = false)
     public Date getTmsMaintenanceCreationDate() {
         return tmsMaintenanceCreationDate;
     }
@@ -109,6 +117,8 @@ public class TmsMaintenancePlan implements java.io.Serializable{
         this.tmsMaintenanceCreationDate = tmsMaintenanceCreationDate;
     }
 
+    @OneToMany(fetch = FetchType.LAZY)
+    @Column(name = "tms_maintenanceplancreationuser", unique = true, nullable = false)
     public UsrUser getTmsMaintenanceCreationUser() {
         return tmsMaintenanceCreationUser;
     }
@@ -117,14 +127,18 @@ public class TmsMaintenancePlan implements java.io.Serializable{
         this.tmsMaintenanceCreationUser = tmsMaintenanceCreationUser;
     }
 
-    public UsrUser getTmsMaintenanceUpDateDate() {
-        return tmsMaintenanceUpDateDate;
+    @OneToMany(fetch = FetchType.LAZY)
+    @Column(name = "tms_maintenanceplanupdateuser", unique = true, nullable = false)
+    public UsrUser getTmsMaintenanceUpDateUser() {
+        return tmsMaintenanceUpDateUser;
     }
 
-    public void setTmsMaintenanceUpDateDate(UsrUser tmsMaintenanceUpDateDate) {
-        this.tmsMaintenanceUpDateDate = tmsMaintenanceUpDateDate;
+    public void setTmsMaintenanceUpDateUser(UsrUser tmsMaintenanceUpDateUser) {
+        this.tmsMaintenanceUpDateUser = tmsMaintenanceUpDateUser;
     }
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @Column(name = "tms_maintenanceplancreationdate", unique = true, nullable = false)
     public TmsTypeMaintenance getTypeMaintenance() {
         return typeMaintenance;
     }

@@ -1,10 +1,14 @@
 package com.bagile.tms.entities;
 
+import com.bagile.tms.dto.DoorType;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "tms_category", uniqueConstraints = @UniqueConstraint(columnNames = {"tms_categoryId"}))
 public class TmsCategory {
-    private int tmsCategoryId;
+    private long tmsCategoryId;
     private BigDecimal tmsCategoryConsumption;
     private BigDecimal tmsCategoryWeight;
     private BigDecimal tmsCategoryWidth;
@@ -17,9 +21,10 @@ public class TmsCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name = "tms_CategoryId", unique = true, nullable = false, precision = 10, scale = 0)
+    @Column(name = "tms_categoryId", unique = true, nullable = false, precision = 10, scale = 0)
 
-    public int getTmsCategoryId() {
+
+    public long getTmsCategoryId() {
         return tmsCategoryId;
     }
 
@@ -27,6 +32,8 @@ public class TmsCategory {
         this.tmsCategoryId = tmsCategoryId;
     }
 
+
+    @Column(name = "tms_categorycunsumption", nullable = false, length = 30)
     public BigDecimal getTmsCategoryConsumption() {
         return tmsCategoryConsumption;
     }
@@ -35,6 +42,7 @@ public class TmsCategory {
         this.tmsCategoryConsumption = tmsCategoryConsumption;
     }
 
+    @Column(name = "tms_categoryweight", nullable = false, length = 30)
     public BigDecimal getTmsCategoryWeight() {
         return tmsCategoryWeight;
     }
@@ -43,6 +51,8 @@ public class TmsCategory {
         this.tmsCategoryWeight = tmsCategoryWeight;
     }
 
+
+    @Column(name = "tms_categorywidth", nullable = false, length = 30)
     public BigDecimal getTmsCategoryWidth() {
         return tmsCategoryWidth;
     }
@@ -51,6 +61,8 @@ public class TmsCategory {
         this.tmsCategoryWidth = tmsCategoryWidth;
     }
 
+    @OneToOne(fetch=FetchType.LAZY)
+    @Column(name = "tms_categorydoor", nullable = false, length = 30)
     public DoorType getTmsCategoryDoor() {
         return tmsCategoryDoor;
     }
@@ -59,6 +71,7 @@ public class TmsCategory {
         this.tmsCategoryDoor = tmsCategoryDoor;
     }
 
+    @Column(name = "tms_categorydepth", nullable = false, length = 30)
     public BigDecimal getTmsCategoryDepth() {
         return tmsCategoryDepth;
     }
@@ -67,6 +80,7 @@ public class TmsCategory {
         this.tmsCategoryDepth = tmsCategoryDepth;
     }
 
+    @Column(name = "tms_categorytonnage", nullable = false, length = 30)
     public BigDecimal getTmsCategoryTonnage() {
         return tmsCategoryTonnage;
     }
@@ -75,6 +89,7 @@ public class TmsCategory {
         this.tmsCategoryTonnage = tmsCategoryTonnage;
     }
 
+    @Column(name = "tms_categoryemptyweight", nullable = false, length = 30)
     public BigDecimal getTmsCategoryEmptyWeight() {
         return tmsCategoryEmptyWeight;
     }
@@ -83,6 +98,7 @@ public class TmsCategory {
         this.tmsCategoryEmptyWeight = tmsCategoryEmptyWeight;
     }
 
+    @Column(name = "tms_categorytotalweight", nullable = false, length = 30)
     public BigDecimal getTmsCategoryTotalWeight() {
         return tmsCategoryTotalWeight;
     }

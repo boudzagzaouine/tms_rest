@@ -1,82 +1,49 @@
 package com.bagile.tms.entities;
 
 import javax.persistence.*;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
-/**
- * Created by khalil on 15/03/2017.
- */
 @Entity
-@Table(name = "tms_badge", uniqueConstraints = @UniqueConstraint(columnNames = {"tms_badgecode", "tms_badgeid"}))
+@Table(name = "tms_badgeA", uniqueConstraints = @UniqueConstraint(columnNames = {"tms_badgeTypecode", "tms_badgeTypeId"}))
 
-
-public class TmsBadge implements java.io.Serializable {
-    private long tmsBadgeId;
+public class TmsBadge {
+    private String tmsBadgeTypecode;
+    private long tmsBadgeTypeId;
     @NotNull
-    private String tmsBadgeCode;
-    private String tmsBadgeLibelle;
-    private String tmsBadgeDescription;
-    private Set<TmsVehicle> tmsBadgeVehicule;
-    private Set<TmsBadge> tmsDriverBadges;
-
+    private TmsBadgeType tmsBadgeType;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name = "tms_badgeid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getTmsBadgeId() {
-        return tmsBadgeId;
-    }
-    public void setTmsBadgeId(long tmsBadgeId) {
-        this.tmsBadgeId = tmsBadgeId;
-    }
 
-    @Column(name = "tms_badgecode", nullable = false, length = 30)
-    public String getTmsBadgeCode() {
-        return tmsBadgeCode;
+    @Column(name = "tms_BadgeTypecode", unique = true, nullable = false)
+
+    public String getTmsBadgeTypecode() {
+        return tmsBadgeTypecode;
     }
 
-    public void setTmsBadgeCode(String tmsBadgeCode) {
-        this.tmsBadgeCode = tmsBadgeCode;
+    public void setTmsBadgeTypecode(String tmsBadgeTypecode) {
+        this.tmsBadgeTypecode = tmsBadgeTypecode;
     }
 
-    @Column(name = "tms_badgedescription", nullable = false, length = 30)
-    public String getTmsBadgeDescription() {
-        return tmsBadgeDescription;
+    @Column(name = "tms_BadgeTypeId", unique = true, nullable = false, precision = 10, scale = 0)
+    public long getTmsBadgeTypeId() {
+        return tmsBadgeTypeId;
     }
 
-    public void setTmsBadgeDescription(String tmsBadgeDescription) {
-        this.tmsBadgeDescription = tmsBadgeDescription;
+    public void setTmsBadgeTypeId(int tmsBadgeTypeId) {
+        this.tmsBadgeTypeId = tmsBadgeTypeId;
     }
 
-    @Column(name = "tms_badgelibelle", nullable = false, length = 30)
-    public String getTmsBadgeLibelle() {
-        return tmsBadgeLibelle;
+    @OneToOne(fetch = FetchType.LAZY)
+    @Column(name = "tms_BadgeTypetype", unique = true, nullable = false, precision = 10, scale = 0)
+    public TmsBadgeType getTmsBadgeType() {
+        return tmsBadgeType;
     }
 
-    public void setTmsBadgeLibelle(String tmsBadgeLibelle) {
-        this.tmsBadgeLibelle = tmsBadgeLibelle;
+    public void setTmsBadgeType(TmsBadgeType tmsBadgeType) {
+        this.tmsBadgeType = tmsBadgeType;
     }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tmsBadge")
-    public Set<TmsVehicle> getTmsBadgeVehicule() {
-        return tmsBadgeVehicule;
-    }
-
-    public void setTmsBadgeVehicule(Set<TmsVehicle> tmsBadgeVehicule) {
-        this.tmsBadgeVehicule = tmsBadgeVehicule;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tmsDriverBadgeBadge")
-
-    public Set<TmsBadge> getTmsDriverBadges() {
-        return tmsDriverBadges;
-    }
-
-    public void setTmsDriverBadges(Set<TmsBadge> tmsDriverBadges) {
-        this.tmsDriverBadges = tmsDriverBadges;
-    }
-
-
 }

@@ -18,9 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created by khalil on 28/03/2017.
- */
 @Service
 public class DriverServiceImpl implements DriverService {
     @Autowired

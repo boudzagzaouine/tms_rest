@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
     @Entity
-    @Table(name = "tms_maintenancestate")
+    @Table(name = "tms_maintenancestate",uniqueConstraints = @UniqueConstraint(columnNames = {"tms_maintenanceStateId"}))
 
     public class TmsMaintenanceState implements java.io.Serializable{
     private long idMaintenanceState;
@@ -31,6 +31,7 @@ import java.util.Date;
             this.idMaintenanceState = idMaintenanceState;
         }
 
+        @Column(name = "tms_maintenancestate", unique = true, nullable = false)
         public String getTmsMaintenanceState() {
             return tmsMaintenanceState;
         }

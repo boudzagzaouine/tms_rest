@@ -19,16 +19,15 @@ public class Driver implements Serializable {
     private String cin;
     @Size(max = 30)
     private Date date;
-    private TmsBadge badge;
+    private Badge badge;
     private Date lastMedicalVisit;
-    private TmsZone workArea;
-    private TmsVacation vacation;
+    private Zone workArea;
+    private Vacation vacation;
     private BigDecimal commission;
-    private PrmContact contact;
+    private Contact contact;
     private Date creationDate;
     private UsrUser creationUser;
     private UsrUser upDateDate;
-
 
     public long getId() {
         return id;
@@ -62,11 +61,11 @@ public class Driver implements Serializable {
         this.date = date;
     }
 
-    public TmsBadge getBadge() {
+    public Badge getBadge() {
         return badge;
     }
 
-    public void setBadge(TmsBadge badge) {
+    public void setBadge(Badge badge) {
         this.badge = badge;
     }
 
@@ -78,19 +77,19 @@ public class Driver implements Serializable {
         this.lastMedicalVisit = lastMedicalVisit;
     }
 
-    public TmsZone getWorkArea() {
+    public Zone getWorkArea() {
         return workArea;
     }
 
-    public void setWorkArea(TmsZone workArea) {
+    public void setWorkArea(Zone workArea) {
         this.workArea = workArea;
     }
 
-    public TmsVacation getVacation() {
+    public Vacation getVacation() {
         return vacation;
     }
 
-    public void setVacation(TmsVacation vacation) {
+    public void setVacation(Vacation vacation) {
         this.vacation = vacation;
     }
 
@@ -102,11 +101,11 @@ public class Driver implements Serializable {
         this.commission = commission;
     }
 
-    public PrmContact getContact() {
+    public Contact getContact() {
         return contact;
     }
 
-    public void setContact(PrmContact contact) {
+    public void setContact(Contact contact) {
         this.contact = contact;
     }
 
@@ -132,25 +131,5 @@ public class Driver implements Serializable {
 
     public void setUpDateDate(UsrUser upDateDate) {
         this.upDateDate = upDateDate;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        boolean result = false;
-        if (o == null || o.getClass() != getClass()) {
-            result = false;
-        } else {
-            Driver obj = (Driver) o;
-            if (this.id == obj.getId()) {
-                result = true;
-            }
-        }
-        return result;
-    };
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(getId(), getCode(), getCin(), getDate(), getBadge(), getLastMedicalVisit(), getWorkArea(), getVacation(), getCommission(), getContact(), getCreationDate(), getCreationUser(), getUpDateDate());
     }
 }

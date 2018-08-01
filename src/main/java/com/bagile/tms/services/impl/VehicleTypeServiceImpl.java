@@ -1,6 +1,5 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.VehiculeType;
 import com.bagile.tms.entities.TmsVehicleType;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;

@@ -3,6 +3,8 @@ package com.bagile.tms.entities;
 import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name="tms_vacation",uniqueConstraints = @UniqueConstraint(columnNames = {"tms_vacationId"}))
 public class TmsVacation {
     private int tmsVacationId;
     private Date tmsVacationBegin;
@@ -24,6 +26,7 @@ public class TmsVacation {
         this.tmsVacationId = tmsVacationId;
     }
 
+    @Column(name = "tms_vacationbegin", nullable = false)
     public Date getTmsVacationBegin() {
         return tmsVacationBegin;
     }
@@ -32,6 +35,7 @@ public class TmsVacation {
         this.tmsVacationBegin = tmsVacationBegin;
     }
 
+    @Column(name = "tms_vacationend", unique = true, nullable = false)
     public Date getTmsVacationEnd() {
         return tmsVacationEnd;
     }
@@ -40,6 +44,7 @@ public class TmsVacation {
         this.tmsVacationEnd = tmsVacationEnd;
     }
 
+    @Column(name = "tms_vacationtype", unique = true,nullable = false)
     public String getTmsVacationType() {
         return tmsVacationType;
     }
