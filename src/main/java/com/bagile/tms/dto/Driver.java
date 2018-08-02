@@ -19,15 +19,18 @@ public class Driver implements Serializable {
     private String cin;
     @Size(max = 30)
     private Date date;
-    private Badge badge;
+
+    private Set<Badge> badges;
+
     private Date lastMedicalVisit;
     private Zone workArea;
     private Vacation vacation;
     private BigDecimal commission;
     private Contact contact;
     private Date creationDate;
-    private UsrUser creationUser;
-    private UsrUser upDateDate;
+    private User creationUser;
+    private Date upDateDate;
+
 
     public long getId() {
         return id;
@@ -61,12 +64,12 @@ public class Driver implements Serializable {
         this.date = date;
     }
 
-    public Badge getBadge() {
-        return badge;
+    public Set<Badge> getBadges() {
+        return badges;
     }
 
-    public void setBadge(Badge badge) {
-        this.badge = badge;
+    public void setBadges(Set<Badge> badges) {
+        this.badges = badges;
     }
 
     public Date getLastMedicalVisit() {
@@ -117,19 +120,19 @@ public class Driver implements Serializable {
         this.creationDate = creationDate;
     }
 
-    public UsrUser getCreationUser() {
+    public User getCreationUser() {
         return creationUser;
     }
 
-    public void setCreationUser(UsrUser creationUser) {
+    public void setCreationUser(User creationUser) {
         this.creationUser = creationUser;
     }
 
-    public UsrUser getUpDateDate() {
+    public Date getUpDateDate() {
         return upDateDate;
     }
 
-    public void setUpDateDate(UsrUser upDateDate) {
+    public void setUpDateDate(Date upDateDate) {
         this.upDateDate = upDateDate;
     }
 }

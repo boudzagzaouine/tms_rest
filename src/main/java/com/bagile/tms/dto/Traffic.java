@@ -4,15 +4,15 @@ import java.util.Date;
 
 public class Traffic {
 
-    private int id;
+    private long id;
     private boolean active;
-    private Date dsate;
+    private Date date;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -24,11 +24,11 @@ public class Traffic {
         this.active = active;
     }
 
-    public Date getDsate() {
-        return dsate;
+    public Date getDate() {
+        return date;
     }
 
-    public void setDsate(Date dsate) {
-        this.dsate = dsate;
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

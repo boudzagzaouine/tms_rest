@@ -6,7 +6,8 @@ import javax.persistence.*;
 @Table(name = "tms_doortype", uniqueConstraints = @UniqueConstraint(columnNames = {"tms_doortypeId"}))
 public class TmsDoorType {
     private long tmsDoorTypeId;
-    private String tmsDoorTypeCode;
+    private Boolean tmsDoorTypeSide;
+    private Boolean tmsDoorTypeBack;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -16,17 +17,25 @@ public class TmsDoorType {
         return tmsDoorTypeId;
     }
 
-
     public void setTmsDoorTypeId(long tmsDoorTypeId) {
         this.tmsDoorTypeId = tmsDoorTypeId;
     }
 
-    @Column(name = "tms_doortypecode", unique = true, nullable = false, scale = 0)
-    public String getTmsDoorTypeCode() {
-        return tmsDoorTypeCode;
+    @Column(name = "tms_doortypeside")
+    public Boolean getTmsDoorTypeSide() {
+        return tmsDoorTypeSide;
     }
 
-    public void setTmsDoorTypeCode(String tmsDoorTypeCode) {
-        this.tmsDoorTypeCode = tmsDoorTypeCode;
+    public void setTmsDoorTypeSide(Boolean tmsDoorTypeSide) {
+        this.tmsDoorTypeSide = tmsDoorTypeSide;
+    }
+
+    @Column(name = "tms_doortypeback")
+    public Boolean getTmsDoorTypeBack() {
+        return tmsDoorTypeBack;
+    }
+
+    public void setTmsDoorTypeBack(Boolean tmsDoorTypeBack) {
+        this.tmsDoorTypeBack = tmsDoorTypeBack;
     }
 }

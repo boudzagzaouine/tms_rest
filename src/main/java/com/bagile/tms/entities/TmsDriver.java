@@ -33,7 +33,7 @@ public class TmsDriver implements java.io.Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date tmsDriverCreationDate;
     private UsrUser tmsDriverCreationUser;
-    private UsrUser tmsDriverUpDateDate;
+    private Date tmsDriverUpDateDate;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -158,11 +158,11 @@ public class TmsDriver implements java.io.Serializable {
 
     @OneToMany(fetch=FetchType.LAZY)
     @Column(name = "tms_driverupdatedate", nullable = false, length = 30)
-    public UsrUser getTmsDriverUpDateDate() {
+    public Date getTmsDriverUpDateDate() {
         return tmsDriverUpDateDate;
     }
 
-    public void setTmsDriverUpDateDate(UsrUser tmsDriverUpDateDate) {
+    public void setTmsDriverUpDateDate(Date tmsDriverUpDateDate) {
         this.tmsDriverUpDateDate = tmsDriverUpDateDate;
     }
 }

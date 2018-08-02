@@ -11,9 +11,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-/**
- * Created by yasser on 22/09/2016.
- */
 public class MaintenancePlan implements Serializable {
 
     private long id;

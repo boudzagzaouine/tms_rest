@@ -3,85 +3,85 @@ package com.bagile.tms.dto;
 import java.math.BigDecimal;
 
 public class Category {
-    private int tmsCategoryId;
-    private BigDecimal Consumption;
-    private BigDecimal Weight;
-    private BigDecimal Width;
-    private DoorType Door;
-    private BigDecimal Depth;
-    private BigDecimal Tonnage;
-    private BigDecimal EmptyWeight;
-    private BigDecimal TotalWeight;
+    private long id;
+    private BigDecimal consumption;
+    private BigDecimal weight;
+    private BigDecimal width;
+    private DoorType door;
+    private BigDecimal depth;
+    private BigDecimal tonnage;
+    private BigDecimal emptyWeight;
+    private BigDecimal totalWeight;
 
-    public int getTmsCategoryId() {
-        return tmsCategoryId;
+    public long getId() {
+        return id;
     }
 
-    public void setTmsCategoryId(int tmsCategoryId) {
-        this.tmsCategoryId = tmsCategoryId;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public BigDecimal getConsumption() {
-        return Consumption;
+        return consumption;
     }
 
     public void setConsumption(BigDecimal consumption) {
-        Consumption = consumption;
+        this.consumption = consumption;
     }
 
     public BigDecimal getWeight() {
-        return Weight;
+        return weight;
     }
 
     public void setWeight(BigDecimal weight) {
-        Weight = weight;
+        this.weight = weight;
     }
 
     public BigDecimal getWidth() {
-        return Width;
+        return width;
     }
 
     public void setWidth(BigDecimal width) {
-        Width = width;
+        this.width = width;
     }
 
     public DoorType getDoor() {
-        return Door;
+        return door;
     }
 
     public void setDoor(DoorType door) {
-        Door = door;
+        this.door = door;
     }
 
     public BigDecimal getDepth() {
-        return Depth;
+        return depth;
     }
 
     public void setDepth(BigDecimal depth) {
-        Depth = depth;
+        this.depth = depth;
     }
 
     public BigDecimal getTonnage() {
-        return Tonnage;
+        return tonnage;
     }
 
     public void setTonnage(BigDecimal tonnage) {
-        Tonnage = tonnage;
+        this.tonnage = tonnage;
     }
 
     public BigDecimal getEmptyWeight() {
-        return EmptyWeight;
+        return emptyWeight;
     }
 
     public void setEmptyWeight(BigDecimal emptyWeight) {
-        EmptyWeight = emptyWeight;
+        this.emptyWeight = emptyWeight;
     }
 
     public BigDecimal getTotalWeight() {
-        return TotalWeight;
+        return totalWeight;
     }
 
     public void setTotalWeight(BigDecimal totalWeight) {
-        TotalWeight = totalWeight;
+        this.totalWeight = totalWeight;
     }
 }

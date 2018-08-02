@@ -2,9 +2,7 @@ package com.bagile.tms.dto;
 
 import java.util.List;
 
-/**
- * Created by Enissay on 18/04/2017.
- */
+
 public class Tour {
     private long id;
     private String code;

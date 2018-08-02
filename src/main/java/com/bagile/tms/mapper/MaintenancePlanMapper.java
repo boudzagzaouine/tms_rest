@@ -5,9 +5,6 @@ import com.bagile.tms.entities.TmsMaintenancePlan;
 
 import java.util.*;
 
-/**
- * Created by bouzi on 3/22/2017.
- */
 public class MaintenancePlanMapper {
     public MaintenancePlanMapper() {
     }
@@ -19,9 +16,12 @@ public class MaintenancePlanMapper {
 
         map.put("id", "tmsMaintenancePlanId");
         map.put("code", "tmsMaintenancePlanCode");
-        map.put("description", "tmsDescription");
-        map.put("vehicule", "tmsMaintenancePlanVehicle");
-
+        map.put("descriptif", "tmsDescriptif");
+        map.put("vehicle", "tmsMaintenancePlanVehicle");
+        map.put("date", "tmsMaintenancePlanDate");
+        map.put("state", "tmsMaintenancePlanState");
+        map.put("title", "tmsMaintenancePlantitle");
+        map.put("typeMaintenance", "typeMaintenance");
     }
 
     public static Map<String, String> getMap() {
@@ -39,10 +39,10 @@ public class MaintenancePlanMapper {
         TmsMaintenancePlan tmsMaintenancePlan = new TmsMaintenancePlan();
         tmsMaintenancePlan.setTmsMaintenancePlanId(maintenancePlan.getId());
         tmsMaintenancePlan.setTmsMaintenancePlanCode(maintenancePlan.getCode() != null ? maintenancePlan.getCode().toUpperCase() : null);
-        tmsMaintenancePlan.setTmsDescription(maintenancePlan.getDescription());
-
+        tmsMaintenancePlan.setTmsMaintenancePlanDescriptif(maintenancePlan.getDescriptif());
+        tmsMaintenancePlan.setTmsMaintenancePlantitle(maintenancePlan.getTitle());
         if (!lazy) {
-            tmsMaintenancePlan.setTmsVehicle(VehicleMapper.toEntity(maintenancePlan.getVehicule(), true));
+            tmsMaintenancePlan.setTmsVehicle(VehicleMapper.toEntity(maintenancePlan.getVehicle(), true));
             // tmsMaintenancePlan.setTmsMaintenancePlanActes(ActeMapper.toEntities(maintenancePlan.getActes(),true));
         }
         return tmsMaintenancePlan;

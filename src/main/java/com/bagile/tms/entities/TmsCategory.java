@@ -12,7 +12,7 @@ public class TmsCategory {
     private BigDecimal tmsCategoryConsumption;
     private BigDecimal tmsCategoryWeight;
     private BigDecimal tmsCategoryWidth;
-    private DoorType tmsCategoryDoor;
+    private TmsDoorType tmsCategoryDoor;
     private BigDecimal tmsCategoryDepth;
     private BigDecimal tmsCategoryTonnage;
     private BigDecimal tmsCategoryEmptyWeight;
@@ -28,7 +28,7 @@ public class TmsCategory {
         return tmsCategoryId;
     }
 
-    public void setTmsCategoryId(int tmsCategoryId) {
+    public void setTmsCategoryId(long tmsCategoryId) {
         this.tmsCategoryId = tmsCategoryId;
     }
 
@@ -61,13 +61,14 @@ public class TmsCategory {
         this.tmsCategoryWidth = tmsCategoryWidth;
     }
 
+
     @OneToOne(fetch=FetchType.LAZY)
     @Column(name = "tms_categorydoor", nullable = false, length = 30)
-    public DoorType getTmsCategoryDoor() {
+    public TmsDoorType getTmsCategoryDoor() {
         return tmsCategoryDoor;
     }
 
-    public void setTmsCategoryDoor(DoorType tmsCategoryDoor) {
+    public void setTmsCategoryDoor(TmsDoorType tmsCategoryDoor) {
         this.tmsCategoryDoor = tmsCategoryDoor;
     }
 

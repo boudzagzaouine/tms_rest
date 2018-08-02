@@ -4,10 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 
-/**
- * Created by ALae on 21/04/2016.
- */
-public class DeliveryLine {
+public class  DeliveryLine {
 
 
     private long id;

@@ -5,9 +5,7 @@ import com.bagile.tms.entities.TmsDriver;
 
 import java.util.*;
 
-/**
- * Created by khalil on 22/03/2017.
- */
+
 public class DriverMapper {
     private DriverMapper() {
 
@@ -18,15 +16,17 @@ public class DriverMapper {
     static {
         map = new HashMap<>();
         map.put("id", "tmsDriverId");
-        map.put("passportNumber", "tmsDriverPassportNumber");
-        map.put("driversituation", "tmsDriverSituation");
-        map.put("dateCreation", "tmsDriverDateCreation");
-        map.put("dateUpDate", "tmsDriverDateUpDate");
-        map.put("contact","prmContact");
-        map.put("address","prmAddress");
+        map.put("code", "tmsDriverCode");
+        map.put("cin", "tmsDriverCin");
+        map.put("badges", "tmsDriverBadge");
+        map.put("lastMedicalVisit","tmsDriverLastMedicalVisit");
+        map.put("workArea","tmsDriverWorkArea");
+        map.put("vacation", "tmsDriverVacation");
+        map.put("commission", "tmsDriverCommission");
+        map.put("contact", "tmsDriverContact");
+        map.put("creationDate", "tmsDriverCreationDate");
         map.put("creationUser", "tmsDriverCreationUser");
-        map.put("upDateUser", "tmsDriverUpDateUser");
-
+        map.put("upDateDate", "tmsDriverUpdateDate");
 
     }
 
@@ -44,16 +44,12 @@ public class DriverMapper {
         }
         TmsDriver tmsDriver = new TmsDriver();
         tmsDriver.setTmsDriverId(driver.getId());
-        tmsDriver.setTmsDriverPassportNumber(driver.getPassportNumber());
-        tmsDriver.setTmsDriverDateCreation(driver.getDateCreation());
-        tmsDriver.setTmsDriverDateUpDate(driver.getDateUpDate());
+        tmsDriver.setTmsDriverCin(driver.getCin());
+        tmsDriver.setTmsDriverCin(driver.getCode());
         if (!lazy) {
-            tmsDriver.setAdrAddress(AddressMapper.toEntity(driver.getAddress(),true));
-            tmsDriver.setPrmContact(com.bagile.tms.mapper.ContactMapper.toEntity(driver.getContact(),true));
-            tmsDriver.setPincidents(IncidentMapper.toEntities(driver.getIncidents(),true));
-            tmsDriver.setTmsDriverSituation(DriverSituationMapper.toEntity(driver.getDriverSituation(),true));
+            tmsDriver.setTmsDrivercontact(com.bagile.tms.mapper.ContactMapper.toEntity(driver.getContact(),true));
             tmsDriver.setTmsDriverCreationUser(UserMapper.toEntity(driver.getCreationUser(),true));
-            tmsDriver.setTmsDriverUpDateUser(UserMapper.toEntity(driver.getUpDateUser(),true));
+            tmsDriver.setTmsDriverUpDateDate(UserMapper.toEntity(driver.getUpDateDate(),true));
             tmsDriver.setTmsDriverBadges(DriverBadgeMapper.toEntities(driver.getDriverBadges(),true));
         }
         return tmsDriver;
@@ -65,17 +61,13 @@ public class DriverMapper {
         }
         Driver driver = new Driver();
         driver.setId(tmsDriver.getTmsDriverId());
-        driver.setDateCreation(tmsDriver.getTmsDriverDateCreation());
-        driver.setDateUpDate(tmsDriver.getTmsDriverDateUpDate());
+        driver.setCreationDate(tmsDriver.getTmsDriverCreationDate());
+        driver.setUpDateDate(tmsDriver.getTmsDriverUpDateDate());
 
         if (!lazy) {
-            driver.setContact(com.bagile.tms.mapper.ContactMapper.toDto(tmsDriver.getPrmContact(),true));
-            driver.setAddress(AddressMapper.toDto(tmsDriver.getAdrAddress(),true));
-            driver.setIncidents(IncidentMapper.toDtos(tmsDriver.getPincidents(),true));
-            driver.setDriverSituation(DriverSituationMapper.toDto(tmsDriver.getTmsDriverSituation(),true));
-            driver.setCreationUser(UserMapper.toDto(tmsDriver.getTmsDriverCreationUser(),true));
-            driver.setUpDateUser(UserMapper.toDto(tmsDriver.getTmsDriverUpDateUser(),true));
-            driver.setDriverBadges(DriverBadgeMapper.toDtos(tmsDriver.getTmsDriverBadges(),true));
+            driver.setContact(com.bagile.tms.mapper.ContactMapper.toDto(tmsDriver.getTmsDrivercontact(),true));
+            driver.setUpDateDate(UserMapper.toDto(tmsDriver.getTmsDriverUpDateDate(),true));
+            driver.setDriverBadges(DriverBadgeMapper.toDtos(tmsDriver.getTmsDriverBadges(),true);
         }
         return driver;
     }
