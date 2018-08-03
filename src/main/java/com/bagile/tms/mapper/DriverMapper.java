@@ -18,7 +18,7 @@ public class DriverMapper {
         map.put("id", "tmsDriverId");
         map.put("code", "tmsDriverCode");
         map.put("cin", "tmsDriverCin");
-        map.put("badges", "tmsDriverBadge");
+        map.put("badges", "tmsDriverBadges");
         map.put("lastMedicalVisit","tmsDriverLastMedicalVisit");
         map.put("workArea","tmsDriverWorkArea");
         map.put("vacation", "tmsDriverVacation");
@@ -46,11 +46,18 @@ public class DriverMapper {
         tmsDriver.setTmsDriverId(driver.getId());
         tmsDriver.setTmsDriverCin(driver.getCin());
         tmsDriver.setTmsDriverCin(driver.getCode());
+        tmsDriver.setTmsDriverCommission(driver.getCommission());
+        tmsDriver.setTmsDriverBirthDate(driver.getDate());
+        tmsDriver.setTmsDriverlastMedicalVisit(driver.getLastMedicalVisit());
+        tmsDriver.setTmsDriverCreationDate(driver.getCreationDate());
+        tmsDriver.setTmsDriverUpDateDate(driver.getUpDateDate());
+
         if (!lazy) {
             tmsDriver.setTmsDrivercontact(com.bagile.tms.mapper.ContactMapper.toEntity(driver.getContact(),true));
             tmsDriver.setTmsDriverCreationUser(UserMapper.toEntity(driver.getCreationUser(),true));
-            tmsDriver.setTmsDriverUpDateDate(UserMapper.toEntity(driver.getUpDateDate(),true));
-            tmsDriver.setTmsDriverBadges(DriverBadgeMapper.toEntities(driver.getDriverBadges(),true));
+            tmsDriver.setTmsDriverBadges(BadgeMapper.toEntities(driver.getBadges(),true));
+            tmsDriver.setTmsDriverVacation(VacationMapper.toEntity(driver.getVacation(),true));
+            tmsDriver.setTmsDriverWorkArea(ZoneMapper.toEntity(driver.getWorkArea(),true));
         }
         return tmsDriver;
     }
@@ -61,13 +68,20 @@ public class DriverMapper {
         }
         Driver driver = new Driver();
         driver.setId(tmsDriver.getTmsDriverId());
+        driver.setCode(tmsDriver.getTmsDriverCode());
+        driver.setCin(tmsDriver.getTmsDriverCin());
+        driver.setCommission(tmsDriver.getTmsDriverCommission());
+        driver.setDate(tmsDriver.getTmsDriverBirthDate());
+        driver.setLastMedicalVisit(tmsDriver.getTmsDriverlastMedicalVisit());
         driver.setCreationDate(tmsDriver.getTmsDriverCreationDate());
         driver.setUpDateDate(tmsDriver.getTmsDriverUpDateDate());
 
         if (!lazy) {
-            driver.setContact(com.bagile.tms.mapper.ContactMapper.toDto(tmsDriver.getTmsDrivercontact(),true));
-            driver.setUpDateDate(UserMapper.toDto(tmsDriver.getTmsDriverUpDateDate(),true));
-            driver.setDriverBadges(DriverBadgeMapper.toDtos(tmsDriver.getTmsDriverBadges(),true);
+            driver.setContact(ContactMapper.toDto(tmsDriver.getTmsDrivercontact(),true));
+            driver.setCreationUser(UserMapper.toDto(tmsDriver.getTmsDriverCreationUser(),true));
+            driver.setBadges(BadgeMapper.toDtos(tmsDriver.getTmsDriverBadges(),true));
+            driver.setVacation(VacationMapper.toDto(tmsDriver.getTmsDriverVacation(),true));
+            driver.setWorkArea(ZoneMapper.toDto(tmsDriver.getTmsDriverWorkArea(),true));
         }
         return driver;
     }

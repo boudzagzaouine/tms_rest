@@ -1,6 +1,7 @@
 package com.bagile.tms.mapper;
 
 import com.bagile.tms.dto.Badge;
+import com.bagile.tms.entities.TmsBadge;
 
 import java.util.*;
 
@@ -18,8 +19,7 @@ public class BadgeMapper {
         map = new HashMap<>();
         map.put("id", "tmsBadgeId");
         map.put("code", "tmsBadgeCode");
-        map.put("libelle", "tmsBadgeLibelle");
-        map.put("description", "tmsBadgeDescription");
+        map.put("type", "tmsBadgeType");
     }
 
     public static Map<String, String> getMap() {
@@ -35,13 +35,10 @@ public class BadgeMapper {
             return null;
         }
         TmsBadge tmsBadge = new TmsBadge();
-        tmsBadge.setTmsBadgeCode(badge.getCode());
+        tmsBadge.setTmsBadgecode(badge.getCode());
         tmsBadge.setTmsBadgeId(badge.getId());
-        tmsBadge.setTmsBadgeDescription(badge.getDescription());
-        tmsBadge.setTmsBadgeLibelle(badge.getLibelle());
         if (!lazy) {
-            tmsBadge.setTmsDriverBadges(DriverBadgeMapper.toEntities(badge.getDriverBadges(),true));
-            tmsBadge.setTmsBadgeVehicule(VehicleMapper.toEntities(badge.getVehicules(),true));
+            tmsBadge.setTmsBadgeType(BadgeTypeMapper.toEntity(badge.getType(),true));
         }
         return tmsBadge;
     }
@@ -52,12 +49,9 @@ public class BadgeMapper {
         }
         Badge badge = new Badge();
         badge.setId(tmsBadge.getTmsBadgeId());
-        badge.setCode(tmsBadge.getTmsBadgeCode());
-        badge.setDescription(tmsBadge.getTmsBadgeDescription());
-        badge.setLibelle(tmsBadge.getTmsBadgeLibelle());
+        badge.setCode(tmsBadge.getTmsBadgecode());
         if (!lazy) {
-            badge.setDriverBadges(DriverBadgeMapper.toDtos(tmsBadge.getTmsDriverBadges(),true));
-            badge.setVehicules(VehicleMapper.toDtos(tmsBadge.getTmsBadgeVehicule(),true));
+            badge.setType(BadgeTypeMapper.toDto(tmsBadge.getTmsBadgeType(),true));
 
         }
         return badge;

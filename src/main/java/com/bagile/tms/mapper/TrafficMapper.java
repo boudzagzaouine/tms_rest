@@ -1,10 +1,11 @@
 package com.bagile.tms.mapper;
 
 import com.bagile.tms.dto.Category;
+import com.bagile.tms.dto.Traffic;
 import com.bagile.tms.entities.TmsCategory;
+import com.bagile.tms.entities.TmsTraffic;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class TrafficMapper  {
         private TrafficMapper() {
@@ -25,45 +26,75 @@ public class TrafficMapper  {
         public String getField(String key) {
             return map.get(key);
         }
-        public static TmsCategory toEntity(Category Category, boolean lazy) {
-            if (null == Category) {
+
+        public static TmsTraffic toEntity(Traffic traffic, boolean lazy) {
+            if (null == traffic) {
                 return null;
             }
-            TmsCategory tmsCategory = new TmsCategory();
-            tmsCategory.setTmsCategoryId(Category.getId());
-            tmsCategory.setTmsCategoryConsumption(Category.getConsumption());
-            tmsCategory.setTmsCategoryWeight(Category.getWeight());
-            tmsCategory.setTmsCategoryWidth(Category.getWidth());
-            tmsCategory.setTmsCategoryDepth(Category.getDepth());
-            tmsCategory.setTmsCategoryTonnage(Category.getTonnage());
-            tmsCategory.setTmsCategoryEmptyWeight(Category.getEmptyWeight());
-            tmsCategory.setTmsCategoryTotalWeight(Category.getTotalWeight());
-            if (!lazy) {
-                tmsCategory.setTmsCategoryDoor(DoorTypeMapper.toEntity(Category.getDoor(),true));
-            }
-            return tmsCategory;
+            TmsTraffic tmsTraffic = new TmsTraffic();
+
+            tmsTraffic.setTmsTrafficId(traffic.getId());
+            tmsTraffic.setTmsTrafficActive(traffic.isActive());
+            tmsTraffic.setTmsTrafficDate(traffic.getDate());
+
+            return tmsTraffic;
         }
 
-        public static Category toDto(TmsCategory tmsCategory, boolean lazy) {
-            if (null == tmsCategory) {
+        public static Traffic toDto(TmsTraffic tmsTraffic, boolean lazy) {
+            if (null == tmsTraffic) {
                 return null;
             }
-            Category category = new Category();
-            category.setId(tmsCategory.getTmsCategoryId());
-            category.setConsumption(tmsCategory.getTmsCategoryConsumption());
-            category.setDepth(tmsCategory.getTmsCategoryDepth());
-            category.setWeight(tmsCategory.getTmsCategoryWeight());
-            category.setWidth(tmsCategory.getTmsCategoryWidth());
-            category.setTonnage(tmsCategory.getTmsCategoryTonnage());
-            category.setTotalWeight(tmsCategory.getTmsCategoryTotalWeight());
-            category.setEmptyWeight(tmsCategory.getTmsCategoryEmptyWeight());
+            Traffic traffic = new Traffic();
 
-            if (!lazy) {
-                category.setDoor(DoorTypeMapper.toDto(tmsCategory.getTmsCategoryDoor(),true));
-            }
-            return category;
+            traffic.setId(tmsTraffic.getTmsTrafficId());
+            traffic.setActive(tmsTraffic.isTmsTrafficActive());
+            traffic.setDate(tmsTraffic.getTmsTrafficDate());
+
+            return traffic;
         }
+
+    public static List<Traffic> toDtos(List<TmsTraffic> tmsTraffics, boolean lazy) {
+        if (null == tmsTraffics) {
+            return null;
+        }
+        List<Traffic> traffics= new ArrayList<>();
+        for (TmsTraffic tmsTraffic : tmsTraffics) {
+            traffics.add(toDto(tmsTraffic, lazy));
+        }
+        return traffics;
     }
 
+    public static List<Traffic> toDtos(Iterable<TmsTraffic> tmsTraffics, boolean lazy) {
+        if (null == tmsTraffics) {
+            return null;
+        }
+        List<Traffic> traffics = new ArrayList<>();
+        for (TmsTraffic tmsTraffic : tmsTraffics) {
+            traffics.add(toDto(tmsTraffic, lazy));
+        }
+        return traffics;
+    }
 
-}
+    public static Set<TmsTraffic> toEntities(Set<Traffic> traffics, boolean lazy) {
+        if (null == traffics) {
+            return null;
+        }
+        Set<TmsTraffic> TmsTraffics = new HashSet<>();
+        for (Traffic traffic : traffics) {
+            TmsTraffics.add(toEntity(traffic, lazy));
+        }
+        return TmsTraffics;
+    }
+
+    public static Set<Traffic> toDtos(Set<TmsTraffic> TmsTraffics, boolean lazy) {
+        if (null == TmsTraffics) {
+            return null;
+        }
+        Set<Traffic> traffics = new HashSet<>();
+        for (TmsTraffic tmsTraffic : TmsTraffics) {
+            traffics.add(toDto(tmsTraffic, lazy));
+        }
+        return traffics;
+    }
+
+    }

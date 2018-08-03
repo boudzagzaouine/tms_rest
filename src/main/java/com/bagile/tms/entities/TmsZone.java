@@ -9,7 +9,6 @@ import java.util.Set;
 public class TmsZone {
     private long tmsZoneId;
     private String tmsZoneName;
-    private Set<TmsDriver> tmsZoneDrivers;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -20,7 +19,7 @@ public class TmsZone {
         return tmsZoneId;
     }
 
-    public void setTmsZoneId(int tmsZoneId) {
+    public void setTmsZoneId(long tmsZoneId) {
         this.tmsZoneId = tmsZoneId;
     }
 
@@ -33,12 +32,4 @@ public class TmsZone {
         this.tmsZoneName = tmsZoneName;
     }
 
-    @Column(name = "tms_zonedrivers")
-    public Set<TmsDriver> getTmsZoneDrivers() {
-        return tmsZoneDrivers;
-    }
-
-    public void setTmsZoneDrivers(Set<TmsDriver> tmsZoneDrivers) {
-        this.tmsZoneDrivers = tmsZoneDrivers;
-    }
 }

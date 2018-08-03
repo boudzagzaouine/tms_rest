@@ -1,6 +1,6 @@
 package com.bagile.tms.mapper;
 
-import com.bagile.tms.dto.DriverBadge;
+import com.bagile.tms.dto.Badge;
 
 import java.util.*;
 
@@ -76,7 +76,7 @@ public class DriverBadgeMapper {
         }
         return driverBadges;
     }
-    public static Set<TmsDriverBadge>toEntities(Set<DriverBadge>driverBadges, boolean lazy){
+    public static Set<TmsDriverBadge>toEntities(Set<Badge> driverBadges, boolean lazy){
         if (null == driverBadges) {
             return null;
         }

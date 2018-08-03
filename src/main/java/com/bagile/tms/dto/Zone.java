@@ -4,15 +4,14 @@ package com.bagile.tms.dto;
 import java.util.Set;
 
 public class Zone {
-    private int id;
+    private long id;
     private String name;
-    private Set<Driver> drivers;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -22,13 +21,5 @@ public class Zone {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Set<Driver> getDrivers() {
-        return drivers;
-    }
-
-    public void setDrivers(Set<Driver> drivers) {
-        this.drivers = drivers;
     }
 }

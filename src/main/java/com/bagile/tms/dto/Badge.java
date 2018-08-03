@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class Badge implements Serializable {
     private String code;
-    private int id;
+    private long id;
     private BadgeType type;
 
     public String getCode() {
@@ -20,11 +20,11 @@ public class Badge implements Serializable {
         this.code = code;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

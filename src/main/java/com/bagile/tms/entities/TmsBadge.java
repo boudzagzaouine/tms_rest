@@ -9,8 +9,8 @@ import java.util.Set;
 @Table(name = "tms_badgeA", uniqueConstraints = @UniqueConstraint(columnNames = {"tms_badgeTypecode", "tms_badgeTypeId"}))
 
 public class TmsBadge {
-    private String tmsBadgeTypecode;
-    private long tmsBadgeTypeId;
+    private String tmsBadgecode;
+    private long tmsBadgeId;
     @NotNull
     private TmsBadgeType tmsBadgeType;
 
@@ -20,21 +20,21 @@ public class TmsBadge {
 
     @Column(name = "tms_BadgeTypecode", unique = true, nullable = false)
 
-    public String getTmsBadgeTypecode() {
-        return tmsBadgeTypecode;
+    public String getTmsBadgecode() {
+        return tmsBadgecode;
     }
 
-    public void setTmsBadgeTypecode(String tmsBadgeTypecode) {
-        this.tmsBadgeTypecode = tmsBadgeTypecode;
+    public void setTmsBadgecode(String tmsBadgecode) {
+        this.tmsBadgecode = tmsBadgecode;
     }
 
     @Column(name = "tms_BadgeTypeId", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getTmsBadgeTypeId() {
-        return tmsBadgeTypeId;
+    public long getTmsBadgeId() {
+        return tmsBadgeId;
     }
 
-    public void setTmsBadgeTypeId(int tmsBadgeTypeId) {
-        this.tmsBadgeTypeId = tmsBadgeTypeId;
+    public void setTmsBadgeId(long tmsBadgeId) {
+        this.tmsBadgeId = tmsBadgeId;
     }
 
     @OneToOne(fetch = FetchType.LAZY)

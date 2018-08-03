@@ -3,6 +3,7 @@ package com.bagile.tms.mapper;
 import com.bagile.tms.dto.Category;
 import com.bagile.tms.dto.DoorType;
 import com.bagile.tms.entities.TmsCategory;
+import com.bagile.tms.entities.TmsDoorType;
 
 import java.util.*;
 
@@ -69,6 +70,49 @@ public class CategoryMapper {
             category.setDoor(DoorTypeMapper.toDto(tmsCategory.getTmsCategoryDoor(),true));
         }
         return category;
+    }
+    public static List<Category> toDtos(List<TmsCategory> tmsCategories, boolean lazy) {
+        if (null == tmsCategories) {
+            return null;
+        }
+        List<Category> categories= new ArrayList<>();
+        for (TmsCategory tmsCategory : tmsCategories) {
+            categories.add(toDto(tmsCategory, lazy));
+        }
+        return categories;
+    }
+
+    public static List<Category> toDtos(Iterable<TmsCategory> tmsCategories, boolean lazy) {
+        if (null == tmsCategories) {
+            return null;
+        }
+        List<Category> categories = new ArrayList<>();
+        for (TmsCategory tmsCategory : tmsCategories) {
+            categories.add(toDto(tmsCategory, lazy));
+        }
+        return categories;
+    }
+
+    public static Set<TmsCategory> toEntities(Set<Category> categories, boolean lazy) {
+        if (null == categories) {
+            return null;
+        }
+        Set<TmsCategory> TmsCategories = new HashSet<>();
+        for (Category category : categories) {
+            TmsCategories.add(toEntity(category, lazy));
+        }
+        return TmsCategories;
+    }
+
+    public static Set<Category> toDtos(Set<TmsCategory> TmsCategories, boolean lazy) {
+        if (null == TmsCategories) {
+            return null;
+        }
+        Set<Category> categories = new HashSet<>();
+        for (TmsCategory tmsCategory : TmsCategories) {
+            categories.add(toDto(tmsCategory, lazy));
+        }
+        return categories;
     }
 }
 
