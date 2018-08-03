@@ -14,7 +14,7 @@ import java.util.Set;
 public class MaintenancePlan implements Serializable {
 
     private long id;
-    private Vehicle vehicle;
+    private TmsVehicle vehicle;
     private String code;
     private String descriptif;
 
@@ -26,7 +26,7 @@ public class MaintenancePlan implements Serializable {
 
     private UsrUser creationUser;
 
-    private UsrUser upDateDate;
+    private UsrUser upDateUser;
 
     private TmsTypeMaintenance typeMaintenance;
 
@@ -38,11 +38,11 @@ public class MaintenancePlan implements Serializable {
         this.id = id;
     }
 
-    public Vehicle getVehicle() {
+    public TmsVehicle getVehicle() {
         return vehicle;
     }
 
-    public void setVehicle(Vehicle vehicle) {
+    public void setVehicle(TmsVehicle vehicle) {
         this.vehicle = vehicle;
     }
 
@@ -102,12 +102,12 @@ public class MaintenancePlan implements Serializable {
         this.creationUser = creationUser;
     }
 
-    public UsrUser getUpDateDate() {
-        return upDateDate;
+    public UsrUser getUpDateUser() {
+        return upDateUser;
     }
 
-    public void setUpDateDate(UsrUser upDateDate) {
-        this.upDateDate = upDateDate;
+    public void setUpDateUser(UsrUser upDateUser) {
+        this.upDateUser = upDateUser;
     }
 
     public TmsTypeMaintenance getTypeMaintenance() {

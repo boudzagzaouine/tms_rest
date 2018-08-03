@@ -13,7 +13,7 @@ import java.util.Date;
 public class TmsMaintenancePlan implements java.io.Serializable{
     private long tmsMaintenancePlanId;
     @NotNull
-    private TmsVehicle tmsVehicle;
+    private TmsVehicle tmsMaintenancePlanVehicle;
     @Size(max = 30)
     @NotNull
     private String tmsMaintenancePlanCode;
@@ -24,7 +24,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
     @NotNull
     private TmsMaintenanceState tmsMaintenancePlanState;
     @NotNull
-    private String tmsMaintenancePlantitle;
+    private String tmsMaintenancePlanTitle;
     @NotNull
 
     private Date tmsMaintenanceCreationDate;
@@ -33,7 +33,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
 
     private UsrUser tmsMaintenanceUpDateUser;
 
-    private TmsTypeMaintenance typeMaintenance;
+    private TmsTypeMaintenance tmsMaintenanceTypeMaintenance;
 
     public TmsMaintenancePlan(){
 
@@ -54,12 +54,12 @@ public class TmsMaintenancePlan implements java.io.Serializable{
     }
 
     @Column(name = "tms_vehicle", unique = true, nullable = false)
-    public TmsVehicle getTmsVehicle() {
-        return tmsVehicle;
+    public TmsVehicle getTmsMaintenancePlanVehicle() {
+        return tmsMaintenancePlanVehicle;
     }
 
-    public void setTmsVehicle(TmsVehicle tmsVehicle) {
-        this.tmsVehicle = tmsVehicle;
+    public void setTmsMaintenancePlanVehicle(TmsVehicle tmsMaintenancePlanVehicle) {
+        this.tmsMaintenancePlanVehicle = tmsMaintenancePlanVehicle;
     }
 
     @Column(name = "tms_maintenanceplancode", unique = true, nullable = false, precision = 10, scale = 0)
@@ -101,11 +101,11 @@ public class TmsMaintenancePlan implements java.io.Serializable{
 
     @Column(name = "tms_maintenanceplantitle")
     public String getTmsMaintenancePlantitle() {
-        return tmsMaintenancePlantitle;
+        return tmsMaintenancePlanTitle;
     }
 
-    public void setTmsMaintenancePlantitle(String tmsMaintenancePlantitle) {
-        this.tmsMaintenancePlantitle = tmsMaintenancePlantitle;
+    public void setTmsMaintenancePlanTitle(String tmsMaintenancePlantitle) {
+        this.tmsMaintenancePlanTitle = tmsMaintenancePlantitle;
     }
 
     @Column(name = "tms_maintenanceplancreationdate", unique = true, nullable = false)
@@ -140,10 +140,10 @@ public class TmsMaintenancePlan implements java.io.Serializable{
     @OneToOne(fetch = FetchType.LAZY)
     @Column(name = "tms_maintenanceplancreationdate", unique = true, nullable = false)
     public TmsTypeMaintenance getTypeMaintenance() {
-        return typeMaintenance;
+        return tmsMaintenanceTypeMaintenance;
     }
 
-    public void setTypeMaintenance(TmsTypeMaintenance typeMaintenance) {
-        this.typeMaintenance = typeMaintenance;
+    public void setTypeMaintenance(TmsTypeMaintenance tmsMaintenanceTypeMaintenance) {
+        this.tmsMaintenanceTypeMaintenance = tmsMaintenanceTypeMaintenance;
     }
 }

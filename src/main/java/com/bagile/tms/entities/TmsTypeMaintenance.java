@@ -6,10 +6,12 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name="tms_typeMaintenance",uniqueConstraints = @UniqueConstraint(columnNames = {"tms_typeMaintenanceId"}))
 public class TmsTypeMaintenance {
+
+    @NotNull
     private int tmsTypeMaintenanceId;
+
     @NotNull
     private String tmsTypeMaintenancetype;
-    @NotNull
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")

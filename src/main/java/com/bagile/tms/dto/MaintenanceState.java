@@ -13,7 +13,7 @@ public class MaintenanceState {
 
     private long id;
 
-    private Vehicle vehicle;
+    private TmsVehicle vehicle;
 
     private String code;
 
@@ -24,7 +24,6 @@ public class MaintenanceState {
     private MaintenanceState state;
 
     private String title;
-
 
     private Date creationDate;
 
@@ -42,11 +41,11 @@ public class MaintenanceState {
         this.id = id;
     }
 
-    public Vehicle getVehicle() {
+    public TmsVehicle getVehicle() {
         return vehicle;
     }
 
-    public void setVehicle(Vehicle vehicle) {
+    public void setVehicle(TmsVehicle vehicle) {
         this.vehicle = vehicle;
     }
 
