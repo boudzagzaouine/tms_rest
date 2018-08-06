@@ -21,20 +21,20 @@ public class Road implements Serializable {
 
     private BigDecimal distance;
 
-    private TmsDriver driver;
+    private Driver driver;
 
     private Driver adjunct;
+
     private Date date;
 
     private RoadState state;
 
     private SaleOrder saleOrder;
 
-    private Address stockAdress;
+    private Address stockAddress;
 
-    private Vehicle tmsRoadVehicle;
+    private Vehicle vehicle;
 
-    private Date roadDate;
     private Date creationDate;
     private User creationUser;
     private User upDateUser;
@@ -79,11 +79,11 @@ public class Road implements Serializable {
         this.distance = distance;
     }
 
-    public TmsDriver getDriver() {
+    public Driver getDriver() {
         return driver;
     }
 
-    public void setDriver(TmsDriver driver) {
+    public void setDriver(Driver driver) {
         this.driver = driver;
     }
 
@@ -119,28 +119,20 @@ public class Road implements Serializable {
         this.saleOrder = saleOrder;
     }
 
-    public Address getStockAdress() {
-        return stockAdress;
+    public Address getStockAddress() {
+        return stockAddress;
     }
 
-    public void setStockAdress(Address stockAdress) {
-        this.stockAdress = stockAdress;
+    public void setStockAddress(Address stockAddress) {
+        this.stockAddress = stockAddress;
     }
 
-    public Vehicle getTmsRoadVehicle() {
-        return tmsRoadVehicle;
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
-    public void setTmsRoadVehicle(Vehicle tmsRoadVehicle) {
-        this.tmsRoadVehicle = tmsRoadVehicle;
-    }
-
-    public Date getRoadDate() {
-        return roadDate;
-    }
-
-    public void setRoadDate(Date roadDate) {
-        this.roadDate = roadDate;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
     public Date getCreationDate() {

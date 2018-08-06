@@ -22,12 +22,15 @@ public class RoadMapper {
         map.put("duration", "tmsRoadDuration");
         map.put("cost", "tmsRoadCost");
         map.put("distance", "tmsRoadDistance");
-        map.put("principalDriver", "tmsRoadPrincipalDriver");
-        map.put("suppleantDriver", "tmsRoadSuppleantDriver");
-        map.put("vehicule", "tmsRoadVehicle");
-
-
-
+        map.put("driver", "tmsRoadDriver");
+        map.put("adjunct", "tmsRoadAdjunct");
+        map.put("date", "tmsRoadDate");
+        map.put("state", "tmsRoadState");
+        map.put("saleOrder", "tmsRoadSaleOrder");
+        map.put("stockAddress", "tmsRoadStockAddress");
+        map.put("creationDate", "tmsRoadCreationDate");
+        map.put("creationUser", "tmsRoadCreationUser");
+        map.put("upDateUser", "tmsRoadUpDateUser");
     }
 
     public static Map<String, String> getMap() {
@@ -48,14 +51,17 @@ public class RoadMapper {
         tmsRoad.setTmsRoadDuration(road.getDuration());
         tmsRoad.setTmsRoadCost(road.getCost());
         tmsRoad.setTmsRoadDistance(road.getDistance());
-
-
         if (!lazy) {
-          tmsRoad.setTmsRoadIncident(IncidentMapper.toEntities(road.getIncidents(),true));
-          tmsRoad.setTmsRoadPrincialDriver(DriverMapper.toEntity(road.getPrincipalDriver(),true));
-          tmsRoad.setTmsRoadSuppleantDriver(DriverMapper.toEntity(road.getPrincipalDriver(),true));
-          tmsRoad.setCmdDeliveries(DeliveryMapper.toEntities(road.getDeliveries(),true));
-          tmsRoad.setTmsRoadVehicle(VehicleMapper.toEntity(road.getVehicule(),true));
+            tmsRoad.setTmsRoadDriver(DriverMapper.toEntity(road.getDriver(),true));
+            tmsRoad.setTmsRoadAdjunct(DriverMapper.toEntity(road.getAdjunct(),true));
+            tmsRoad.setTmsRoadDate(road.getDate());
+            tmsRoad.setTmsRoadRoadState(RoadStateMapper.toEntity(road.getState(),true));
+            tmsRoad.setTmsRoadSaleOrder(SaleOrderMapper.toEntity(road.getSaleOrder(),true));
+            tmsRoad.setTmsRoadStockAddress(AddressMapper.toEntity(road.getStockAddress(),true));
+            tmsRoad.setTmsRoadVehicle(VehicleMapper.toEntity(road.getVehicle(),true));
+            tmsRoad.setTmsRoadCreationDate(road.getCreationDate());
+            tmsRoad.setTmsRoadCreationUser(UserMapper.toEntity(road.getCreationUser(),true));
+            tmsRoad.setTmsRoadUpDateUser(UserMapper.toEntity(road.getUpDateUser(),true));
         }
         return tmsRoad;
     }
@@ -65,17 +71,21 @@ public class RoadMapper {
         }
         Road road = new Road();
         road.setId(tmsRoad.getTmsRoadId());
-        road.setCode(tmsRoad.getTmsRoadCode());
+        road.setCode(tmsRoad.getTmsRoadCode() != null ? tmsRoad.getTmsRoadCode().toUpperCase() : null );
         road.setDuration(tmsRoad.getTmsRoadDuration());
         road.setCost(tmsRoad.getTmsRoadCost());
         road.setDistance(tmsRoad.getTmsRoadDistance());
-
         if (!lazy) {
-            road.setIncidents(IncidentMapper.toDtos(tmsRoad.getTmsRoadIncident(),true));
-            road.setPrincipalDriver(DriverMapper.toDto(tmsRoad.getTmsRoadPrincialDriver(),true));
-            road.setSuppleantDriver(DriverMapper.toDto(tmsRoad.getTmsRoadPrincialDriver(),true));
-            road.setDeliveries(DeliveryMapper.toDtos(tmsRoad.getCmdDeliveries(),true));
-            road.setVehicule(VehicleMapper.toDto(tmsRoad.getTmsRoadVehicle(),true));
+            road.setDriver(DriverMapper.toDto(tmsRoad.getTmsRoadDriver(),true));
+            road.setAdjunct(DriverMapper.toDto(tmsRoad.getTmsRoadAdjunct(),true));
+            road.setDate(tmsRoad.getTmsRoadDate());
+            road.setState(RoadStateMapper.toDto(tmsRoad.getTmsRoadRoadState(),true));
+            road.setSaleOrder(SaleOrderMapper.toDto(tmsRoad.getTmsRoadSaleOrder(),true));
+            road.setStockAddress(AddressMapper.toDto(tmsRoad.getTmsRoadStockAddress(),true));
+            road.setVehicle(VehicleMapper.toDto(tmsRoad.getTmsRoadVehicle(),true));
+            road.setCreationDate(tmsRoad.getTmsRoadCreationDate());
+            road.setCreationUser(UserMapper.toDto(tmsRoad.getTmsRoadCreationUser(),true));
+            road.setUpDateUser(UserMapper.toDto(tmsRoad.getTmsRoadUpDateUser(),true));
         }
         return road;
     }

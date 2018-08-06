@@ -27,14 +27,14 @@ public class TmsRoad implements Serializable {
     @Size(max = 30)
     private TmsDriver tmsRoadDriver;
     @NotNull
-    private TmsDriver tmsRoadadjunct;
-    private Date date;
+    private TmsDriver tmsRoadAdjunct;
+    private Date tmsRoadDate;
     @NotNull
-    private TmsRoadState tmsRoadroadState;
+    private TmsRoadState tmsRoadRoadState;
     @NotNull
     private CmdSaleOrder tmsRoadSaleOrder;
     @NotNull
-    private AdrAddress tmsRoadStockAdress;
+    private AdrAddress tmsRoadStockAddress;
     @NotNull
     private TmsVehicle tmsRoadVehicle;
     @NotNull
@@ -107,33 +107,33 @@ public class TmsRoad implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY)
     @Column(name = "tms_roadadjunct", unique = true, nullable = false)
-    public TmsDriver getTmsRoadadjunct() {
-        return tmsRoadadjunct;
+    public TmsDriver getTmsRoadAdjunct() {
+        return tmsRoadAdjunct;
     }
 
-    public void setTmsRoadadjunct(TmsDriver tmsRoadadjunct) {
-        this.tmsRoadadjunct = tmsRoadadjunct;
+    public void setTmsRoadAdjunct(TmsDriver tmsRoadAdjunct) {
+        this.tmsRoadAdjunct = tmsRoadAdjunct;
     }
 
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "tms_roaddate", unique = true, nullable = false)
-    public Date getDate() {
-        return date;
+    public Date getTmsRoadDate() {
+        return tmsRoadDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setTmsRoadDate(Date tmsRoadDate) {
+        this.tmsRoadDate = tmsRoadDate;
     }
 
     @OneToOne(fetch = FetchType.LAZY)
     @Column(name = "tms_roadroadstate", unique = true, nullable = false, scale = 0)
-    public TmsRoadState getTmsRoadroadState() {
-        return tmsRoadroadState;
+    public TmsRoadState getTmsRoadRoadState() {
+        return tmsRoadRoadState;
     }
 
-    public void setTmsRoadroadState(TmsRoadState tmsRoadroadState) {
-        this.tmsRoadroadState = tmsRoadroadState;
+    public void setTmsRoadRoadState(TmsRoadState tmsRoadRoadState) {
+        this.tmsRoadRoadState = tmsRoadRoadState;
     }
 
     @OneToMany(fetch = FetchType.LAZY)
@@ -148,12 +148,12 @@ public class TmsRoad implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY)
     @Column(name = "tms_roadstockadress",nullable = false)
-    public AdrAddress getTmsRoadStockAdress() {
-        return tmsRoadStockAdress;
+    public AdrAddress getTmsRoadStockAddress() {
+        return tmsRoadStockAddress;
     }
 
-    public void setTmsRoadStockAdress(AdrAddress tmsRoadStockAdress) {
-        this.tmsRoadStockAdress = tmsRoadStockAdress;
+    public void setTmsRoadStockAddress(AdrAddress tmsRoadStockAddress) {
+        this.tmsRoadStockAddress = tmsRoadStockAddress;
     }
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -187,7 +187,7 @@ public class TmsRoad implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY)
     @Column(name = "tms_roadupdateuser", unique = true, nullable = false)
-    public UsrUser getTmsRoadUpDateDate() {
+    public UsrUser getTmsRoadUpDateUser() {
         return tmsRoadUpDateUser;
     }
 

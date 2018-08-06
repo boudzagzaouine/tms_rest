@@ -1,6 +1,6 @@
 package com.bagile.tms.entities;
 
-import com.bagile.tms.dto.TypeMaintenance;
+import com.bagile.tms.entities.TmsTypeMaintenance;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -38,9 +38,9 @@ public class TmsMaintenanceState implements java.io.Serializable {
     private UsrUser tmsMaintenanceStateCreationUser;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private UsrUser tmsMaintenanceStateUpDateDate;
+    private Date tmsMaintenanceStateUpDateDate;
 
-    private TypeMaintenance tmsMaintenanceStateType;
+    private TmsTypeMaintenance tmsMaintenanceStateType;
 
     public TmsMaintenanceState() {
     }
@@ -123,19 +123,19 @@ public class TmsMaintenanceState implements java.io.Serializable {
         this.tmsMaintenanceStateCreationUser = tmsMaintenanceStateCreationUser;
     }
 
-    public UsrUser getTmsMaintenanceStateUpDateDate() {
+    public Date getTmsMaintenanceStateUpDateDate() {
         return tmsMaintenanceStateUpDateDate;
     }
 
-    public void setTmsMaintenanceStateUpDateDate(UsrUser tmsMaintenanceStateUpDateDate) {
+    public void setTmsMaintenanceStateUpDateDate(Date tmsMaintenanceStateUpDateDate) {
         this.tmsMaintenanceStateUpDateDate = tmsMaintenanceStateUpDateDate;
     }
 
-    public TypeMaintenance getTmsMaintenanceStateType() {
+    public TmsTypeMaintenance getTmsMaintenanceStateType() {
         return tmsMaintenanceStateType;
     }
 
-    public void setTmsMaintenanceStateType(TypeMaintenance tmsMaintenanceStateType) {
+    public void setTmsMaintenanceStateType(TmsTypeMaintenance tmsMaintenanceStateType) {
         this.tmsMaintenanceStateType = tmsMaintenanceStateType;
     }
 }

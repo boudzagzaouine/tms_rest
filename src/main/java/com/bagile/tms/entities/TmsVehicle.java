@@ -1,5 +1,7 @@
 package com.bagile.tms.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -14,21 +16,23 @@ public class TmsVehicle implements Serializable {
     @Size(max = 30)
     @NotNull
 
-    private String tmsVehicleregistrationNumber;
+    private String tmsVehicleRegistrationNumber;
     @Size(max = 30)
     @NotNull
-    private TmsBadge tmsVehiclebadge;
+    private TmsBadge tmsVehicleBadge;
 
     private String tmsVehicleCode;
 
-    private Date tmsVehicletechnicalVisit;
+    private Date tmsVehicleTechnicalVisit;
 
     private TmsCategory tmsVehicleCategory;
     private TmsTraffic tmsVehicleDrivingLicence;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date tmsVehicleCreationDate;
     private UsrUser tmsVehicleCreationUser;
-    private UsrUser tmsVehicleUpDateDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date tmsVehicleUpDateDate;
 
 
     public TmsVehicle() {
@@ -49,22 +53,22 @@ public class TmsVehicle implements Serializable {
     }
 
     @Column(name = "tms_vehicleregistrationnumber", unique = true, nullable = false, precision = 10, scale = 0)
-    public String getTmsVehicleregistrationNumber() {
-        return tmsVehicleregistrationNumber;
+    public String getTmsVehicleRegistrationNumber() {
+        return tmsVehicleRegistrationNumber;
     }
 
-    public void setTmsVehicleregistrationNumber(String tmsVehicleregistrationNumber) {
-        this.tmsVehicleregistrationNumber = tmsVehicleregistrationNumber;
+    public void setTmsVehicleRegistrationNumber(String tmsVehicleRegistrationNumber) {
+        this.tmsVehicleRegistrationNumber = tmsVehicleRegistrationNumber;
     }
 
     @OneToOne(fetch = FetchType.LAZY)
     @Column(name = "tms_vehiclebadge", unique = true, nullable = false)
-    public TmsBadge getTmsVehiclebadge() {
-        return tmsVehiclebadge;
+    public TmsBadge getTmsVehicleBadge() {
+        return tmsVehicleBadge;
     }
 
-    public void setTmsVehiclebadge(TmsBadge tmsVehiclebadge) {
-        this.tmsVehiclebadge = tmsVehiclebadge;
+    public void setTmsVehicleBadge(TmsBadge tmsVehicleBadge) {
+        this.tmsVehicleBadge = tmsVehicleBadge;
     }
 
     @Column(name = "tms_vehiclecode", unique = true, nullable = false)
@@ -77,12 +81,12 @@ public class TmsVehicle implements Serializable {
     }
 
     @Column(name = "tms_vehicletechnicalvisit", unique = true, nullable = false)
-    public Date getTmsVehicletechnicalVisit() {
-        return tmsVehicletechnicalVisit;
+    public Date getTmsVehicleTechnicalVisit() {
+        return tmsVehicleTechnicalVisit;
     }
 
-    public void setTmsVehicletechnicalVisit(Date tmsVehicletechnicalVisit) {
-        this.tmsVehicletechnicalVisit = tmsVehicletechnicalVisit;
+    public void setTmsVehicleTechnicalVisit(Date tmsVehicleTechnicalVisit) {
+        this.tmsVehicleTechnicalVisit = tmsVehicleTechnicalVisit;
     }
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -126,11 +130,11 @@ public class TmsVehicle implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY)
     @Column(name = "tms_vehicleupdatedate", unique = true, nullable = false)
-    public UsrUser getTmsVehicleUpDateDate() {
+    public Date getTmsVehicleUpDateDate() {
         return tmsVehicleUpDateDate;
     }
 
-    public void setTmsVehicleUpDateDate(UsrUser tmsVehicleUpDateDate) {
+    public void setTmsVehicleUpDateDate(Date tmsVehicleUpDateDate) {
         this.tmsVehicleUpDateDate = tmsVehicleUpDateDate;
     }
 }

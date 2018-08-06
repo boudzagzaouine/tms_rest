@@ -33,82 +33,86 @@ public class MaintenanceStateMapper {
         return map.get(key);
     }
 
-    public static MaintenanceState toDto(TmsMaintenanceState tmsState) {
+    public static MaintenanceState toDto(TmsMaintenanceState tmsState, boolean lazy) {
         if (null == tmsState) {
             return null;
         }
         MaintenanceState state = new MaintenanceState();
         state.setCode(tmsState.getTmsMaintenanceStateCode());
-        state.setCreationDate(tmsState.getTmsMaintenanceStateCreationDate());
-        state.setCreationUser(tmsState.getTmsMaintenanceStateCreationUser());
         state.setDate(tmsState.getTmsMaintenanceStateDate());
         state.setDescriptif(tmsState.getTmsMaintenanceStateDescriptif());
         state.setId(tmsState.getIdMaintenanceState());
         state.setTitle(tmsState.getTmsMaintenanceStateTitle());
-        state.setTypeMaintenance(tmsState.getTmsMaintenanceStateType());
-        state.setUpDateDate(tmsState.getTmsMaintenanceStateUpDateDate());
-        state.setVehicle(tmsState.getTmsMaintenanceStateVehicle());
+        if(!lazy) {
+            state.setCreationDate(tmsState.getTmsMaintenanceStateCreationDate());
+            state.setCreationUser(UserMapper.toDto(tmsState.getTmsMaintenanceStateCreationUser(),true));
+            state.setTypeMaintenance(TypeMaintenanceMapper.toDto(tmsState.getTmsMaintenanceStateType()));
+            state.setUpDateDate(tmsState.getTmsMaintenanceStateUpDateDate());
+            state.setVehicle(VehicleMapper.toDto(tmsState.getTmsMaintenanceStateVehicle(),true));
+        }
         return state;
     }
 
-    public static TmsMaintenanceState toEntity(MaintenanceState state) {
+    public static TmsMaintenanceState toEntity(MaintenanceState state, boolean lazy) {
         if(null == state) {
             return null;
         }
         TmsMaintenanceState tmsState = new TmsMaintenanceState();
-        tmsState.setIdMaintenanceState(state.getId());
         tmsState.setTmsMaintenanceStateCode(state.getCode());
-        tmsState.setTmsMaintenanceStateCreationDate(state.getCreationDate());
-        tmsState.setTmsMaintenanceStateCreationUser(state.getCreationUser());
         tmsState.setTmsMaintenanceStateDate(state.getDate());
         tmsState.setTmsMaintenanceStateDescriptif(state.getDescriptif());
+        tmsState.setIdMaintenanceState(state.getId());
         tmsState.setTmsMaintenanceStateTitle(state.getTitle());
-        tmsState.setTmsMaintenanceStateType(state.getTypeMaintenance());
-        tmsState.setTmsMaintenanceStateUpDateDate(state.getUpDateDate());
-        tmsState.setTmsMaintenanceStateVehicle(state.getVehicle());
+        if(!lazy) {
+            tmsState.setTmsMaintenanceStateCreationDate(state.getCreationDate());
+            tmsState.setTmsMaintenanceStateCreationUser(UserMapper.toEntity(state.getCreationUser(),true));
+            tmsState.setTmsMaintenanceStateType(TypeMaintenanceMapper.toEntity(state.getTypeMaintenance()));
+            tmsState.setTmsMaintenanceStateUpDateDate(state.getUpDateDate());
+            tmsState.setTmsMaintenanceStateVehicle(VehicleMapper.toEntity(state.getVehicle(),true));
+        }
         return tmsState;
     }
 
-    public static Set<MaintenanceState> toDtos(Set<TmsMaintenanceState> tmsStates) {
+    public static Set<MaintenanceState> toDtos(Set<TmsMaintenanceState> tmsStates, boolean lazy) {
         if(null == tmsStates) {
             return null;
         }
         Set<MaintenanceState> list = new HashSet<MaintenanceState>();
         for(TmsMaintenanceState tmsState: tmsStates) {
-            list.add(toDto(tmsState));
+            list.add(toDto(tmsState, lazy));
         }
         return list;
     }
 
-    public static List<MaintenanceState> toDtos(List<TmsMaintenanceState> tmsStates) {
+    public static List<MaintenanceState> toDtos(List<TmsMaintenanceState> tmsStates, boolean lazy) {
         if(null == tmsStates) {
             return null;
         }
         List<MaintenanceState> list = new ArrayList<MaintenanceState>();
         for(TmsMaintenanceState tmsState: tmsStates) {
-            list.add(toDto(tmsState));
+            list.add(toDto(tmsState, lazy));
         }
         return list;
     }
 
-    public static List<MaintenanceState> toDtos(Iterable<TmsMaintenanceState> tmsStates) {
+    public static List<MaintenanceState> toDtos(Iterable<TmsMaintenanceState> tmsStates, boolean lazy) {
         if(null == tmsStates) {
             return null;
         }
         List<MaintenanceState> list = new ArrayList<MaintenanceState>();
         for(TmsMaintenanceState tmsState: tmsStates) {
-            list.add(toDto(tmsState));
+            list.add(toDto(tmsState, lazy));
         }
         return list;
     }
 
-    public static Set<TmsMaintenanceState> toEntities(Set<MaintenanceState> states) {
+    public static Set<TmsMaintenanceState> toEntities(Set<MaintenanceState> states, boolean lazy) {
         if(null == states) {
             return null;
         }
         Set<TmsMaintenanceState> list = new HashSet<TmsMaintenanceState>();
         for(MaintenanceState state: states) {
-            list.add(toEntity(state));
+            list.add(toEntity(state, lazy));
         }
         return list;
     }

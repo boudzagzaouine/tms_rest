@@ -15,7 +15,7 @@ public class Vehicle {
 
     private Date creationDate;
     private User creationUser;
-    private User upDateDate;
+    private Date upDateDate;
 
     public long getId() {
         return id;
@@ -89,11 +89,11 @@ public class Vehicle {
         this.creationUser = creationUser;
     }
 
-    public User getUpDateDate() {
+    public Date getUpDateDate() {
         return upDateDate;
     }
 
-    public void setUpDateDate(User upDateDate) {
+    public void setUpDateDate(Date upDateDate) {
         this.upDateDate = upDateDate;
     }
 }

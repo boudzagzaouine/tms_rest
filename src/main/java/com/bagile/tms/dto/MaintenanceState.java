@@ -3,7 +3,7 @@ package com.bagile.tms.dto;
 import com.bagile.tms.entities.TmsMaintenanceState;
 import com.bagile.tms.entities.TmsTypeMaintenance;
 import com.bagile.tms.entities.TmsVehicle;
-import com.bagile.tms.entities.UsrUser;
+import com.bagile.tms.dto.User;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -13,7 +13,7 @@ public class MaintenanceState {
 
     private long id;
 
-    private TmsVehicle vehicle;
+    private Vehicle vehicle;
 
     private String code;
 
@@ -21,15 +21,15 @@ public class MaintenanceState {
 
     private Date date;
 
-    private MaintenanceState state;
+    private String state;
 
     private String title;
 
     private Date creationDate;
 
-    private UsrUser creationUser;
+    private User creationUser;
 
-    private UsrUser upDateDate;
+    private Date upDateDate;
 
     private TypeMaintenance typeMaintenance;
 
@@ -41,11 +41,11 @@ public class MaintenanceState {
         this.id = id;
     }
 
-    public TmsVehicle getVehicle() {
+    public Vehicle getVehicle() {
         return vehicle;
     }
 
-    public void setVehicle(TmsVehicle vehicle) {
+    public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
     }
 
@@ -73,11 +73,11 @@ public class MaintenanceState {
         this.date = date;
     }
 
-    public MaintenanceState getState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(MaintenanceState state) {
+    public void setState(String state) {
         this.state = state;
     }
 
@@ -97,19 +97,19 @@ public class MaintenanceState {
         this.creationDate = creationDate;
     }
 
-    public UsrUser getCreationUser() {
+    public User getCreationUser() {
         return creationUser;
     }
 
-    public void setCreationUser(UsrUser creationUser) {
+    public void setCreationUser(User creationUser) {
         this.creationUser = creationUser;
     }
 
-    public UsrUser getUpDateDate() {
+    public Date getUpDateDate() {
         return upDateDate;
     }
 
-    public void setUpDateDate(UsrUser upDateDate) {
+    public void setUpDateDate(Date upDateDate) {
         this.upDateDate = upDateDate;
     }
 
