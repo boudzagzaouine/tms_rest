@@ -33,4 +33,7 @@ public interface DriverService {
     List<Driver> findAll();
 
     List<Driver> findAll(Pageable pageable);
+
+
+    void archive(Long id);
 }

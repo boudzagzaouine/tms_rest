@@ -30,6 +30,7 @@ public class Driver implements Serializable {
     private Date creationDate;
     private User creationUser;
     private Date upDateDate;
+    private boolean working;
 
 
     public long getId() {
@@ -66,6 +67,14 @@ public class Driver implements Serializable {
 
     public Set<Badge> getBadges() {
         return badges;
+    }
+
+    public boolean isWorking() {
+        return working;
+    }
+
+    public void setWorking(boolean working) {
+        this.working = working;
     }
 
     public void setBadges(Set<Badge> badges) {

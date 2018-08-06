@@ -19,6 +19,7 @@ public class TmsDriver implements java.io.Serializable {
     private String tmsDriverCin;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date tmsDriverBirthDate;
+    private boolean tmsDriverWorking;
 
     //private TmsBadge tmsDriverbadge;
     private Set<TmsBadge> tmsDriverBadges;
@@ -95,6 +96,16 @@ public class TmsDriver implements java.io.Serializable {
 
     public void setTmsDriverlastMedicalVisit(Date tmsDriverlastMedicalVisit) {
         this.tmsDriverlastMedicalVisit = tmsDriverlastMedicalVisit;
+    }
+
+    @Column(name = "tms_driverworking", nullable = false)
+    @org.hibernate.annotations.ColumnDefault("true")
+    public boolean isTmsDriverWorking() {
+        return tmsDriverWorking;
+    }
+
+    public void setTmsDriverWorking(boolean tmsDriverWorking) {
+        this.tmsDriverWorking = tmsDriverWorking;
     }
 
     @OneToMany(fetch = FetchType.LAZY)

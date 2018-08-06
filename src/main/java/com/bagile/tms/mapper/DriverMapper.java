@@ -23,6 +23,7 @@ public class DriverMapper {
         map.put("workArea","tmsDriverWorkArea");
         map.put("vacation", "tmsDriverVacation");
         map.put("commission", "tmsDriverCommission");
+        map.put("working","tmsDriverWorking");
         map.put("contact", "tmsDriverContact");
         map.put("creationDate", "tmsDriverCreationDate");
         map.put("creationUser", "tmsDriverCreationUser");
@@ -47,6 +48,7 @@ public class DriverMapper {
         tmsDriver.setTmsDriverCin(driver.getCin());
         tmsDriver.setTmsDriverCin(driver.getCode());
         tmsDriver.setTmsDriverCommission(driver.getCommission());
+        tmsDriver.setTmsDriverWorking(driver.isWorking());
         tmsDriver.setTmsDriverBirthDate(driver.getDate());
         tmsDriver.setTmsDriverlastMedicalVisit(driver.getLastMedicalVisit());
         tmsDriver.setTmsDriverCreationDate(driver.getCreationDate());
@@ -71,6 +73,7 @@ public class DriverMapper {
         driver.setCode(tmsDriver.getTmsDriverCode());
         driver.setCin(tmsDriver.getTmsDriverCin());
         driver.setCommission(tmsDriver.getTmsDriverCommission());
+        driver.setWorking(tmsDriver.isTmsDriverWorking());
         driver.setDate(tmsDriver.getTmsDriverBirthDate());
         driver.setLastMedicalVisit(tmsDriver.getTmsDriverlastMedicalVisit());
         driver.setCreationDate(tmsDriver.getTmsDriverCreationDate());

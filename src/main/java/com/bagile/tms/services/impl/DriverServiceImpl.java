@@ -28,13 +28,13 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public Driver save(Driver driver) {
         LOGGER.info("save Driver");
-        driver.setDateUpDate(EmsDate.getDateNow());
-        if(0<=driver.getId())
-        {
-            driver.setDateCreation(EmsDate.getDateNow());
+        driver.setUpDateDate(EmsDate.getDateNow());
+        if (0 <= driver.getId()) {
+            driver.setCreationDate(EmsDate.getDateNow());
         }
         return DriverMapper.toDto(driverRepository.saveAndFlush(DriverMapper.toEntity(driver, false)), false);
     }
+
     @Override
     public Long size() {
         return driverRepository.count();
@@ -59,6 +59,7 @@ public class DriverServiceImpl implements DriverService {
     public List<Driver> find(String search) throws AttributesNotFound, ErrorType {
         return DriverMapper.toDtos(driverRepository.findAll(Search.expression(search, TmsDriver.class)), false);
     }
+
     @Override
     public List<Driver> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
         return DriverMapper.toDtos(driverRepository.findAll(Search.expression(search, TmsDriver.class), pageable), false);
@@ -68,6 +69,7 @@ public class DriverServiceImpl implements DriverService {
     public Long size(String search) throws AttributesNotFound, ErrorType {
         return driverRepository.count(Search.expression(search, TmsDriver.class));
     }
+
     @Override
     public void delete(Long id) {
         LOGGER.info("save Driver");
@@ -84,11 +86,20 @@ public class DriverServiceImpl implements DriverService {
     public List<Driver> findAll() {
         return DriverMapper.toDtos(driverRepository.findAll(), false);
     }
+
     @Override
     public List<Driver> findAll(Pageable pageable) {
         return DriverMapper.toDtos(driverRepository.findAll(pageable), false);
     }
 
+    @Override
+    public void archive(Long id) {
+        LOGGER.info("archive Driver");
+        Driver driver = DriverMapper.toDto(driverRepository.findById(id).get(), false);
+        if (null != driver) {
+            driver.setWorking(false);
+        }
+        DriverMapper.toDto(driverRepository.saveAndFlush(DriverMapper.toEntity(driver, false)), false);
 
-
+    }
 }
