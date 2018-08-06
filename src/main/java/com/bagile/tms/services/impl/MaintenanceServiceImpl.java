@@ -26,11 +26,13 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     private MaintenancePlanRepository maintenancePlanRepository;
     private final static Logger LOGGER = LoggerFactory
             .getLogger(MaintenanceService.class);
+
     @Override
     public MaintenancePlan save(MaintenancePlan maintenancePlan) {
         LOGGER.info("save Maintenance");
         return MaintenancePlanMapper.toDto(maintenancePlanRepository.saveAndFlush(MaintenancePlanMapper.toEntity(maintenancePlan, false)), false);
     }
+
     @Override
     public Long size() {
         return maintenancePlanRepository.count();
@@ -43,13 +45,14 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 
     @Override
     public MaintenancePlan findById(Long id) throws IdNotFound {
-        MaintenancePlan maintenancePlan = MaintenancePlanMapper.toDto(maintenancePlanRepository.findById(id).get().get(), false);
+        MaintenancePlan maintenancePlan = MaintenancePlanMapper.toDto(maintenancePlanRepository.findById(id).get(), false);
         if (null != maintenancePlan) {
             return maintenancePlan;
         } else {
             throw new IdNotFound(id);
         }
     }
+
     @Override
     public List<MaintenancePlan> find(String search) throws AttributesNotFound, ErrorType {
         return MaintenancePlanMapper.toDtos(maintenancePlanRepository.findAll(Search.expression(search, TmsMaintenancePlan.class)), false);
@@ -66,7 +69,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 
     @Override
     public void delete(Long id) {
-        LOGGER.info("save Maintenance");
+        LOGGER.info("delete Maintenance");
         maintenancePlanRepository.deleteById(id);
     }
 
