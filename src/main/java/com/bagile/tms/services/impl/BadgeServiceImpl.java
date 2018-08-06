@@ -1,6 +1,7 @@
 package com.bagile.tms.services.impl;
 
 import com.bagile.tms.dto.Badge;
+import com.bagile.tms.entities.TmsBadge;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
@@ -16,9 +17,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created by khalil on 03/04/2017.
- */
 @Service
 public class BadgeServiceImpl implements BadgeService {
     @Autowired
