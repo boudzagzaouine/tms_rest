@@ -5,7 +5,6 @@ import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
 import com.bagile.tms.mapper.VehicleStatusMapper;
-import com.bagile.tms.repositories.VehicleStatusRepository;
 import com.bagile.tms.services.VehicleStatusService;
 import com.bagile.tms.util.Search;
 import org.slf4j.Logger;

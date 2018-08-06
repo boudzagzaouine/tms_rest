@@ -5,7 +5,6 @@ import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
 import com.bagile.tms.mapper.PoliceInsuranceMapper;
-import com.bagile.tms.repositories.PoliceInsuranceRepository;
 import com.bagile.tms.services.PoliceInsuranceService;
 import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
