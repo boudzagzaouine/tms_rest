@@ -9,5 +9,4 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
  */
 public interface DriverRepository extends JpaRepository<TmsDriver, Long>,
         QuerydslPredicateExecutor<TmsDriver> {
-
 }
