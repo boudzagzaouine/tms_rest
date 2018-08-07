@@ -1,5 +1,6 @@
 package com.bagile.tms.controllers;
 
+import com.bagile.tms.dto.Vehicle;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
@@ -27,17 +28,23 @@ public class VehicleController {
     @PreAuthorize("hasAnyRole('VEHICLE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
-    public List<Vehicule> getVehicles() {
+    public List<Vehicle> getAll() {
         return vehicleService.findAll();
     }
 
     @PreAuthorize("hasAnyRole('VEHICLE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
-    public List<Vehicule> getVehicles(@RequestParam int page, @RequestParam int size) {
-        Sort sort = new Sort(Sort.Direction.DESC/*, "prmColorUpdateDate"*/);
-        Pageable pageable = PageRequest.of(page, size,sort);
+    public List<Vehicle> getAll(@RequestParam int page, @RequestParam int size) {
+        Pageable pageable = PageRequest.of(page, size);
         return vehicleService.findAll(pageable);
+    }
+
+    @PreAuthorize("hasAnyRole('VEHICLE_VIEW')")
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    @ResponseBody
+    public Vehicle getOne(@PathVariable("id") Long id) throws IdNotFound {
+        return vehicleService.findById(id);
     }
 
     @PreAuthorize("hasAnyRole('VEHICLE_VIEW')")
@@ -62,23 +69,16 @@ public class VehicleController {
     }
 
     @PreAuthorize("hasAnyRole('VEHICLE_VIEW')")
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-    @ResponseBody
-    public Vehicule getVehicle(@PathVariable("id") Long id) throws IdNotFound {
-        return vehicleService.findById(id);
-    }
-
-    @PreAuthorize("hasAnyRole('VEHICLE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
-    public List<Vehicule> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
+    public List<Vehicle> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
         return vehicleService.find(search);
     }
 
     @PreAuthorize("hasAnyRole('VEHICLE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
-    public List<Vehicule> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
+    public List<Vehicle> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         Pageable pageable = PageRequest.of(page, size);
         return vehicleService.find(search, pageable);
     }
@@ -86,23 +86,23 @@ public class VehicleController {
     @PreAuthorize("hasRole('VEHICLE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Vehicule add(@RequestBody Vehicule vehicule) {
-        return vehicleService.save(vehicule);
+    public Vehicle add(@RequestBody Vehicle vehicle) {
+        return vehicleService.save(vehicle);
     }
 
     @PreAuthorize("hasRole('VEHICLE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Vehicule set(@RequestBody Vehicule vehicule) {
-        return vehicleService.save(vehicule);
+    public Vehicle set(@RequestBody Vehicle vehicle) {
+        return vehicleService.save(vehicle);
     }
 
     @PreAuthorize("hasRole('VEHICLE_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@RequestBody Vehicule vehicule) {
+    public void delete(@RequestBody Vehicle vehicle) {
 
-        vehicleService.delete(vehicule);
+        vehicleService.delete(vehicle);
     }
 
     @PreAuthorize("hasRole('VEHICLE_DELETE')")

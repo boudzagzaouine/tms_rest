@@ -29,17 +29,23 @@ public class RoadController {
     @PreAuthorize("hasAnyRole('ROAD_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
-    public List<Road> getRoads() {
+    public List<Road> getAll() {
         return roadService.findAll();
     }
 
     @PreAuthorize("hasAnyRole('ROAD_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
-    public List<Road> getRoads(@RequestParam int page, @RequestParam int size) {
-        Sort sort = new Sort(Sort.Direction.DESC/*, "prmColorUpdateDate"*/);
-        Pageable pageable = PageRequest.of(page, size,sort);
+    public List<Road> getAll(@RequestParam int page, @RequestParam int size) {
+        Pageable pageable = PageRequest.of(page, size);
         return roadService.findAll(/*pageable*/);
+    }
+
+    @PreAuthorize("hasAnyRole('ROAD_VIEW')")
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    @ResponseBody
+    public Road getOne(@PathVariable("id") Long id) throws IdNotFound {
+        return roadService.findById(id);
     }
 
     @PreAuthorize("hasAnyRole('ROAD_VIEW')")
@@ -61,13 +67,6 @@ public class RoadController {
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
         return roadService.isExist(id);
-    }
-
-    @PreAuthorize("hasAnyRole('ROAD_VIEW')")
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-    @ResponseBody
-    public Road getRoad(@PathVariable("id") Long id) throws IdNotFound {
-        return roadService.findById(id);
     }
 
     @PreAuthorize("hasAnyRole('ROAD_VIEW')")

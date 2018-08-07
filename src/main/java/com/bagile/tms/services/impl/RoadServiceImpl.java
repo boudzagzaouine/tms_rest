@@ -28,8 +28,6 @@ public class RoadServiceImpl implements RoadService {
     private final static Logger LOGGER = LoggerFactory
             .getLogger(RoadService.class);
 
-
-
     @Override
     public Road save(Road road) {
         LOGGER.info("save Road");
@@ -92,6 +90,5 @@ public class RoadServiceImpl implements RoadService {
     public List<Road> findAll(Pageable pageable) {
         return RoadMapper.toDtos(roadRepository.findAll(pageable), false);
     }
-
 
 }

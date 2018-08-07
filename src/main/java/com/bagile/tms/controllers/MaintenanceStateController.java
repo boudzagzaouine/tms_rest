@@ -1,10 +1,10 @@
 package com.bagile.tms.controllers;
 
-import com.bagile.tms.dto.MaintenancePlan;
+import com.bagile.tms.dto.MaintenanceState;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.services.MaintenanceService;
+import com.bagile.tms.services.MaintenanceStateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -20,23 +20,23 @@ import java.util.List;
  * Created by khalil on 04/04/2017.
  */
 @Controller
-@RequestMapping(value = "/maintenancePlans")
+@RequestMapping(value = "/maintenanceStates")
 
-public class MaintenancePlanController {
+public class MaintenanceStateController {
     @Autowired
-    private MaintenanceService maintenanceService;
+    private MaintenanceStateService maintenanceService;
 
     @PreAuthorize("hasAnyRole('MAINTENANCE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
-    public List<MaintenancePlan> getAll() {
+    public List<MaintenanceState> getAll() {
         return maintenanceService.findAll();
     }
 
     @PreAuthorize("hasAnyRole('MAINTENANCE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
-    public List<MaintenancePlan> getAll(@RequestParam int page, @RequestParam int size) {
+    public List<MaintenanceState> getAll(@RequestParam int page, @RequestParam int size) {
         Pageable pageable = PageRequest.of(page, size);
         return maintenanceService.findAll(pageable);
     }
@@ -44,7 +44,7 @@ public class MaintenancePlanController {
     @PreAuthorize("hasAnyRole('MAINTENANCE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
-    public MaintenancePlan getOne(@PathVariable("id") Long id) throws IdNotFound {
+    public MaintenanceState getOne(@PathVariable("id") Long id) throws IdNotFound {
         return maintenanceService.findById(id);
     }
 
@@ -72,14 +72,14 @@ public class MaintenancePlanController {
     @PreAuthorize("hasAnyRole('MAINTENANCE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
-    public List<MaintenancePlan> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
+    public List<MaintenanceState> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
         return maintenanceService.find(search);
     }
 
     @PreAuthorize("hasAnyRole('INCIDENT_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
-    public List<MaintenancePlan> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
+    public List<MaintenanceState> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         Pageable pageable = PageRequest.of(page, size);
         return maintenanceService.find(search, pageable);
 
@@ -88,21 +88,21 @@ public class MaintenancePlanController {
     @PreAuthorize("hasRole('MAINTENANCE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public MaintenancePlan add(@RequestBody MaintenancePlan maintenancePlan) {
+    public MaintenanceState add(@RequestBody MaintenanceState maintenancePlan) {
         return maintenanceService.save(maintenancePlan);
     }
 
     @PreAuthorize("hasRole('MAINTENANCE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public MaintenancePlan set(@RequestBody MaintenancePlan maintenancePlan) {
+    public MaintenanceState set(@RequestBody MaintenanceState maintenancePlan) {
         return maintenanceService.save(maintenancePlan);
     }
 
     @PreAuthorize("hasRole('MAINTENANCE_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@RequestBody MaintenancePlan maintenancePlan) {
+    public void delete(@RequestBody MaintenanceState maintenancePlan) {
         maintenanceService.delete(maintenancePlan);
     }
 
