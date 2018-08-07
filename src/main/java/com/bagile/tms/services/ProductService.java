@@ -9,6 +9,7 @@ import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.CustomException;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
+import com.google.common.collect.Iterators;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -24,7 +25,6 @@ public interface ProductService {
 
     Product findById(Long id) throws IdNotFound;
 
-    Product findOne(String search) throws AttributesNotFound, ErrorType;
 
     List<Product> find(String search) throws AttributesNotFound, ErrorType;
 
@@ -39,30 +39,7 @@ public interface ProductService {
     List<Product> findAll() throws AttributesNotFound, ErrorType;
 
     List<Product> findAll(int page, int size) throws AttributesNotFound, ErrorType;
-    
-    String getNextVal();
 
 
-
-    BigDecimal convertQuantityByUom(BigDecimal qte, ProductPack packExpected, ProductPack packServed);
-
-    BigDecimal stockQuantity(Long id);
-
-    BigDecimal reservedQuantity(Long id);
-
-    BigDecimal blockedQuantity(Long id);
-
-    BigDecimal orderedQuantity(Long id);
-
-    BigDecimal quantityToReceive(Long id);
-
-    Product findByCode(String code);
-
-    BigDecimal convertQuantityByUom(BigDecimal qte, Uom uom, Uom uomServed, Product product);
-
-    BigDecimal quantityToReceive(Long id, String date) throws ParseException;
-
-    BigDecimal getMaxSalePrice();
-
-    BigDecimal getMinSalePrice();
+    Iterators getNextVal();
 }

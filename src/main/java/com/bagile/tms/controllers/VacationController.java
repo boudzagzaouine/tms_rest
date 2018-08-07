@@ -1,10 +1,10 @@
 package com.bagile.tms.controllers;
 
-import com.bagile.tms.dto.Traffic;
+import com.bagile.tms.dto.Vacation;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.services.TrafficService;
+import com.bagile.tms.services.VacationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,77 +15,77 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-public class TrafficController {
+public class VacationController {
 
     @Autowired
-    private TrafficService trafficService;
-    @PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
+    private VacationService vacationService;
+    @PreAuthorize("hasAnyRole('VACATION_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
-    public List<Traffic> getTraffic() {return trafficService.findAll();}
-    @PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
+    public List<Vacation> getVacation() {return vacationService.findAll();}
+    @PreAuthorize("hasAnyRole('VACATION_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
-    public List<Traffic> getTraffic(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
+    public List<Vacation> getVacation(@RequestParam int page, @RequestParam int size) {
         Sort sort = new Sort(Sort.Direction.DESC, "prmColorUpdateDate");
         Pageable pageable = PageRequest.of(page, size,sort);
-        return trafficService.findAll(pageable);
+        return vacationService.findAll(pageable);
 
     }
-    @PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
+    @PreAuthorize("hasAnyRole('VACATI0N_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
     public Long size() {
-        return trafficService.size();
+        return vacationService.size();
     }
-    @PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
+    @PreAuthorize("hasAnyRole('VACATION_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
-        return trafficService.size(search);
+        return vacationService.size(search);
     }
-    @PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
+    @PreAuthorize("hasAnyRole('VACATION_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
-        return trafficService.isExist(id);
+        return vacationService.isExist(id);
     }
-    @PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
+    @PreAuthorize("hasAnyRole('VACATION_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
-    public Traffic getTraffic(@PathVariable("id") Long id) throws IdNotFound {
-        return trafficService.findById(id);
+    public Vacation getVacation(@PathVariable("id") Long id) throws IdNotFound {
+        return vacationService.findById(id);
     }
-    @PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
+    @PreAuthorize("hasAnyRole('VACATION_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
-    public List<Traffic> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
-        return trafficService.find(search);
+    public List<Vacation> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
+        return vacationService.find(search);
     }
-    @PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
+    @PreAuthorize("hasAnyRole('VACATION_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
-    public List<Traffic> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
+    public List<Vacation> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         Pageable pageable = PageRequest.of(page, size);
-        return trafficService.find(search, pageable);
+        return vacationService.find(search, pageable);
 
     }
-    @PreAuthorize("hasRole('TRAFFIC_CREATE')")
+    @PreAuthorize("hasRole('VACATION_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Traffic add(@RequestBody Traffic traffic ){return trafficService.save(traffic);}
-    @PreAuthorize("hasRole('TRAFFIC_EDIT')")
+    public Vacation add(@RequestBody Vacation vacation ){return vacationService.save(vacation);}
+    @PreAuthorize("hasRole('VACATION_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Traffic set(@RequestBody Traffic traffic) {
-        return trafficService.save(traffic);
+    public Vacation set(@RequestBody Vacation vacation) {
+        return vacationService.save(vacation);
     }
-    @PreAuthorize("hasRole('TRAFFIC_DELETE')")
+    @PreAuthorize("hasRole('VACATION_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@RequestBody Traffic traffic) {
+    public void delete(@RequestBody Vacation vacation) {
 
-        trafficService.delete(traffic);
+        vacationService.delete(vacation);
     }
 
 

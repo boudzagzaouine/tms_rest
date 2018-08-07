@@ -139,13 +139,6 @@ public class TourServiceImpl implements TourService {
         return tours;
     }
 
-    private Vehicule createVehicule() {
-        Vehicule vehicule = new Vehicule();
-        vehicule.setCode("vihicule");
-        vehicule.setBrand("brand");
-        vehicule.setModel("1999");
-        return vehicule;
-    }
 
     private List<TourSaleOrder> createSaleOrders(List<Delivery> deliveries) {
         List<TourSaleOrder> tourSaleOrders = new ArrayList<TourSaleOrder>();

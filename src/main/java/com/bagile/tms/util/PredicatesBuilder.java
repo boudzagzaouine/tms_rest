@@ -3,8 +3,9 @@
  */
 package com.bagile.tms.util;
 
-import com.mysema.query.types.expr.BooleanExpression;
+
 import com.bagile.tms.exceptions.ErrorType;
+import javafx.beans.binding.BooleanExpression;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,8 @@ public class PredicatesBuilder {
 		CriteriaPredicate predicate;
 		for (SearchCriteria param : params) {
 			predicate = new CriteriaPredicate(param);
-			BooleanExpression exp = predicate.getPredicate(entityClass);
+			BooleanExpression exp;
+			exp = predicate.getPredicate(entityClass);
 			if (exp != null) {
 				predicates.add(exp);
 			}

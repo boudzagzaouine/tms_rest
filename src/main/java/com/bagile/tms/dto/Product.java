@@ -50,7 +50,7 @@ public class Product implements Serializable {
     private BigDecimal conditionningPrice;
     private Long paletConditionning;
     private Product product;
-    private Set<Image> images;
+
     private Boolean dlcControl;
     private Boolean lotControl;
     private String desc;
@@ -361,14 +361,6 @@ public class Product implements Serializable {
 
     public void setProduct(Product product) {
         this.product = product;
-    }
-
-      public Set<Image> getImages() {
-        return images;
-    }
-
-    public void setImages(Set<Image> images) {
-        this.images = images;
     }
 
     public Boolean getDlcControl() {

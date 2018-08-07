@@ -2,7 +2,6 @@ package com.bagile.tms.mapper;
 
 import com.bagile.tms.dto.Container;
 import com.bagile.tms.entities.StkContainer;
-import com.bagile.tms.entities.StkContainerView;
 
 import java.util.*;
 
@@ -66,13 +65,11 @@ public class ContainerMapper {
         stkContainer.setStkContainerVariable9(container.getVariable9());
         stkContainer.setStkContainerVariable10(container.getVariable10());
         if (!lazy) {
-            stkContainer.setLocLocation(LocationMapper.toEntity(container.getLocation(), true));
             stkContainer.setWrhWarehouse(WarehouseMapper.toEntity(container.getWarehouse(), true));
             stkContainer.setOwnOwner(OwnerMapper.toEntity(container.getOwner(), true));
 //            stkContainer.setCmdSaleOrderStocks(SaleOrderStockMapper.toEntities(container.getSaleOrderStocks(), true));
 //            stkContainer.setCmdSaleOrderStockArcs(SaleOrderStockArcMapper.toEntities(container.getSaleOrderStockArcs(), true));
 //            stkContainer.setStkStockArcs(StockArcMapper.toEntities(container.getStockArcs(), true));
-           stkContainer.setStkStocks(StockMapper.toEntities(container.getStocks(), false));
         }
         return stkContainer;
     }
@@ -99,48 +96,17 @@ public class ContainerMapper {
         container.setVariable9(stkContainer.getStkContainerVariable9());
         container.setVariable10(stkContainer.getStkContainerVariable10());
         if (!lazy) {
-            container.setLocation(LocationMapper.toDto(stkContainer.getLocLocation(), true));
+//            container.setLocation(LocationMapper.toDto(stkContainer.getLocLocation(), true));
             container.setWarehouse(WarehouseMapper.toDto(stkContainer.getWrhWarehouse(), true));
             container.setOwner(OwnerMapper.toDto(stkContainer.getOwnOwner(), true));
 //            container.setSaleOrderStocks(SaleOrderStockMapper.toDtos(stkContainer.getCmdSaleOrderStocks(), true));
 //            container.setSaleOrderStockArcs(SaleOrderStockArcMapper.toDtos(stkContainer.getCmdSaleOrderStockArcs(), true));
 //            container.setStockArcs(StockArcMapper.toDtos(stkContainer.getStkStockArcs(), true));
-         container.setStocks(StockMapper.toDtos(stkContainer.getStkStocks(), false));
+  //       container.setStocks(StockMapper.toDtos(stkContainer.getStkStocks(), false));
         }
         return container;
     }
 
-    public static Container toViewDto(StkContainerView stkContainer, boolean lazy) {
-        if (null == stkContainer) {
-            return null;
-        }
-        Container container = new Container();
-        container.setId(stkContainer.getStkContainerId());
-        container.setCode(stkContainer.getStkContainerCode());
-        container.setReceptionDate(stkContainer.getStkContainerReceptionDate());
-        container.setCreationDate(stkContainer.getStkContainerCreationDate());
-        container.setUpdateDate(stkContainer.getStkContainerUpdateDate());
-        container.setVariable1(stkContainer.getStkContainerVariable1());
-        container.setVariable2(stkContainer.getStkContainerVariable2());
-        container.setVariable3(stkContainer.getStkContainerVariable3());
-        container.setVariable4(stkContainer.getStkContainerVariable4());
-        container.setVariable5(stkContainer.getStkContainerVariable5());
-        container.setVariable6(stkContainer.getStkContainerVariable6());
-        container.setVariable7(stkContainer.getStkContainerVariable7());
-        container.setVariable8(stkContainer.getStkContainerVariable8());
-        container.setVariable9(stkContainer.getStkContainerVariable9());
-        container.setVariable10(stkContainer.getStkContainerVariable10());
-        if (!lazy) {
-            container.setLocation(LocationMapper.toDto(stkContainer.getLocLocation(), true));
-            container.setWarehouse(WarehouseMapper.toDto(stkContainer.getWrhWarehouse(), true));
-            container.setOwner(OwnerMapper.toDto(stkContainer.getOwnOwner(), true));
-//            container.setSaleOrderStocks(SaleOrderStockMapper.toDtos(stkContainer.getCmdSaleOrderStocks(), true));
-//            container.setSaleOrderStockArcs(SaleOrderStockArcMapper.toDtos(stkContainer.getCmdSaleOrderStockArcs(), true));
-//            container.setStockArcs(StockArcMapper.toDtos(stkContainer.getStkStockArcs(), true));
-         container.setStocks(StockMapper.toDtos(stkContainer.getStkStocks(), false));
-        }
-        return container;
-    }
 
     public static List<Container> toDtos(List<StkContainer> stkContainers, boolean lazy) {
         if (null == stkContainers) {
@@ -153,16 +119,6 @@ public class ContainerMapper {
         return containers;
     }
 
-    public static List<Container> toViewDtos(List<StkContainerView> stkContainers, boolean lazy) {
-        if (null == stkContainers) {
-            return null;
-        }
-        List<Container> containers = new ArrayList<>();
-        for (StkContainerView stkContainer : stkContainers) {
-            containers.add(toViewDto(stkContainer, lazy));
-        }
-        return containers;
-    }
 
     public static List<Container> toDtos(Iterable<StkContainer> stkContainers, boolean lazy) {
         if (null == stkContainers) {
@@ -175,16 +131,6 @@ public class ContainerMapper {
         return containers;
     }
 
-    public static List<Container> toViewDtos(Iterable<StkContainerView> stkContainers, boolean lazy) {
-        if (null == stkContainers) {
-            return null;
-        }
-        List<Container> containers = new ArrayList<>();
-        for (StkContainerView stkContainer : stkContainers) {
-            containers.add(toViewDto(stkContainer, lazy));
-        }
-        return containers;
-    }
 
     public static Set<StkContainer> toEntities(Set<Container> containers, boolean lazy) {
         if (null == containers) {

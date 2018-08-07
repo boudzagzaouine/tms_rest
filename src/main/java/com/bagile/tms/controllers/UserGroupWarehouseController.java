@@ -1,5 +1,6 @@
 package com.bagile.tms.controllers;
 
+import com.bagile.tms.dto.UserGroupWarehouse;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
@@ -35,6 +36,7 @@ public class UserGroupWarehouseController {
         Pageable pageable = PageRequest.of(page, size);
         return userGroupWarehouseService.findAll(pageable);
     }
+
 
     @PreAuthorize("hasAnyRole('USER_GROUP_OWNER_VIEW','USER_GROUP_WAREHOUSE_VIEW','USER_GROUP_VIEW','HABILITATION_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")

@@ -1,5 +1,6 @@
 package com.bagile.tms.controllers;
 
+import com.bagile.tms.dto.Warehouse;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
@@ -121,14 +122,14 @@ public class WarehouseController {
     @PreAuthorize("hasRole('WAREHOUSE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Warehouse add(@RequestBody Warehouse warehouse) {
+    public Warehouse add(@RequestBody Warehouse warehouse) throws IdNotFound {
         return warehouseService.save(warehouse);
     }
 
     @PreAuthorize("hasRole('WAREHOUSE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Warehouse set(@RequestBody Warehouse warehouse) {
+    public Warehouse set(@RequestBody Warehouse warehouse) throws IdNotFound {
         return warehouseService.save(warehouse);
     }
 
@@ -147,22 +148,4 @@ public class WarehouseController {
         warehouseService.delete(id);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/findByOwners")
-    @ResponseBody
-    public List<CountOwnerWareHouses> findByOwners() throws AttributesNotFound, ErrorType {
-        return warehouseService.sizeContainerByOwner();
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value = "/findByOwnersCodeWarehouse")
-    @ResponseBody
-    public List<CountOwnerWareHouses> findByOwners(@RequestParam(value = "code") String code) throws AttributesNotFound, ErrorType {
-        return warehouseService.sizeContainerByOwner(code);
-    }
-
-    @PreAuthorize("isAuthenticated()")
-    @RequestMapping(method = RequestMethod.GET, value = "/listForHabilitation")
-    @ResponseBody
-    public List<Warehouse> getOwnersForHabilitation() throws AttributesNotFound, ErrorType {
-        return warehouseService.findAllForHabilitation();
-    }
 }

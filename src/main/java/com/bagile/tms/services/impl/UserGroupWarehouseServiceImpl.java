@@ -1,5 +1,6 @@
 package com.bagile.tms.services.impl;
 
+import com.bagile.tms.dto.UserGroupWarehouse;
 import com.bagile.tms.entities.UsrUserGroupWarehouse;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;

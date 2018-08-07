@@ -33,8 +33,4 @@ public interface CompanyService {
 
     public List<Company> findAll(Pageable pageable);
 
-    @Transactional
-    Company loadWmsCompany(com.sinno.wms.crud.modelbasic.companies.Company company);
-
-    List<Company> exportWmsCompany(List<Company> company);
 }

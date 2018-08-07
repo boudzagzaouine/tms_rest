@@ -3,6 +3,7 @@ package com.bagile.tms.util;
 import com.mysema.query.types.expr.BooleanExpression;
 import com.mysema.query.types.path.*;
 import com.bagile.tms.exceptions.ErrorType;
+import javafx.beans.binding.BooleanExpression;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;

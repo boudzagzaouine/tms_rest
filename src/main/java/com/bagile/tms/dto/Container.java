@@ -26,7 +26,7 @@ public class Container implements Serializable {
     private Set<Stock> stocks;
     private Date creationDate;
     private Date receptionDate;
-
+    private Warehouse warehouse;
 
 
     public long getId() {
@@ -204,5 +204,13 @@ public class Container implements Serializable {
         hash = 7 * hash + (int) this.id;
         hash = 7 * hash + (int) this.id;
         return hash;
+    }
+
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
     }
 }

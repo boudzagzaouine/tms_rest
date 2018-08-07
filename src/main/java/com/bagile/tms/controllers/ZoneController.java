@@ -1,98 +1,92 @@
 package com.bagile.tms.controllers;
 
-import com.bagile.tms.dto.Incident;
+import com.bagile.tms.dto.Driver;
+import com.bagile.tms.dto.Zone;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.services.IncidentService;
+import com.bagile.tms.services.DriverService;
+import com.bagile.tms.services.ZoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Created by khalil on 04/04/2017.
- */
-@Controller
-@RequestMapping(value="/incidents")
-public class IncidentController {
+public class ZoneController {
     @Autowired
-    private IncidentService incidentService;
-    @PreAuthorize("hasAnyRole('INCIDENT_VIEW')")
+    private ZoneService zoneService;
+    @PreAuthorize("hasAnyRole('ZONE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
-    public List<Incident> getIncidents() {return incidentService.findAll();}
-    @PreAuthorize("hasAnyRole('INCIDENT_VIEW')")
+    public List<Zone> getZones() {return zoneService.findAll();}
+    @PreAuthorize("hasAnyRole('ZONE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
-    public List<Incident> getDrivers(@RequestParam int page, @RequestParam int size) {
+    public List<Zone> getZone(@RequestParam int page, @RequestParam int size) {
         Sort sort = new Sort(Sort.Direction.DESC, "prmColorUpdateDate");
         Pageable pageable = PageRequest.of(page, size,sort);
-         return incidentService.findAll(pageable);
+        return zoneService.findAll(pageable);
 
     }
-    @PreAuthorize("hasAnyRole('INCIDENT_VIEW')")
+    @PreAuthorize("hasAnyRole('ZONE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
     public Long size() {
-        return incidentService.size();
+        return zoneService.size();
     }
-    @PreAuthorize("hasAnyRole('INCIDENT_VIEW')")
+    @PreAuthorize("hasAnyRole('ZONE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
-        return incidentService.size(search);
+        return zoneService.size(search);
     }
-    @PreAuthorize("hasAnyRole('INCIDENT_VIEW')")
+    @PreAuthorize("hasAnyRole('ZONE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
-        return incidentService.isExist(id);
+        return zoneService.isExist(id);
     }
-    @PreAuthorize("hasAnyRole('INCIDENT_VIEW')")
+    @PreAuthorize("hasAnyRole('ZONE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
-    public Incident getDriver(@PathVariable("id") Long id) throws IdNotFound {
-        return incidentService.findById(id);
+    public Zone getZone(@PathVariable("id") Long id) throws IdNotFound {
+        return zoneService.findById(id);
     }
-    @PreAuthorize("hasAnyRole('INCIDENT_VIEW')")
+    @PreAuthorize("hasAnyRole('ZONE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
-    public List<Incident> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
-        return incidentService.find(search);
+    public List<Zone> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
+        return zoneService.find(search);
     }
-    @PreAuthorize("hasAnyRole('INCIDENT_VIEW')")
+    @PreAuthorize("hasAnyRole('ZONE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
-    public List<Incident> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
+    public List<Zone> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         Pageable pageable = PageRequest.of(page, size);
-        return incidentService.find(search, pageable);
+        return zoneService.find(search, pageable);
 
     }
-    @PreAuthorize("hasRole('INCIDENT_CREATE')")
+    @PreAuthorize("hasRole('ZONE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Incident add(@RequestBody Incident incident ){return incidentService.save(incident);}
-    @PreAuthorize("hasRole('INCIDENT_EDIT')")
+    public Zone add(@RequestBody Zone zone ){return zoneService.save(zone);}
+    @PreAuthorize("hasRole('ZONE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Incident set(@RequestBody Incident incident) {
-        return incidentService.save(incident);
+    public Zone set(@RequestBody Zone zone) {
+        return zoneService.save(zone);
     }
-    @PreAuthorize("hasRole('INCIDENT_DELETE')")
+    @PreAuthorize("hasRole('ZONE_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@RequestBody Incident driver) {
+    public void delete(@RequestBody Zone zone) {
 
-       incidentService.delete(driver);
+        zoneService.delete(zone);
     }
 
-
 }
-

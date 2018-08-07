@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Created by khalil on 03/04/2017.
- */
 @Controller
 @RequestMapping(value="/drivers")
 public class DriverController {
@@ -85,14 +82,21 @@ public class DriverController {
     public Driver set(@RequestBody Driver driver) {
         return driverService.save(driver);
     }
-    @PreAuthorize("hasRole('DRIVER_DELETE')")
+   /* @PreAuthorize("hasRole('DRIVER_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@RequestBody Driver driver) {
 
         driverService.delete(driver);
-    }
+    }*/
 
+    @PreAuthorize("hasRole('DRIVER_Archive')")
+    @RequestMapping(value = "/archive", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public void delete(@RequestBody Driver driver) {
+
+        driverService.archive(driver.getId());
+    }
 
 
 }
