@@ -167,6 +167,7 @@ public class ProductMapper {
             pdtProduct.setPdtUomByPdtProductUomPurshaseId(UomMapper.toEntity(product.getUomByProductUomPurshase(), true));
             pdtProduct.setPdtUomByPdtProductUomSaleId(UomMapper.toEntity(product.getUomByProductUomSale(), true));
             pdtProduct.setPdtProductParent(toEntity(product.getProduct(), true));
+            pdtProduct.setPrmImages(ImageMapper.toEntities(product.getImages(), false));
             pdtProduct.setPdtProductPacks(ProductPackMapper.toEntities(product.getProductPacks(), false));
 //            pdtProduct.setCmdSaleOrderLineArcs(SaleOrderLineArcMapper.toEntities(product.getSaleOrderLineArcs(), true));
 //            pdtProduct.setCmdSaleOrderStocks(SaleOrderStockMapper.toEntities(product.getSaleOrderStocks(), true));
@@ -280,6 +281,7 @@ public class ProductMapper {
             product.setUomByProductUomPurshase(UomMapper.toDto(pdtProduct.getPdtUomByPdtProductUomPurshaseId(), true));
             product.setUomByProductUomSale(UomMapper.toDto(pdtProduct.getPdtUomByPdtProductUomSaleId(), true));
             product.setProduct(toDto(pdtProduct.getPdtProductParent(), true));
+            product.setImages(ImageMapper.toDtos(pdtProduct.getPrmImages(), false));
             product.setProductPacks(ProductPackMapper.toDtos(pdtProduct.getPdtProductPacks(), false));
 //            product.setSaleOrderLineArcs(SaleOrderLineArcMapper.toDtos(pdtProduct.getCmdSaleOrderLineArcs(), true));
 //            product.setSaleOrderStocks(SaleOrderStockMapper.toDtos(pdtProduct.getCmdSaleOrderStocks(), true));
