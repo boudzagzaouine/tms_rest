@@ -19,7 +19,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
     private long tmsMaintenancePlanId;
     
     @NotNull
-    @JoinColumn(name = "tms_vehicle")
+    @JoinColumn(name = "tms_vehicleid")
     private TmsVehicle tmsMaintenancePlanVehicle;
     
     @NotNull
@@ -33,7 +33,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
     
     @NotNull
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_maintenanceplanstate")
+    @JoinColumn(name = "tms_maintenanceplanstateid")
     private TmsMaintenanceState tmsMaintenancePlanState;
     
     @NotNull
@@ -45,13 +45,13 @@ public class TmsMaintenancePlan implements java.io.Serializable{
     private Date tmsMaintenanceCreationDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_maintenanceplancreationuser")
+    @JoinColumn(name = "tms_maintenanceplancreationuserid")
     private UsrUser tmsMaintenanceCreationUser;
 
     @Column(name = "tms_maintenanceplanupdatedate")
     private Date tmsMaintenanceUpDateDate;
 
-    @JoinColumn(name = "tms_maintenancetypemaintenance")
+    @JoinColumn(name = "tms_maintenancetypemaintenanceid")
     private TmsTypeMaintenance tmsMaintenanceTypeMaintenance;
 
 

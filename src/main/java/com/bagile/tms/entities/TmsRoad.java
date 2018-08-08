@@ -36,12 +36,12 @@ public class TmsRoad implements Serializable {
     private BigDecimal tmsRoadDistance;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_roaddriver")
+    @JoinColumn(name = "tms_roaddriverid")
     private TmsDriver tmsRoadDriver;
     
     @NotNull
     //@OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_roadadjunct")
+    @JoinColumn(name = "tms_roadadjunctid")
     private TmsDriver tmsRoadAdjunct;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -50,22 +50,22 @@ public class TmsRoad implements Serializable {
     
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_roadroadstate")
+    @JoinColumn(name = "tms_roadroadstateid")
     private TmsRoadState tmsRoadRoadState;
     
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_roadsaleorder")
+    @JoinColumn(name = "tms_roadsaleorderid")
     private CmdSaleOrder tmsRoadSaleOrder;
     
     @NotNull
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_roadstockadress")
+    @JoinColumn(name = "tms_roadstockadressid")
     private Set<AdrAddress> tmsRoadStockAddresses;
     
     @NotNull
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_roadvehicle")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_roadvehicleid")
     private TmsVehicle tmsRoadVehicle;
     
     @NotNull
@@ -74,7 +74,7 @@ public class TmsRoad implements Serializable {
     private Date tmsRoadCreationDate;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_roadcreationuser")
+    @JoinColumn(name = "tms_roadcreationuserid")
     private UsrUser tmsRoadCreationUser;
 
     @OneToMany(fetch = FetchType.LAZY)

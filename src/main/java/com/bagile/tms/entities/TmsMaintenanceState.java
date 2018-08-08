@@ -24,36 +24,36 @@ public class TmsMaintenanceState implements java.io.Serializable {
     private long idMaintenanceState;
 
     @NotNull
-    @Column(name = "tms_maintenanceState")
+    @Column(name = "tms_maintenancestate")
     private String tmsMaintenanceState;
 
-    @Column(name = "tms_maintenanceStateCode")
+    @Column(name = "tms_maintenancestatecode")
     private String tmsMaintenanceStateCode;
 
-    @Column(name = "tms_maintenanceStateDescriptif")
+    @Column(name = "tms_maintenancestatedescriptif")
     private String tmsMaintenanceStateDescriptif;
 
-    @Column(name = "tms_maintenanceStateDate")
+    @Column(name = "tms_maintenancestatedate")
     private Date tmsMaintenanceStateDate;
 
-    @Column(name = "tms_maintenanceStateTitle")
+    @Column(name = "tms_maintenancestatetitle")
     private String tmsMaintenanceStateTitle;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "tms_maintenanceStateCreationDate")
+    @Column(name = "tms_maintenancestatecreationdate")
     private Date tmsMaintenanceStateCreationDate;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_maintenanceStateCreationUser")
+    @JoinColumn(name = "tms_maintenancestatecreationuserid")
     private UsrUser tmsMaintenanceStateCreationUser;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "tms_maintenanceStateUpdateDate")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "tms_maintenancestateupdatedate")
     private Date tmsMaintenanceStateUpDateDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_maintenanceStateType")
+    @JoinColumn(name = "tms_maintenancestatetypeid")
     private TmsTypeMaintenance tmsMaintenanceStateType;
 
     @OneToOne(mappedBy = "tms_maintenancePlanState")

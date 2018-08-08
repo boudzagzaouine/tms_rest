@@ -126,7 +126,7 @@ public class TmsVehicle implements Serializable {
     public void setTmsVehicleCreationUser(UsrUser tmsVehicleCreationUser) {
         this.tmsVehicleCreationUser = tmsVehicleCreationUser;
     }
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "tms_vehicleupdatedate")
     public Date getTmsVehicleUpDateDate() {
