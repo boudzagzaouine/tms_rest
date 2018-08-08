@@ -10,13 +10,10 @@ public class TmsTraffic {
     private boolean tmsTrafficActive;
     private Date tmsTrafficDate;
 
-
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name = "tms_trafficId", unique = true, nullable = false, precision = 10, scale = 0)
+    @Column(name = "tms_trafficId")
 
     public long getTmsTrafficId() {
         return tmsTrafficId;

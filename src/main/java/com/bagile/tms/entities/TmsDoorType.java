@@ -12,7 +12,7 @@ public class TmsDoorType {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name = "tms_doortypeId", unique = true, nullable = false, precision = 10, scale = 0)
+    @Column(name = "tms_doortypeId")
     public long getTmsDoorTypeId() {
         return tmsDoorTypeId;
     }

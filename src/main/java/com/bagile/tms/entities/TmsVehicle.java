@@ -13,9 +13,7 @@ import java.util.Date;
 @Table(name = "tms_vehicule",uniqueConstraints = @UniqueConstraint(columnNames = {"tms_vehicleId","tms_vehiclecode","tms_vehicleregistrationumber"}))
 public class TmsVehicle implements Serializable {
     private long tmsVehicleId;
-    @Size(max = 30)
     @NotNull
-
     private String tmsVehicleRegistrationNumber;
     @Size(max = 30)
     @NotNull
@@ -42,7 +40,7 @@ public class TmsVehicle implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name = "tms_vehicleId", unique = true, nullable = false, precision = 10, scale = 0)
+    @Column(name = "tms_vehicleId")
 
     public long getTmsVehicleId() {
         return tmsVehicleId;
@@ -61,8 +59,8 @@ public class TmsVehicle implements Serializable {
         this.tmsVehicleRegistrationNumber = tmsVehicleRegistrationNumber;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @Column(name = "tms_vehiclebadge", unique = true, nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_vehiclebadge", unique = true, nullable = false)
     public TmsBadge getTmsVehicleBadge() {
         return tmsVehicleBadge;
     }
@@ -89,8 +87,8 @@ public class TmsVehicle implements Serializable {
         this.tmsVehicleTechnicalVisit = tmsVehicleTechnicalVisit;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @Column(name = "tms_vehiclecategory", unique = true, nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_vehiclecategory")
     public TmsCategory getTmsVehicleCategory() {
         return tmsVehicleCategory;
     }
@@ -99,8 +97,8 @@ public class TmsVehicle implements Serializable {
         this.tmsVehicleCategory = tmsVehicleCategory;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @Column(name = "tms_vehicledrivinglicence", unique = true, nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_vehicledrivinglicence")
     public TmsTraffic getTmsVehicleDrivingLicence() {
         return tmsVehicleDrivingLicence;
     }
@@ -109,7 +107,7 @@ public class TmsVehicle implements Serializable {
         this.tmsVehicleDrivingLicence = tmsVehicleDrivingLicence;
     }
 
-    @Column(name = "tms_vehiclecreationdate", unique = true, nullable = false)
+    @Column(name = "tms_vehiclecreationdate")
     public Date getTmsVehicleCreationDate() {
         return tmsVehicleCreationDate;
     }
@@ -119,7 +117,7 @@ public class TmsVehicle implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY)
-    @Column(name = "tms_vehiclecreationuser", unique = true, nullable = false)
+    @JoinColumn(name = "tms_vehiclecreationuser")
     public UsrUser getTmsVehicleCreationUser() {
         return tmsVehicleCreationUser;
     }
@@ -129,7 +127,7 @@ public class TmsVehicle implements Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY)
-    @Column(name = "tms_vehicleupdatedate", unique = true, nullable = false)
+    @Column(name = "tms_vehicleupdatedate")
     public Date getTmsVehicleUpDateDate() {
         return tmsVehicleUpDateDate;
     }
