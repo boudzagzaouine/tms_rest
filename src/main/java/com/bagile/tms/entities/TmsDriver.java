@@ -166,7 +166,7 @@ public class TmsDriver implements java.io.Serializable {
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "tms_driverupdatedate")
+    @Column(name = "tms_driverupdatedate")
     public Date getTmsDriverUpDateDate() {
         return tmsDriverUpDateDate;
     }

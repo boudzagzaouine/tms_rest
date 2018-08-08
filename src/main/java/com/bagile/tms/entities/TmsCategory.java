@@ -107,4 +107,5 @@ public class TmsCategory {
     public void setTmsCategoryTotalWeight(BigDecimal tmsCategoryTotalWeight) {
         this.tmsCategoryTotalWeight = tmsCategoryTotalWeight;
     }
+
 }

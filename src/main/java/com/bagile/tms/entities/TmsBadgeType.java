@@ -31,3 +31,4 @@ public class TmsBadgeType {
         this.tmsBadgeTypeCode = tmsBadgeTypeCode;
     }
 }
+

@@ -50,7 +50,7 @@ public class TmsBadge {
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "tms_badgeDriver")
+    @JoinColumn(name = "tms_badgeDriverid")
 
     public Driver getDriver() {
         return driver;
