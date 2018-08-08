@@ -6,17 +6,21 @@ import java.util.Date;
 @Entity
 @Table(name="tms_vacation",uniqueConstraints = @UniqueConstraint(columnNames = {"tms_vacationId"}))
 public class TmsVacation {
-    private int tmsVacationId;
-    private Date tmsVacationBegin;
-    private Date tmsVacationEnd;
-    private String tmsVacationType;
-
-
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name = "tms_idVacation", unique = true, nullable = false, scale = 0)
+    @Column(name = "tms_idVacation")
+    private int tmsVacationId;
+    
+    @Column(name = "tms_vacationbegin")
+    private Date tmsVacationBegin;
+    
+    @Column(name = "tms_vacationend")
+    private Date tmsVacationEnd;
+    
+    @Column(name = "tms_vacationtype")
+    private String tmsVacationType;
 
     public int getTmsVacationId() {
         return tmsVacationId;
@@ -26,7 +30,6 @@ public class TmsVacation {
         this.tmsVacationId = tmsVacationId;
     }
 
-    @Column(name = "tms_vacationbegin", nullable = false)
     public Date getTmsVacationBegin() {
         return tmsVacationBegin;
     }
@@ -35,7 +38,6 @@ public class TmsVacation {
         this.tmsVacationBegin = tmsVacationBegin;
     }
 
-    @Column(name = "tms_vacationend", unique = true, nullable = false)
     public Date getTmsVacationEnd() {
         return tmsVacationEnd;
     }
@@ -44,7 +46,6 @@ public class TmsVacation {
         this.tmsVacationEnd = tmsVacationEnd;
     }
 
-    @Column(name = "tms_vacationtype", unique = true,nullable = false)
     public String getTmsVacationType() {
         return tmsVacationType;
     }

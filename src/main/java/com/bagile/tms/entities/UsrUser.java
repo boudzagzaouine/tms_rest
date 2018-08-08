@@ -60,6 +60,12 @@ public class UsrUser implements java.io.Serializable {
     private String userUserColumns;
     private Set<UsrUserActions> usrUserActions = new HashSet<UsrUserActions>(0);
 
+    @OneToMany(mappedBy = "tmsMaintenanceCreationUser")
+    private Set<TmsMaintenancePlan> usrUserTmsMaintenancePlans;
+
+    @OneToMany(mappedBy = "tmsMaintenanceStateCreationUser")
+    private Set<TmsMaintenanceState> usrUserTmsMaintenanceStates;
+
 
     public UsrUser() {
     }

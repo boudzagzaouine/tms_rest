@@ -2,19 +2,25 @@ package com.bagile.tms.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 @Table(name="tms_roadState",uniqueConstraints = @UniqueConstraint(columnNames = {"tms_roadStateId"}))
 public class TmsRoadState {
-    private int tmsRoadStateId;
-    @NotNull
-    private String tmsRoadStateState;
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name = "tms_roadStateId", unique = true, nullable = false, precision = 10, scale = 0)
+    @Column(name = "tms_roadStateId")
+    private int tmsRoadStateId;
+
+    @NotNull
+    @Column(name = "tms_roadStatestate")
+    private String tmsRoadStateState;
+
+    @OneToMany(mappedBy = "tmsRoadRoadState")
+    private Set<TmsRoad> tmsRoadRoads;
+
 
     public int getTmsRoadStateId() {
         return tmsRoadStateId;
@@ -25,7 +31,6 @@ public class TmsRoadState {
         this.tmsRoadStateId = tmsRoadStateId;
     }
 
-    @Column(name = "tms_roadStatestate", unique = true, nullable = false)
     public String getTmsRoadStateState() {
         return tmsRoadStateState;
     }

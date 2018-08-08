@@ -2,6 +2,7 @@ package com.bagile.tms.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 @Table(name="tms_typeMaintenance",uniqueConstraints = @UniqueConstraint(columnNames = {"tms_typeMaintenanceId"}))
@@ -11,7 +12,10 @@ public class TmsTypeMaintenance {
     private int tmsTypeMaintenanceId;
 
     @NotNull
-    private String tmsTypeMaintenancetype;
+    private String tmsTypeMaintenanceType;
+    
+    @OneToMany(mappedBy = "tmsMaintenanceStateType")
+    private Set<TmsMaintenanceState> tmsTypeMaintenanceStates;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -26,12 +30,12 @@ public class TmsTypeMaintenance {
         this.tmsTypeMaintenanceId = tmsTypeMaintenanceId;
     }
 
-    @Column(name = "tms_TypeMaintenancetype", unique = true, nullable = false)
-    public String getTmsTypeMaintenancetype() {
-        return tmsTypeMaintenancetype;
+    @Column(name = "tms_TypeMaintenanceType", unique = true, nullable = false)
+    public String getTmsTypeMaintenanceType() {
+        return tmsTypeMaintenanceType;
     }
 
-    public void setTmsTypeMaintenancetype(String tmsTypeMaintenancetype) {
-        this.tmsTypeMaintenancetype = tmsTypeMaintenancetype;
+    public void setTmsTypeMaintenanceType(String tmsTypeMaintenanceType) {
+        this.tmsTypeMaintenanceType = tmsTypeMaintenanceType;
     }
 }

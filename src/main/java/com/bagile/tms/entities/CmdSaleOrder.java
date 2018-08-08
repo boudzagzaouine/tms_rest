@@ -88,6 +88,9 @@ public class CmdSaleOrder implements Serializable {
     @Size(max = 20)
     private String cmdSaleOrderTransportTel;
 
+    @OneToMany(mappedBy = "tmsRoadSaleOrder")
+    private Set<TmsRoad> cmdSaleOrderRoads;
+
 
     @NotNull
     private Boolean cmdSaleOrderActive;

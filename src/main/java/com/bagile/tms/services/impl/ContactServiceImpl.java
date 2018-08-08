@@ -1,4 +1,4 @@
-package com.bagile.tms.service.impl;
+package com.bagile.tms.services.impl;
 
 import com.bagile.tms.dto.Contact;
 import com.bagile.tms.entities.PrmContact;
