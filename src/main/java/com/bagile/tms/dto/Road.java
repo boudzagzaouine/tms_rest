@@ -1,9 +1,5 @@
 package com.bagile.tms.dto;
 
-import com.bagile.tms.entities.*;
-
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -31,7 +27,7 @@ public class Road implements Serializable {
 
     private SaleOrder saleOrder;
 
-    private Address stockAddress;
+    private Set<Address> stockAddresses;
 
     private Vehicle vehicle;
 
@@ -119,12 +115,12 @@ public class Road implements Serializable {
         this.saleOrder = saleOrder;
     }
 
-    public Address getStockAddress() {
-        return stockAddress;
+    public Set<Address> getStockAddresses() {
+        return stockAddresses;
     }
 
-    public void setStockAddress(Address stockAddress) {
-        this.stockAddress = stockAddress;
+    public void setStockAddresses(Set<Address> stockAddresses) {
+        this.stockAddresses = stockAddresses;
     }
 
     public Vehicle getVehicle() {
