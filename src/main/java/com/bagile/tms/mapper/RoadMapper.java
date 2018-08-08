@@ -58,7 +58,7 @@ public class RoadMapper {
             tmsRoad.setTmsRoadDate(road.getDate());
             tmsRoad.setTmsRoadRoadState(RoadStateMapper.toEntity(road.getState(),true));
             tmsRoad.setTmsRoadSaleOrder(SaleOrderMapper.toEntity(road.getSaleOrder(),true));
-            tmsRoad.setTmsRoadStockAddress(AddressMapper.toEntity(road.getStockAddress(),true));
+            tmsRoad.setTmsRoadStockAddresses(AddressMapper.toEntities(road.getStockAddresses(),true));
             tmsRoad.setTmsRoadVehicle(VehicleMapper.toEntity(road.getVehicle(),true));
             tmsRoad.setTmsRoadCreationDate(road.getCreationDate());
             tmsRoad.setTmsRoadCreationUser(UserMapper.toEntity(road.getCreationUser(),true));
@@ -83,7 +83,7 @@ public class RoadMapper {
             road.setDate(tmsRoad.getTmsRoadDate());
             road.setState(RoadStateMapper.toDto(tmsRoad.getTmsRoadRoadState(),true));
             road.setSaleOrder(SaleOrderMapper.toDto(tmsRoad.getTmsRoadSaleOrder(),true));
-            road.setStockAddress(AddressMapper.toDto(tmsRoad.getTmsRoadStockAddress(),true));
+            road.setStockAddresses(AddressMapper.toDtos(tmsRoad.getTmsRoadStockAddresses(),true));
             road.setVehicle(VehicleMapper.toDto(tmsRoad.getTmsRoadVehicle(),true));
             road.setCreationDate(tmsRoad.getTmsRoadCreationDate());
             road.setCreationUser(UserMapper.toDto(tmsRoad.getTmsRoadCreationUser(),true));

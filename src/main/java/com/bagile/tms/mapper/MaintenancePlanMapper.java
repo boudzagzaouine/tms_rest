@@ -66,7 +66,7 @@ public class MaintenancePlanMapper {
         maintenancePlan.setDescriptif(tmsMaintenancePlan.getTmsMaintenancePlanDescriptif());
         maintenancePlan.setCreationDate(tmsMaintenancePlan.getTmsMaintenanceCreationDate());
         maintenancePlan.setDate(tmsMaintenancePlan.getTmsMaintenancePlanDate());
-        maintenancePlan.setTitle(tmsMaintenancePlan.getTmsMaintenancePlantitle());
+        maintenancePlan.setTitle(tmsMaintenancePlan.getTmsMaintenancePlanTitle());
         if (!lazy) {
             maintenancePlan.setVehicle(VehicleMapper.toDto(tmsMaintenancePlan.getTmsMaintenancePlanVehicle(), true));
             maintenancePlan.setUpDateDate(tmsMaintenancePlan.getTmsMaintenanceUpDateDate());

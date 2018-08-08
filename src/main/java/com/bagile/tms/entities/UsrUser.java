@@ -52,9 +52,6 @@ public class UsrUser implements java.io.Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
 
     private Date usrUserUpdateDate;
-    @Size(max = 100)
-    @Email
-    @NotNull
     private String usrUserEmail;
     private Long usrUserType;
     private String userUserColumns;

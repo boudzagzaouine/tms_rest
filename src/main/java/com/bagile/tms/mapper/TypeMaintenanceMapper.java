@@ -31,7 +31,7 @@ public class TypeMaintenanceMapper {
         }
         TypeMaintenance type = new TypeMaintenance();
         type.setId(tmsType.getTmsTypeMaintenanceId());
-        type.setType(tmsType.getTmsTypeMaintenancetype());
+        type.setType(tmsType.getTmsTypeMaintenanceType());
         return type;
     }
 
@@ -41,7 +41,7 @@ public class TypeMaintenanceMapper {
         }
         TmsTypeMaintenance tmsType = new TmsTypeMaintenance();
         tmsType.setTmsTypeMaintenanceId(type.getId());
-        tmsType.setTmsTypeMaintenancetype(type.getType());
+        tmsType.setTmsTypeMaintenanceType(type.getType());
         return tmsType;
     }
 

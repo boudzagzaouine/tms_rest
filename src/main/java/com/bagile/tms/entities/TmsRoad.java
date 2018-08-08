@@ -201,4 +201,8 @@ public class TmsRoad implements Serializable {
     public Set<AdrAddress> getTmsRoadStockAddresses() {
         return tmsRoadStockAddresses;
     }
+
+    public void setTmsRoadStockAddresses(Set<AdrAddress> tmsRoadStockAddresses) {
+        this.tmsRoadStockAddresses = tmsRoadStockAddresses;
+    }
 }
