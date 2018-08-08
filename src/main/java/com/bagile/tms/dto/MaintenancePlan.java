@@ -26,7 +26,7 @@ public class MaintenancePlan implements Serializable {
 
     private UsrUser creationUser;
 
-    private UsrUser upDateUser;
+    private Date upDateDate;
 
     private TmsTypeMaintenance typeMaintenance;
 
@@ -102,12 +102,12 @@ public class MaintenancePlan implements Serializable {
         this.creationUser = creationUser;
     }
 
-    public UsrUser getUpDateUser() {
-        return upDateUser;
+    public Date getUpDateDate() {
+        return upDateDate;
     }
 
-    public void setUpDateUser(UsrUser upDateUser) {
-        this.upDateUser = upDateUser;
+    public void setUpDateDate(Date upDateDate) {
+        this.upDateDate = upDateDate;
     }
 
     public TmsTypeMaintenance getTypeMaintenance() {

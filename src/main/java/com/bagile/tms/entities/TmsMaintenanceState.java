@@ -21,8 +21,6 @@ public class TmsMaintenanceState implements java.io.Serializable {
     @NotNull
     private String tmsMaintenanceState;
 
-    private TmsVehicle tmsMaintenanceStateVehicle;
-
     private String tmsMaintenanceStateCode;
 
     private String tmsMaintenanceStateDescriptif;
@@ -67,14 +65,7 @@ public class TmsMaintenanceState implements java.io.Serializable {
         this.tmsMaintenanceState = tmsMaintenanceState;
     }
 
-    public TmsVehicle getTmsMaintenanceStateVehicle() {
-        return tmsMaintenanceStateVehicle;
-    }
-
-    public void setTmsMaintenanceStateVehicle(TmsVehicle tmsMaintenanceStateVehicle) {
-        this.tmsMaintenanceStateVehicle = tmsMaintenanceStateVehicle;
-    }
-
+    @Column(name = "tms_maintenancestatecode", unique = true, nullable = false)
     public String getTmsMaintenanceStateCode() {
         return tmsMaintenanceStateCode;
     }
@@ -82,7 +73,7 @@ public class TmsMaintenanceState implements java.io.Serializable {
     public void setTmsMaintenanceStateCode(String tmsMaintenanceStateCode) {
         this.tmsMaintenanceStateCode = tmsMaintenanceStateCode;
     }
-
+    @Column(name = "tms_maintenancestatedescriptif", unique = true, nullable = false)
     public String getTmsMaintenanceStateDescriptif() {
         return tmsMaintenanceStateDescriptif;
     }
@@ -91,6 +82,7 @@ public class TmsMaintenanceState implements java.io.Serializable {
         this.tmsMaintenanceStateDescriptif = tmsMaintenanceStateDescriptif;
     }
 
+    @Column(name = "tms_maintenancestatedate",nullable = false)
     public Date getTmsMaintenanceStateDate() {
         return tmsMaintenanceStateDate;
     }
@@ -99,6 +91,7 @@ public class TmsMaintenanceState implements java.io.Serializable {
         this.tmsMaintenanceStateDate = tmsMaintenanceStateDate;
     }
 
+    @Column(name = "tms_maintenancestatetitle", unique = true, nullable = false)
     public String getTmsMaintenanceStateTitle() {
         return tmsMaintenanceStateTitle;
     }
@@ -107,6 +100,7 @@ public class TmsMaintenanceState implements java.io.Serializable {
         this.tmsMaintenanceStateTitle = tmsMaintenanceStateTitle;
     }
 
+    @Column(name = "tms_maintenancestatecreationdate", unique = true, nullable = false)
     public Date getTmsMaintenanceStateCreationDate() {
         return tmsMaintenanceStateCreationDate;
     }
@@ -115,6 +109,8 @@ public class TmsMaintenanceState implements java.io.Serializable {
         this.tmsMaintenanceStateCreationDate = tmsMaintenanceStateCreationDate;
     }
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @Column(name = "tms_maintenancestatecreationuser", unique = true, nullable = false)
     public UsrUser getTmsMaintenanceStateCreationUser() {
         return tmsMaintenanceStateCreationUser;
     }
@@ -123,6 +119,7 @@ public class TmsMaintenanceState implements java.io.Serializable {
         this.tmsMaintenanceStateCreationUser = tmsMaintenanceStateCreationUser;
     }
 
+    @Column(name = "tms_maintenancestateupdatedate", unique = true, nullable = false)
     public Date getTmsMaintenanceStateUpDateDate() {
         return tmsMaintenanceStateUpDateDate;
     }
@@ -131,6 +128,8 @@ public class TmsMaintenanceState implements java.io.Serializable {
         this.tmsMaintenanceStateUpDateDate = tmsMaintenanceStateUpDateDate;
     }
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @Column(name = "tms_maintenancestatetype", unique = true, nullable = false)
     public TmsTypeMaintenance getTmsMaintenanceStateType() {
         return tmsMaintenanceStateType;
     }

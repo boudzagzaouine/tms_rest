@@ -37,7 +37,7 @@ public class Road implements Serializable {
 
     private Date creationDate;
     private User creationUser;
-    private User upDateUser;
+    private Date upDateDate;
 
     public long getId() {
         return id;
@@ -151,11 +151,11 @@ public class Road implements Serializable {
         this.creationUser = creationUser;
     }
 
-    public User getUpDateUser() {
-        return upDateUser;
+    public Date getUpDateDate() {
+        return upDateDate;
     }
 
-    public void setUpDateUser(User upDateUser) {
-        this.upDateUser = upDateUser;
+    public void setUpDateDate(Date upDateDate) {
+        this.upDateDate = upDateDate;
     }
 }

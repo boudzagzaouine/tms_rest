@@ -51,6 +51,7 @@ public class RoadMapper {
         tmsRoad.setTmsRoadDuration(road.getDuration());
         tmsRoad.setTmsRoadCost(road.getCost());
         tmsRoad.setTmsRoadDistance(road.getDistance());
+        tmsRoad.setTmsRoadUpDateDate(road.getUpDateDate());
         if (!lazy) {
             tmsRoad.setTmsRoadDriver(DriverMapper.toEntity(road.getDriver(),true));
             tmsRoad.setTmsRoadAdjunct(DriverMapper.toEntity(road.getAdjunct(),true));
@@ -61,7 +62,7 @@ public class RoadMapper {
             tmsRoad.setTmsRoadVehicle(VehicleMapper.toEntity(road.getVehicle(),true));
             tmsRoad.setTmsRoadCreationDate(road.getCreationDate());
             tmsRoad.setTmsRoadCreationUser(UserMapper.toEntity(road.getCreationUser(),true));
-            tmsRoad.setTmsRoadUpDateUser(UserMapper.toEntity(road.getUpDateUser(),true));
+
         }
         return tmsRoad;
     }
@@ -75,6 +76,7 @@ public class RoadMapper {
         road.setDuration(tmsRoad.getTmsRoadDuration());
         road.setCost(tmsRoad.getTmsRoadCost());
         road.setDistance(tmsRoad.getTmsRoadDistance());
+        road.setUpDateDate(tmsRoad.getTmsRoadUpDateDate());
         if (!lazy) {
             road.setDriver(DriverMapper.toDto(tmsRoad.getTmsRoadDriver(),true));
             road.setAdjunct(DriverMapper.toDto(tmsRoad.getTmsRoadAdjunct(),true));
@@ -85,7 +87,6 @@ public class RoadMapper {
             road.setVehicle(VehicleMapper.toDto(tmsRoad.getTmsRoadVehicle(),true));
             road.setCreationDate(tmsRoad.getTmsRoadCreationDate());
             road.setCreationUser(UserMapper.toDto(tmsRoad.getTmsRoadCreationUser(),true));
-            road.setUpDateUser(UserMapper.toDto(tmsRoad.getTmsRoadUpDateUser(),true));
         }
         return road;
     }

@@ -62,7 +62,7 @@ public class TmsCategory {
     }
 
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @OneToMany(fetch=FetchType.LAZY)
     @JoinColumn(name = "tms_categorydoorid")
     public TmsDoorType getTmsCategoryDoor() {
         return tmsCategoryDoor;

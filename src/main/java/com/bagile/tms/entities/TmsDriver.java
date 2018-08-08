@@ -79,7 +79,7 @@ public class TmsDriver implements java.io.Serializable {
         this.tmsDriverBirthDate = tmsDriverBirthDate;
     }
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @Column(name = "tms_driverbadge")
     public Set<TmsBadge> getTmsDriverBadges() {
         return tmsDriverBadges;
@@ -107,7 +107,7 @@ public class TmsDriver implements java.io.Serializable {
         this.tmsDriverWorking = tmsDriverWorking;
     }
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @Column(name = "tms_driverworkarea")
     public TmsZone getTmsDriverWorkArea() {
         return tmsDriverWorkArea;
@@ -117,8 +117,8 @@ public class TmsDriver implements java.io.Serializable {
         this.tmsDriverWorkArea = tmsDriverWorkArea;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_drivervacationid")
+    @OneToMany(fetch = FetchType.LAZY)
+    @Column(name = "tms_drivervacationid")
     public TmsVacation getTmsDriverVacation() {
         return tmsDriverVacation;
     }
@@ -137,8 +137,8 @@ public class TmsDriver implements java.io.Serializable {
         this.tmsDriverCommission = tmsDriverCommission;
     }
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "tms_drivercontactid")
+    @OneToOne(fetch=FetchType.LAZY)
+    @Column(name = "tms_drivercontactid")
     public PrmContact getTmsDrivercontact() {
         return tmsDrivercontact;
     }
@@ -166,7 +166,6 @@ public class TmsDriver implements java.io.Serializable {
         this.tmsDriverCreationUser = tmsDriverCreationUser;
     }
 
-    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "tms_driverupdatedate")
     public Date getTmsDriverUpDateDate() {
         return tmsDriverUpDateDate;

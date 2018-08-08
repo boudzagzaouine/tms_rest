@@ -14,10 +14,9 @@ public class TmsMaintenancePlan implements java.io.Serializable{
     private long tmsMaintenancePlanId;
     @NotNull
     private TmsVehicle tmsMaintenancePlanVehicle;
-    @Size(max = 30)
     @NotNull
     private String tmsMaintenancePlanCode;
-    @Size(max = 255)
+
     private String tmsMaintenancePlanDescriptif;
 
     private Date tmsMaintenancePlanDate;
@@ -31,7 +30,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
 
     private UsrUser tmsMaintenanceCreationUser;
 
-    private UsrUser tmsMaintenanceUpDateUser;
+    private Date tmsMaintenanceUpDateDate;
 
     private TmsTypeMaintenance tmsMaintenanceTypeMaintenance;
 
@@ -62,7 +61,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
         this.tmsMaintenancePlanVehicle = tmsMaintenancePlanVehicle;
     }
 
-    @Column(name = "tms_maintenanceplancode", unique = true, nullable = false, precision = 10, scale = 0)
+    @Column(name = "tms_maintenanceplancode", unique = true, nullable = false)
     public String getTmsMaintenancePlanCode() {
         return tmsMaintenancePlanCode;
     }
@@ -80,7 +79,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
         this.tmsMaintenancePlanDescriptif = tmsMaintenancePlanDescriptif;
     }
 
-    @Column(name = "tms_maintenanceplandate", unique = true, nullable = false, precision = 10, scale = 0)
+    @Column(name = "tms_maintenanceplandate", unique = true, nullable = false)
     public Date getTmsMaintenancePlanDate() {
         return tmsMaintenancePlanDate;
     }
@@ -117,7 +116,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
         this.tmsMaintenanceCreationDate = tmsMaintenanceCreationDate;
     }
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @Column(name = "tms_maintenanceplancreationuser", unique = true, nullable = false)
     public UsrUser getTmsMaintenanceCreationUser() {
         return tmsMaintenanceCreationUser;
@@ -127,17 +126,17 @@ public class TmsMaintenancePlan implements java.io.Serializable{
         this.tmsMaintenanceCreationUser = tmsMaintenanceCreationUser;
     }
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @Column(name = "tms_maintenanceplanupdateuser", unique = true, nullable = false)
-    public UsrUser getTmsMaintenanceUpDateUser() {
-        return tmsMaintenanceUpDateUser;
+
+    @Column(name = "tms_maintenanceplanupdatedate", unique = true, nullable = false)
+    public Date getTmsMaintenanceUpDateDate() {
+        return tmsMaintenanceUpDateDate;
     }
 
-    public void setTmsMaintenanceUpDateUser(UsrUser tmsMaintenanceUpDateUser) {
-        this.tmsMaintenanceUpDateUser = tmsMaintenanceUpDateUser;
+    public void setTmsMaintenanceUpDateDate(Date tmsMaintenanceUpDateDate) {
+        this.tmsMaintenanceUpDateDate = tmsMaintenanceUpDateDate;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
+
     @Column(name = "tms_maintenanceplancreationdate", unique = true, nullable = false)
     public TmsTypeMaintenance getTypeMaintenance() {
         return tmsMaintenanceTypeMaintenance;

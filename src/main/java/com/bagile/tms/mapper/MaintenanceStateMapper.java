@@ -48,7 +48,6 @@ public class MaintenanceStateMapper {
             state.setCreationUser(UserMapper.toDto(tmsState.getTmsMaintenanceStateCreationUser(),true));
             state.setTypeMaintenance(TypeMaintenanceMapper.toDto(tmsState.getTmsMaintenanceStateType()));
             state.setUpDateDate(tmsState.getTmsMaintenanceStateUpDateDate());
-            state.setVehicle(VehicleMapper.toDto(tmsState.getTmsMaintenanceStateVehicle(),true));
         }
         return state;
     }
@@ -68,7 +67,6 @@ public class MaintenanceStateMapper {
             tmsState.setTmsMaintenanceStateCreationUser(UserMapper.toEntity(state.getCreationUser(),true));
             tmsState.setTmsMaintenanceStateType(TypeMaintenanceMapper.toEntity(state.getTypeMaintenance()));
             tmsState.setTmsMaintenanceStateUpDateDate(state.getUpDateDate());
-            tmsState.setTmsMaintenanceStateVehicle(VehicleMapper.toEntity(state.getVehicle(),true));
         }
         return tmsState;
     }

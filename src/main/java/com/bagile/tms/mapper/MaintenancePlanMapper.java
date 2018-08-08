@@ -23,7 +23,7 @@ public class MaintenancePlanMapper {
         map.put("title", "tmsMaintenancePlanTitle");
         map.put("creationDate", "tmsMaintenanceCreationDate");
         map.put("creationUser", "tmsMaintenanceCreationUser");
-        map.put("upDateUser", "tmsMaintenanceUpDateUser");
+        map.put("upDateDate", "tmsMaintenanceUpDateDate");
         map.put("typeMaintenance", "tmsMaintenanceTypeMaintenance");
     }
 
@@ -47,7 +47,7 @@ public class MaintenancePlanMapper {
         tmsMaintenancePlan.setTmsMaintenanceCreationDate(maintenancePlan.getCreationDate());
         tmsMaintenancePlan.setTmsMaintenancePlanDate(maintenancePlan.getDate());
         if (!lazy) {
-            tmsMaintenancePlan.setTmsMaintenanceUpDateUser(maintenancePlan.getUpDateUser());
+            tmsMaintenancePlan.setTmsMaintenanceUpDateDate(maintenancePlan.getUpDateDate());
             tmsMaintenancePlan.setTmsMaintenancePlanVehicle(VehicleMapper.toEntity(maintenancePlan.getVehicle(), true));
             tmsMaintenancePlan.setTmsMaintenanceCreationUser(maintenancePlan.getCreationUser());
             tmsMaintenancePlan.setTmsMaintenancePlanState(MaintenanceStateMapper.toEntity(maintenancePlan.getState(),true));
@@ -69,7 +69,7 @@ public class MaintenancePlanMapper {
         maintenancePlan.setTitle(tmsMaintenancePlan.getTmsMaintenancePlantitle());
         if (!lazy) {
             maintenancePlan.setVehicle(VehicleMapper.toDto(tmsMaintenancePlan.getTmsMaintenancePlanVehicle(), true));
-            maintenancePlan.setUpDateUser(tmsMaintenancePlan.getTmsMaintenanceUpDateUser());
+            maintenancePlan.setUpDateDate(tmsMaintenancePlan.getTmsMaintenanceUpDateDate());
             maintenancePlan.setCreationUser(tmsMaintenancePlan.getTmsMaintenanceCreationUser());
             //maintenancePlan.setActes(ActeMapper.toDtos(tmsMaintenancePlan.getTmsMaintenancePlanActes(),true));
         }
