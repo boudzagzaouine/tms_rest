@@ -60,7 +60,7 @@ public class TmsVehicle implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_vehiclebadge", unique = true, nullable = false)
+    @JoinColumn(name = "tms_vehiclebadgeid", unique = true, nullable = false)
     public TmsBadge getTmsVehicleBadge() {
         return tmsVehicleBadge;
     }
@@ -88,7 +88,7 @@ public class TmsVehicle implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_vehiclecategory")
+    @JoinColumn(name = "tms_vehiclecategoryid")
     public TmsCategory getTmsVehicleCategory() {
         return tmsVehicleCategory;
     }
@@ -98,7 +98,7 @@ public class TmsVehicle implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_vehicledrivinglicence")
+    @JoinColumn(name = "tms_vehicledrivinglicenceid")
     public TmsTraffic getTmsVehicleDrivingLicence() {
         return tmsVehicleDrivingLicence;
     }
@@ -108,6 +108,7 @@ public class TmsVehicle implements Serializable {
     }
 
     @Column(name = "tms_vehiclecreationdate")
+    @Temporal(TemporalType.TIMESTAMP)
     public Date getTmsVehicleCreationDate() {
         return tmsVehicleCreationDate;
     }
@@ -116,7 +117,7 @@ public class TmsVehicle implements Serializable {
         this.tmsVehicleCreationDate = tmsVehicleCreationDate;
     }
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_vehiclecreationuser")
     public UsrUser getTmsVehicleCreationUser() {
         return tmsVehicleCreationUser;
@@ -125,8 +126,8 @@ public class TmsVehicle implements Serializable {
     public void setTmsVehicleCreationUser(UsrUser tmsVehicleCreationUser) {
         this.tmsVehicleCreationUser = tmsVehicleCreationUser;
     }
-
-    @OneToMany(fetch = FetchType.LAZY)
+    
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "tms_vehicleupdatedate")
     public Date getTmsVehicleUpDateDate() {
         return tmsVehicleUpDateDate;
