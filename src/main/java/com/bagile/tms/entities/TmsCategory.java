@@ -33,7 +33,7 @@ public class TmsCategory {
     }
 
 
-    @Column(name = "tms_categorycunsumption", nullable = false, length = 30)
+    @Column(name = "tms_categorycunsumption")
     public BigDecimal getTmsCategoryConsumption() {
         return tmsCategoryConsumption;
     }
@@ -42,7 +42,7 @@ public class TmsCategory {
         this.tmsCategoryConsumption = tmsCategoryConsumption;
     }
 
-    @Column(name = "tms_categoryweight", nullable = false, length = 30)
+    @Column(name = "tms_categoryweight")
     public BigDecimal getTmsCategoryWeight() {
         return tmsCategoryWeight;
     }
@@ -52,7 +52,7 @@ public class TmsCategory {
     }
 
 
-    @Column(name = "tms_categorywidth", nullable = false, length = 30)
+    @Column(name = "tms_categorywidth")
     public BigDecimal getTmsCategoryWidth() {
         return tmsCategoryWidth;
     }
@@ -62,8 +62,8 @@ public class TmsCategory {
     }
 
 
-    @OneToOne(fetch=FetchType.LAZY)
-    @Column(name = "tms_categorydoor", nullable = false, length = 30)
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "tms_categorydoorid")
     public TmsDoorType getTmsCategoryDoor() {
         return tmsCategoryDoor;
     }
@@ -72,7 +72,7 @@ public class TmsCategory {
         this.tmsCategoryDoor = tmsCategoryDoor;
     }
 
-    @Column(name = "tms_categorydepth", nullable = false, length = 30)
+    @Column(name = "tms_categorydepth")
     public BigDecimal getTmsCategoryDepth() {
         return tmsCategoryDepth;
     }
@@ -81,7 +81,7 @@ public class TmsCategory {
         this.tmsCategoryDepth = tmsCategoryDepth;
     }
 
-    @Column(name = "tms_categorytonnage", nullable = false, length = 30)
+    @Column(name = "tms_categorytonnage")
     public BigDecimal getTmsCategoryTonnage() {
         return tmsCategoryTonnage;
     }
@@ -90,7 +90,7 @@ public class TmsCategory {
         this.tmsCategoryTonnage = tmsCategoryTonnage;
     }
 
-    @Column(name = "tms_categoryemptyweight", nullable = false, length = 30)
+    @Column(name = "tms_categoryemptyweight")
     public BigDecimal getTmsCategoryEmptyWeight() {
         return tmsCategoryEmptyWeight;
     }
@@ -99,7 +99,7 @@ public class TmsCategory {
         this.tmsCategoryEmptyWeight = tmsCategoryEmptyWeight;
     }
 
-    @Column(name = "tms_categorytotalweight", nullable = false, length = 30)
+    @Column(name = "tms_categorytotalweight")
     public BigDecimal getTmsCategoryTotalWeight() {
         return tmsCategoryTotalWeight;
     }

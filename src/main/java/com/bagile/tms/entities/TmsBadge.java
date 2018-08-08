@@ -17,7 +17,6 @@ public class TmsBadge {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-
     @Column(name = "tms_BadgeTypecode", unique = true, nullable = false)
 
     public String getTmsBadgecode() {
@@ -37,8 +36,8 @@ public class TmsBadge {
         this.tmsBadgeId = tmsBadgeId;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @Column(name = "tms_BadgeTypetype", unique = true, nullable = false, precision = 10, scale = 0)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_BadgeTypetypeid")
     public TmsBadgeType getTmsBadgeType() {
         return tmsBadgeType;
     }
