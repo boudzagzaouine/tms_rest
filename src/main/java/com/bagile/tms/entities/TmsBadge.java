@@ -1,5 +1,7 @@
 package com.bagile.tms.entities;
 
+import com.bagile.tms.dto.Driver;
+
 import javax.persistence.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,6 +15,7 @@ public class TmsBadge {
     private long tmsBadgeId;
     @NotNull
     private TmsBadgeType tmsBadgeType;
+    private Driver driver;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -27,7 +30,7 @@ public class TmsBadge {
         this.tmsBadgecode = tmsBadgecode;
     }
 
-    @Column(name = "tms_BadgeTypeId", unique = true, nullable = false, precision = 10, scale = 0)
+    @Column(name = "tms_BadgeTypeId")
     public long getTmsBadgeId() {
         return tmsBadgeId;
     }
@@ -44,5 +47,16 @@ public class TmsBadge {
 
     public void setTmsBadgeType(TmsBadgeType tmsBadgeType) {
         this.tmsBadgeType = tmsBadgeType;
+    }
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "tms_badgeDriver")
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
     }
 }

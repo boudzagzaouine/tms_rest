@@ -21,7 +21,7 @@ public class TmsCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name = "tms_categoryId", unique = true, nullable = false, precision = 10, scale = 0)
+    @Column(name = "tms_categoryId")
 
 
     public long getTmsCategoryId() {
@@ -62,7 +62,7 @@ public class TmsCategory {
     }
 
 
-    @OneToMany(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "tms_categorydoorid")
     public TmsDoorType getTmsCategoryDoor() {
         return tmsCategoryDoor;

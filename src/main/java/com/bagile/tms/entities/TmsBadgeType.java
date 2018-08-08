@@ -2,7 +2,6 @@ package com.bagile.tms.entities;
 
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
 @Table(name = "tms_badgetype",uniqueConstraints = @UniqueConstraint(columnNames = {"tms_badgetypeId"}))
@@ -13,7 +12,7 @@ public class TmsBadgeType {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name = "tms_badgetypeId", unique = true, nullable = false, scale = 0)
+    @Column(name = "tms_badgetypeId")
 
     public long getTmsBadgeTypeId() {
         return tmsBadgeTypeId;
@@ -23,7 +22,7 @@ public class TmsBadgeType {
         this.tmsBadgeTypeId = tmsBadgeTypeId;
     }
 
-    @Column(name = "tms_badgetypecode", unique = true, nullable = false, scale = 0)
+    @Column(name = "tms_badgetypecode")
     public String getTmsBadgeTypeCode() {
         return tmsBadgeTypeCode;
     }
