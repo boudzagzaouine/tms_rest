@@ -5,9 +5,6 @@ import com.bagile.tms.entities.TmsBadge;
 
 import java.util.*;
 
-/**
- * Created by khalil on 21/03/2017.
- */
 public class BadgeMapper {
     private BadgeMapper() {
 
@@ -20,6 +17,8 @@ public class BadgeMapper {
         map.put("id", "tmsBadgeId");
         map.put("code", "tmsBadgeCode");
         map.put("type", "tmsBadgeType");
+        map.put("driver","tmsDriver");
+        map.put("date","badgeDate");
     }
 
     public static Map<String, String> getMap() {
@@ -39,6 +38,7 @@ public class BadgeMapper {
         tmsBadge.setTmsBadgeId(badge.getId());
         if (!lazy) {
             tmsBadge.setTmsBadgeType(BadgeTypeMapper.toEntity(badge.getType(),true));
+            tmsBadge.setTmsDriver(DriverMapper.toEntity(badge.getDriver(),true));
         }
         return tmsBadge;
     }
@@ -52,6 +52,7 @@ public class BadgeMapper {
         badge.setCode(tmsBadge.getTmsBadgecode());
         if (!lazy) {
             badge.setType(BadgeTypeMapper.toDto(tmsBadge.getTmsBadgeType(),true));
+            badge.setDriver(DriverMapper.toDto(tmsBadge.getTmsDriver(),true));
 
         }
         return badge;

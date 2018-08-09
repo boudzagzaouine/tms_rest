@@ -9,12 +9,12 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "tms_driver", uniqueConstraints = @UniqueConstraint(columnNames = {"tms_drivercode","tms_driverId","tms_drivercin"}))
+@Table(name = "tms_driver", uniqueConstraints = @UniqueConstraint(columnNames = {"tms_drivercode", "tms_driverId", "tms_drivercin"}))
 public class TmsDriver implements java.io.Serializable {
 
     private long tmsDriverId;
     private String tmsDriverCode;
-    @Size(max=30)
+    @Size(max = 30)
     private String tmsDriverCin;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date tmsDriverBirthDate;
@@ -39,7 +39,6 @@ public class TmsDriver implements java.io.Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "tms_driversequence")
     @Column(name = "tms_driverId", unique = true, nullable = false, precision = 10, scale = 0)
-
 
 
     public long getTmsDriverId() {
@@ -78,8 +77,8 @@ public class TmsDriver implements java.io.Serializable {
         this.tmsDriverBirthDate = tmsDriverBirthDate;
     }
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @Column(name = "tms_driverbadge")
+    @OneToMany(mappedBy = "tmsBadgeId")
+    @JoinColumn(name = "tms_driverbadge")
     public Set<TmsBadge> getTmsDriverBadges() {
         return tmsDriverBadges;
     }
@@ -136,7 +135,7 @@ public class TmsDriver implements java.io.Serializable {
         this.tmsDriverCommission = tmsDriverCommission;
     }
 
-    @OneToOne(fetch=FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_drivercontactid")
     public PrmContact getTmsDrivercontact() {
         return tmsDrivercontact;
@@ -146,6 +145,7 @@ public class TmsDriver implements java.io.Serializable {
         this.tmsDrivercontact = tmsDrivercontact;
     }
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "tms_drivercreationdate")
     public Date getTmsDriverCreationDate() {
         return tmsDriverCreationDate;
@@ -155,7 +155,7 @@ public class TmsDriver implements java.io.Serializable {
         this.tmsDriverCreationDate = tmsDriverCreationDate;
     }
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_drivercreationuserid")
     public UsrUser getTmsDriverCreationUser() {
         return tmsDriverCreationUser;
@@ -165,7 +165,7 @@ public class TmsDriver implements java.io.Serializable {
         this.tmsDriverCreationUser = tmsDriverCreationUser;
     }
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "tms_driverupdatedate")
     public Date getTmsDriverUpDateDate() {
         return tmsDriverUpDateDate;

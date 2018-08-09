@@ -35,7 +35,7 @@ public class TmsRoad implements Serializable {
     @Column(name = "tms_roaddistance")
     private BigDecimal tmsRoadDistance;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_roaddriverid")
     private TmsDriver tmsRoadDriver;
     
@@ -73,11 +73,10 @@ public class TmsRoad implements Serializable {
     @Column(name = "tms_roadcreationdate")
     private Date tmsRoadCreationDate;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_roadcreationuserid")
     private UsrUser tmsRoadCreationUser;
 
-    @OneToMany(fetch = FetchType.LAZY)
     @Column(name = "tms_roadupdatedate")
     private Date tmsRoadUpDateDate;
 

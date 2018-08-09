@@ -34,7 +34,7 @@ public class TmsTraffic {
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "tms_trafficdate", unique = true, nullable = false)
+    @Column(name = "tms_trafficdate")
     public Date getTmsTrafficDate() {
         return tmsTrafficDate;
     }

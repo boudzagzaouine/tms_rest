@@ -4,6 +4,7 @@ import com.bagile.tms.entities.TmsBadgeType;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 
@@ -11,6 +12,8 @@ public class Badge implements Serializable {
     private String code;
     private long id;
     private BadgeType type;
+    private Driver driver;
+    private Date date;
 
     public String getCode() {
         return code;
@@ -34,6 +37,22 @@ public class Badge implements Serializable {
 
     public void setType(BadgeType type) {
         this.type = type;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
 

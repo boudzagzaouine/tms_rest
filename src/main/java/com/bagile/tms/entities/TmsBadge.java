@@ -5,6 +5,7 @@ import com.bagile.tms.dto.Driver;
 import javax.persistence.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -15,7 +16,8 @@ public class TmsBadge {
     private long tmsBadgeId;
     @NotNull
     private TmsBadgeType tmsBadgeType;
-    private Driver driver;
+    private TmsDriver tmsDriver;
+    private Date tmsDateBadge;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -52,11 +54,21 @@ public class TmsBadge {
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "tms_badgeDriverid")
 
-    public Driver getDriver() {
-        return driver;
+    public TmsDriver getTmsDriver() {
+        return tmsDriver;
     }
 
-    public void setDriver(Driver driver) {
-        this.driver = driver;
+    public void setTmsDriver(TmsDriver tmsDriver) {
+        this.tmsDriver = tmsDriver;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "tms_badgeDate")
+    public Date getTmsDateBadge() {
+        return tmsDateBadge;
+    }
+
+    public void setTmsDateBadge(Date tmsDateBadge) {
+        this.tmsDateBadge = tmsDateBadge;
     }
 }

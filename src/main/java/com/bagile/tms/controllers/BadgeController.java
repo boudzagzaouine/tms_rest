@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Created by khalil on 31/03/2017.
- */
 @Controller
 @RequestMapping(value="/badges/")
 public class BadgeController {
