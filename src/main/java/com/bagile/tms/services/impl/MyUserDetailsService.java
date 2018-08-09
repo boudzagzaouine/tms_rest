@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.Set;
 
 @Service("userDetailsService")
+@Transactional
+
 public class MyUserDetailsService implements UserDetailsService, UserDetailsServiceWarehouse {
 
     @Autowired

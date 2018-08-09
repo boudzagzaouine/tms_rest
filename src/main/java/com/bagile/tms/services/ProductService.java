@@ -10,11 +10,12 @@ import com.bagile.tms.exceptions.CustomException;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
 import com.google.common.collect.Iterators;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.List;
-
+@Service
 public interface ProductService {
 
     Product save(Product product) throws IdNotFound;

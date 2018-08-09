@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="tms_roadTraffic",uniqueConstraints = @UniqueConstraint(columnNames = {"tms_roadTrafficId"}))
+@Table(name="tms_traffic",uniqueConstraints = @UniqueConstraint(columnNames = {"tms_trafficid"}))
 public class TmsTraffic {
     private long tmsTrafficId;
     private boolean tmsTrafficActive;
@@ -13,8 +13,7 @@ public class TmsTraffic {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq")
-    @Column(name = "tms_trafficId")
-
+    @Column(name = "tms_trafficid")
     public long getTmsTrafficId() {
         return tmsTrafficId;
     }

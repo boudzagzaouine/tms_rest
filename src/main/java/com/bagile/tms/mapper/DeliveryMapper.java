@@ -43,6 +43,7 @@ public class DeliveryMapper {
         map.put("transfertCode", "cmdDeliveryTransfertCode");
         map.put("preparation", "cmdPreparation");
         map.put("road", "tmsRoad");
+        map.put("active", "cmdDeliveryActive");
 
 
     }

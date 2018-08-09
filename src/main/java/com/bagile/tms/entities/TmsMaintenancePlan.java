@@ -5,9 +5,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-/**
- * Created by bouzi on 3/15/2017.
- */
 @Entity
 @Table(name = "tms_maintenanceplan", uniqueConstraints = @UniqueConstraint(columnNames = {"tms_maintenanceplancode"}))
 public class TmsMaintenancePlan implements java.io.Serializable{
@@ -82,6 +79,8 @@ public class TmsMaintenancePlan implements java.io.Serializable{
         this.tmsMaintenancePlanDescriptif = tmsMaintenancePlanDescriptif;
     }
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "tms_maintenanceplandate")
     public Date getTmsMaintenancePlanDate() {
         return tmsMaintenancePlanDate;
     }
@@ -109,7 +108,8 @@ public class TmsMaintenancePlan implements java.io.Serializable{
         this.tmsMaintenancePlanTitle = tmsMaintenancePlanTitle;
     }
 
-    @Column(name = "tms_maintenanceplandate")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "tms_maintenanceplandate" ,insertable = false,updatable = false)
     public Date getTmsMaintenanceCreationDate() {
         return tmsMaintenanceCreationDate;
     }
@@ -128,6 +128,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
         this.tmsMaintenanceCreationUser = tmsMaintenanceCreationUser;
     }
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "tms_maintenanceplanupdatedate")
     public Date getTmsMaintenanceUpDateDate() {
         return tmsMaintenanceUpDateDate;
@@ -137,6 +138,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
         this.tmsMaintenanceUpDateDate = tmsMaintenanceUpDateDate;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_maintenancetypemaintenanceid")
     public TmsTypeMaintenance getTmsMaintenanceTypeMaintenance() {
         return tmsMaintenanceTypeMaintenance;

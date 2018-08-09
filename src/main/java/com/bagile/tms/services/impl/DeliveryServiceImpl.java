@@ -28,6 +28,7 @@ import java.util.List;
  * Created by Enissay on 21/04/2016.
  */
 @Service
+@Transactional
 public class DeliveryServiceImpl implements DeliveryService {
     @Autowired
     private DeliveryRepository deliveryRepository;

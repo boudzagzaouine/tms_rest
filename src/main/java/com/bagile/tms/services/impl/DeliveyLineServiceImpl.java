@@ -19,6 +19,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ import java.util.List;
  * Created by Enissay on 21/04/2016.
  */
 @Service
-
+@Transactional
 public class DeliveyLineServiceImpl implements DeliveryLineService {
     @Autowired
     private DeliveryLineRepository deliveryLineRepository;

@@ -19,9 +19,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by Enissay on 18/04/2017.
- */
 @Service @Transactional
 public class TourServiceImpl implements TourService {
     /*    @Autowired
@@ -39,7 +36,7 @@ public class TourServiceImpl implements TourService {
 
     private List<Tour> tours;
 
-    @PostConstruct
+    //@PostConstruct
     private void initList() {
         Pageable pageable = new PageRequest(0, 10);
         List<Delivery> all = null;

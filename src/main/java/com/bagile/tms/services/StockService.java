@@ -6,9 +6,10 @@ import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
 import com.bagile.tms.exceptions.ProductControls;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public interface StockService {
 
     public Stock save(Stock stock) throws ProductControls;

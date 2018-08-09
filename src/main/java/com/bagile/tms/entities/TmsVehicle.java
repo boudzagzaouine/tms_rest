@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Table(name = "tms_vehicule",uniqueConstraints = @UniqueConstraint(columnNames = {"tms_vehicleId","tms_vehiclecode","tms_vehicleregistrationumber"}))
+@Table(name = "tms_vehicule",uniqueConstraints = @UniqueConstraint(columnNames = {"tms_vehicleId","tms_vehiclecode","tms_vehicleregistrationnumber"}))
 public class TmsVehicle implements Serializable {
     private long tmsVehicleId;
     @NotNull
@@ -50,7 +50,7 @@ public class TmsVehicle implements Serializable {
         this.tmsVehicleId = tmsVehicleId;
     }
 
-    @Column(name = "tms_vehicleregistrationnumber", unique = true, nullable = false, precision = 10, scale = 0)
+    @Column(name = "tms_vehicleregistrationnumber")
     public String getTmsVehicleRegistrationNumber() {
         return tmsVehicleRegistrationNumber;
     }

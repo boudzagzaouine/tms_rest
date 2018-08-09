@@ -24,6 +24,8 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Service
+@Transactional
+
 public class SaleOrderServiceImpl implements SaleOrderService, AddActive {
 
     @Autowired
