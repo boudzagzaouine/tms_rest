@@ -12,78 +12,57 @@ import java.util.Set;
 @Table(name="tms_road",uniqueConstraints = @UniqueConstraint(columnNames = {"tms_roadId","tms_roadcode"}))
 public class TmsRoad implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq")
-    @SequenceGenerator(name =  "seq")
-    @Column(name = "tms_roadid")
     private long tmsRoadId;
     
     @Size(max = 30)
     @NotNull
-    @Column(name = "tms_roadcode")
     private String tmsRoadCode;
     
     @NotNull
-    @Column(name = "tms_roadduration")
     private BigDecimal tmsRoadDuration;
     
     @NotNull
-    @Column(name = "tms_roadcoast")
     private BigDecimal tmsRoadCost;
     
     @NotNull
-    @Column(name = "tms_roaddistance")
     private BigDecimal tmsRoadDistance;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_roaddriverid")
     private TmsDriver tmsRoadDriver;
     
     @NotNull
-    //@OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_roadadjunctid")
     private TmsDriver tmsRoadAdjunct;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "tms_roaddate")
     private Date tmsRoadDate;
     
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_roadroadstateid")
     private TmsRoadState tmsRoadRoadState;
     
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_roadsaleorderid")
     private CmdSaleOrder tmsRoadSaleOrder;
     
     @NotNull
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_roadstockadressid")
     private Set<AdrAddress> tmsRoadStockAddresses;
     
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_roadvehicleid")
     private TmsVehicle tmsRoadVehicle;
     
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "tms_roadcreationdate")
     private Date tmsRoadCreationDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_roadcreationuserid")
     private UsrUser tmsRoadCreationUser;
 
-    @Column(name = "tms_roadupdatedate")
     private Date tmsRoadUpDateDate;
 
     public TmsRoad() {
 
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq")
+    @SequenceGenerator(name =  "seq")
+    @Column(name = "tms_roadid")
     public long getTmsRoadId() {
         return tmsRoadId;
     }
@@ -92,6 +71,7 @@ public class TmsRoad implements Serializable {
         this.tmsRoadId = tmsRoadId;
     }
 
+    @Column(name = "tms_roadcode")
     public String getTmsRoadCode() {
         return tmsRoadCode;
     }
@@ -100,6 +80,7 @@ public class TmsRoad implements Serializable {
         this.tmsRoadCode = tmsRoadCode;
     }
 
+    @Column(name = "tms_roadduration")
     public BigDecimal getTmsRoadDuration() {
         return tmsRoadDuration;
     }
@@ -108,6 +89,7 @@ public class TmsRoad implements Serializable {
         this.tmsRoadDuration = tmsRoadDuration;
     }
 
+    @Column(name = "tms_roadcoast")
     public BigDecimal getTmsRoadCost() {
         return tmsRoadCost;
     }
@@ -116,6 +98,7 @@ public class TmsRoad implements Serializable {
         this.tmsRoadCost = tmsRoadCost;
     }
 
+    @Column(name = "tms_roaddistance")
     public BigDecimal getTmsRoadDistance() {
         return tmsRoadDistance;
     }
@@ -124,6 +107,8 @@ public class TmsRoad implements Serializable {
         this.tmsRoadDistance = tmsRoadDistance;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_roaddriverid")
     public TmsDriver getTmsRoadDriver() {
         return tmsRoadDriver;
     }
@@ -132,6 +117,8 @@ public class TmsRoad implements Serializable {
         this.tmsRoadDriver = tmsRoadDriver;
     }
 
+    //@OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_roadadjunctid")
     public TmsDriver getTmsRoadAdjunct() {
         return tmsRoadAdjunct;
     }
@@ -140,6 +127,7 @@ public class TmsRoad implements Serializable {
         this.tmsRoadAdjunct = tmsRoadAdjunct;
     }
 
+    @Column(name = "tms_roaddate")
     public Date getTmsRoadDate() {
         return tmsRoadDate;
     }
@@ -148,6 +136,8 @@ public class TmsRoad implements Serializable {
         this.tmsRoadDate = tmsRoadDate;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_roadroadstateid")
     public TmsRoadState getTmsRoadRoadState() {
         return tmsRoadRoadState;
     }
@@ -156,6 +146,8 @@ public class TmsRoad implements Serializable {
         this.tmsRoadRoadState = tmsRoadRoadState;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_roadsaleorderid")
     public CmdSaleOrder getTmsRoadSaleOrder() {
         return tmsRoadSaleOrder;
     }
@@ -164,6 +156,8 @@ public class TmsRoad implements Serializable {
         this.tmsRoadSaleOrder = tmsRoadSaleOrder;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_roadvehicleid")
     public TmsVehicle getTmsRoadVehicle() {
         return tmsRoadVehicle;
     }
@@ -172,6 +166,7 @@ public class TmsRoad implements Serializable {
         this.tmsRoadVehicle = tmsRoadVehicle;
     }
 
+    @Column(name = "tms_roadcreationdate")
     public Date getTmsRoadCreationDate() {
         return tmsRoadCreationDate;
     }
@@ -180,6 +175,8 @@ public class TmsRoad implements Serializable {
         this.tmsRoadCreationDate = tmsRoadCreationDate;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_roadcreationuserid")
     public UsrUser getTmsRoadCreationUser() {
         return tmsRoadCreationUser;
     }
@@ -188,6 +185,7 @@ public class TmsRoad implements Serializable {
         this.tmsRoadCreationUser = tmsRoadCreationUser;
     }
 
+    @Column(name = "tms_roadupdatedate")
     public Date getTmsRoadUpDateDate() {
         return tmsRoadUpDateDate;
     }
@@ -197,6 +195,8 @@ public class TmsRoad implements Serializable {
         this.tmsRoadUpDateDate = tmsRoadUpDateDate;
     }
 
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_roadstockadressid")
     public Set<AdrAddress> getTmsRoadStockAddresses() {
         return tmsRoadStockAddresses;
     }
