@@ -22,14 +22,14 @@ public class OrderStatusController {
     @Autowired
     private OrderStatusService orderStatusService;
 
-    @PreAuthorize("hasAnyRole('ORDER_STATUS_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW','LOCATION_VIEW')")
+    //@PreAuthorize("hasAnyRole('ORDER_STATUS_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW','LOCATION_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
     public List<OrderStatus> getOrderStatuss() {
         return orderStatusService.findAll();
     }
 
-    @PreAuthorize("hasAnyRole('ORDER_STATUS_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW','LOCATION_VIEW')")
+    //@PreAuthorize("hasAnyRole('ORDER_STATUS_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW','LOCATION_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<OrderStatus> getOrderStatuss(@RequestParam int page, @RequestParam int size) {
@@ -37,42 +37,42 @@ public class OrderStatusController {
         return orderStatusService.findAll(pageable);
     }
 
-    @PreAuthorize("hasAnyRole('ORDER_STATUS_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW','LOCATION_VIEW')")
+    //@PreAuthorize("hasAnyRole('ORDER_STATUS_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW','LOCATION_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
     public Long size() {
         return orderStatusService.size();
     }
 
-    @PreAuthorize("hasAnyRole('ORDER_STATUS_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW','LOCATION_VIEW')")
+    //@PreAuthorize("hasAnyRole('ORDER_STATUS_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW','LOCATION_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
         return orderStatusService.size(search);
     }
 
-    @PreAuthorize("hasAnyRole('ORDER_STATUS_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW','LOCATION_VIEW')")
+    //@PreAuthorize("hasAnyRole('ORDER_STATUS_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW','LOCATION_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
         return orderStatusService.isExist(id);
     }
 
-    @PreAuthorize("hasAnyRole('ORDER_STATUS_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW','LOCATION_VIEW')")
+    //@PreAuthorize("hasAnyRole('ORDER_STATUS_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW','LOCATION_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
     public OrderStatus getOrderStatus(@PathVariable("id") Long id) throws IdNotFound {
         return orderStatusService.findById(id);
     }
 
-    @PreAuthorize("hasAnyRole('ORDER_STATUS_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW','LOCATION_VIEW')")
+    //@PreAuthorize("hasAnyRole('ORDER_STATUS_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW','LOCATION_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
     public List<OrderStatus> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
         return orderStatusService.find(search);
     }
 
-    @PreAuthorize("hasAnyRole('ORDER_STATUS_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW','LOCATION_VIEW')")
+    //@PreAuthorize("hasAnyRole('ORDER_STATUS_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW','LOCATION_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<OrderStatus> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
@@ -80,21 +80,21 @@ public class OrderStatusController {
         return orderStatusService.find(search, pageable);
     }
 
-    @PreAuthorize("hasRole('ORDER_STATUS_CREATE')")
+    //@PreAuthorize("hasRole('ORDER_STATUS_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public OrderStatus add(@RequestBody OrderStatus orderStatus) {
         return orderStatusService.save(orderStatus);
     }
 
-    @PreAuthorize("hasRole('ORDER_STATUS_EDIT')")
+    //@PreAuthorize("hasRole('ORDER_STATUS_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public OrderStatus set(@RequestBody OrderStatus orderStatus) {
         return orderStatusService.save(orderStatus);
     }
 
-    @PreAuthorize("hasRole('ORDER_STATUS_DELETE')")
+    //@PreAuthorize("hasRole('ORDER_STATUS_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@RequestBody OrderStatus orderStatus) {
@@ -102,7 +102,7 @@ public class OrderStatusController {
         orderStatusService.delete(orderStatus);
     }
 
-    @PreAuthorize("hasRole('ORDER_STATUS_DELETE')")
+    //@PreAuthorize("hasRole('ORDER_STATUS_DELETE')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@PathVariable Long id) {

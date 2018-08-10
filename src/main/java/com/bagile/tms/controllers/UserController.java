@@ -23,14 +23,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PreAuthorize("hasRole('USER_VIEW')")
+    //@PreAuthorize("hasRole('USER_VIEW')")
     @RequestMapping(method = RequestMethod.GET,value = "/list")
     @ResponseBody
     public List<User> getUsers() throws AttributesNotFound, ErrorType {
         return userService.findAll();
     }
 
-    @PreAuthorize("hasRole('USER_VIEW')")
+    //@PreAuthorize("hasRole('USER_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<User> getUsers(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
@@ -39,40 +39,40 @@ public class UserController {
         return userService.findAll(pageable);
     }
 
-    @PreAuthorize("hasRole('USER_VIEW')")
+    //@PreAuthorize("hasRole('USER_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
     public Long size() {
         return userService.size();
     }
 
-    @PreAuthorize("hasRole('USER_VIEW')")
+    //@PreAuthorize("hasRole('USER_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
         return userService.size(search);
     }
 
-    @PreAuthorize("hasRole('USER_VIEW')")
+    //@PreAuthorize("hasRole('USER_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
         return userService.isExist(id);
-    }    @PreAuthorize("hasRole('USER_VIEW')")
+    }    //@PreAuthorize("hasRole('USER_VIEW')")
     @RequestMapping(method = RequestMethod.GET,value = "/{id}")
     @ResponseBody
     public User getUser(@PathVariable("id") Long id) throws IdNotFound {
         return userService.findById(id);
     }
 
-    @PreAuthorize("hasRole('USER_VIEW')")
+    //@PreAuthorize("hasRole('USER_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
     public List<User> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
         return userService.find(search);
     }
 
-    @PreAuthorize("hasRole('USER_VIEW')")
+    //@PreAuthorize("hasRole('USER_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<User> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
@@ -80,21 +80,21 @@ public class UserController {
         return userService.find(search, pageable);
     }
 
-    @PreAuthorize("hasRole('USER_CREATE')")
+    //@PreAuthorize("hasRole('USER_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public User add(@RequestBody User user) {
         return userService.save(user);
     }
 
-    @PreAuthorize("isAuthenticated()")
+    //@PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public User set(@RequestBody User user) {
         return userService.save(user);
     }
 
-    @PreAuthorize("hasRole('USER_DELETE')")
+    //@PreAuthorize("hasRole('USER_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@RequestBody User user) {
@@ -102,7 +102,7 @@ public class UserController {
         userService.delete(user);
     }
 
-    @PreAuthorize("hasRole('USER_DELETE')")
+    //@PreAuthorize("hasRole('USER_DELETE')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@PathVariable Long id) {

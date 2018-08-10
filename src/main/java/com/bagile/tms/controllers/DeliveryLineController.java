@@ -28,7 +28,7 @@ public class DeliveryLineController {
     @Qualifier("userDetailsService")
     private UserDetailsServiceWarehouse userDetailsService;
 
-    @PreAuthorize("hasRole('DELIVERY_LINE_VIEW')")
+    //@PreAuthorize("hasRole('DELIVERY_LINE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
     public List<DeliveryLine> getDeliveryLines() throws AttributesNotFound, ErrorType {
@@ -40,7 +40,7 @@ public class DeliveryLineController {
         //  return deliveryLineService.findAll();
     }
 
-    @PreAuthorize("hasRole('DELIVERY_LINE_VIEW')")
+    //@PreAuthorize("hasRole('DELIVERY_LINE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<DeliveryLine> getDeliveryLines(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
@@ -51,7 +51,7 @@ public class DeliveryLineController {
         // return deliveryLineService.findAll(pageable);
     }
 
-    @PreAuthorize("hasRole('DELIVERY_LINE_VIEW')")
+    //@PreAuthorize("hasRole('DELIVERY_LINE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
     public Long size() throws AttributesNotFound, ErrorType {
@@ -62,7 +62,7 @@ public class DeliveryLineController {
         //return deliveryLineService.size();
     }
 
-    @PreAuthorize("hasRole('DELIVERY_LINE_VIEW')")
+    //@PreAuthorize("hasRole('DELIVERY_LINE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
@@ -77,21 +77,21 @@ public class DeliveryLineController {
         // return deliveryLineService.size(search);
     }
 
-    @PreAuthorize("hasRole('DELIVERY_LINE_VIEW')")
+    //@PreAuthorize("hasRole('DELIVERY_LINE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
         return deliveryLineService.isExist(id);
     }
 
-    @PreAuthorize("hasRole('DELIVERY_LINE_VIEW')")
+    //@PreAuthorize("hasRole('DELIVERY_LINE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
     public DeliveryLine getDeliveryLine(@PathVariable("id") Long id) throws IdNotFound {
         return deliveryLineService.findById(id);
     }
 
-    @PreAuthorize("hasRole('DELIVERY_LINE_VIEW')")
+    //@PreAuthorize("hasRole('DELIVERY_LINE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
     public List<DeliveryLine> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
@@ -106,7 +106,7 @@ public class DeliveryLineController {
         // return deliveryLineService.find(search);
     }
 
-    @PreAuthorize("hasRole('DELIVERY_LINE_VIEW')")
+    //@PreAuthorize("hasRole('DELIVERY_LINE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<DeliveryLine> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
@@ -121,21 +121,21 @@ public class DeliveryLineController {
         //  return deliveryLineService.find(search, pageable);
     }
 
-    @PreAuthorize("hasRole('DELIVERY_LINE_CREATE')")
+    //@PreAuthorize("hasRole('DELIVERY_LINE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public DeliveryLine add(@RequestBody DeliveryLine deliveryLine) throws ProductControls {
         return deliveryLineService.save(deliveryLine);
     }
 
-    @PreAuthorize("hasRole('DELIVERY_LINE_EDIT')")
+    //@PreAuthorize("hasRole('DELIVERY_LINE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public DeliveryLine set(@RequestBody DeliveryLine deliveryLine) throws ProductControls {
         return deliveryLineService.save(deliveryLine);
     }
 
-    @PreAuthorize("hasRole('DELIVERY_LINE_DELETE')")
+    //@PreAuthorize("hasRole('DELIVERY_LINE_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@RequestBody DeliveryLine deliveryLine) {
@@ -143,7 +143,7 @@ public class DeliveryLineController {
         deliveryLineService.delete(deliveryLine);
     }
 
-    @PreAuthorize("hasRole('DELIVERY_LINE_DELETE')")
+    //@PreAuthorize("hasRole('DELIVERY_LINE_DELETE')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@PathVariable Long id) {

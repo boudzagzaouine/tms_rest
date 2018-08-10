@@ -19,11 +19,11 @@ public class TrafficController {
 
     @Autowired
     private TrafficService trafficService;
-    @PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
+    //@PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
     public List<Traffic> getTraffic() {return trafficService.findAll();}
-    @PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
+    //@PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<Traffic> getTraffic(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
@@ -32,37 +32,37 @@ public class TrafficController {
         return trafficService.findAll(pageable);
 
     }
-    @PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
+    //@PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
     public Long size() {
         return trafficService.size();
     }
-    @PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
+    //@PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
         return trafficService.size(search);
     }
-    @PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
+    //@PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
         return trafficService.isExist(id);
     }
-    @PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
+    //@PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
     public Traffic getTraffic(@PathVariable("id") Long id) throws IdNotFound {
         return trafficService.findById(id);
     }
-    @PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
+    //@PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
     public List<Traffic> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
         return trafficService.find(search);
     }
-    @PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
+    //@PreAuthorize("hasAnyRole('TRAFFIC_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<Traffic> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
@@ -70,17 +70,17 @@ public class TrafficController {
         return trafficService.find(search, pageable);
 
     }
-    @PreAuthorize("hasRole('TRAFFIC_CREATE')")
+    //@PreAuthorize("hasRole('TRAFFIC_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Traffic add(@RequestBody Traffic traffic ){return trafficService.save(traffic);}
-    @PreAuthorize("hasRole('TRAFFIC_EDIT')")
+    //@PreAuthorize("hasRole('TRAFFIC_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Traffic set(@RequestBody Traffic traffic) {
         return trafficService.save(traffic);
     }
-    @PreAuthorize("hasRole('TRAFFIC_DELETE')")
+    //@PreAuthorize("hasRole('TRAFFIC_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@RequestBody Traffic traffic) {

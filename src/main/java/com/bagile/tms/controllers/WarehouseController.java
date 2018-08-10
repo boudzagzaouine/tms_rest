@@ -25,7 +25,7 @@ public class WarehouseController {
     @Qualifier("userDetailsService")
     private UserDetailsServiceWarehouse userDetailsService;
 
-    @PreAuthorize("isAuthenticated()")
+    //@PreAuthorize("isAuthenticated()")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
     public List<Warehouse> getWarehouses() throws AttributesNotFound, ErrorType {
@@ -37,7 +37,7 @@ public class WarehouseController {
         //return warehouseService.findAll();
     }
 
-    @PreAuthorize("isAuthenticated()")
+    //@PreAuthorize("isAuthenticated()")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<Warehouse> getWarehouses(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
@@ -50,7 +50,7 @@ public class WarehouseController {
         //return warehouseService.findAll(pageable);
     }
 
-    @PreAuthorize("isAuthenticated()")
+    //@PreAuthorize("isAuthenticated()")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
     public Long size() throws AttributesNotFound, ErrorType {
@@ -60,7 +60,7 @@ public class WarehouseController {
         return warehouseService.size(userDetailsService.getCodeWarehouses().toString());
     }
 
-    @PreAuthorize("isAuthenticated()")
+    //@PreAuthorize("isAuthenticated()")
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
@@ -76,21 +76,21 @@ public class WarehouseController {
         return warehouseService.size(search);
     }
 
-    @PreAuthorize("isAuthenticated()")
+    //@PreAuthorize("isAuthenticated()")
     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
         return warehouseService.isExist(id);
     }
 
-    @PreAuthorize("isAuthenticated()")
+    //@PreAuthorize("isAuthenticated()")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
     public Warehouse getWarehouse(@PathVariable("id") Long id) throws IdNotFound {
         return warehouseService.findById(id);
     }
 
-    @PreAuthorize("isAuthenticated()")
+    //@PreAuthorize("isAuthenticated()")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
     public List<Warehouse> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
@@ -105,7 +105,7 @@ public class WarehouseController {
         return warehouseService.find(search);
     }
 
-    @PreAuthorize("isAuthenticated()")
+    //@PreAuthorize("isAuthenticated()")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<Warehouse> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
@@ -119,21 +119,21 @@ public class WarehouseController {
         return warehouseService.find(search, page, size);
     }
 
-    @PreAuthorize("hasRole('WAREHOUSE_CREATE')")
+    //@PreAuthorize("hasRole('WAREHOUSE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Warehouse add(@RequestBody Warehouse warehouse) throws IdNotFound {
         return warehouseService.save(warehouse);
     }
 
-    @PreAuthorize("hasRole('WAREHOUSE_EDIT')")
+    //@PreAuthorize("hasRole('WAREHOUSE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Warehouse set(@RequestBody Warehouse warehouse) throws IdNotFound {
         return warehouseService.save(warehouse);
     }
 
-    @PreAuthorize("hasRole('WAREHOUSE_DELETE')")
+    //@PreAuthorize("hasRole('WAREHOUSE_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@RequestBody Warehouse warehouse) {
@@ -141,7 +141,7 @@ public class WarehouseController {
         warehouseService.delete(warehouse);
     }
 
-    @PreAuthorize("hasRole('WAREHOUSE_DELETE')")
+    //@PreAuthorize("hasRole('WAREHOUSE_DELETE')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@PathVariable Long id) throws Exception {

@@ -23,14 +23,14 @@ public class OrderTypeController {
     @Autowired
     private OrderTypeService orderTypeService;
 
-    @PreAuthorize("hasAnyRole('ORDER_TYPE_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW')")
+    //@PreAuthorize("hasAnyRole('ORDER_TYPE_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW')")
     @RequestMapping(method = RequestMethod.GET,value = "/list")
     @ResponseBody
     public List<OrderType> getOrderTypes() {
         return orderTypeService.findAll();
     }
 
-    @PreAuthorize("hasAnyRole('ORDER_TYPE_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW')")
+    //@PreAuthorize("hasAnyRole('ORDER_TYPE_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<OrderType> getOrderTypes(@RequestParam int page, @RequestParam int size) {
@@ -39,58 +39,58 @@ public class OrderTypeController {
         return orderTypeService.findAll(pageable);
     }
 
-    @PreAuthorize("hasAnyRole('ORDER_TYPE_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW')")
+    //@PreAuthorize("hasAnyRole('ORDER_TYPE_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
     public Long size() {
         return orderTypeService.size();
     }
 
-    @PreAuthorize("hasRole('ORDER_TYPE_VIEW')")
+    //@PreAuthorize("hasRole('ORDER_TYPE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
         return orderTypeService.size(search);
     }
 
-    @PreAuthorize("hasAnyRole('ORDER_TYPE_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW')")     @RequestMapping(method = RequestMethod.GET, value = "/exist")
+    //@PreAuthorize("hasAnyRole('ORDER_TYPE_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW')")     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
         return orderTypeService.isExist(id);
     }
-    @PreAuthorize("hasAnyRole('ORDER_TYPE_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW')")     @RequestMapping(method = RequestMethod.GET,value = "/{id}")
+    //@PreAuthorize("hasAnyRole('ORDER_TYPE_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW')")     @RequestMapping(method = RequestMethod.GET,value = "/{id}")
     @ResponseBody
     public OrderType getOrderType(@PathVariable("id") Long id) throws IdNotFound {
         return orderTypeService.findById(id);
     }
 
-    @PreAuthorize("hasAnyRole('ORDER_TYPE_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW')")     @RequestMapping(method = RequestMethod.GET, value = "/search")
+    //@PreAuthorize("hasAnyRole('ORDER_TYPE_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW')")     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
     public List<OrderType> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
         return orderTypeService.find(search);
     }
 
-    @PreAuthorize("hasAnyRole('ORDER_TYPE_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW')")     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
+    //@PreAuthorize("hasAnyRole('ORDER_TYPE_VIEW','DELIVERY_VIEW','RECEPTION_VIEW','SALE_ORDER_VIEW','PURSHASE_ORDER_VIEW')")     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<OrderType> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         return orderTypeService.find(search, page,size);
     }
 
-    @PreAuthorize("hasRole('ORDER_TYPE_CREATE')")
+    //@PreAuthorize("hasRole('ORDER_TYPE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public OrderType add(@RequestBody OrderType orderType) {
         return orderTypeService.save(orderType);
     }
 
-    @PreAuthorize("hasRole('ORDER_TYPE_EDIT')")
+    //@PreAuthorize("hasRole('ORDER_TYPE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public OrderType set(@RequestBody OrderType orderType) {
         return orderTypeService.save(orderType);
     }
 
-    @PreAuthorize("hasRole('ORDER_TYPE_DELETE')")
+    //@PreAuthorize("hasRole('ORDER_TYPE_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@RequestBody OrderType orderType) {
@@ -98,7 +98,7 @@ public class OrderTypeController {
         orderTypeService.delete(orderType);
     }
 
-    @PreAuthorize("hasRole('ORDER_TYPE_DELETE')")
+    //@PreAuthorize("hasRole('ORDER_TYPE_DELETE')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@PathVariable Long id) {

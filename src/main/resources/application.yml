@@ -14,7 +14,7 @@ spring:
     database: postgresql
     properties:
       hibernate:
-        default_schema: schema_emsgc
+        default_schema: schema_emstms
         format_sql: true
         generate_statistics: true
   jooq:

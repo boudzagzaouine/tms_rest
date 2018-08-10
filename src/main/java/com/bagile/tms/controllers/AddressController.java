@@ -23,7 +23,7 @@ public class AddressController {
     @Autowired
     private UserDetailsServiceWarehouse userDetailsService;
 
-    @PreAuthorize("hasAnyRole('ADDRESS_VIEW','PURSHASE_ORDER_VIEW','SALE_ORDER_VIEW','RECEPTION_VIEW','DELIVERY_VIEW','OWNER_VIEW','TRANSPORT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','WAREHOUSE_VIEW','INVOICE_VIEW')")
+    //@PreAuthorize("hasAnyRole('ADDRESS_VIEW','PURSHASE_ORDER_VIEW','SALE_ORDER_VIEW','RECEPTION_VIEW','DELIVERY_VIEW','OWNER_VIEW','TRANSPORT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','WAREHOUSE_VIEW','INVOICE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
     public List<Address> getAddresss() throws AttributesNotFound, ErrorType {
@@ -33,7 +33,7 @@ public class AddressController {
         return addressService.find(userDetailsService.getOwners().toString());
     }
 
-    @PreAuthorize("hasAnyRole('ADDRESS_VIEW','PURSHASE_ORDER_VIEW','SALE_ORDER_VIEW','RECEPTION_VIEW','DELIVERY_VIEW','OWNER_VIEW','TRANSPORT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','WAREHOUSE_VIEW','INVOICE_VIEW')")
+    //@PreAuthorize("hasAnyRole('ADDRESS_VIEW','PURSHASE_ORDER_VIEW','SALE_ORDER_VIEW','RECEPTION_VIEW','DELIVERY_VIEW','OWNER_VIEW','TRANSPORT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','WAREHOUSE_VIEW','INVOICE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<Address> getAddresss(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
@@ -43,7 +43,7 @@ public class AddressController {
         return addressService.find(userDetailsService.getOwners().toString(), page, size);
     }
 
-    @PreAuthorize("hasAnyRole('ADDRESS_VIEW','PURSHASE_ORDER_VIEW','SALE_ORDER_VIEW','RECEPTION_VIEW','DELIVERY_VIEW','OWNER_VIEW','TRANSPORT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','WAREHOUSE_VIEW','INVOICE_VIEW')")
+    //@PreAuthorize("hasAnyRole('ADDRESS_VIEW','PURSHASE_ORDER_VIEW','SALE_ORDER_VIEW','RECEPTION_VIEW','DELIVERY_VIEW','OWNER_VIEW','TRANSPORT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','WAREHOUSE_VIEW','INVOICE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
     public Long size() throws AttributesNotFound, ErrorType {
@@ -53,7 +53,7 @@ public class AddressController {
         return addressService.size(userDetailsService.getOwners().toString());
     }
 
-    @PreAuthorize("hasAnyRole('ADDRESS_VIEW','PURSHASE_ORDER_VIEW','SALE_ORDER_VIEW','RECEPTION_VIEW','DELIVERY_VIEW','OWNER_VIEW','TRANSPORT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','WAREHOUSE_VIEW','INVOICE_VIEW')")
+    //@PreAuthorize("hasAnyRole('ADDRESS_VIEW','PURSHASE_ORDER_VIEW','SALE_ORDER_VIEW','RECEPTION_VIEW','DELIVERY_VIEW','OWNER_VIEW','TRANSPORT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','WAREHOUSE_VIEW','INVOICE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
@@ -66,21 +66,21 @@ public class AddressController {
         return addressService.size(search + userDetailsService.getOwners().toString());
     }
 
-    @PreAuthorize("hasAnyRole('ADDRESS_VIEW','PURSHASE_ORDER_VIEW','SALE_ORDER_VIEW','RECEPTION_VIEW','DELIVERY_VIEW','OWNER_VIEW','TRANSPORT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','WAREHOUSE_VIEW','INVOICE_VIEW')")
+    //@PreAuthorize("hasAnyRole('ADDRESS_VIEW','PURSHASE_ORDER_VIEW','SALE_ORDER_VIEW','RECEPTION_VIEW','DELIVERY_VIEW','OWNER_VIEW','TRANSPORT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','WAREHOUSE_VIEW','INVOICE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
         return addressService.isExist(id);
     }
 
-    @PreAuthorize("hasAnyRole('ADDRESS_VIEW','PURSHASE_ORDER_VIEW','SALE_ORDER_VIEW','RECEPTION_VIEW','DELIVERY_VIEW','OWNER_VIEW','TRANSPORT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','WAREHOUSE_VIEW','INVOICE_VIEW')")
+    //@PreAuthorize("hasAnyRole('ADDRESS_VIEW','PURSHASE_ORDER_VIEW','SALE_ORDER_VIEW','RECEPTION_VIEW','DELIVERY_VIEW','OWNER_VIEW','TRANSPORT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','WAREHOUSE_VIEW','INVOICE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
     public Address getAddress(@PathVariable("id") Long id) throws IdNotFound {
         return addressService.findById(id);
     }
 
-    @PreAuthorize("hasAnyRole('ADDRESS_VIEW','PURSHASE_ORDER_VIEW','SALE_ORDER_VIEW','RECEPTION_VIEW','DELIVERY_VIEW','OWNER_VIEW','TRANSPORT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','WAREHOUSE_VIEW','INVOICE_VIEW')")
+    //@PreAuthorize("hasAnyRole('ADDRESS_VIEW','PURSHASE_ORDER_VIEW','SALE_ORDER_VIEW','RECEPTION_VIEW','DELIVERY_VIEW','OWNER_VIEW','TRANSPORT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','WAREHOUSE_VIEW','INVOICE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
     public List<Address> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
@@ -93,7 +93,7 @@ public class AddressController {
         return addressService.find(search + userDetailsService.getOwners().toString());
     }
 
-    @PreAuthorize("hasAnyRole('ADDRESS_VIEW','PURSHASE_ORDER_VIEW','SALE_ORDER_VIEW','RECEPTION_VIEW','DELIVERY_VIEW','OWNER_VIEW','TRANSPORT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','WAREHOUSE_VIEW','INVOICE_VIEW')")
+    //@PreAuthorize("hasAnyRole('ADDRESS_VIEW','PURSHASE_ORDER_VIEW','SALE_ORDER_VIEW','RECEPTION_VIEW','DELIVERY_VIEW','OWNER_VIEW','TRANSPORT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','WAREHOUSE_VIEW','INVOICE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<Address> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
@@ -107,21 +107,21 @@ public class AddressController {
         return addressService.find(search + userDetailsService.getOwners().toString(), page, size);
     }
 
-    @PreAuthorize("hasAnyRole('ADDRESS_CREATE','PURSHASE_ORDER_VIEW','SALE_ORDER_VIEW','RECEPTION_VIEW','DELIVERY_VIEW','OWNER_VIEW','TRANSPORT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','WAREHOUSE_VIEW','INVOICE_VIEW')")
+    //@PreAuthorize("hasAnyRole('ADDRESS_CREATE','PURSHASE_ORDER_VIEW','SALE_ORDER_VIEW','RECEPTION_VIEW','DELIVERY_VIEW','OWNER_VIEW','TRANSPORT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','WAREHOUSE_VIEW','INVOICE_VIEW')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Address add(@RequestBody Address address) {
         return addressService.save(address);
     }
 
-    @PreAuthorize("hasAnyRole('ADDRESS_EDIT','PURSHASE_ORDER_VIEW','SALE_ORDER_VIEW','RECEPTION_VIEW','DELIVERY_VIEW','OWNER_VIEW','TRANSPORT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','WAREHOUSE_VIEW','INVOICE_VIEW')")
+    //@PreAuthorize("hasAnyRole('ADDRESS_EDIT','PURSHASE_ORDER_VIEW','SALE_ORDER_VIEW','RECEPTION_VIEW','DELIVERY_VIEW','OWNER_VIEW','TRANSPORT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','WAREHOUSE_VIEW','INVOICE_VIEW')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Address set(@RequestBody Address address) {
         return addressService.save(address);
     }
 
-    @PreAuthorize("hasRole('ADDRESS_DELETE')")
+    //@PreAuthorize("hasRole('ADDRESS_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@RequestBody Address address) {
@@ -129,7 +129,7 @@ public class AddressController {
         addressService.delete(address);
     }
 
-    @PreAuthorize("hasRole('ADDRESS_DELETE')")
+    //@PreAuthorize("hasRole('ADDRESS_DELETE')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@PathVariable Long id) {

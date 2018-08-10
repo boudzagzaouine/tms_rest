@@ -25,7 +25,7 @@ public class OwnerController {
     @Qualifier("userDetailsService")
     private UserDetailsServiceWarehouse userDetailsService;
 
-    @PreAuthorize("isAuthenticated()")
+    //@PreAuthorize("isAuthenticated()")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
     public List<Owner> getOwners() throws AttributesNotFound, ErrorType {
@@ -38,7 +38,7 @@ public class OwnerController {
         //return ownerService.findAll();
     }
 
-    @PreAuthorize("isAuthenticated()")
+    //@PreAuthorize("isAuthenticated()")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<Owner> getOwners(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
@@ -53,7 +53,7 @@ public class OwnerController {
         //return ownerService.findAll(pageable);
     }
 
-    @PreAuthorize("isAuthenticated()")
+    //@PreAuthorize("isAuthenticated()")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
     public Long size() throws AttributesNotFound, ErrorType {
@@ -64,7 +64,7 @@ public class OwnerController {
 
     }
 
-    @PreAuthorize("isAuthenticated()")
+    //@PreAuthorize("isAuthenticated()")
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
@@ -78,21 +78,21 @@ public class OwnerController {
         return ownerService.size(search);
     }
 
-    @PreAuthorize("isAuthenticated()")
+    //@PreAuthorize("isAuthenticated()")
     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
         return ownerService.isExist(id);
     }
 
-    @PreAuthorize("isAuthenticated()")
+    //@PreAuthorize("isAuthenticated()")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
     public Owner getOwner(@PathVariable("id") Long id) throws IdNotFound {
         return ownerService.findById(id);
     }
 
-    @PreAuthorize("isAuthenticated()")
+    //@PreAuthorize("isAuthenticated()")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
     public List<Owner> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
@@ -106,7 +106,7 @@ public class OwnerController {
         return ownerService.find(search);
     }
 
-    @PreAuthorize("isAuthenticated()")
+    //@PreAuthorize("isAuthenticated()")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<Owner> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
@@ -120,21 +120,21 @@ public class OwnerController {
         return ownerService.find(search, page, size);
     }
 
-    @PreAuthorize("hasRole('OWNER_CREATE')")
+    //@PreAuthorize("hasRole('OWNER_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Owner add(@RequestBody Owner owner) {
         return ownerService.save(owner);
     }
 
-    @PreAuthorize("hasRole('OWNER_EDIT')")
+    //@PreAuthorize("hasRole('OWNER_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Owner set(@RequestBody Owner owner) {
         return ownerService.save(owner);
     }
 
-    @PreAuthorize("hasRole('OWNER_DELETE')")
+    //@PreAuthorize("hasRole('OWNER_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@RequestBody Owner owner) {
@@ -142,14 +142,14 @@ public class OwnerController {
         ownerService.delete(owner);
     }
 
-    @PreAuthorize("hasRole('OWNER_DELETE')")
+    //@PreAuthorize("hasRole('OWNER_DELETE')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE,produces = MediaType.APPLICATION_JSON_VALUE )
     @ResponseBody
     public void delete(@PathVariable Long id) {
         ownerService.delete(id);
     }
 
-    @PreAuthorize("isAuthenticated()")
+    //@PreAuthorize("isAuthenticated()")
     @RequestMapping(method = RequestMethod.GET, value = "/listForHabilitation")
     @ResponseBody
     public List<Owner> getOwnersForHabilitation() throws AttributesNotFound, ErrorType {
