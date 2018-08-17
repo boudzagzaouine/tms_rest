@@ -21,8 +21,6 @@ public class ProductMapper {
         map.put("productType", "pdtProductTypeByPdtProductTypeId");
         map.put("productSubType", "pdtProductTypeByPdtProductSubTypeId");
         map.put("uomByProductUomSale", "pdtUomByPdtProductUomSaleId");
-        map.put("uomByProductUomBase", "pdtUomByPdtProductUomBaseId");
-        map.put("uomByProductUomBase", "pdtUomByPdtProductUomBaseId");
         map.put("uomByProductUomPurshase", "pdtUomByPdtProductUomPurshaseId");
         map.put("blockType", "prmBlockType");
         map.put("image", "prmImage");
@@ -88,6 +86,7 @@ public class ProductMapper {
         map.put("coefficient", "pdtProductCoefficient");
         map.put("productionCost", "pdtProductProductionCost");
         map.put("process", "pdtProcess");
+        map.put("packaging", "pdtProductPackaging");
 
     }
 
@@ -155,6 +154,7 @@ public class ProductMapper {
         pdtProduct.setPdtProductControlWeight(product.getWeightControl());
         pdtProduct.setPdtProductDiscount(product.getDiscount());
         pdtProduct.setPdtProductVersion(product.getVersion());
+        pdtProduct.setPdtProductPackaging(product.getPackaging());
         if (!lazy) {
 
             pdtProduct.setPdtProductPack(ProductPackMapper.toEntity(product.getProductPack(), true));
@@ -167,7 +167,7 @@ public class ProductMapper {
             pdtProduct.setPdtUomByPdtProductUomPurshaseId(UomMapper.toEntity(product.getUomByProductUomPurshase(), true));
             pdtProduct.setPdtUomByPdtProductUomSaleId(UomMapper.toEntity(product.getUomByProductUomSale(), true));
             pdtProduct.setPdtProductParent(toEntity(product.getProduct(), true))
-                    ;
+            ;
             pdtProduct.setPdtProductPacks(ProductPackMapper.toEntities(product.getProductPacks(), false));
 //            pdtProduct.setCmdSaleOrderLineArcs(SaleOrderLineArcMapper.toEntities(product.getSaleOrderLineArcs(), true));
 //            pdtProduct.setCmdSaleOrderStocks(SaleOrderStockMapper.toEntities(product.getSaleOrderStocks(), true));
@@ -270,6 +270,7 @@ public class ProductMapper {
         product.setWeightControl(pdtProduct.getPdtProductControlWeight());
         product.setDiscount(pdtProduct.getPdtProductDiscount());
         product.setVersion(pdtProduct.getPdtProductVersion());
+        product.setPackaging(pdtProduct.getPdtProductPackaging());
         if (!lazy) {
             product.setProductPack(ProductPackMapper.toDto(pdtProduct.getPdtProductPack(), true));
             product.setPickingUom(UomMapper.toDto(pdtProduct.getPickingPdtUom(), true));

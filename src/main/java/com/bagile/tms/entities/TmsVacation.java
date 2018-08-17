@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="tms_vacation")
+@Table(name = "tms_vacation")
 public class TmsVacation {
 
     private int tmsVacationId;
@@ -18,6 +18,7 @@ public class TmsVacation {
     private Date tmsVacationEnd;
 
     private String tmsVacationType;
+    private TmsDriver tmsDriver;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -58,4 +59,13 @@ public class TmsVacation {
         this.tmsVacationType = tmsVacationType;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_vacationdriverid")
+    public TmsDriver getTmsDriver() {
+        return tmsDriver;
+    }
+
+    public void setTmsDriver(TmsDriver tmsDriver) {
+        this.tmsDriver = tmsDriver;
+    }
 }

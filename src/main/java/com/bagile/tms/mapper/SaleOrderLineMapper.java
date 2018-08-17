@@ -79,7 +79,6 @@ public class SaleOrderLineMapper {
         saleOrderLine.setCreationDate(cmdSaleOrderLine.getCmdSaleOrderLineCreationDate());
         saleOrderLine.setDate(cmdSaleOrderLine.getCmdSaleOrderLineDate());
         saleOrderLine.setDescription(cmdSaleOrderLine.getCmdSaleOrderLineDescription());
-
         saleOrderLine.setId(cmdSaleOrderLine.getCmdSaleOrderLineId());
         saleOrderLine.setLineNumber(cmdSaleOrderLine.getCmdSaleOrderLineLineNumber());
         saleOrderLine.setQuantity(cmdSaleOrderLine.getCmdSaleOrderLineQuantity());

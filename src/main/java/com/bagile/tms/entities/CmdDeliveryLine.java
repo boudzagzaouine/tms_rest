@@ -65,7 +65,7 @@ public class CmdDeliveryLine {
     public void setCmdDeliveryLineId(long cmdDeliveryLineId) {
         this.cmdDeliveryLineId = cmdDeliveryLineId;
     }
-
+    @Column(name="cmddeliverylinelinenumber")
     public Long getCmdDeliveryLinelineNumber() {
         return cmdDeliveryLinelineNumber;
     }

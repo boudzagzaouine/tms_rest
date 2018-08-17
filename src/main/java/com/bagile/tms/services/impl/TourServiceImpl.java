@@ -36,8 +36,8 @@ public class TourServiceImpl implements TourService {
 
     private List<Tour> tours;
 
-    //@PostConstruct
-    private void initList() {
+    @PostConstruct
+    public void initList() {
         Pageable pageable = new PageRequest(0, 10);
         List<Delivery> all = null;
         try {
@@ -165,6 +165,8 @@ public class TourServiceImpl implements TourService {
             TourSaleOrderLine tourSaleOrderLine = new TourSaleOrderLine();
             tourSaleOrderLine.setLineNumber(deliveryLine.getLineNumber());
             tourSaleOrderLine.setUom(deliveryLine.getUom().getCode());
+            tourSaleOrderLine.setServedQuantity(deliveryLine.getQuantityServed());
+            tourSaleOrderLine.setOrderedQuantity(deliveryLine.getOrderedQuantity());
             tourSaleOrderLine.setContainer(deliveryLine.getContainerCode());
             tourSaleOrderLines.add(tourSaleOrderLine);
            // tourSaleOrderLine.setTourSaleOrderStocks(createSaleOrderStock(new ArrayList<>(deliveryLine.getSaleOrderStocks())));

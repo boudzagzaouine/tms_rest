@@ -29,7 +29,7 @@ public class DriverController {
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<Driver> getDrivers(@RequestParam int page, @RequestParam int size) {
-        Sort sort = new Sort(Sort.Direction.DESC, "prmColorUpdateDate");
+        Sort sort = new Sort(Sort.Direction.DESC, "tmsDriverUpDateDate");
         Pageable pageable = PageRequest.of(page, size,sort);
         return driverService.findAll(pageable);
 
@@ -44,6 +44,7 @@ public class DriverController {
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
+
         return driverService.size(search);
     }
     //@PreAuthorize("hasAnyRole('DRIVER_VIEW')")

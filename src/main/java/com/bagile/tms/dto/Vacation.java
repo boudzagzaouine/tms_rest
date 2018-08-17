@@ -8,6 +8,7 @@ public class Vacation {
     private Date begin;
     private Date end;
     private String type;
+    private Driver driver;
 
     public int getId() {
         return id;
@@ -39,5 +40,13 @@ public class Vacation {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
     }
 }

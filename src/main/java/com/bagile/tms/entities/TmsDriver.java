@@ -26,7 +26,7 @@ public class TmsDriver implements java.io.Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date tmsDriverlastMedicalVisit;
     private TmsZone tmsDriverWorkArea;
-    private TmsVacation tmsDriverVacation;
+
     private BigDecimal tmsDriverCommission;
     private PrmContact tmsDrivercontact;
 
@@ -113,17 +113,6 @@ public class TmsDriver implements java.io.Serializable {
     public void setTmsDriverWorkArea(TmsZone tmsDriverWorkArea) {
         this.tmsDriverWorkArea = tmsDriverWorkArea;
     }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_drivervacationid")
-    public TmsVacation getTmsDriverVacation() {
-        return tmsDriverVacation;
-    }
-
-    public void setTmsDriverVacation(TmsVacation tmsDriverVacation) {
-        this.tmsDriverVacation = tmsDriverVacation;
-    }
-
 
     @Column(name = "tms_drivercommission")
     public BigDecimal getTmsDriverCommission() {

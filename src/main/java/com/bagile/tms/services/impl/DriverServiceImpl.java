@@ -69,6 +69,10 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
+        if("".equals(search))
+        {
+            size();
+        }
         return driverRepository.count(Search.expression(search, TmsDriver.class));
     }
 

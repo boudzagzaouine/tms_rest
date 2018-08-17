@@ -5,11 +5,11 @@ package com.bagile.tms.util;
  */
 public interface AddActive {
     default String addActiveToSearch(String search) {
-        if (!search.trim().contains("isActive:false")) {
+        if (!search.trim().contains("active:false")) {
             if (!search.endsWith(",")) {
                 search += ",";
             }
-            search += "isActive:true";
+            search += "active:true";
         }
         return search;
     }
