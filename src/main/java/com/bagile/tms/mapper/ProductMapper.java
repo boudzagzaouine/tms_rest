@@ -154,7 +154,6 @@ public class ProductMapper {
         pdtProduct.setPdtProductControlWeight(product.getWeightControl());
         pdtProduct.setPdtProductDiscount(product.getDiscount());
         pdtProduct.setPdtProductVersion(product.getVersion());
-        pdtProduct.setPdtProductPackaging(product.getPackaging());
         if (!lazy) {
 
             pdtProduct.setPdtProductPack(ProductPackMapper.toEntity(product.getProductPack(), true));
@@ -270,7 +269,6 @@ public class ProductMapper {
         product.setWeightControl(pdtProduct.getPdtProductControlWeight());
         product.setDiscount(pdtProduct.getPdtProductDiscount());
         product.setVersion(pdtProduct.getPdtProductVersion());
-        product.setPackaging(pdtProduct.getPdtProductPackaging());
         if (!lazy) {
             product.setProductPack(ProductPackMapper.toDto(pdtProduct.getPdtProductPack(), true));
             product.setPickingUom(UomMapper.toDto(pdtProduct.getPickingPdtUom(), true));

@@ -10,7 +10,7 @@ public class Vehicle {
     private String code;
     private Date technicalVisit;
 
-    private Category category;
+    private VehicleCategory vehicleCategory;
     private Traffic drivingLicence;
 
     private Date creationDate;
@@ -57,12 +57,12 @@ public class Vehicle {
         this.technicalVisit = technicalVisit;
     }
 
-    public Category getCategory() {
-        return category;
+    public VehicleCategory getVehicleCategory() {
+        return vehicleCategory;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setVehicleCategory(VehicleCategory vehicleCategory) {
+        this.vehicleCategory = vehicleCategory;
     }
 
     public Traffic getDrivingLicence() {

@@ -6,7 +6,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -23,7 +22,7 @@ public class TmsVehicle implements Serializable {
 
     private Date tmsVehicleTechnicalVisit;
 
-    private TmsCategory tmsVehicleCategory;
+    private TmsVehicleCategory tmsVehicleCategory;
     private TmsTraffic tmsVehicleDrivingLicence;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -89,11 +88,11 @@ public class TmsVehicle implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_vehiclecategoryid")
-    public TmsCategory getTmsVehicleCategory() {
+    public TmsVehicleCategory getTmsVehicleCategory() {
         return tmsVehicleCategory;
     }
 
-    public void setTmsVehicleCategory(TmsCategory tmsVehicleCategory) {
+    public void setTmsVehicleCategory(TmsVehicleCategory tmsVehicleCategory) {
         this.tmsVehicleCategory = tmsVehicleCategory;
     }
 

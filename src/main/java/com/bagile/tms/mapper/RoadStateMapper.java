@@ -1,13 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.bagile.tms.dto.Category;
-import com.bagile.tms.dto.Road;
 import com.bagile.tms.dto.RoadState;
-import com.bagile.tms.dto.Traffic;
-import com.bagile.tms.entities.TmsCategory;
-import com.bagile.tms.entities.TmsRoad;
 import com.bagile.tms.entities.TmsRoadState;
-import com.bagile.tms.entities.TmsTraffic;
 
 import java.util.*;
 

@@ -58,7 +58,6 @@ public class DriverMapper {
             tmsDriver.setTmsDrivercontact(com.bagile.tms.mapper.ContactMapper.toEntity(driver.getContact(),true));
             tmsDriver.setTmsDriverCreationUser(UserMapper.toEntity(driver.getCreationUser(),true));
             tmsDriver.setTmsDriverBadges(BadgeMapper.toEntities(driver.getBadges(),true));
-            tmsDriver.setTmsDriverVacation(VacationMapper.toEntity(driver.getVacation(),true));
             tmsDriver.setTmsDriverWorkArea(ZoneMapper.toEntity(driver.getWorkArea(),true));
         }
         return tmsDriver;
@@ -83,7 +82,6 @@ public class DriverMapper {
             driver.setContact(ContactMapper.toDto(tmsDriver.getTmsDrivercontact(),true));
             driver.setCreationUser(UserMapper.toDto(tmsDriver.getTmsDriverCreationUser(),true));
             driver.setBadges(BadgeMapper.toDtos(tmsDriver.getTmsDriverBadges(),true));
-            driver.setVacation(VacationMapper.toDto(tmsDriver.getTmsDriverVacation(),true));
             driver.setWorkArea(ZoneMapper.toDto(tmsDriver.getTmsDriverWorkArea(),true));
         }
         return driver;

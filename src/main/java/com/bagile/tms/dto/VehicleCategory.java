@@ -2,7 +2,7 @@ package com.bagile.tms.dto;
 
 import java.math.BigDecimal;
 
-public class Category {
+public class VehicleCategory {
     private long id;
     private BigDecimal consumption;
     private BigDecimal weight;

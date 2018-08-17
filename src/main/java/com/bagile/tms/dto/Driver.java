@@ -24,7 +24,6 @@ public class Driver implements Serializable {
 
     private Date lastMedicalVisit;
     private Zone workArea;
-    private Vacation vacation;
     private BigDecimal commission;
     private Contact contact;
     private Date creationDate;
@@ -95,14 +94,6 @@ public class Driver implements Serializable {
 
     public void setWorkArea(Zone workArea) {
         this.workArea = workArea;
-    }
-
-    public Vacation getVacation() {
-        return vacation;
-    }
-
-    public void setVacation(Vacation vacation) {
-        this.vacation = vacation;
     }
 
     public BigDecimal getCommission() {
