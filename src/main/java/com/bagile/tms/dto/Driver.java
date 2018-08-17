@@ -18,7 +18,7 @@ public class Driver implements Serializable {
     @Size(max = 30)
     private String cin;
     @Size(max = 30)
-    private Date date;
+    private Date birthDate;
 
     private Set<Badge> badges;
 
@@ -56,12 +56,12 @@ public class Driver implements Serializable {
         this.cin = cin;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     public Set<Badge> getBadges() {
