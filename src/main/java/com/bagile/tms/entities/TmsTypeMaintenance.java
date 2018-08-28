@@ -19,7 +19,7 @@ public class TmsTypeMaintenance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "tms_typemaintenancesequence")
     @Column(name = "tms_typeMaintenanceId", unique = true, nullable = false, precision = 10, scale = 0)
 
     public int getTmsTypeMaintenanceId() {

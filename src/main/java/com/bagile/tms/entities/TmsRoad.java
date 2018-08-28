@@ -61,7 +61,7 @@ public class TmsRoad implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq")
-    @SequenceGenerator(name =  "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "tms_roadsequence")
     @Column(name = "tms_roadid")
     public long getTmsRoadId() {
         return tmsRoadId;

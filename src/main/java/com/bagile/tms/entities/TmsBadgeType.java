@@ -11,7 +11,7 @@ public class TmsBadgeType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "tms_badgetypesequence")
     @Column(name = "tms_badgetypeId")
 
     public long getTmsBadgeTypeId() {

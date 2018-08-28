@@ -12,7 +12,7 @@ public class TmsZone {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "tms_zonesequence")
     @Column(name = "tms_zoneId")
 
     public long getTmsZoneId() {

@@ -78,7 +78,7 @@ public class ZoneServiceImpl implements ZoneService {
 
     @Override
     public void delete(Zone zone) {
-        LOGGER.info("delete Vehicle");
+        LOGGER.info("delete Zone");
         zoneRepository.delete(ZoneMapper.toEntity(zone, false));
     }
 

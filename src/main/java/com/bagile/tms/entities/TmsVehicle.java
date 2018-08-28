@@ -38,7 +38,7 @@ public class TmsVehicle implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "tms_vehiclesequence")
     @Column(name = "tms_vehicleId")
 
     public long getTmsVehicleId() {

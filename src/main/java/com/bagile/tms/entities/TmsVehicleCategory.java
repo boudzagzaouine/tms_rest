@@ -20,7 +20,7 @@ public class TmsVehicleCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "tms_vehiclecategorysequence")
     @Column(name = "tms_vehiclecategoryId")
 
 

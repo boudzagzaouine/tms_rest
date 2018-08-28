@@ -42,7 +42,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "tms_maintenanceplansequence")
     @Column(name = "tms_maintenanceplanId")
     public long getTmsMaintenancePlanId() {
         return tmsMaintenancePlanId;

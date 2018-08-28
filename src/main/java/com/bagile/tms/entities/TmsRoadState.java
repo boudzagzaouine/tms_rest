@@ -10,7 +10,7 @@ public class TmsRoadState {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "tms_roadstatesequence")
     @Column(name = "tms_roadStateId")
     private int tmsRoadStateId;
 

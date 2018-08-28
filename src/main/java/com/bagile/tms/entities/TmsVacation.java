@@ -22,7 +22,7 @@ public class TmsVacation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "tms_vacationsequence")
     @Column(name = "tms_idVacation")
     public int getTmsVacationId() {
         return tmsVacationId;

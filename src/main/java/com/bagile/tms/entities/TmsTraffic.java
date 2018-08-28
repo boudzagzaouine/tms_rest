@@ -12,7 +12,7 @@ public class TmsTraffic {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "tms_trafficsequence")
     @Column(name = "tms_trafficid")
     public long getTmsTrafficId() {
         return tmsTrafficId;
