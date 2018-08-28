@@ -47,7 +47,7 @@ public class DriverMapper {
         TmsDriver tmsDriver = new TmsDriver();
         tmsDriver.setTmsDriverId(driver.getId());
         tmsDriver.setTmsDriverCin(driver.getCin());
-        tmsDriver.setTmsDriverCin(driver.getCode());
+        tmsDriver.setTmsDriverCode(driver.getCode());
         tmsDriver.setTmsDriverCommission(driver.getCommission());
         tmsDriver.setTmsDriverWorking(driver.isWorking());
         tmsDriver.setTmsDriverBirthDate(driver.getBirthDate());

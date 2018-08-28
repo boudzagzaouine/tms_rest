@@ -68,7 +68,8 @@ public class TmsDriver implements java.io.Serializable {
         this.tmsDriverCin = tmsDriverCin;
     }
 
-    @Column(name = "tms_badgecode")
+    @Column(name = "tms_driverbirthdate")
+    @Temporal(TemporalType.TIMESTAMP)
     public Date getTmsDriverBirthDate() {
         return tmsDriverBirthDate;
     }
