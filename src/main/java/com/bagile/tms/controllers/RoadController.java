@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Created by bouzi on 4/4/2017.
- */
 @Controller
 @RequestMapping(value = "/roads/")
 public class RoadController {

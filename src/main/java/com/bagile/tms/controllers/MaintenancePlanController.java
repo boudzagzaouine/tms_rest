@@ -106,4 +106,11 @@ public class MaintenancePlanController {
         maintenanceService.delete(maintenancePlan);
     }
 
+
+    //@PreAuthorize("hasRole('MAINTENANCEPLAN_DELETE')")
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public void delete(@PathVariable Long id) {
+        maintenanceService.delete(id);
+    }
 }

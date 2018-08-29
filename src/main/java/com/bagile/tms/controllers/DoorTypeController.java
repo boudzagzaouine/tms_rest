@@ -105,4 +105,11 @@ public class DoorTypeController {
         doorTypeService.delete(maintenancePlan);
     }
 
+
+    //@PreAuthorize("hasRole('DOORTYPE_DELETE')")
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public void delete(@PathVariable Long id) {
+        doorTypeService.delete(id);
+    }
 }

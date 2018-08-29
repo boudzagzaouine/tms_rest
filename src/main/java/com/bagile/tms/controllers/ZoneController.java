@@ -92,4 +92,12 @@ public class ZoneController {
         zoneService.delete(zone);
     }
 
+
+    //@PreAuthorize("hasRole('ZONE_DELETE')")
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public void delete(@PathVariable Long id) {
+        zoneService.delete(id);
+    }
+
 }
