@@ -4,6 +4,6 @@ import com.bagile.tms.entities.TmsVehicleCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
-public interface CategoryRepository extends JpaRepository<TmsVehicleCategory, Long>,
+public interface VehicleCategoryRepository extends JpaRepository<TmsVehicleCategory, Long>,
         QuerydslPredicateExecutor<TmsVehicleCategory> {
 }

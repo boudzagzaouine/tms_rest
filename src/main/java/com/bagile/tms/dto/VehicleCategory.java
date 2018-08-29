@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 public class VehicleCategory {
     private long id;
+    private String name;
     private BigDecimal consumption;
     private BigDecimal weight;
     private BigDecimal width;
@@ -27,6 +28,14 @@ public class VehicleCategory {
 
     public void setConsumption(BigDecimal consumption) {
         this.consumption = consumption;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public BigDecimal getWeight() {

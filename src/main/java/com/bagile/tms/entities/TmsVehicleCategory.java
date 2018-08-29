@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 @Table(name = "tms_vehiclecategory", uniqueConstraints = @UniqueConstraint(columnNames = {"tms_vehiclecategoryId"}))
 public class TmsVehicleCategory {
     private long tmsVehicleCategoryId;
+    private String tmsVehicleCategoryname;
     private BigDecimal tmsVehicleCategoryConsumption;
     private BigDecimal tmsVehicleCategoryWeight;
     private BigDecimal tmsVehicleCategoryWidth;
@@ -51,6 +52,14 @@ public class TmsVehicleCategory {
         this.tmsVehicleCategoryWeight = tmsVehicleCategoryWeight;
     }
 
+    @Column(name = "tms_vehiclecategoryname")
+    public String getTmsVehicleCategoryname() {
+        return tmsVehicleCategoryname;
+    }
+
+    public void setTmsVehicleCategoryname(String name) {
+        this.tmsVehicleCategoryname = name;
+    }
 
     @Column(name = "tms_vehiclecategorywidth")
     public BigDecimal getTmsVehicleCategoryWidth() {

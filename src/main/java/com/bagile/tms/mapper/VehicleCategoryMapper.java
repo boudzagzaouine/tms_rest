@@ -16,6 +16,7 @@ public class VehicleCategoryMapper {
     static {
         map = new HashMap<>();
         map.put("id", "tmsVehicleCategoryId");
+        map.put("name","tmsVehicleCategoryName");
         map.put("consumption", "tmsVehicleCategoryConsumption");
         map.put("weight", "tmsVehicleCategoryWeight");
         map.put("width", "tmsVehicleCategoryWidth");
@@ -37,6 +38,7 @@ public class VehicleCategoryMapper {
         }
         TmsVehicleCategory tmsVehicleCategory = new TmsVehicleCategory();
         tmsVehicleCategory.setTmsVehicleCategoryId(VehicleCategory.getId());
+        tmsVehicleCategory.setTmsVehicleCategoryname(VehicleCategory.getName().toString());
         tmsVehicleCategory.setTmsVehicleCategoryConsumption(VehicleCategory.getConsumption());
         tmsVehicleCategory.setTmsVehicleCategoryWeight(VehicleCategory.getWeight());
         tmsVehicleCategory.setTmsVehicleCategoryWidth(VehicleCategory.getWidth());
@@ -56,6 +58,7 @@ public class VehicleCategoryMapper {
         }
         VehicleCategory vehicleCategory = new VehicleCategory();
         vehicleCategory.setId(tmsVehicleCategory.getTmsVehicleCategoryId());
+        vehicleCategory.setName(tmsVehicleCategory.getTmsVehicleCategoryname());
         vehicleCategory.setConsumption(tmsVehicleCategory.getTmsVehicleCategoryConsumption());
         vehicleCategory.setDepth(tmsVehicleCategory.getTmsVehicleCategoryDepth());
         vehicleCategory.setWeight(tmsVehicleCategory.getTmsVehicleCategoryWeight());
