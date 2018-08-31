@@ -9,12 +9,11 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "tms_badgeA", uniqueConstraints = @UniqueConstraint(columnNames = {"tms_badgeTypecode", "tms_badgeTypeId"}))
+@Table(name = "tms_badge", uniqueConstraints = @UniqueConstraint(columnNames = {"tms_badgeTypecode", "tms_badgeTypeId"}))
 
 public class TmsBadge {
     private String tmsBadgecode;
     private long tmsBadgeId;
-    @NotNull
     private TmsBadgeType tmsBadgeType;
     private TmsDriver tmsDriver;
     private Date tmsDateBadge;
@@ -22,8 +21,8 @@ public class TmsBadge {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "tms_badgesequence")
-    @Column(name = "tms_BadgeTypecode", unique = true, nullable = false)
 
+    @Column(name = "tms_BadgeTypecode", unique = true, nullable = false)
     public String getTmsBadgecode() {
         return tmsBadgecode;
     }
@@ -42,7 +41,7 @@ public class TmsBadge {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_BadgeTypetypeid")
+    @JoinColumn(name = "tms_BadgeTypeid")
     public TmsBadgeType getTmsBadgeType() {
         return tmsBadgeType;
     }
