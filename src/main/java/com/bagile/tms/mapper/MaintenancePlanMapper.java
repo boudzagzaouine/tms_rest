@@ -17,7 +17,7 @@ public class MaintenancePlanMapper {
         map.put("id", "tmsMaintenancePlanId");
         map.put("code", "tmsMaintenancePlanCode");
         map.put("descriptif", "tmsMaintenancePlanDescriptif");
-        map.put("vehicle", "tmsMaintenancePlanVehicle");
+        map.put("vehicleId", "tmsMaintenancePlanVehicleId");
         map.put("date", "tmsMaintenancePlanDate");
         map.put("state", "tmsMaintenancePlanState");
         map.put("title", "tmsMaintenancePlanTitle");
@@ -46,9 +46,9 @@ public class MaintenancePlanMapper {
         tmsMaintenancePlan.setTmsMaintenancePlanTitle(maintenancePlan.getTitle());
         tmsMaintenancePlan.setTmsMaintenanceCreationDate(maintenancePlan.getCreationDate());
         tmsMaintenancePlan.setTmsMaintenancePlanDate(maintenancePlan.getDate());
+        tmsMaintenancePlan.setTmsMaintenancePlanVehicleId(maintenancePlan.getVehicle());
         if (!lazy) {
             tmsMaintenancePlan.setTmsMaintenanceUpDateDate(maintenancePlan.getUpDateDate());
-            tmsMaintenancePlan.setTmsMaintenancePlanVehicle(VehicleMapper.toEntity(maintenancePlan.getVehicle(), true));
             tmsMaintenancePlan.setTmsMaintenanceCreationUser(maintenancePlan.getCreationUser());
             tmsMaintenancePlan.setTmsMaintenancePlanState(MaintenanceStateMapper.toEntity(maintenancePlan.getState(),true));
             // tmsMaintenancePlan.setTmsMaintenancePlanActes(ActeMapper.toEntities(maintenancePlan.getActes(),true));
@@ -67,8 +67,8 @@ public class MaintenancePlanMapper {
         maintenancePlan.setCreationDate(tmsMaintenancePlan.getTmsMaintenanceCreationDate());
         maintenancePlan.setDate(tmsMaintenancePlan.getTmsMaintenancePlanDate());
         maintenancePlan.setTitle(tmsMaintenancePlan.getTmsMaintenancePlanTitle());
+        maintenancePlan.setVehicle(tmsMaintenancePlan.getTmsMaintenancePlanVehicleId());
         if (!lazy) {
-            maintenancePlan.setVehicle(VehicleMapper.toDto(tmsMaintenancePlan.getTmsMaintenancePlanVehicle(), true));
             maintenancePlan.setUpDateDate(tmsMaintenancePlan.getTmsMaintenanceUpDateDate());
             maintenancePlan.setCreationUser(tmsMaintenancePlan.getTmsMaintenanceCreationUser());
             //maintenancePlan.setActes(ActeMapper.toDtos(tmsMaintenancePlan.getTmsMaintenancePlanActes(),true));

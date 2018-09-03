@@ -31,7 +31,7 @@ public class TmsBadge {
         this.tmsBadgecode = tmsBadgecode;
     }
 
-    @Column(name = "tms_BadgeTypeId")
+    @Column(name = "tms_BadgeId")
     public long getTmsBadgeId() {
         return tmsBadgeId;
     }

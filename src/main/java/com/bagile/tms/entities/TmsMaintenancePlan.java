@@ -12,7 +12,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
     private long tmsMaintenancePlanId;
     
     @NotNull
-    private TmsVehicle tmsMaintenancePlanVehicle;
+    private long tmsMaintenancePlanVehicleId;
     
     @NotNull
     private String tmsMaintenancePlanCode;
@@ -21,7 +21,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
 
     private Date tmsMaintenancePlanDate;
     
-    @NotNull
+
     private TmsMaintenanceState tmsMaintenancePlanState;
     
     @NotNull
@@ -53,13 +53,16 @@ public class TmsMaintenancePlan implements java.io.Serializable{
     }
 
     @JoinColumn(name = "tms_vehicleid")
-    public TmsVehicle getTmsMaintenancePlanVehicle() {
-        return tmsMaintenancePlanVehicle;
+    public long getTmsMaintenancePlanVehicleId() {
+        return tmsMaintenancePlanVehicleId;
     }
 
-    public void setTmsMaintenancePlanVehicle(TmsVehicle tmsMaintenancePlanVehicle) {
-        this.tmsMaintenancePlanVehicle = tmsMaintenancePlanVehicle;
+    public void setTmsMaintenancePlanVehicleId(long tmsMaintenancePlanVehicleId) {
+        this.tmsMaintenancePlanVehicleId = tmsMaintenancePlanVehicleId;
     }
+
+
+
 
     @Column(name = "tms_maintenanceplancode")
     public String getTmsMaintenancePlanCode() {

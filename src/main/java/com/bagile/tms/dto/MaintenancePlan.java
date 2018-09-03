@@ -14,7 +14,7 @@ import java.util.Set;
 public class MaintenancePlan implements Serializable {
 
     private long id;
-    private Vehicle vehicle;
+    private long vehicleId;
     private String code;
     private String descriptif;
 
@@ -38,12 +38,12 @@ public class MaintenancePlan implements Serializable {
         this.id = id;
     }
 
-    public Vehicle getVehicle() {
-        return vehicle;
+    public long getVehicle() {
+        return vehicleId;
     }
 
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    public void setVehicle(long vehicle) {
+        this.vehicleId = vehicle;
     }
 
     public String getCode() {
