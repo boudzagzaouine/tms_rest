@@ -61,7 +61,7 @@ public class VehicleMapper {
         Vehicle vehicle = new Vehicle();
         vehicle.setId(tmsVehicle.getTmsVehicleId());
         vehicle.setRegistrationNumber(tmsVehicle.getTmsVehicleRegistrationNumber());
-        vehicle.setCode(tmsVehicle.getTmsVehicleCode() != null ? vehicle.getCode().toUpperCase() : null);
+        vehicle.setCode(tmsVehicle.getTmsVehicleCode() != null ? tmsVehicle.getTmsVehicleCode().toUpperCase() : null);
         vehicle.setTechnicalVisit(tmsVehicle.getTmsVehicleTechnicalVisit());
 
         if (!lazy) {

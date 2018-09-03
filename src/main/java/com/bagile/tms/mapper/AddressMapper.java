@@ -81,6 +81,8 @@ public class AddressMapper {
         address.setVariable9(adrAddress.getAdrAddressVariable9());
         address.setVariable10(adrAddress.getAdrAddressVariable10());
         address.setAddressType(adrAddress.getAddAddressType());
+        address.setLongitude(adrAddress.getAdrAddressLongitude());
+        address.setLatitude(adrAddress.getAdrAddressLatitude());
         if (!lazy) {
             address.setOwner(OwnerMapper.toDto(adrAddress.getOwnOwner(), true));
         }
@@ -115,6 +117,8 @@ public class AddressMapper {
         adrAddress.setAdrAddressVariable9(address.getVariable9());
         adrAddress.setAdrAddressVariable10(address.getVariable10());
         adrAddress.setAddAddressType(address.getAddressType());
+        adrAddress.setAdrAddressLatitude(address.getLatitude());
+        adrAddress.setAdrAddressLongitude(address.getLongitude());
         if (!lazy) {
             adrAddress.setOwnOwner(OwnerMapper.toEntity(address.getOwner(), true));
         }
