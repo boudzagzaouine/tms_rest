@@ -39,9 +39,9 @@ public class TourServiceImpl implements TourService {
     @PostConstruct
     public void initList() {
         Pageable pageable = new PageRequest(0, 10);
-        List<Delivery> all = null;
+        List<Delivery> all = new ArrayList<>();
         try {
-            all = deliveryService.find("active:false",0,10);
+            all = deliveryService.find("code~Tour,active:false");
 
         List<Transport> transports = transportService.findAll();
         tours = new ArrayList<>();
@@ -146,7 +146,7 @@ public class TourServiceImpl implements TourService {
             tourSaleOrder.setOwner(delivery.getOwner().getCode());
             tourSaleOrder.setWarehouse(delivery.getWarehouse().getCode());
             tourSaleOrder.setStatus(delivery.getOrderStatus().getCode());
-            tourSaleOrder.setLoadDate(delivery.getLoadDate());
+            tourSaleOrder.setLoadDate(delivery.getExpectedDate());
             tourSaleOrder.setAddress(delivery.getDeliveryAddress());
             tourSaleOrder.setTourSaleOrderLines(createSaleOrderLine(delivery.getLines()));
             tourSaleOrders.add(tourSaleOrder);
@@ -164,6 +164,7 @@ public class TourServiceImpl implements TourService {
             }
             TourSaleOrderLine tourSaleOrderLine = new TourSaleOrderLine();
             tourSaleOrderLine.setLineNumber(deliveryLine.getLineNumber());
+            tourSaleOrderLine.setProduct(deliveryLine.getProduct().getCode());
             tourSaleOrderLine.setUom(deliveryLine.getUom().getCode());
             tourSaleOrderLine.setServedQuantity(deliveryLine.getQuantityServed());
             tourSaleOrderLine.setOrderedQuantity(deliveryLine.getOrderedQuantity());
