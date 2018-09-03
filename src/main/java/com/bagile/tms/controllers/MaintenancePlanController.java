@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Created by khalil on 04/04/2017.
- */
 @Controller
 @RequestMapping(value = "/maintenancePlans")
 

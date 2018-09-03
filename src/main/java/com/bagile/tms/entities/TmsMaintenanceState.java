@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "tms_maintenanceState", uniqueConstraints = @UniqueConstraint(columnNames = {"tms_maintenanceStateId"}))
@@ -40,7 +41,7 @@ public class TmsMaintenanceState implements java.io.Serializable {
 
     private TmsTypeMaintenance tmsMaintenanceStateType;
 
-    private TmsMaintenancePlan tmsMaintenanceStatePlan;
+    private Set<TmsMaintenancePlan> tmsMaintenanceStatePlans;
 
     public TmsMaintenanceState() {
     }
@@ -141,12 +142,12 @@ public class TmsMaintenanceState implements java.io.Serializable {
         this.tmsMaintenanceStateType = tmsMaintenanceStateType;
     }
 
-    @ManyToOne
-    public TmsMaintenancePlan getTmsMaintenanceStatePlan() {
-        return tmsMaintenanceStatePlan;
+    @OneToMany(mappedBy = "tmsMaintenanceState")
+    public Set<TmsMaintenancePlan> getTmsMaintenanceStatePlans() {
+        return tmsMaintenanceStatePlans;
     }
 
-    public void setTmsMaintenanceStatePlan(TmsMaintenancePlan tmsMaintenanceStatePlan) {
-        this.tmsMaintenanceStatePlan = tmsMaintenanceStatePlan;
+    public void setTmsMaintenanceStatePlans(Set<TmsMaintenancePlan> tmsMaintenanceStatePlans) {
+        this.tmsMaintenanceStatePlans = tmsMaintenanceStatePlans;
     }
 }

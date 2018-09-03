@@ -8,12 +8,11 @@ import com.bagile.tms.dto.User;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.Set;
 
 public class MaintenanceState {
 
     private long id;
-
-    private Vehicle vehicle;
 
     private String code;
 
@@ -33,20 +32,14 @@ public class MaintenanceState {
 
     private TypeMaintenance typeMaintenance;
 
+    private Set<MaintenancePlan> maintenancePlans;
+
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public Vehicle getVehicle() {
-        return vehicle;
-    }
-
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
     }
 
     public String getCode() {
@@ -119,5 +112,13 @@ public class MaintenanceState {
 
     public void setTypeMaintenance(TypeMaintenance typeMaintenance) {
         this.typeMaintenance = typeMaintenance;
+    }
+
+    public Set<MaintenancePlan> getMaintenancePlans() {
+        return maintenancePlans;
+    }
+
+    public void setMaintenancePlans(Set<MaintenancePlan> maintenancePlans) {
+        this.maintenancePlans = maintenancePlans;
     }
 }

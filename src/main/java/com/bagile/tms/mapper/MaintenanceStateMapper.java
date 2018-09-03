@@ -18,7 +18,6 @@ public class MaintenanceStateMapper {
         map = new HashMap<>();
         map.put("id","idMaintenanceState");
         map.put("state","tmsMaintenanceState");
-        map.put("vehicle","tmsMaintenanceStateVehicle");
         map.put("code","tmsMaintenanceStateCode");
         map.put("descriptif","tmsMaintenanceStateDescriptif");
         map.put("date","tmsMaintenanceStateDate");
@@ -27,6 +26,7 @@ public class MaintenanceStateMapper {
         map.put("creationUser","tmsMaintenanceStateCreationUser");
         map.put("upDateDate","tmsMaintenanceStateUpDateDate");
         map.put("type","tmsMaintenanceStateType");
+        map.put("maintenancePlan","tmsMaintenancePlans");
     }
 
     public static String getField(String key) {
@@ -47,6 +47,7 @@ public class MaintenanceStateMapper {
             state.setCreationDate(tmsState.getTmsMaintenanceStateCreationDate());
             state.setCreationUser(UserMapper.toDto(tmsState.getTmsMaintenanceStateCreationUser(),true));
             state.setTypeMaintenance(TypeMaintenanceMapper.toDto(tmsState.getTmsMaintenanceStateType()));
+            state.setMaintenancePlans(MaintenancePlanMapper.toDtos(tmsState.getTmsMaintenanceStatePlans(),true));
             state.setUpDateDate(tmsState.getTmsMaintenanceStateUpDateDate());
         }
         return state;
@@ -67,6 +68,7 @@ public class MaintenanceStateMapper {
             tmsState.setTmsMaintenanceStateCreationUser(UserMapper.toEntity(state.getCreationUser(),true));
             tmsState.setTmsMaintenanceStateType(TypeMaintenanceMapper.toEntity(state.getTypeMaintenance()));
             tmsState.setTmsMaintenanceStateUpDateDate(state.getUpDateDate());
+            tmsState.setTmsMaintenanceStatePlans(MaintenancePlanMapper.toEntities(state.getMaintenancePlans(),true));
         }
         return tmsState;
     }
