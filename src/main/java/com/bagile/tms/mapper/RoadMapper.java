@@ -52,9 +52,9 @@ public class RoadMapper {
         tmsRoad.setTmsRoadCost(road.getCost());
         tmsRoad.setTmsRoadDistance(road.getDistance());
         tmsRoad.setTmsRoadUpDateDate(road.getUpDateDate());
+        tmsRoad.setTmsRoadDriver(road.getDriver());
+        tmsRoad.setTmsRoadAdjunct(road.getAdjunct());
         if (!lazy) {
-            tmsRoad.setTmsRoadDriver(DriverMapper.toEntity(road.getDriver(),true));
-            tmsRoad.setTmsRoadAdjunct(DriverMapper.toEntity(road.getAdjunct(),true));
             tmsRoad.setTmsRoadDate(road.getDate());
             tmsRoad.setTmsRoadRoadState(RoadStateMapper.toEntity(road.getState(),true));
             tmsRoad.setTmsRoadSaleOrder(SaleOrderMapper.toEntity(road.getSaleOrder(),true));
@@ -77,9 +77,9 @@ public class RoadMapper {
         road.setCost(tmsRoad.getTmsRoadCost());
         road.setDistance(tmsRoad.getTmsRoadDistance());
         road.setUpDateDate(tmsRoad.getTmsRoadUpDateDate());
+        road.setDriver(tmsRoad.getTmsRoadDriver());
+        road.setAdjunct(tmsRoad.getTmsRoadAdjunct());
         if (!lazy) {
-            road.setDriver(DriverMapper.toDto(tmsRoad.getTmsRoadDriver(),true));
-            road.setAdjunct(DriverMapper.toDto(tmsRoad.getTmsRoadAdjunct(),true));
             road.setDate(tmsRoad.getTmsRoadDate());
             road.setState(RoadStateMapper.toDto(tmsRoad.getTmsRoadRoadState(),true));
             road.setSaleOrder(SaleOrderMapper.toDto(tmsRoad.getTmsRoadSaleOrder(),true));
