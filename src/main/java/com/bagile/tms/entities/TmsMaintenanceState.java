@@ -142,7 +142,7 @@ public class TmsMaintenanceState implements java.io.Serializable {
         this.tmsMaintenanceStateType = tmsMaintenanceStateType;
     }
 
-    @OneToMany(mappedBy = "tmsMaintenanceState")
+    @OneToMany(mappedBy = "tmsMaintenancePlanState")
     public Set<TmsMaintenancePlan> getTmsMaintenanceStatePlans() {
         return tmsMaintenanceStatePlans;
     }

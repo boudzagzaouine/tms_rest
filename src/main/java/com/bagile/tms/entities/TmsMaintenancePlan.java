@@ -92,8 +92,8 @@ public class TmsMaintenancePlan implements java.io.Serializable{
         this.tmsMaintenancePlanDate = tmsMaintenancePlanDate;
     }
 
-    //@OneToMany(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "tms_maintenanceplanstateid")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_maintenanceplanstateid")
     public TmsMaintenanceState getTmsMaintenancePlanState() {
         return tmsMaintenancePlanState;
     }

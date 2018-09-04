@@ -24,7 +24,7 @@ public class MaintenancePlan implements Serializable {
 
     private Date creationDate;
 
-    private UsrUser creationUser;
+    private User creationUser;
 
     private Date upDateDate;
 
@@ -94,11 +94,11 @@ public class MaintenancePlan implements Serializable {
         this.creationDate = creationDate;
     }
 
-    public UsrUser getCreationUser() {
+    public User getCreationUser() {
         return creationUser;
     }
 
-    public void setCreationUser(UsrUser creationUser) {
+    public void setCreationUser(User creationUser) {
         this.creationUser = creationUser;
     }
 
