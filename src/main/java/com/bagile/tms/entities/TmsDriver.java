@@ -124,7 +124,7 @@ public class TmsDriver implements java.io.Serializable {
         this.tmsDriverCommission = tmsDriverCommission;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY,cascade ={CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH,CascadeType.PERSIST })
     @JoinColumn(name = "tms_drivercontactid")
     public PrmContact getTmsDrivercontact() {
         return tmsDrivercontact;
