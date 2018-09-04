@@ -6,7 +6,7 @@ public class Vehicle {
 
     private long id;
     private String registrationNumber;
-    private Badge badge;
+    private BadgeType badgeType;
     private String code;
     private Date technicalVisit;
 
@@ -33,12 +33,12 @@ public class Vehicle {
         this.registrationNumber = registrationNumber;
     }
 
-    public Badge getBadge() {
-        return badge;
+    public BadgeType getBadgeType() {
+        return badgeType;
     }
 
-    public void setBadge(Badge badge) {
-        this.badge = badge;
+    public void setBadgeType(BadgeType badge) {
+        this.badgeType = badge;
     }
 
     public String getCode() {

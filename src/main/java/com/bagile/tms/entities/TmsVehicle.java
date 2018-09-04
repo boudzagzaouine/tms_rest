@@ -16,7 +16,7 @@ public class TmsVehicle implements Serializable {
     private String tmsVehicleRegistrationNumber;
     @Size(max = 30)
     @NotNull
-    private TmsBadge tmsVehicleBadge;
+    private TmsBadgeType tmsVehicleBadgeType;
 
     private String tmsVehicleCode;
 
@@ -59,13 +59,13 @@ public class TmsVehicle implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_vehiclebadgeid", unique = true, nullable = false)
-    public TmsBadge getTmsVehicleBadge() {
-        return tmsVehicleBadge;
+    @JoinColumn(name = "tms_vehiclebadgetype", unique = true, nullable = false)
+    public TmsBadgeType getTmsVehicleBadgeType() {
+        return tmsVehicleBadgeType;
     }
 
-    public void setTmsVehicleBadge(TmsBadge tmsVehicleBadge) {
-        this.tmsVehicleBadge = tmsVehicleBadge;
+    public void setTmsVehicleBadgeType(TmsBadgeType tmsVehicleBadgeType) {
+        this.tmsVehicleBadgeType = tmsVehicleBadgeType;
     }
 
     @Column(name = "tms_vehiclecode", unique = true, nullable = false)

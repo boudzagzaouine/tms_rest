@@ -15,7 +15,7 @@ public class VehicleMapper {
 
         map.put("id", "tmsVehicleId");
         map.put("registrationNumber", "tmsVehicleRegistrationNumber");
-        map.put("badge", "tmsVehicleBadge");
+        map.put("badgeType", "tmsVehicleBadgeType");
         map.put("code", "tmsVehicleCode");
         map.put("technicalVisit", "tmsVehicleTechnicalVisit");
         map.put("category", "tmsVehicleCategory");
@@ -43,7 +43,7 @@ public class VehicleMapper {
         tmsVehicle.setTmsVehicleTechnicalVisit(vehicle.getTechnicalVisit());
 
         if (!lazy) {
-            tmsVehicle.setTmsVehicleBadge(BadgeMapper.toEntity(vehicle.getBadge(),lazy));
+            tmsVehicle.setTmsVehicleBadgeType(BadgeTypeMapper.toEntity(vehicle.getBadgeType(),lazy));
             tmsVehicle.setTmsVehicleCategory(VehicleCategoryMapper.toEntity(vehicle.getVehicleCategory(),lazy));
             tmsVehicle.setTmsVehicleDrivingLicence(TrafficMapper.toEntity(vehicle.getDrivingLicence(),lazy));
             tmsVehicle.setTmsVehicleCreationDate(vehicle.getCreationDate());
@@ -65,7 +65,7 @@ public class VehicleMapper {
         vehicle.setTechnicalVisit(tmsVehicle.getTmsVehicleTechnicalVisit());
 
         if (!lazy) {
-            vehicle.setBadge(BadgeMapper.toDto(tmsVehicle.getTmsVehicleBadge(),lazy));
+            vehicle.setBadgeType(BadgeTypeMapper.toDto(tmsVehicle.getTmsVehicleBadgeType(),lazy));
             vehicle.setVehicleCategory(VehicleCategoryMapper.toDto(tmsVehicle.getTmsVehicleCategory(),lazy));
             vehicle.setDrivingLicence(TrafficMapper.toDto(tmsVehicle.getTmsVehicleDrivingLicence(),lazy));
             vehicle.setCreationDate(tmsVehicle.getTmsVehicleCreationDate());
