@@ -47,12 +47,12 @@ public class MaintenancePlanMapper {
         tmsMaintenancePlan.setTmsMaintenancePlanTitle(maintenancePlan.getTitle());
         tmsMaintenancePlan.setTmsMaintenanceCreationDate(maintenancePlan.getCreationDate());
         tmsMaintenancePlan.setTmsMaintenancePlanDate(maintenancePlan.getDate());
-        tmsMaintenancePlan.setTmsMaintenancePlanVehicleId(maintenancePlan.getVehicle());
             tmsMaintenancePlan.setTmsMaintenanceUpDateDate(maintenancePlan.getUpDateDate());
         if (!lazy) {
             tmsMaintenancePlan.setTmsMaintenanceCreationUser(UserMapper.toEntity( maintenancePlan.getCreationUser(),true));
             tmsMaintenancePlan.setTmsMaintenancePlanState(MaintenanceStateMapper.toEntity(maintenancePlan.getState(), true));
             // tmsMaintenancePlan.setTmsMaintenancePlanActes(ActeMapper.toEntities(maintenancePlan.getActes(),true));
+            tmsMaintenancePlan.setTmsMaintenancePlanVehicle(VehicleMapper.toEntity(maintenancePlan.getVehicle(),true));
         }
         return tmsMaintenancePlan;
     }
@@ -68,12 +68,12 @@ public class MaintenancePlanMapper {
         maintenancePlan.setCreationDate(tmsMaintenancePlan.getTmsMaintenanceCreationDate());
         maintenancePlan.setDate(tmsMaintenancePlan.getTmsMaintenancePlanDate());
         maintenancePlan.setTitle(tmsMaintenancePlan.getTmsMaintenancePlanTitle());
-        maintenancePlan.setVehicle(tmsMaintenancePlan.getTmsMaintenancePlanVehicleId());
         maintenancePlan.setUpDateDate(tmsMaintenancePlan.getTmsMaintenanceUpDateDate());
         if (!lazy) {
             maintenancePlan.setCreationUser(UserMapper.toDto(tmsMaintenancePlan.getTmsMaintenanceCreationUser(), true));
             maintenancePlan.setState(MaintenanceStateMapper.toDto(tmsMaintenancePlan.getTmsMaintenancePlanState(), true));
             //maintenancePlan.setActes(ActeMapper.toDtos(tmsMaintenancePlan.getTmsMaintenancePlanActes(),true));
+            maintenancePlan.setVehicle(VehicleMapper.toDto(tmsMaintenancePlan.getTmsMaintenancePlanVehicle(),true));
         }
 
         return maintenancePlan;

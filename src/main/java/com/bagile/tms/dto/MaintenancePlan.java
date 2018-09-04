@@ -14,7 +14,6 @@ import java.util.Set;
 public class MaintenancePlan implements Serializable {
 
     private long id;
-    private long vehicleId;
     private String code;
     private String descriptif;
 
@@ -22,6 +21,7 @@ public class MaintenancePlan implements Serializable {
     private MaintenanceState state;
     private String title;
 
+    private Vehicle vehicle;
     private Date creationDate;
 
     private User creationUser;
@@ -38,12 +38,12 @@ public class MaintenancePlan implements Serializable {
         this.id = id;
     }
 
-    public long getVehicle() {
-        return vehicleId;
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
-    public void setVehicle(long vehicle) {
-        this.vehicleId = vehicle;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
     public String getCode() {
