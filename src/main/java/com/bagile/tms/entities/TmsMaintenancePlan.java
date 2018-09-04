@@ -109,7 +109,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "tms_maintenanceplandate" )
+    @Column(name = "tms_maintenanceplancreationdate" )
     public Date getTmsMaintenanceCreationDate() {
         return tmsMaintenanceCreationDate;
     }
