@@ -27,10 +27,11 @@ public class TmsRoad implements Serializable {
     @NotNull
     private BigDecimal tmsRoadDistance;
 
-    private long tmsRoadDriver;
-    
     @NotNull
-    private long tmsRoadAdjunct;
+    private TmsDriver tmsRoadDriver;
+    
+
+    private TmsDriver tmsRoadAdjunct;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date tmsRoadDate;
@@ -108,23 +109,21 @@ public class TmsRoad implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_roaddriverid")
-
-    public long getTmsRoadDriver() {
+    @JoinColumn(name = "tms_roaddriver")
+    public TmsDriver getTmsRoadDriver() {
         return tmsRoadDriver;
     }
 
-    public void setTmsRoadDriver(long tmsRoadDriver) {
+    public void setTmsRoadDriver(TmsDriver tmsRoadDriver) {
         this.tmsRoadDriver = tmsRoadDriver;
     }
 
-    //@OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_roadadjunctid")
-    public long getTmsRoadAdjunct() {
+    @JoinColumn(name = "tms_roadadjunct")
+    public TmsDriver getTmsRoadAdjunct() {
         return tmsRoadAdjunct;
     }
 
-    public void setTmsRoadAdjunct(long tmsRoadAdjunct) {
+    public void setTmsRoadAdjunct(TmsDriver tmsRoadAdjunct) {
         this.tmsRoadAdjunct = tmsRoadAdjunct;
     }
 

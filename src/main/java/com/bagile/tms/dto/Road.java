@@ -17,9 +17,9 @@ public class Road implements Serializable {
 
     private BigDecimal distance;
 
-    private long driver;
+    private Driver driver;
 
-    private long adjunct;
+    private Driver adjunct;
 
     private Date date;
 
@@ -75,19 +75,19 @@ public class Road implements Serializable {
         this.distance = distance;
     }
 
-    public long getDriver() {
+    public Driver getDriver() {
         return driver;
     }
 
-    public void setDriver(long driver) {
+    public void setDriver(Driver driver) {
         this.driver = driver;
     }
 
-    public long getAdjunct() {
+    public Driver getAdjunct() {
         return adjunct;
     }
 
-    public void setAdjunct(long adjunct) {
+    public void setAdjunct(Driver adjunct) {
         this.adjunct = adjunct;
     }
 

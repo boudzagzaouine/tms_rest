@@ -5,9 +5,6 @@ import com.bagile.tms.entities.TmsRoad;
 
 import java.util.*;
 
-/**
- * Created by bouzi on 3/22/2017.
- */
 public class RoadMapper {
     public RoadMapper() {
     }
@@ -52,16 +49,16 @@ public class RoadMapper {
         tmsRoad.setTmsRoadCost(road.getCost());
         tmsRoad.setTmsRoadDistance(road.getDistance());
         tmsRoad.setTmsRoadUpDateDate(road.getUpDateDate());
-        tmsRoad.setTmsRoadDriver(road.getDriver());
-        tmsRoad.setTmsRoadAdjunct(road.getAdjunct());
+        tmsRoad.setTmsRoadCreationDate(road.getCreationDate());
         if (!lazy) {
             tmsRoad.setTmsRoadDate(road.getDate());
             tmsRoad.setTmsRoadRoadState(RoadStateMapper.toEntity(road.getState(),true));
             tmsRoad.setTmsRoadSaleOrder(SaleOrderMapper.toEntity(road.getSaleOrder(),true));
             tmsRoad.setTmsRoadStockAddresses(AddressMapper.toEntities(road.getStockAddresses(),true));
             tmsRoad.setTmsRoadVehicle(VehicleMapper.toEntity(road.getVehicle(),true));
-            tmsRoad.setTmsRoadCreationDate(road.getCreationDate());
             tmsRoad.setTmsRoadCreationUser(UserMapper.toEntity(road.getCreationUser(),true));
+            tmsRoad.setTmsRoadDriver(DriverMapper.toEntity(road.getDriver(),true));
+            tmsRoad.setTmsRoadAdjunct(DriverMapper.toEntity(road.getAdjunct(),true));
 
         }
         return tmsRoad;
@@ -77,8 +74,6 @@ public class RoadMapper {
         road.setCost(tmsRoad.getTmsRoadCost());
         road.setDistance(tmsRoad.getTmsRoadDistance());
         road.setUpDateDate(tmsRoad.getTmsRoadUpDateDate());
-        road.setDriver(tmsRoad.getTmsRoadDriver());
-        road.setAdjunct(tmsRoad.getTmsRoadAdjunct());
         if (!lazy) {
             road.setDate(tmsRoad.getTmsRoadDate());
             road.setState(RoadStateMapper.toDto(tmsRoad.getTmsRoadRoadState(),true));
@@ -87,6 +82,8 @@ public class RoadMapper {
             road.setVehicle(VehicleMapper.toDto(tmsRoad.getTmsRoadVehicle(),true));
             road.setCreationDate(tmsRoad.getTmsRoadCreationDate());
             road.setCreationUser(UserMapper.toDto(tmsRoad.getTmsRoadCreationUser(),true));
+            road.setDriver(DriverMapper.toDto(tmsRoad.getTmsRoadDriver(),true));
+            road.setAdjunct(DriverMapper.toDto(tmsRoad.getTmsRoadAdjunct(),true));
         }
         return road;
     }
