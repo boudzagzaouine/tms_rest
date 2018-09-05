@@ -96,7 +96,7 @@ public class TmsVehicle implements Serializable {
         this.tmsVehicleCategory = tmsVehicleCategory;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "tms_vehicledrivinglicenceid")
     public TmsTraffic getTmsVehicleDrivingLicence() {
         return tmsVehicleDrivingLicence;
