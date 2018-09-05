@@ -71,8 +71,7 @@ public class TmsVehicleCategory {
     }
 
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "tms_vehiclecategorydoorid")
+    @Column(name = "tms_vehiclecategorydoor")
     public String getTmsVehicleCategoryDoor() {
         return tmsVehicleCategoryDoor;
     }
