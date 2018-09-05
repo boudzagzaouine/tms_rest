@@ -13,7 +13,7 @@ public class TmsVehicleCategory {
     private BigDecimal tmsVehicleCategoryConsumption;
     private BigDecimal tmsVehicleCategoryWeight;
     private BigDecimal tmsVehicleCategoryWidth;
-    private TmsDoorType tmsVehicleCategoryDoor;
+    private String tmsVehicleCategoryDoor;
     private BigDecimal tmsVehicleCategoryDepth;
     private BigDecimal tmsVehicleCategoryTonnage;
     private BigDecimal tmsVehicleCategoryEmptyWeight;
@@ -73,11 +73,11 @@ public class TmsVehicleCategory {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "tms_vehiclecategorydoorid")
-    public TmsDoorType getTmsVehicleCategoryDoor() {
+    public String getTmsVehicleCategoryDoor() {
         return tmsVehicleCategoryDoor;
     }
 
-    public void setTmsVehicleCategoryDoor(TmsDoorType tmsVehicleCategoryDoor) {
+    public void setTmsVehicleCategoryDoor(String tmsVehicleCategoryDoor) {
         this.tmsVehicleCategoryDoor = tmsVehicleCategoryDoor;
     }
 

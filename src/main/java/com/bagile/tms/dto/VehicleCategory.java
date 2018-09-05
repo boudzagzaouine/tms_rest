@@ -8,7 +8,7 @@ public class VehicleCategory {
     private BigDecimal consumption;
     private BigDecimal weight;
     private BigDecimal width;
-    private DoorType door;
+    private String door;
     private BigDecimal depth;
     private BigDecimal tonnage;
     private BigDecimal emptyWeight;
@@ -54,11 +54,11 @@ public class VehicleCategory {
         this.width = width;
     }
 
-    public DoorType getDoor() {
+    public String getDoor() {
         return door;
     }
 
-    public void setDoor(DoorType door) {
+    public void setDoor(String door) {
         this.door = door;
     }
 
