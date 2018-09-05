@@ -46,8 +46,8 @@ public class VehicleCategoryMapper {
         tmsVehicleCategory.setTmsVehicleCategoryTonnage(VehicleCategory.getTonnage());
         tmsVehicleCategory.setTmsVehicleCategoryEmptyWeight(VehicleCategory.getEmptyWeight());
         tmsVehicleCategory.setTmsVehicleCategoryTotalWeight(VehicleCategory.getTotalWeight());
+        tmsVehicleCategory.setTmsVehicleCategoryDoor(VehicleCategory.getDoor());
         if (!lazy) {
-            tmsVehicleCategory.setTmsVehicleCategoryDoor(DoorTypeMapper.toEntity(VehicleCategory.getDoor(),true));
         }
         return tmsVehicleCategory;
     }
@@ -66,9 +66,9 @@ public class VehicleCategoryMapper {
         vehicleCategory.setTonnage(tmsVehicleCategory.getTmsVehicleCategoryTonnage());
         vehicleCategory.setTotalWeight(tmsVehicleCategory.getTmsVehicleCategoryTotalWeight());
         vehicleCategory.setEmptyWeight(tmsVehicleCategory.getTmsVehicleCategoryEmptyWeight());
+        vehicleCategory.setDoor(tmsVehicleCategory.getTmsVehicleCategoryDoor());
 
         if (!lazy) {
-            vehicleCategory.setDoor(DoorTypeMapper.toDto(tmsVehicleCategory.getTmsVehicleCategoryDoor(),true));
         }
         return vehicleCategory;
     }
