@@ -60,8 +60,16 @@ public class DriverMapper {
             tmsDriver.setTmsDriverCreationUser(UserMapper.toEntity(driver.getCreationUser(),true));
             tmsDriver.setTmsDriverBadges(BadgeMapper.toEntities(driver.getBadges(),true));
             tmsDriver.setTmsDriverWorkArea(ZoneMapper.toEntity(driver.getWorkArea(),true));
+            oneToMany(tmsDriver);
         }
         return tmsDriver;
+    }
+    private static void oneToMany(TmsDriver tmsDriver){
+        if(null!=tmsDriver.getTmsDriverBadges())
+        {
+            tmsDriver.getTmsDriverBadges().forEach(tmsBadge -> tmsBadge.setTmsDriver(tmsDriver));
+        }
+
     }
 
     public static Driver toDto(TmsDriver tmsDriver, boolean lazy) {
