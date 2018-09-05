@@ -23,7 +23,7 @@ public class SaleOrderController {
     private SaleOrderService saleOrderService;
     @Autowired
 
-    @PreAuthorize("hasAnyRole('SALE_ORDER_VIEW','DELIVERY_VIEW')")
+    //@PreAuthorize("hasAnyRole('SALE_ORDER_VIEW','DELIVERY_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
     public List<SaleOrder> getSaleOrders() throws AttributesNotFound, ErrorType {
@@ -32,7 +32,7 @@ public class SaleOrderController {
         //return saleOrderService.findAll();
     }
 
-    @PreAuthorize("hasAnyRole('SALE_ORDER_VIEW','DELIVERY_VIEW')")
+    //@PreAuthorize("hasAnyRole('SALE_ORDER_VIEW','DELIVERY_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<SaleOrder> getSaleOrders(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
@@ -41,7 +41,7 @@ public class SaleOrderController {
         //return saleOrderService.findAll(pageable);
     }
 
-    @PreAuthorize("hasAnyRole('SALE_ORDER_VIEW','DELIVERY_VIEW')")
+    //@PreAuthorize("hasAnyRole('SALE_ORDER_VIEW','DELIVERY_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
     public Long size() throws AttributesNotFound, ErrorType {
@@ -49,7 +49,7 @@ public class SaleOrderController {
         return saleOrderService.size();
     }
 
-    @PreAuthorize("hasAnyRole('SALE_ORDER_VIEW','DELIVERY_VIEW')")
+    //@PreAuthorize("hasAnyRole('SALE_ORDER_VIEW','DELIVERY_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
@@ -57,21 +57,21 @@ public class SaleOrderController {
         return saleOrderService.size(search );
     }
 
-    @PreAuthorize("hasAnyRole('SALE_ORDER_VIEW','DELIVERY_VIEW')")
+    //@PreAuthorize("hasAnyRole('SALE_ORDER_VIEW','DELIVERY_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
         return saleOrderService.isExist(id);
     }
 
-    @PreAuthorize("hasAnyRole('SALE_ORDER_VIEW','DELIVERY_VIEW')")
+    //@PreAuthorize("hasAnyRole('SALE_ORDER_VIEW','DELIVERY_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
     public SaleOrder getSaleOrder(@PathVariable("id") Long id) throws IdNotFound {
         return saleOrderService.findById(id);
     }
 
-    @PreAuthorize("hasAnyRole('SALE_ORDER_VIEW','DELIVERY_VIEW')")
+    //@PreAuthorize("hasAnyRole('SALE_ORDER_VIEW','DELIVERY_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
     public List<SaleOrder> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
@@ -87,7 +87,7 @@ public class SaleOrderController {
         }
     }
 
-    @PreAuthorize("hasAnyRole('SALE_ORDER_VIEW','DELIVERY_VIEW')")
+    //@PreAuthorize("hasAnyRole('SALE_ORDER_VIEW','DELIVERY_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<SaleOrder> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
@@ -98,21 +98,21 @@ public class SaleOrderController {
         return saleOrderService.find(search  , page, size);
     }
 
-    @PreAuthorize("hasRole('SALE_ORDER_CREATE')")
+    //@PreAuthorize("hasRole('SALE_ORDER_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public SaleOrder add(@RequestBody SaleOrder saleOrder) throws IdNotFound {
         return saleOrderService.save(saleOrder);
     }
 
-    @PreAuthorize("hasRole('SALE_ORDER_EDIT')")
+    //@PreAuthorize("hasRole('SALE_ORDER_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public SaleOrder set(@RequestBody SaleOrder saleOrder) throws IdNotFound {
         return saleOrderService.save(saleOrder);
     }
 
-    @PreAuthorize("hasRole('SALE_ORDER_DELETE')")
+    //@PreAuthorize("hasRole('SALE_ORDER_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@RequestBody SaleOrder saleOrder) {
@@ -120,14 +120,14 @@ public class SaleOrderController {
         saleOrderService.delete(saleOrder);
     }
 
-    @PreAuthorize("hasRole('SALE_ORDER_DELETE')")
+    //@PreAuthorize("hasRole('SALE_ORDER_DELETE')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@PathVariable Long id) {
         saleOrderService.delete(id);
     }
 
-    @PreAuthorize("hasRole('SALE_ORDER_CREATE')")
+    //@PreAuthorize("hasRole('SALE_ORDER_CREATE')")
     @RequestMapping(method = RequestMethod.GET, value = "/nextval")
     @ResponseBody
     public String nextVal() {

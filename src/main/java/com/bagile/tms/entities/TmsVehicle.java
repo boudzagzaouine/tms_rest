@@ -14,7 +14,6 @@ public class TmsVehicle implements Serializable {
     private long tmsVehicleId;
     @NotNull
     private String tmsVehicleRegistrationNumber;
-    @Size(max = 30)
     @NotNull
     private TmsBadgeType tmsVehicleBadgeType;
 
