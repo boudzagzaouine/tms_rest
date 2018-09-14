@@ -102,6 +102,7 @@ public class SaleOrderMapper {
 
         if (!lazy) {
             saleOrder.setLines(SaleOrderLineMapper.toDtos(cmdSaleOrder.getCmdSaleOrderLines(), false));
+            saleOrder.setRoad(RoadMapper.toDto(cmdSaleOrder.getTmsRoad(), false));
             saleOrder.setAccount(AccountMapper.toDto(cmdSaleOrder.getCmdAccount(), true));
             saleOrder.setOrderStatus(OrderStatusMapper.toDto(cmdSaleOrder.getPrmOrderStatus(), true));
             saleOrder.setOrderType(OrderTypeMapper.toDto(cmdSaleOrder.getPrmOrderType(), true));
@@ -151,6 +152,7 @@ public class SaleOrderMapper {
         if (!lazy) {
             cmdSaleOrder.setCmdAccount(AccountMapper.toEntity(saleOrder.getAccount(), true));
             cmdSaleOrder.setCmdSaleOrderLines(SaleOrderLineMapper.toEntities(saleOrder.getLines(), false));
+            cmdSaleOrder.setTmsRoad(RoadMapper.toEntity(saleOrder.getRoad(), false));
             cmdSaleOrder.setAdrAddressByCmdSaleOrderDeliveryAddressId(AddressMapper.toEntity(saleOrder.getAddressBySaleOrderDeliveryAddress(), true));
             cmdSaleOrder.setAdrAddressByCmdSaleOrderInvoiceAddressId(AddressMapper.toEntity(saleOrder.getAddressBySaleOrderInvoiceAddress(), true));
             cmdSaleOrder.setOwnOwner(OwnerMapper.toEntity(saleOrder.getOwner(), true));

@@ -7,27 +7,26 @@ import java.util.Date;
 
 @Entity
 @Table(name = "tms_maintenanceplan", uniqueConstraints = @UniqueConstraint(columnNames = {"tms_maintenanceplancode"}))
-public class TmsMaintenancePlan implements java.io.Serializable{
+public class TmsMaintenancePlan implements java.io.Serializable {
 
     private long tmsMaintenancePlanId;
-    
+
     @NotNull
     private TmsVehicle tmsMaintenancePlanVehicle;
-    
+
     @NotNull
     private String tmsMaintenancePlanCode;
 
     private String tmsMaintenancePlanDescriptif;
 
     private Date tmsMaintenancePlanDate;
-    
+
 
     private TmsMaintenanceState tmsMaintenancePlanState;
-    
+
     @NotNull
     private String tmsMaintenancePlanTitle;
-    
-    @NotNull
+
     private Date tmsMaintenanceCreationDate;
 
     private UsrUser tmsMaintenanceCreationUser;
@@ -36,7 +35,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
 
     private TmsTypeMaintenance tmsMaintenanceTypeMaintenance;
 
-    public TmsMaintenancePlan(){
+    public TmsMaintenancePlan() {
 
     }
 
@@ -52,6 +51,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
         this.tmsMaintenancePlanId = tmsMaintenancePlanId;
     }
 
+    @ManyToOne
     @JoinColumn(name = "tms_vehicleid")
     public TmsVehicle getTmsMaintenancePlanVehicle() {
         return tmsMaintenancePlanVehicle;
@@ -109,7 +109,7 @@ public class TmsMaintenancePlan implements java.io.Serializable{
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "tms_maintenanceplancreationdate" )
+    @Column(name = "tms_maintenanceplancreationdate")
     public Date getTmsMaintenanceCreationDate() {
         return tmsMaintenanceCreationDate;
     }

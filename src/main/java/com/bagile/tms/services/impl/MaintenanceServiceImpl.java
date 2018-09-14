@@ -8,6 +8,7 @@ import com.bagile.tms.exceptions.IdNotFound;
 import com.bagile.tms.mapper.MaintenancePlanMapper;
 import com.bagile.tms.repositories.MaintenancePlanRepository;
 import com.bagile.tms.services.MaintenanceService;
+import com.bagile.tms.util.EmsDate;
 import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,11 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     @Override
     public MaintenancePlan save(MaintenancePlan maintenancePlan) {
         LOGGER.info("save Maintenance");
+        maintenancePlan.setUpDateDate(EmsDate.getDateNow());
+        if(0>=maintenancePlan.getId())
+        {
+            maintenancePlan.setCreationDate(EmsDate.getDateNow());
+        }
         return MaintenancePlanMapper.toDto(maintenancePlanRepository.saveAndFlush(MaintenancePlanMapper.toEntity(maintenancePlan, false)), false);
     }
 

@@ -48,6 +48,7 @@ public class SaleOrder implements Serializable {
     private Boolean active;
     private Warehouse warehouse;
     private Warehouse warehouseDestination;
+    private Road road;
 
     public long getId() {
         return id;
@@ -327,6 +328,14 @@ public class SaleOrder implements Serializable {
 
     public void setWarehouse(Warehouse warehouse) {
         this.warehouse = warehouse;
+    }
+
+    public Road getRoad() {
+        return road;
+    }
+
+    public void setRoad(Road road) {
+        this.road = road;
     }
 
     @Override

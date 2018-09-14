@@ -23,7 +23,7 @@ public class RoadMapper {
         map.put("adjunct", "tmsRoadAdjunct");
         map.put("date", "tmsRoadDate");
         map.put("state", "tmsRoadState");
-        map.put("saleOrder", "tmsRoadSaleOrder");
+        map.put("saleOrders", "tmsRoadSaleOrders");
         map.put("stockAddress", "tmsRoadStockAddress");
         map.put("creationDate", "tmsRoadCreationDate");
         map.put("creationUser", "tmsRoadCreationUser");
@@ -53,7 +53,7 @@ public class RoadMapper {
         if (!lazy) {
             tmsRoad.setTmsRoadDate(road.getDate());
             tmsRoad.setTmsRoadRoadState(RoadStateMapper.toEntity(road.getState(),true));
-            tmsRoad.setTmsRoadSaleOrder(SaleOrderMapper.toEntity(road.getSaleOrder(),true));
+            tmsRoad.setTmsRoadSaleOrders(SaleOrderMapper.toEntities(road.getSaleOrders(),true));
             tmsRoad.setTmsRoadStockAddresses(AddressMapper.toEntities(road.getStockAddresses(),true));
             tmsRoad.setTmsRoadVehicle(VehicleMapper.toEntity(road.getVehicle(),true));
             tmsRoad.setTmsRoadCreationUser(UserMapper.toEntity(road.getCreationUser(),true));
@@ -77,7 +77,7 @@ public class RoadMapper {
         if (!lazy) {
             road.setDate(tmsRoad.getTmsRoadDate());
             road.setState(RoadStateMapper.toDto(tmsRoad.getTmsRoadRoadState(),true));
-            road.setSaleOrder(SaleOrderMapper.toDto(tmsRoad.getTmsRoadSaleOrder(),true));
+            road.setSaleOrders(SaleOrderMapper.toDtos(tmsRoad.getTmsRoadSaleOrders(),true));
             road.setStockAddresses(AddressMapper.toDtos(tmsRoad.getTmsRoadStockAddresses(),true));
             road.setVehicle(VehicleMapper.toDto(tmsRoad.getTmsRoadVehicle(),true));
             road.setCreationDate(tmsRoad.getTmsRoadCreationDate());

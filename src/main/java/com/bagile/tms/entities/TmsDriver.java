@@ -19,6 +19,7 @@ public class TmsDriver implements java.io.Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date tmsDriverBirthDate;
     private boolean tmsDriverWorking;
+    private TmsVacation tmsDriverVacation;
 
     //private TmsBadge tmsDriverbadge;
     private Set<TmsBadge> tmsDriverBadges;
@@ -78,6 +79,7 @@ public class TmsDriver implements java.io.Serializable {
         this.tmsDriverBirthDate = tmsDriverBirthDate;
     }
 
+
     @OneToMany(mappedBy = "tmsDriver")
     public Set<TmsBadge> getTmsDriverBadges() {
         return tmsDriverBadges;
@@ -103,6 +105,16 @@ public class TmsDriver implements java.io.Serializable {
 
     public void setTmsDriverWorking(boolean tmsDriverWorking) {
         this.tmsDriverWorking = tmsDriverWorking;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_drivervacation")
+    public TmsVacation getTmsDriverVacation() {
+        return tmsDriverVacation;
+    }
+
+    public void setTmsDriverVacation(TmsVacation tmsDriverVacation) {
+        this.tmsDriverVacation = tmsDriverVacation;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)

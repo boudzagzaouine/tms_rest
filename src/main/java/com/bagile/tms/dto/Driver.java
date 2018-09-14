@@ -25,6 +25,7 @@ public class Driver implements Serializable {
     private Date lastMedicalVisit;
     private Zone workArea;
     private BigDecimal commission;
+    private Vacation vacation;
     private Contact contact;
     private Date creationDate;
     private User creationUser;
@@ -102,6 +103,14 @@ public class Driver implements Serializable {
 
     public void setCommission(BigDecimal commission) {
         this.commission = commission;
+    }
+
+    public Vacation getVacation() {
+        return vacation;
+    }
+
+    public void setVacation(Vacation vacation) {
+        this.vacation = vacation;
     }
 
     public Contact getContact() {

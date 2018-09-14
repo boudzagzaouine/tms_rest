@@ -87,9 +87,7 @@ public class CmdSaleOrder implements Serializable {
     private String cmdSaleOrderVariable10;
     @Size(max = 20)
     private String cmdSaleOrderTransportTel;
-
-    @OneToMany(mappedBy = "tmsRoadSaleOrder")
-    private Set<TmsRoad> cmdSaleOrderRoads;
+    private TmsRoad tmsRoad;
 
 
     @NotNull
@@ -205,7 +203,6 @@ public class CmdSaleOrder implements Serializable {
     public void setPrmOrderType(PrmOrderType prmOrderType) {
         this.prmOrderType = prmOrderType;
     }
-
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -460,4 +457,13 @@ public class CmdSaleOrder implements Serializable {
         this.cmdSaleOrderActive = cmdSaleOrderActive;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cmd_saleorderroadid")
+    public TmsRoad getTmsRoad() {
+        return tmsRoad;
+    }
+
+    public void setTmsRoad(TmsRoad tmsRoad) {
+        this.tmsRoad = tmsRoad;
+    }
 }

@@ -40,7 +40,7 @@ public class TmsRoad implements Serializable {
     private TmsRoadState tmsRoadRoadState;
     
     @NotNull
-    private CmdSaleOrder tmsRoadSaleOrder;
+    private Set<CmdSaleOrder> tmsRoadSaleOrders;
     
     @NotNull
     private Set<AdrAddress> tmsRoadStockAddresses;
@@ -146,15 +146,17 @@ public class TmsRoad implements Serializable {
         this.tmsRoadRoadState = tmsRoadRoadState;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_roadsaleorderid")
-    public CmdSaleOrder getTmsRoadSaleOrder() {
-        return tmsRoadSaleOrder;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tmsRoad")
+    public Set<CmdSaleOrder> getTmsRoadSaleOrders() {
+        return tmsRoadSaleOrders;
     }
 
-    public void setTmsRoadSaleOrder(CmdSaleOrder tmsRoadSaleOrder) {
-        this.tmsRoadSaleOrder = tmsRoadSaleOrder;
+    public void setTmsRoadSaleOrders(Set<CmdSaleOrder> tmsRoadSaleOrders) {
+        this.tmsRoadSaleOrders = tmsRoadSaleOrders;
     }
+
+
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_roadvehicleid")

@@ -25,7 +25,7 @@ public class Road implements Serializable {
 
     private RoadState state;
 
-    private SaleOrder saleOrder;
+    private Set<SaleOrder> saleOrders;
 
     private Set<Address> stockAddresses;
 
@@ -107,12 +107,12 @@ public class Road implements Serializable {
         this.state = state;
     }
 
-    public SaleOrder getSaleOrder() {
-        return saleOrder;
+    public Set<SaleOrder> getSaleOrders() {
+        return saleOrders;
     }
 
-    public void setSaleOrder(SaleOrder saleOrder) {
-        this.saleOrder = saleOrder;
+    public void setSaleOrders(Set<SaleOrder> saleOrders) {
+        this.saleOrders = saleOrders;
     }
 
     public Set<Address> getStockAddresses() {
