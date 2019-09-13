@@ -1,38 +1,15 @@
 package com.bagile.tms.dto;
 
 import java.io.Serializable;
-import java.util.Date;
-
 
 public class Badge implements Serializable {
-    private String code;
+
     private long id;
-    private BadgeType type;
+    private String code;
+    private BadgeType badgetype;
     private Driver driver;
-    private Date date;
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public BadgeType getType() {
-        return type;
-    }
-
-    public void setType(BadgeType type) {
-        this.type = type;
+    public Badge() {
     }
 
     public Driver getDriver() {
@@ -43,12 +20,27 @@ public class Badge implements Serializable {
         this.driver = driver;
     }
 
-    public Date getDate() {
-        return date;
+    public BadgeType getBadgetype() {
+        return badgetype;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setBadgetype(BadgeType badgetype) {
+        this.badgetype = badgetype;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }
-

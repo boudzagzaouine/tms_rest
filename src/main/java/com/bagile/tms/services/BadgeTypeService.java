@@ -1,6 +1,5 @@
 package com.bagile.tms.services;
 
-import com.bagile.tms.dto.Badge;
 import com.bagile.tms.dto.BadgeType;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;

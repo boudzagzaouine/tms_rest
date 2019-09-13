@@ -1,22 +1,30 @@
 package com.bagile.tms.dto;
 
-public class BadgeType {
+import java.io.Serializable;
+
+public class BadgeType implements Serializable {
+
+
     private long id;
-    private String Code;
+    private String code;
+
+
+    public BadgeType() {
+    }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
     public String getCode() {
-        return Code;
+        return code;
     }
 
     public void setCode(String code) {
-        Code = code;
+        this.code = code;
     }
 }

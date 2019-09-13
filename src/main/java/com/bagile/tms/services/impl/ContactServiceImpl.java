@@ -1,14 +1,13 @@
 package com.bagile.tms.services.impl;
 
 import com.bagile.tms.dto.Contact;
-import com.bagile.tms.entities.PrmContact;
+import com.bagile.tms.entities.TmsContact;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
 import com.bagile.tms.mapper.ContactMapper;
 import com.bagile.tms.repositories.ContactRepository;
 import com.bagile.tms.services.ContactService;
-import com.bagile.tms.services.SettingService;
 import com.bagile.tms.util.EmsDate;
 import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
@@ -27,14 +26,14 @@ public class ContactServiceImpl implements ContactService {
     @Autowired
     private ContactRepository contactRepository;
     @Autowired
-    private SettingService settingService;
+   // private SettingService settingService;
     private final static Logger LOGGER = LoggerFactory
             .getLogger(ContactService.class);
 
     @Override
     public Contact save(Contact contact) {
         LOGGER.info("save Contact");
-        contact.setUpdateDate(EmsDate.getDateNow());
+       // contact.setUpdate(EmsDate.getDateNow());
         if (0 >= contact.getId()) {
             contact.setCreationDate(EmsDate.getDateNow());
         }
@@ -76,7 +75,7 @@ public class ContactServiceImpl implements ContactService {
             }
             search += "active:true";
         }
-        return ContactMapper.toDtos(contactRepository.findAll(Search.expression(search, PrmContact.class)), false);
+        return ContactMapper.toDtos(contactRepository.findAll(Search.expression(search, TmsContact.class)), false);
     }
 
     @Override
@@ -87,11 +86,11 @@ public class ContactServiceImpl implements ContactService {
             }
             search += "active:true";
         }
-        return ContactMapper.toDtos(contactRepository.findAll(Search.expression(search, PrmContact.class), pageable), false);
+        return ContactMapper.toDtos(contactRepository.findAll(Search.expression(search, TmsContact.class), pageable), false);
     }
     @Override
     public Contact findOne(String search) throws AttributesNotFound, ErrorType {
-        return ContactMapper.toDto(contactRepository.findOne(Search.expression(search, PrmContact.class)).get(), false);
+        return ContactMapper.toDto(contactRepository.findOne(Search.expression(search, TmsContact.class)).get(), false);
 
     }
     @Override
@@ -102,15 +101,15 @@ public class ContactServiceImpl implements ContactService {
             }
             search += "active:true";
         }
-        return contactRepository.count(Search.expression(search, PrmContact.class));
+        return contactRepository.count(Search.expression(search, TmsContact.class));
     }
 
     @Override
     public void delete(Long id) {
         LOGGER.info("delete Contact");
-        PrmContact prmContact=contactRepository.findById(id).get();
-        prmContact.setPrmContactActive(false);
-        contactRepository.saveAndFlush(prmContact);
+        TmsContact tmsContact=contactRepository.findById(id).get();
+        tmsContact.setTmsContactactive(false);
+        contactRepository.saveAndFlush(tmsContact);
     }
 
     @Override

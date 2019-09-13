@@ -1,8 +1,6 @@
 package com.bagile.tms.mapper;
 
-import com.bagile.tms.dto.Badge;
 import com.bagile.tms.dto.Vacation;
-import com.bagile.tms.entities.TmsBadge;
 import com.bagile.tms.entities.TmsVacation;
 
 import java.util.*;
@@ -17,10 +15,10 @@ public class VacationMapper {
     static {
         map = new HashMap<>();
         map.put("id", "tmsVacationId");
-        map.put("begin", "tmsVacationBegin");
-        map.put("end", "tmsVacationEnd");
-        map.put("type", "tmsVacationType");
-        map.put("driver", "tmsDriver");
+        map.put("begin", "tmsVacationbegin");
+        map.put("end", "tmsVacationend");
+        map.put("vacationtype", "tmsVacationType");
+        map.put("driver", "tmsdriver");
     }
 
     public static Map<String, String> getMap() {
@@ -36,12 +34,13 @@ public class VacationMapper {
             return null;
         }
         TmsVacation tmsVacation = new TmsVacation();
-        tmsVacation.setTmsVacationId(vacation.getId());
-        tmsVacation.setTmsVacationBegin(vacation.getBegin());
-        tmsVacation.setTmsVacationEnd(vacation.getEnd());
-        tmsVacation.setTmsVacationType(vacation.getType());
+        tmsVacation.setTmsVacationid(vacation.getId());
+        tmsVacation.setTmsVacationbegin(vacation.getBegin());
+        tmsVacation.setTmsVacationend(vacation.getEnd());
+
         if (!lazy) {
-            tmsVacation.setTmsDriver(DriverMapper.toEntity(vacation.getDriver(), true));
+            tmsVacation.setTmsVacationType(VacationTypeMapper.toEntity(vacation.getVacationtype(), true));
+            tmsVacation.setTmsdriver(DriverMapper.toEntity(vacation.getDriver(), true));
         }
         return tmsVacation;
     }
@@ -52,12 +51,12 @@ public class VacationMapper {
         }
         Vacation vacation = new Vacation();
 
-        vacation.setId(tmsVacation.getTmsVacationId());
-        vacation.setBegin(tmsVacation.getTmsVacationBegin());
-        vacation.setEnd(tmsVacation.getTmsVacationEnd());
-        vacation.setType(tmsVacation.getTmsVacationType());
+        vacation.setId(tmsVacation.getTmsVacationid());
+        vacation.setBegin(tmsVacation.getTmsVacationbegin());
+        vacation.setEnd(tmsVacation.getTmsVacationend());
         if (!lazy) {
-            vacation.setDriver(DriverMapper.toDto(tmsVacation.getTmsDriver(), true));
+            vacation.setDriver(DriverMapper.toDto(tmsVacation.getTmsdriver(), true));
+            vacation.setDriver(DriverMapper.toDto(tmsVacation.getTmsdriver(), true));
         }
         return vacation;
     }

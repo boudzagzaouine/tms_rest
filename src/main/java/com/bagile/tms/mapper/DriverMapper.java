@@ -1,7 +1,6 @@
 package com.bagile.tms.mapper;
 
 import com.bagile.tms.dto.Driver;
-import com.bagile.tms.dto.Vacation;
 import com.bagile.tms.entities.TmsDriver;
 
 import java.util.*;
@@ -20,16 +19,11 @@ public class DriverMapper {
         map.put("code", "tmsDriverCode");
         map.put("cin", "tmsDriverCin");
         map.put("birthDate", "tmsDrivetBirthDate");
-        map.put("badges", "tmsDriverBadges");
         map.put("lastMedicalVisit","tmsDriverLastMedicalVisit");
-        map.put("workArea","tmsDriverWorkArea");
-        map.put("vacation", "tmsDriverVacation");
         map.put("commission", "tmsDriverCommission");
-        map.put("working","tmsDriverWorking");
-        map.put("contact", "tmsDriverContact");
         map.put("creationDate", "tmsDriverCreationDate");
-        map.put("creationUser", "tmsDriverCreationUser");
         map.put("upDateDate", "tmsDriverUpdateDate");
+        map.put("contact", "tmscontactid");
 
     }
 
@@ -46,31 +40,32 @@ public class DriverMapper {
             return null;
         }
         TmsDriver tmsDriver = new TmsDriver();
-        tmsDriver.setTmsDriverId(driver.getId());
-        tmsDriver.setTmsDriverCin(driver.getCin());
-        tmsDriver.setTmsDriverCode(driver.getCode());
-        tmsDriver.setTmsDriverCommission(driver.getCommission());
-        tmsDriver.setTmsDriverWorking(driver.isWorking());
-        tmsDriver.setTmsDriverBirthDate(driver.getBirthDate());
+        tmsDriver.setTmsDriverid(driver.getId());
+        tmsDriver.setTmsDrivercode(driver.getCode());
+        tmsDriver.setTmsDrivercin(driver.getCin());
+         tmsDriver.setTmsDriverbirthDate(driver.getBirthDate());
         tmsDriver.setTmsDriverlastMedicalVisit(driver.getLastMedicalVisit());
-        tmsDriver.setTmsDriverCreationDate(driver.getCreationDate());
-        tmsDriver.setTmsDriverUpDateDate(driver.getUpDateDate());
+        tmsDriver.setTmsDrivercommission(driver.getCommission());
+        tmsDriver.setTmsDrivercreationDate(driver.getCreationDate());
+        tmsDriver.setTmsDriverupDateDate(driver.getUpDateDate());
+
 
         if (!lazy) {
-            tmsDriver.setTmsDrivercontact(com.bagile.tms.mapper.ContactMapper.toEntity(driver.getContact(),true));
-            tmsDriver.setTmsDriverCreationUser(UserMapper.toEntity(driver.getCreationUser(),true));
-            tmsDriver.setTmsDriverBadges(BadgeMapper.toEntities(driver.getBadges(),true));
-            tmsDriver.setTmsDriverVacation(VacationMapper.toEntity(driver.getVacation(),true));
-            tmsDriver.setTmsDriverWorkArea(ZoneMapper.toEntity(driver.getWorkArea(),true));
-            oneToMany(tmsDriver);
+
+            tmsDriver.setTmsContact(com.bagile.tms.mapper.ContactMapper.toEntity(driver.getContact(),true));
+           // tmsDriver.setTmsDriverCreationUser(UserMapper.toEntity(driver.getCreationUser(),true));
+          //  tmsDriver.setTmsDriverBadges(BadgeMapper.toEntities(driver.getBadges(),true));
+          //  tmsDriver.setTmsDriverVacation(VacationMapper.toEntity(driver.getVacation(),true));
+          //  tmsDriver.setTmsDriverWorkArea(ZoneMapper.toEntity(driver.getWorkArea(),true));
+            //oneToMany(tmsDriver);
         }
         return tmsDriver;
     }
     private static void oneToMany(TmsDriver tmsDriver){
-        if(null!=tmsDriver.getTmsDriverBadges())
-        {
-            tmsDriver.getTmsDriverBadges().forEach(tmsBadge -> tmsBadge.setTmsDriver(tmsDriver));
-        }
+       // if(null!=tmsDriver.getTmsDriverBadges())
+      //  {
+      //      tmsDriver.getTmsDriverBadges().forEach(tmsBadge -> tmsBadge.setTmsDriver(tmsDriver));
+      //  }
 
     }
 
@@ -79,22 +74,21 @@ public class DriverMapper {
             return null;
         }
         Driver driver = new Driver();
-        driver.setId(tmsDriver.getTmsDriverId());
-        driver.setCode(tmsDriver.getTmsDriverCode());
-        driver.setCin(tmsDriver.getTmsDriverCin());
-        driver.setCommission(tmsDriver.getTmsDriverCommission());
-        driver.setWorking(tmsDriver.isTmsDriverWorking());
-        driver.setBirthDate(tmsDriver.getTmsDriverBirthDate());
+        driver.setId(tmsDriver.getTmsDriverid());
+        driver.setCode(tmsDriver.getTmsDrivercode());
+        driver.setCin(tmsDriver.getTmsDrivercin());
+        driver.setBirthDate(tmsDriver.getTmsDriverbirthDate());
         driver.setLastMedicalVisit(tmsDriver.getTmsDriverlastMedicalVisit());
-        driver.setCreationDate(tmsDriver.getTmsDriverCreationDate());
-        driver.setUpDateDate(tmsDriver.getTmsDriverUpDateDate());
+        driver.setCommission(tmsDriver.getTmsDrivercommission());
+        driver.setCreationDate(tmsDriver.getTmsDrivercreationDate());
+        driver.setUpDateDate(tmsDriver.getTmsDriverupDateDate());
 
         if (!lazy) {
-            driver.setContact(ContactMapper.toDto(tmsDriver.getTmsDrivercontact(),true));
-            driver.setCreationUser(UserMapper.toDto(tmsDriver.getTmsDriverCreationUser(),true));
-            driver.setBadges(BadgeMapper.toDtos(tmsDriver.getTmsDriverBadges(),true));
-           driver.setVacation(VacationMapper.toDto(tmsDriver.getTmsDriverVacation(),true));
-            driver.setWorkArea(ZoneMapper.toDto(tmsDriver.getTmsDriverWorkArea(),true));
+            driver.setContact(ContactMapper.toDto(tmsDriver.getTmsContact(),true));
+           // driver.setCreationUser(UserMapper.toDto(tmsDriver.getTmsDriverCreationUser(),true));
+           // driver.setBadges(BadgeMapper.toDtos(tmsDriver.getTmsDriverBadges(),true));
+          // driver.setVacation(VacationMapper.toDto(tmsDriver.getTmsDriverVacation(),true));
+          //  driver.setWorkArea(ZoneMapper.toDto(tmsDriver.getTmsDriverWorkArea(),true));
         }
         return driver;
     }

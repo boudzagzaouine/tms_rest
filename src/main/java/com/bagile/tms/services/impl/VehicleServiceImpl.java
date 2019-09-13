@@ -1,7 +1,6 @@
 package com.bagile.tms.services.impl;
 
 import com.bagile.tms.dto.Vehicle;
-import com.bagile.tms.entities.TmsVehicle;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
@@ -31,7 +30,8 @@ public class VehicleServiceImpl implements VehicleService {
     public Vehicle save(Vehicle vehicle) {
         LOGGER.info("save Vehicle");
 
-        return VehicleMapper.toDto(vehicleRepository.saveAndFlush(VehicleMapper.toEntity(vehicle, false)), false);
+        return VehicleMapper.toDto
+                (vehicleRepository.saveAndFlush(VehicleMapper.toEntity(vehicle , false)), false);
     }
 
     @Override

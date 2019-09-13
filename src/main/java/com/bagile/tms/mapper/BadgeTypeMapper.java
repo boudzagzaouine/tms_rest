@@ -1,11 +1,7 @@
 package com.bagile.tms.mapper;
 
-import com.bagile.tms.dto.Badge;
 import com.bagile.tms.dto.BadgeType;
-import com.bagile.tms.dto.RoadState;
-import com.bagile.tms.entities.TmsBadge;
 import com.bagile.tms.entities.TmsBadgeType;
-import com.bagile.tms.entities.TmsRoadState;
 
 import java.util.*;
 
@@ -37,8 +33,8 @@ public class BadgeTypeMapper {
         }
         TmsBadgeType tmsBadgeType = new TmsBadgeType();
 
-        tmsBadgeType.setTmsBadgeTypeId(badgeType.getId());
-        tmsBadgeType.setTmsBadgeTypeCode(badgeType.getCode());
+        tmsBadgeType.setTmsBadgeTypeid(badgeType.getId());
+        tmsBadgeType.setTmsBadgeTypecode(badgeType.getCode());
 
         return tmsBadgeType;
     }
@@ -49,8 +45,8 @@ public class BadgeTypeMapper {
         }
         BadgeType badgeType = new BadgeType();
 
-        badgeType.setId(tmsBadgeType.getTmsBadgeTypeId());
-        badgeType.setCode(tmsBadgeType.getTmsBadgeTypeCode());
+        badgeType.setId(tmsBadgeType.getTmsBadgeTypeid());
+        badgeType.setCode(tmsBadgeType.getTmsBadgeTypecode());
 
         return badgeType;
     }

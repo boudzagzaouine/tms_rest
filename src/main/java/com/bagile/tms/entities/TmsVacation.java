@@ -1,71 +1,73 @@
 package com.bagile.tms.entities;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.bagile.tms.dto.Driver;
+import com.bagile.tms.dto.VacationType;
 
 import javax.persistence.*;
+
 import java.util.Date;
 
+
 @Entity
-@Table(name = "tms_vacation")
-public class TmsVacation {
-
-    private int tmsVacationId;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date tmsVacationBegin;
-
-    private Date tmsVacationEnd;
-
-    private String tmsVacationType;
-    private TmsDriver tmsDriver;
+@Table(name="tms_vacation")
+public class TmsVacation   {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "tms_vacationsequence")
-    @Column(name = "tms_idVacation")
-    public int getTmsVacationId() {
-        return tmsVacationId;
-    }
-
-    public void setTmsVacationId(int tmsVacationId) {
-        this.tmsVacationId = tmsVacationId;
-    }
-
+    @GeneratedValue
+    @Column(name = "tms_vacationid")
+   private int tmsVacationid;
     @Column(name = "tms_vacationbegin")
-    public Date getTmsVacationBegin() {
-        return tmsVacationBegin;
-    }
-
-    public void setTmsVacationBegin(Date tmsVacationBegin) {
-        this.tmsVacationBegin = tmsVacationBegin;
-    }
-
+   private Date tmsVacationbegin;
     @Column(name = "tms_vacationend")
-    public Date getTmsVacationEnd() {
-        return tmsVacationEnd;
+   private Date tmsVacationend;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_vacationtypeid")
+   private TmsVacationType tmsVacationType;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_driverid")
+   private TmsDriver tmsdriver;
+
+    public TmsVacation() {
     }
 
-    public void setTmsVacationEnd(Date tmsVacationEnd) {
-        this.tmsVacationEnd = tmsVacationEnd;
+
+    public int getTmsVacationid() {
+        return tmsVacationid;
     }
 
-    @Column(name = "tms_vacationtype")
-    public String getTmsVacationType() {
+    public void setTmsVacationid(int tmsVacationid) {
+        tmsVacationid = tmsVacationid;
+    }
+
+    public Date getTmsVacationbegin() {
+        return tmsVacationbegin;
+    }
+
+    public void setTmsVacationbegin(Date tmsVacationbegin) {
+        tmsVacationbegin = tmsVacationbegin;
+    }
+
+    public Date getTmsVacationend() {
+        return tmsVacationend;
+    }
+
+    public void setTmsVacationend(Date tmsVacationend) {
+        tmsVacationend = tmsVacationend;
+    }
+
+    public TmsVacationType getTmsVacationType() {
         return tmsVacationType;
     }
 
-    public void setTmsVacationType(String tmsVacationType) {
+    public void setTmsVacationType(TmsVacationType tmsVacationType) {
         this.tmsVacationType = tmsVacationType;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_vacationdriverid")
-    public TmsDriver getTmsDriver() {
-        return tmsDriver;
+    public TmsDriver getTmsdriver() {
+        return tmsdriver;
     }
 
-    public void setTmsDriver(TmsDriver tmsDriver) {
-        this.tmsDriver = tmsDriver;
+    public void setTmsdriver(TmsDriver tmsdriver) {
+        tmsdriver = tmsdriver;
     }
 }

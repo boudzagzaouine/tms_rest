@@ -1,8 +1,8 @@
 package com.bagile.tms.mapper;
 
-import com.bagile.tms.dto.Contact;
-import com.bagile.tms.entities.PrmContact;
 
+import com.bagile.tms.dto.Contact;
+import com.bagile.tms.entities.TmsContact;
 
 import java.util.*;
 
@@ -15,29 +15,16 @@ public class ContactMapper {
 
     static {
         map = new HashMap<>();
-        map.put("id","prmContactId");
-        map.put("owner","ownOwner");
-        map.put("name","prmContactName");
-        map.put("surName","prmContactSurName");
+        map.put("id","tmsContactid");
+        map.put("name","tmsContactname");
+        map.put("creationDate","tmsContactcreationDate");
+        map.put("surname","tmsContactsurname");
         map.put("tel1","prmContactTel1");
-        map.put("tel2","prmContactTel2");
-        map.put("fax","prmContactFax");
-        map.put("creationDate","prmContactCreationDate");
-        map.put("updateDate","prmContactUpdateDate");
-        map.put("variable1","prmContactVariable1");
-        map.put("variable2","prmContactVariable2");
-        map.put("variable3","prmContactVariable3");
-        map.put("variable4","prmContactVariable4");
-        map.put("variable5","prmContactVariable5");
-        map.put("variable6","prmContactVariable6");
-        map.put("variable7","prmContactVariable7");
-        map.put("variable8","prmContactVariable8");
-        map.put("variable9","prmContactVariable9");
-        map.put("variable10","prmContactVariable10");
-        map.put("contactType", "prmContactType");
-        map.put("email", "prmContactEmail");
-        map.put("comment", "prmContactComment");
-        map.put("active","prmContactActive");
+        map.put("fax","tmsContactfax");
+        map.put("contactType", "tmsContactType");
+        map.put("email", "tmsContactemail");
+        map.put("comment", "tmsContactcomment");
+        map.put("active","tmsContactactive");
     }
 
 
@@ -49,120 +36,96 @@ public class ContactMapper {
         return map.get(key);
     }
 
-    public static PrmContact toEntity(Contact contact, boolean lazy) {
+    public static TmsContact toEntity(Contact contact, boolean lazy) {
         if (null == contact) {
             return null;
         }
-        PrmContact prmContact = new PrmContact();
-        prmContact.setPrmContactId(contact.getId());
-        prmContact.setPrmContactName(contact.getName());
-        prmContact.setPrmContactSurName(contact.getSurName());
-        prmContact.setPrmContactTel1(contact.getTel1());
-        prmContact.setPrmContactTel2(contact.getTel2());
-        prmContact.setPrmContactFax(contact.getFax());
-        prmContact.setPrmContactCreationDate(contact.getCreationDate());
-        prmContact.setPrmContactUpdateDate(contact.getUpdateDate());
-        prmContact.setPrmContactVariable1(contact.getVariable1());
-        prmContact.setPrmContactVariable2(contact.getVariable2());
-        prmContact.setPrmContactVariable3(contact.getVariable3());
-        prmContact.setPrmContactVariable4(contact.getVariable4());
-        prmContact.setPrmContactVariable5(contact.getVariable5());
-        prmContact.setPrmContactVariable6(contact.getVariable6());
-        prmContact.setPrmContactVariable7(contact.getVariable7());
-        prmContact.setPrmContactVariable8(contact.getVariable8());
-        prmContact.setPrmContactVariable9(contact.getVariable9());
-        prmContact.setPrmContactVariable10(contact.getVariable10());
-        prmContact.setPrmContactType(contact.getContactType());
-        prmContact.setPrmContactEmail(contact.getEmail());
-        prmContact.setPrmContactActive(contact.getActive());
-        prmContact.setPrmContactComment(contact.getComment());
-        if (!lazy) {
-              prmContact.setOwnOwner(OwnerMapper.toEntity(contact.getOwner(), true));
+        TmsContact tmsContact = new TmsContact();
+        tmsContact.setTmsContactid(contact.getId());
+        tmsContact.setTmsContactname(contact.getName());
+        tmsContact.setTmsContactcontactType(contact.getContactType());
+        tmsContact.setTmsContactsurname(contact.getSurname());
+        tmsContact.setTmsContacttele1(contact.getTele1());
+        tmsContact.setTmsContactfax(contact.getFax());
+        tmsContact.setTmsContactcontactType(contact.getContactType());
+        tmsContact.setTmsContactemail(contact.getEmail());
+         tmsContact.setTmsContactcomment(contact.getComment());
+        tmsContact.setTmsContactactive(contact.getActive());
+        /*if (!lazy) {
+            tmsContact.setOwnOwner(OwnerMapper.toEntity(contact.getOwner(), true));
 //            prmContact.setInvInvoices(InvoiceMapper.toEntities(contact.getInvoices(), true));
 //            prmContact.setInvInvoiceArcs(InvoiceArcMapper.toEntities(contact.getInvoiceArcs(), true));
 //            prmContact.setRcpSuppliers(SupplierMapper.toEntities(contact.getSuppliers(), true));
 //            prmContact.setTrpTransports(TransportMapper.toEntities(contact.getTransports(), true));
-        }
-        return prmContact;
+        }*/
+        return tmsContact;
     }
 
-    public static Contact toDto(PrmContact prmContact, boolean lazy) {
-        if (null == prmContact) {
+    public static Contact toDto(TmsContact tmsContact, boolean lazy) {
+        if (null == tmsContact) {
             return null;
         }
         Contact contact = new Contact();
-        contact.setId(prmContact.getPrmContactId());
-        contact.setName(prmContact.getPrmContactName());
-        contact.setSurName(prmContact.getPrmContactSurName());
-        contact.setTel1(prmContact.getPrmContactTel1());
-        contact.setTel2(prmContact.getPrmContactTel2());
-        contact.setFax(prmContact.getPrmContactFax());
-        contact.setCreationDate(prmContact.getPrmContactCreationDate());
-        contact.setUpdateDate(prmContact.getPrmContactUpdateDate());
-        contact.setVariable1(prmContact.getPrmContactVariable1());
-        contact.setVariable2(prmContact.getPrmContactVariable2());
-        contact.setVariable3(prmContact.getPrmContactVariable3());
-        contact.setVariable4(prmContact.getPrmContactVariable4());
-        contact.setVariable5(prmContact.getPrmContactVariable5());
-        contact.setVariable6(prmContact.getPrmContactVariable6());
-        contact.setVariable7(prmContact.getPrmContactVariable7());
-        contact.setVariable8(prmContact.getPrmContactVariable8());
-        contact.setVariable9(prmContact.getPrmContactVariable9());
-        contact.setVariable10(prmContact.getPrmContactVariable10());
-        contact.setContactType(prmContact.getPrmContactType());
-        contact.setEmail(prmContact.getPrmContactEmail());
-        contact.setComment(prmContact.getPrmContactComment());
-        contact.setActive(prmContact.getPrmContactActive());
-        if (!lazy) {
+        contact.setId(tmsContact.getTmsContactid());
+        contact.setName(tmsContact.getTmsContactname());
+        contact.setCreationDate(tmsContact.getTmsContactcreationDate());
+        contact.setSurname(tmsContact.getTmsContactsurname());
+        contact.setTele1(tmsContact.getTmsContacttele1());
+        contact.setFax(tmsContact.getTmsContactfax());
+        contact.setContactType(tmsContact.getTmsContactcontactType());
+        contact.setEmail(tmsContact.getTmsContactemail());
+        contact.setComment(tmsContact.getTmsContactcomment());
+        contact.setActive(tmsContact.getTmsContactactive());
+        /*if (!lazy) {
             contact.setOwner(OwnerMapper.toDto(prmContact.getOwnOwner(), true));
 //            contact.setInvoices(InvoiceMapper.toDtos(prmContact.getInvInvoices(), true));
 //            contact.setInvoiceArcs(InvoiceArcMapper.toDtos(prmContact.getInvInvoiceArcs(), true));
 //            contact.setSuppliers(SupplierMapper.toDtos(prmContact.getRcpSuppliers(), true));
 //            contact.setTransports(TransportMapper.toDtos(prmContact.getTrpTransports(), true));
-        }
+        }*/
         return contact;
     }
 
-    public static List<Contact> toDtos(List<PrmContact> prmContacts, boolean lazy) {
-        if (null == prmContacts) {
+    public static List<Contact> toDtos(List<TmsContact> tmsContacts, boolean lazy) {
+        if (null == tmsContacts) {
             return null;
         }
         List<Contact> contacts = new ArrayList<>();
-        for (PrmContact prmContact : prmContacts) {
-            contacts.add(toDto(prmContact, lazy));
+        for (TmsContact trmContact : tmsContacts) {
+            contacts.add(toDto(trmContact, lazy));
         }
         return contacts;
     }
 
-    public static List<Contact> toDtos(Iterable<PrmContact> prmContacts, boolean lazy) {
-        if (null == prmContacts) {
+    public static List<Contact> toDtos(Iterable<TmsContact> tmsContacts, boolean lazy) {
+        if (null == tmsContacts) {
             return null;
         }
         List<Contact> contacts = new ArrayList<>();
-        for (PrmContact prmContact : prmContacts) {
-            contacts.add(toDto(prmContact, lazy));
+        for (TmsContact trmContact : tmsContacts) {
+            contacts.add(toDto(trmContact, lazy));
         }
         return contacts;
     }
 
-    public static Set<PrmContact> toEntities(Set<Contact> contacts, boolean lazy) {
+    public static Set<TmsContact> toEntities(Set<Contact> contacts, boolean lazy) {
         if (null == contacts) {
             return null;
         }
-        Set<PrmContact> prmContacts = new HashSet<>();
+        Set<TmsContact> prmContacts = new HashSet<>();
         for (Contact contact : contacts) {
             prmContacts.add(toEntity(contact, lazy));
         }
         return prmContacts;
     }
 
-    public static Set<Contact> toDtos(Set<PrmContact> prmContacts, boolean lazy) {
-        if (null == prmContacts) {
+    public static Set<Contact> toDtos(Set<TmsContact> tmsContacts, boolean lazy) {
+        if (null == tmsContacts) {
             return null;
         }
         Set<Contact> contacts = new HashSet<>();
-        for (PrmContact prmContact : prmContacts) {
-            contacts.add(toDto(prmContact, lazy));
+        for (TmsContact tmsContact : tmsContacts) {
+            contacts.add(toDto(tmsContact, lazy));
         }
         return contacts;
     }

@@ -1,37 +1,36 @@
 package com.bagile.tms.dto;
 
-import com.bagile.tms.entities.*;
-
-import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Objects;
 import java.util.Set;
-
 
 public class Driver implements Serializable {
 
     private long id;
-    @Size(max = 255)
     private String code;
-    @Size(max = 30)
     private String cin;
-    @Size(max = 30)
     private Date birthDate;
-
-    private Set<Badge> badges;
-
     private Date lastMedicalVisit;
-    private Zone workArea;
-    private BigDecimal commission;
-    private Vacation vacation;
-    private Contact contact;
+    private Double commission;
     private Date creationDate;
-    private User creationUser;
-    private Date upDateDate;
+    private Date upDate;
+    private Contact contact;
     private boolean working;
 
+
+
+
+
+    public Driver() {
+    }
+
+    public boolean isWorking() {
+        return working;
+    }
+
+    public void setWorking(boolean working) {
+        this.working = working;
+    }
 
     public long getId() {
         return id;
@@ -65,22 +64,6 @@ public class Driver implements Serializable {
         this.birthDate = birthDate;
     }
 
-    public Set<Badge> getBadges() {
-        return badges;
-    }
-
-    public boolean isWorking() {
-        return working;
-    }
-
-    public void setWorking(boolean working) {
-        this.working = working;
-    }
-
-    public void setBadges(Set<Badge> badges) {
-        this.badges = badges;
-    }
-
     public Date getLastMedicalVisit() {
         return lastMedicalVisit;
     }
@@ -89,36 +72,12 @@ public class Driver implements Serializable {
         this.lastMedicalVisit = lastMedicalVisit;
     }
 
-    public Zone getWorkArea() {
-        return workArea;
-    }
-
-    public void setWorkArea(Zone workArea) {
-        this.workArea = workArea;
-    }
-
-    public BigDecimal getCommission() {
+    public Double getCommission() {
         return commission;
     }
 
-    public void setCommission(BigDecimal commission) {
+    public void setCommission(Double commission) {
         this.commission = commission;
-    }
-
-    public Vacation getVacation() {
-        return vacation;
-    }
-
-    public void setVacation(Vacation vacation) {
-        this.vacation = vacation;
-    }
-
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
     }
 
     public Date getCreationDate() {
@@ -129,19 +88,21 @@ public class Driver implements Serializable {
         this.creationDate = creationDate;
     }
 
-    public User getCreationUser() {
-        return creationUser;
+    public Date getUpDate() {
+        return upDate;
     }
 
-    public void setCreationUser(User creationUser) {
-        this.creationUser = creationUser;
+    public void setUpDate(Date upDateDate) {
+        this.upDate = upDateDate;
     }
 
-    public Date getUpDateDate() {
-        return upDateDate;
+    public Contact getContact() {
+        return contact;
     }
 
-    public void setUpDateDate(Date upDateDate) {
-        this.upDateDate = upDateDate;
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
+
+
 }

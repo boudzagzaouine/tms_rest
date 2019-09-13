@@ -1,16 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.Vacation;
-import com.bagile.tms.dto.Vacation;
-import com.bagile.tms.entities.TmsVacation;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
 import com.bagile.tms.mapper.VacationMapper;
 import com.bagile.tms.repositories.VacationRepository;
-import com.bagile.tms.repositories.VacationRepository;
 import com.bagile.tms.services.VacationService;
-import com.bagile.tms.services.VehicleService;
 import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

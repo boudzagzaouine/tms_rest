@@ -30,7 +30,7 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public Driver save(Driver driver) {
         LOGGER.info("save Driver");
-        driver.setUpDateDate(EmsDate.getDateNow());
+        driver.setUpDate(EmsDate.getDateNow());
         if (0 <= driver.getId()) {
             driver.setCreationDate(EmsDate.getDateNow());
         }

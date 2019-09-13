@@ -1,119 +1,109 @@
 package com.bagile.tms.entities;
 
-import com.bagile.tms.dto.DoorType;
-
 import javax.persistence.*;
+
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "tms_vehiclecategory", uniqueConstraints = @UniqueConstraint(columnNames = {"tms_vehiclecategoryId"}))
-public class TmsVehicleCategory {
-    private long tmsVehicleCategoryId;
-    private String tmsVehicleCategoryname;
-    private BigDecimal tmsVehicleCategoryConsumption;
-    private BigDecimal tmsVehicleCategoryWeight;
-    private BigDecimal tmsVehicleCategoryWidth;
-    private String tmsVehicleCategoryDoor;
-    private BigDecimal tmsVehicleCategoryDepth;
-    private BigDecimal tmsVehicleCategoryTonnage;
-    private BigDecimal tmsVehicleCategoryEmptyWeight;
-    private BigDecimal tmsVehicleCategoryTotalWeight;
+@Table(name="tms_vehiculecategorie")
+public class TmsVehicleCategory   {
+
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "tms_vehiclecategorysequence")
-    @Column(name = "tms_vehiclecategoryId")
+    @GeneratedValue
+    @Column(name = "tms_vehiculecategorieid")
+    private int tmsVehicleCategoryid;
+    @Column(name = "tms_vehiculecategoriecode")
+    private String tmsVehicleCategorycode;
+    @Column(name = "tms_vehiculecategorieconsumption")
+    private  String tmsVehicleCategoryconsumption;
+    @Column(name = "tms_vehiculecategorieweight")
+    private BigDecimal tmsVehicleCategoryweight;
+    @Column(name = "tms_vehiculecategoriewidth")
+    private  BigDecimal tmsVehicleCategorywidth;
+    @Column(name = "tms_vehiculecategoriedepth")
+    private BigDecimal tmsVehicleCategorydepth;
+    @Column(name = "tms_vehiculecategorietonnage")
+    private BigDecimal tmsVehicleCategorytonnage;
+    @Column(name = "tms_vehiculecategorieemptyWeight")
+    private  BigDecimal tmsVehicleCategoryemptyWeight;
+    @Column(name = "tms_vehiculecategorietotalWeight")
+    private BigDecimal tmsVehicleCategorytotalWeight;
 
 
-    public long getTmsVehicleCategoryId() {
-        return tmsVehicleCategoryId;
+
+    public TmsVehicleCategory() {
     }
 
-    public void setTmsVehicleCategoryId(long tmsVehicleCategoryId) {
-        this.tmsVehicleCategoryId = tmsVehicleCategoryId;
+    public int getTmsVehicleCategoryid() {
+        return tmsVehicleCategoryid;
     }
 
-
-    @Column(name = "tms_vehiclecategorycunsumption")
-    public BigDecimal getTmsVehicleCategoryConsumption() {
-        return tmsVehicleCategoryConsumption;
+    public void setTmsVehicleCategoryid(int tmsVehicleCategoryid) {
+        this.tmsVehicleCategoryid = tmsVehicleCategoryid;
     }
 
-    public void setTmsVehicleCategoryConsumption(BigDecimal tmsVehicleCategoryConsumption) {
-        this.tmsVehicleCategoryConsumption = tmsVehicleCategoryConsumption;
+    public String getTmsVehicleCategorycode() {
+        return tmsVehicleCategorycode;
     }
 
-    @Column(name = "tms_vehiclecategoryweight")
-    public BigDecimal getTmsVehicleCategoryWeight() {
-        return tmsVehicleCategoryWeight;
+    public void setTmsVehicleCategorycode(String tmsVehicleCategorycode) {
+        this.tmsVehicleCategorycode = tmsVehicleCategorycode;
     }
 
-    public void setTmsVehicleCategoryWeight(BigDecimal tmsVehicleCategoryWeight) {
-        this.tmsVehicleCategoryWeight = tmsVehicleCategoryWeight;
+    public String getTmsVehicleCategoryconsumption() {
+        return tmsVehicleCategoryconsumption;
     }
 
-    @Column(name = "tms_vehiclecategoryname")
-    public String getTmsVehicleCategoryname() {
-        return tmsVehicleCategoryname;
+    public void setTmsVehicleCategoryconsumption(String tmsVehicleCategoryconsumption) {
+        this.tmsVehicleCategoryconsumption = tmsVehicleCategoryconsumption;
     }
 
-    public void setTmsVehicleCategoryname(String name) {
-        this.tmsVehicleCategoryname = name;
+    public BigDecimal getTmsVehicleCategoryweight() {
+        return tmsVehicleCategoryweight;
     }
 
-    @Column(name = "tms_vehiclecategorywidth")
-    public BigDecimal getTmsVehicleCategoryWidth() {
-        return tmsVehicleCategoryWidth;
+    public void setTmsVehicleCategoryweight(BigDecimal tmsVehicleCategoryweight) {
+        this.tmsVehicleCategoryweight = tmsVehicleCategoryweight;
     }
 
-    public void setTmsVehicleCategoryWidth(BigDecimal tmsVehicleCategoryWidth) {
-        this.tmsVehicleCategoryWidth = tmsVehicleCategoryWidth;
+    public BigDecimal getTmsVehicleCategorywidth() {
+        return tmsVehicleCategorywidth;
     }
 
-
-    @Column(name = "tms_vehiclecategorydoor")
-    public String getTmsVehicleCategoryDoor() {
-        return tmsVehicleCategoryDoor;
+    public void setTmsVehicleCategorywidth(BigDecimal tmsVehicleCategorywidth) {
+        this.tmsVehicleCategorywidth = tmsVehicleCategorywidth;
     }
 
-    public void setTmsVehicleCategoryDoor(String tmsVehicleCategoryDoor) {
-        this.tmsVehicleCategoryDoor = tmsVehicleCategoryDoor;
+    public BigDecimal getTmsVehicleCategorydepth() {
+        return tmsVehicleCategorydepth;
     }
 
-    @Column(name = "tms_vehiclecategorydepth")
-    public BigDecimal getTmsVehicleCategoryDepth() {
-        return tmsVehicleCategoryDepth;
+    public void setTmsVehicleCategorydepth(BigDecimal tmsVehicleCategorydepth) {
+        this.tmsVehicleCategorydepth = tmsVehicleCategorydepth;
     }
 
-    public void setTmsVehicleCategoryDepth(BigDecimal tmsVehicleCategoryDepth) {
-        this.tmsVehicleCategoryDepth = tmsVehicleCategoryDepth;
+    public BigDecimal getTmsVehicleCategorytonnage() {
+        return tmsVehicleCategorytonnage;
     }
 
-    @Column(name = "tms_vehiclecategorytonnage")
-    public BigDecimal getTmsVehicleCategoryTonnage() {
-        return tmsVehicleCategoryTonnage;
+    public void setTmsVehicleCategorytonnage(BigDecimal tmsVehicleCategorytonnage) {
+        this.tmsVehicleCategorytonnage = tmsVehicleCategorytonnage;
     }
 
-    public void setTmsVehicleCategoryTonnage(BigDecimal tmsVehicleCategoryTonnage) {
-        this.tmsVehicleCategoryTonnage = tmsVehicleCategoryTonnage;
+    public BigDecimal getTmsVehicleCategoryemptyWeight() {
+        return tmsVehicleCategoryemptyWeight;
     }
 
-    @Column(name = "tms_vehiclecategoryemptyweight")
-    public BigDecimal getTmsVehicleCategoryEmptyWeight() {
-        return tmsVehicleCategoryEmptyWeight;
+    public void setTmsVehicleCategoryemptyWeight(BigDecimal tmsVehicleCategoryemptyWeight) {
+        this.tmsVehicleCategoryemptyWeight = tmsVehicleCategoryemptyWeight;
     }
 
-    public void setTmsVehicleCategoryEmptyWeight(BigDecimal tmsVehicleCategoryEmptyWeight) {
-        this.tmsVehicleCategoryEmptyWeight = tmsVehicleCategoryEmptyWeight;
+    public BigDecimal getTmsVehicleCategorytotalWeight() {
+        return tmsVehicleCategorytotalWeight;
     }
 
-    @Column(name = "tms_vehiclecategorytotalweight")
-    public BigDecimal getTmsVehicleCategoryTotalWeight() {
-        return tmsVehicleCategoryTotalWeight;
+    public void setTmsVehicleCategorytotalWeight(BigDecimal tmsVehicleCategorytotalWeight) {
+        this.tmsVehicleCategorytotalWeight = tmsVehicleCategorytotalWeight;
     }
-
-    public void setTmsVehicleCategoryTotalWeight(BigDecimal tmsVehicleCategoryTotalWeight) {
-        this.tmsVehicleCategoryTotalWeight = tmsVehicleCategoryTotalWeight;
-    }
-
 }

@@ -1,14 +1,28 @@
 package com.bagile.tms.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Vacation {
+public class Vacation implements Serializable {
 
-    private int id;
-    private Date begin;
-    private Date end;
-    private String type;
-    private Driver driver;
+   private int id;
+   private Date begin;
+   private Date end;
+   private VacationType vacationtype;
+   private Driver driver;
+
+    public Vacation() {
+    }
+
+
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
 
     public int getId() {
         return id;
@@ -34,19 +48,11 @@ public class Vacation {
         this.end = end;
     }
 
-    public String getType() {
-        return type;
+    public VacationType getVacationtype() {
+        return vacationtype;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Driver getDriver() {
-        return driver;
-    }
-
-    public void setDriver(Driver driver) {
-        this.driver = driver;
+    public void setVacationtype(VacationType vacationtype) {
+        this.vacationtype = vacationtype;
     }
 }

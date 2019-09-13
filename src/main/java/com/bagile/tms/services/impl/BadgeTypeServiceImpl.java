@@ -1,16 +1,11 @@
 package com.bagile.tms.services.impl;
-import com.bagile.tms.dto.Badge;
 import com.bagile.tms.dto.BadgeType;
-import com.bagile.tms.entities.TmsBadge;
 import com.bagile.tms.entities.TmsBadgeType;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.BadgeMapper;
 import com.bagile.tms.mapper.BadgeTypeMapper;
-import com.bagile.tms.repositories.BadgeRepository;
 import com.bagile.tms.repositories.BadgeTypeRepository;
-import com.bagile.tms.services.BadgeService;
 import com.bagile.tms.services.BadgeTypeService;
 import com.bagile.tms.util.Search;
 import org.slf4j.Logger;

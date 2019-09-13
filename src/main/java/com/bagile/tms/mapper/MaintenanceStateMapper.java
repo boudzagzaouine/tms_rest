@@ -16,17 +16,11 @@ public class MaintenanceStateMapper {
     }
     static {
         map = new HashMap<>();
-        map.put("id","idMaintenanceState");
-        map.put("state","tmsMaintenanceState");
-        map.put("code","tmsMaintenanceStateCode");
-        map.put("descriptif","tmsMaintenanceStateDescriptif");
-        map.put("date","tmsMaintenanceStateDate");
-        map.put("title","tmsMaintenanceStateTitle");
-        map.put("creationDate","tmsMaintenanceStateCreationDate");
-        map.put("creationUser","tmsMaintenanceStateCreationUser");
-        map.put("upDateDate","tmsMaintenanceStateUpDateDate");
-        map.put("type","tmsMaintenanceStateType");
-        map.put("maintenancePlan","tmsMaintenancePlans");
+        map.put("id","TmsMaintenanceStateid");
+        map.put("code","TmsMaintenanceStatecode");
+        map.put("descriptif","TmsMaintenanceStatedescriptif");
+        map.put("creationDate","tmsMaintenanceStateDescriptif");
+
     }
 
     public static String getField(String key) {
@@ -38,17 +32,16 @@ public class MaintenanceStateMapper {
             return null;
         }
         MaintenanceState state = new MaintenanceState();
-        state.setCode(tmsState.getTmsMaintenanceStateCode());
-        state.setDate(tmsState.getTmsMaintenanceStateDate());
-        state.setDescriptif(tmsState.getTmsMaintenanceStateDescriptif());
-        state.setId(tmsState.getIdMaintenanceState());
-        state.setTitle(tmsState.getTmsMaintenanceStateTitle());
+        state.setId(tmsState.getTmsMaintenanceStateid());
+        state.setCode(tmsState.getTmsMaintenanceStatecode());
+        state.setDescriptif(tmsState.getTmsMaintenanceStatedescriptif());
+        state.setCreationDate(tmsState.getTmsMaintenanceStatecreationDate());
         if(!lazy) {
-            state.setCreationDate(tmsState.getTmsMaintenanceStateCreationDate());
-            state.setCreationUser(UserMapper.toDto(tmsState.getTmsMaintenanceStateCreationUser(),true));
-            state.setTypeMaintenance(TypeMaintenanceMapper.toDto(tmsState.getTmsMaintenanceStateType()));
-            state.setMaintenancePlans(MaintenancePlanMapper.toDtos(tmsState.getTmsMaintenanceStatePlans(),true));
-            state.setUpDateDate(tmsState.getTmsMaintenanceStateUpDateDate());
+           // state.setCreationDate(tmsState.getTmsMaintenanceStateCreationDate());
+          //  state.setCreationUser(UserMapper.toDto(tmsState.getTmsMaintenanceStateCreationUser(),true));
+           // state.setTypeMaintenance(TypeMaintenanceMapper.toDto(tmsState.getTmsMaintenanceStateType()));
+           // state.setMaintenancePlans(MaintenancePlanMapper.toDtos(tmsState.getTmsMaintenanceStatePlans(),true));
+           // state.setUpDateDate(tmsState.getTmsMaintenanceStateUpDateDate());
         }
         return state;
     }
@@ -58,17 +51,17 @@ public class MaintenanceStateMapper {
             return null;
         }
         TmsMaintenanceState tmsState = new TmsMaintenanceState();
-        tmsState.setTmsMaintenanceStateCode(state.getCode());
-        tmsState.setTmsMaintenanceStateDate(state.getDate());
-        tmsState.setTmsMaintenanceStateDescriptif(state.getDescriptif());
-        tmsState.setIdMaintenanceState(state.getId());
-        tmsState.setTmsMaintenanceStateTitle(state.getTitle());
+        tmsState.setTmsMaintenanceStateid(state.getId());
+        tmsState.setTmsMaintenanceStatecode(state.getCode());
+        tmsState.setTmsMaintenanceStatedescriptif(state.getDescriptif());
+        tmsState.setTmsMaintenanceStatecreationDate(state.getCreationDate());
+
         if(!lazy) {
-            tmsState.setTmsMaintenanceStateCreationDate(state.getCreationDate());
-            tmsState.setTmsMaintenanceStateCreationUser(UserMapper.toEntity(state.getCreationUser(),true));
-            tmsState.setTmsMaintenanceStateType(TypeMaintenanceMapper.toEntity(state.getTypeMaintenance()));
-            tmsState.setTmsMaintenanceStateUpDateDate(state.getUpDateDate());
-            tmsState.setTmsMaintenanceStatePlans(MaintenancePlanMapper.toEntities(state.getMaintenancePlans(),true));
+           // tmsState.setTmsMaintenanceStateCreationDate(state.getCreationDate());
+           // tmsState.setTmsMaintenanceStateCreationUser(UserMapper.toEntity(state.getCreationUser(),true));
+           // tmsState.setTmsMaintenanceStateType(TypeMaintenanceMapper.toEntity(state.getTypeMaintenance()));
+           // tmsState.setTmsMaintenanceStateUpDateDate(state.getUpDateDate());
+           // tmsState.setTmsMaintenanceStatePlans(MaintenancePlanMapper.toEntities(state.getMaintenancePlans(),true));
         }
         return tmsState;
     }

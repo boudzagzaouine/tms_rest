@@ -1,47 +1,48 @@
 package com.bagile.tms.entities;
 
+import com.bagile.tms.dto.BadgeType;
 import com.bagile.tms.dto.Driver;
 
 import javax.persistence.*;
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.Date;
-import java.util.Set;
+
 
 @Entity
-@Table(name = "tms_badge", uniqueConstraints = @UniqueConstraint(columnNames = {"tms_badgeTypecode", "tms_badgeTypeId"}))
-
-public class TmsBadge {
-    private String tmsBadgecode;
-    private long tmsBadgeId;
-    private TmsBadgeType tmsBadgeType;
-    private TmsDriver tmsDriver;
-    private Date tmsDateBadge;
+@Table(name="tms_badge")
+public class TmsBadge  {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "tms_badgesequence")
+    @GeneratedValue
+    @Column(name = "tms_badgeid")
+    private long tmsBadgeId;
+    @Column(name = "tms_badgecode")
+    private String tmsBadgeCode;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_badgetypeid")
+    private TmsBadgeType tmsBadgeType;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_driverid")
+    private TmsDriver tmsDriver;
 
-    @Column(name = "tms_BadgeTypecode", unique = true, nullable = false)
-    public String getTmsBadgecode() {
-        return tmsBadgecode;
+
+    public TmsBadge() {
     }
 
-    public void setTmsBadgecode(String tmsBadgecode) {
-        this.tmsBadgecode = tmsBadgecode;
-    }
-
-    @Column(name = "tms_BadgeId")
     public long getTmsBadgeId() {
         return tmsBadgeId;
     }
 
-    public void setTmsBadgeId(long tmsBadgeId) {
+    public void setTmsBadgeId(int tmsBadgeId) {
         this.tmsBadgeId = tmsBadgeId;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_BadgeTypeid")
+    public String getTmsBadgeCode() {
+        return tmsBadgeCode;
+    }
+
+    public void setTmsBadgeCode(String tmsBadgeCode) {
+        this.tmsBadgeCode = tmsBadgeCode;
+    }
+
     public TmsBadgeType getTmsBadgeType() {
         return tmsBadgeType;
     }
@@ -50,24 +51,11 @@ public class TmsBadge {
         this.tmsBadgeType = tmsBadgeType;
     }
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "tms_badgeDriverid")
-
     public TmsDriver getTmsDriver() {
         return tmsDriver;
     }
 
     public void setTmsDriver(TmsDriver tmsDriver) {
         this.tmsDriver = tmsDriver;
-    }
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "tms_badgeDate")
-    public Date getTmsDateBadge() {
-        return tmsDateBadge;
-    }
-
-    public void setTmsDateBadge(Date tmsDateBadge) {
-        this.tmsDateBadge = tmsDateBadge;
     }
 }

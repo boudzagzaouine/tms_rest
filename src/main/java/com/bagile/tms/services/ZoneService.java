@@ -1,6 +1,5 @@
 package com.bagile.tms.services;
 
-import com.bagile.tms.dto.Driver;
 import com.bagile.tms.dto.Zone;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;

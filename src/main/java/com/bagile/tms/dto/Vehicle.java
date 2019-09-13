@@ -1,27 +1,29 @@
 package com.bagile.tms.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Vehicle {
+public class Vehicle implements Serializable {
 
-    private long id;
-    private String registrationNumber;
-    private BadgeType badgeType;
-    private String code;
-    private Date technicalVisit;
 
-    private VehicleCategory vehicleCategory;
-    private Traffic drivingLicence;
+    private int id;
+    private String  registrationNumber;
+   private String code;
+   private Date technicalVisit;
+   private Date creationDate;
+   private VehicleCategory vehiculeCategorie;
+   private BadgeType badgeType;
 
-    private Date creationDate;
-    private User creationUser;
-    private Date upDateDate;
 
-    public long getId() {
+
+    public Vehicle() {
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -31,14 +33,6 @@ public class Vehicle {
 
     public void setRegistrationNumber(String registrationNumber) {
         this.registrationNumber = registrationNumber;
-    }
-
-    public BadgeType getBadgeType() {
-        return badgeType;
-    }
-
-    public void setBadgeType(BadgeType badge) {
-        this.badgeType = badge;
     }
 
     public String getCode() {
@@ -57,22 +51,6 @@ public class Vehicle {
         this.technicalVisit = technicalVisit;
     }
 
-    public VehicleCategory getVehicleCategory() {
-        return vehicleCategory;
-    }
-
-    public void setVehicleCategory(VehicleCategory vehicleCategory) {
-        this.vehicleCategory = vehicleCategory;
-    }
-
-    public Traffic getDrivingLicence() {
-        return drivingLicence;
-    }
-
-    public void setDrivingLicence(Traffic drivingLicence) {
-        this.drivingLicence = drivingLicence;
-    }
-
     public Date getCreationDate() {
         return creationDate;
     }
@@ -81,19 +59,19 @@ public class Vehicle {
         this.creationDate = creationDate;
     }
 
-    public User getCreationUser() {
-        return creationUser;
+    public VehicleCategory getVehiculeCategorie() {
+        return vehiculeCategorie;
     }
 
-    public void setCreationUser(User creationUser) {
-        this.creationUser = creationUser;
+    public void setVehiculeCategorie(VehicleCategory vehiculeCategorie) {
+        this.vehiculeCategorie = vehiculeCategorie;
     }
 
-    public Date getUpDateDate() {
-        return upDateDate;
+    public BadgeType getBadgeType() {
+        return badgeType;
     }
 
-    public void setUpDateDate(Date upDateDate) {
-        this.upDateDate = upDateDate;
+    public void setBadgeType(BadgeType badgeType) {
+        this.badgeType = badgeType;
     }
 }

@@ -8,9 +8,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-/**
- * Created by khalil on 03/04/2017.
- */
+
 public interface BadgeService {
     Badge save(Badge badge);
 

@@ -1,8 +1,6 @@
 package com.bagile.tms.mapper;
 
-import com.bagile.tms.dto.Vacation;
 import com.bagile.tms.dto.Zone;
-import com.bagile.tms.entities.TmsVacation;
 import com.bagile.tms.entities.TmsZone;
 
 import java.util.*;
@@ -15,8 +13,8 @@ public class ZoneMapper {
 
         static {
             map = new HashMap<>();
-            map.put("id", "tmsZoneId");
-            map.put("name", "tmsZoneName");
+            map.put("id", "tmsZoneid");
+            map.put("name", "tmsZonename");
         }
 
         public static Map<String, String> getMap() {
@@ -33,8 +31,8 @@ public class ZoneMapper {
             }
             TmsZone tmsZone = new TmsZone();
 
-            tmsZone.setTmsZoneId(zone.getId());
-            tmsZone.setTmsZoneName(zone.getName());;
+            tmsZone.setTmsZoneid(zone.getId());
+            tmsZone.setTmsZonename(zone.getName());;
 
             return tmsZone;
         }
@@ -45,8 +43,8 @@ public class ZoneMapper {
             }
             Zone zone = new Zone();
 
-            zone.setId(tmsZone.getTmsZoneId());
-            zone.setName(tmsZone.getTmsZoneName());
+            zone.setId(tmsZone.getTmsZoneid());
+            zone.setName(tmsZone.getTmsZonename());
 
             return zone;
         }

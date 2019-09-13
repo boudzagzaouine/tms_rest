@@ -1,17 +1,20 @@
 package com.bagile.tms.dto;
 
+import java.io.Serializable;
 
-import java.util.Set;
+public class Zone implements Serializable {
 
-public class Zone {
-    private long id;
+    private int id;
     private String name;
 
-    public long getId() {
+    public Zone() {
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

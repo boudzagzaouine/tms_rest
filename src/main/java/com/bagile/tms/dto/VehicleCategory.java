@@ -1,41 +1,48 @@
 package com.bagile.tms.dto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class VehicleCategory {
-    private long id;
-    private String name;
-    private BigDecimal consumption;
+public class VehicleCategory implements Serializable {
+
+
+
+    private int id;
+    private String code;
+    private  String consumption;
     private BigDecimal weight;
-    private BigDecimal width;
-    private String door;
+    private  BigDecimal width;
     private BigDecimal depth;
     private BigDecimal tonnage;
-    private BigDecimal emptyWeight;
+    private  BigDecimal emptyWeight;
     private BigDecimal totalWeight;
 
-    public long getId() {
+
+    public VehicleCategory() {
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public BigDecimal getConsumption() {
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getConsumption() {
         return consumption;
     }
 
-    public void setConsumption(BigDecimal consumption) {
+    public void setConsumption(String consumption) {
         this.consumption = consumption;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public BigDecimal getWeight() {
@@ -52,14 +59,6 @@ public class VehicleCategory {
 
     public void setWidth(BigDecimal width) {
         this.width = width;
-    }
-
-    public String getDoor() {
-        return door;
-    }
-
-    public void setDoor(String door) {
-        this.door = door;
     }
 
     public BigDecimal getDepth() {

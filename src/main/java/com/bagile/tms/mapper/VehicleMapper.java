@@ -13,16 +13,14 @@ public class VehicleMapper {
     static {
         map = new HashMap<>();
 
-        map.put("id", "tmsVehicleId");
-        map.put("registrationNumber", "tmsVehicleRegistrationNumber");
-        map.put("badgeType", "tmsVehicleBadgeType");
-        map.put("code", "tmsVehicleCode");
-        map.put("technicalVisit", "tmsVehicleTechnicalVisit");
-        map.put("category", "tmsVehicleCategory");
-        map.put("drivingLicence", "tmsVehicleDrivingLicence");
-        map.put("creationDate", "tmsVehicleCreationDate");
-        map.put("creationUser", "tmsVehicleCreationUser");
-        map.put("UpDateDate", "tmsVehicleUpDateDate");
+        map.put("id", "tmsVehicleid");
+        map.put("registrationNumber", "registrationNumber");
+        map.put("code", "tmsVehiclecode");
+        map.put("technicalVisit", "tmsVehicletechnicalVisit");
+        map.put("creationDate", "tmsVehiclecreationDate");
+        map.put("vehiculeCategorie", "tmsVehicleCategory");
+        map.put("badgeType", "tmsBadgeType");
+
     }
     public static Map<String, String> getMap() {
         return map;
@@ -37,18 +35,17 @@ public class VehicleMapper {
             return null;
         }
         TmsVehicle tmsVehicle = new TmsVehicle();
-        tmsVehicle.setTmsVehicleId(vehicle.getId());
-        tmsVehicle.setTmsVehicleRegistrationNumber(vehicle.getRegistrationNumber());
-        tmsVehicle.setTmsVehicleCode(vehicle.getCode() != null ? vehicle.getCode().toUpperCase() : null);
-        tmsVehicle.setTmsVehicleTechnicalVisit(vehicle.getTechnicalVisit());
+        tmsVehicle.setTmsVehicleid(vehicle.getId());
+        tmsVehicle.setRegistrationNumber(vehicle.getRegistrationNumber());
+        tmsVehicle.setTmsVehiclecode(vehicle.getCode() != null ? vehicle.getCode().toUpperCase() : null);
+        tmsVehicle.setTmsVehicletechnicalVisit(vehicle.getTechnicalVisit());
+        tmsVehicle.setTmsVehiclecreationDate(vehicle.getCreationDate());
+
 
         if (!lazy) {
-            tmsVehicle.setTmsVehicleBadgeType(BadgeTypeMapper.toEntity(vehicle.getBadgeType(),lazy));
-            tmsVehicle.setTmsVehicleCategory(VehicleCategoryMapper.toEntity(vehicle.getVehicleCategory(),lazy));
-            tmsVehicle.setTmsVehicleDrivingLicence(TrafficMapper.toEntity(vehicle.getDrivingLicence(),lazy));
-            tmsVehicle.setTmsVehicleCreationDate(vehicle.getCreationDate());
-            tmsVehicle.setTmsVehicleCreationUser(UserMapper.toEntity(vehicle.getCreationUser(),lazy));
-            tmsVehicle.setTmsVehicleUpDateDate(vehicle.getUpDateDate());
+            tmsVehicle.setTmsVehicleCategory(VehicleCategoryMapper.toEntity(vehicle.getVehiculeCategorie(),true));
+            tmsVehicle.setTmsBadgeType(BadgeTypeMapper.toEntity(vehicle.getBadgeType(),true));
+
         }
         return tmsVehicle;
 
@@ -59,18 +56,16 @@ public class VehicleMapper {
             return null;
         }
         Vehicle vehicle = new Vehicle();
-        vehicle.setId(tmsVehicle.getTmsVehicleId());
-        vehicle.setRegistrationNumber(tmsVehicle.getTmsVehicleRegistrationNumber());
-        vehicle.setCode(tmsVehicle.getTmsVehicleCode() != null ? tmsVehicle.getTmsVehicleCode().toUpperCase() : null);
-        vehicle.setTechnicalVisit(tmsVehicle.getTmsVehicleTechnicalVisit());
+        vehicle.setId(tmsVehicle.getTmsVehicleid());
+        vehicle.setRegistrationNumber(tmsVehicle.getRegistrationNumber());
+        vehicle.setCode(tmsVehicle.getTmsVehiclecode() != null ? tmsVehicle.getTmsVehiclecode().toUpperCase() : null);
+        vehicle.setTechnicalVisit(tmsVehicle.getTmsVehicletechnicalVisit());
+        vehicle.setCreationDate(tmsVehicle.getTmsVehiclecreationDate());
 
         if (!lazy) {
-            vehicle.setBadgeType(BadgeTypeMapper.toDto(tmsVehicle.getTmsVehicleBadgeType(),lazy));
-            vehicle.setVehicleCategory(VehicleCategoryMapper.toDto(tmsVehicle.getTmsVehicleCategory(),lazy));
-            vehicle.setDrivingLicence(TrafficMapper.toDto(tmsVehicle.getTmsVehicleDrivingLicence(),lazy));
-            vehicle.setCreationDate(tmsVehicle.getTmsVehicleCreationDate());
-            vehicle.setCreationUser(UserMapper.toDto(tmsVehicle.getTmsVehicleCreationUser(),lazy));
-            vehicle.setUpDateDate(tmsVehicle.getTmsVehicleUpDateDate());
+            vehicle.setBadgeType(BadgeTypeMapper.toDto(tmsVehicle.getTmsBadgeType(),lazy));
+            vehicle.setVehiculeCategorie(VehicleCategoryMapper.toDto(tmsVehicle.getTmsVehicleCategory(),lazy));
+
         }
         return  vehicle;
 

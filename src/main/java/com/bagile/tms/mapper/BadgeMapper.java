@@ -1,10 +1,8 @@
 package com.bagile.tms.mapper;
 
+import java.util.*;
 import com.bagile.tms.dto.Badge;
 import com.bagile.tms.entities.TmsBadge;
-
-import java.util.*;
-
 public class BadgeMapper {
     private BadgeMapper() {
 
@@ -16,9 +14,9 @@ public class BadgeMapper {
         map = new HashMap<>();
         map.put("id", "tmsBadgeId");
         map.put("code", "tmsBadgeCode");
-        map.put("type", "tmsBadgeType");
-        map.put("driver","tmsDriver");
-        map.put("date","badgeDate");
+        map.put("badgetype", "tmsBadgeType");
+        map.put("driver", "tmsDriver");
+
     }
 
     public static Map<String, String> getMap() {
@@ -34,11 +32,11 @@ public class BadgeMapper {
             return null;
         }
         TmsBadge tmsBadge = new TmsBadge();
-        tmsBadge.setTmsBadgecode(badge.getCode());
+        tmsBadge.setTmsBadgeCode(badge.getCode());
         tmsBadge.setTmsBadgeId(badge.getId());
         if (!lazy) {
-            tmsBadge.setTmsBadgeType(BadgeTypeMapper.toEntity(badge.getType(),true));
-            tmsBadge.setTmsDriver(DriverMapper.toEntity(badge.getDriver(),true));
+            tmsBadge.setTmsBadgeType(BadgeTypeMapper.toEntity(badge.getBadgetype(), true));
+            tmsBadge.setTmsDriver(DriverMapper.toEntity(badge.getDriver(), true));
         }
         return tmsBadge;
     }
@@ -49,10 +47,10 @@ public class BadgeMapper {
         }
         Badge badge = new Badge();
         badge.setId(tmsBadge.getTmsBadgeId());
-        badge.setCode(tmsBadge.getTmsBadgecode());
+        badge.setCode(tmsBadge.getTmsBadgeCode());
         if (!lazy) {
-            badge.setType(BadgeTypeMapper.toDto(tmsBadge.getTmsBadgeType(),true));
-            badge.setDriver(DriverMapper.toDto(tmsBadge.getTmsDriver(),true));
+            badge.setBadgetype(BadgeTypeMapper.toDto(tmsBadge.getTmsBadgeType(), true));
+            badge.setDriver(DriverMapper.toDto(tmsBadge.getTmsDriver(), true));
 
         }
         return badge;
@@ -69,6 +67,7 @@ public class BadgeMapper {
         }
         return badges;
     }
+
     public static List<Badge> toDtos(Iterable<TmsBadge> tmsBadges, boolean lazy) {
         if (null == tmsBadges) {
             return null;
@@ -79,23 +78,25 @@ public class BadgeMapper {
         }
         return badges;
     }
-    public static Set<TmsBadge> toEntities(Set<Badge>badges, boolean lazy){
+
+    public static Set<TmsBadge> toEntities(Set<Badge> badges, boolean lazy) {
         if (null == badges) {
             return null;
         }
         Set<TmsBadge> tmsDrivers = new HashSet<>();
-        for(Badge badge:badges){
-            tmsDrivers.add(toEntity(badge,lazy));
+        for (Badge badge : badges) {
+            tmsDrivers.add(toEntity(badge, lazy));
         }
         return tmsDrivers;
     }
-    public static Set<Badge> toDtos(Set<TmsBadge> tmsBadges, boolean lazy){
-        if(null == tmsBadges){
+
+    public static Set<Badge> toDtos(Set<TmsBadge> tmsBadges, boolean lazy) {
+        if (null == tmsBadges) {
             return null;
         }
         Set<Badge> badges = new HashSet<>();
-        for(TmsBadge tmsBadge : tmsBadges){
-            badges.add(toDto(tmsBadge,lazy));
+        for (TmsBadge tmsBadge : tmsBadges) {
+            badges.add(toDto(tmsBadge, lazy));
         }
         return badges;
     }

@@ -8,9 +8,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-/**
- * Created by bouzi on 4/4/2017.
- */
+
 public interface VehicleService {
 
     Vehicle save(Vehicle vehicle);

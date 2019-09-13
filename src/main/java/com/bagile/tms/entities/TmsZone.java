@@ -1,35 +1,35 @@
 package com.bagile.tms.entities;
 
 import javax.persistence.*;
-import java.util.Set;
+
 
 @Entity
-@Table(name = "tms_zone",uniqueConstraints = @UniqueConstraint(columnNames = {"tms_zoneId"}))
-
-public class TmsZone {
-    private long tmsZoneId;
-    private String tmsZoneName;
+@Table(name="tms_zone")
+public class TmsZone   {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "tms_zonesequence")
-    @Column(name = "tms_zoneId")
-
-    public long getTmsZoneId() {
-        return tmsZoneId;
-    }
-
-    public void setTmsZoneId(long tmsZoneId) {
-        this.tmsZoneId = tmsZoneId;
-    }
-
+    @GeneratedValue
+    @Column(name = "tms_zoneid")
+    private int tmsZoneid;
     @Column(name = "tms_zonename")
-    public String getTmsZoneName() {
-        return tmsZoneName;
+    private String tmsZonename;
+
+    public TmsZone() {
     }
 
-    public void setTmsZoneName(String tmsZoneName) {
-        this.tmsZoneName = tmsZoneName;
+    public int getTmsZoneid() {
+        return tmsZoneid;
     }
 
+    public void setTmsZoneid(int tmsZoneid) {
+        this.tmsZoneid = tmsZoneid;
+    }
+
+    public String getTmsZonename() {
+        return tmsZonename;
+    }
+
+    public void setTmsZonename(String tmsZonename) {
+        this.tmsZonename = tmsZonename;
+    }
 }

@@ -1,95 +1,87 @@
 package com.bagile.tms.entities;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.bagile.tms.dto.Badge;
+import com.bagile.tms.dto.Contact;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
-import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
-@Table(name = "tms_driver", uniqueConstraints = @UniqueConstraint(columnNames = {"tms_drivercode", "tms_driverId", "tms_drivercin"}))
-public class TmsDriver implements java.io.Serializable {
-
-    private long tmsDriverId;
-    private String tmsDriverCode;
-    @Size(max = 30)
-    private String tmsDriverCin;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date tmsDriverBirthDate;
-    private boolean tmsDriverWorking;
-    private TmsVacation tmsDriverVacation;
-
-    //private TmsBadge tmsDriverbadge;
-    private Set<TmsBadge> tmsDriverBadges;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date tmsDriverlastMedicalVisit;
-    private TmsZone tmsDriverWorkArea;
-
-    private BigDecimal tmsDriverCommission;
-    private PrmContact tmsDrivercontact;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date tmsDriverCreationDate;
-    private UsrUser tmsDriverCreationUser;
-    private Date tmsDriverUpDateDate;
+@Table(name="tms_driver")
+public class TmsDriver  {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "tms_driversequence")
-    @Column(name = "tms_driverId", unique = true, nullable = false, precision = 10, scale = 0)
-
-
-    public long getTmsDriverId() {
-        return tmsDriverId;
-    }
-
-    public void setTmsDriverId(long tmsDriverId) {
-        this.tmsDriverId = tmsDriverId;
-    }
-
+    @GeneratedValue
+    @Column(name = "tms_driverid")
+    private long tmsDriverid;
     @Column(name = "tms_drivercode")
-    public String getTmsDriverCode() {
-        return tmsDriverCode;
-    }
-
-    public void setTmsDriverCode(String tmsDriverCode) {
-        this.tmsDriverCode = tmsDriverCode;
-    }
-
+    private String tmsDrivercode;
     @Column(name = "tms_drivercin")
-    public String getTmsDriverCin() {
-        return tmsDriverCin;
-    }
-
-
-    public void setTmsDriverCin(String tmsDriverCin) {
-        this.tmsDriverCin = tmsDriverCin;
-    }
-
+    private String tmsDrivercin;
     @Column(name = "tms_driverbirthdate")
-    @Temporal(TemporalType.TIMESTAMP)
-    public Date getTmsDriverBirthDate() {
-        return tmsDriverBirthDate;
-    }
-
-    public void setTmsDriverBirthDate(Date tmsDriverBirthDate) {
-        this.tmsDriverBirthDate = tmsDriverBirthDate;
-    }
-
-
-    @OneToMany(mappedBy = "tmsDriver")
-    public Set<TmsBadge> getTmsDriverBadges() {
-        return tmsDriverBadges;
-    }
-
-    public void setTmsDriverBadges(Set<TmsBadge> tmsDriverBadges) {
-        this.tmsDriverBadges = tmsDriverBadges;
-    }
-
+    private Date tmsDriverbirthDate;
     @Column(name = "tms_driverlastmedicalvisit")
+    private Date tmsDriverlastMedicalVisit;
+    @Column(name = "tms_drivercommission")
+    private Double tmsDrivercommission;
+    @Column(name = "tms_drivercreationdate")
+    private Date tmsDrivercreationDate;
+    @Column(name = "tms_driverupdate")
+    private Date tmsDriverupDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_contactid")
+    private TmsContact tmsContact;
+    @Column(name = "tms_driverworkin")
+    private boolean tmWorking;
+
+
+
+
+
+
+    public TmsDriver() {
+    }
+
+    public boolean isTmWorking() {
+        return tmWorking;
+    }
+
+    public void setTmWorking(boolean tmWorking) {
+        this.tmWorking = tmWorking;
+    }
+
+    public long getTmsDriverid() {
+        return tmsDriverid;
+    }
+
+    public void setTmsDriverid(long tmsDriverid) {
+        this.tmsDriverid = tmsDriverid;
+    }
+
+    public String getTmsDrivercode() {
+        return tmsDrivercode;
+    }
+
+    public void setTmsDrivercode(String tmsDrivercode) {
+        this.tmsDrivercode = tmsDrivercode;
+    }
+
+    public String getTmsDrivercin() {
+        return tmsDrivercin;
+    }
+
+    public void setTmsDrivercin(String tmsDrivercin) {
+        this.tmsDrivercin = tmsDrivercin;
+    }
+
+    public Date getTmsDriverbirthDate() {
+        return tmsDriverbirthDate;
+    }
+
+    public void setTmsDriverbirthDate(Date tmsDriverbirthDate) {
+        this.tmsDriverbirthDate = tmsDriverbirthDate;
+    }
+
     public Date getTmsDriverlastMedicalVisit() {
         return tmsDriverlastMedicalVisit;
     }
@@ -98,81 +90,37 @@ public class TmsDriver implements java.io.Serializable {
         this.tmsDriverlastMedicalVisit = tmsDriverlastMedicalVisit;
     }
 
-    @Column(name = "tms_driverworking")
-    public boolean isTmsDriverWorking() {
-        return tmsDriverWorking;
+    public Double getTmsDrivercommission() {
+        return tmsDrivercommission;
     }
 
-    public void setTmsDriverWorking(boolean tmsDriverWorking) {
-        this.tmsDriverWorking = tmsDriverWorking;
+    public void setTmsDrivercommission(Double tmsDrivercommission) {
+        this.tmsDrivercommission = tmsDrivercommission;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_drivervacation")
-    public TmsVacation getTmsDriverVacation() {
-        return tmsDriverVacation;
+    public Date getTmsDrivercreationDate() {
+        return tmsDrivercreationDate;
     }
 
-    public void setTmsDriverVacation(TmsVacation tmsDriverVacation) {
-        this.tmsDriverVacation = tmsDriverVacation;
+    public void setTmsDrivercreationDate(Date tmsDrivercreationDate) {
+        this.tmsDrivercreationDate = tmsDrivercreationDate;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_driverworkarea")
-    public TmsZone getTmsDriverWorkArea() {
-        return tmsDriverWorkArea;
+    public Date getTmsDriverupDate() {
+        return tmsDriverupDate;
     }
 
-    public void setTmsDriverWorkArea(TmsZone tmsDriverWorkArea) {
-        this.tmsDriverWorkArea = tmsDriverWorkArea;
+    public void setTmsDriverupDateDate(Date tmsDriverupDateDate) {
+        this.tmsDriverupDate = tmsDriverupDateDate;
     }
 
-    @Column(name = "tms_drivercommission")
-    public BigDecimal getTmsDriverCommission() {
-        return tmsDriverCommission;
+    public TmsContact getTmsContact() {
+        return tmsContact;
     }
 
-    public void setTmsDriverCommission(BigDecimal tmsDriverCommission) {
-        this.tmsDriverCommission = tmsDriverCommission;
+    public void setTmsContact(TmsContact tmsContact) {
+        this.tmsContact = tmsContact;
     }
 
-    @OneToOne(fetch = FetchType.LAZY,cascade ={CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH,CascadeType.PERSIST })
-    @JoinColumn(name = "tms_drivercontactid")
-    public PrmContact getTmsDrivercontact() {
-        return tmsDrivercontact;
-    }
 
-    public void setTmsDrivercontact(PrmContact tmsDrivercontact) {
-        this.tmsDrivercontact = tmsDrivercontact;
-    }
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "tms_drivercreationdate")
-    public Date getTmsDriverCreationDate() {
-        return tmsDriverCreationDate;
-    }
-
-    public void setTmsDriverCreationDate(Date tmsDriverCreationDate) {
-        this.tmsDriverCreationDate = tmsDriverCreationDate;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_drivercreationuserid")
-    public UsrUser getTmsDriverCreationUser() {
-        return tmsDriverCreationUser;
-    }
-
-    public void setTmsDriverCreationUser(UsrUser tmsDriverCreationUser) {
-        this.tmsDriverCreationUser = tmsDriverCreationUser;
-    }
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "tms_driverupdatedate")
-    public Date getTmsDriverUpDateDate() {
-        return tmsDriverUpDateDate;
-    }
-
-    public void setTmsDriverUpDateDate(Date tmsDriverUpDateDate) {
-        this.tmsDriverUpDateDate = tmsDriverUpDateDate;
-    }
 }
