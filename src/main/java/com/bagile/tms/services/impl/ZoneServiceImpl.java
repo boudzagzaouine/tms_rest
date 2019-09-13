@@ -1,4 +1,6 @@
 package com.bagile.tms.services.impl;
+import com.bagile.tms.dto.Zone;
+import com.bagile.tms.entities.TmsZone;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
