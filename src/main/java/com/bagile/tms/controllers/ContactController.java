@@ -1,5 +1,6 @@
 package com.bagile.tms.controllers;
 
+import com.bagile.tms.dto.Contact;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
@@ -22,8 +23,8 @@ public class ContactController {
     @Autowired
     private ContactService contactService;
     @Autowired
-    @Qualifier("userDetailsService")
-    private UserDetailsServiceWarehouse userDetailsService;
+   // @Qualifier("userDetailsService")
+    //private UserDetailsServiceWarehouse userDetailsService;
 
 
     //@PreAuthorize("hasAnyRole('CONTACT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','TRANSPORT_VIEW','INVOICE_VIEW')")
@@ -31,10 +32,7 @@ public class ContactController {
     @ResponseBody
     public List<Contact> getContacts() throws AttributesNotFound, ErrorType {
 
-        if (null == userDetailsService.getOwners()) {
-            return null;
-        }
-        return contactService.find(userDetailsService.getOwners().toString());
+        return contactService.findAll();
     }
 
     //@PreAuthorize("hasAnyRole('CONTACT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','TRANSPORT_VIEW','INVOICE_VIEW')")
@@ -43,20 +41,16 @@ public class ContactController {
     public List<Contact> getContacts(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         Sort sort = new Sort(Sort.Direction.DESC, "prmContactUpdateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        if (null == userDetailsService.getOwners()) {
-            return null;
-        }
-        return contactService.find(userDetailsService.getOwners().toString(), pageable);
+
+        return contactService.findAll( pageable);
     }
 
     //@PreAuthorize("hasAnyRole('CONTACT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','TRANSPORT_VIEW','INVOICE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
     public Long size() throws AttributesNotFound, ErrorType {
-        if (null == userDetailsService.getOwners()) {
-            return null;
-        }
-        return contactService.size(userDetailsService.getOwners().toString());
+
+        return contactService.size();
     }
 
     //@PreAuthorize("hasAnyRole('CONTACT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','TRANSPORT_VIEW','INVOICE_VIEW')")
@@ -64,13 +58,11 @@ public class ContactController {
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
 
-        if (null == userDetailsService.getOwners()) {
-            return null;
-        }
+
         if (!search.endsWith(",")) {
             search += ",";
         }
-        return contactService.size(search + userDetailsService.getOwners().toString());
+        return contactService.size();
     }
 
     //@PreAuthorize("hasAnyRole('CONTACT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','TRANSPORT_VIEW','INVOICE_VIEW')")
@@ -91,14 +83,12 @@ public class ContactController {
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
     public List<Contact> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
-        if (null == userDetailsService.getOwners()) {
-            return null;
-        }
+
         if (!search.endsWith(",")) {
             search += ",";
         }
 
-        return contactService.find(search + userDetailsService.getOwners().toString());
+        return contactService.find(search);
     }
 
     //@PreAuthorize("hasAnyRole('CONTACT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','TRANSPORT_VIEW','INVOICE_VIEW')")
@@ -106,13 +96,11 @@ public class ContactController {
     @ResponseBody
     public List<Contact> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         Pageable pageable = PageRequest.of(page, size);
-        if (null == userDetailsService.getOwners()) {
-            return null;
-        }
+
         if (!search.endsWith(",")) {
             search += ",";
         }
-        return contactService.find(search+userDetailsService.getOwners().toString(), pageable);
+        return contactService.find(search, pageable);
     }
 
     //@PreAuthorize("hasAnyRole('CONTACT_CREATE','SUPPLIER_VIEW','ACCOUNT_VIEW','TRANSPORT_VIEW','INVOICE_VIEW')")
