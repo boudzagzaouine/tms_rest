@@ -1,7 +1,7 @@
 package com.bagile.tms.services.impl;
 
 import com.bagile.tms.dto.Contact;
-import com.bagile.tms.entities.TmsContact;
+import com.bagile.tms.entities.PrmContact;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
@@ -75,7 +75,7 @@ public class ContactServiceImpl implements ContactService {
             }
             search += "active:true";
         }
-        return ContactMapper.toDtos(contactRepository.findAll(Search.expression(search, TmsContact.class)), false);
+        return ContactMapper.toDtos(contactRepository.findAll(Search.expression(search, PrmContact.class)), false);
     }
 
     @Override
@@ -86,11 +86,11 @@ public class ContactServiceImpl implements ContactService {
             }
             search += "active:true";
         }
-        return ContactMapper.toDtos(contactRepository.findAll(Search.expression(search, TmsContact.class), pageable), false);
+        return ContactMapper.toDtos(contactRepository.findAll(Search.expression(search, PrmContact.class), pageable), false);
     }
     @Override
     public Contact findOne(String search) throws AttributesNotFound, ErrorType {
-        return ContactMapper.toDto(contactRepository.findOne(Search.expression(search, TmsContact.class)).get(), false);
+        return ContactMapper.toDto(contactRepository.findOne(Search.expression(search, PrmContact.class)).get(), false);
 
     }
     @Override
@@ -101,14 +101,14 @@ public class ContactServiceImpl implements ContactService {
             }
             search += "active:true";
         }
-        return contactRepository.count(Search.expression(search, TmsContact.class));
+        return contactRepository.count(Search.expression(search, PrmContact.class));
     }
 
     @Override
     public void delete(Long id) {
         LOGGER.info("delete Contact");
-        TmsContact tmsContact=contactRepository.findById(id).get();
-        tmsContact.setTmsContactactive(false);
+        PrmContact tmsContact=contactRepository.findById(id).get();
+        tmsContact.setprmContactactive(false);
         contactRepository.saveAndFlush(tmsContact);
     }
 

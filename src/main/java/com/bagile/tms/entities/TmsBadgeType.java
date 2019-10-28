@@ -22,8 +22,8 @@ public class TmsBadgeType  {
         return tmsBadgeTypeid;
     }
 
-    public void setTmsBadgeTypeid(int tmsBadgeTypeid) {
-        tmsBadgeTypeid = tmsBadgeTypeid;
+    public void setTmsBadgeTypeid(long tmsBadgeTypeid) {
+        this.tmsBadgeTypeid = tmsBadgeTypeid;
     }
 
     public String getTmsBadgeTypecode() {
@@ -31,6 +31,6 @@ public class TmsBadgeType  {
     }
 
     public void setTmsBadgeTypecode(String tmsBadgeTypecode) {
-        tmsBadgeTypecode = tmsBadgeTypecode;
+        this.tmsBadgeTypecode = tmsBadgeTypecode;
     }
 }

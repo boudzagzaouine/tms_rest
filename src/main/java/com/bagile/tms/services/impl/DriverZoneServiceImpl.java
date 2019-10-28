@@ -7,7 +7,7 @@ import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
 import com.bagile.tms.mapper.DriverZoneMapper;
 import com.bagile.tms.repositories.DriverZoneRepository;
-import com.bagile.tms.util.EmsDate;
+import com.bagile.tms.services.BadgeTypeService;
 import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,12 +20,12 @@ import java.util.List;
 
 @Service
 @Transactional
-public class DriverZoneServiceImpl implements DriverZoneService{
+public class DriverZoneServiceImpl implements BadgeTypeService.DriverZoneService {
 
     @Autowired
     private DriverZoneRepository driverzoneRepository;
     private final static Logger LOGGER = LoggerFactory
-            .getLogger(DriverZoneService.class);
+            .getLogger(BadgeTypeService.DriverZoneService.class);
 
 
 

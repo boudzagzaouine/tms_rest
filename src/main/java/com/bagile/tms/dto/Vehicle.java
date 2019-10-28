@@ -6,20 +6,19 @@ import java.util.Date;
 public class Vehicle implements Serializable {
 
 
-    private int id;
-    private String  registrationNumber;
-   private String code;
-   private Date technicalVisit;
-   private Date creationDate;
-   private VehicleCategory vehiculeCategorie;
-   private BadgeType badgeType;
-
+    private long id;
+    private String registrationNumber;
+    private String code;
+    private Date technicalVisit;
+    private Date creationDate;
+    private VehicleCategory vehiculeCategorie;
+    private BadgeType badgeType;
 
 
     public Vehicle() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

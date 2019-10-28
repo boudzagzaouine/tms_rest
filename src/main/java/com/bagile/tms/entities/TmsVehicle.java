@@ -13,7 +13,7 @@ public class TmsVehicle   {
     @Id
     @GeneratedValue
     @Column(name = "tms_vehiculeid")
-    private int tmsVehicleid;
+    private long tmsVehicleid;
     @Column(name = "tms_vehiculeregistrationnumber")
     private String  registrationNumber;
     @Column(name = "tms_vehiculecode")
@@ -22,10 +22,11 @@ public class TmsVehicle   {
    private Date tmsVehicletechnicalVisit;
     @Column(name = "tms_vehiculecreationdate")
    private Date tmsVehiclecreationDate;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "tms_vehiculecategorieid")
    private TmsVehicleCategory tmsVehicleCategory;
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade =CascadeType.MERGE)
     @JoinColumn(name = "tms_badgetypeid")
    private TmsBadgeType tmsBadgeType;
 
@@ -34,11 +35,11 @@ public class TmsVehicle   {
     public TmsVehicle() {
     }
 
-    public int getTmsVehicleid() {
+    public long getTmsVehicleid() {
         return tmsVehicleid;
     }
 
-    public void setTmsVehicleid(int tmsVehicleid) {
+    public void setTmsVehicleid(long tmsVehicleid) {
         this.tmsVehicleid = tmsVehicleid;
     }
 

@@ -23,7 +23,7 @@ public class DriverMapper {
         map.put("commission", "tmsDriverCommission");
         map.put("creationDate", "tmsDriverCreationDate");
         map.put("upDateDate", "tmsDriverUpdateDate");
-        map.put("contact", "tmscontactid");
+        map.put("contact", "prmcontactid");
 
     }
 
@@ -47,7 +47,7 @@ public class DriverMapper {
         tmsDriver.setTmsDriverlastMedicalVisit(driver.getLastMedicalVisit());
         tmsDriver.setTmsDrivercommission(driver.getCommission());
         tmsDriver.setTmsDrivercreationDate(driver.getCreationDate());
-        tmsDriver.setTmsDriverupDateDate(driver.getUpDateDate());
+        tmsDriver.setTmsDriverupDateDate(driver.getUpDate());
 
 
         if (!lazy) {
@@ -81,10 +81,10 @@ public class DriverMapper {
         driver.setLastMedicalVisit(tmsDriver.getTmsDriverlastMedicalVisit());
         driver.setCommission(tmsDriver.getTmsDrivercommission());
         driver.setCreationDate(tmsDriver.getTmsDrivercreationDate());
-        driver.setUpDateDate(tmsDriver.getTmsDriverupDateDate());
+        driver.setUpDate(tmsDriver.getTmsDriverupDate());
 
         if (!lazy) {
-            driver.setContact(ContactMapper.toDto(tmsDriver.getTmsContact(),true));
+            driver.setContact(ContactMapper.toDto(tmsDriver.getprmContact(),true));
            // driver.setCreationUser(UserMapper.toDto(tmsDriver.getTmsDriverCreationUser(),true));
            // driver.setBadges(BadgeMapper.toDtos(tmsDriver.getTmsDriverBadges(),true));
           // driver.setVacation(VacationMapper.toDto(tmsDriver.getTmsDriverVacation(),true));

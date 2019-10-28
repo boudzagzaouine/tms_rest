@@ -9,14 +9,14 @@ spring:
       dialect: org.hibernate.dialect.PostgreSQLDialect
 
 
-    show-sql: true
+    show-sql: false
     generate-ddl: true
     database: postgresql
     properties:
       hibernate:
         default_schema: schema_emstms
-        format_sql: true
-        generate_statistics: true
+        format_sql: false
+        generate_statistics: false
   jooq:
     sql-dialect: org.hibernate.dialect.PostgreSQLDialect
 

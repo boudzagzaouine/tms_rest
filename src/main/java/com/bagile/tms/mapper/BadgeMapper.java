@@ -33,7 +33,7 @@ public class BadgeMapper {
         }
         TmsBadge tmsBadge = new TmsBadge();
         tmsBadge.setTmsBadgeCode(badge.getCode());
-        tmsBadge.setTmsBadgeId(badge.getId());
+        tmsBadge.setTmsBadgeId((int) badge.getId());
         if (!lazy) {
             tmsBadge.setTmsBadgeType(BadgeTypeMapper.toEntity(badge.getBadgetype(), true));
             tmsBadge.setTmsDriver(DriverMapper.toEntity(badge.getDriver(), true));
@@ -46,7 +46,7 @@ public class BadgeMapper {
             return null;
         }
         Badge badge = new Badge();
-        badge.setId(tmsBadge.getTmsBadgeId());
+        badge.setId((int) tmsBadge.getTmsBadgeId());
         badge.setCode(tmsBadge.getTmsBadgeCode());
         if (!lazy) {
             badge.setBadgetype(BadgeTypeMapper.toDto(tmsBadge.getTmsBadgeType(), true));

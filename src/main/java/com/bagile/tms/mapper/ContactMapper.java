@@ -2,7 +2,7 @@ package com.bagile.tms.mapper;
 
 
 import com.bagile.tms.dto.Contact;
-import com.bagile.tms.entities.TmsContact;
+import com.bagile.tms.entities.PrmContact;
 
 import java.util.*;
 
@@ -15,16 +15,16 @@ public class ContactMapper {
 
     static {
         map = new HashMap<>();
-        map.put("id","tmsContactid");
-        map.put("name","tmsContactname");
-        map.put("creationDate","tmsContactcreationDate");
-        map.put("surname","tmsContactsurname");
+        map.put("id","prmContactid");
+        map.put("name","prmContactname");
+        map.put("creationDate","prmContactcreationDate");
+        map.put("surname","prmContactsurname");
         map.put("tel1","prmContactTel1");
-        map.put("fax","tmsContactfax");
-        map.put("contactType", "tmsContactType");
-        map.put("email", "tmsContactemail");
-        map.put("comment", "tmsContactcomment");
-        map.put("active","tmsContactactive");
+        map.put("fax","prmContactfax");
+        map.put("contactType", "prmContactType");
+        map.put("email", "prmContactemail");
+        map.put("comment", "prmContactcomment");
+        map.put("active","prmContactactive");
     }
 
 
@@ -36,21 +36,21 @@ public class ContactMapper {
         return map.get(key);
     }
 
-    public static TmsContact toEntity(Contact contact, boolean lazy) {
+    public static PrmContact toEntity(Contact contact, boolean lazy) {
         if (null == contact) {
             return null;
         }
-        TmsContact tmsContact = new TmsContact();
-        tmsContact.setTmsContactid(contact.getId());
-        tmsContact.setTmsContactname(contact.getName());
-        tmsContact.setTmsContactcontactType(contact.getContactType());
-        tmsContact.setTmsContactsurname(contact.getSurname());
-        tmsContact.setTmsContacttele1(contact.getTele1());
-        tmsContact.setTmsContactfax(contact.getFax());
-        tmsContact.setTmsContactcontactType(contact.getContactType());
-        tmsContact.setTmsContactemail(contact.getEmail());
-         tmsContact.setTmsContactcomment(contact.getComment());
-        tmsContact.setTmsContactactive(contact.getActive());
+        PrmContact tmsContact = new PrmContact();
+        tmsContact.setprmContactid(contact.getId());
+        tmsContact.setprmContactname(contact.getName());
+        tmsContact.setprmContactcontactType(contact.getContactType());
+        tmsContact.setprmContactsurname(contact.getSurname());
+        tmsContact.setprmContacttele1(contact.getTele1());
+        tmsContact.setprmContactfax(contact.getFax());
+        tmsContact.setprmContactcontactType(contact.getContactType());
+        tmsContact.setprmContactemail(contact.getEmail());
+         tmsContact.setprmContactcomment(contact.getComment());
+        tmsContact.setprmContactactive(contact.getActive());
         /*if (!lazy) {
             tmsContact.setOwnOwner(OwnerMapper.toEntity(contact.getOwner(), true));
 //            prmContact.setInvInvoices(InvoiceMapper.toEntities(contact.getInvoices(), true));
@@ -61,21 +61,21 @@ public class ContactMapper {
         return tmsContact;
     }
 
-    public static Contact toDto(TmsContact tmsContact, boolean lazy) {
+    public static Contact toDto(PrmContact tmsContact, boolean lazy) {
         if (null == tmsContact) {
             return null;
         }
         Contact contact = new Contact();
-        contact.setId(tmsContact.getTmsContactid());
-        contact.setName(tmsContact.getTmsContactname());
-        contact.setCreationDate(tmsContact.getTmsContactcreationDate());
-        contact.setSurname(tmsContact.getTmsContactsurname());
-        contact.setTele1(tmsContact.getTmsContacttele1());
-        contact.setFax(tmsContact.getTmsContactfax());
-        contact.setContactType(tmsContact.getTmsContactcontactType());
-        contact.setEmail(tmsContact.getTmsContactemail());
-        contact.setComment(tmsContact.getTmsContactcomment());
-        contact.setActive(tmsContact.getTmsContactactive());
+        contact.setId(tmsContact.getprmContactid());
+        contact.setName(tmsContact.getprmContactname());
+        contact.setCreationDate(tmsContact.getprmContactcreationDate());
+        contact.setSurname(tmsContact.getprmContactsurname());
+        contact.setTele1(tmsContact.getprmContacttele1());
+        contact.setFax(tmsContact.getprmContactfax());
+        contact.setContactType(tmsContact.getprmContactcontactType());
+        contact.setEmail(tmsContact.getprmContactemail());
+        contact.setComment(tmsContact.getprmContactcomment());
+        contact.setActive(tmsContact.getprmContactactive());
         /*if (!lazy) {
             contact.setOwner(OwnerMapper.toDto(prmContact.getOwnOwner(), true));
 //            contact.setInvoices(InvoiceMapper.toDtos(prmContact.getInvInvoices(), true));
@@ -86,45 +86,45 @@ public class ContactMapper {
         return contact;
     }
 
-    public static List<Contact> toDtos(List<TmsContact> tmsContacts, boolean lazy) {
+    public static List<Contact> toDtos(List<PrmContact> tmsContacts, boolean lazy) {
         if (null == tmsContacts) {
             return null;
         }
         List<Contact> contacts = new ArrayList<>();
-        for (TmsContact trmContact : tmsContacts) {
+        for (PrmContact trmContact : tmsContacts) {
             contacts.add(toDto(trmContact, lazy));
         }
         return contacts;
     }
 
-    public static List<Contact> toDtos(Iterable<TmsContact> tmsContacts, boolean lazy) {
+    public static List<Contact> toDtos(Iterable<PrmContact> tmsContacts, boolean lazy) {
         if (null == tmsContacts) {
             return null;
         }
         List<Contact> contacts = new ArrayList<>();
-        for (TmsContact trmContact : tmsContacts) {
+        for (PrmContact trmContact : tmsContacts) {
             contacts.add(toDto(trmContact, lazy));
         }
         return contacts;
     }
 
-    public static Set<TmsContact> toEntities(Set<Contact> contacts, boolean lazy) {
+    public static Set<PrmContact> toEntities(Set<Contact> contacts, boolean lazy) {
         if (null == contacts) {
             return null;
         }
-        Set<TmsContact> prmContacts = new HashSet<>();
+        Set<PrmContact> prmContacts = new HashSet<>();
         for (Contact contact : contacts) {
             prmContacts.add(toEntity(contact, lazy));
         }
         return prmContacts;
     }
 
-    public static Set<Contact> toDtos(Set<TmsContact> tmsContacts, boolean lazy) {
+    public static Set<Contact> toDtos(Set<PrmContact> tmsContacts, boolean lazy) {
         if (null == tmsContacts) {
             return null;
         }
         Set<Contact> contacts = new HashSet<>();
-        for (TmsContact tmsContact : tmsContacts) {
+        for (PrmContact tmsContact : tmsContacts) {
             contacts.add(toDto(tmsContact, lazy));
         }
         return contacts;

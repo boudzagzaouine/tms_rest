@@ -1,8 +1,5 @@
 package com.bagile.tms.entities;
 
-import com.bagile.tms.dto.Badge;
-import com.bagile.tms.dto.Contact;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -29,8 +26,8 @@ public class TmsDriver  {
     @Column(name = "tms_driverupdate")
     private Date tmsDriverupDate;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_contactid")
-    private TmsContact tmsContact;
+    @JoinColumn(name = "prm_contactid")
+    private PrmContact prmContact;
     @Column(name = "tms_driverworkin")
     private boolean tmWorking;
 
@@ -114,12 +111,12 @@ public class TmsDriver  {
         this.tmsDriverupDate = tmsDriverupDateDate;
     }
 
-    public TmsContact getTmsContact() {
-        return tmsContact;
+    public PrmContact getprmContact() {
+        return prmContact;
     }
 
-    public void setTmsContact(TmsContact tmsContact) {
-        this.tmsContact = tmsContact;
+    public void setTmsContact(PrmContact prmContact) {
+        this.prmContact = prmContact;
     }
 
 

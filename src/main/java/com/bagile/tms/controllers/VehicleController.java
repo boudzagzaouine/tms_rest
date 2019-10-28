@@ -24,7 +24,7 @@ public class VehicleController {
     private VehicleService vehicleService;
 
     //@PreAuthorize("hasAnyRole('VEHICLE_VIEW')")
-    @RequestMapping(method = RequestMethod.GET, value = "/list")
+    @GetMapping( value = "/list")
     @ResponseBody
     public List<Vehicle> getAll() {
         return vehicleService.findAll();
