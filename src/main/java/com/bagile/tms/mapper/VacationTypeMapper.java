@@ -38,6 +38,10 @@ public class VacationTypeMapper {
         tmsVacationtype.setTmsVacationTypeId(vacationtype.getId());
         tmsVacationtype.setTmsVacationTypeCode(vacationtype.getCode());
         tmsVacationtype.setTmsVacationDescription(vacationtype.getDescription());
+        tmsVacationtype.setCreatedBy(vacationtype.getCreatedBy());
+        tmsVacationtype.setUpdatedBy(vacationtype.getUpdatedBy());
+        tmsVacationtype.setCreationDate(vacationtype.getCreationDate());
+        tmsVacationtype.setUpdateDate(vacationtype.getUpdateDate());
 
         if (!lazy) {
            // tmsVacation.setTmsDriver(DriverMapper.toEntity(vacation.getDriver(), true));
@@ -54,6 +58,10 @@ public class VacationTypeMapper {
         vacationtype.setId(tmsVacationtype.getTmsVacationTypeId());
         vacationtype.setCode(tmsVacationtype.getTmsVacationTypeCode());
         vacationtype.setDescription(tmsVacationtype.getTmsVacationDescription());
+        vacationtype.setCreatedBy(tmsVacationtype.getCreatedBy());
+        vacationtype.setUpdatedBy(tmsVacationtype.getUpdatedBy());
+        vacationtype.setCreationDate(tmsVacationtype.getCreationDate());
+        vacationtype.setUpdateDate(tmsVacationtype.getUpdateDate());
 
         if (!lazy) {
 

@@ -44,7 +44,10 @@ public class VehicleMapper {
         tmsVehicle.setTmsRegistrationNumber(vehicle.getRegistrationNumber());
         tmsVehicle.setTmsVehicleCode(vehicle.getCode() != null ? vehicle.getCode().toUpperCase() : null);
         tmsVehicle.setTmsVehicleTechnicalVisit(vehicle.getTechnicalVisit());
-        tmsVehicle.setTmsVehicleCreationDate(vehicle.getCreationDate());
+        tmsVehicle.setCreatedBy(vehicle.getCreatedBy());
+        tmsVehicle.setUpdatedBy(vehicle.getUpdatedBy());
+        tmsVehicle.setCreationDate(vehicle.getCreationDate());
+        tmsVehicle.setUpdateDate(vehicle.getUpdateDate());
 
 
         if (!lazy) {
@@ -65,7 +68,10 @@ public class VehicleMapper {
         vehicle.setRegistrationNumber(tmsVehicle.getTmsRegistrationNumber());
         vehicle.setCode(tmsVehicle.getTmsVehicleCode() != null ? tmsVehicle.getTmsVehicleCode().toUpperCase() : null);
         vehicle.setTechnicalVisit(tmsVehicle.getTmsVehicleTechnicalVisit());
-        vehicle.setCreationDate(tmsVehicle.getTmsVehicleCreationDate());
+        vehicle.setCreatedBy(tmsVehicle.getCreatedBy());
+        vehicle.setUpdatedBy(tmsVehicle.getUpdatedBy());
+        vehicle.setCreationDate(tmsVehicle.getCreationDate());
+        vehicle.setUpdateDate(tmsVehicle.getUpdateDate());
 
         if (!lazy) {
             vehicle.setBadgeType(BadgeTypeMapper.toDto(tmsVehicle.getTmsBadgeType(), lazy));

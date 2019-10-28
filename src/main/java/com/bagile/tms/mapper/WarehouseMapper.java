@@ -46,13 +46,15 @@ public class WarehouseMapper {
         }
         Warehouse warehouse = new Warehouse();
         warehouse.setCode(wrhWarehouse.getWrhWarehouseCode());
-        warehouse.setUpdateDate(wrhWarehouse.getWrhWarehouseUpdateDate());
-        warehouse.setCreationDate(wrhWarehouse.getWrhWarehouseCreationDate());
         warehouse.setDescription(wrhWarehouse.getWrhWarehouseDescription());
         warehouse.setId(wrhWarehouse.getWrhWarehouseId());
         warehouse.setEmail(wrhWarehouse.getWrhWarehouseEmail());
         warehouse.setTelephone(wrhWarehouse.getWrhWarehouseTel());
         warehouse.setActive(wrhWarehouse.getWrhWarehouseIsActive());
+        warehouse.setCreatedBy(wrhWarehouse.getCreatedBy());
+        warehouse.setUpdatedBy(wrhWarehouse.getUpdatedBy());
+        warehouse.setCreationDate(wrhWarehouse.getCreationDate());
+        warehouse.setUpdateDate(wrhWarehouse.getUpdateDate());
         if (!lazy) {
             // warehouse.setAddress(AddressMapper.toDto(wrhWarehouse.getAdrAddress(), true));
 
@@ -66,13 +68,15 @@ public class WarehouseMapper {
         }
         WrhWarehouse wrhWarehouse = new WrhWarehouse();
         wrhWarehouse.setWrhWarehouseCode(warehouse.getCode() != null ? warehouse.getCode().toUpperCase() : null);
-        wrhWarehouse.setWrhWarehouseCreationDate(warehouse.getCreationDate());
         wrhWarehouse.setWrhWarehouseDescription(warehouse.getDescription());
         wrhWarehouse.setWrhWarehouseId(warehouse.getId());
-        wrhWarehouse.setWrhWarehouseUpdateDate(warehouse.getUpdateDate());
         wrhWarehouse.setWrhWarehouseEmail(warehouse.getEmail());
         wrhWarehouse.setWrhWarehouseTel(warehouse.getTelephone());
         wrhWarehouse.setWrhWarehouseIsActive(warehouse.getActive());
+        wrhWarehouse.setCreatedBy(warehouse.getCreatedBy());
+        wrhWarehouse.setUpdatedBy(warehouse.getUpdatedBy());
+        wrhWarehouse.setCreationDate(warehouse.getCreationDate());
+        wrhWarehouse.setUpdateDate(warehouse.getUpdateDate());
         if (!lazy) {
             //  wrhWarehouse.setAdrAddress(AddressMapper.toEntity(warehouse.getAddress(), true));
         }
