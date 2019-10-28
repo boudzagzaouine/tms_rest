@@ -131,4 +131,5 @@ public class PrmContact extends EmsEntity {
     public void setPrmContactActive(boolean prmContactActive) {
         this.prmContactActive = prmContactActive;
     }
+
 }

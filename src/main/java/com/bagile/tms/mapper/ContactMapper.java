@@ -41,16 +41,15 @@ public class ContactMapper {
             return null;
         }
         PrmContact tmsContact = new PrmContact();
-        tmsContact.setprmContactid(contact.getId());
-        tmsContact.setprmContactname(contact.getName());
-        tmsContact.setprmContactcontactType(contact.getContactType());
-        tmsContact.setprmContactsurname(contact.getSurname());
-        tmsContact.setprmContacttele1(contact.getTele1());
-        tmsContact.setprmContactfax(contact.getFax());
-        tmsContact.setprmContactcontactType(contact.getContactType());
-        tmsContact.setprmContactemail(contact.getEmail());
-         tmsContact.setprmContactcomment(contact.getComment());
-        tmsContact.setprmContactactive(contact.getActive());
+        tmsContact.setPrmContactId(contact.getId());
+        tmsContact.setPrmContactName(contact.getName());
+        tmsContact.setPrmContactType(contact.getContactType());
+        tmsContact.setPrmContactSurname(contact.getSurname());
+        tmsContact.setPrmContactTele1(contact.getTele1());
+        tmsContact.setPrmContactFax(contact.getFax());
+        tmsContact.setPrmContactEmail(contact.getEmail());
+         tmsContact.setPrmContactComment(contact.getComment());
+        tmsContact.setPrmContactActive(contact.getActive());
         /*if (!lazy) {
             tmsContact.setOwnOwner(OwnerMapper.toEntity(contact.getOwner(), true));
 //            prmContact.setInvInvoices(InvoiceMapper.toEntities(contact.getInvoices(), true));
@@ -66,16 +65,16 @@ public class ContactMapper {
             return null;
         }
         Contact contact = new Contact();
-        contact.setId(tmsContact.getprmContactid());
-        contact.setName(tmsContact.getprmContactname());
-        contact.setCreationDate(tmsContact.getprmContactcreationDate());
-        contact.setSurname(tmsContact.getprmContactsurname());
-        contact.setTele1(tmsContact.getprmContacttele1());
-        contact.setFax(tmsContact.getprmContactfax());
-        contact.setContactType(tmsContact.getprmContactcontactType());
-        contact.setEmail(tmsContact.getprmContactemail());
-        contact.setComment(tmsContact.getprmContactcomment());
-        contact.setActive(tmsContact.getprmContactactive());
+        contact.setId(tmsContact.getPrmContactId());
+        contact.setName(tmsContact.getPrmContactName());
+        contact.setCreationDate(tmsContact.getPrmContactCreationDate());
+        contact.setSurname(tmsContact.getPrmContactSurname());
+        contact.setTele1(tmsContact.getPrmContactTele1());
+        contact.setFax(tmsContact.getPrmContactFax());
+        contact.setContactType(tmsContact.getPrmContactType());
+        contact.setEmail(tmsContact.getPrmContactEmail());
+        contact.setComment(tmsContact.getPrmContactComment());
+        contact.setActive(tmsContact.isPrmContactActive());
         /*if (!lazy) {
             contact.setOwner(OwnerMapper.toDto(prmContact.getOwnOwner(), true));
 //            contact.setInvoices(InvoiceMapper.toDtos(prmContact.getInvInvoices(), true));

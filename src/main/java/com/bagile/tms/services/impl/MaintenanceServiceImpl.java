@@ -30,10 +30,10 @@ public class MaintenanceServiceImpl implements MaintenancePlanService {
     @Override
     public MaintenancePlan save(MaintenancePlan maintenancePlan) {
         LOGGER.info("save Maintenance");
-        maintenancePlan.setUpDate(EmsDate.getDateNow());
+        maintenancePlan.setUpdateDate(EmsDate.getDateNow());
         if(0>=maintenancePlan.getId())
         {
-            maintenancePlan.setCreationDatae(EmsDate.getDateNow());
+            maintenancePlan.setCreationDate(EmsDate.getDateNow());
         }
         return MaintenancePlanMapper.toDto(maintenancePlanRepository.saveAndFlush(MaintenancePlanMapper.toEntity(maintenancePlan, false)), false);
     }

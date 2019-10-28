@@ -108,7 +108,7 @@ public class ContactServiceImpl implements ContactService {
     public void delete(Long id) {
         LOGGER.info("delete Contact");
         PrmContact tmsContact=contactRepository.findById(id).get();
-        tmsContact.setprmContactactive(false);
+        tmsContact.setPrmContactActive(false);
         contactRepository.saveAndFlush(tmsContact);
     }
 

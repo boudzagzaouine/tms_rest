@@ -41,18 +41,18 @@ public class MaintenancePlanMapper {
             return null;
         }
         TmsMaintenancePlan tmsMaintenancePlan = new TmsMaintenancePlan();
-        tmsMaintenancePlan.setTmsMaintenancePlanid(maintenancePlan.getId());
-        tmsMaintenancePlan.setTmsMaintenancePlancode(maintenancePlan.getCode() != null ? maintenancePlan.getCode().toUpperCase() : null);
-        tmsMaintenancePlan.setTmsMaintenancePlandescriptif(maintenancePlan.getDescriptif());
-        tmsMaintenancePlan.setTmsMaintenancePlancreationDatae(maintenancePlan.getCreationDatae());
-        tmsMaintenancePlan.setTmsMaintenancePlanupDate(maintenancePlan.getUpDate());
-        tmsMaintenancePlan.setTmsMaintenancePlanbegin(maintenancePlan.getBegin());
-        tmsMaintenancePlan.setTmsMaintenancePlanend(maintenancePlan.getEnd());
+        tmsMaintenancePlan.setTmsMaintenancePlanId(maintenancePlan.getId());
+        tmsMaintenancePlan.setTmsMaintenancePlanCode(maintenancePlan.getCode() != null ? maintenancePlan.getCode().toUpperCase() : null);
+        tmsMaintenancePlan.setTmsMaintenancePlanDescription(maintenancePlan.getDescription());
+        tmsMaintenancePlan.setTmsMaintenancePlancreationDatae(maintenancePlan.getCreationDate());
+        tmsMaintenancePlan.setTmsMaintenancePlanUpdateDate(maintenancePlan.getUpdateDate());
+        tmsMaintenancePlan.setTmsMaintenancePlanStartDate(maintenancePlan.getBegin());
+        tmsMaintenancePlan.setTmsMaintenancePlanEndDate(maintenancePlan.getEnd());
 
         if (!lazy) {
             tmsMaintenancePlan.setTmsMaintenanceType(MaintenanceTypeMapper.toEntity(maintenancePlan.getMaintenanceType(), true));
             tmsMaintenancePlan.setTmsMaintenanceState(MaintenanceStateMapper.toEntity(maintenancePlan.getMaintenanceState(), true));
-            tmsMaintenancePlan.setTmsVehicle(VehicleMapper.toEntity(maintenancePlan.getVehicule(),true));
+            tmsMaintenancePlan.setTmsVehicle(VehicleMapper.toEntity(maintenancePlan.getVehicle(),true));
         }
         return tmsMaintenancePlan;
     }
@@ -62,18 +62,18 @@ public class MaintenancePlanMapper {
             return null;
         }
         MaintenancePlan maintenancePlan = new MaintenancePlan();
-        maintenancePlan.setId(tmsMaintenancePlan.getTmsMaintenancePlanid());
-        maintenancePlan.setCode(tmsMaintenancePlan.getTmsMaintenancePlancode());
-        maintenancePlan.setDescriptif(tmsMaintenancePlan.getTmsMaintenancePlandescriptif());
-        maintenancePlan.setCreationDatae(tmsMaintenancePlan.getTmsMaintenancePlancreationDatae());
-        maintenancePlan.setUpDate(tmsMaintenancePlan.getTmsMaintenancePlanupDate());
-        maintenancePlan.setBegin(tmsMaintenancePlan.getTmsMaintenancePlanbegin());
-        maintenancePlan.setEnd(tmsMaintenancePlan.getTmsMaintenancePlanend());
+        maintenancePlan.setId(tmsMaintenancePlan.getTmsMaintenancePlanId());
+        maintenancePlan.setCode(tmsMaintenancePlan.getTmsMaintenancePlanCode());
+        maintenancePlan.setDescription(tmsMaintenancePlan.getTmsMaintenancePlanDescription());
+        maintenancePlan.setCreationDate(tmsMaintenancePlan.getTmsMaintenancePlancreationDatae());
+        maintenancePlan.setUpdateDate(tmsMaintenancePlan.getTmsMaintenancePlanUpdateDate());
+        maintenancePlan.setBegin(tmsMaintenancePlan.getTmsMaintenancePlanStartDate());
+        maintenancePlan.setEnd(tmsMaintenancePlan.getTmsMaintenancePlanEndDate());
         if (!lazy) {
             maintenancePlan.setMaintenanceType(MaintenanceTypeMapper.toDto(tmsMaintenancePlan.getTmsMaintenanceType(), true));
             maintenancePlan.setMaintenanceState(MaintenanceStateMapper.toDto(tmsMaintenancePlan.getTmsMaintenanceState(), true));
             //maintenancePlan.setActes(ActeMapper.toDtos(tmsMaintenancePlan.getTmsMaintenancePlanActes(),true));
-            maintenancePlan.setVehicule(VehicleMapper.toDto(tmsMaintenancePlan.getTmsVehicle(),true));
+            maintenancePlan.setVehicle(VehicleMapper.toDto(tmsMaintenancePlan.getTmsVehicle(),true));
         }
 
         return maintenancePlan;

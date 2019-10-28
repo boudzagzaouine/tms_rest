@@ -34,7 +34,7 @@ public class MaintenanceStateMapper {
         MaintenanceState state = new MaintenanceState();
         state.setId(tmsState.getTmsMaintenanceStateId());
         state.setCode(tmsState.getTmsMaintenanceStateCode());
-        state.setDescriptif(tmsState.getTmsMaintenanceStateDescription());
+        state.setDescription(tmsState.getTmsMaintenanceStateDescription());
         state.setCreationDate(tmsState.getTmsMaintenanceStateCreationDate());
         if(!lazy) {
            // state.setCreationDate(tmsState.getTmsMaintenanceStateCreationDate());
@@ -53,7 +53,7 @@ public class MaintenanceStateMapper {
         TmsMaintenanceState tmsState = new TmsMaintenanceState();
         tmsState.setTmsMaintenanceStateId(state.getId());
         tmsState.setTmsMaintenanceStateCode(state.getCode());
-        tmsState.setTmsMaintenanceStateDescription(state.getDescriptif());
+        tmsState.setTmsMaintenanceStateDescription(state.getDescription());
         tmsState.setTmsMaintenanceStateCreationDate(state.getCreationDate());
 
         if(!lazy) {

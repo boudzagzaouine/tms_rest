@@ -47,7 +47,7 @@ public class DriverMapper {
         tmsDriver.setTmsDriverLastMedicalVisit(driver.getLastMedicalVisit());
         tmsDriver.setTmsDriverCommission(driver.getCommission());
         tmsDriver.setTmsDriverCreationDate(driver.getCreationDate());
-        tmsDriver.setTmsDriverupDateDate(driver.getUpDate());
+        tmsDriver.setTmsDriverupDateDate(driver.getUpdateDate());
 
 
         if (!lazy) {
@@ -81,7 +81,7 @@ public class DriverMapper {
         driver.setLastMedicalVisit(tmsDriver.getTmsDriverLastMedicalVisit());
         driver.setCommission(tmsDriver.getTmsDriverCommission());
         driver.setCreationDate(tmsDriver.getTmsDriverCreationDate());
-        driver.setUpDate(tmsDriver.getTmsDriverUpdateDate());
+        driver.setUpdateDate(tmsDriver.getTmsDriverUpdateDate());
 
         if (!lazy) {
             driver.setContact(ContactMapper.toDto(tmsDriver.getprmContact(),true));
