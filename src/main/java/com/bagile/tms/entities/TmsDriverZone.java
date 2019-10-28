@@ -26,12 +26,7 @@ public class TmsDriverZone extends EmsEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_zoneid")
     private TmsZone tmsDriverZoneZone;
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "tms_drivercreationdate")
-    private Date tmsDriverZoneCreationDate;
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "tms_driverupdate")
-    private Date tmsDriverZoneUpdateDate;
+
 
 
     public TmsDriverZone() {
@@ -61,19 +56,5 @@ public class TmsDriverZone extends EmsEntity {
         this.tmsDriverZoneZone = tmsDriverZoneZone;
     }
 
-    public Date getTmsDriverZoneCreationDate() {
-        return tmsDriverZoneCreationDate;
-    }
 
-    public void setTmsDriverZoneCreationDate(Date tmsDriverZoneCreationDate) {
-        this.tmsDriverZoneCreationDate = tmsDriverZoneCreationDate;
-    }
-
-    public Date getTmsDriverZoneUpdateDate() {
-        return tmsDriverZoneUpdateDate;
-    }
-
-    public void setTmsDriverZoneUpdateDate(Date tmsDriverZoneUpdateDate) {
-        this.tmsDriverZoneUpdateDate = tmsDriverZoneUpdateDate;
-    }
 }

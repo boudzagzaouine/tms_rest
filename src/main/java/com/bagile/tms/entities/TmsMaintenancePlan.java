@@ -19,10 +19,6 @@ public class TmsMaintenancePlan extends EmsEntity {
     private String tmsMaintenancePlanCode;
     @Column(name = "tms_maintenanceplandescription")
     private String tmsMaintenancePlanDescription;
-    @Column(name = "tms_maintenanceplancreationdatae")
-    private Date tmsMaintenancePlancreationDatae;
-    @Column(name = "tms_maintenanceplanupdatedate")
-    private Date tmsMaintenancePlanUpdateDate;
     @Column(name = "tms_maintenanceplanstartdate")
     private Date tmsMaintenancePlanStartDate;
     @Column(name = "Tms_Maintenanceplanenddate")
@@ -65,21 +61,7 @@ public class TmsMaintenancePlan extends EmsEntity {
         this.tmsMaintenancePlanDescription = tmsMaintenancePlanDescription;
     }
 
-    public Date getTmsMaintenancePlancreationDatae() {
-        return tmsMaintenancePlancreationDatae;
-    }
 
-    public void setTmsMaintenancePlancreationDatae(Date tmsMaintenancePlancreationDatae) {
-        this.tmsMaintenancePlancreationDatae = tmsMaintenancePlancreationDatae;
-    }
-
-    public Date getTmsMaintenancePlanUpdateDate() {
-        return tmsMaintenancePlanUpdateDate;
-    }
-
-    public void setTmsMaintenancePlanUpdateDate(Date tmsMaintenancePlanupDateDate) {
-        this.tmsMaintenancePlanUpdateDate = tmsMaintenancePlanupDateDate;
-    }
 
     public Date getTmsMaintenancePlanStartDate() {
         return tmsMaintenancePlanStartDate;

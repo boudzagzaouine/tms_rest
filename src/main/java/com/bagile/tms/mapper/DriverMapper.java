@@ -18,12 +18,16 @@ public class DriverMapper {
         map.put("id", "tmsDriverId");
         map.put("code", "tmsDriverCode");
         map.put("cin", "tmsDriverCin");
-        map.put("birthDate", "tmsDrivetBirthDate");
+        map.put("birthDate", "tmsDriverbirthDate");
         map.put("lastMedicalVisit","tmsDriverLastMedicalVisit");
         map.put("commission", "tmsDriverCommission");
-        map.put("creationDate", "tmsDriverCreationDate");
-        map.put("upDateDate", "tmsDriverUpdateDate");
-        map.put("contact", "prmcontactid");
+        map.put("contact", "prmContact");
+        map.put("working", "tmsWorking");
+
+        map.put("creationDate", "creationDate");
+        map.put("updateDate", "updateDate");
+        map.put("createdBy", "createdByUser");
+        map.put("updatedBy", "updatedByUser");
 
     }
 
@@ -46,9 +50,12 @@ public class DriverMapper {
          tmsDriver.setTmsDriverbirthDate(driver.getBirthDate());
         tmsDriver.setTmsDriverLastMedicalVisit(driver.getLastMedicalVisit());
         tmsDriver.setTmsDriverCommission(driver.getCommission());
-        tmsDriver.setTmsDriverCreationDate(driver.getCreationDate());
-        tmsDriver.setTmsDriverupDateDate(driver.getUpdateDate());
+        tmsDriver.setTmsWorking(driver.isWorking());
 
+        tmsDriver.setCreatedBy(driver.getCreatedBy());
+        tmsDriver.setUpdatedBy(driver.getUpdatedBy());
+        tmsDriver.setCreationDate(driver.getCreationDate());
+        tmsDriver.setUpdateDate(driver.getUpdateDate());
 
         if (!lazy) {
 
@@ -80,8 +87,12 @@ public class DriverMapper {
         driver.setBirthDate(tmsDriver.getTmsDriverbirthDate());
         driver.setLastMedicalVisit(tmsDriver.getTmsDriverLastMedicalVisit());
         driver.setCommission(tmsDriver.getTmsDriverCommission());
-        driver.setCreationDate(tmsDriver.getTmsDriverCreationDate());
-        driver.setUpdateDate(tmsDriver.getTmsDriverUpdateDate());
+        driver.setWorking(tmsDriver.isTmsWorking());
+
+        driver.setCreatedBy(tmsDriver.getCreatedBy());
+        driver.setUpdatedBy(tmsDriver.getUpdatedBy());
+        driver.setCreationDate(tmsDriver.getCreationDate());
+        driver.setUpdateDate(tmsDriver.getUpdateDate());
 
         if (!lazy) {
             driver.setContact(ContactMapper.toDto(tmsDriver.getprmContact(),true));
@@ -93,19 +104,9 @@ public class DriverMapper {
         return driver;
     }
 
-    public static List<Driver> toDtos(List<TmsDriver> tmsDrivers, boolean lazy) {
-        if (null == tmsDrivers) {
-            return null;
-        }
-        List<Driver> drivers = new ArrayList<>();
-        for (TmsDriver tmsDriver : tmsDrivers) {
-            drivers.add(toDto(tmsDriver, lazy));
 
-        }
-        return drivers;
-    }
 
-    public static List<Driver> toDtos(Iterable<TmsDriver> tmsDrivers, boolean lazy) {
+    public static List<Driver> toDtos(Iterable<? extends TmsDriver> tmsDrivers, boolean lazy) {
         if (null == tmsDrivers) {
             return null;
         }
@@ -115,7 +116,7 @@ public class DriverMapper {
         }
         return drivers;
     }
-    public static Set<TmsDriver> toEntities(Set<Driver>drivers, boolean lazy){
+    public static Set<TmsDriver> toEntities(Set<? extends Driver>drivers, boolean lazy){
         if (null == drivers) {
             return null;
         }
@@ -125,7 +126,7 @@ public class DriverMapper {
         }
         return tmsDrivers;
     }
-    public static Set<Driver> toDtos(Set<TmsDriver> tmsDrivers, boolean lazy){
+    public static Set<Driver> toDtos(Set<? extends TmsDriver> tmsDrivers, boolean lazy){
         if(null == tmsDrivers){
             return null;
         }

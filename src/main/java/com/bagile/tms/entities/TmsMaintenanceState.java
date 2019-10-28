@@ -20,8 +20,7 @@ public class TmsMaintenanceState  extends EmsEntity {
     private String tmsMaintenanceStateCode;
     @Column(name = "tms_maintenancestatedescription")
     private String tmsMaintenanceStateDescription;
-    @Column(name = "tms_maintenancestatecreationDate")
-    private Date tmsMaintenanceStateCreationDate;
+
 
 
     public TmsMaintenanceState() {
@@ -51,11 +50,5 @@ public class TmsMaintenanceState  extends EmsEntity {
         this.tmsMaintenanceStateDescription = tmsMaintenanceStateDescription;
     }
 
-    public Date getTmsMaintenanceStateCreationDate() {
-        return tmsMaintenanceStateCreationDate;
-    }
 
-    public void setTmsMaintenanceStateCreationDate(Date tmsMaintenanceStateCreationDate) {
-        this.tmsMaintenanceStateCreationDate = tmsMaintenanceStateCreationDate;
-    }
 }

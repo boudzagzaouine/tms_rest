@@ -16,11 +16,16 @@ public class MaintenanceStateMapper {
     }
     static {
         map = new HashMap<>();
-        map.put("id","TmsMaintenanceStateid");
-        map.put("code","TmsMaintenanceStatecode");
-        map.put("descriptif","TmsMaintenanceStatedescriptif");
-        map.put("creationDate","tmsMaintenanceStateDescriptif");
+        map.put("id","tmsMaintenanceStateId");
+        map.put("code","tmsMaintenanceStateCode");
+        map.put("descriptif","tmsMaintenanceStateDescription");
 
+
+
+        map.put("creationDate", "creationDate");
+        map.put("updateDate", "updateDate");
+        map.put("createdBy", "createdByUser");
+        map.put("updatedBy", "updatedByUser");
     }
 
     public static String getField(String key) {
@@ -35,7 +40,11 @@ public class MaintenanceStateMapper {
         state.setId(tmsState.getTmsMaintenanceStateId());
         state.setCode(tmsState.getTmsMaintenanceStateCode());
         state.setDescription(tmsState.getTmsMaintenanceStateDescription());
-        state.setCreationDate(tmsState.getTmsMaintenanceStateCreationDate());
+
+        state.setCreatedBy(tmsState.getCreatedBy());
+        state.setUpdatedBy(tmsState.getUpdatedBy());
+        state.setCreationDate(tmsState.getCreationDate());
+        state.setUpdateDate(tmsState.getUpdateDate());
         if(!lazy) {
            // state.setCreationDate(tmsState.getTmsMaintenanceStateCreationDate());
           //  state.setCreationUser(UserMapper.toDto(tmsState.getTmsMaintenanceStateCreationUser(),true));
@@ -54,7 +63,12 @@ public class MaintenanceStateMapper {
         tmsState.setTmsMaintenanceStateId(state.getId());
         tmsState.setTmsMaintenanceStateCode(state.getCode());
         tmsState.setTmsMaintenanceStateDescription(state.getDescription());
-        tmsState.setTmsMaintenanceStateCreationDate(state.getCreationDate());
+
+
+        tmsState.setCreatedBy(state.getCreatedBy());
+        tmsState.setUpdatedBy(state.getUpdatedBy());
+        tmsState.setCreationDate(state.getCreationDate());
+        tmsState.setUpdateDate(state.getUpdateDate());
 
         if(!lazy) {
            // tmsState.setTmsMaintenanceStateCreationDate(state.getCreationDate());
@@ -66,7 +80,7 @@ public class MaintenanceStateMapper {
         return tmsState;
     }
 
-    public static Set<MaintenanceState> toDtos(Set<TmsMaintenanceState> tmsStates, boolean lazy) {
+    public static Set<MaintenanceState> toDtos(Set<? extends TmsMaintenanceState> tmsStates, boolean lazy) {
         if(null == tmsStates) {
             return null;
         }
@@ -77,7 +91,9 @@ public class MaintenanceStateMapper {
         return list;
     }
 
-    public static List<MaintenanceState> toDtos(List<TmsMaintenanceState> tmsStates, boolean lazy) {
+
+
+    public static List<MaintenanceState> toDtos(Iterable<? extends TmsMaintenanceState> tmsStates, boolean lazy) {
         if(null == tmsStates) {
             return null;
         }
@@ -88,18 +104,7 @@ public class MaintenanceStateMapper {
         return list;
     }
 
-    public static List<MaintenanceState> toDtos(Iterable<TmsMaintenanceState> tmsStates, boolean lazy) {
-        if(null == tmsStates) {
-            return null;
-        }
-        List<MaintenanceState> list = new ArrayList<MaintenanceState>();
-        for(TmsMaintenanceState tmsState: tmsStates) {
-            list.add(toDto(tmsState, lazy));
-        }
-        return list;
-    }
-
-    public static Set<TmsMaintenanceState> toEntities(Set<MaintenanceState> states, boolean lazy) {
+    public static Set<TmsMaintenanceState> toEntities(Set<? extends MaintenanceState> states, boolean lazy) {
         if(null == states) {
             return null;
         }

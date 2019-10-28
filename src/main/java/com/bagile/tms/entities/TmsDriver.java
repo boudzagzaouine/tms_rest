@@ -29,12 +29,6 @@ public class TmsDriver  extends EmsEntity{
     private Date tmsDriverLastMedicalVisit;
     @Column(name = "tms_drivercommission")
     private BigDecimal tmsDriverCommission;
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "tms_drivercreationdate")
-    private Date tmsDriverCreationDate;
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "tms_driverupdate")
-    private Date tmsDriverUpdateDate;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_contactid")
     private PrmContact prmContact;
@@ -105,21 +99,6 @@ public class TmsDriver  extends EmsEntity{
         this.tmsDriverCommission = tmsDriverCommission;
     }
 
-    public Date getTmsDriverCreationDate() {
-        return tmsDriverCreationDate;
-    }
-
-    public void setTmsDriverCreationDate(Date tmsDriverCreationDate) {
-        this.tmsDriverCreationDate = tmsDriverCreationDate;
-    }
-
-    public Date getTmsDriverUpdateDate() {
-        return tmsDriverUpdateDate;
-    }
-
-    public void setTmsDriverupDateDate(Date tmsDriverupDateDate) {
-        this.tmsDriverUpdateDate = tmsDriverupDateDate;
-    }
 
     public PrmContact getprmContact() {
         return prmContact;

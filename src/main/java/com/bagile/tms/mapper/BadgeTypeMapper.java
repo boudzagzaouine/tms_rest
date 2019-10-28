@@ -17,6 +17,11 @@ public class BadgeTypeMapper {
         map = new HashMap<>();
         map.put("id", "tmsBadgeTypeId");
         map.put("code", "tmsBadgeTypeCode");
+
+        map.put("creationDate", "creationDate");
+        map.put("updateDate", "updateDate");
+        map.put("createdBy", "createdByUser");
+        map.put("updatedBy", "updatedByUser");
     }
 
     public static Map<String, String> getMap() {
@@ -36,6 +41,11 @@ public class BadgeTypeMapper {
         tmsBadgeType.setTmsBadgeTypeId((int) badgeType.getId());
         tmsBadgeType.setTmsBadgeTypeCode(badgeType.getCode());
 
+        tmsBadgeType.setCreatedBy(badgeType.getCreatedBy());
+        tmsBadgeType.setUpdatedBy(badgeType.getUpdatedBy());
+        tmsBadgeType.setCreationDate(badgeType.getCreationDate());
+        tmsBadgeType.setUpdateDate(badgeType.getUpdateDate());
+
         return tmsBadgeType;
     }
 
@@ -48,10 +58,17 @@ public class BadgeTypeMapper {
         badgeType.setId((int) tmsBadgeType.getTmsBadgeTypeId());
         badgeType.setCode(tmsBadgeType.getTmsBadgeTypeCode());
 
+        badgeType.setCreatedBy(tmsBadgeType.getCreatedBy());
+        badgeType.setUpdatedBy(tmsBadgeType.getUpdatedBy());
+        badgeType.setCreationDate(tmsBadgeType.getCreationDate());
+        badgeType.setUpdateDate(tmsBadgeType.getUpdateDate());
+
         return badgeType;
     }
 
-    public static List<BadgeType> toDtos(List<TmsBadgeType> tmsBadgeTypes, boolean lazy) {
+
+
+    public static List<BadgeType> toDtos(Iterable<? extends TmsBadgeType> tmsBadgeTypes, boolean lazy) {
         if (null == tmsBadgeTypes) {
             return null;
         }
@@ -62,18 +79,7 @@ public class BadgeTypeMapper {
         return badgeTypes;
     }
 
-    public static List<BadgeType> toDtos(Iterable<TmsBadgeType> tmsBadgeTypes, boolean lazy) {
-        if (null == tmsBadgeTypes) {
-            return null;
-        }
-        List<BadgeType> badgeTypes = new ArrayList<>();
-        for (TmsBadgeType tmsBadgeType : tmsBadgeTypes) {
-            badgeTypes.add(toDto(tmsBadgeType, lazy));
-        }
-        return badgeTypes;
-    }
-
-    public static Set<TmsBadgeType> toEntities(Set<BadgeType> badgeTypes, boolean lazy) {
+    public static Set<TmsBadgeType> toEntities(Set<? extends BadgeType> badgeTypes, boolean lazy) {
         if (null == badgeTypes) {
             return null;
         }
@@ -84,7 +90,7 @@ public class BadgeTypeMapper {
         return tmsBadgeTypes;
     }
 
-    public static Set<BadgeType> toDtos(Set<TmsBadgeType> tmsBadgeTypes, boolean lazy) {
+    public static Set<BadgeType> toDtos(Set<? extends TmsBadgeType> tmsBadgeTypes, boolean lazy) {
         if (null == tmsBadgeTypes) {
             return null;
         }

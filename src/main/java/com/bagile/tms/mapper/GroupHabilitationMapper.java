@@ -17,6 +17,11 @@ public class GroupHabilitationMapper {
         map.put("id", "usrGroupHabilitationId");
         map.put("habilitation", "usrHabilitation");
         map.put("userGroup", "usrUserGroup");
+
+        map.put("creationDate", "creationDate");
+        map.put("updateDate", "updateDate");
+        map.put("createdBy", "createdByUser");
+        map.put("updatedBy", "updatedByUser");
     }
 
     public static String getField(String key) {
@@ -34,6 +39,12 @@ public class GroupHabilitationMapper {
         }
         UsrGroupHabilitation usrGroupHabilitation = new UsrGroupHabilitation();
         usrGroupHabilitation.setUsrGroupHabilitationId(groupHabilitation.getId());
+
+        usrGroupHabilitation.setCreatedBy(groupHabilitation.getCreatedBy());
+        usrGroupHabilitation.setUpdatedBy(groupHabilitation.getUpdatedBy());
+        usrGroupHabilitation.setCreationDate(groupHabilitation.getCreationDate());
+        usrGroupHabilitation.setUpdateDate(groupHabilitation.getUpdateDate());
+
         if (!lazy) {
             usrGroupHabilitation.setUsrHabilitation(HabilitationMapper.toEntity(groupHabilitation.getHabilitation(), true));
             usrGroupHabilitation.setUsrUserGroup(UserGroupMapper.toEntity(groupHabilitation.getUserGroup(), true));
@@ -47,6 +58,11 @@ public class GroupHabilitationMapper {
         }
         GroupHabilitation groupHabilitation = new GroupHabilitation();
         groupHabilitation.setId(usrGroupHabilitation.getUsrGroupHabilitationId());
+
+        groupHabilitation.setCreatedBy(usrGroupHabilitation.getCreatedBy());
+        groupHabilitation.setUpdatedBy(usrGroupHabilitation.getUpdatedBy());
+        groupHabilitation.setCreationDate(usrGroupHabilitation.getCreationDate());
+        groupHabilitation.setUpdateDate(usrGroupHabilitation.getUpdateDate());
         if (!lazy) {
             groupHabilitation.setHabilitation(HabilitationMapper.toDto(usrGroupHabilitation.getUsrHabilitation(), true));
             groupHabilitation.setUserGroup(UserGroupMapper.toDto(usrGroupHabilitation.getUsrUserGroup(), true));
@@ -54,7 +70,9 @@ public class GroupHabilitationMapper {
         return groupHabilitation;
     }
 
-    public static List<GroupHabilitation> toDtos(List<UsrGroupHabilitation> usrGroupHabilitations, boolean lazy) {
+
+
+    public static List<GroupHabilitation> toDtos(Iterable<? extends UsrGroupHabilitation> usrGroupHabilitations, boolean lazy) {
         if (null == usrGroupHabilitations) {
             return null;
         }
@@ -65,18 +83,7 @@ public class GroupHabilitationMapper {
         return groupHabilitations;
     }
 
-    public static List<GroupHabilitation> toDtos(Iterable<UsrGroupHabilitation> usrGroupHabilitations, boolean lazy) {
-        if (null == usrGroupHabilitations) {
-            return null;
-        }
-        List<GroupHabilitation> groupHabilitations = new ArrayList<>();
-        for (UsrGroupHabilitation usrGroupHabilitation : usrGroupHabilitations) {
-            groupHabilitations.add(toDto(usrGroupHabilitation, lazy));
-        }
-        return groupHabilitations;
-    }
-
-    public static Set<UsrGroupHabilitation> toEntities(Set<GroupHabilitation> groupHabilitations, boolean lazy) {
+    public static Set<UsrGroupHabilitation> toEntities(Set<? extends GroupHabilitation> groupHabilitations, boolean lazy) {
         if (null == groupHabilitations) {
             return null;
         }
@@ -87,7 +94,7 @@ public class GroupHabilitationMapper {
         return usrGroupHabilitations;
     }
 
-    public static Set<GroupHabilitation> toDtos(Set<UsrGroupHabilitation> usrGroupHabilitations, boolean lazy) {
+    public static Set<GroupHabilitation> toDtos(Set<? extends UsrGroupHabilitation> usrGroupHabilitations, boolean lazy) {
         if (null == usrGroupHabilitations) {
             return null;
         }

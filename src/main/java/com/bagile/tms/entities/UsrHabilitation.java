@@ -27,10 +27,7 @@ public class UsrHabilitation extends EmsEntity implements java.io.Serializable, 
     private String usrHabilitationCode;
     @Size(max = 255)
     private String usrHabilitationDescription;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date usrHabilitationCreationDate;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date usrHabilitationUpdateDate;
+
     private UsrHabilitation usrHabilitationParent;
     private String usrHabilitationLabelFR;
     private String usrHabilitationLabelEN;
@@ -69,25 +66,6 @@ public class UsrHabilitation extends EmsEntity implements java.io.Serializable, 
         this.usrHabilitationDescription = usrHabilitationDescription;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "usr_habilitationcreationdate")
-    public Date getUsrHabilitationCreationDate() {
-        return this.usrHabilitationCreationDate;
-    }
-
-    public void setUsrHabilitationCreationDate(Date usrHabilitationCreationDate) {
-        this.usrHabilitationCreationDate = usrHabilitationCreationDate;
-    }
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "usr_habilitationupdatedate")
-    public Date getUsrHabilitationUpdateDate() {
-        return this.usrHabilitationUpdateDate;
-    }
-
-    public void setUsrHabilitationUpdateDate(Date usrHabilitationUpdateDate) {
-        this.usrHabilitationUpdateDate = usrHabilitationUpdateDate;
-    }
 
     @Override
     public String getAuthority() {

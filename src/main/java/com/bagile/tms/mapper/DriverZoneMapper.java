@@ -15,10 +15,14 @@ public class DriverZoneMapper {
 
     static {
         map = new HashMap<>();
-        map.put("id", "tmsDriverZoneid");
-        map.put("driver", "tmsDriverZonedriver");
+        map.put("id", "tmsDriverZoneId");
+        map.put("driver", "tmsDriverZoneDriver");
         map.put("zone", "tmsDriverZonezone");
 
+        map.put("creationDate", "creationDate");
+        map.put("updateDate", "updateDate");
+        map.put("createdBy", "createdByUser");
+        map.put("updatedBy", "updatedByUser");
 
     }
 
@@ -37,6 +41,12 @@ public class DriverZoneMapper {
         }
         TmsDriverZone tmsdriverzone = new TmsDriverZone();
         tmsdriverzone.setTmsDriverZoneId(driverZone.getId());
+
+
+        tmsdriverzone.setCreatedBy(driverZone.getCreatedBy());
+        tmsdriverzone.setUpdatedBy(driverZone.getUpdatedBy());
+        tmsdriverzone.setCreationDate(driverZone.getCreationDate());
+        tmsdriverzone.setUpdateDate(driverZone.getUpdateDate());
 
         if (!lazy) {
             tmsdriverzone.setTmsDriverZoneDriver(DriverMapper.toEntity(driverZone.getDriver(), true));
@@ -61,7 +71,9 @@ public class DriverZoneMapper {
         return driverzone;
     }
 
-    public static List<DriverZone> toDtos(List<TmsDriverZone> tmsdriverzones, boolean lazy) {
+
+
+    public static List<DriverZone> toDtos(Iterable<? extends  TmsDriverZone> tmsdriverzones, boolean lazy) {
         if (null == tmsdriverzones) {
             return null;
         }
@@ -73,19 +85,7 @@ public class DriverZoneMapper {
         return driverZones;
     }
 
-    public static List<DriverZone> toDtos(Iterable<TmsDriverZone> tmsdriverzones, boolean lazy) {
-        if (null == tmsdriverzones) {
-            return null;
-        }
-        List<DriverZone> driverZones = new ArrayList<>();
-        for (TmsDriverZone tmsdriverzone : tmsdriverzones) {
-            driverZones.add(toDto(tmsdriverzone, lazy));
-
-        }
-        return driverZones;
-    }
-
-    public static Set<TmsDriverZone> toEntities(Set<DriverZone> driverzones, boolean lazy) {
+    public static Set<TmsDriverZone> toEntities(Set<? extends DriverZone> driverzones, boolean lazy) {
         if (null == driverzones) {
             return null;
         }
@@ -97,7 +97,7 @@ public class DriverZoneMapper {
     }
 
 
-    public static Set<DriverZone> toDtos(Set<TmsDriverZone> tmsdriverszones, boolean lazy) {
+    public static Set<DriverZone> toDtos(Set<? extends TmsDriverZone> tmsdriverszones, boolean lazy) {
         if (null == tmsdriverszones) {
             return null;
         }

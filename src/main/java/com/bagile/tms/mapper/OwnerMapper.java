@@ -42,6 +42,14 @@ public class OwnerMapper {
         map.put("name", "ownOwnerName");
         map.put("surname", "ownOwnerSurname");
         map.put("firstInvoiceDate", "ownOwnerFirstInvoiceDate");
+
+
+
+        map.put("creationDate", "creationDate");
+        map.put("updateDate", "updateDate");
+        map.put("createdBy", "createdByUser");
+        map.put("updatedBy", "updatedByUser");
+
     }
 
 
@@ -85,6 +93,12 @@ public class OwnerMapper {
 
         ownOwner.setOwnOwnerImage(owner.getImage());
 
+
+        ownOwner.setCreatedBy(owner.getCreatedBy());
+        ownOwner.setUpdatedBy(owner.getUpdatedBy());
+        ownOwner.setCreationDate(owner.getCreationDate());
+        ownOwner.setUpdateDate(owner.getUpdateDate());
+
         if (!lazy) {
           //  ownOwner.setOrgOrganisation(OrganisationMapper.toEntity(owner.getOrganisation(), true));
           //  ownOwner.setAdrAddress(AddressMapper.toEntity(owner.getAddress(), true));
@@ -125,6 +139,11 @@ public class OwnerMapper {
         owner.setImage(ownOwner.getOwnOwnerImage());
 
 
+        owner.setCreatedBy(ownOwner.getCreatedBy());
+        owner.setUpdatedBy(ownOwner.getUpdatedBy());
+        owner.setCreationDate(ownOwner.getCreationDate());
+        owner.setUpdateDate(ownOwner.getUpdateDate());
+
         if (!lazy) {
           //  owner.setAddress(AddressMapper.toDto(ownOwner.getAdrAddress(), true));
            // owner.setOrganisation(OrganisationMapper.toDto(ownOwner.getOrgOrganisation(), true));
@@ -134,7 +153,8 @@ public class OwnerMapper {
         return owner;
     }
 
-    public static List<Owner> toDtos(List<OwnOwner> ownOwners, boolean lazy) {
+
+    public static List<Owner> toDtos(Iterable<? extends OwnOwner> ownOwners, boolean lazy) {
         if (null == ownOwners) {
             return null;
         }
@@ -145,18 +165,7 @@ public class OwnerMapper {
         return owners;
     }
 
-    public static List<Owner> toDtos(Iterable<OwnOwner> ownOwners, boolean lazy) {
-        if (null == ownOwners) {
-            return null;
-        }
-        List<Owner> owners = new ArrayList<>();
-        for (OwnOwner ownOwner : ownOwners) {
-            owners.add(toDto(ownOwner, lazy));
-        }
-        return owners;
-    }
-
-    public static Set<OwnOwner> toEntities(Set<Owner> owners, boolean lazy) {
+    public static Set<OwnOwner> toEntities(Set<? extends Owner> owners, boolean lazy) {
         if (null == owners) {
             return null;
         }
@@ -167,7 +176,7 @@ public class OwnerMapper {
         return ownOwners;
     }
 
-    public static Set<Owner> toDtos(Set<OwnOwner> ownOwners, boolean lazy) {
+    public static Set<Owner> toDtos(Set<? extends OwnOwner> ownOwners, boolean lazy) {
         if (null == ownOwners) {
             return null;
         }

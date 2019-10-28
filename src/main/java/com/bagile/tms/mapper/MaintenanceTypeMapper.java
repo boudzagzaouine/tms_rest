@@ -17,10 +17,14 @@ public class MaintenanceTypeMapper {
     }
     static {
         map = new HashMap<>();
-        map.put("id","tmsMaintenanceTypeid");
-        map.put("code","tmsMaintenanceTypecode");
-        map.put("description","tmsMaintenanceTypedescription");
+        map.put("id","tmsMaintenanceTypeId");
+        map.put("code","tmsMaintenanceTypeCode");
+        map.put("description","tmsMaintenanceTypeDescription");
 
+        map.put("creationDate", "creationDate");
+        map.put("updateDate", "updateDate");
+        map.put("createdBy", "createdByUser");
+        map.put("updatedBy", "updatedByUser");
     }
 
     public static String getField(String key) {
@@ -36,6 +40,11 @@ public class MaintenanceTypeMapper {
         type.setCode(tmsType.getTmsMaintenanceTypeCode());
         type.setDescription(tmsType.getTmsMaintenanceTypeDescription());
 
+        type.setCreatedBy(tmsType.getCreatedBy());
+        type.setUpdatedBy(tmsType.getUpdatedBy());
+        type.setCreationDate(tmsType.getCreationDate());
+        type.setUpdateDate(tmsType.getUpdateDate());
+
         return type;
     }
 
@@ -48,10 +57,15 @@ public class MaintenanceTypeMapper {
         tmsType.setTmsMaintenanceTypeCode(type.getCode());
         tmsType.setTmsMaintenanceTypeDescription(type.getDescription());
 
+        tmsType.setCreatedBy(type.getCreatedBy());
+        tmsType.setUpdatedBy(type.getUpdatedBy());
+        tmsType.setCreationDate(type.getCreationDate());
+        tmsType.setUpdateDate(type.getUpdateDate());
+
         return tmsType;
     }
 
-    public static Set<MaintenanceType> toDtos(Set<TmsMaintenanceType> tmsTypes) {
+    public static Set<MaintenanceType> toDtos(Set<? extends TmsMaintenanceType> tmsTypes) {
         if(null == tmsTypes) {
             return null;
         }
@@ -62,7 +76,8 @@ public class MaintenanceTypeMapper {
         return list;
     }
 
-    public static List<MaintenanceType> toDtos(List<TmsMaintenanceType> tmsTypes) {
+
+    public static List<MaintenanceType> toDtos(Iterable<? extends TmsMaintenanceType> tmsTypes) {
         if(null == tmsTypes) {
             return null;
         }
@@ -73,18 +88,7 @@ public class MaintenanceTypeMapper {
         return list;
     }
 
-    public static List<MaintenanceType> toDtos(Iterable<TmsMaintenanceType> tmsTypes) {
-        if(null == tmsTypes) {
-            return null;
-        }
-        List<MaintenanceType> list = new ArrayList<MaintenanceType>();
-        for(TmsMaintenanceType tmsType: tmsTypes) {
-            list.add(toDto(tmsType,true));
-        }
-        return list;
-    }
-
-    public static Set<TmsMaintenanceType> toEntities(Set<MaintenanceType> types) {
+    public static Set<TmsMaintenanceType> toEntities(Set<? extends MaintenanceType> types) {
         if(null == types) {
             return null;
         }

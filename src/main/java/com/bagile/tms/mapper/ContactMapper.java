@@ -15,16 +15,21 @@ public class ContactMapper {
 
     static {
         map = new HashMap<>();
-        map.put("id","prmContactid");
-        map.put("name","prmContactname");
-        map.put("creationDate","prmContactcreationDate");
-        map.put("surname","prmContactsurname");
-        map.put("tel1","prmContactTel1");
-        map.put("fax","prmContactfax");
+        map.put("id","prmContactId");
+        map.put("name","prmContactName");
+        map.put("creationDate","prmContactCreationDate");
+        map.put("surname","prmContactSurname");
+        map.put("tele1","prmContactTele1");
+        map.put("fax","prmContactFax");
         map.put("contactType", "prmContactType");
-        map.put("email", "prmContactemail");
-        map.put("comment", "prmContactcomment");
-        map.put("active","prmContactactive");
+        map.put("email", "prmContactEmail");
+        map.put("comment", "prmContactComment");
+        map.put("active","prmContactActive");
+
+        map.put("creationDate", "creationDate");
+        map.put("updateDate", "updateDate");
+        map.put("createdBy", "createdByUser");
+        map.put("updatedBy", "updatedByUser");
     }
 
 
@@ -50,6 +55,12 @@ public class ContactMapper {
         tmsContact.setPrmContactEmail(contact.getEmail());
          tmsContact.setPrmContactComment(contact.getComment());
         tmsContact.setPrmContactActive(contact.getActive());
+
+
+        tmsContact.setCreatedBy(contact.getCreatedBy());
+        tmsContact.setUpdatedBy(contact.getUpdatedBy());
+        tmsContact.setCreationDate(contact.getCreationDate());
+        tmsContact.setUpdateDate(contact.getUpdateDate());
         /*if (!lazy) {
             tmsContact.setOwnOwner(OwnerMapper.toEntity(contact.getOwner(), true));
 //            prmContact.setInvInvoices(InvoiceMapper.toEntities(contact.getInvoices(), true));
@@ -67,7 +78,6 @@ public class ContactMapper {
         Contact contact = new Contact();
         contact.setId(tmsContact.getPrmContactId());
         contact.setName(tmsContact.getPrmContactName());
-        contact.setCreationDate(tmsContact.getPrmContactCreationDate());
         contact.setSurname(tmsContact.getPrmContactSurname());
         contact.setTele1(tmsContact.getPrmContactTele1());
         contact.setFax(tmsContact.getPrmContactFax());
@@ -75,6 +85,12 @@ public class ContactMapper {
         contact.setEmail(tmsContact.getPrmContactEmail());
         contact.setComment(tmsContact.getPrmContactComment());
         contact.setActive(tmsContact.isPrmContactActive());
+
+
+        contact.setCreatedBy(tmsContact.getCreatedBy());
+        contact.setUpdatedBy(tmsContact.getUpdatedBy());
+        contact.setCreationDate(tmsContact.getCreationDate());
+        contact.setUpdateDate(tmsContact.getUpdateDate());
         /*if (!lazy) {
             contact.setOwner(OwnerMapper.toDto(prmContact.getOwnOwner(), true));
 //            contact.setInvoices(InvoiceMapper.toDtos(prmContact.getInvInvoices(), true));
@@ -85,18 +101,9 @@ public class ContactMapper {
         return contact;
     }
 
-    public static List<Contact> toDtos(List<PrmContact> tmsContacts, boolean lazy) {
-        if (null == tmsContacts) {
-            return null;
-        }
-        List<Contact> contacts = new ArrayList<>();
-        for (PrmContact trmContact : tmsContacts) {
-            contacts.add(toDto(trmContact, lazy));
-        }
-        return contacts;
-    }
 
-    public static List<Contact> toDtos(Iterable<PrmContact> tmsContacts, boolean lazy) {
+
+    public static List<Contact> toDtos(Iterable<? extends PrmContact> tmsContacts, boolean lazy) {
         if (null == tmsContacts) {
             return null;
         }

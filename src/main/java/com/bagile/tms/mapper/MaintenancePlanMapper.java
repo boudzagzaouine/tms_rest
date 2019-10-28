@@ -14,16 +14,19 @@ public class MaintenancePlanMapper {
     static {
         map = new HashMap<>();
 
-        map.put("id", "tmsMaintenancePlanid");
-        map.put("code", "tmsMaintenancePlancode");
-        map.put("descriptif", "tmsMaintenancePlandescriptif");
-        map.put("creationDate", "tmsMaintenancePlancreationDatae");
-        map.put("upDate", "tmsMaintenancePlanupDate");
-        map.put("begin", "tmsMaintenancePlanbegin");
-        map.put("end", "tmsMaintenancePlanend");
+        map.put("id", "tmsMaintenancePlanId");
+        map.put("code", "tmsMaintenancePlanCode");
+        map.put("description", "tmsMaintenancePlanDescription");
+        map.put("begin", "tmsMaintenancePlanStartDate");
+        map.put("end", "tmsMaintenancePlanEndDate");
         map.put("maintenanceType", "tmsMaintenanceType");
         map.put("maintenanceState", "tmsMaintenanceState");
-        map.put("vehicule", "tmsVehicle");
+        map.put("vehicle", "tmsVehicle");
+
+        map.put("creationDate", "creationDate");
+        map.put("updateDate", "updateDate");
+        map.put("createdBy", "createdByUser");
+        map.put("updatedBy", "updatedByUser");
 
 
     }
@@ -44,10 +47,14 @@ public class MaintenancePlanMapper {
         tmsMaintenancePlan.setTmsMaintenancePlanId(maintenancePlan.getId());
         tmsMaintenancePlan.setTmsMaintenancePlanCode(maintenancePlan.getCode() != null ? maintenancePlan.getCode().toUpperCase() : null);
         tmsMaintenancePlan.setTmsMaintenancePlanDescription(maintenancePlan.getDescription());
-        tmsMaintenancePlan.setTmsMaintenancePlancreationDatae(maintenancePlan.getCreationDate());
-        tmsMaintenancePlan.setTmsMaintenancePlanUpdateDate(maintenancePlan.getUpdateDate());
         tmsMaintenancePlan.setTmsMaintenancePlanStartDate(maintenancePlan.getBegin());
         tmsMaintenancePlan.setTmsMaintenancePlanEndDate(maintenancePlan.getEnd());
+
+
+        tmsMaintenancePlan.setCreatedBy(maintenancePlan.getCreatedBy());
+        tmsMaintenancePlan.setUpdatedBy(maintenancePlan.getUpdatedBy());
+        tmsMaintenancePlan.setCreationDate(maintenancePlan.getCreationDate());
+        tmsMaintenancePlan.setUpdateDate(maintenancePlan.getUpdateDate());
 
         if (!lazy) {
             tmsMaintenancePlan.setTmsMaintenanceType(MaintenanceTypeMapper.toEntity(maintenancePlan.getMaintenanceType(), true));
@@ -65,10 +72,13 @@ public class MaintenancePlanMapper {
         maintenancePlan.setId(tmsMaintenancePlan.getTmsMaintenancePlanId());
         maintenancePlan.setCode(tmsMaintenancePlan.getTmsMaintenancePlanCode());
         maintenancePlan.setDescription(tmsMaintenancePlan.getTmsMaintenancePlanDescription());
-        maintenancePlan.setCreationDate(tmsMaintenancePlan.getTmsMaintenancePlancreationDatae());
-        maintenancePlan.setUpdateDate(tmsMaintenancePlan.getTmsMaintenancePlanUpdateDate());
         maintenancePlan.setBegin(tmsMaintenancePlan.getTmsMaintenancePlanStartDate());
         maintenancePlan.setEnd(tmsMaintenancePlan.getTmsMaintenancePlanEndDate());
+
+        maintenancePlan.setCreatedBy(tmsMaintenancePlan.getCreatedBy());
+        maintenancePlan.setUpdatedBy(tmsMaintenancePlan.getUpdatedBy());
+        maintenancePlan.setCreationDate(tmsMaintenancePlan.getCreationDate());
+        maintenancePlan.setUpdateDate(tmsMaintenancePlan.getUpdateDate());
         if (!lazy) {
             maintenancePlan.setMaintenanceType(MaintenanceTypeMapper.toDto(tmsMaintenancePlan.getTmsMaintenanceType(), true));
             maintenancePlan.setMaintenanceState(MaintenanceStateMapper.toDto(tmsMaintenancePlan.getTmsMaintenanceState(), true));
@@ -79,18 +89,9 @@ public class MaintenancePlanMapper {
         return maintenancePlan;
     }
 
-    public static List<MaintenancePlan> toDtos(List<TmsMaintenancePlan> tmsMaintenancePlans, boolean lazy) {
-        if (null == tmsMaintenancePlans) {
-            return null;
-        }
-        List<MaintenancePlan> maintenancePlans = new ArrayList<>();
-        for (TmsMaintenancePlan tmsMaintenancePlan : tmsMaintenancePlans) {
-            maintenancePlans.add(toDto(tmsMaintenancePlan, lazy));
-        }
-        return maintenancePlans;
-    }
 
-    public static List<MaintenancePlan> toDtos(Iterable<TmsMaintenancePlan> mntMaintenancePlans, boolean lazy) {
+
+    public static List<MaintenancePlan> toDtos(Iterable<? extends TmsMaintenancePlan> mntMaintenancePlans, boolean lazy) {
         if (null == mntMaintenancePlans) {
             return null;
         }
@@ -101,7 +102,7 @@ public class MaintenancePlanMapper {
         return maintenancePlans;
     }
 
-    public static Set<TmsMaintenancePlan> toEntities(Set<MaintenancePlan> maintenancePlans, boolean lazy) {
+    public static Set<TmsMaintenancePlan> toEntities(Set<? extends MaintenancePlan> maintenancePlans, boolean lazy) {
         if (null == maintenancePlans) {
             return null;
         }
@@ -113,7 +114,7 @@ public class MaintenancePlanMapper {
         return tmsMaintenancePlans;
     }
 
-    public static Set<MaintenancePlan> toDtos(Set<TmsMaintenancePlan> tmsMaintenancePlans, boolean lazy) {
+    public static Set<MaintenancePlan> toDtos(Set<? extends TmsMaintenancePlan> tmsMaintenancePlans, boolean lazy) {
         if (null == tmsMaintenancePlans) {
             return null;
         }

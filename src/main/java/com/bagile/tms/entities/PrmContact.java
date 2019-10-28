@@ -23,12 +23,6 @@ public class PrmContact extends EmsEntity {
     private int prmContactId;
     @Column(name = "prm_contactname")
     private String prmContactName;
-    @Temporal(value = TemporalType.TIMESTAMP)
-    @Column(name = "prm_contactcreationdate")
-    private Date prmContactCreationDate;
-    @Temporal(value = TemporalType.TIMESTAMP)
-    @Column(name = "prm_contactupdatedate")
-    private Date prmContactUpdateDate;
     @Column(name = "prm_contactsurname")
     private String prmContactSurname;
     @Column(name = "prm_Contacttele1")
@@ -59,23 +53,6 @@ public class PrmContact extends EmsEntity {
     public void setPrmContactName(String prmContactName) {
         this.prmContactName = prmContactName;
     }
-
-    public Date getPrmContactCreationDate() {
-        return prmContactCreationDate;
-    }
-
-    public void setPrmContactCreationDate(Date prmContactCreationDate) {
-        this.prmContactCreationDate = prmContactCreationDate;
-    }
-
-    public Date getPrmContactUpdateDate() {
-        return prmContactUpdateDate;
-    }
-
-    public void setPrmContactUpdateDate(Date prmContactUpdateDate) {
-        this.prmContactUpdateDate = prmContactUpdateDate;
-    }
-
     public String getPrmContactSurname() {
         return prmContactSurname;
     }
