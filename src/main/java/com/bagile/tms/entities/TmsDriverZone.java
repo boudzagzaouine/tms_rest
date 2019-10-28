@@ -1,7 +1,6 @@
 package com.bagile.tms.entities;
 
 import javax.persistence.*;
-import java.util.Date;
 
 
 @Entity
@@ -17,7 +16,7 @@ public class TmsDriverZone extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_diver_zone_id", allocationSize = 1)
     @Column(name = "tms_diverzoneid", unique = true, nullable = false, precision = 10, scale = 0)
-    private int tmsDriverZoneId;
+    private Long tmsDriverZoneId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_driverid")
@@ -32,11 +31,11 @@ public class TmsDriverZone extends EmsEntity {
     public TmsDriverZone() {
     }
 
-    public int getTmsDriverZoneId() {
+    public Long getTmsDriverZoneId() {
         return tmsDriverZoneId;
     }
 
-    public void setTmsDriverZoneId(int tmsDriverZoneId) {
+    public void setTmsDriverZoneId(Long tmsDriverZoneId) {
         this.tmsDriverZoneId = tmsDriverZoneId;
     }
 

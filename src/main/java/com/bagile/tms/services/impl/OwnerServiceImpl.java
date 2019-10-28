@@ -101,7 +101,7 @@ public class OwnerServiceImpl implements OwnerService {
             }
             search += "active:true";
         }
-        Sort sort = new Sort(Sort.Direction.DESC, "ownOwnerUpdateDate");
+        Sort sort = Sort.by(Sort.Direction.DESC, "ownOwnerUpdateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
         return OwnerMapper.toDtos(ownerRepository.findAll(Search.expression(search, OwnOwner.class), pageable), false);
     }

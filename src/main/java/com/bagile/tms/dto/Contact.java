@@ -1,7 +1,6 @@
 package com.bagile.tms.dto;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Contact extends EmsDto implements Serializable {
 
@@ -9,7 +8,7 @@ public class Contact extends EmsDto implements Serializable {
      *
      */
     private static final long serialVersionUID = 6104428812454596331L;
-    private int id;
+    private Long id;
     private String name;
     private String surname ;
     private String tele1;
@@ -30,11 +29,11 @@ public class Contact extends EmsDto implements Serializable {
         this.tele1 = tele1;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

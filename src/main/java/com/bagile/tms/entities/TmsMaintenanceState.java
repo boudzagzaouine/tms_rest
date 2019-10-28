@@ -2,7 +2,6 @@ package com.bagile.tms.entities;
 
 import javax.persistence.*;
 
-import java.util.Date;
 @Entity
 @Table(name="tms_maintenancestate")
 public class TmsMaintenanceState  extends EmsEntity {
@@ -15,7 +14,7 @@ public class TmsMaintenanceState  extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_maintenancestateid", allocationSize = 1)
     @Column(name = "tms_maintenancestateid", unique = true, nullable = false, precision = 10, scale = 0)
-    private int tmsMaintenanceStateId;
+    private Long tmsMaintenanceStateId;
     @Column(name = "tms_maintenancestatecode")
     private String tmsMaintenanceStateCode;
     @Column(name = "tms_maintenancestatedescription")
@@ -26,11 +25,11 @@ public class TmsMaintenanceState  extends EmsEntity {
     public TmsMaintenanceState() {
     }
 
-    public int getTmsMaintenanceStateId() {
+    public Long getTmsMaintenanceStateId() {
         return tmsMaintenanceStateId;
     }
 
-    public void setTmsMaintenanceStateId(int tmsMaintenanceStateId) {
+    public void setTmsMaintenanceStateId(Long tmsMaintenanceStateId) {
         this.tmsMaintenanceStateId = tmsMaintenanceStateId;
     }
 

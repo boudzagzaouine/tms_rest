@@ -39,7 +39,7 @@ public class ContactController {
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<Contact> getContacts(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Sort sort = new Sort(Sort.Direction.DESC, "prmContactUpdateDate");
+        Sort sort = Sort.by(Sort.Direction.DESC, "prmContactUpdateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
 
         return contactService.findAll( pageable);

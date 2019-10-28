@@ -10,7 +10,7 @@ public class MaintenancePlan extends EmsDto implements Serializable {
      *
      */
     private static final long serialVersionUID = 6036580510935986433L;
-    private int id;
+    private Long id;
     private String code;
     private String description;
     private Date begin;
@@ -23,11 +23,11 @@ public class MaintenancePlan extends EmsDto implements Serializable {
     public MaintenancePlan() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

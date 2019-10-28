@@ -14,7 +14,7 @@ public class TmsMaintenancePlan extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_maintenance_plan_id", allocationSize = 1)
     @Column(name = "tms_maintenanceplanid", unique = true, nullable = false, precision = 10, scale = 0)
-    private int tmsMaintenancePlanId;
+    private Long tmsMaintenancePlanId;
     @Column(name = "tms_maintenanceplancode")
     private String tmsMaintenancePlanCode;
     @Column(name = "tms_maintenanceplandescription")
@@ -37,11 +37,11 @@ public class TmsMaintenancePlan extends EmsEntity {
     public TmsMaintenancePlan() {
     }
 
-    public int getTmsMaintenancePlanId() {
+    public Long getTmsMaintenancePlanId() {
         return tmsMaintenancePlanId;
     }
 
-    public void setTmsMaintenancePlanId(int tmsMaintenancePlanId) {
+    public void setTmsMaintenancePlanId(Long tmsMaintenancePlanId) {
         this.tmsMaintenancePlanId = tmsMaintenancePlanId;
     }
 

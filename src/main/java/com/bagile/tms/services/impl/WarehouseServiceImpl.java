@@ -91,7 +91,7 @@ public class WarehouseServiceImpl implements WarehouseService {
 
     @Override
     public List<Warehouse> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
-        Sort sort = new Sort(Sort.Direction.DESC, "wrhWarehouseUpdateDate");
+        Sort sort = Sort.by(Sort.Direction.DESC, "wrhWarehouseUpdateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
         if (!search.trim().contains("active:false")) {
             if (!search.endsWith(",")) {

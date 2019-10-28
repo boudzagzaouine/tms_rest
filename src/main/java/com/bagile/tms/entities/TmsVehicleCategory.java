@@ -13,7 +13,7 @@ public class TmsVehicleCategory  extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_vehicle_category_id", allocationSize = 1)
     @Column(name = "tms_vehiclecategoryid", unique = true, nullable = false, precision = 10, scale = 0)
-    private int tmsVehicleCategoryId;
+    private Long tmsVehicleCategoryId;
     @Column(name = "tms_vehiclecategorycode")
     private String tmsVehicleCategoryCode;
     @Column(name = "tms_vehiclecategoryconsumption")
@@ -36,11 +36,11 @@ public class TmsVehicleCategory  extends EmsEntity {
     public TmsVehicleCategory() {
     }
 
-    public int getTmsVehicleCategoryId() {
+    public Long getTmsVehicleCategoryId() {
         return tmsVehicleCategoryId;
     }
 
-    public void setTmsVehicleCategoryId(int tmsVehicleCategoryId) {
+    public void setTmsVehicleCategoryId(Long tmsVehicleCategoryId) {
         this.tmsVehicleCategoryId = tmsVehicleCategoryId;
     }
 

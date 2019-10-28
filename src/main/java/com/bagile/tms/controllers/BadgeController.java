@@ -30,7 +30,7 @@ public class BadgeController {
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<Badge> getBadges(@RequestParam int page, @RequestParam int size) {
-        Sort sort = new Sort(Sort.Direction.DESC, "prmColorUpdateDate");
+        Sort sort = Sort.by(Sort.Direction.DESC, "prmColorUpdateDate");
         Pageable pageable = PageRequest.of(page, size,sort);
         return badgeService.findAll(pageable);
 

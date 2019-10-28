@@ -1,12 +1,6 @@
 package com.bagile.tms.entities;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
-import java.util.Date;
 
 @Entity
 @Table(name="prm_contact")
@@ -20,7 +14,7 @@ public class PrmContact extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_prm_contact_id", allocationSize = 1)
     @Column(name = "prm_contactid", unique = true, nullable = false, precision = 10, scale = 0)
-    private int prmContactId;
+    private Long prmContactId;
     @Column(name = "prm_contactname")
     private String prmContactName;
     @Column(name = "prm_contactsurname")
@@ -38,11 +32,11 @@ public class PrmContact extends EmsEntity {
     @Column(name = "prm_contactactive")
     private boolean prmContactActive;
 
-    public int getPrmContactId() {
+    public Long getPrmContactId() {
         return prmContactId;
     }
 
-    public void setPrmContactId(int prmContactId) {
+    public void setPrmContactId(Long prmContactId) {
         this.prmContactId = prmContactId;
     }
 

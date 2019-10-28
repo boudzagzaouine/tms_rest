@@ -28,7 +28,7 @@ public class DriverController {
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<Driver> getDrivers(@RequestParam int page, @RequestParam int size) {
-        Sort sort = new Sort(Sort.Direction.DESC, "tmsDriverUpDateDate");
+        Sort sort = Sort.by(Sort.Direction.DESC, "tmsDriverUpDateDate");
         Pageable pageable = PageRequest.of(page, size,sort);
         return driverService.findAll(pageable);
 

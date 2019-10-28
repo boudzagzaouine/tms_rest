@@ -28,7 +28,7 @@ public class ZoneController {
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<Zone> getZone(@RequestParam int page, @RequestParam int size) {
-        Sort sort = new Sort(Sort.Direction.DESC, "prmColorUpdateDate");
+        Sort sort = Sort.by(Sort.Direction.DESC, "prmColorUpdateDate");
         Pageable pageable = PageRequest.of(page, size,sort);
         return zoneService.findAll(pageable);
 

@@ -1,7 +1,6 @@
 package com.bagile.tms.dto;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class MaintenanceState extends EmsDto implements Serializable {
 
@@ -10,18 +9,18 @@ public class MaintenanceState extends EmsDto implements Serializable {
      *
      */
     private static final long serialVersionUID = 6010435708905017454L;
-    private int id;
+    private Long id;
     private String code;
     private String description;
 
     public MaintenanceState() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -6,7 +6,7 @@ public class DriverZone extends EmsDto implements Serializable {
 
    
     private static final long serialVersionUID = -3071499212575016582L;
-    private int id;
+    private Long id;
     private Driver driver;
     private  Zone  zone ;
 
@@ -14,11 +14,11 @@ public class DriverZone extends EmsDto implements Serializable {
     public DriverZone() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
