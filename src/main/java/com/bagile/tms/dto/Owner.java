@@ -3,7 +3,7 @@ package com.bagile.tms.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Owner implements Serializable {
+public class Owner extends EmsDto implements Serializable {
 
     private static final long serialVersionUID = -7523102087085976433L;
 

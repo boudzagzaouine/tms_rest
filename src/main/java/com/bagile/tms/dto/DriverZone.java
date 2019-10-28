@@ -2,7 +2,7 @@ package com.bagile.tms.dto;
 
 import java.io.Serializable;
 
-public class DriverZone implements Serializable {
+public class DriverZone extends EmsDto implements Serializable {
 
     private int  id;
     private Driver driver;

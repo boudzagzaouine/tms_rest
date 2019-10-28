@@ -3,7 +3,7 @@ package com.bagile.tms.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-public class MaintenanceState implements Serializable {
+public class MaintenanceState extends EmsDto implements Serializable {
 
 
     private int id;

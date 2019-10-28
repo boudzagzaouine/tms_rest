@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by adadi on 2/25/2016.
  */
-public class UserGroupOwner implements Serializable {
+public class UserGroupOwner extends EmsDto implements Serializable {
     private long id;
     private UserGroup userGroup;
     private Owner owner;

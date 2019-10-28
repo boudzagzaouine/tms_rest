@@ -3,7 +3,7 @@ package com.bagile.tms.dto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class VehicleCategory implements Serializable {
+public class VehicleCategory extends EmsDto implements Serializable {
 
 
 

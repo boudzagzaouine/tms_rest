@@ -2,7 +2,7 @@ package com.bagile.tms.dto;
 
 import java.io.Serializable;
 
-public class GroupHabilitation implements Serializable {
+public class GroupHabilitation extends EmsDto  implements Serializable {
 
     private static final long serialVersionUID = -6477675518066822987L;
 

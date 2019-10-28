@@ -2,9 +2,7 @@ package com.bagile.tms.dto;
 
 import java.io.Serializable;
 
-public class BadgeType implements Serializable {
-
-
+public class BadgeType extends EmsDto implements Serializable {
     private long id;
     private String code;
 

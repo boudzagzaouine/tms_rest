@@ -2,7 +2,7 @@ package com.bagile.tms.dto;
 
 import java.io.Serializable;
 
-public class MaintenanceType implements Serializable {
+public class MaintenanceType extends EmsDto implements Serializable {
 
     private int id;
     private String code;

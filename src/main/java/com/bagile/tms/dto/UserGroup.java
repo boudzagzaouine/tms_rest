@@ -3,7 +3,7 @@ package com.bagile.tms.dto;
 import java.io.Serializable;
 import java.util.Set;
 
-public class UserGroup implements Serializable {
+public class UserGroup extends EmsDto implements Serializable {
 
     private static final long serialVersionUID = 2986205153031584174L;
 

@@ -2,11 +2,10 @@ package com.bagile.tms.dto;
 
 import java.io.Serializable;
 
-public class Badge implements Serializable {
-
+public class Badge extends EmsDto implements Serializable {
     private long id;
     private String code;
-    private BadgeType badgetype;
+    private BadgeType badgeType;
     private Driver driver;
 
     public Badge() {
@@ -20,19 +19,19 @@ public class Badge implements Serializable {
         this.driver = driver;
     }
 
-    public BadgeType getBadgetype() {
-        return badgetype;
+    public BadgeType getBadgeType() {
+        return badgeType;
     }
 
-    public void setBadgetype(BadgeType badgetype) {
-        this.badgetype = badgetype;
+    public void setBadgeType(BadgeType badgeType) {
+        this.badgeType = badgeType;
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

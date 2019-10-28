@@ -3,7 +3,7 @@ package com.bagile.tms.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Contact implements Serializable {
+public class Contact extends EmsDto implements Serializable {
 
     private int id;
     private String name;

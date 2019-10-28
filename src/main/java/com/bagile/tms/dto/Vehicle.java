@@ -3,7 +3,7 @@ package com.bagile.tms.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Vehicle implements Serializable {
+public class Vehicle extends EmsDto implements Serializable {
 
 
     private long id;

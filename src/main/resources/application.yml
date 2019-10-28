@@ -1,13 +1,11 @@
 spring:
   datasource:
-           tomcat:
-             test-while-idle: true
-             validation-query: SELECT 1
+    tomcat:
+      test-while-idle: true
+      validation-query: SELECT 1
   jpa:
     hibernate:
       ddl-auto: update
-      dialect: org.hibernate.dialect.PostgreSQLDialect
-
 
     show-sql: false
     generate-ddl: true
@@ -17,8 +15,6 @@ spring:
         default_schema: schema_emstms
         format_sql: false
         generate_statistics: false
-  jooq:
-    sql-dialect: org.hibernate.dialect.PostgreSQLDialect
-
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 server:
   port: 8086

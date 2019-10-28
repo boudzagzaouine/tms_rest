@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-public class Driver implements Serializable {
+public class Driver extends EmsDto implements Serializable {
 
     private long id;
     private String code;

@@ -2,7 +2,7 @@ package com.bagile.tms.dto;
 
 import java.io.Serializable;
 
-public class VacationType implements Serializable {
+public class VacationType extends EmsDto implements Serializable {
 
     private int id;
     private String type;

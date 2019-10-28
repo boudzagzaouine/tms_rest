@@ -2,7 +2,7 @@ package com.bagile.tms.dto;
 
 import java.io.Serializable;
 
-public class Zone implements Serializable {
+public class Zone extends EmsDto implements Serializable {
 
     private int id;
     private String name;

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-public class Habilitation implements Serializable {
+public class Habilitation extends EmsDto  implements Serializable {
 
     private static final long serialVersionUID = -2286588942030519144L;
 
