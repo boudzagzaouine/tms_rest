@@ -1,8 +1,5 @@
 package com.bagile.tms.entities;
 
-import com.bagile.tms.dto.Driver;
-import com.bagile.tms.dto.VacationType;
-
 import javax.persistence.*;
 
 import java.util.Date;
@@ -13,46 +10,47 @@ import java.util.Date;
 public class TmsVacation  extends EmsEntity {
 
     @Id
-    @GeneratedValue
-    @Column(name = "tms_vacationid")
-   private int tmsVacationid;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_vacationid", allocationSize = 1)
+    @Column(name = "tms_tmsvacationid", unique = true, nullable = false, precision = 10, scale = 0)
+   private int tmsVacationId;
     @Column(name = "tms_vacationbegin")
-   private Date tmsVacationbegin;
+   private Date tmsVacationBegin;
     @Column(name = "tms_vacationend")
-   private Date tmsVacationend;
+   private Date tmsVacationEnd;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_vacationtypeid")
    private TmsVacationType tmsVacationType;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_driverid")
-   private TmsDriver tmsdriver;
+   private TmsDriver tmsDriver;
 
     public TmsVacation() {
     }
 
 
-    public int getTmsVacationid() {
-        return tmsVacationid;
+    public int getTmsVacationId() {
+        return tmsVacationId;
     }
 
-    public void setTmsVacationid(int tmsVacationid) {
-        tmsVacationid = tmsVacationid;
+    public void setTmsVacationId(int tmsVacationId) {
+        tmsVacationId = tmsVacationId;
     }
 
-    public Date getTmsVacationbegin() {
-        return tmsVacationbegin;
+    public Date getTmsVacationBegin() {
+        return tmsVacationBegin;
     }
 
-    public void setTmsVacationbegin(Date tmsVacationbegin) {
-        tmsVacationbegin = tmsVacationbegin;
+    public void setTmsVacationBegin(Date tmsVacationBegin) {
+        tmsVacationBegin = tmsVacationBegin;
     }
 
-    public Date getTmsVacationend() {
-        return tmsVacationend;
+    public Date getTmsVacationEnd() {
+        return tmsVacationEnd;
     }
 
-    public void setTmsVacationend(Date tmsVacationend) {
-        tmsVacationend = tmsVacationend;
+    public void setTmsVacationEnd(Date tmsVacationEnd) {
+        tmsVacationEnd = tmsVacationEnd;
     }
 
     public TmsVacationType getTmsVacationType() {
@@ -63,11 +61,11 @@ public class TmsVacation  extends EmsEntity {
         this.tmsVacationType = tmsVacationType;
     }
 
-    public TmsDriver getTmsdriver() {
-        return tmsdriver;
+    public TmsDriver getTmsDriver() {
+        return tmsDriver;
     }
 
-    public void setTmsdriver(TmsDriver tmsdriver) {
-        tmsdriver = tmsdriver;
+    public void setTmsDriver(TmsDriver tmsDriver) {
+        tmsDriver = tmsDriver;
     }
 }

@@ -31,8 +31,8 @@ public class ZoneMapper {
             }
             TmsZone tmsZone = new TmsZone();
 
-            tmsZone.setTmsZoneid(zone.getId());
-            tmsZone.setTmsZonename(zone.getName());;
+            tmsZone.setTmsZoneId(zone.getId());
+            tmsZone.setTmsZoneName(zone.getName());;
 
             return tmsZone;
         }
@@ -43,8 +43,8 @@ public class ZoneMapper {
             }
             Zone zone = new Zone();
 
-            zone.setId(tmsZone.getTmsZoneid());
-            zone.setName(tmsZone.getTmsZonename());
+            zone.setId(tmsZone.getTmsZoneId());
+            zone.setName(tmsZone.getTmsZoneName());
 
             return zone;
         }

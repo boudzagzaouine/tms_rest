@@ -7,29 +7,31 @@ import javax.persistence.*;
 @Table(name="tms_zone")
 public class TmsZone   extends EmsEntity{
 
+
     @Id
-    @GeneratedValue
-    @Column(name = "tms_zoneid")
-    private int tmsZoneid;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_zoneid", allocationSize = 1)
+    @Column(name = "tms_zoneid", unique = true, nullable = false, precision = 10, scale = 0)
+    private int tmsZoneId;
     @Column(name = "tms_zonename")
-    private String tmsZonename;
+    private String tmsZoneName;
 
     public TmsZone() {
     }
 
-    public int getTmsZoneid() {
-        return tmsZoneid;
+    public int getTmsZoneId() {
+        return tmsZoneId;
     }
 
-    public void setTmsZoneid(int tmsZoneid) {
-        this.tmsZoneid = tmsZoneid;
+    public void setTmsZoneId(int tmsZoneId) {
+        this.tmsZoneId = tmsZoneId;
     }
 
-    public String getTmsZonename() {
-        return tmsZonename;
+    public String getTmsZoneName() {
+        return tmsZoneName;
     }
 
-    public void setTmsZonename(String tmsZonename) {
-        this.tmsZonename = tmsZonename;
+    public void setTmsZoneName(String tmsZoneName) {
+        this.tmsZoneName = tmsZoneName;
     }
 }

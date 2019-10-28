@@ -8,49 +8,50 @@ import java.util.Date;
 public class TmsMaintenanceState  extends EmsEntity {
 
     @Id
-    @GeneratedValue
-    @Column(name = "tms_maintenancestateid")
-    private int tmsMaintenanceStateid;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_maintenancestateid", allocationSize = 1)
+    @Column(name = "tms_maintenancestateid", unique = true, nullable = false, precision = 10, scale = 0)
+    private int tmsMaintenanceStateId;
     @Column(name = "tms_maintenancestatecode")
-    private String tmsMaintenanceStatecode;
-    @Column(name = "tms_maintenancestatedescriptif")
-    private String tmsMaintenanceStatedescriptif;
+    private String tmsMaintenanceStateCode;
+    @Column(name = "tms_maintenancestatedescription")
+    private String tmsMaintenanceStateDescription;
     @Column(name = "tms_maintenancestatecreationDate")
-    private Date tmsMaintenanceStatecreationDate;
+    private Date tmsMaintenanceStateCreationDate;
 
 
     public TmsMaintenanceState() {
     }
 
-    public int getTmsMaintenanceStateid() {
-        return tmsMaintenanceStateid;
+    public int getTmsMaintenanceStateId() {
+        return tmsMaintenanceStateId;
     }
 
-    public void setTmsMaintenanceStateid(int tmsMaintenanceStateid) {
-        tmsMaintenanceStateid = tmsMaintenanceStateid;
+    public void setTmsMaintenanceStateId(int tmsMaintenanceStateId) {
+        tmsMaintenanceStateId = tmsMaintenanceStateId;
     }
 
-    public String getTmsMaintenanceStatecode() {
-        return tmsMaintenanceStatecode;
+    public String getTmsMaintenanceStateCode() {
+        return tmsMaintenanceStateCode;
     }
 
-    public void setTmsMaintenanceStatecode(String tmsMaintenanceStatecode) {
-        tmsMaintenanceStatecode = tmsMaintenanceStatecode;
+    public void setTmsMaintenanceStateCode(String tmsMaintenanceStateCode) {
+        tmsMaintenanceStateCode = tmsMaintenanceStateCode;
     }
 
-    public String getTmsMaintenanceStatedescriptif() {
-        return tmsMaintenanceStatedescriptif;
+    public String getTmsMaintenanceStateDescription() {
+        return tmsMaintenanceStateDescription;
     }
 
-    public void setTmsMaintenanceStatedescriptif(String tmsMaintenanceStatedescriptif) {
-        tmsMaintenanceStatedescriptif = tmsMaintenanceStatedescriptif;
+    public void setTmsMaintenanceStateDescription(String tmsMaintenanceStateDescription) {
+        tmsMaintenanceStateDescription = tmsMaintenanceStateDescription;
     }
 
-    public Date getTmsMaintenanceStatecreationDate() {
-        return tmsMaintenanceStatecreationDate;
+    public Date getTmsMaintenanceStateCreationDate() {
+        return tmsMaintenanceStateCreationDate;
     }
 
-    public void setTmsMaintenanceStatecreationDate(Date tmsMaintenanceStatecreationDate) {
-        tmsMaintenanceStatecreationDate = tmsMaintenanceStatecreationDate;
+    public void setTmsMaintenanceStateCreationDate(Date tmsMaintenanceStateCreationDate) {
+        tmsMaintenanceStateCreationDate = tmsMaintenanceStateCreationDate;
     }
 }

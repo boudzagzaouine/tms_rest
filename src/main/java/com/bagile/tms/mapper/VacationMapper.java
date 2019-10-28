@@ -34,13 +34,13 @@ public class VacationMapper {
             return null;
         }
         TmsVacation tmsVacation = new TmsVacation();
-        tmsVacation.setTmsVacationid(vacation.getId());
-        tmsVacation.setTmsVacationbegin(vacation.getBegin());
-        tmsVacation.setTmsVacationend(vacation.getEnd());
+        tmsVacation.setTmsVacationId(vacation.getId());
+        tmsVacation.setTmsVacationBegin(vacation.getBegin());
+        tmsVacation.setTmsVacationEnd(vacation.getEnd());
 
         if (!lazy) {
             tmsVacation.setTmsVacationType(VacationTypeMapper.toEntity(vacation.getVacationtype(), true));
-            tmsVacation.setTmsdriver(DriverMapper.toEntity(vacation.getDriver(), true));
+            tmsVacation.setTmsDriver(DriverMapper.toEntity(vacation.getDriver(), true));
         }
         return tmsVacation;
     }
@@ -51,12 +51,12 @@ public class VacationMapper {
         }
         Vacation vacation = new Vacation();
 
-        vacation.setId(tmsVacation.getTmsVacationid());
-        vacation.setBegin(tmsVacation.getTmsVacationbegin());
-        vacation.setEnd(tmsVacation.getTmsVacationend());
+        vacation.setId(tmsVacation.getTmsVacationId());
+        vacation.setBegin(tmsVacation.getTmsVacationBegin());
+        vacation.setEnd(tmsVacation.getTmsVacationEnd());
         if (!lazy) {
-            vacation.setDriver(DriverMapper.toDto(tmsVacation.getTmsdriver(), true));
-            vacation.setDriver(DriverMapper.toDto(tmsVacation.getTmsdriver(), true));
+            vacation.setDriver(DriverMapper.toDto(tmsVacation.getTmsDriver(), true));
+            vacation.setDriver(DriverMapper.toDto(tmsVacation.getTmsDriver(), true));
         }
         return vacation;
     }

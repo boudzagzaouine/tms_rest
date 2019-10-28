@@ -36,15 +36,15 @@ public class VehicleCategoryMapper {
             return null;
         }
         TmsVehicleCategory tmsVehicleCategory = new TmsVehicleCategory();
-        tmsVehicleCategory.setTmsVehicleCategoryid(VehicleCategory.getId());
-        tmsVehicleCategory.setTmsVehicleCategorycode(VehicleCategory.getCode());
-        tmsVehicleCategory.setTmsVehicleCategoryconsumption(VehicleCategory.getConsumption());
-        tmsVehicleCategory.setTmsVehicleCategoryemptyWeight(VehicleCategory.getWeight());
-        tmsVehicleCategory.setTmsVehicleCategorywidth(VehicleCategory.getWidth());
-        tmsVehicleCategory.setTmsVehicleCategorydepth(VehicleCategory.getDepth());
-        tmsVehicleCategory.setTmsVehicleCategorytonnage(VehicleCategory.getTonnage());
-        tmsVehicleCategory.setTmsVehicleCategoryemptyWeight(VehicleCategory.getEmptyWeight());
-        tmsVehicleCategory.setTmsVehicleCategorytotalWeight(VehicleCategory.getTotalWeight());
+        tmsVehicleCategory.setTmsVehicleCategoryId(VehicleCategory.getId());
+        tmsVehicleCategory.setTmsVehicleCategoryCode(VehicleCategory.getCode());
+        tmsVehicleCategory.setTmsVehicleCategoryConsumption(VehicleCategory.getConsumption());
+        tmsVehicleCategory.setTmsVehicleCategoryEmptyWeight(VehicleCategory.getWeight());
+        tmsVehicleCategory.setTmsVehicleCategoryWidth(VehicleCategory.getWidth());
+        tmsVehicleCategory.setTmsVehicleCategoryDepth(VehicleCategory.getDepth());
+        tmsVehicleCategory.setTmsVehicleCategoryTonnage(VehicleCategory.getTonnage());
+        tmsVehicleCategory.setTmsVehicleCategoryEmptyWeight(VehicleCategory.getEmptyWeight());
+        tmsVehicleCategory.setTmsVehicleCategoryTotalWeight(VehicleCategory.getTotalWeight());
 
         if (!lazy) {
         }
@@ -56,15 +56,15 @@ public class VehicleCategoryMapper {
             return null;
         }
         VehicleCategory vehicleCategory = new VehicleCategory();
-        vehicleCategory.setId(tmsVehicleCategory.getTmsVehicleCategoryid());
-        vehicleCategory.setCode(tmsVehicleCategory.getTmsVehicleCategorycode());
-        vehicleCategory.setConsumption(tmsVehicleCategory.getTmsVehicleCategoryconsumption());
-        vehicleCategory.setDepth(tmsVehicleCategory.getTmsVehicleCategorydepth());
-        vehicleCategory.setWeight(tmsVehicleCategory.getTmsVehicleCategoryemptyWeight());
-        vehicleCategory.setWidth(tmsVehicleCategory.getTmsVehicleCategorywidth());
-        vehicleCategory.setTonnage(tmsVehicleCategory.getTmsVehicleCategorytonnage());
-        vehicleCategory.setTotalWeight(tmsVehicleCategory.getTmsVehicleCategorytotalWeight());
-        vehicleCategory.setEmptyWeight(tmsVehicleCategory.getTmsVehicleCategorytotalWeight());
+        vehicleCategory.setId(tmsVehicleCategory.getTmsVehicleCategoryId());
+        vehicleCategory.setCode(tmsVehicleCategory.getTmsVehicleCategoryCode());
+        vehicleCategory.setConsumption(tmsVehicleCategory.getTmsVehicleCategoryConsumption());
+        vehicleCategory.setDepth(tmsVehicleCategory.getTmsVehicleCategoryDepth());
+        vehicleCategory.setWeight(tmsVehicleCategory.getTmsVehicleCategoryEmptyWeight());
+        vehicleCategory.setWidth(tmsVehicleCategory.getTmsVehicleCategoryWidth());
+        vehicleCategory.setTonnage(tmsVehicleCategory.getTmsVehicleCategoryTonnage());
+        vehicleCategory.setTotalWeight(tmsVehicleCategory.getTmsVehicleCategoryTotalWeight());
+        vehicleCategory.setEmptyWeight(tmsVehicleCategory.getTmsVehicleCategoryTotalWeight());
 
         if (!lazy) {
         }

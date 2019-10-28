@@ -36,7 +36,7 @@ public class UsrUserGroup extends EmsEntity implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_usr_usergroup", allocationSize = 1)
+    @SequenceGenerator(name = "seq", sequenceName = "seq_usr_usergroupid", allocationSize = 1)
     @Column(name = "usr_usergroupid", unique = true, nullable = false, precision = 10, scale = 0)
     public long getUsrUserGroupId() {
         return this.usrUserGroupId;

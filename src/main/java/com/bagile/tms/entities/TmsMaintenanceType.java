@@ -8,39 +8,40 @@ import javax.persistence.*;
 public class TmsMaintenanceType  extends EmsEntity {
 
     @Id
-    @GeneratedValue
-    @Column(name = "tms_maintenancetypeid")
-    private int tmsMaintenanceTypeid;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_maintenancetypeid", allocationSize = 1)
+    @Column(name = "tms_maintenancetypeid", unique = true, nullable = false, precision = 10, scale = 0)
+    private int tmsMaintenanceTypeId;
     @Column(name = "tms_maintenancetypecode")
-    private String tmsMaintenanceTypecode;
+    private String tmsMaintenanceTypeCode;
     @Column(name = "tms_maintenancetypedescription")
-    private String tmsMaintenanceTypedescription;
+    private String tmsMaintenanceTypeDescription;
 
 
     public TmsMaintenanceType() {
     }
 
-    public int getTmsMaintenanceTypeid() {
-        return tmsMaintenanceTypeid;
+    public int getTmsMaintenanceTypeId() {
+        return tmsMaintenanceTypeId;
     }
 
-    public void setTmsMaintenanceTypeid(int tmsMaintenanceTypeid) {
-        this.tmsMaintenanceTypeid = tmsMaintenanceTypeid;
+    public void setTmsMaintenanceTypeId(int tmsMaintenanceTypeId) {
+        this.tmsMaintenanceTypeId = tmsMaintenanceTypeId;
     }
 
-    public String getTmsMaintenanceTypecode() {
-        return tmsMaintenanceTypecode;
+    public String getTmsMaintenanceTypeCode() {
+        return tmsMaintenanceTypeCode;
     }
 
-    public void setTmsMaintenanceTypecode(String tmsMaintenanceTypecode) {
-        this.tmsMaintenanceTypecode = tmsMaintenanceTypecode;
+    public void setTmsMaintenanceTypeCode(String tmsMaintenanceTypeCode) {
+        this.tmsMaintenanceTypeCode = tmsMaintenanceTypeCode;
     }
 
-    public String getTmsMaintenanceTypedescription() {
-        return tmsMaintenanceTypedescription;
+    public String getTmsMaintenanceTypeDescription() {
+        return tmsMaintenanceTypeDescription;
     }
 
-    public void setTmsMaintenanceTypedescription(String tmsMaintenanceTypedescription) {
-        this.tmsMaintenanceTypedescription = tmsMaintenanceTypedescription;
+    public void setTmsMaintenanceTypeDescription(String tmsMaintenanceTypeDescription) {
+        this.tmsMaintenanceTypeDescription = tmsMaintenanceTypeDescription;
     }
 }

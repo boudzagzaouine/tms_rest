@@ -1,8 +1,5 @@
 package com.bagile.tms.entities;
 
-import com.bagile.tms.dto.BadgeType;
-import com.bagile.tms.dto.VehicleCategory;
-
 import javax.persistence.*;
 
 import java.util.Date;
@@ -11,17 +8,18 @@ import java.util.Date;
 public class TmsVehicle   extends EmsEntity{
 
     @Id
-    @GeneratedValue
-    @Column(name = "tms_vehiculeid")
-    private long tmsVehicleid;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_vehiculeid", allocationSize = 1)
+    @Column(name = "tms_vehiculeid", unique = true, nullable = false, precision = 10, scale = 0)
+    private long tmsVehicleId;
     @Column(name = "tms_vehiculeregistrationnumber")
     private String  registrationNumber;
     @Column(name = "tms_vehiculecode")
-   private String tmsVehiclecode;
+   private String tmsVehicleCode;
     @Column(name = "tms_vehiculetechnicalvisit")
-   private Date tmsVehicletechnicalVisit;
+   private Date tmsVehicleTechnicalVisit;
     @Column(name = "tms_vehiculecreationdate")
-   private Date tmsVehiclecreationDate;
+   private Date tmsVehicleCreationDate;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "tms_vehiculecategorieid")
    private TmsVehicleCategory tmsVehicleCategory;
@@ -35,12 +33,12 @@ public class TmsVehicle   extends EmsEntity{
     public TmsVehicle() {
     }
 
-    public long getTmsVehicleid() {
-        return tmsVehicleid;
+    public long getTmsVehicleId() {
+        return tmsVehicleId;
     }
 
-    public void setTmsVehicleid(long tmsVehicleid) {
-        this.tmsVehicleid = tmsVehicleid;
+    public void setTmsVehicleId(long tmsVehicleId) {
+        this.tmsVehicleId = tmsVehicleId;
     }
 
     public String getRegistrationNumber() {
@@ -51,28 +49,28 @@ public class TmsVehicle   extends EmsEntity{
         this.registrationNumber = registrationNumber;
     }
 
-    public String getTmsVehiclecode() {
-        return tmsVehiclecode;
+    public String getTmsVehicleCode() {
+        return tmsVehicleCode;
     }
 
-    public void setTmsVehiclecode(String tmsVehiclecode) {
-        this.tmsVehiclecode = tmsVehiclecode;
+    public void setTmsVehicleCode(String tmsVehicleCode) {
+        this.tmsVehicleCode = tmsVehicleCode;
     }
 
-    public Date getTmsVehicletechnicalVisit() {
-        return tmsVehicletechnicalVisit;
+    public Date getTmsVehicleTechnicalVisit() {
+        return tmsVehicleTechnicalVisit;
     }
 
-    public void setTmsVehicletechnicalVisit(Date tmsVehicletechnicalVisit) {
-        this.tmsVehicletechnicalVisit = tmsVehicletechnicalVisit;
+    public void setTmsVehicleTechnicalVisit(Date tmsVehicleTechnicalVisit) {
+        this.tmsVehicleTechnicalVisit = tmsVehicleTechnicalVisit;
     }
 
-    public Date getTmsVehiclecreationDate() {
-        return tmsVehiclecreationDate;
+    public Date getTmsVehicleCreationDate() {
+        return tmsVehicleCreationDate;
     }
 
-    public void setTmsVehiclecreationDate(Date tmsVehiclecreationDate) {
-        this.tmsVehiclecreationDate = tmsVehiclecreationDate;
+    public void setTmsVehicleCreationDate(Date tmsVehicleCreationDate) {
+        this.tmsVehicleCreationDate = tmsVehicleCreationDate;
     }
 
     public TmsVehicleCategory getTmsVehicleCategory() {

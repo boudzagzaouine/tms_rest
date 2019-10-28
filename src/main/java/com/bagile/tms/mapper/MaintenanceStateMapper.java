@@ -32,10 +32,10 @@ public class MaintenanceStateMapper {
             return null;
         }
         MaintenanceState state = new MaintenanceState();
-        state.setId(tmsState.getTmsMaintenanceStateid());
-        state.setCode(tmsState.getTmsMaintenanceStatecode());
-        state.setDescriptif(tmsState.getTmsMaintenanceStatedescriptif());
-        state.setCreationDate(tmsState.getTmsMaintenanceStatecreationDate());
+        state.setId(tmsState.getTmsMaintenanceStateId());
+        state.setCode(tmsState.getTmsMaintenanceStateCode());
+        state.setDescriptif(tmsState.getTmsMaintenanceStateDescription());
+        state.setCreationDate(tmsState.getTmsMaintenanceStateCreationDate());
         if(!lazy) {
            // state.setCreationDate(tmsState.getTmsMaintenanceStateCreationDate());
           //  state.setCreationUser(UserMapper.toDto(tmsState.getTmsMaintenanceStateCreationUser(),true));
@@ -51,10 +51,10 @@ public class MaintenanceStateMapper {
             return null;
         }
         TmsMaintenanceState tmsState = new TmsMaintenanceState();
-        tmsState.setTmsMaintenanceStateid(state.getId());
-        tmsState.setTmsMaintenanceStatecode(state.getCode());
-        tmsState.setTmsMaintenanceStatedescriptif(state.getDescriptif());
-        tmsState.setTmsMaintenanceStatecreationDate(state.getCreationDate());
+        tmsState.setTmsMaintenanceStateId(state.getId());
+        tmsState.setTmsMaintenanceStateCode(state.getCode());
+        tmsState.setTmsMaintenanceStateDescription(state.getDescriptif());
+        tmsState.setTmsMaintenanceStateCreationDate(state.getCreationDate());
 
         if(!lazy) {
            // tmsState.setTmsMaintenanceStateCreationDate(state.getCreationDate());

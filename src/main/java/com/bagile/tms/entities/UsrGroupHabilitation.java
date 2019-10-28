@@ -23,7 +23,7 @@ public class UsrGroupHabilitation extends EmsEntity implements java.io.Serializa
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_usr_grouphabilitation", allocationSize = 1)
+    @SequenceGenerator(name = "seq", sequenceName = "seq_usr_group_habilitation_id", allocationSize = 1)
     @Column(name = "usr_grouphabilitationid", unique = true, nullable = false, precision = 10, scale = 0)
     public long getUsrGroupHabilitationId() {
         return this.usrGroupHabilitationId;

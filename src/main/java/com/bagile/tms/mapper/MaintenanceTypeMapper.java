@@ -32,9 +32,9 @@ public class MaintenanceTypeMapper {
             return null;
         }
         MaintenanceType type = new MaintenanceType();
-        type.setId(tmsType.getTmsMaintenanceTypeid());
-        type.setCode(tmsType.getTmsMaintenanceTypecode());
-        type.setDescription(tmsType.getTmsMaintenanceTypedescription());
+        type.setId(tmsType.getTmsMaintenanceTypeId());
+        type.setCode(tmsType.getTmsMaintenanceTypeCode());
+        type.setDescription(tmsType.getTmsMaintenanceTypeDescription());
 
         return type;
     }
@@ -44,9 +44,9 @@ public class MaintenanceTypeMapper {
             return null;
         }
         TmsMaintenanceType tmsType = new TmsMaintenanceType();
-        tmsType.setTmsMaintenanceTypeid(type.getId());
-        tmsType.setTmsMaintenanceTypecode(type.getCode());
-        tmsType.setTmsMaintenanceTypedescription(type.getDescription());
+        tmsType.setTmsMaintenanceTypeId(type.getId());
+        tmsType.setTmsMaintenanceTypeCode(type.getCode());
+        tmsType.setTmsMaintenanceTypeDescription(type.getDescription());
 
         return tmsType;
     }
