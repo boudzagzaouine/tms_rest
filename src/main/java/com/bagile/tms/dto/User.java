@@ -13,11 +13,9 @@ public class User extends EmsDto implements Serializable {
     private Owner owner;
     private String comment;
     private String code;
-    private Date updateDate;
     private boolean active;
     private String surname;
     private String email;
-    private Date creationDate;
     private UserGroup userGroup;
     private String password;
     private String tel;
@@ -67,13 +65,6 @@ public class User extends EmsDto implements Serializable {
         this.code = code;
     }
 
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
 
     public String getSurname() {
         return surname;
@@ -91,13 +82,6 @@ public class User extends EmsDto implements Serializable {
         this.email = email;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
 
     public UserGroup getUserGroup() {
         return userGroup;

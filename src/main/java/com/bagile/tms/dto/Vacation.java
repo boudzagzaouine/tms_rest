@@ -3,12 +3,12 @@ package com.bagile.tms.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Vacation extends EmsDto implements Serializable {
+public class Vacation implements Serializable {
 
    private int id;
    private Date begin;
    private Date end;
-   private VacationType vacationtype;
+   private VacationType vacationType;
    private Driver driver;
 
     public Vacation() {
@@ -49,10 +49,10 @@ public class Vacation extends EmsDto implements Serializable {
     }
 
     public VacationType getVacationtype() {
-        return vacationtype;
+        return vacationType;
     }
 
     public void setVacationtype(VacationType vacationtype) {
-        this.vacationtype = vacationtype;
+        this.vacationType = vacationtype;
     }
 }

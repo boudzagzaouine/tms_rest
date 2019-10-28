@@ -12,10 +12,10 @@ public class Warehouse extends EmsDto implements Serializable {
 
     private long id;
     private String code;
-    private Date updateDate;
+
    // private Address address;
     private String description;
-    private Date creationDate;
+
     private String telephone;
     private Boolean active;
     private String email;
@@ -37,13 +37,6 @@ public class Warehouse extends EmsDto implements Serializable {
         this.code = code;
     }
 
-    public Date getUpdateDate() {
-        return this.updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
 
    /* public Address getAddress() {
         return address;
@@ -70,14 +63,8 @@ public class Warehouse extends EmsDto implements Serializable {
     /**
      * @return the creationDate
      */
-    public Date getCreationDate() {
-        return creationDate;
-    }
 
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
 
 
     public String getTelephone() {
