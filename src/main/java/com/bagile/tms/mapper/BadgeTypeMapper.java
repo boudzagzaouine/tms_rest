@@ -33,8 +33,8 @@ public class BadgeTypeMapper {
         }
         TmsBadgeType tmsBadgeType = new TmsBadgeType();
 
-        tmsBadgeType.setTmsBadgeTypeid((int) badgeType.getId());
-        tmsBadgeType.setTmsBadgeTypecode(badgeType.getCode());
+        tmsBadgeType.setTmsBadgeTypeId((int) badgeType.getId());
+        tmsBadgeType.setTmsBadgeTypeCode(badgeType.getCode());
 
         return tmsBadgeType;
     }
@@ -45,8 +45,8 @@ public class BadgeTypeMapper {
         }
         BadgeType badgeType = new BadgeType();
 
-        badgeType.setId((int) tmsBadgeType.getTmsBadgeTypeid());
-        badgeType.setCode(tmsBadgeType.getTmsBadgeTypecode());
+        badgeType.setId((int) tmsBadgeType.getTmsBadgeTypeId());
+        badgeType.setCode(tmsBadgeType.getTmsBadgeTypeCode());
 
         return badgeType;
     }

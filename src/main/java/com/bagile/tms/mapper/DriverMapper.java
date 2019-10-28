@@ -40,13 +40,13 @@ public class DriverMapper {
             return null;
         }
         TmsDriver tmsDriver = new TmsDriver();
-        tmsDriver.setTmsDriverid(driver.getId());
-        tmsDriver.setTmsDrivercode(driver.getCode());
-        tmsDriver.setTmsDrivercin(driver.getCin());
+        tmsDriver.setTmsDriverId(driver.getId());
+        tmsDriver.setTmsDriverCode(driver.getCode());
+        tmsDriver.setTmsDriverCin(driver.getCin());
          tmsDriver.setTmsDriverbirthDate(driver.getBirthDate());
-        tmsDriver.setTmsDriverlastMedicalVisit(driver.getLastMedicalVisit());
-        tmsDriver.setTmsDrivercommission(driver.getCommission());
-        tmsDriver.setTmsDrivercreationDate(driver.getCreationDate());
+        tmsDriver.setTmsDriverLastMedicalVisit(driver.getLastMedicalVisit());
+        tmsDriver.setTmsDriverCommission(driver.getCommission());
+        tmsDriver.setTmsDriverCreationDate(driver.getCreationDate());
         tmsDriver.setTmsDriverupDateDate(driver.getUpDate());
 
 
@@ -74,14 +74,14 @@ public class DriverMapper {
             return null;
         }
         Driver driver = new Driver();
-        driver.setId(tmsDriver.getTmsDriverid());
-        driver.setCode(tmsDriver.getTmsDrivercode());
-        driver.setCin(tmsDriver.getTmsDrivercin());
+        driver.setId(tmsDriver.getTmsDriverId());
+        driver.setCode(tmsDriver.getTmsDriverCode());
+        driver.setCin(tmsDriver.getTmsDriverCin());
         driver.setBirthDate(tmsDriver.getTmsDriverbirthDate());
-        driver.setLastMedicalVisit(tmsDriver.getTmsDriverlastMedicalVisit());
-        driver.setCommission(tmsDriver.getTmsDrivercommission());
-        driver.setCreationDate(tmsDriver.getTmsDrivercreationDate());
-        driver.setUpDate(tmsDriver.getTmsDriverupDate());
+        driver.setLastMedicalVisit(tmsDriver.getTmsDriverLastMedicalVisit());
+        driver.setCommission(tmsDriver.getTmsDriverCommission());
+        driver.setCreationDate(tmsDriver.getTmsDriverCreationDate());
+        driver.setUpDate(tmsDriver.getTmsDriverUpdateDate());
 
         if (!lazy) {
             driver.setContact(ContactMapper.toDto(tmsDriver.getprmContact(),true));

@@ -11,8 +11,6 @@ public class Habilitation extends EmsDto  implements Serializable {
     private long id;
     private String code;
     private String description;
-    private Date updateDate;
-    private Date creationDate;
     private Habilitation habilitation;
     private Set<GroupHabilitation> groupHabilitations;
     private Set<Habilitation> habilitations;
@@ -43,22 +41,6 @@ public class Habilitation extends EmsDto  implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
     }
 
     public Habilitation getHabilitation() {

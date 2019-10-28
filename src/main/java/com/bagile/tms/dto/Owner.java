@@ -10,7 +10,6 @@ public class Owner extends EmsDto implements Serializable {
     private long id;
     private String comment;
     private String code;
-    private Date updateDate;
     private String variable1;
     private String variable2;
     private String variable3;
@@ -23,7 +22,6 @@ public class Owner extends EmsDto implements Serializable {
     private String variable10;
     private String siret;
     private Boolean active;
-    private Date creationDate;
     private String description;
    // private Address address;
     private String name;
@@ -59,14 +57,6 @@ public class Owner extends EmsDto implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
     }
 
     public String getVariable1() {
@@ -163,14 +153,6 @@ public class Owner extends EmsDto implements Serializable {
 
     public void setActive(Boolean active) {
         this.active = active;
-    }
-
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
     }
 
     public String getDescription() {

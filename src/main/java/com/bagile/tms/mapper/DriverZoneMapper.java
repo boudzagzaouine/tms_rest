@@ -1,6 +1,5 @@
 package com.bagile.tms.mapper;
 
-import com.bagile.tms.dto.Driver;
 import com.bagile.tms.dto.DriverZone;
 import com.bagile.tms.entities.TmsDriverZone;
 
@@ -37,11 +36,11 @@ public class DriverZoneMapper {
             return null;
         }
         TmsDriverZone tmsdriverzone = new TmsDriverZone();
-        tmsdriverzone.setTmsDriverZoneid(driverZone.getId());
+        tmsdriverzone.setTmsDriverZoneId(driverZone.getId());
 
         if (!lazy) {
-            tmsdriverzone.setTmsDriverZonedriver(DriverMapper.toEntity(driverZone.getDriver(), true));
-            tmsdriverzone.setTmsDriverZonezone(ZoneMapper.toEntity(driverZone.getZone(), true));
+            tmsdriverzone.setTmsDriverZoneDriver(DriverMapper.toEntity(driverZone.getDriver(), true));
+            tmsdriverzone.setTmsDriverZoneZone(ZoneMapper.toEntity(driverZone.getZone(), true));
         }
         return tmsdriverzone;
     }
@@ -52,11 +51,11 @@ public class DriverZoneMapper {
             return null;
         }
         DriverZone driverzone = new DriverZone();
-        driverzone.setId(tmsdriverZone.getTmsDriverZoneid());
+        driverzone.setId(tmsdriverZone.getTmsDriverZoneId());
 
         if (!lazy) {
-            driverzone.setDriver(DriverMapper.toDto(tmsdriverZone.getTmsDriverZonedriver(), true));
-            driverzone.setZone(ZoneMapper.toDto(tmsdriverZone.getTmsDriverZonezone(), true));
+            driverzone.setDriver(DriverMapper.toDto(tmsdriverZone.getTmsDriverZoneDriver(), true));
+            driverzone.setZone(ZoneMapper.toDto(tmsdriverZone.getTmsDriverZoneZone(), true));
 
         }
         return driverzone;

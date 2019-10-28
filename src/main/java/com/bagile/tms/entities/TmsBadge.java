@@ -11,8 +11,9 @@ import javax.persistence.*;
 public class TmsBadge  extends EmsEntity{
 
     @Id
-    @GeneratedValue
-    @Column(name = "tms_badgeid")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_badge", allocationSize = 1)
+    @Column(name = "tms_badgeid", unique = true, nullable = false, precision = 10, scale = 0)
     private long tmsBadgeId;
     @Column(name = "tms_badgecode")
     private String tmsBadgeCode;

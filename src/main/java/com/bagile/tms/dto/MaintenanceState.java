@@ -8,9 +8,7 @@ public class MaintenanceState extends EmsDto implements Serializable {
 
     private int id;
     private String code;
-    private String descriptif;
-    private Date creationDate;
-
+    private String description;
 
     public MaintenanceState() {
     }
@@ -31,19 +29,13 @@ public class MaintenanceState extends EmsDto implements Serializable {
         this.code = code;
     }
 
-    public String getDescriptif() {
-        return descriptif;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescriptif(String descriptif) {
-        this.descriptif = descriptif;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
 }
