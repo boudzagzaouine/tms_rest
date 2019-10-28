@@ -18,7 +18,7 @@ public class UsrUserGroupOwner extends EmsEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "usr_user_group_own_owner_usr_user_group_own_owner_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "seq", sequenceName = "seq_user_group_own_owner_id", allocationSize = 1)
     @Column(name = "usr_user_group_own_owner_id", unique = true, nullable = false, precision = 10, scale = 0)
     public long getUsrUserGroupOwnOwnerId() {
         return usrUserGroupOwnOwnerId;

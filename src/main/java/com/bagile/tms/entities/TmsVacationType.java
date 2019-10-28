@@ -13,7 +13,7 @@ public class TmsVacationType   extends EmsEntity{
     private static final long serialVersionUID = 796170659310976084L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_vacationtypeid", allocationSize = 1)
+    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_vacation_type_id", allocationSize = 1)
     @Column(name = "tms_vacationtypeid", unique = true, nullable = false, precision = 10, scale = 0)
     private int id;
     @Column(name = "tms_vacationtypecode")

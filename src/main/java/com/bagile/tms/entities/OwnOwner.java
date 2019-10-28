@@ -86,7 +86,7 @@ public class OwnOwner extends EmsEntity implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_own_owner", allocationSize = 1)
+    @SequenceGenerator(name = "seq", sequenceName = "seq_own_owner_id", allocationSize = 1)
     @Column(name = "own_ownerid", unique = true, nullable = false, precision = 10, scale = 0)
     public long getOwnOwnerId() {
         return this.ownOwnerId;

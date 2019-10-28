@@ -15,7 +15,7 @@ public class TmsDriverZone extends EmsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_diverzone_id", allocationSize = 1)
+    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_diver_zone_id", allocationSize = 1)
     @Column(name = "tms_diverzoneid", unique = true, nullable = false, precision = 10, scale = 0)
     private int tmsDriverZoneId;
 

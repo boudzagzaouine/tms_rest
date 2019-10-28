@@ -69,7 +69,7 @@ public class WrhWarehouse extends EmsEntity implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_wrh_warehouse", allocationSize = 1)
+    @SequenceGenerator(name = "seq", sequenceName = "seq_wrh_warehouse_id", allocationSize = 1)
     @Column(name = "wrh_warehouseid", unique = true, nullable = false, precision = 10, scale = 0)
     public long getWrhWarehouseId() {
         return this.wrhWarehouseId;

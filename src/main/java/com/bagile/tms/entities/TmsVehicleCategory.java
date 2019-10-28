@@ -5,30 +5,30 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name="tms_vehiculecategorie")
+@Table(name="tms_vehiclecategory")
 public class TmsVehicleCategory  extends EmsEntity {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_vehiculecategorieid", allocationSize = 1)
-    @Column(name = "tms_vehiculecategorieid", unique = true, nullable = false, precision = 10, scale = 0)
+    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_vehicle_category_id", allocationSize = 1)
+    @Column(name = "tms_vehiclecategoryid", unique = true, nullable = false, precision = 10, scale = 0)
     private int tmsVehicleCategoryId;
-    @Column(name = "tms_vehiculecategoriecode")
+    @Column(name = "tms_vehiclecategorycode")
     private String tmsVehicleCategoryCode;
-    @Column(name = "tms_vehiculecategorieconsumption")
+    @Column(name = "tms_vehiclecategoryconsumption")
     private  String tmsVehicleCategoryConsumption;
-    @Column(name = "tms_vehiculecategorieweight")
+    @Column(name = "tms_vehiclecategoryweight")
     private BigDecimal tmsVehicleCategoryWeight;
-    @Column(name = "tms_vehiculecategoriewidth")
+    @Column(name = "tms_vehiclecategorywidth")
     private  BigDecimal tmsVehicleCategoryWidth;
-    @Column(name = "tms_vehiculecategoriedepth")
+    @Column(name = "tms_vehiclecategorydepth")
     private BigDecimal tmsVehicleCategoryDepth;
-    @Column(name = "tms_vehiculecategorietonnage")
+    @Column(name = "tms_vehiclecategorytonnage")
     private BigDecimal tmsVehicleCategoryTonnage;
-    @Column(name = "tms_vehiculecategorieemptyweight")
+    @Column(name = "tms_vehiclecategoryemptyweight")
     private  BigDecimal tmsVehicleCategoryEmptyWeight;
-    @Column(name = "tms_vehiculecategorietotalweight")
+    @Column(name = "tms_vehiclecategorytotalweight")
     private BigDecimal tmsVehicleCategoryTotalWeight;
 
 

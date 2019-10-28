@@ -13,7 +13,7 @@ public class TmsMaintenanceType  extends EmsEntity {
     private static final long serialVersionUID = 3900860221690635278L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_maintenancetypeid", allocationSize = 1)
+    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_maintenance_type_id", allocationSize = 1)
     @Column(name = "tms_maintenancetypeid", unique = true, nullable = false, precision = 10, scale = 0)
     private int tmsMaintenanceTypeId;
     @Column(name = "tms_maintenancetypecode")
