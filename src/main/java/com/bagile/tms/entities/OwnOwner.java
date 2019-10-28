@@ -30,13 +30,13 @@ public class OwnOwner extends EmsEntity implements java.io.Serializable {
     private String ownOwnerSiret;
     @Size(max = 255)
     private String ownOwnerComment;
-    @NotNull
-    private Boolean ownOwnerIsActive;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
 
+    private Boolean ownOwnerIsActive = true;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ownOwnerCreationDate;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ownOwnerUpdateDate;
     @Size(max = 255)
     private String ownOwnerVariable1;

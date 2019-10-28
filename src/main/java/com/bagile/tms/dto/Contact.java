@@ -11,7 +11,6 @@ public class Contact extends EmsDto implements Serializable {
     private static final long serialVersionUID = 6104428812454596331L;
     private int id;
     private String name;
-    private Date creationDate;
     private String surname ;
     private String tele1;
     private String fax ;
@@ -19,7 +18,6 @@ public class Contact extends EmsDto implements Serializable {
     private  String email;
     private String comment;
     private boolean  active ;
-
 
     public Contact() {
     }
@@ -46,14 +44,6 @@ public class Contact extends EmsDto implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
     }
 
     public String getSurname() {
@@ -103,5 +93,7 @@ public class Contact extends EmsDto implements Serializable {
     public void setActive(boolean active) {
         this.active = active;
     }
+
+
 
 }

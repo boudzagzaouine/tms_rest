@@ -13,19 +13,19 @@ public class TmsMaintenancePlan extends EmsEntity {
     @Id
     @GeneratedValue
     @Column(name = "tms_maintenanceplanid")
-    private int tmsMaintenancePlanid;
+    private int tmsMaintenancePlanId;
     @Column(name = "tms_maintenanceplancode")
-    private String tmsMaintenancePlancode;
-    @Column(name = "tms_maintenanceplandescriptif")
-    private String tmsMaintenancePlandescriptif;
+    private String tmsMaintenancePlanCode;
+    @Column(name = "tms_maintenanceplandescription")
+    private String tmsMaintenancePlanDescription;
     @Column(name = "tms_maintenanceplancreationdatae")
     private Date tmsMaintenancePlancreationDatae;
     @Column(name = "tms_maintenanceplanupdatedate")
-    private Date tmsMaintenancePlanupDate;
-    @Column(name = "tms_maintenanceplanbegin")
-    private Date tmsMaintenancePlanbegin;
-    @Column(name = "Tms_MaintenancePlanEnd")
-    private Date tmsMaintenancePlanend;
+    private Date tmsMaintenancePlanUpdateDate;
+    @Column(name = "tms_maintenanceplanstartdate")
+    private Date tmsMaintenancePlanStartDate;
+    @Column(name = "Tms_Maintenanceplanenddate")
+    private Date tmsMaintenancePlanEndDate;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_maintenancetypeid")
     private TmsMaintenanceType tmsMaintenanceType;
@@ -40,28 +40,28 @@ public class TmsMaintenancePlan extends EmsEntity {
     public TmsMaintenancePlan() {
     }
 
-    public int getTmsMaintenancePlanid() {
-        return tmsMaintenancePlanid;
+    public int getTmsMaintenancePlanId() {
+        return tmsMaintenancePlanId;
     }
 
-    public void setTmsMaintenancePlanid(int tmsMaintenancePlanid) {
-        this.tmsMaintenancePlanid = tmsMaintenancePlanid;
+    public void setTmsMaintenancePlanId(int tmsMaintenancePlanId) {
+        this.tmsMaintenancePlanId = tmsMaintenancePlanId;
     }
 
-    public String getTmsMaintenancePlancode() {
-        return tmsMaintenancePlancode;
+    public String getTmsMaintenancePlanCode() {
+        return tmsMaintenancePlanCode;
     }
 
-    public void setTmsMaintenancePlancode(String tmsMaintenancePlancode) {
-        this.tmsMaintenancePlancode = tmsMaintenancePlancode;
+    public void setTmsMaintenancePlanCode(String tmsMaintenancePlanCode) {
+        this.tmsMaintenancePlanCode = tmsMaintenancePlanCode;
     }
 
-    public String getTmsMaintenancePlandescriptif() {
-        return tmsMaintenancePlandescriptif;
+    public String getTmsMaintenancePlanDescription() {
+        return tmsMaintenancePlanDescription;
     }
 
-    public void setTmsMaintenancePlandescriptif(String tmsMaintenancePlandescriptif) {
-        this.tmsMaintenancePlandescriptif = tmsMaintenancePlandescriptif;
+    public void setTmsMaintenancePlanDescription(String tmsMaintenancePlanDescription) {
+        this.tmsMaintenancePlanDescription = tmsMaintenancePlanDescription;
     }
 
     public Date getTmsMaintenancePlancreationDatae() {
@@ -72,28 +72,28 @@ public class TmsMaintenancePlan extends EmsEntity {
         this.tmsMaintenancePlancreationDatae = tmsMaintenancePlancreationDatae;
     }
 
-    public Date getTmsMaintenancePlanupDate() {
-        return tmsMaintenancePlanupDate;
+    public Date getTmsMaintenancePlanUpdateDate() {
+        return tmsMaintenancePlanUpdateDate;
     }
 
-    public void setTmsMaintenancePlanupDate(Date tmsMaintenancePlanupDateDate) {
-        this.tmsMaintenancePlanupDate = tmsMaintenancePlanupDateDate;
+    public void setTmsMaintenancePlanUpdateDate(Date tmsMaintenancePlanupDateDate) {
+        this.tmsMaintenancePlanUpdateDate = tmsMaintenancePlanupDateDate;
     }
 
-    public Date getTmsMaintenancePlanbegin() {
-        return tmsMaintenancePlanbegin;
+    public Date getTmsMaintenancePlanStartDate() {
+        return tmsMaintenancePlanStartDate;
     }
 
-    public void setTmsMaintenancePlanbegin(Date tmsMaintenancePlanbegin) {
-        this.tmsMaintenancePlanbegin = tmsMaintenancePlanbegin;
+    public void setTmsMaintenancePlanStartDate(Date tmsMaintenancePlanStartDate) {
+        this.tmsMaintenancePlanStartDate = tmsMaintenancePlanStartDate;
     }
 
-    public Date getTmsMaintenancePlanend() {
-        return tmsMaintenancePlanend;
+    public Date getTmsMaintenancePlanEndDate() {
+        return tmsMaintenancePlanEndDate;
     }
 
-    public void setTmsMaintenancePlanend(Date tmsMaintenancePlanend) {
-        this.tmsMaintenancePlanend = tmsMaintenancePlanend;
+    public void setTmsMaintenancePlanEndDate(Date tmsMaintenancePlanEndDate) {
+        this.tmsMaintenancePlanEndDate = tmsMaintenancePlanEndDate;
     }
 
     public TmsMaintenanceType getTmsMaintenanceType() {

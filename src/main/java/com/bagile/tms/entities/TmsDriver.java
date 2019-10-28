@@ -1,6 +1,7 @@
 package com.bagile.tms.entities;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -12,28 +13,33 @@ public class TmsDriver  extends EmsEntity{
      */
     private static final long serialVersionUID = 7465274138053290715L;
     @Id
-    @GeneratedValue
-    @Column(name = "tms_driverid")
-    private long tmsDriverid;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_driver_id", allocationSize = 1)
+    @Column(name = "tms_driverid", unique = true, nullable = false, precision = 10, scale = 0)
+    private long tmsDriverId;
     @Column(name = "tms_drivercode")
-    private String tmsDrivercode;
+    private String tmsDriverCode;
     @Column(name = "tms_drivercin")
-    private String tmsDrivercin;
+    private String tmsDriverCin;
+    @Temporal(TemporalType.DATE)
     @Column(name = "tms_driverbirthdate")
     private Date tmsDriverbirthDate;
+    @Temporal(TemporalType.DATE)
     @Column(name = "tms_driverlastmedicalvisit")
-    private Date tmsDriverlastMedicalVisit;
+    private Date tmsDriverLastMedicalVisit;
     @Column(name = "tms_drivercommission")
-    private Double tmsDrivercommission;
+    private BigDecimal tmsDriverCommission;
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "tms_drivercreationdate")
-    private Date tmsDrivercreationDate;
+    private Date tmsDriverCreationDate;
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "tms_driverupdate")
-    private Date tmsDriverupDate;
+    private Date tmsDriverUpdateDate;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prm_contactid")
     private PrmContact prmContact;
     @Column(name = "tms_driverworkin")
-    private boolean tmWorking;
+    private boolean tmsWorking;
 
 
 
@@ -43,36 +49,36 @@ public class TmsDriver  extends EmsEntity{
     public TmsDriver() {
     }
 
-    public boolean isTmWorking() {
-        return tmWorking;
+    public boolean isTmsWorking() {
+        return tmsWorking;
     }
 
-    public void setTmWorking(boolean tmWorking) {
-        this.tmWorking = tmWorking;
+    public void setTmsWorking(boolean tmsWorking) {
+        this.tmsWorking = tmsWorking;
     }
 
-    public long getTmsDriverid() {
-        return tmsDriverid;
+    public long getTmsDriverId() {
+        return tmsDriverId;
     }
 
-    public void setTmsDriverid(long tmsDriverid) {
-        this.tmsDriverid = tmsDriverid;
+    public void setTmsDriverId(long tmsDriverId) {
+        this.tmsDriverId = tmsDriverId;
     }
 
-    public String getTmsDrivercode() {
-        return tmsDrivercode;
+    public String getTmsDriverCode() {
+        return tmsDriverCode;
     }
 
-    public void setTmsDrivercode(String tmsDrivercode) {
-        this.tmsDrivercode = tmsDrivercode;
+    public void setTmsDriverCode(String tmsDriverCode) {
+        this.tmsDriverCode = tmsDriverCode;
     }
 
-    public String getTmsDrivercin() {
-        return tmsDrivercin;
+    public String getTmsDriverCin() {
+        return tmsDriverCin;
     }
 
-    public void setTmsDrivercin(String tmsDrivercin) {
-        this.tmsDrivercin = tmsDrivercin;
+    public void setTmsDriverCin(String tmsDriverCin) {
+        this.tmsDriverCin = tmsDriverCin;
     }
 
     public Date getTmsDriverbirthDate() {
@@ -83,36 +89,36 @@ public class TmsDriver  extends EmsEntity{
         this.tmsDriverbirthDate = tmsDriverbirthDate;
     }
 
-    public Date getTmsDriverlastMedicalVisit() {
-        return tmsDriverlastMedicalVisit;
+    public Date getTmsDriverLastMedicalVisit() {
+        return tmsDriverLastMedicalVisit;
     }
 
-    public void setTmsDriverlastMedicalVisit(Date tmsDriverlastMedicalVisit) {
-        this.tmsDriverlastMedicalVisit = tmsDriverlastMedicalVisit;
+    public void setTmsDriverLastMedicalVisit(Date tmsDriverLastMedicalVisit) {
+        this.tmsDriverLastMedicalVisit = tmsDriverLastMedicalVisit;
     }
 
-    public Double getTmsDrivercommission() {
-        return tmsDrivercommission;
+    public BigDecimal getTmsDriverCommission() {
+        return tmsDriverCommission;
     }
 
-    public void setTmsDrivercommission(Double tmsDrivercommission) {
-        this.tmsDrivercommission = tmsDrivercommission;
+    public void setTmsDriverCommission(BigDecimal tmsDriverCommission) {
+        this.tmsDriverCommission = tmsDriverCommission;
     }
 
-    public Date getTmsDrivercreationDate() {
-        return tmsDrivercreationDate;
+    public Date getTmsDriverCreationDate() {
+        return tmsDriverCreationDate;
     }
 
-    public void setTmsDrivercreationDate(Date tmsDrivercreationDate) {
-        this.tmsDrivercreationDate = tmsDrivercreationDate;
+    public void setTmsDriverCreationDate(Date tmsDriverCreationDate) {
+        this.tmsDriverCreationDate = tmsDriverCreationDate;
     }
 
-    public Date getTmsDriverupDate() {
-        return tmsDriverupDate;
+    public Date getTmsDriverUpdateDate() {
+        return tmsDriverUpdateDate;
     }
 
     public void setTmsDriverupDateDate(Date tmsDriverupDateDate) {
-        this.tmsDriverupDate = tmsDriverupDateDate;
+        this.tmsDriverUpdateDate = tmsDriverupDateDate;
     }
 
     public PrmContact getprmContact() {

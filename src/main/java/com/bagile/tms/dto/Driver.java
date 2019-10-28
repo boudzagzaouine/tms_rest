@@ -1,6 +1,7 @@
 package com.bagile.tms.dto;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Driver extends EmsDto implements Serializable {
@@ -12,9 +13,7 @@ public class Driver extends EmsDto implements Serializable {
     private String cin;
     private Date birthDate;
     private Date lastMedicalVisit;
-    private Double commission;
-    private Date creationDate;
-    private Date upDate;
+    private BigDecimal commission;
     private Contact contact;
     private boolean working;
 
@@ -73,28 +72,12 @@ public class Driver extends EmsDto implements Serializable {
         this.lastMedicalVisit = lastMedicalVisit;
     }
 
-    public Double getCommission() {
+    public BigDecimal getCommission() {
         return commission;
     }
 
-    public void setCommission(Double commission) {
+    public void setCommission(BigDecimal commission) {
         this.commission = commission;
-    }
-
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public Date getUpDate() {
-        return upDate;
-    }
-
-    public void setUpDate(Date upDateDate) {
-        this.upDate = upDateDate;
     }
 
     public Contact getContact() {

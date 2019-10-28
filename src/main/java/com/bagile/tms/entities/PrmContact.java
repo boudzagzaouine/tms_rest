@@ -1,121 +1,134 @@
 package com.bagile.tms.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import java.util.Date;
 
 @Entity
 @Table(name="prm_contact")
-public class PrmContact extends EmsEntity{
+public class PrmContact extends EmsEntity {
 
     /**
      *
      */
     private static final long serialVersionUID = -2556249835469329497L;
     @Id
-    @GeneratedValue
-    @Column(name = "prm_contactid")
-    private int prmContactid;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "seq_prm_contact", allocationSize = 1)
+    @Column(name = "prm_contactid", unique = true, nullable = false, precision = 10, scale = 0)
+    private int prmContactId;
     @Column(name = "prm_contactname")
-    private String prmContactname;
+    private String prmContactName;
+    @Temporal(value = TemporalType.TIMESTAMP)
     @Column(name = "prm_contactcreationdate")
-    private Date prmContactcreationDate;
+    private Date prmContactCreationDate;
+    @Temporal(value = TemporalType.TIMESTAMP)
+    @Column(name = "prm_contactupdatedate")
+    private Date prmContactUpdateDate;
     @Column(name = "prm_contactsurname")
-    private String prmContactsurname ;
+    private String prmContactSurname;
     @Column(name = "prm_Contacttele1")
-    private String prmContacttele1 ;
+    private String prmContactTele1;
     @Column(name = "prm_contactfax")
-    private String prmContactfax ;
+    private String prmContactFax;
     @Column(name = "prm_contacttype")
     private String prmContactType;
     @Column(name = "prm_contactemail")
-    private  String prmContactemail;
+    private String prmContactEmail;
     @Column(name = "prm_contactcomment")
-    private String prmContactcomment;
+    private String prmContactComment;
     @Column(name = "prm_contactactive")
-    private boolean  prmContactactive ;
+    private boolean prmContactActive;
 
-
-    public PrmContact() {
+    public int getPrmContactId() {
+        return prmContactId;
     }
 
-    public String getprmContacttele1() {
-        return prmContacttele1;
+    public void setPrmContactId(int prmContactId) {
+        this.prmContactId = prmContactId;
     }
 
-    public void setprmContacttele1(String prmContacttele1) {
-        prmContacttele1 = prmContacttele1;
+    public String getPrmContactName() {
+        return prmContactName;
     }
 
-    public int getprmContactid() {
-        return prmContactid;
+    public void setPrmContactName(String prmContactName) {
+        this.prmContactName = prmContactName;
     }
 
-    public void setprmContactid(int prmContactid) {
-        this.prmContactid = prmContactid;
+    public Date getPrmContactCreationDate() {
+        return prmContactCreationDate;
     }
 
-    public String getprmContactname() {
-        return prmContactname;
+    public void setPrmContactCreationDate(Date prmContactCreationDate) {
+        this.prmContactCreationDate = prmContactCreationDate;
     }
 
-    public void setprmContactname(String prmContactname) {
-        this.prmContactname = prmContactname;
+    public Date getPrmContactUpdateDate() {
+        return prmContactUpdateDate;
     }
 
-    public Date getprmContactcreationDate() {
-        return prmContactcreationDate;
+    public void setPrmContactUpdateDate(Date prmContactUpdateDate) {
+        this.prmContactUpdateDate = prmContactUpdateDate;
     }
 
-    public void setprmContactcreationDate(Date prmContactcreationDate) {
-        this.prmContactcreationDate = prmContactcreationDate;
+    public String getPrmContactSurname() {
+        return prmContactSurname;
     }
 
-    public String getprmContactsurname() {
-        return prmContactsurname;
+    public void setPrmContactSurname(String prmContactSurname) {
+        this.prmContactSurname = prmContactSurname;
     }
 
-    public void setprmContactsurname(String prmContactsurname) {
-        this.prmContactsurname = prmContactsurname;
+    public String getPrmContactTele1() {
+        return prmContactTele1;
     }
 
-    public String getprmContactfax() {
-        return prmContactfax;
+    public void setPrmContactTele1(String prmContactTele1) {
+        this.prmContactTele1 = prmContactTele1;
     }
 
-    public void setprmContactfax(String prmContactfax) {
-        this.prmContactfax = prmContactfax;
+    public String getPrmContactFax() {
+        return prmContactFax;
     }
 
-    public String getprmContactcontactType() {
+    public void setPrmContactFax(String prmContactFax) {
+        this.prmContactFax = prmContactFax;
+    }
+
+    public String getPrmContactType() {
         return prmContactType;
     }
 
-    public void setprmContactcontactType(String prmContactcontactType) {
-        this.prmContactType = prmContactcontactType;
+    public void setPrmContactType(String prmContactType) {
+        this.prmContactType = prmContactType;
     }
 
-    public String getprmContactemail() {
-        return prmContactemail;
+    public String getPrmContactEmail() {
+        return prmContactEmail;
     }
 
-    public void setprmContactemail(String tmsContactemail) {
-        this.prmContactemail = prmContactemail;
+    public void setPrmContactEmail(String prmContactEmail) {
+        this.prmContactEmail = prmContactEmail;
     }
 
-    public String getprmContactcomment() {
-        return prmContactcomment;
+    public String getPrmContactComment() {
+        return prmContactComment;
     }
 
-    public void setprmContactcomment(String prmContactcomment) {
-        this.prmContactcomment = prmContactcomment;
+    public void setPrmContactComment(String prmContactComment) {
+        this.prmContactComment = prmContactComment;
     }
 
-    public boolean getprmContactactive() {
-        return prmContactactive;
+    public boolean isPrmContactActive() {
+        return prmContactActive;
     }
 
-    public void setprmContactactive(boolean tmsContactactive) {
-        this.prmContactactive = prmContactactive;
+    public void setPrmContactActive(boolean prmContactActive) {
+        this.prmContactActive = prmContactActive;
     }
 }

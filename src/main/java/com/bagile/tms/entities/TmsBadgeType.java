@@ -12,29 +12,30 @@ public class TmsBadgeType extends EmsEntity {
      */
     private static final long serialVersionUID = 5946978378448415395L;
     @Id
-    @GeneratedValue
-    @Column(name = "tms_badgetypeid")
-    private long tmsBadgeTypeid;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_badgetype", allocationSize = 1)
+    @Column(name = "tms_badgetypeid", unique = true, nullable = false, precision = 10, scale = 0)
+    private long tmsBadgeTypeId;
     @Column(name = "tms_badgetypecode")
-    private String tmsBadgeTypecode;
+    private String tmsBadgeTypeCode;
 
 
     public TmsBadgeType() {
     }
 
-    public long getTmsBadgeTypeid() {
-        return tmsBadgeTypeid;
+    public long getTmsBadgeTypeId() {
+        return tmsBadgeTypeId;
     }
 
-    public void setTmsBadgeTypeid(long tmsBadgeTypeid) {
-        this.tmsBadgeTypeid = tmsBadgeTypeid;
+    public void setTmsBadgeTypeId(long tmsBadgeTypeId) {
+        this.tmsBadgeTypeId = tmsBadgeTypeId;
     }
 
-    public String getTmsBadgeTypecode() {
-        return tmsBadgeTypecode;
+    public String getTmsBadgeTypeCode() {
+        return tmsBadgeTypeCode;
     }
 
-    public void setTmsBadgeTypecode(String tmsBadgeTypecode) {
-        this.tmsBadgeTypecode = tmsBadgeTypecode;
+    public void setTmsBadgeTypeCode(String tmsBadgeTypeCode) {
+        this.tmsBadgeTypeCode = tmsBadgeTypeCode;
     }
 }

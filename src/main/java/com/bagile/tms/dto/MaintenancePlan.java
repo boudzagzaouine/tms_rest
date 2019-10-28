@@ -12,14 +12,12 @@ public class MaintenancePlan extends EmsDto implements Serializable {
     private static final long serialVersionUID = 6036580510935986433L;
     private int id;
     private String code;
-    private String descriptif;
-    private Date creationDatae;
-    private Date upDate;
+    private String description;
     private Date begin;
     private Date end;
     private MaintenanceType maintenanceType;
     private MaintenanceState maintenanceState;
-   private Vehicle vehicule;
+   private Vehicle vehicle;
 
 
     public MaintenancePlan() {
@@ -41,28 +39,12 @@ public class MaintenancePlan extends EmsDto implements Serializable {
         this.code = code;
     }
 
-    public String getDescriptif() {
-        return descriptif;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescriptif(String descriptif) {
-        this.descriptif = descriptif;
-    }
-
-    public Date getCreationDatae() {
-        return creationDatae;
-    }
-
-    public void setCreationDatae(Date creationDatae) {
-        this.creationDatae = creationDatae;
-    }
-
-    public Date getUpDate() {
-        return upDate;
-    }
-
-    public void setUpDate(Date upDateDate) {
-        this.upDate = upDateDate;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Date getBegin() {
@@ -97,11 +79,11 @@ public class MaintenancePlan extends EmsDto implements Serializable {
         this.maintenanceState = maintenanceState;
     }
 
-    public Vehicle getVehicule() {
-        return vehicule;
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
-    public void setVehicule(Vehicle vehicule) {
-        this.vehicule = vehicule;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 }
