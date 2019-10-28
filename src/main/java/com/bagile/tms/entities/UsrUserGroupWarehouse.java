@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "usr_usergroup_wrh_warehouse")
-public class UsrUserGroupWarehouse {
+public class UsrUserGroupWarehouse extends EmsEntity {
 
     private long usrUserGroupWrhWarehouseId;
     private UsrUserGroup usrUserGroup;

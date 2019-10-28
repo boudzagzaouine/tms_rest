@@ -17,7 +17,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "usr_habilitation", uniqueConstraints = @UniqueConstraint(columnNames = "usr_habilitationcode"))
-public class UsrHabilitation implements java.io.Serializable, GrantedAuthority {
+public class UsrHabilitation extends EmsEntity implements java.io.Serializable, GrantedAuthority {
 
     private static final long serialVersionUID = -5912577005612840837L;
 

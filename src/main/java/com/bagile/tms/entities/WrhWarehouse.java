@@ -14,7 +14,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "wrh_warehouse", uniqueConstraints = @UniqueConstraint(columnNames = "wrh_warehousecode"))
-public class WrhWarehouse implements java.io.Serializable {
+public class WrhWarehouse extends EmsEntity implements java.io.Serializable {
 
     private long wrhWarehouseId;
     //@NotNull

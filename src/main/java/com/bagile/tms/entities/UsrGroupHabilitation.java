@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "usr_grouphabilitation")
-public class UsrGroupHabilitation implements java.io.Serializable {
+public class UsrGroupHabilitation extends EmsEntity implements java.io.Serializable {
 
     private static final long serialVersionUID = 1358730598440653284L;
 

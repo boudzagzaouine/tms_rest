@@ -14,7 +14,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "own_owner", uniqueConstraints = @UniqueConstraint(columnNames = "own_ownercode"))
-public class OwnOwner implements java.io.Serializable {
+public class OwnOwner extends EmsEntity implements java.io.Serializable {
 
     private long ownOwnerId;
     @Size(max = 30)

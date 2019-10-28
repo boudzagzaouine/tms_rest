@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table(name="prm_contact")
-public class PrmContact {
+public class PrmContact extends EmsEntity{
 
     @Id
     @GeneratedValue

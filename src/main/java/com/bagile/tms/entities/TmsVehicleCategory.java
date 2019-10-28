@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name="tms_vehiculecategorie")
-public class TmsVehicleCategory   {
+public class TmsVehicleCategory  extends EmsEntity {
 
 
     @Id

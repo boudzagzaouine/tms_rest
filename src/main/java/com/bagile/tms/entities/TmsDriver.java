@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name="tms_driver")
-public class TmsDriver  {
+public class TmsDriver  extends EmsEntity{
 
     @Id
     @GeneratedValue

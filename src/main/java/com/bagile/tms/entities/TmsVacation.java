@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Entity
 @Table(name="tms_vacation")
-public class TmsVacation   {
+public class TmsVacation  extends EmsEntity {
 
     @Id
     @GeneratedValue

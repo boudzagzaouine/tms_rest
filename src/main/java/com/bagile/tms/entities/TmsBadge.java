@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="tms_badge")
-public class TmsBadge  {
+public class TmsBadge  extends EmsEntity{
 
     @Id
     @GeneratedValue

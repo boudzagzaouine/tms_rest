@@ -16,7 +16,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "usr_user", uniqueConstraints = @UniqueConstraint(columnNames = "usr_useremail"))
-public class UsrUser implements java.io.Serializable {
+public class UsrUser extends EmsEntity implements java.io.Serializable {
 
     private static final long serialVersionUID = -3952175616242893842L;
 

@@ -4,9 +4,10 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @MappedSuperclass
-public abstract class EmsEntity {
+public abstract class EmsEntity  implements Serializable {
     protected String createdBy;
     protected String updatedBy;
     protected UsrUser createdByUser;

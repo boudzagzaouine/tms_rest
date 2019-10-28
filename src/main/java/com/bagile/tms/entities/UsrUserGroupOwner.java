@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "usr_user_group_own_owner")
-public class UsrUserGroupOwner implements Serializable {
+public class UsrUserGroupOwner extends EmsEntity implements Serializable {
     private long usrUserGroupOwnOwnerId;
     @NotNull
     private UsrUserGroup usrUserGroup;

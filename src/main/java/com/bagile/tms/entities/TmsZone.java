@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="tms_zone")
-public class TmsZone   {
+public class TmsZone   extends EmsEntity{
 
     @Id
     @GeneratedValue

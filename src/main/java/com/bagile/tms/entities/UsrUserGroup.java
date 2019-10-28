@@ -15,7 +15,7 @@ import java.util.Set;
 @Entity
 @Table(name = "usr_usergroup", uniqueConstraints = {
         @UniqueConstraint(columnNames = "usr_usergroupcode")})
-public class UsrUserGroup implements java.io.Serializable {
+public class UsrUserGroup extends EmsEntity implements java.io.Serializable {
 
     private static final long serialVersionUID = 4316246777960907747L;
 
