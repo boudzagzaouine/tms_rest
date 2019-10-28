@@ -3,6 +3,7 @@ package com.bagile.tms.entities;
 import javax.persistence.*;
 
 
+
 @Entity
 @Table(name="tms_vacationtype")
 public class TmsVacationType   extends EmsEntity{
@@ -15,32 +16,33 @@ public class TmsVacationType   extends EmsEntity{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_vacation_type_id", allocationSize = 1)
     @Column(name = "tms_vacationtypeid", unique = true, nullable = false, precision = 10, scale = 0)
-    private int id;
+    private Long tmsVacationTypeId;
     @Column(name = "tms_vacationtypecode")
-    private String code;
+    private String tmsVacationTypeCode;
     @Column(name = "tms_vacationtypedescription")
-    private String description;
+    private String tmsVacationDescription;
 
-    public TmsVacationType() {
+    public Long getTmsVacationTypeId() {
+        return tmsVacationTypeId;
     }
 
-    public int getId() {
-        return id;
+    public void setTmsVacationTypeId(Long tmsVacationTypeId) {
+        this.tmsVacationTypeId = tmsVacationTypeId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getTmsVacationTypeCode() {
+        return tmsVacationTypeCode;
     }
 
-    public String getType() {
-        return code;
+    public void setTmsVacationTypeCode(String tmsVacationTypeCode) {
+        this.tmsVacationTypeCode = tmsVacationTypeCode;
     }
 
-    public void setType(String type) {
-        this.code = type;
+    public String getTmsVacationDescription() {
+        return tmsVacationDescription;
     }
 
-    
-
-
+    public void setTmsVacationDescription(String tmsVacationDescription) {
+        this.tmsVacationDescription = tmsVacationDescription;
+    }
 }

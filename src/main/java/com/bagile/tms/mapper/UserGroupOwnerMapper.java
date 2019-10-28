@@ -23,6 +23,10 @@ public class UserGroupOwnerMapper {
         map.put("id", "usrUserGroupOwnOwnerId");
         map.put("owner", "ownOwner");
         map.put("userGroup", "usrUserGroup");
+        map.put("createdBy", "createdBy");
+        map.put("updatedBy", "updatedBy");
+        map.put("creationDate", "creationDate");
+        map.put("updateDate", "updateDate");
     }
 
     public static String getField(String key) {
@@ -39,6 +43,10 @@ public class UserGroupOwnerMapper {
         }
         UserGroupOwner userGroupOwner = new UserGroupOwner();
         userGroupOwner.setId(usrUserGroupOwner.getUsrUserGroupOwnOwnerId());
+        userGroupOwner.setCreatedBy(usrUserGroupOwner.getCreatedBy());
+        userGroupOwner.setUpdatedBy(usrUserGroupOwner.getUpdatedBy());
+        userGroupOwner.setCreationDate(usrUserGroupOwner.getCreationDate());
+        userGroupOwner.setUpdateDate(usrUserGroupOwner.getUpdateDate());
         if (!lazy) {
             userGroupOwner.setOwner(OwnerMapper.toDto(usrUserGroupOwner.getOwnOwner(), true));
             userGroupOwner.setUserGroup(UserGroupMapper.toDto(usrUserGroupOwner.getUsrUserGroup(), true));
@@ -52,6 +60,10 @@ public class UserGroupOwnerMapper {
         }
         UsrUserGroupOwner usrUserGroupOwner = new UsrUserGroupOwner();
         usrUserGroupOwner.setUsrUserGroupOwnOwnerId(userGroupOwner.getId());
+        usrUserGroupOwner.setCreatedBy(userGroupOwner.getCreatedBy());
+        usrUserGroupOwner.setUpdatedBy(userGroupOwner.getUpdatedBy());
+        usrUserGroupOwner.setCreationDate(userGroupOwner.getCreationDate());
+        usrUserGroupOwner.setUpdateDate(userGroupOwner.getUpdateDate());
         if (!lazy) {
             usrUserGroupOwner.setUsrUserGroup(UserGroupMapper.toEntity(userGroupOwner.getUserGroup(), true));
             usrUserGroupOwner.setOwnOwner(OwnerMapper.toEntity(userGroupOwner.getOwner(), true));
@@ -59,7 +71,7 @@ public class UserGroupOwnerMapper {
         return usrUserGroupOwner;
     }
 
-    public static List<UserGroupOwner> toDtos(List<UsrUserGroupOwner> usrUserGroupOwners, boolean lazy) {
+    public static List<UserGroupOwner> toDtos(Iterable<? extends UsrUserGroupOwner> usrUserGroupOwners, boolean lazy) {
         if (null == usrUserGroupOwners) {
             return null;
         }
@@ -70,18 +82,7 @@ public class UserGroupOwnerMapper {
         return userGroupOwners;
     }
 
-    public static List<UserGroupOwner> toDtos(Iterable<UsrUserGroupOwner> usrUserGroupOwners, boolean lazy) {
-        if (null == usrUserGroupOwners) {
-            return null;
-        }
-        List<UserGroupOwner> userGroupOwners = new ArrayList<>();
-        for (UsrUserGroupOwner usrUserGroupOwner : usrUserGroupOwners) {
-            userGroupOwners.add(toDto(usrUserGroupOwner, lazy));
-        }
-        return userGroupOwners;
-    }
-
-    public static Set<UsrUserGroupOwner> toEntities(Set<UserGroupOwner> userGroupOwners, boolean lazy) {
+    public static Set<UsrUserGroupOwner> toEntities(Set<? extends UserGroupOwner> userGroupOwners, boolean lazy) {
         if (null == userGroupOwners) {
             return null;
         }
@@ -92,7 +93,7 @@ public class UserGroupOwnerMapper {
         return usrUserGroupOwners;
     }
 
-    public static Set<UserGroupOwner> toDtos(Set<UsrUserGroupOwner> usrUserGroupOwners, boolean lazy) {
+    public static Set<UserGroupOwner> toDtos(Set<? extends UsrUserGroupOwner> usrUserGroupOwners, boolean lazy) {
         if (null == usrUserGroupOwners) {
             return null;
         }

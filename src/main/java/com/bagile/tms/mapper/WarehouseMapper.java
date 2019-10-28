@@ -20,11 +20,11 @@ public class WarehouseMapper {
     static {
         map = new HashMap<>();
         map.put("id", "wrhWarehouseId");
-       // map.put("address", "adrAddress");
+        // map.put("address", "adrAddress");
         map.put("code", "wrhWarehouseCode");
         map.put("description", "wrhWarehouseDescription");
-        map.put("creationDate", "wrhWarehouseCreationDate");
-        map.put("updateDate", "wrhWarehouseUpdateDate");
+        map.put("creationDate", "creationDate");
+        map.put("updateDate", "updateDate");
         map.put("email", "wrhWarehouseEmail");
         map.put("telephone", "wrhWarehouseTel");
         map.put("active", "wrhWarehouseIsActive");
@@ -54,8 +54,8 @@ public class WarehouseMapper {
         warehouse.setTelephone(wrhWarehouse.getWrhWarehouseTel());
         warehouse.setActive(wrhWarehouse.getWrhWarehouseIsActive());
         if (!lazy) {
-           // warehouse.setAddress(AddressMapper.toDto(wrhWarehouse.getAdrAddress(), true));
-      
+            // warehouse.setAddress(AddressMapper.toDto(wrhWarehouse.getAdrAddress(), true));
+
         }
         return warehouse;
     }
@@ -74,23 +74,12 @@ public class WarehouseMapper {
         wrhWarehouse.setWrhWarehouseTel(warehouse.getTelephone());
         wrhWarehouse.setWrhWarehouseIsActive(warehouse.getActive());
         if (!lazy) {
-          //  wrhWarehouse.setAdrAddress(AddressMapper.toEntity(warehouse.getAddress(), true));
+            //  wrhWarehouse.setAdrAddress(AddressMapper.toEntity(warehouse.getAddress(), true));
         }
         return wrhWarehouse;
     }
 
-    public static List<Warehouse> toDtos(List<WrhWarehouse> wrhWarehouses, boolean lazy) {
-        if (null == wrhWarehouses) {
-            return null;
-        }
-        List<Warehouse> warehouses = new ArrayList<>();
-        for (WrhWarehouse wrhWarehouse : wrhWarehouses) {
-            warehouses.add(toDto(wrhWarehouse, lazy));
-        }
-        return warehouses;
-    }
-
-    public static List<Warehouse> toDtos(Iterable<WrhWarehouse> wrhWarehouses, boolean lazy) {
+    public static List<Warehouse> toDtos(Iterable<? extends WrhWarehouse> wrhWarehouses, boolean lazy) {
         if (null == wrhWarehouses) {
             return null;
         }

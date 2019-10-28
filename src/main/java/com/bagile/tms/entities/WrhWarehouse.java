@@ -24,12 +24,6 @@ public class WrhWarehouse extends EmsEntity implements java.io.Serializable {
     private String wrhWarehouseCode;
     @Size(max = 255)
     private String wrhWarehouseDescription;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date wrhWarehouseCreationDate;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-
-    private Date wrhWarehouseUpdateDate;
-    
     
     @NotNull
     @Size(max = 100)
@@ -107,25 +101,6 @@ public class WrhWarehouse extends EmsEntity implements java.io.Serializable {
         this.wrhWarehouseDescription = wrhWarehouseDescription;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "wrh_warehousecreationdate")
-    public Date getWrhWarehouseCreationDate() {
-        return this.wrhWarehouseCreationDate;
-    }
-
-    public void setWrhWarehouseCreationDate(Date wrhWarehouseCreationDate) {
-        this.wrhWarehouseCreationDate = wrhWarehouseCreationDate;
-    }
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "wrh_warehouseupdatedate")
-    public Date getWrhWarehouseUpdateDate() {
-        return this.wrhWarehouseUpdateDate;
-    }
-
-    public void setWrhWarehouseUpdateDate(Date wrhWarehouseUpdateDate) {
-        this.wrhWarehouseUpdateDate = wrhWarehouseUpdateDate;
-    }
 
  
 

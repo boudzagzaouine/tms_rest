@@ -13,7 +13,7 @@ public class TmsVehicle   extends EmsEntity{
     @Column(name = "tms_vehiculeid", unique = true, nullable = false, precision = 10, scale = 0)
     private long tmsVehicleId;
     @Column(name = "tms_vehiculeregistrationnumber")
-    private String  registrationNumber;
+    private String tmsRegistrationNumber;
     @Column(name = "tms_vehiculecode")
    private String tmsVehicleCode;
     @Column(name = "tms_vehiculetechnicalvisit")
@@ -41,12 +41,12 @@ public class TmsVehicle   extends EmsEntity{
         this.tmsVehicleId = tmsVehicleId;
     }
 
-    public String getRegistrationNumber() {
-        return registrationNumber;
+    public String getTmsRegistrationNumber() {
+        return tmsRegistrationNumber;
     }
 
-    public void setRegistrationNumber(String registrationNumber) {
-        this.registrationNumber = registrationNumber;
+    public void setTmsRegistrationNumber(String tmsRegistrationNumber) {
+        this.tmsRegistrationNumber = tmsRegistrationNumber;
     }
 
     public String getTmsVehicleCode() {

@@ -17,6 +17,10 @@ public class UserGroupMapper {
         map.put("code", "usrUserGroupCode");
         map.put("description", "usrUserGroupDescription");
         map.put("type", "userUserGroupType");
+        map.put("createdBy", "createdBy");
+        map.put("updatedBy", "updatedBy");
+        map.put("creationDate", "creationDate");
+        map.put("updateDate", "updateDate");
 
     }
 
@@ -37,6 +41,10 @@ public class UserGroupMapper {
         userGroup.setCode(usrUserGroup.getUsrUserGroupCode());
         userGroup.setDescription(usrUserGroup.getUsrUserGroupDescription());
         userGroup.setType(usrUserGroup.getUserUserGroupType());
+        userGroup.setCreatedBy(usrUserGroup.getCreatedBy());
+        userGroup.setUpdatedBy(usrUserGroup.getUpdatedBy());
+        userGroup.setCreationDate(usrUserGroup.getCreationDate());
+        userGroup.setUpdateDate(usrUserGroup.getUpdateDate());
         if (!lazy) {
             userGroup.setGroupHabilitations(GroupHabilitationMapper.toDtos(usrUserGroup.getUsrGroupHabilitations(), false));
             userGroup.setUserGroupOwners(UserGroupOwnerMapper.toDtos(usrUserGroup.getUsrUserGroupOwnOwners(), false));
@@ -55,6 +63,10 @@ public class UserGroupMapper {
         usrUserGroup.setUsrUserGroupCode(userGroup.getCode() != null ? userGroup.getCode().toUpperCase() : null);
         usrUserGroup.setUsrUserGroupDescription(userGroup.getDescription());
         usrUserGroup.setUserUserGroupType(userGroup.getType());
+        usrUserGroup.setCreatedBy(userGroup.getCreatedBy());
+        usrUserGroup.setUpdatedBy(userGroup.getUpdatedBy());
+        usrUserGroup.setCreationDate(userGroup.getCreationDate());
+        usrUserGroup.setUpdateDate(userGroup.getUpdateDate());
         if (!lazy) {
             usrUserGroup.setUsrGroupHabilitations(GroupHabilitationMapper.toEntities(userGroup.getGroupHabilitations(), false));
             usrUserGroup.setUsrUserGroupOwnOwners(UserGroupOwnerMapper.toEntities(userGroup.getUserGroupOwners(), false));
@@ -64,7 +76,8 @@ public class UserGroupMapper {
         return usrUserGroup;
     }
 
-    public static List<UserGroup> toDtos(List<UsrUserGroup> usrUserGroups, boolean lazy) {
+
+    public static List<UserGroup> toDtos(Iterable<? extends UsrUserGroup> usrUserGroups, boolean lazy) {
         if (null == usrUserGroups) {
             return null;
         }
@@ -75,18 +88,7 @@ public class UserGroupMapper {
         return userGroups;
     }
 
-    public static List<UserGroup> toDtos(Iterable<UsrUserGroup> usrUserGroups, boolean lazy) {
-        if (null == usrUserGroups) {
-            return null;
-        }
-        List<UserGroup> userGroups = new ArrayList<>();
-        for (UsrUserGroup usrUserGroup : usrUserGroups) {
-            userGroups.add(toDto(usrUserGroup, lazy));
-        }
-        return userGroups;
-    }
-
-    public static Set<UserGroup> toDtos(Set<UsrUserGroup> usrUserGroups, boolean lazy) {
+    public static Set<UserGroup> toDtos(Set<? extends UsrUserGroup> usrUserGroups, boolean lazy) {
         if (null == usrUserGroups) {
             return null;
         }
@@ -97,7 +99,7 @@ public class UserGroupMapper {
         return userGroups;
     }
 
-    public static Set<UsrUserGroup> toEntities(Set<UserGroup> userGroups, boolean lazy) {
+    public static Set<UsrUserGroup> toEntities(Set<? extends UserGroup> userGroups, boolean lazy) {
         if (null == userGroups) {
             return null;
         }

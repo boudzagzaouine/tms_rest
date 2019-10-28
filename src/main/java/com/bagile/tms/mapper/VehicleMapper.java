@@ -8,20 +8,25 @@ import java.util.*;
 public class VehicleMapper {
     public VehicleMapper() {
     }
+
     private static Map<String, String> map;
 
     static {
         map = new HashMap<>();
 
-        map.put("id", "tmsVehicleid");
-        map.put("registrationNumber", "registrationNumber");
-        map.put("code", "tmsVehiclecode");
-        map.put("technicalVisit", "tmsVehicletechnicalVisit");
-        map.put("creationDate", "tmsVehiclecreationDate");
-        map.put("vehiculeCategorie", "tmsVehicleCategory");
+        map.put("id", "tmsVehicleId");
+        map.put("registrationNumber", "tmsRegistrationNumber");
+        map.put("code", "tmsVehicleCode");
+        map.put("technicalVisit", "tmsVehicleTechnicalVisit");
+        map.put("creationDate", "creationDate");
+        map.put("updateDate", "updateDate");
+        map.put("createdBy", "createdBy");
+        map.put("updatedBy", "updatedBy");
+        map.put("vehicleCategory", "tmsVehicleCategory");
         map.put("badgeType", "tmsBadgeType");
 
     }
+
     public static Map<String, String> getMap() {
         return map;
     }
@@ -30,89 +35,78 @@ public class VehicleMapper {
         return map.get(key);
     }
 
-    public static TmsVehicle toEntity(Vehicle vehicle , boolean lazy){
+    public static TmsVehicle toEntity(Vehicle vehicle, boolean lazy) {
         if (null == vehicle) {
             return null;
         }
         TmsVehicle tmsVehicle = new TmsVehicle();
         tmsVehicle.setTmsVehicleId(vehicle.getId());
-        tmsVehicle.setRegistrationNumber(vehicle.getRegistrationNumber());
+        tmsVehicle.setTmsRegistrationNumber(vehicle.getRegistrationNumber());
         tmsVehicle.setTmsVehicleCode(vehicle.getCode() != null ? vehicle.getCode().toUpperCase() : null);
         tmsVehicle.setTmsVehicleTechnicalVisit(vehicle.getTechnicalVisit());
         tmsVehicle.setTmsVehicleCreationDate(vehicle.getCreationDate());
 
 
         if (!lazy) {
-            tmsVehicle.setTmsVehicleCategory(VehicleCategoryMapper.toEntity(vehicle.getVehiculeCategorie(),true));
-            tmsVehicle.setTmsBadgeType(BadgeTypeMapper.toEntity(vehicle.getBadgeType(),true));
+            tmsVehicle.setTmsVehicleCategory(VehicleCategoryMapper.toEntity(vehicle.getVehicleCategory(), true));
+            tmsVehicle.setTmsBadgeType(BadgeTypeMapper.toEntity(vehicle.getBadgeType(), true));
 
         }
         return tmsVehicle;
 
     }
 
-    public static Vehicle toDto(TmsVehicle tmsVehicle, boolean lazy){
+    public static Vehicle toDto(TmsVehicle tmsVehicle, boolean lazy) {
         if (null == tmsVehicle) {
             return null;
         }
         Vehicle vehicle = new Vehicle();
         vehicle.setId((int) tmsVehicle.getTmsVehicleId());
-        vehicle.setRegistrationNumber(tmsVehicle.getRegistrationNumber());
+        vehicle.setRegistrationNumber(tmsVehicle.getTmsRegistrationNumber());
         vehicle.setCode(tmsVehicle.getTmsVehicleCode() != null ? tmsVehicle.getTmsVehicleCode().toUpperCase() : null);
         vehicle.setTechnicalVisit(tmsVehicle.getTmsVehicleTechnicalVisit());
         vehicle.setCreationDate(tmsVehicle.getTmsVehicleCreationDate());
 
         if (!lazy) {
-            vehicle.setBadgeType(BadgeTypeMapper.toDto(tmsVehicle.getTmsBadgeType(),lazy));
-            vehicle.setVehiculeCategorie(VehicleCategoryMapper.toDto(tmsVehicle.getTmsVehicleCategory(),lazy));
+            vehicle.setBadgeType(BadgeTypeMapper.toDto(tmsVehicle.getTmsBadgeType(), lazy));
+            vehicle.setVehicleCategory(VehicleCategoryMapper.toDto(tmsVehicle.getTmsVehicleCategory(), lazy));
 
         }
-        return  vehicle;
+        return vehicle;
 
     }
 
-    public static List<Vehicle>toDtos(List<TmsVehicle> tmsVehicles, boolean lazy){
+
+    public static List<Vehicle> toDtos(Iterable<? extends TmsVehicle> tmsVehicles, boolean lazy) {
         if (null == tmsVehicles) {
             return null;
         }
-        List<Vehicle>vehicles = new ArrayList<Vehicle>();
+        List<Vehicle> vehicules = new ArrayList<>();
 
         for (TmsVehicle tmsVehicle : tmsVehicles) {
-            vehicles.add(toDto(tmsVehicle,lazy));
+            vehicules.add(toDto(tmsVehicle, lazy));
         }
-        return  vehicles;
+        return vehicules;
     }
 
-    public static List<Vehicle>toDtos(Iterable<TmsVehicle>tmsVehicles , boolean lazy){
-        if (null == tmsVehicles) {
-            return null;
-        }
-        List<Vehicle>vehicules = new ArrayList<>();
-
-        for (TmsVehicle tmsVehicle : tmsVehicles) {
-            vehicules.add(toDto(tmsVehicle,lazy));
-        }
-        return  vehicules;
-    }
-
-    public static Set<TmsVehicle>toEntities(Set<Vehicle>vehicles , boolean lazy){
+    public static Set<TmsVehicle> toEntities(Set<Vehicle> vehicles, boolean lazy) {
         if (null == vehicles) {
             return null;
         }
         Set<TmsVehicle> tmsVehicles = new HashSet<>();
-        for (Vehicle vehicle:vehicles) {
-            tmsVehicles.add(toEntity(vehicle,lazy));
+        for (Vehicle vehicle : vehicles) {
+            tmsVehicles.add(toEntity(vehicle, lazy));
         }
         return tmsVehicles;
     }
 
-    public static Set<Vehicle>toDtos(Set<TmsVehicle> tmsVehicles, boolean lazy){
+    public static Set<Vehicle> toDtos(Set<TmsVehicle> tmsVehicles, boolean lazy) {
         if (null == tmsVehicles) {
             return null;
         }
-        Set<Vehicle>vehicles = new HashSet<>();
+        Set<Vehicle> vehicles = new HashSet<>();
         for (TmsVehicle tmsVehicle : tmsVehicles) {
-            vehicles.add(toDto(tmsVehicle,lazy));
+            vehicles.add(toDto(tmsVehicle, lazy));
         }
         return vehicles;
     }

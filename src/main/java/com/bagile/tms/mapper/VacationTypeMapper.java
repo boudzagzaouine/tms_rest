@@ -16,7 +16,11 @@ public class VacationTypeMapper {
     static {
         map = new HashMap<>();
         map.put("id", "tmsVacationId");
-        map.put("type", "tmsVacationbegin");
+        map.put("code", "tmsVacationTypeCode");
+        map.put("createdBy", "createdBy");
+        map.put("updatedBy", "updatedBy");
+        map.put("creationDate", "creationDate");
+        map.put("updateDate","updateDate");
     }
     public static Map<String, String> getMap() {
         return map;
@@ -31,8 +35,9 @@ public class VacationTypeMapper {
             return null;
         }
         TmsVacationType tmsVacationtype = new TmsVacationType();
-        tmsVacationtype.setId(vacationtype.getId());
-        tmsVacationtype.setType(vacationtype.getType());
+        tmsVacationtype.setTmsVacationTypeId(vacationtype.getId());
+        tmsVacationtype.setTmsVacationTypeCode(vacationtype.getCode());
+        tmsVacationtype.setTmsVacationDescription(vacationtype.getDescription());
 
         if (!lazy) {
            // tmsVacation.setTmsDriver(DriverMapper.toEntity(vacation.getDriver(), true));
@@ -46,8 +51,9 @@ public class VacationTypeMapper {
         }
         VacationType vacationtype = new VacationType();
 
-        vacationtype.setId(tmsVacationtype.getId());
-        vacationtype.setType(tmsVacationtype.getType());
+        vacationtype.setId(tmsVacationtype.getTmsVacationTypeId());
+        vacationtype.setCode(tmsVacationtype.getTmsVacationTypeCode());
+        vacationtype.setDescription(tmsVacationtype.getTmsVacationDescription());
 
         if (!lazy) {
 
@@ -55,38 +61,28 @@ public class VacationTypeMapper {
         return vacationtype;
     }
 
-    public static List<VacationType> toDtos(List<TmsVacationType> tmsVacationstype, boolean lazy) {
-        if (null == tmsVacationstype) {
-            return null;
-        }
-        List<VacationType> vacationstype = new ArrayList<>();
-        for (TmsVacationType tmsVacationtype : tmsVacationstype) {
-            vacationstype.add(toDto(tmsVacationtype, lazy));
 
-        }
-        return vacationstype;
-    }
-
-    public static List<VacationType> toDtos(Iterable<TmsVacationType> tmsVacationsType, boolean lazy) {
+    public static List<VacationType> toDtos(Iterable<? extends TmsVacationType> tmsVacationsType, boolean lazy) {
         if (null == tmsVacationsType) {
             return null;
         }
-        List<VacationType> vacationstype = new ArrayList<>();
+        List<VacationType> vacationTypes = new ArrayList<>();
         for (TmsVacationType tmsVacationtype : tmsVacationsType) {
-            vacationstype.add(toDto(tmsVacationtype, lazy));
+            vacationTypes.add(toDto(tmsVacationtype, lazy));
         }
-        return vacationstype;
+        return vacationTypes;
     }
 
     public static Set<TmsVacationType> toEntities(Set<VacationType> vacationsType, boolean lazy) {
         if (null == vacationsType) {
             return null;
         }
-        Set<TmsVacationType> tmsVacationstype = new HashSet<>();
+        Set<TmsVacationType> tmsVacationTypes = new HashSet<>();
+
         for (VacationType vacationtype : vacationsType) {
-            tmsVacationstype.add(toEntity(vacationtype, lazy));
+            tmsVacationTypes.add(toEntity(vacationtype, lazy));
         }
-        return tmsVacationstype;
+        return tmsVacationTypes;
     }
 
     public static Set<VacationType> toDtos(Set<TmsVacationType> tmsVacationsType, boolean lazy) {

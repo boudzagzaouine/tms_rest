@@ -23,6 +23,10 @@ public class UserGroupWarehouseMapper {
         map.put("id", "usrUserGroupOwnOwnerId");
         map.put("warehouse", "wrhWarehouse");
         map.put("userGroup", "usrUserGroup");
+        map.put("createdBy", "createdBy");
+        map.put("updatedBy", "updatedBy");
+        map.put("creationDate", "creationDate");
+        map.put("updateDate", "updateDate");
     }
 
     public static String getField(String key) {
@@ -39,6 +43,10 @@ public class UserGroupWarehouseMapper {
         }
         UserGroupWarehouse userGroupWarehouse = new UserGroupWarehouse();
         userGroupWarehouse.setId(usrUserGroupWarehouse.getUsrUserGroupWrhWarehouseId());
+        userGroupWarehouse.setCreatedBy(usrUserGroupWarehouse.getCreatedBy());
+        userGroupWarehouse.setUpdatedBy(usrUserGroupWarehouse.getUpdatedBy());
+        userGroupWarehouse.setCreationDate(usrUserGroupWarehouse.getCreationDate());
+        userGroupWarehouse.setUpdateDate(usrUserGroupWarehouse.getUpdateDate());
         if (!lazy) {
             userGroupWarehouse.setWarehouse(WarehouseMapper.toDto(usrUserGroupWarehouse.getWrhWarehouse(), true));
             userGroupWarehouse.setUserGroup(UserGroupMapper.toDto(usrUserGroupWarehouse.getUsrUserGroup(), true));
@@ -52,6 +60,10 @@ public class UserGroupWarehouseMapper {
         }
         UsrUserGroupWarehouse usrUserGroupWarehouse = new UsrUserGroupWarehouse();
         usrUserGroupWarehouse.setUsrUserGroupWrhWarehouseId(userGroupWarehouse.getId());
+        usrUserGroupWarehouse.setCreatedBy(userGroupWarehouse.getCreatedBy());
+        usrUserGroupWarehouse.setUpdatedBy(userGroupWarehouse.getUpdatedBy());
+        usrUserGroupWarehouse.setCreationDate(userGroupWarehouse.getCreationDate());
+        usrUserGroupWarehouse.setUpdateDate(userGroupWarehouse.getUpdateDate());
         if (!lazy) {
             usrUserGroupWarehouse.setUsrUserGroup(UserGroupMapper.toEntity(userGroupWarehouse.getUserGroup(), true));
             usrUserGroupWarehouse.setWrhWarehouse(WarehouseMapper.toEntity(userGroupWarehouse.getWarehouse(), true));
@@ -59,7 +71,7 @@ public class UserGroupWarehouseMapper {
         return usrUserGroupWarehouse;
     }
 
-    public static List<UserGroupWarehouse> toDtos(List<UsrUserGroupWarehouse> usrUserGroupWarehouses, boolean lazy) {
+    public static List<UserGroupWarehouse> toDtos(Iterable<? extends UsrUserGroupWarehouse> usrUserGroupWarehouses, boolean lazy) {
         if (null == usrUserGroupWarehouses) {
             return null;
         }
@@ -70,18 +82,7 @@ public class UserGroupWarehouseMapper {
         return userGroupWarehouses;
     }
 
-    public static List<UserGroupWarehouse> toDtos(Iterable<UsrUserGroupWarehouse> usrUserGroupWarehouses, boolean lazy) {
-        if (null == usrUserGroupWarehouses) {
-            return null;
-        }
-        List<UserGroupWarehouse> userGroupWarehouses = new ArrayList<>();
-        for (UsrUserGroupWarehouse usrUserGroupWarehouse : usrUserGroupWarehouses) {
-            userGroupWarehouses.add(toDto(usrUserGroupWarehouse, lazy));
-        }
-        return userGroupWarehouses;
-    }
-
-    public static Set<UsrUserGroupWarehouse> toEntities(Set<UserGroupWarehouse> userGroupWarehouses, boolean lazy) {
+    public static Set<UsrUserGroupWarehouse> toEntities(Set<? extends UserGroupWarehouse> userGroupWarehouses, boolean lazy) {
         if (null == userGroupWarehouses) {
             return null;
         }
@@ -92,7 +93,7 @@ public class UserGroupWarehouseMapper {
         return usrUserGroupWarehouses;
     }
 
-    public static Set<UserGroupWarehouse> toDtos(Set<UsrUserGroupWarehouse> usrUserGroupWarehouses, boolean lazy) {
+    public static Set<UserGroupWarehouse> toDtos(Set<? extends UsrUserGroupWarehouse> usrUserGroupWarehouses, boolean lazy) {
         if (null == usrUserGroupWarehouses) {
             return null;
         }

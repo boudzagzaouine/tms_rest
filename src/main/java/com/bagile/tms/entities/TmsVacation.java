@@ -17,11 +17,11 @@ public class TmsVacation  extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_vacation_id", allocationSize = 1)
     @Column(name = "tms_tmsvacationid", unique = true, nullable = false, precision = 10, scale = 0)
-   private int tmsVacationId;
+   private Long tmsVacationId;
     @Column(name = "tms_vacationbegin")
-   private Date tmsVacationBegin;
+   private Date tmsVacationStartDate;
     @Column(name = "tms_vacationend")
-   private Date tmsVacationEnd;
+   private Date tmsVacationEndDate;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_vacationtypeid")
    private TmsVacationType tmsVacationType;
@@ -29,32 +29,28 @@ public class TmsVacation  extends EmsEntity {
     @JoinColumn(name = "tms_driverid")
    private TmsDriver tmsDriver;
 
-    public TmsVacation() {
-    }
-
-
-    public int getTmsVacationId() {
+    public Long getTmsVacationId() {
         return tmsVacationId;
     }
 
-    public void setTmsVacationId(int tmsVacationId) {
+    public void setTmsVacationId(Long tmsVacationId) {
         this.tmsVacationId = tmsVacationId;
     }
 
-    public Date getTmsVacationBegin() {
-        return tmsVacationBegin;
+    public Date getTmsVacationStartDate() {
+        return tmsVacationStartDate;
     }
 
-    public void setTmsVacationBegin(Date tmsVacationBegin) {
-        this.tmsVacationBegin = tmsVacationBegin;
+    public void setTmsVacationStartDate(Date tmsVacationStartDate) {
+        this.tmsVacationStartDate = tmsVacationStartDate;
     }
 
-    public Date getTmsVacationEnd() {
-        return tmsVacationEnd;
+    public Date getTmsVacationEndDate() {
+        return tmsVacationEndDate;
     }
 
-    public void setTmsVacationEnd(Date tmsVacationEnd) {
-        this.tmsVacationEnd = tmsVacationEnd;
+    public void setTmsVacationEndDate(Date tmsVacationEndDate) {
+        this.tmsVacationEndDate = tmsVacationEndDate;
     }
 
     public TmsVacationType getTmsVacationType() {

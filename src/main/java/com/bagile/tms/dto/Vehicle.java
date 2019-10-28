@@ -15,7 +15,7 @@ public class Vehicle extends EmsDto implements Serializable {
     private String code;
     private Date technicalVisit;
     private Date creationDate;
-    private VehicleCategory vehiculeCategorie;
+    private VehicleCategory vehicleCategory;
     private BadgeType badgeType;
 
 
@@ -62,12 +62,12 @@ public class Vehicle extends EmsDto implements Serializable {
         this.creationDate = creationDate;
     }
 
-    public VehicleCategory getVehiculeCategorie() {
-        return vehiculeCategorie;
+    public VehicleCategory getVehicleCategory() {
+        return vehicleCategory;
     }
 
-    public void setVehiculeCategorie(VehicleCategory vehiculeCategorie) {
-        this.vehiculeCategorie = vehiculeCategorie;
+    public void setVehicleCategory(VehicleCategory vehicleCategory) {
+        this.vehicleCategory = vehicleCategory;
     }
 
     public BadgeType getBadgeType() {

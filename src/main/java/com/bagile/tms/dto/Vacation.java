@@ -3,15 +3,15 @@ package com.bagile.tms.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Vacation implements Serializable {
+public class Vacation extends EmsDto implements Serializable {
 
     /**
      *
      */
     private static final long serialVersionUID = -7433270658093374012L;
-    private int id;
-   private Date begin;
-   private Date end;
+    private Long id;
+   private Date startDate;
+   private Date endDate;
    private VacationType vacationType;
    private Driver driver;
 
@@ -28,28 +28,28 @@ public class Vacation implements Serializable {
         this.driver = driver;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Date getBegin() {
-        return begin;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setBegin(Date begin) {
-        this.begin = begin;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public Date getEnd() {
-        return end;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setEnd(Date end) {
-        this.end = end;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public VacationType getVacationtype() {

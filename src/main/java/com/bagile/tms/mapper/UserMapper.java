@@ -25,11 +25,13 @@ public class UserMapper {
         map.put("passport", "usrUserPassport");
         map.put("comment", "usrUserComment");
         map.put("active", "usrUserIsActive");
-        map.put("creationDate", "usrUserCreationDate");
-        map.put("updateDate", "usrUserUpdateDate");
         map.put("email", "usrUserEmail");
         map.put("type", "usrUserType");
         map.put("agency", "usrAgency");
+        map.put("createdBy", "createdBy");
+        map.put("updatedBy", "updatedBy");
+        map.put("creationDate", "creationDate");
+        map.put("updateDate", "updateDate");
     }
 
     public static String getField(String key) {
@@ -56,8 +58,10 @@ public class UserMapper {
         usrUser.setUsrUserPassport(user.getPassport());
         usrUser.setUsrUserComment(user.getComment());
         usrUser.setUsrUserIsActive(user.isActive());
-        usrUser.setUsrUserCreationDate(user.getCreationDate());
-        usrUser.setUsrUserUpdateDate(user.getUpdateDate());
+        usrUser.setCreatedBy(user.getCreatedBy());
+        usrUser.setUpdatedBy(user.getUpdatedBy());
+        usrUser.setCreationDate(user.getCreationDate());
+        usrUser.setUpdateDate(user.getUpdateDate());
         usrUser.setUsrUserEmail(user.getEmail());
         usrUser.setUsrUserType(user.getType());
         if (!lazy) {
@@ -82,8 +86,10 @@ public class UserMapper {
         user.setPassport(usrUser.getUsrUserPassport());
         user.setComment(usrUser.getUsrUserComment());
         user.setActive(usrUser.getUsrUserIsActive());
-        user.setCreationDate(usrUser.getUsrUserCreationDate());
-        user.setUpdateDate(usrUser.getUsrUserUpdateDate());
+        user.setCreatedBy(usrUser.getCreatedBy());
+        user.setUpdatedBy(usrUser.getUpdatedBy());
+        user.setCreationDate(usrUser.getCreationDate());
+        user.setUpdateDate(usrUser.getUpdateDate());
         user.setEmail(usrUser.getUsrUserEmail());
         user.setType(usrUser.getUsrUserType());
         if (!lazy) {
@@ -93,18 +99,7 @@ public class UserMapper {
         return user;
     }
 
-    public static List<User> toDtos(List<UsrUser> usrUsers, boolean lazy) {
-        if (null == usrUsers) {
-            return null;
-        }
-        List<User> users = new ArrayList<>();
-        for (UsrUser usrUser : usrUsers) {
-            users.add(toDto(usrUser, lazy));
-        }
-        return users;
-    }
-
-    public static List<User> toDtos(Iterable<UsrUser> usrUsers, boolean lazy) {
+    public static List<User> toDtos(Iterable<? extends UsrUser> usrUsers, boolean lazy) {
         if (null == usrUsers) {
             return null;
         }

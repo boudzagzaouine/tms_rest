@@ -45,12 +45,6 @@ public class UsrUser extends EmsEntity implements java.io.Serializable {
     @Size(max = 255)
     private String usrUserComment;
     private Boolean usrUserIsActive;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-
-    private Date usrUserCreationDate;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-
-    private Date usrUserUpdateDate;
     private String usrUserEmail;
     private Long usrUserType;
     private String userUserColumns;
@@ -179,26 +173,6 @@ public class UsrUser extends EmsEntity implements java.io.Serializable {
 
     public void setUsrUserIsActive(Boolean usrUserisactive) {
         this.usrUserIsActive = usrUserisactive;
-    }
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "usr_usercreationdate")
-    public Date getUsrUserCreationDate() {
-        return this.usrUserCreationDate;
-    }
-
-    public void setUsrUserCreationDate(Date usrUsercreationdate) {
-        this.usrUserCreationDate = usrUsercreationdate;
-    }
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "usr_userupdatedate")
-    public Date getUsrUserUpdateDate() {
-        return this.usrUserUpdateDate;
-    }
-
-    public void setUsrUserUpdateDate(Date usrUserupdatedate) {
-        this.usrUserUpdateDate = usrUserupdatedate;
     }
 /*
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usrUser")

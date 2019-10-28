@@ -8,25 +8,34 @@ public class VacationType extends EmsDto implements Serializable {
      *
      */
     private static final long serialVersionUID = -4646546414658712225L;
-    private int id;
-    private String type;
+    private long id;
+    private String code;
+    private String description;
 
     public VacationType() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getCode() {
+        return code;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

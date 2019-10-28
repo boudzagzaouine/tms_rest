@@ -6,10 +6,11 @@ import java.util.Date;
 public abstract class EmsDto implements Serializable {
 
     private static final long serialVersionUID = 391108110104512461L;
-    private String createdBy;
-    private String updatedBy;
-    private Date creationDate;
-    private Date updateDate;
+    protected String createdBy;
+    protected String updatedBy;
+
+    protected Date creationDate;
+    protected Date updateDate;
 
     public String getCreatedBy() {
         return createdBy;

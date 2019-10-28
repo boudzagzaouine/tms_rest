@@ -15,10 +15,14 @@ public class VacationMapper {
     static {
         map = new HashMap<>();
         map.put("id", "tmsVacationId");
-        map.put("begin", "tmsVacationbegin");
-        map.put("end", "tmsVacationend");
-        map.put("vacationtype", "tmsVacationType");
-        map.put("driver", "tmsdriver");
+        map.put("startDate", "tmsVacationStartDate");
+        map.put("endDate", "tmsVacationEndDate");
+        map.put("vacationType", "tmsVacationType");
+        map.put("driver", "tmsDriver");
+        map.put("createdBy", "createdBy");
+        map.put("updatedBy", "updatedBy");
+        map.put("creationDate", "creationDate");
+        map.put("updateDate","updateDate");
     }
 
     public static Map<String, String> getMap() {
@@ -35,8 +39,12 @@ public class VacationMapper {
         }
         TmsVacation tmsVacation = new TmsVacation();
         tmsVacation.setTmsVacationId(vacation.getId());
-        tmsVacation.setTmsVacationBegin(vacation.getBegin());
-        tmsVacation.setTmsVacationEnd(vacation.getEnd());
+        tmsVacation.setTmsVacationStartDate(vacation.getStartDate());
+        tmsVacation.setTmsVacationEndDate(vacation.getEndDate());
+        tmsVacation.setCreatedBy(vacation.getCreatedBy());
+        tmsVacation.setUpdatedBy(vacation.getUpdatedBy());
+        tmsVacation.setCreationDate(vacation.getCreationDate());
+        tmsVacation.setUpdateDate(vacation.getUpdateDate());
 
         if (!lazy) {
             tmsVacation.setTmsVacationType(VacationTypeMapper.toEntity(vacation.getVacationtype(), true));
@@ -52,8 +60,13 @@ public class VacationMapper {
         Vacation vacation = new Vacation();
 
         vacation.setId(tmsVacation.getTmsVacationId());
-        vacation.setBegin(tmsVacation.getTmsVacationBegin());
-        vacation.setEnd(tmsVacation.getTmsVacationEnd());
+        vacation.setStartDate(tmsVacation.getTmsVacationStartDate());
+        vacation.setEndDate(tmsVacation.getTmsVacationEndDate());
+        vacation.setCreatedBy(tmsVacation.getCreatedBy());
+        vacation.setUpdatedBy(tmsVacation.getUpdatedBy());
+        vacation.setCreationDate(tmsVacation.getCreationDate());
+        vacation.setUpdateDate(tmsVacation.getUpdateDate());
+
         if (!lazy) {
             vacation.setDriver(DriverMapper.toDto(tmsVacation.getTmsDriver(), true));
             vacation.setDriver(DriverMapper.toDto(tmsVacation.getTmsDriver(), true));
@@ -61,19 +74,7 @@ public class VacationMapper {
         return vacation;
     }
 
-    public static List<Vacation> toDtos(List<TmsVacation> tmsVacations, boolean lazy) {
-        if (null == tmsVacations) {
-            return null;
-        }
-        List<Vacation> vacations = new ArrayList<>();
-        for (TmsVacation tmsVacation : tmsVacations) {
-            vacations.add(toDto(tmsVacation, lazy));
-
-        }
-        return vacations;
-    }
-
-    public static List<Vacation> toDtos(Iterable<TmsVacation> tmsVacations, boolean lazy) {
+    public static List<Vacation> toDtos(Iterable<? extends TmsVacation> tmsVacations, boolean lazy) {
         if (null == tmsVacations) {
             return null;
         }
