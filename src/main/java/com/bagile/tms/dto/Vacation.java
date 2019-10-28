@@ -5,7 +5,11 @@ import java.util.Date;
 
 public class Vacation implements Serializable {
 
-   private int id;
+    /**
+     *
+     */
+    private static final long serialVersionUID = -7433270658093374012L;
+    private int id;
    private Date begin;
    private Date end;
    private VacationType vacationType;

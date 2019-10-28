@@ -4,7 +4,9 @@ import java.io.Serializable;
 
 public class DriverZone extends EmsDto implements Serializable {
 
-    private int  id;
+   
+    private static final long serialVersionUID = -3071499212575016582L;
+    private int id;
     private Driver driver;
     private  Zone  zone ;
 

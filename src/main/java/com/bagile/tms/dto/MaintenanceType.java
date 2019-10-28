@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class MaintenanceType extends EmsDto implements Serializable {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = -4187067877993165608L;
     private int id;
     private String code;
     private String description;

@@ -3,6 +3,10 @@ package com.bagile.tms.dto;
 import java.io.Serializable;
 
 public class BadgeType extends EmsDto implements Serializable {
+    /**
+     *
+     */
+    private static final long serialVersionUID = -134482768077497935L;
     private long id;
     private String code;
 

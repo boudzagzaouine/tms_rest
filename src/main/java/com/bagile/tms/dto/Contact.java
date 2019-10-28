@@ -5,6 +5,10 @@ import java.util.Date;
 
 public class Contact extends EmsDto implements Serializable {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 6104428812454596331L;
     private int id;
     private String name;
     private Date creationDate;

@@ -6,6 +6,10 @@ import java.util.Date;
 public class MaintenancePlan extends EmsDto implements Serializable {
 
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 6036580510935986433L;
     private int id;
     private String code;
     private String descriptif;

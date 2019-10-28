@@ -16,6 +16,10 @@ import java.util.Date;
 @Table(name = "own_owner", uniqueConstraints = @UniqueConstraint(columnNames = "own_ownercode"))
 public class OwnOwner extends EmsEntity implements java.io.Serializable {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1484351263626605420L;
     private long ownOwnerId;
     @Size(max = 30)
     @NotNull

@@ -2,10 +2,11 @@ package com.bagile.tms.dto;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
 public class Driver extends EmsDto implements Serializable {
 
+
+    private static final long serialVersionUID = 9165430360445575972L;
     private long id;
     private String code;
     private String cin;

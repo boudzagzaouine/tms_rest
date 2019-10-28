@@ -1,16 +1,15 @@
 package com.bagile.tms.entities;
 
-import com.bagile.tms.dto.MaintenanceState;
-import com.bagile.tms.dto.MaintenanceType;
-import com.bagile.tms.dto.Vehicle;
-
 import javax.persistence.*;
-
 import java.util.Date;
 @Entity
 @Table(name="tms_maintenanceplan")
 public class TmsMaintenancePlan extends EmsEntity {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = -1640304759359470684L;
     @Id
     @GeneratedValue
     @Column(name = "tms_maintenanceplanid")

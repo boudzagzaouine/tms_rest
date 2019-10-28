@@ -1,8 +1,5 @@
 package com.bagile.tms.entities;
 
-import com.bagile.tms.dto.BadgeType;
-import com.bagile.tms.dto.Driver;
-
 import javax.persistence.*;
 
 
@@ -10,6 +7,10 @@ import javax.persistence.*;
 @Table(name="tms_badge")
 public class TmsBadge  extends EmsEntity{
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = -2793176710957792974L;
     @Id
     @GeneratedValue
     @Column(name = "tms_badgeid")

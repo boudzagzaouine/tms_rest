@@ -8,6 +8,10 @@ import java.util.Date;
 @Table(name="prm_contact")
 public class PrmContact extends EmsEntity{
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = -2556249835469329497L;
     @Id
     @GeneratedValue
     @Column(name = "prm_contactid")

@@ -7,7 +7,11 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @MappedSuperclass
-public abstract class EmsEntity  implements Serializable {
+public abstract class EmsEntity implements Serializable {
+    /**
+     *
+     */
+    private static final long serialVersionUID = -4865263538755924621L;
     protected String createdBy;
     protected String updatedBy;
     protected UsrUser createdByUser;

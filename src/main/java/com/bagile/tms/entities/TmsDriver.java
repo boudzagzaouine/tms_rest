@@ -7,6 +7,10 @@ import java.util.Date;
 @Table(name="tms_driver")
 public class TmsDriver  extends EmsEntity{
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 7465274138053290715L;
     @Id
     @GeneratedValue
     @Column(name = "tms_driverid")

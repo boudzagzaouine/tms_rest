@@ -6,6 +6,10 @@ import java.util.Date;
 public class Vehicle extends EmsDto implements Serializable {
 
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 6072929769333595397L;
     private long id;
     private String registrationNumber;
     private String code;

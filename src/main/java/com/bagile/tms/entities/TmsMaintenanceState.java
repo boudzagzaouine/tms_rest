@@ -7,6 +7,10 @@ import java.util.Date;
 @Table(name="tms_maintenancestate")
 public class TmsMaintenanceState  extends EmsEntity {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 6583945389627755380L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_maintenancestateid", allocationSize = 1)
@@ -28,7 +32,7 @@ public class TmsMaintenanceState  extends EmsEntity {
     }
 
     public void setTmsMaintenanceStateId(int tmsMaintenanceStateId) {
-        tmsMaintenanceStateId = tmsMaintenanceStateId;
+        this.tmsMaintenanceStateId = tmsMaintenanceStateId;
     }
 
     public String getTmsMaintenanceStateCode() {
@@ -36,7 +40,7 @@ public class TmsMaintenanceState  extends EmsEntity {
     }
 
     public void setTmsMaintenanceStateCode(String tmsMaintenanceStateCode) {
-        tmsMaintenanceStateCode = tmsMaintenanceStateCode;
+        this.tmsMaintenanceStateCode = tmsMaintenanceStateCode;
     }
 
     public String getTmsMaintenanceStateDescription() {
@@ -44,7 +48,7 @@ public class TmsMaintenanceState  extends EmsEntity {
     }
 
     public void setTmsMaintenanceStateDescription(String tmsMaintenanceStateDescription) {
-        tmsMaintenanceStateDescription = tmsMaintenanceStateDescription;
+        this.tmsMaintenanceStateDescription = tmsMaintenanceStateDescription;
     }
 
     public Date getTmsMaintenanceStateCreationDate() {
@@ -52,6 +56,6 @@ public class TmsMaintenanceState  extends EmsEntity {
     }
 
     public void setTmsMaintenanceStateCreationDate(Date tmsMaintenanceStateCreationDate) {
-        tmsMaintenanceStateCreationDate = tmsMaintenanceStateCreationDate;
+        this.tmsMaintenanceStateCreationDate = tmsMaintenanceStateCreationDate;
     }
 }

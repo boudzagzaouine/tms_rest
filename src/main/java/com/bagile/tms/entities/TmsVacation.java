@@ -9,6 +9,10 @@ import java.util.Date;
 @Table(name="tms_vacation")
 public class TmsVacation  extends EmsEntity {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = -8961215785900000465L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_vacationid", allocationSize = 1)
@@ -34,7 +38,7 @@ public class TmsVacation  extends EmsEntity {
     }
 
     public void setTmsVacationId(int tmsVacationId) {
-        tmsVacationId = tmsVacationId;
+        this.tmsVacationId = tmsVacationId;
     }
 
     public Date getTmsVacationBegin() {
@@ -42,7 +46,7 @@ public class TmsVacation  extends EmsEntity {
     }
 
     public void setTmsVacationBegin(Date tmsVacationBegin) {
-        tmsVacationBegin = tmsVacationBegin;
+        this.tmsVacationBegin = tmsVacationBegin;
     }
 
     public Date getTmsVacationEnd() {
@@ -50,7 +54,7 @@ public class TmsVacation  extends EmsEntity {
     }
 
     public void setTmsVacationEnd(Date tmsVacationEnd) {
-        tmsVacationEnd = tmsVacationEnd;
+        this.tmsVacationEnd = tmsVacationEnd;
     }
 
     public TmsVacationType getTmsVacationType() {
@@ -66,6 +70,6 @@ public class TmsVacation  extends EmsEntity {
     }
 
     public void setTmsDriver(TmsDriver tmsDriver) {
-        tmsDriver = tmsDriver;
+        this.tmsDriver = tmsDriver;
     }
 }

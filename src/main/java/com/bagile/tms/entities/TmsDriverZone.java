@@ -1,14 +1,16 @@
 package com.bagile.tms.entities;
 
-import com.bagile.tms.dto.Driver;
-import com.bagile.tms.dto.Zone;
-
 import javax.persistence.*;
 
 
 @Entity
 @Table(name="tms_diverzone")
 public class TmsDriverZone extends EmsEntity{
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = 7073980697050572481L;
 
     @Id
     @GeneratedValue

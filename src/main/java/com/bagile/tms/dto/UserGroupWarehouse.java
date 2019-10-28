@@ -6,6 +6,10 @@ import java.io.Serializable;
  * Created by adadi on 2/25/2016.
  */
 public class UserGroupWarehouse extends EmsDto implements Serializable {
+    /**
+     *
+     */
+    private static final long serialVersionUID = -1055747529587473305L;
     private long id;
     private UserGroup userGroup;
     private Warehouse warehouse;

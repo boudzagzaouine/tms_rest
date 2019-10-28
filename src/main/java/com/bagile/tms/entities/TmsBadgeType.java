@@ -7,6 +7,10 @@ import javax.persistence.*;
 @Table(name="tms_badgetype")
 public class TmsBadgeType extends EmsEntity {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 5946978378448415395L;
     @Id
     @GeneratedValue
     @Column(name = "tms_badgetypeid")

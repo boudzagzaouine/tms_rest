@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class Zone extends EmsDto implements Serializable {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 5610360676318237078L;
     private int id;
     private String name;
 

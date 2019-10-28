@@ -7,6 +7,10 @@ import javax.persistence.*;
 @Table(name="tms_maintenancetype")
 public class TmsMaintenanceType  extends EmsEntity {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 3900860221690635278L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_maintenancetypeid", allocationSize = 1)

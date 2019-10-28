@@ -7,6 +7,10 @@ public class VehicleCategory extends EmsDto implements Serializable {
 
 
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1545447956689771754L;
     private int id;
     private String code;
     private  String consumption;

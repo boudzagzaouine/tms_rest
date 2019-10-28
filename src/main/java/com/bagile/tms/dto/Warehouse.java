@@ -1,7 +1,6 @@
 package com.bagile.tms.dto;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Warehouse extends EmsDto implements Serializable {
 
