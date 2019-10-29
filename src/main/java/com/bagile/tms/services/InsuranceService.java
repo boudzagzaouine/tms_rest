@@ -20,7 +20,7 @@ public interface InsuranceService {
 
     List<Insurance> find(String search) throws AttributesNotFound, ErrorType;
 
-    List<Insurance> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType;
+    List<Insurance> find(String search, int page,int size) throws AttributesNotFound, ErrorType;
 
     Insurance findOne(String search) throws AttributesNotFound, ErrorType;
 
@@ -32,7 +32,7 @@ public interface InsuranceService {
 
     List<Insurance> findAll() throws AttributesNotFound, ErrorType;
 
-    List<Insurance> findAll(Pageable pageable) throws AttributesNotFound, ErrorType;
+    List<Insurance> findAll(int page, int size) throws AttributesNotFound, ErrorType;
 
 
 }

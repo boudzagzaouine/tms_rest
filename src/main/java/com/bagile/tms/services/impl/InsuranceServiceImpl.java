@@ -12,7 +12,9 @@ import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,12 +51,8 @@ public class InsuranceServiceImpl implements InsuranceService {
 
     @Override
     public Insurance findById(Long id) throws IdNotFound {
-        Insurance contractType = InsuranceMapper.toDto(insuranceRepository.findById(id).get(), false);
-        if (null != contractType) {
-            return contractType;
-        } else {
-            throw new IdNotFound(id);
-        }    }
+        return InsuranceMapper.toDto(insuranceRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
+       }
 
     @Override
     public List<Insurance> find(String search) throws AttributesNotFound, ErrorType {
@@ -62,7 +60,9 @@ public class InsuranceServiceImpl implements InsuranceService {
     }
 
     @Override
-    public List<Insurance> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
+    public List<Insurance> find(String search, int page,int size) throws AttributesNotFound, ErrorType {
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
+        Pageable pageable = PageRequest.of(page, size, sort);
         return InsuranceMapper.toDtos(insuranceRepository.findAll(Search.expression(search, TmsInsurance.class), pageable), false);
     }
 
@@ -95,7 +95,9 @@ public class InsuranceServiceImpl implements InsuranceService {
     }
 
     @Override
-    public List<Insurance> findAll(Pageable pageable) throws AttributesNotFound, ErrorType {
+    public List<Insurance> findAll(int page, int size) throws AttributesNotFound, ErrorType {
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
+        Pageable pageable = PageRequest.of(page, size, sort);
         return InsuranceMapper.toDtos(insuranceRepository.findAll(pageable), false);
     }
 }
