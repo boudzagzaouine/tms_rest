@@ -21,7 +21,7 @@ public interface DriverService {
 
     List<Driver> find(String search) throws AttributesNotFound, ErrorType;
 
-    List<Driver> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType;
+    List<Driver> find(String search, int page, int size) throws AttributesNotFound, ErrorType;
 
     Long size(String search) throws AttributesNotFound, ErrorType;
 
@@ -31,8 +31,8 @@ public interface DriverService {
 
     List<Driver> findAll();
 
-    List<Driver> findAll(Pageable pageable);
+    List<Driver> findAll(int page, int size);
 
 
-    void archive(Long id);
+    void archive(Long id) throws IdNotFound;
 }

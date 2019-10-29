@@ -11,21 +11,25 @@ import com.bagile.tms.services.VacationService;
 import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
 @Transactional
+@Service
 public class VacationServiceImpl implements VacationService {
-    @Autowired
-    private VacationRepository vacationRepository;
-    private final static Logger LOGGER = LoggerFactory
-            .getLogger(VacationService.class);
+    private final VacationRepository vacationRepository;
+
+    public VacationServiceImpl(VacationRepository vacationRepository) {
+        this.vacationRepository = vacationRepository;
+    }
 
     @Override
     public Vacation save(Vacation vacation) {
-        LOGGER.info("save Vacation");
 
         return VacationMapper.toDto(vacationRepository.save(VacationMapper.toEntity(vacation, false)), false);
     }
@@ -42,12 +46,7 @@ public class VacationServiceImpl implements VacationService {
 
     @Override
     public Vacation findById(Long id) throws IdNotFound {
-        Vacation Vacation = VacationMapper.toDto(vacationRepository.findById(id).get(), false);
-        if (null != Vacation) {
-            return Vacation;
-        } else {
-            throw new IdNotFound(id);
-        }
+        return VacationMapper.toDto(vacationRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
     }
 
     @Override
@@ -56,8 +55,10 @@ public class VacationServiceImpl implements VacationService {
     }
 
     @Override
-    public List<Vacation> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
-        return VacationMapper.toDtos(vacationRepository.findAll(Search.expression(search, TmsVacation.class),pageable), false);
+    public List<Vacation> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
+        Sort sort = Sort.by(Sort.Direction.DESC, "prmVacationUpdateDate");
+        Pageable pageable = PageRequest.of(page, size, sort);
+        return VacationMapper.toDtos(vacationRepository.findAll(Search.expression(search, TmsVacation.class), pageable), false);
     }
 
     @Override
@@ -67,13 +68,11 @@ public class VacationServiceImpl implements VacationService {
 
     @Override
     public void delete(Long id) {
-        LOGGER.info("delete Vacation");
         vacationRepository.deleteById(id);
     }
 
     @Override
     public void delete(Vacation Vacation) {
-        LOGGER.info("delete Vehicle");
         vacationRepository.delete(VacationMapper.toEntity(Vacation, false));
     }
 
@@ -83,7 +82,9 @@ public class VacationServiceImpl implements VacationService {
     }
 
     @Override
-    public List<Vacation> findAll(Pageable pageable) {
+    public List<Vacation> findAll(int page, int size) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "prmVacationUpdateDate");
+        Pageable pageable = PageRequest.of(page, size, sort);
         return VacationMapper.toDtos(vacationRepository.findAll(pageable), false);
     }
 }

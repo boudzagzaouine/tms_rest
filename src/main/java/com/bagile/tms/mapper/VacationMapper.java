@@ -22,7 +22,7 @@ public class VacationMapper {
         map.put("createdBy", "createdBy");
         map.put("updatedBy", "updatedBy");
         map.put("creationDate", "creationDate");
-        map.put("updateDate","updateDate");
+        map.put("updateDate", "updateDate");
     }
 
     public static Map<String, String> getMap() {
@@ -69,7 +69,7 @@ public class VacationMapper {
 
         if (!lazy) {
             vacation.setDriver(DriverMapper.toDto(tmsVacation.getTmsDriver(), true));
-            vacation.setDriver(DriverMapper.toDto(tmsVacation.getTmsDriver(), true));
+            vacation.setVacationtype(VacationTypeMapper.toDto(tmsVacation.getTmsVacationType(), true));
         }
         return vacation;
     }

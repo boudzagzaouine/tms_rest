@@ -15,11 +15,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @Controller
-@RequestMapping(value="/zone")
+@RequestMapping(value="/zones")
 
 public class ZoneController {
-    @Autowired
-    private ZoneService zoneService;
+    private final ZoneService zoneService;
+
+    public ZoneController(ZoneService zoneService) {
+        this.zoneService = zoneService;
+    }
+
     //@PreAuthorize("hasAnyRole('ZONE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
@@ -28,9 +32,7 @@ public class ZoneController {
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<Zone> getZone(@RequestParam int page, @RequestParam int size) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "prmColorUpdateDate");
-        Pageable pageable = PageRequest.of(page, size,sort);
-        return zoneService.findAll(pageable);
+        return zoneService.findAll(page, size);
 
     }
     //@PreAuthorize("hasAnyRole('ZONE_VIEW')")
@@ -67,8 +69,7 @@ public class ZoneController {
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<Zone> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Pageable pageable = PageRequest.of(page, size);
-        return zoneService.find(search, pageable);
+        return zoneService.find(search, page, size);
 
     }
     //@PreAuthorize("hasRole('ZONE_CREATE')")

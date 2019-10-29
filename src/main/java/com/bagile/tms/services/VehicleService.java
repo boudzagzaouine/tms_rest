@@ -21,7 +21,7 @@ public interface VehicleService {
 
     List<Vehicle> find(String search) throws AttributesNotFound, ErrorType;
 
-    List<Vehicle> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType;
+    List<Vehicle> find(String search, int page, int size) throws AttributesNotFound, ErrorType;
 
     Long size(String search) throws AttributesNotFound, ErrorType;
 
@@ -31,5 +31,5 @@ public interface VehicleService {
 
     List<Vehicle> findAll();
 
-    List<Vehicle> findAll(Pageable pageable);
+    List<Vehicle> findAll(int page, int size);
 }

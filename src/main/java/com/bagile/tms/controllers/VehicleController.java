@@ -20,8 +20,11 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/vehicles/")
 public class VehicleController {
-    @Autowired
-    private VehicleService vehicleService;
+    private final VehicleService vehicleService;
+
+    public VehicleController(VehicleService vehicleService) {
+        this.vehicleService = vehicleService;
+    }
 
     //@PreAuthorize("hasAnyRole('VEHICLE_VIEW')")
     @GetMapping( value = "/list")
@@ -34,8 +37,7 @@ public class VehicleController {
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<Vehicle> getAll(@RequestParam int page, @RequestParam int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        return vehicleService.findAll(pageable);
+        return vehicleService.findAll(page, size);
     }
 
     //@PreAuthorize("hasAnyRole('VEHICLE_VIEW')")
@@ -77,8 +79,7 @@ public class VehicleController {
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<Vehicle> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Pageable pageable = PageRequest.of(page, size);
-        return vehicleService.find(search, pageable);
+        return vehicleService.find(search, page, size);
     }
 
     //@PreAuthorize("hasRole('VEHICLE_CREATE')")

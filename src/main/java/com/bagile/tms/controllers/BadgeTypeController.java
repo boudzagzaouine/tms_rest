@@ -16,10 +16,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/badgetype/")
+@RequestMapping(value = "/badgeTypes")
 public class BadgeTypeController {
-    @Autowired
-    private BadgeTypeService badgeTypeService;
+    private final BadgeTypeService badgeTypeService;
+
+    public BadgeTypeController(BadgeTypeService badgeTypeService) {
+        this.badgeTypeService = badgeTypeService;
+    }
+
     //@PreAuthorize("hasAnyRole('BADGETYPE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
@@ -28,9 +32,7 @@ public class BadgeTypeController {
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<BadgeType> getBadgeType(@RequestParam int page, @RequestParam int size) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "prmColorUpdateDate");
-        Pageable pageable = PageRequest.of(page, size,sort);
-        return badgeTypeService.findAll(pageable);
+        return badgeTypeService.findAll(page, size);
 
     }
     //@PreAuthorize("hasAnyRole('BADGETYPE_VIEW')")
@@ -67,8 +69,7 @@ public class BadgeTypeController {
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<BadgeType> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Pageable pageable = PageRequest.of(page, size);
-        return badgeTypeService.find(search, pageable);
+        return badgeTypeService.find(search, page, size);
 
     }
     //@PreAuthorize("hasRole('BADGETYPE_CREATE')")

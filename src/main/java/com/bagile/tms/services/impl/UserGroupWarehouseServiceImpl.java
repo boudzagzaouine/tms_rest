@@ -22,10 +22,13 @@ import java.util.List;
 @Transactional
 public class UserGroupWarehouseServiceImpl implements UserGroupWarehouseService {
 
-    @Autowired
-    private UserGroupWarehouseRepository userGroupWarehouseRepository;
+    private final UserGroupWarehouseRepository userGroupWarehouseRepository;
     private final static Logger LOGGER = LoggerFactory
             .getLogger(UserGroupWarehouseService.class);
+
+    public UserGroupWarehouseServiceImpl(UserGroupWarehouseRepository userGroupWarehouseRepository) {
+        this.userGroupWarehouseRepository = userGroupWarehouseRepository;
+    }
 
     @Override
     public UserGroupWarehouse save(UserGroupWarehouse userGroupWarehouse) {

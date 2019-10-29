@@ -22,10 +22,13 @@ import java.util.List;
 @Transactional
 public class GroupHabilitationServiceImpl implements GroupHabilitationService {
 
-    @Autowired
-    private GroupHabilitationRepository groupHabilitationRepository;
+    private final GroupHabilitationRepository groupHabilitationRepository;
     private final static Logger LOGGER = LoggerFactory
             .getLogger(GroupHabilitationService.class);
+
+    public GroupHabilitationServiceImpl(GroupHabilitationRepository groupHabilitationRepository) {
+        this.groupHabilitationRepository = groupHabilitationRepository;
+    }
 
     @Override
     public GroupHabilitation save(GroupHabilitation groupHabilitation) {

@@ -2,10 +2,9 @@ package com.bagile.tms.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class VehicleCategory extends EmsDto implements Serializable {
-
-
 
     /**
      *
@@ -95,5 +94,18 @@ public class VehicleCategory extends EmsDto implements Serializable {
 
     public void setTotalWeight(BigDecimal totalWeight) {
         this.totalWeight = totalWeight;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VehicleCategory that = (VehicleCategory) o;
+        return getId().equals(that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 }

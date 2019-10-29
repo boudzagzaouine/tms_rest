@@ -18,11 +18,14 @@ import java.util.List;
  * Created by khalil on 04/04/2017.
  */
 @Controller
-@RequestMapping(value = "/categories")
+@RequestMapping(value = "/vehicleCategories")
 
 public class VehicleCategoryController {
-    @Autowired
-    private VehicleCategoryService vehicleCategoryService;
+    private final VehicleCategoryService vehicleCategoryService;
+
+    public VehicleCategoryController(VehicleCategoryService vehicleCategoryService) {
+        this.vehicleCategoryService = vehicleCategoryService;
+    }
 
     //@PreAuthorize("hasAnyRole('CATEGORY_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
@@ -35,8 +38,8 @@ public class VehicleCategoryController {
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<VehicleCategory> getAll(@RequestParam int page, @RequestParam int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        return vehicleCategoryService.findAll(pageable);
+
+        return vehicleCategoryService.findAll(page, size);
     }
 
     //@PreAuthorize("hasAnyRole('CATEGORY_VIEW')")
@@ -78,8 +81,7 @@ public class VehicleCategoryController {
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<VehicleCategory> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Pageable pageable = PageRequest.of(page, size);
-        return vehicleCategoryService.find(search, pageable);
+        return vehicleCategoryService.find(search, page, size);
 
     }
 

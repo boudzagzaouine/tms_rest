@@ -2,6 +2,7 @@ package com.bagile.tms.dto;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 public class MaintenancePlan extends EmsDto implements Serializable {
 
@@ -85,5 +86,18 @@ public class MaintenancePlan extends EmsDto implements Serializable {
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MaintenancePlan that = (MaintenancePlan) o;
+        return getId().equals(that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 }

@@ -1,6 +1,7 @@
 package com.bagile.tms.dto;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Badge extends EmsDto implements Serializable {
     /**
@@ -45,5 +46,18 @@ public class Badge extends EmsDto implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Badge badge = (Badge) o;
+        return getId() == badge.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 }

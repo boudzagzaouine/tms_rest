@@ -1,4 +1,5 @@
 package com.bagile.tms.services.impl;
+
 import com.bagile.tms.dto.Zone;
 import com.bagile.tms.entities.TmsZone;
 import com.bagile.tms.exceptions.AttributesNotFound;
@@ -11,24 +12,25 @@ import com.bagile.tms.services.ZoneService;
 import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
 @Service
 @Transactional
 public class ZoneServiceImpl implements ZoneService {
-    @Autowired
-    private ZoneRepository zoneRepository;
-    private final static Logger LOGGER = LoggerFactory
-            .getLogger(VehicleService.class);
+    private final ZoneRepository zoneRepository;
+
+    public ZoneServiceImpl(ZoneRepository zoneRepository) {
+        this.zoneRepository = zoneRepository;
+    }
 
     @Override
     public Zone save(Zone zone) {
-        LOGGER.info("save Zone");
-
         return ZoneMapper.toDto(zoneRepository.save(ZoneMapper.toEntity(zone, false)), false);
     }
 
@@ -44,12 +46,7 @@ public class ZoneServiceImpl implements ZoneService {
 
     @Override
     public Zone findById(Long id) throws IdNotFound {
-        Zone zone = ZoneMapper.toDto(zoneRepository.findById(id).get(), false);
-        if (null != zone) {
-            return zone;
-        } else {
-            throw new IdNotFound(id);
-        }
+       return ZoneMapper.toDto(zoneRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
     }
 
     @Override
@@ -58,8 +55,10 @@ public class ZoneServiceImpl implements ZoneService {
     }
 
     @Override
-    public List<Zone> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
-        return ZoneMapper.toDtos(zoneRepository.findAll(Search.expression(search, TmsZone.class),pageable), false);
+    public List<Zone> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
+        Sort sort = Sort.by(Sort.Direction.DESC, "prmColorUpdateDate");
+        Pageable pageable = PageRequest.of(page, size,sort);
+        return ZoneMapper.toDtos(zoneRepository.findAll(Search.expression(search, TmsZone.class), pageable), false);
     }
 
     @Override
@@ -69,13 +68,11 @@ public class ZoneServiceImpl implements ZoneService {
 
     @Override
     public void delete(Long id) {
-        LOGGER.info("delete Zone");
         zoneRepository.deleteById(id);
     }
 
     @Override
     public void delete(Zone zone) {
-        LOGGER.info("delete Zone");
         zoneRepository.delete(ZoneMapper.toEntity(zone, false));
     }
 
@@ -85,7 +82,9 @@ public class ZoneServiceImpl implements ZoneService {
     }
 
     @Override
-    public List<Zone> findAll(Pageable pageable) {
+    public List<Zone> findAll(int page, int size) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "prmColorUpdateDate");
+        Pageable pageable = PageRequest.of(page, size,sort);
         return ZoneMapper.toDtos(zoneRepository.findAll(pageable), false);
     }
 }

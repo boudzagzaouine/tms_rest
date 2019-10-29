@@ -78,22 +78,9 @@ public class OwnerMapper {
         ownOwner.setOwnOwnerSiret(owner.getSiret());
         ownOwner.setOwnOwnerComment(owner.getComment());
         ownOwner.setOwnOwnerIsActive(owner.getActive());
-        ownOwner.setOwnOwnerCreationDate(owner.getCreationDate());
-        ownOwner.setOwnOwnerUpdateDate(owner.getUpdateDate());
-        ownOwner.setOwnOwnerVariable1(owner.getVariable1());
-        ownOwner.setOwnOwnerVariable2(owner.getVariable2());
-        ownOwner.setOwnOwnerVariable3(owner.getVariable3());
-        ownOwner.setOwnOwnerVariable4(owner.getVariable4());
-        ownOwner.setOwnOwnerVariable5(owner.getVariable5());
-        ownOwner.setOwnOwnerVariable6(owner.getVariable6());
-        ownOwner.setOwnOwnerVariable7(owner.getVariable7());
-        ownOwner.setOwnOwnerVariable8(owner.getVariable8());
-        ownOwner.setOwnOwnerVariable9(owner.getVariable9());
-        ownOwner.setOwnOwnerVariable10(owner.getVariable10());
-
+        ownOwner.setCreationDate(owner.getCreationDate());
+        ownOwner.setUpdateDate(owner.getUpdateDate());
         ownOwner.setOwnOwnerImage(owner.getImage());
-
-
         ownOwner.setCreatedBy(owner.getCreatedBy());
         ownOwner.setUpdatedBy(owner.getUpdatedBy());
         ownOwner.setCreationDate(owner.getCreationDate());
@@ -124,21 +111,9 @@ public class OwnerMapper {
         owner.setSiret(ownOwner.getOwnOwnerSiret());
         owner.setComment(ownOwner.getOwnOwnerComment());
         owner.setActive(ownOwner.getOwnOwnerIsActive());
-        owner.setCreationDate(ownOwner.getOwnOwnerCreationDate());
-        owner.setUpdateDate(ownOwner.getOwnOwnerUpdateDate());
-        owner.setVariable1(ownOwner.getOwnOwnerVariable1());
-        owner.setVariable2(ownOwner.getOwnOwnerVariable2());
-        owner.setVariable3(ownOwner.getOwnOwnerVariable3());
-        owner.setVariable4(ownOwner.getOwnOwnerVariable4());
-        owner.setVariable5(ownOwner.getOwnOwnerVariable5());
-        owner.setVariable6(ownOwner.getOwnOwnerVariable6());
-        owner.setVariable7(ownOwner.getOwnOwnerVariable7());
-        owner.setVariable8(ownOwner.getOwnOwnerVariable8());
-        owner.setVariable9(ownOwner.getOwnOwnerVariable9());
-        owner.setVariable10(ownOwner.getOwnOwnerVariable10());
+        owner.setCreationDate(ownOwner.getCreationDate());
+        owner.setUpdateDate(ownOwner.getUpdateDate());
         owner.setImage(ownOwner.getOwnOwnerImage());
-
-
         owner.setCreatedBy(ownOwner.getCreatedBy());
         owner.setUpdatedBy(ownOwner.getUpdatedBy());
         owner.setCreationDate(ownOwner.getCreationDate());

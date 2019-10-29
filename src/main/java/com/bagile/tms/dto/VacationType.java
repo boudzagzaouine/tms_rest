@@ -1,6 +1,7 @@
 package com.bagile.tms.dto;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class VacationType extends EmsDto implements Serializable {
 
@@ -37,5 +38,18 @@ public class VacationType extends EmsDto implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VacationType that = (VacationType) o;
+        return getId() == that.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 }

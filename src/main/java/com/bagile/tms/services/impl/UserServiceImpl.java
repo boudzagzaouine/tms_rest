@@ -10,9 +10,6 @@ import com.bagile.tms.repositories.UserRepository;
 import com.bagile.tms.services.UserService;
 import com.bagile.tms.util.EmsDate;
 import com.bagile.tms.util.Search;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,14 +20,14 @@ import java.util.List;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserRepository userRepository;
-    private final static Logger LOGGER = LoggerFactory
-            .getLogger(UserService.class);
+    private final UserRepository userRepository;
+
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public User save(User user) {
-        LOGGER.info("save User");
         user.setUpdateDate(EmsDate.getDateNow());
         user.setType(1L);
         if (0 >= user.getId()) {
@@ -58,12 +55,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(Long id) throws IdNotFound {
-        User user = UserMapper.toDto(userRepository.findById(id).get(), false);
-        if (null != user) {
-            return user;
-        } else {
-            throw new IdNotFound(id);
-        }
+        return UserMapper.toDto(userRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
     }
 
     public User findByEmailAndPassword(String email, String password) {
@@ -78,7 +70,6 @@ public class UserServiceImpl implements UserService {
                 search += ",";
             }
             search += "active:true";
-
         }
         search += ",type:1";
         return UserMapper.toDtos(userRepository.findAll(Search.expression(search, UsrUser.class)), false);
@@ -105,21 +96,18 @@ public class UserServiceImpl implements UserService {
             search += "active:true";
         }
         search += ",type:1";
-
         return userRepository.count(Search.expression(search, UsrUser.class));
     }
 
     @Override
-    public void delete(Long id) {
-        LOGGER.info("delete User");
-        UsrUser usrUser = userRepository.findById(id).get();
+    public void delete(Long id) throws IdNotFound {
+        UsrUser usrUser = userRepository.findById(id).orElseThrow(() -> new IdNotFound(id));
         usrUser.setUsrUserIsActive(false);
         userRepository.saveAndFlush(usrUser);
     }
 
     @Override
     public void delete(User user) {
-        LOGGER.info("delete User");
         user.setActive(false);
         userRepository.saveAndFlush(UserMapper.toEntity(user, false));
 

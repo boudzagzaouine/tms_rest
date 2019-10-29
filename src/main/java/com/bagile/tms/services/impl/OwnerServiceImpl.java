@@ -25,18 +25,17 @@ import java.util.List;
 @Service@Transactional
 public class OwnerServiceImpl implements OwnerService {
 
-    @Autowired
-    private OwnerRepository ownerRepository;
- 
+    private final OwnerRepository ownerRepository;
  
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmssS");
-    private final static Logger LOGGER = LoggerFactory
-            .getLogger(OwnerService.class);
+
+    public OwnerServiceImpl(OwnerRepository ownerRepository) {
+        this.ownerRepository = ownerRepository;
+    }
 
 
     @Override
     public Owner save(Owner owner) {
-        LOGGER.info("save Owner");
         owner.setUpdateDate(EmsDate.getDateNow());
         if (0 >= owner.getId()) {
             owner.setCreationDate(EmsDate.getDateNow());
@@ -66,12 +65,7 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public Owner findById(Long id) throws IdNotFound {
-        Owner owner = OwnerMapper.toDto(ownerRepository.findById(id).get(), false);
-        if (null != owner) {
-            return owner;
-        } else {
-            throw new IdNotFound(id);
-        }
+       return OwnerMapper.toDto(ownerRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
     }
 
     @Override
@@ -118,21 +112,18 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public void delete(Long id) {
-        LOGGER.info("delete Owner");
-        OwnOwner ownOwner = ownerRepository.findById(id).get();
+    public void delete(Long id) throws IdNotFound {
+        OwnOwner ownOwner = ownerRepository.findById(id).orElseThrow(() -> new IdNotFound(id));
         ownOwner.setOwnOwnerIsActive(false);
         ownerRepository.saveAndFlush(ownOwner);
     }
 
     @Override
     public void delete(Owner owner) {
-        LOGGER.info("delete Owner");
         OwnOwner ownOwner = ownerRepository.findById(owner.getId()).get();
         ownOwner.setOwnOwnerIsActive(false);
         ownerRepository.saveAndFlush(ownOwner);
         //ownerRepository.delete(OwnerMapper.toEntity(owner, false));
-        
     }
 
     @Override

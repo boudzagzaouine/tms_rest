@@ -19,7 +19,7 @@ public interface MaintenanceTypeService {
 
     List<MaintenanceType> find(String search) throws AttributesNotFound, ErrorType;
 
-    List<MaintenanceType> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType;
+    List<MaintenanceType> find(String search, int page, int size) throws AttributesNotFound, ErrorType;
 
     Long size(String search) throws AttributesNotFound, ErrorType;
 
@@ -29,5 +29,5 @@ public interface MaintenanceTypeService {
 
     List<MaintenanceType> findAll();
 
-    List<MaintenanceType> findAll(Pageable pageable);
+    List<MaintenanceType> findAll(int page, int size);
 }

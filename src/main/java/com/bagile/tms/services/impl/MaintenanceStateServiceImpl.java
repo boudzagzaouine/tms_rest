@@ -8,11 +8,8 @@ import com.bagile.tms.exceptions.IdNotFound;
 import com.bagile.tms.mapper.MaintenanceStateMapper;
 import com.bagile.tms.repositories.MaintenanceStateRepository;
 import com.bagile.tms.services.MaintenanceStateService;
-import com.bagile.tms.services.VehicleService;
 import com.bagile.tms.util.Search;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,15 +20,14 @@ import java.util.List;
 @Transactional
 public class MaintenanceStateServiceImpl implements MaintenanceStateService {
 
-    @Autowired
-    private MaintenanceStateRepository maintenanceStateRepository;
-    private final static Logger LOGGER = LoggerFactory
-            .getLogger(VehicleService.class);
+    private final MaintenanceStateRepository maintenanceStateRepository;
+
+    public MaintenanceStateServiceImpl(MaintenanceStateRepository maintenanceStateRepository) {
+        this.maintenanceStateRepository = maintenanceStateRepository;
+    }
 
     @Override
     public MaintenanceState save(MaintenanceState maintenanceState) {
-        LOGGER.info("save MaintenanceState");
-
         return MaintenanceStateMapper.toDto(maintenanceStateRepository.saveAndFlush(MaintenanceStateMapper.toEntity(maintenanceState, false)), false);
     }
 
@@ -47,12 +43,7 @@ public class MaintenanceStateServiceImpl implements MaintenanceStateService {
 
     @Override
     public MaintenanceState findById(Long id) throws IdNotFound {
-        MaintenanceState maintenanceState = MaintenanceStateMapper.toDto(maintenanceStateRepository.findById(id).get(), false);
-        if (null != maintenanceState) {
-            return maintenanceState;
-        } else {
-            throw new IdNotFound(id);
-        }
+        return MaintenanceStateMapper.toDto(maintenanceStateRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
     }
 
     @Override
@@ -61,8 +52,9 @@ public class MaintenanceStateServiceImpl implements MaintenanceStateService {
     }
 
     @Override
-    public List<MaintenanceState> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
-        return MaintenanceStateMapper.toDtos(maintenanceStateRepository.findAll(Search.expression(search, TmsVehicle.class),pageable), false);
+    public List<MaintenanceState> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
+        Pageable pageable = PageRequest.of(page, size);
+        return MaintenanceStateMapper.toDtos(maintenanceStateRepository.findAll(Search.expression(search, TmsVehicle.class), pageable), false);
     }
 
     @Override
@@ -72,13 +64,11 @@ public class MaintenanceStateServiceImpl implements MaintenanceStateService {
 
     @Override
     public void delete(Long id) {
-        LOGGER.info("delete MaintenanceState");
         maintenanceStateRepository.deleteById(id);
     }
 
     @Override
     public void delete(MaintenanceState maintenanceState) {
-        LOGGER.info("delete MaintenanceState");
         maintenanceStateRepository.delete(MaintenanceStateMapper.toEntity(maintenanceState, false));
     }
 
@@ -88,7 +78,8 @@ public class MaintenanceStateServiceImpl implements MaintenanceStateService {
     }
 
     @Override
-    public List<MaintenanceState> findAll(Pageable pageable) {
+    public List<MaintenanceState> findAll(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
         return MaintenanceStateMapper.toDtos(maintenanceStateRepository.findAll(pageable), false);
     }
 }

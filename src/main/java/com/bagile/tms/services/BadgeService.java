@@ -20,7 +20,7 @@ public interface BadgeService {
 
     List<Badge> find(String search) throws AttributesNotFound, ErrorType;
 
-    List<Badge> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType;
+    List<Badge> find(String search, int page, int size) throws AttributesNotFound, ErrorType;
 
     Long size(String search) throws AttributesNotFound, ErrorType;
 
@@ -30,5 +30,5 @@ public interface BadgeService {
 
     List<Badge> findAll();
 
-    List<Badge> findAll(Pageable pageable);
+    List<Badge> findAll(int page, int size);
 }

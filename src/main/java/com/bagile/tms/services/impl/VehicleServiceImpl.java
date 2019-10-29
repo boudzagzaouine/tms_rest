@@ -11,7 +11,7 @@ import com.bagile.tms.services.VehicleService;
 import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,17 +22,16 @@ import java.util.List;
 @Transactional
 public class VehicleServiceImpl implements VehicleService {
 
-    @Autowired
-    private VehicleRepository vehicleRepository;
-    private final static Logger LOGGER = LoggerFactory
-            .getLogger(VehicleService.class);
+    private final VehicleRepository vehicleRepository;
+
+    public VehicleServiceImpl(VehicleRepository vehicleRepository) {
+        this.vehicleRepository = vehicleRepository;
+    }
 
     @Override
     public Vehicle save(Vehicle vehicle) {
-        LOGGER.info("save Vehicle");
-
         return VehicleMapper.toDto
-                (vehicleRepository.saveAndFlush(VehicleMapper.toEntity(vehicle , false)), false);
+                (vehicleRepository.saveAndFlush(VehicleMapper.toEntity(vehicle, false)), false);
     }
 
     @Override
@@ -47,12 +46,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public Vehicle findById(Long id) throws IdNotFound {
-        Vehicle vehicle = VehicleMapper.toDto(vehicleRepository.findById(id).get(), false);
-        if (null != vehicle) {
-            return vehicle;
-        } else {
-            throw new IdNotFound(id);
-        }
+        return VehicleMapper.toDto(vehicleRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
     }
 
     @Override
@@ -61,8 +55,9 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public List<Vehicle> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
-        return VehicleMapper.toDtos(vehicleRepository.findAll(Search.expression(search, TmsVehicle.class),pageable), false);
+    public List<Vehicle> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
+        Pageable pageable = PageRequest.of(page, size);
+        return VehicleMapper.toDtos(vehicleRepository.findAll(Search.expression(search, TmsVehicle.class), pageable), false);
     }
 
     @Override
@@ -72,13 +67,11 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public void delete(Long id) {
-        LOGGER.info("delete Vehicle");
         vehicleRepository.deleteById(id);
     }
 
     @Override
     public void delete(Vehicle vehicle) {
-        LOGGER.info("delete Vehicle");
         vehicleRepository.delete(VehicleMapper.toEntity(vehicle, false));
     }
 
@@ -88,7 +81,8 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public List<Vehicle> findAll(Pageable pageable) {
+    public List<Vehicle> findAll(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
         return VehicleMapper.toDtos(vehicleRepository.findAll(pageable), false);
     }
 }

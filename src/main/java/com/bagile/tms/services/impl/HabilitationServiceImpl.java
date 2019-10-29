@@ -24,10 +24,13 @@ import java.util.List;
 
 public class HabilitationServiceImpl implements HabilitationService {
 
-    @Autowired
-    private HabilitationRepository habilitationRepository;
+    private final HabilitationRepository habilitationRepository;
     private final static Logger LOGGER = LoggerFactory
             .getLogger(HabilitationService.class);
+
+    public HabilitationServiceImpl(HabilitationRepository habilitationRepository) {
+        this.habilitationRepository = habilitationRepository;
+    }
 
     @Override
     public Habilitation save(Habilitation habilitation) {

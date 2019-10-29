@@ -43,4 +43,6 @@ public abstract class EmsDto implements Serializable {
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
+
+
 }

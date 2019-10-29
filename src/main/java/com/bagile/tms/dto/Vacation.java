@@ -2,6 +2,7 @@ package com.bagile.tms.dto;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 public class Vacation extends EmsDto implements Serializable {
 
@@ -58,5 +59,18 @@ public class Vacation extends EmsDto implements Serializable {
 
     public void setVacationtype(VacationType vacationtype) {
         this.vacationType = vacationtype;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vacation vacation = (Vacation) o;
+        return getId().equals(vacation.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 }

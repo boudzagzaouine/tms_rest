@@ -18,8 +18,12 @@ import java.util.List;
 @Controller
 @RequestMapping(value="/drivers")
 public class DriverController {
-    @Autowired
-    private DriverService driverService;
+    private final DriverService driverService;
+
+    public DriverController(DriverService driverService) {
+        this.driverService = driverService;
+    }
+
     //@PreAuthorize("hasAnyRole('DRIVER_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
@@ -28,9 +32,7 @@ public class DriverController {
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<Driver> getDrivers(@RequestParam int page, @RequestParam int size) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "tmsDriverUpDateDate");
-        Pageable pageable = PageRequest.of(page, size,sort);
-        return driverService.findAll(pageable);
+        return driverService.findAll(page, size);
 
     }
     //@PreAuthorize("hasAnyRole('DRIVER_VIEW')")
@@ -68,8 +70,8 @@ public class DriverController {
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<Driver> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Pageable pageable = PageRequest.of(page, size);
-        return driverService.find(search, pageable);
+
+        return driverService.find(search, page, size);
 
     }
     //@PreAuthorize("hasRole('DRIVER_CREATE')")
@@ -93,7 +95,7 @@ public class DriverController {
     //@PreAuthorize("hasRole('DRIVER_Archive')")
     @RequestMapping(value = "/archive", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@RequestBody Driver driver) {
+    public void delete(@RequestBody Driver driver) throws IdNotFound {
 
         driverService.archive(driver.getId());
     }

@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tms_diverzone")
 public class TmsDriverZone extends EmsEntity {
-
     /**
      *
      */

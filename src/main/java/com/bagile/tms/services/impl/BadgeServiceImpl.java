@@ -11,8 +11,9 @@ import com.bagile.tms.services.BadgeService;
 import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,15 +23,13 @@ import java.util.List;
 @Service
 @Transactional
 public class BadgeServiceImpl implements BadgeService {
-    @Autowired
-    private BadgeRepository badgeRepository;
-    private final static Logger LOGGER = LoggerFactory
-            .getLogger(BadgeService.class);
+    private final BadgeRepository badgeRepository;
+    public BadgeServiceImpl(BadgeRepository badgeRepository) {
+        this.badgeRepository = badgeRepository;
+    }
+
     @Override
     public Badge save(Badge badge) {
-        LOGGER.info("save Badge");
-
-
         return BadgeMapper.toDto(badgeRepository.saveAndFlush(BadgeMapper.toEntity(badge, false)), false);
     }
 
@@ -38,47 +37,53 @@ public class BadgeServiceImpl implements BadgeService {
     public Long size() {
         return badgeRepository.count();
     }
+
     @Override
     public Boolean isExist(Long id) {
         return badgeRepository.existsById(id);
     }
+
     @Override
     public Badge findById(Long id) throws IdNotFound {
-        Badge badge = BadgeMapper.toDto(badgeRepository.findById(id).get(), false);
-        if (null != badge) {
-            return badge;
-        } else {
-            throw new IdNotFound(id);
-        }
+        return BadgeMapper.toDto(badgeRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
     }
+
     @Override
     public List<Badge> find(String search) throws AttributesNotFound, ErrorType {
         return BadgeMapper.toDtos(badgeRepository.findAll(Search.expression(search, TmsBadge.class)), false);
     }
+
     @Override
-    public List<Badge> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
+    public List<Badge> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
+        Sort sort = Sort.by(Sort.Direction.DESC, "prmBadgeUpdateDate");
+        Pageable pageable = PageRequest.of(page, size, sort);
         return BadgeMapper.toDtos(badgeRepository.findAll(Search.expression(search, TmsBadge.class), pageable), false);
     }
+
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
         return badgeRepository.count(Search.expression(search, TmsBadge.class));
     }
+
     @Override
     public void delete(Long id) {
-        LOGGER.info("save Badge");
         badgeRepository.deleteById(id);
     }
+
     @Override
     public void delete(Badge badge) {
-        LOGGER.info("delete Badge");
         badgeRepository.delete(BadgeMapper.toEntity(badge, false));
     }
+
     @Override
     public List<Badge> findAll() {
         return BadgeMapper.toDtos(badgeRepository.findAll(), false);
     }
+
     @Override
-    public List<Badge> findAll(Pageable pageable) {
+    public List<Badge> findAll(int page, int size) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "prmBadgeUpdateDate");
+        Pageable pageable = PageRequest.of(page, size, sort);
         return BadgeMapper.toDtos(badgeRepository.findAll(pageable), false);
     }
 

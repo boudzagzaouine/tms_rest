@@ -32,7 +32,4 @@ public interface DriverZoneService {
     List<DriverZone> findAll();
 
     List<DriverZone> findAll(Pageable pageable);
-
-
-    void archive(Long id);
 }

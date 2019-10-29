@@ -1,6 +1,7 @@
 package com.bagile.tms.dto;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Zone extends EmsDto implements Serializable {
 
@@ -28,5 +29,18 @@ public class Zone extends EmsDto implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Zone zone = (Zone) o;
+        return getId().equals(zone.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 }

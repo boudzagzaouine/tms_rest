@@ -9,29 +9,25 @@ import com.bagile.tms.mapper.VacationTypeMapper;
 import com.bagile.tms.repositories.VacationTypeRepository;
 import com.bagile.tms.services.VacationTypeService;
 import com.bagile.tms.util.Search;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-
 @Service
 @Transactional
 public class VacationTypeServiceImpl implements VacationTypeService {
 
-    private VacationTypeRepository  vacationtyperepository;
-    private final static Logger LOGGER = LoggerFactory
-            .getLogger(VacationTypeService.class);
+    private final VacationTypeRepository vacationtyperepository;
+
+    public VacationTypeServiceImpl(VacationTypeRepository vacationtyperepository) {
+        this.vacationtyperepository = vacationtyperepository;
+    }
 
 
     @Override
     public VacationType save(VacationType vacationtype) {
-        LOGGER.info("save VacationtypeServiceImpl");
-
-
         return VacationTypeMapper.toDto(vacationtyperepository.saveAndFlush(VacationTypeMapper.toEntity(vacationtype, false)), false);
     }
 
@@ -48,12 +44,7 @@ public class VacationTypeServiceImpl implements VacationTypeService {
 
     @Override
     public VacationType findById(Long id) throws IdNotFound {
-        VacationType vacationtype = VacationTypeMapper.toDto(vacationtyperepository.findById(id).get(), false);
-        if (null != vacationtype) {
-            return vacationtype;
-        } else {
-            throw new IdNotFound(id);
-        }
+        return VacationTypeMapper.toDto(vacationtyperepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
     }
 
     @Override
@@ -65,7 +56,6 @@ public class VacationTypeServiceImpl implements VacationTypeService {
     @Override
     public List<VacationType> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
         return VacationTypeMapper.toDtos(vacationtyperepository.findAll(Search.expression(search, TmsVacationType.class), pageable), false);
-
     }
 
     @Override
@@ -76,13 +66,11 @@ public class VacationTypeServiceImpl implements VacationTypeService {
 
     @Override
     public void delete(Long id) {
-        LOGGER.info("delete Vacation Type");
         vacationtyperepository.deleteById(id);
     }
 
     @Override
     public void delete(VacationType badge) {
-        LOGGER.info("delete Vacation Type");
         vacationtyperepository.delete(VacationTypeMapper.toEntity(badge, false));
     }
 

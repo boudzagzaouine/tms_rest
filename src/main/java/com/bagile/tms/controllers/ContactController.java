@@ -17,11 +17,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/contacts/")
+@RequestMapping(value = "/contacts")
 public class ContactController {
 
-    @Autowired
-    private ContactService contactService;
+    private final ContactService contactService;
+
+    public ContactController(ContactService contactService) {
+        this.contactService = contactService;
+    }
+
     @Autowired
    // @Qualifier("userDetailsService")
     //private UserDetailsServiceWarehouse userDetailsService;
@@ -39,10 +43,7 @@ public class ContactController {
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<Contact> getContacts(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Sort sort = Sort.by(Sort.Direction.DESC, "prmContactUpdateDate");
-        Pageable pageable = PageRequest.of(page, size, sort);
-
-        return contactService.findAll( pageable);
+               return contactService.findAll( page, size);
     }
 
     //@PreAuthorize("hasAnyRole('CONTACT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','TRANSPORT_VIEW','INVOICE_VIEW')")
@@ -95,12 +96,11 @@ public class ContactController {
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<Contact> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Pageable pageable = PageRequest.of(page, size);
 
         if (!search.endsWith(",")) {
             search += ",";
         }
-        return contactService.find(search, pageable);
+        return contactService.find(search, page, size);
     }
 
     //@PreAuthorize("hasAnyRole('CONTACT_CREATE','SUPPLIER_VIEW','ACCOUNT_VIEW','TRANSPORT_VIEW','INVOICE_VIEW')")
@@ -128,7 +128,7 @@ public class ContactController {
     //@PreAuthorize("hasRole('CONTACT_DELETE')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) throws IdNotFound {
         contactService.delete(id);
     }
 

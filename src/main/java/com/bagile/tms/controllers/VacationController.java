@@ -10,14 +10,20 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Controller
+@RequestMapping(value = "/vacations")
 public class VacationController {
 
-    @Autowired
-    private VacationService vacationService;
+    private final VacationService vacationService;
+
+    public VacationController(VacationService vacationService) {
+        this.vacationService = vacationService;
+    }
+
     //@PreAuthorize("hasAnyRole('VACATION_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
@@ -26,9 +32,7 @@ public class VacationController {
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<Vacation> getVacation(@RequestParam int page, @RequestParam int size) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "prmColorUpdateDate");
-        Pageable pageable = PageRequest.of(page, size,sort);
-        return vacationService.findAll(pageable);
+        return vacationService.findAll(page, size);
 
     }
     //@PreAuthorize("hasAnyRole('VACATI0N_VIEW')")
@@ -65,8 +69,7 @@ public class VacationController {
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<Vacation> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Pageable pageable = PageRequest.of(page, size);
-        return vacationService.find(search, pageable);
+        return vacationService.find(search, page, size);
 
     }
     //@PreAuthorize("hasRole('VACATION_CREATE')")

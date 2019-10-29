@@ -25,8 +25,7 @@ import java.util.Set;
 
 public class MyUserDetailsService implements UserDetailsService, UserDetailsServiceWarehouse {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
     private StringBuffer warehouses;
     private StringBuffer owners;
     private StringBuffer codeWarehouses;
@@ -35,6 +34,10 @@ public class MyUserDetailsService implements UserDetailsService, UserDetailsServ
     private StringBuffer idOwners;
     private StringBuffer idWarehouses;
     private UserDetails userDetails;
+
+    public MyUserDetailsService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Transactional(readOnly = true)
     @Override

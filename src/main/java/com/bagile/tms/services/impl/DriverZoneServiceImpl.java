@@ -7,11 +7,10 @@ import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
 import com.bagile.tms.mapper.DriverZoneMapper;
 import com.bagile.tms.repositories.DriverZoneRepository;
-import com.bagile.tms.services.BadgeTypeService;
+import com.bagile.tms.services.DriverZoneService;
 import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,22 +19,23 @@ import java.util.List;
 
 @Service
 @Transactional
-public class DriverZoneServiceImpl implements BadgeTypeService.DriverZoneService {
+public class DriverZoneServiceImpl implements DriverZoneService {
 
-    @Autowired
-    private DriverZoneRepository driverzoneRepository;
+    private final DriverZoneRepository driverzoneRepository;
     private final static Logger LOGGER = LoggerFactory
-            .getLogger(BadgeTypeService.DriverZoneService.class);
+            .getLogger(DriverZoneService.class);
 
-
+    public DriverZoneServiceImpl(DriverZoneRepository driverzoneRepository) {
+        this.driverzoneRepository = driverzoneRepository;
+    }
 
     @Override
     public DriverZone save(DriverZone driverzone) {
         LOGGER.info("save Driver");
 
-       // if (0 <= driverzone.getId()) {
-            //driverzone.setCreationDate(EmsDate.getDateNow());
-       // }
+        // if (0 <= driverzone.getId()) {
+        //driverzone.setCreationDate(EmsDate.getDateNow());
+        // }
         return DriverZoneMapper.toDto(driverzoneRepository.saveAndFlush(DriverZoneMapper.toEntity(driverzone, false)), false);
 
     }
@@ -52,12 +52,7 @@ public class DriverZoneServiceImpl implements BadgeTypeService.DriverZoneService
 
     @Override
     public DriverZone findById(Long id) throws IdNotFound {
-        DriverZone driverzone = DriverZoneMapper.toDto(driverzoneRepository.findById(id).get(), false);
-        if (null != driverzone) {
-            return driverzone;
-        } else {
-            throw new IdNotFound(id);
-        }
+        return DriverZoneMapper.toDto(driverzoneRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
     }
 
     @Override
@@ -74,8 +69,7 @@ public class DriverZoneServiceImpl implements BadgeTypeService.DriverZoneService
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        if("".equals(search))
-        {
+        if ("".equals(search)) {
             size();
         }
         return driverzoneRepository.count(Search.expression(search, TmsDriverZone.class));

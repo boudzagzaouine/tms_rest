@@ -30,8 +30,7 @@ import java.util.List;
 @Transactional
 public class WarehouseServiceImpl implements WarehouseService {
 
-    @Autowired
-    private WarehouseRepository warehouseRepository;
+    private final WarehouseRepository warehouseRepository;
    // @Autowired
    // private SaleOrderRepository saleOrderRepository;
    // @Autowired
@@ -42,6 +41,10 @@ public class WarehouseServiceImpl implements WarehouseService {
    // private ContainerRepository containerRepository;
     private final static Logger LOGGER = LoggerFactory
             .getLogger(WarehouseService.class);
+
+    public WarehouseServiceImpl(WarehouseRepository warehouseRepository) {
+        this.warehouseRepository = warehouseRepository;
+    }
 
     @Override
     public Warehouse save(Warehouse warehouse) {

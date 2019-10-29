@@ -11,7 +11,7 @@ import com.bagile.tms.services.VehicleCategoryService;
 import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,15 +23,14 @@ import java.util.List;
 public class VehicleVehicleCategoryServiceImpl implements VehicleCategoryService {
 
 
-    @Autowired
-    private VehicleCategoryRepository VehicleCategoryRepository;
-    private final static Logger LOGGER = LoggerFactory
-            .getLogger(VehicleCategoryService.class);
+    private final VehicleCategoryRepository VehicleCategoryRepository;
+
+    public VehicleVehicleCategoryServiceImpl(VehicleCategoryRepository VehicleCategoryRepository) {
+        this.VehicleCategoryRepository = VehicleCategoryRepository;
+    }
+
     @Override
     public VehicleCategory save(VehicleCategory VehicleCategory) {
-        LOGGER.info("save VehicleCategory");
-
-
         return VehicleCategoryMapper.toDto(VehicleCategoryRepository.saveAndFlush(VehicleCategoryMapper.toEntity(VehicleCategory, false)), false);
     }
 
@@ -39,50 +38,53 @@ public class VehicleVehicleCategoryServiceImpl implements VehicleCategoryService
     public Long size() {
         return VehicleCategoryRepository.count();
     }
+
     @Override
     public Boolean isExist(Long id) {
         return VehicleCategoryRepository.existsById(id);
     }
+
     @Override
     public VehicleCategory findById(Long id) throws IdNotFound {
-        VehicleCategory VehicleCategory = VehicleCategoryMapper.toDto(VehicleCategoryRepository.findById(id).get(), false);
-        if (null != VehicleCategory) {
-            return VehicleCategory;
-        } else {
-            throw new IdNotFound(id);
-        }
+        return VehicleCategoryMapper.toDto(VehicleCategoryRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
     }
+
     @Override
     public List<VehicleCategory> find(String search) throws AttributesNotFound, ErrorType {
         return VehicleCategoryMapper.toDtos(VehicleCategoryRepository.findAll(Search.expression(search, TmsVehicleCategory.class)), false);
     }
+
     @Override
-    public List<VehicleCategory> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
+    public List<VehicleCategory> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
+        Pageable pageable = PageRequest.of(page, size);
         return VehicleCategoryMapper.toDtos(VehicleCategoryRepository.findAll(Search.expression(search, TmsVehicleCategory.class), pageable), false);
     }
+
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
         return VehicleCategoryRepository.count(Search.expression(search, TmsVehicleCategory.class));
     }
+
     @Override
     public void delete(Long id) {
-        LOGGER.info("save VehicleCategory");
         VehicleCategoryRepository.deleteById(id);
     }
+
     @Override
     public void delete(VehicleCategory VehicleCategory) {
-        LOGGER.info("delete VehicleCategory");
         VehicleCategoryRepository.delete(VehicleCategoryMapper.toEntity(VehicleCategory, false));
     }
+
     @Override
     public List<VehicleCategory> findAll() {
         return VehicleCategoryMapper.toDtos(VehicleCategoryRepository.findAll(), false);
     }
+
     @Override
-    public List<VehicleCategory> findAll(Pageable pageable) {
+    public List<VehicleCategory> findAll(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
         return VehicleCategoryMapper.toDtos(VehicleCategoryRepository.findAll(pageable), false);
     }
-
 
 
 }

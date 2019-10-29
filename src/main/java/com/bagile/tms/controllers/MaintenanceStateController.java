@@ -21,8 +21,11 @@ import java.util.List;
 @RequestMapping(value = "/maintenanceStates")
 
 public class MaintenanceStateController {
-    @Autowired
-    private MaintenanceStateService maintenanceService;
+    private final MaintenanceStateService maintenanceService;
+
+    public MaintenanceStateController(MaintenanceStateService maintenanceService) {
+        this.maintenanceService = maintenanceService;
+    }
 
     //@PreAuthorize("hasAnyRole('MAINTENANCE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
@@ -35,8 +38,7 @@ public class MaintenanceStateController {
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<MaintenanceState> getAll(@RequestParam int page, @RequestParam int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        return maintenanceService.findAll(pageable);
+        return maintenanceService.findAll(page, size);
     }
 
     //@PreAuthorize("hasAnyRole('MAINTENANCE_VIEW')")
@@ -78,8 +80,7 @@ public class MaintenanceStateController {
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<MaintenanceState> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Pageable pageable = PageRequest.of(page, size);
-        return maintenanceService.find(search, pageable);
+        return maintenanceService.find(search, page, size);
 
     }
 

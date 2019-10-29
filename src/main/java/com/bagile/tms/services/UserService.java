@@ -24,7 +24,7 @@ public interface UserService {
 
     public Long size(String search) throws AttributesNotFound, ErrorType;
 
-    public void delete(Long id);
+    public void delete(Long id) throws IdNotFound;
 
     public void delete(User user);
 

@@ -8,30 +8,27 @@ import com.bagile.tms.exceptions.IdNotFound;
 import com.bagile.tms.mapper.MaintenanceTypeMapper;
 import com.bagile.tms.repositories.MaintenanceTypeRepository;
 import com.bagile.tms.services.MaintenanceTypeService;
-import com.bagile.tms.services.VehicleService;
 import com.bagile.tms.util.Search;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
 @Service
 @Transactional
 public class MaintenanceTypeServiceImpl implements MaintenanceTypeService {
 
-    @Autowired
-    private MaintenanceTypeRepository MaintenancetypeRepository;
-    private final static Logger LOGGER = LoggerFactory
-            .getLogger(VehicleService.class);
+    private final MaintenanceTypeRepository MaintenancetypeRepository;
+
+    public MaintenanceTypeServiceImpl(MaintenanceTypeRepository MaintenancetypeRepository) {
+        this.MaintenancetypeRepository = MaintenancetypeRepository;
+    }
 
     @Override
     public MaintenanceType save(MaintenanceType maintenancetype) {
-        LOGGER.info("save TypeMaintenance");
-
-        return MaintenanceTypeMapper.toDto(MaintenancetypeRepository.saveAndFlush(MaintenanceTypeMapper.toEntity(maintenancetype,false)),false);
+        return MaintenanceTypeMapper.toDto(MaintenancetypeRepository.saveAndFlush(MaintenanceTypeMapper.toEntity(maintenancetype, false)), false);
     }
 
     @Override
@@ -46,12 +43,7 @@ public class MaintenanceTypeServiceImpl implements MaintenanceTypeService {
 
     @Override
     public MaintenanceType findById(Long id) throws IdNotFound {
-        MaintenanceType typeMaintenance = MaintenanceTypeMapper.toDto(MaintenancetypeRepository.findById(id).get(),false);
-        if (null != typeMaintenance) {
-            return typeMaintenance;
-        } else {
-            throw new IdNotFound(id);
-        }
+        return MaintenanceTypeMapper.toDto(MaintenancetypeRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
     }
 
     @Override
@@ -60,8 +52,9 @@ public class MaintenanceTypeServiceImpl implements MaintenanceTypeService {
     }
 
     @Override
-    public List<MaintenanceType> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
-        return MaintenanceTypeMapper.toDtos(MaintenancetypeRepository.findAll(Search.expression(search, TmsVehicle.class),pageable));
+    public List<MaintenanceType> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
+        Pageable pageable = PageRequest.of(page, size);
+        return MaintenanceTypeMapper.toDtos(MaintenancetypeRepository.findAll(Search.expression(search, TmsVehicle.class), pageable));
     }
 
     @Override
@@ -71,14 +64,12 @@ public class MaintenanceTypeServiceImpl implements MaintenanceTypeService {
 
     @Override
     public void delete(Long id) {
-        LOGGER.info("delete TypeMaintenance");
         MaintenancetypeRepository.deleteById(id);
     }
 
     @Override
     public void delete(MaintenanceType maintenancetype) {
-        LOGGER.info("delete TypeMaintenance");
-        MaintenancetypeRepository.delete(MaintenanceTypeMapper.toEntity(maintenancetype,true));
+        MaintenancetypeRepository.delete(MaintenanceTypeMapper.toEntity(maintenancetype, true));
     }
 
     @Override
@@ -87,7 +78,8 @@ public class MaintenanceTypeServiceImpl implements MaintenanceTypeService {
     }
 
     @Override
-    public List<MaintenanceType> findAll(Pageable pageable) {
+    public List<MaintenanceType> findAll(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
         return MaintenanceTypeMapper.toDtos(MaintenancetypeRepository.findAll(pageable));
     }
 }

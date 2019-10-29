@@ -21,17 +21,17 @@ public interface ContactService {
 
     List<Contact> find(String search) throws AttributesNotFound, ErrorType;
 
-    List<Contact> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType;
+    List<Contact> find(String search, int page, int size) throws AttributesNotFound, ErrorType;
 
     Contact findOne(String search) throws AttributesNotFound, ErrorType;
 
     Long size(String search) throws AttributesNotFound, ErrorType;
 
-    void delete(Long id);
+    void delete(Long id) throws IdNotFound;
 
     void delete(Contact contact);
 
     List<Contact> findAll() throws AttributesNotFound, ErrorType;
 
-    List<Contact> findAll(Pageable pageable) throws AttributesNotFound, ErrorType;
+    List<Contact> findAll(int page, int size) throws AttributesNotFound, ErrorType;
 }

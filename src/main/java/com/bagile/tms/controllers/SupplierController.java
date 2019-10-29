@@ -1,10 +1,10 @@
 package com.bagile.tms.controllers;
 
-import com.bagile.tms.dto.Badge;
+import com.bagile.tms.dto.Supplier;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.services.BadgeService;
+import com.bagile.tms.services.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -16,87 +16,87 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(value="/badges")
-public class BadgeController {
-    private final BadgeService badgeService;
+@RequestMapping(value="/suppliers")
+public class SupplierController {
+    private final SupplierService supplierService;
 
-    public BadgeController(BadgeService badgeService) {
-        this.badgeService = badgeService;
+    public SupplierController(SupplierService supplierService) {
+        this.supplierService = supplierService;
     }
 
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
-    public List<Badge> getBadges() {
-        return badgeService.findAll();
+    public List<Supplier> getSuppliers() {
+        return supplierService.findAll();
     }
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
-    public List<Badge> getBadges(@RequestParam int page, @RequestParam int size) {
-        return badgeService.findAll(page, size);
+    public List<Supplier> getSuppliers(@RequestParam int page, @RequestParam int size) {
+        return supplierService.findAll(page, size);
 
     }
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
     public Long size() {
-        return badgeService.size();
+        return supplierService.size();
     }
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
-        return badgeService.size(search);
+        return supplierService.size(search);
     }
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
-        return badgeService.isExist(id);
+        return supplierService.isExist(id);
     }
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
-    public Badge getBadge(@PathVariable("id") Long id) throws IdNotFound {
-        return badgeService.findById(id);
+    public Supplier getSupplier(@PathVariable("id") Long id) throws IdNotFound {
+        return supplierService.findById(id);
     }
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
-    public List<Badge> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
-        return badgeService.find(search);
+    public List<Supplier> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
+        return supplierService.find(search);
     }
 
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
-    public List<Badge> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        return badgeService.find(search, page, size);
+    public List<Supplier> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
+        return supplierService.find(search, page, size);
     }
     //@PreAuthorize("hasRole('BADGE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Badge add(@RequestBody Badge badge) {
-        return badgeService.save(badge);
+    public Supplier add(@RequestBody Supplier supplier) {
+        return supplierService.save(supplier);
     }
     //@PreAuthorize("hasRole('BADGE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Badge set(@RequestBody Badge badge) {
-        return badgeService.save(badge);
+    public Supplier set(@RequestBody Supplier supplier) {
+        return supplierService.save(supplier);
     }
     //@PreAuthorize("hasRole('BADGE_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@RequestBody Badge badge) {
-        badgeService.delete(badge);
+    public void delete(@RequestBody Supplier supplier) {
+        supplierService.delete(supplier);
     }
     //@PreAuthorize("hasRole('BADGE_DELETE')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@PathVariable Long id) {
-        badgeService.delete(id);
+        supplierService.delete(id);
     }
 
 }

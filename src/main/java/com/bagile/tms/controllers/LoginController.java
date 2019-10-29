@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class LoginController {
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public LoginController(UserService userService) {
+        this.userService = userService;
+    }
 
     @RequestMapping("/defaultSuccessUrl")
     @ResponseBody

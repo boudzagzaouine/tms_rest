@@ -13,7 +13,9 @@ import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,12 +25,15 @@ import java.util.List;
 @Transactional
 public class ContactServiceImpl implements ContactService {
 
-    @Autowired
-    private ContactRepository contactRepository;
-    @Autowired
+    private final ContactRepository contactRepository;
+    //@Autowired
    // private SettingService settingService;
     private final static Logger LOGGER = LoggerFactory
             .getLogger(ContactService.class);
+
+    public ContactServiceImpl(ContactRepository contactRepository) {
+        this.contactRepository = contactRepository;
+    }
 
     @Override
     public Contact save(Contact contact) {
@@ -59,12 +64,7 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public Contact findById(Long id) throws IdNotFound {
-        Contact contact = ContactMapper.toDto(contactRepository.findById(id).get(), false);
-        if (null != contact) {
-            return contact;
-        } else {
-            throw new IdNotFound(id);
-        }
+       return ContactMapper.toDto(contactRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
     }
 
     @Override
@@ -79,18 +79,20 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public List<Contact> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
+    public List<Contact> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
         if (!search.trim().contains("active:false")) {
             if (!search.endsWith(",") ) {
                 search += ",";
             }
             search += "active:true";
         }
+        Sort sort = Sort.by(Sort.Direction.DESC, "prmContactUpdateDate");
+        Pageable pageable = PageRequest.of(page, size, sort);
         return ContactMapper.toDtos(contactRepository.findAll(Search.expression(search, PrmContact.class), pageable), false);
     }
     @Override
     public Contact findOne(String search) throws AttributesNotFound, ErrorType {
-        return ContactMapper.toDto(contactRepository.findOne(Search.expression(search, PrmContact.class)).get(), false);
+        return ContactMapper.toDto(contactRepository.findOne(Search.expression(search, PrmContact.class)).orElseThrow(() -> new AttributesNotFound(search)), false);
 
     }
     @Override
@@ -105,9 +107,9 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Long id) throws IdNotFound {
         LOGGER.info("delete Contact");
-        PrmContact tmsContact=contactRepository.findById(id).get();
+        PrmContact tmsContact = contactRepository.findById(id).orElseThrow(() -> new IdNotFound(id));
         tmsContact.setPrmContactActive(false);
         contactRepository.saveAndFlush(tmsContact);
     }
@@ -125,8 +127,8 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public List<Contact> findAll(Pageable pageable) throws AttributesNotFound, ErrorType {
-        return find("",pageable);
+    public List<Contact> findAll(int page, int size) throws AttributesNotFound, ErrorType {
+        return find("",page, size);
     }
 
 

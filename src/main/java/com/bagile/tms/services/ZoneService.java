@@ -19,7 +19,7 @@ public interface ZoneService {
 
         List<Zone> find(String search) throws AttributesNotFound, ErrorType;
 
-        List<Zone> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType;
+        List<Zone> find(String search, int page, int size) throws AttributesNotFound, ErrorType;
 
         Long size(String search) throws AttributesNotFound, ErrorType;
 
@@ -29,5 +29,5 @@ public interface ZoneService {
 
         List<Zone> findAll();
 
-        List<Zone> findAll(Pageable pageable);
+        List<Zone> findAll(int page, int size);
     }

@@ -1,6 +1,7 @@
 package com.bagile.tms.dto;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class MaintenanceState extends EmsDto implements Serializable {
 
@@ -40,5 +41,16 @@ public class MaintenanceState extends EmsDto implements Serializable {
         this.description = description;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MaintenanceState that = (MaintenanceState) o;
+        return getId().equals(that.getId());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
 }
