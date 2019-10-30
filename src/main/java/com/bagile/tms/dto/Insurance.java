@@ -12,6 +12,7 @@ public class Insurance extends EmsDto{
     private BigDecimal amount;
     private ContractType contractType;
     private TermInsurance termInsurance;
+    private Supplier supplier;
 
 
     public Insurance() {
@@ -71,5 +72,13 @@ public class Insurance extends EmsDto{
 
     public void setTermInsurance(TermInsurance termInsurance) {
         this.termInsurance = termInsurance;
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 }

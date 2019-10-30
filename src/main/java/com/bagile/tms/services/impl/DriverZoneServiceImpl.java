@@ -11,6 +11,8 @@ import com.bagile.tms.services.DriverZoneService;
 import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,7 +64,8 @@ public class DriverZoneServiceImpl implements DriverZoneService {
     }
 
     @Override
-    public List<DriverZone> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
+    public List<DriverZone> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
+        Pageable pageable = PageRequest.of(page, size);
         return DriverZoneMapper.toDtos(driverzoneRepository.findAll(Search.expression(search, TmsDriverZone.class), pageable), false);
 
     }
@@ -84,7 +87,7 @@ public class DriverZoneServiceImpl implements DriverZoneService {
     @Override
     public void delete(DriverZone driverzone) {
         LOGGER.info("delete DriverZone");
-        driverzoneRepository.delete(DriverZoneMapper.toEntity(driverzone, false));
+        delete(driverzone.getId());
     }
 
     @Override
@@ -93,7 +96,8 @@ public class DriverZoneServiceImpl implements DriverZoneService {
     }
 
     @Override
-    public List<DriverZone> findAll(Pageable pageable) {
+    public List<DriverZone> findAll(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
         return DriverZoneMapper.toDtos(driverzoneRepository.findAll(pageable), false);
     }
 }

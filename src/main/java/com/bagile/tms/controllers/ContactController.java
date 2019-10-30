@@ -21,12 +21,12 @@ import java.util.List;
 public class ContactController {
 
     private final ContactService contactService;
-
+    @Autowired
     public ContactController(ContactService contactService) {
         this.contactService = contactService;
     }
 
-    @Autowired
+
    // @Qualifier("userDetailsService")
     //private UserDetailsServiceWarehouse userDetailsService;
 

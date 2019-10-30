@@ -21,7 +21,7 @@ public interface DriverZoneService {
 
     List<DriverZone> find(String search) throws AttributesNotFound, ErrorType;
 
-    List<DriverZone> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType;
+    List<DriverZone> find(String search, int page, int size) throws AttributesNotFound, ErrorType;
 
     Long size(String search) throws AttributesNotFound, ErrorType;
 
@@ -31,5 +31,5 @@ public interface DriverZoneService {
 
     List<DriverZone> findAll();
 
-    List<DriverZone> findAll(Pageable pageable);
+    List<DriverZone> findAll(int page, int size);
 }

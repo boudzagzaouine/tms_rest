@@ -16,15 +16,16 @@ public class TmsInsurance extends  EmsEntity{
     private long tmsInsuranceId;
     @Column(name = "tms_insurancecode")
     private String tmsInsuranceCode;
-    @Column(name = "tms_insurancestartDate")
+    @Column(name = "tms_insurancestartdate")
     private Date tmsInsuranceStartDate;
-    @Column(name = "tms_insuranceendDate")
+    @Column(name = "tms_insuranceenddate")
     private Date tmsInsuranceEndDate;
     @Column(name = "tms_insuranceamount")
     private BigDecimal tmsInsuranceAmount;
     @Column(name = "tms_contracttypeid")
     private TmsContractType tmsContractType;
     private TmsTermInsurance tmsTermInsurance;
+    private RcpSupplier rcpSupplier;
 
 
     public TmsInsurance() {
@@ -79,11 +80,22 @@ public class TmsInsurance extends  EmsEntity{
         this.tmsContractType = tmsContractType;
     }
 
+    @OneToMany(mappedBy = "tmsInsurance")
     public TmsTermInsurance getTmsTermInsurance() {
         return tmsTermInsurance;
     }
 
     public void setTmsTermInsurance(TmsTermInsurance tmsTermInsurance) {
         this.tmsTermInsurance = tmsTermInsurance;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "tms_insurancesupplierid")
+    public RcpSupplier getRcpSupplier() {
+        return rcpSupplier;
+    }
+
+    public void setRcpSupplier(RcpSupplier rcpSupplier) {
+        this.rcpSupplier = rcpSupplier;
     }
 }

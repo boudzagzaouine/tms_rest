@@ -15,6 +15,7 @@ public class TmsTermInsurance extends  EmsEntity{
     private String tmsTermInsuranceCode;
     @Column(name = "tms_terminsurancedescription")
     private String tmsTermInsuranceDescription;
+    private TmsInsurance tmsInsurance;
 
 
     public TmsTermInsurance() {
@@ -43,5 +44,15 @@ public class TmsTermInsurance extends  EmsEntity{
 
     public void setTmsTermInsuranceDescription(String tmsTermInsuranceDescription) {
         this.tmsTermInsuranceDescription = tmsTermInsuranceDescription;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_terminsuranceinsuranceid")
+    public TmsInsurance getTmsInsurance() {
+        return tmsInsurance;
+    }
+
+    public void setTmsInsurance(TmsInsurance tmsInsurance) {
+        this.tmsInsurance = tmsInsurance;
     }
 }
