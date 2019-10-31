@@ -12,7 +12,6 @@ import com.bagile.tms.util.EmsDate;
 import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -27,9 +26,9 @@ public class ContactServiceImpl implements ContactService {
 
     private final ContactRepository contactRepository;
     //@Autowired
-   // private SettingService settingService;
+    // private SettingService settingService;
     private final static Logger LOGGER = LoggerFactory
-            .getLogger(ContactService.class);
+            .getLogger (ContactService.class);
 
     public ContactServiceImpl(ContactRepository contactRepository) {
         this.contactRepository = contactRepository;
@@ -37,18 +36,18 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public Contact save(Contact contact) {
-        LOGGER.info("save Contact");
-       // contact.setUpdate(EmsDate.getDateNow());
-        if (0 >= contact.getId()) {
-            contact.setCreationDate(EmsDate.getDateNow());
+        LOGGER.info ("save Contact");
+        // contact.setUpdate(EmsDate.getDateNow());
+        if (0 >= contact.getId ( )) {
+            contact.setCreationDate (EmsDate.getDateNow ( ));
         }
-        return ContactMapper.toDto(contactRepository.saveAndFlush(ContactMapper.toEntity(contact, false)), false);
+        return ContactMapper.toDto (contactRepository.saveAndFlush (ContactMapper.toEntity (contact, false)), false);
     }
 
     @Override
     public Long size() {
         try {
-            return size("");
+            return size ("");
         } catch (AttributesNotFound attributesNotFound) {
             ////attributesNotFound.printStackTrace();
         } catch (ErrorType errorType) {
@@ -59,76 +58,78 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public Boolean isExist(Long id) {
-        return contactRepository.existsById(id);
+        return contactRepository.existsById (id);
     }
 
     @Override
     public Contact findById(Long id) throws IdNotFound {
-       return ContactMapper.toDto(contactRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
+        return ContactMapper.toDto (contactRepository.findById (id).orElseThrow (() -> new IdNotFound (id)), false);
     }
 
     @Override
     public List<Contact> find(String search) throws AttributesNotFound, ErrorType {
-        if (!search.trim().contains("active:false")) {
-            if (!search.endsWith(",") ) {
+        if (!search.trim ( ).contains ("active:false")) {
+            if (!search.endsWith (",")) {
                 search += ",";
             }
             search += "active:true";
         }
-        return ContactMapper.toDtos(contactRepository.findAll(Search.expression(search, PrmContact.class)), false);
+        return ContactMapper.toDtos (contactRepository.findAll (Search.expression (search, PrmContact.class)), false);
     }
 
     @Override
     public List<Contact> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
-        if (!search.trim().contains("active:false")) {
-            if (!search.endsWith(",") ) {
+        if (!search.trim ( ).contains ("active:false")) {
+            if (!search.endsWith (",")) {
                 search += ",";
             }
             search += "active:true";
         }
-        Sort sort = Sort.by(Sort.Direction.DESC, "prmContactUpdateDate");
-        Pageable pageable = PageRequest.of(page, size, sort);
-        return ContactMapper.toDtos(contactRepository.findAll(Search.expression(search, PrmContact.class), pageable), false);
+        Sort sort = Sort.by (Sort.Direction.DESC, "updateDate");
+        Pageable pageable = PageRequest.of (page, size, sort);
+        return ContactMapper.toDtos (contactRepository.findAll (Search.expression (search, PrmContact.class), pageable), false);
     }
+
     @Override
     public Contact findOne(String search) throws AttributesNotFound, ErrorType {
-        return ContactMapper.toDto(contactRepository.findOne(Search.expression(search, PrmContact.class)).orElseThrow(() -> new AttributesNotFound(search)), false);
+        return ContactMapper.toDto (contactRepository.findOne (Search.expression (search, PrmContact.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
 
     }
+
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        if (!search.trim().contains("active:false")) {
-            if (!search.endsWith(",") ) {
+        if (!search.trim ( ).contains ("active:false")) {
+            if (!search.endsWith (",")) {
                 search += ",";
             }
             search += "active:true";
         }
-        return contactRepository.count(Search.expression(search, PrmContact.class));
+        return contactRepository.count (Search.expression (search, PrmContact.class));
     }
 
     @Override
     public void delete(long id) throws IdNotFound {
-        LOGGER.info("delete Contact");
-        PrmContact tmsContact = contactRepository.findById(id).orElseThrow(() -> new IdNotFound(id));
-        tmsContact.setPrmContactActive(false);
-        contactRepository.saveAndFlush(tmsContact);
+        LOGGER.info ("delete Contact");
+        PrmContact tmsContact = contactRepository.findById (id).orElseThrow (() -> new IdNotFound (id));
+        tmsContact.setPrmContactActive (false);
+        contactRepository.saveAndFlush (tmsContact);
     }
 
     @Override
     public void delete(Contact contact) {
-        LOGGER.info("delete Contact");
-        contact.setActive(false);
-        contactRepository.saveAndFlush(ContactMapper.toEntity(contact, false));
+        LOGGER.info ("delete Contact");
+        contact.setActive (false);
+        contactRepository.saveAndFlush (ContactMapper.toEntity (contact, false));
     }
 
     @Override
     public List<Contact> findAll() throws AttributesNotFound, ErrorType {
-        return find("");
+        return find ("");
     }
 
     @Override
     public List<Contact> findAll(int page, int size) throws AttributesNotFound, ErrorType {
-        return find("",page, size);
+        return find ("", page, size);
     }
 
 
