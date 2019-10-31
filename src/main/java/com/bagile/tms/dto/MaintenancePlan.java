@@ -11,7 +11,7 @@ public class MaintenancePlan extends EmsDto implements Serializable {
      *
      */
     private static final long serialVersionUID = 6036580510935986433L;
-    private Long id;
+    private long id;
     private String code;
     private String description;
     private Date begin;
@@ -24,11 +24,11 @@ public class MaintenancePlan extends EmsDto implements Serializable {
     public MaintenancePlan() {
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -93,7 +93,7 @@ public class MaintenancePlan extends EmsDto implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MaintenancePlan that = (MaintenancePlan) o;
-        return getId().equals(that.getId());
+        return getId() == that.getId();
     }
 
     @Override

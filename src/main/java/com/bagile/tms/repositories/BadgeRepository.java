@@ -6,4 +6,3 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 public interface BadgeRepository extends JpaRepository<TmsBadge,Long>,
         QuerydslPredicateExecutor<TmsBadge> {
 }
-
