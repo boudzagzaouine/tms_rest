@@ -4,10 +4,12 @@ import com.bagile.tms.dto.Contact;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.test.annotation.DirtiesContext;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,9 +21,27 @@ class ContactServiceTest {
 
 
     @Test
+    @Disabled
+    @DirtiesContext
     void save() {
+        Contact contact = new Contact();
+        assertEquals(0,contact.getId());
+        Contact save = contactService.save(contact);
+        assertNotNull(save);
+    }
+
+    @Test
+    void update() throws IdNotFound {
+
+        Contact contactFindByid=contactService.findById(1L);
+        assertNotNull(contactFindByid);
+        contactFindByid.setSurname("ddd");
+        Contact save = contactService.save(contactFindByid);
+        assertNotNull(save);
+        assertEquals("ddd",save.getSurname());
 
     }
+
 
     @Test
     void size_Db_vide_return_zero() {
