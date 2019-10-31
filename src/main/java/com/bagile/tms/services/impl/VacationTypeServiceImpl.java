@@ -9,7 +9,6 @@ import com.bagile.tms.mapper.VacationTypeMapper;
 import com.bagile.tms.repositories.VacationTypeRepository;
 import com.bagile.tms.services.VacationTypeService;
 import com.bagile.tms.util.Search;
-import jdk.nashorn.internal.ir.RuntimeNode;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

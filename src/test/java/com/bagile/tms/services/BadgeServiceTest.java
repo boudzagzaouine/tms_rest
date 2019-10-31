@@ -3,17 +3,13 @@ package com.bagile.tms.services;
 import com.bagile.tms.dto.Badge;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.BadgeRepository;
-import javafx.beans.binding.When;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.annotation.DirtiesContext;
 
-import static javafx.beans.binding.Bindings.when;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
