@@ -30,9 +30,8 @@ public class VacationTypeController {
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<VacationType> getVacationTypes(@RequestParam int page, @RequestParam int size) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
-        Pageable pageable = PageRequest.of(page, size,sort);
-        return vacationTypeService.findAll(pageable);
+
+        return vacationTypeService.findAll(page,size);
 
     }
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
@@ -70,8 +69,7 @@ public class VacationTypeController {
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<VacationType> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Pageable pageable = PageRequest.of(page, size);
-        return vacationTypeService.find(search, pageable);
+        return vacationTypeService.find(search, page,size);
     }
     //@PreAuthorize("hasRole('BADGE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

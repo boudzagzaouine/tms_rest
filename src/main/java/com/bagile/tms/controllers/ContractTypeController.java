@@ -30,9 +30,8 @@ public class ContractTypeController {
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<ContractType> getContractTypes(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
-        Pageable pageable = PageRequest.of(page, size,sort);
-        return contractTypeService.findAll(pageable);
+
+        return contractTypeService.findAll(page,size);
 
     }
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
@@ -70,8 +69,8 @@ public class ContractTypeController {
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<ContractType> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Pageable pageable = PageRequest.of(page, size);
-        return contractTypeService.find(search, pageable);
+
+        return contractTypeService.find(search, page,size);
     }
     //@PreAuthorize("hasRole('BADGE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

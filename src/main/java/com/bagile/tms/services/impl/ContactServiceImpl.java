@@ -107,7 +107,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public void delete(Long id) throws IdNotFound {
+    public void delete(long id) throws IdNotFound {
         LOGGER.info("delete Contact");
         PrmContact tmsContact = contactRepository.findById(id).orElseThrow(() -> new IdNotFound(id));
         tmsContact.setPrmContactActive(false);

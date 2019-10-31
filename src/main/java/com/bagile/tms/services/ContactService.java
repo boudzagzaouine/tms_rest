@@ -27,7 +27,7 @@ public interface ContactService {
 
     Long size(String search) throws AttributesNotFound, ErrorType;
 
-    void delete(Long id) throws IdNotFound;
+    void delete(long id) throws IdNotFound;
 
     void delete(Contact contact);
 

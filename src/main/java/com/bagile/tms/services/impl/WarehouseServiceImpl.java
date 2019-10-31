@@ -62,12 +62,12 @@ public class WarehouseServiceImpl implements WarehouseService {
     }
 
     @Override
-    public Boolean isExist(Long id) {
+    public Boolean isExist(long id) {
         return warehouseRepository.existsById(id);
     }
 
     @Override
-    public Warehouse findById(Long id) throws IdNotFound {
+    public Warehouse findById(long id) throws IdNotFound {
         Warehouse warehouse = WarehouseMapper.toDto(warehouseRepository.findById(id).get(), false);
         if (null != warehouse) {
             return warehouse;
@@ -117,7 +117,7 @@ public class WarehouseServiceImpl implements WarehouseService {
     }
 
     @Override
-    public void delete(Long id) throws WarehouseException {
+    public void delete(long id) throws WarehouseException {
         LOGGER.info("delete Warehouse");
         WrhWarehouse wrhWarehouse = warehouseRepository.findById(id).get();
         wrhWarehouse.setWrhWarehouseIsActive(false);
@@ -139,7 +139,8 @@ public class WarehouseServiceImpl implements WarehouseService {
     }
 
     @Override
-    public List<Warehouse> findAll(Pageable pageable) {
+    public List<Warehouse> findAll(int page,int size) {
+        Pageable pageable=PageRequest.of(page,size);
         return WarehouseMapper.toDtos(warehouseRepository.findAll(pageable), false);
     }
 

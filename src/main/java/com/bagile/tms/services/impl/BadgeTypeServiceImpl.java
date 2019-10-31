@@ -83,7 +83,7 @@ public class BadgeTypeServiceImpl implements BadgeTypeService {
 
     @Override
     public List<BadgeType> findAll(int page, int size) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "prmBadgeTypeUpdateDate");
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
         return BadgeTypeMapper.toDtos(badgeTypeRepository.findAll(pageable), false);
     }

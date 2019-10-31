@@ -9,7 +9,10 @@ import com.bagile.tms.mapper.VacationTypeMapper;
 import com.bagile.tms.repositories.VacationTypeRepository;
 import com.bagile.tms.services.VacationTypeService;
 import com.bagile.tms.util.Search;
+import jdk.nashorn.internal.ir.RuntimeNode;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,7 +57,9 @@ public class VacationTypeServiceImpl implements VacationTypeService {
     }
 
     @Override
-    public List<VacationType> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
+    public List<VacationType> find(String search, int page,int size) throws AttributesNotFound, ErrorType {
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
+        Pageable pageable = PageRequest.of(page, size,sort);
         return VacationTypeMapper.toDtos(vacationtyperepository.findAll(Search.expression(search, TmsVacationType.class), pageable), false);
     }
 
@@ -80,7 +85,9 @@ public class VacationTypeServiceImpl implements VacationTypeService {
     }
 
     @Override
-    public List<VacationType> findAll(Pageable pageable) {
+    public List<VacationType> findAll(int page,int size) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
+        Pageable pageable = PageRequest.of(page, size,sort);
         return VacationTypeMapper.toDtos(vacationtyperepository.findAll(pageable), false);
 
     }

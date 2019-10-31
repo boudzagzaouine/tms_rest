@@ -9,7 +9,7 @@ public class MaintenanceType extends EmsDto implements Serializable {
      *
      */
     private static final long serialVersionUID = -4187067877993165608L;
-    private Long id;
+    private long id;
     private String code;
     private String description;
 
@@ -17,11 +17,11 @@ public class MaintenanceType extends EmsDto implements Serializable {
     public MaintenanceType() {
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -46,7 +46,7 @@ public class MaintenanceType extends EmsDto implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MaintenanceType that = (MaintenanceType) o;
-        return getId().equals(that.getId());
+        return getId()==(that.getId());
     }
 
     @Override

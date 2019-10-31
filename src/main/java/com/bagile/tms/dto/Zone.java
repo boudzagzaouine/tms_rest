@@ -9,13 +9,13 @@ public class Zone extends EmsDto implements Serializable {
      *
      */
     private static final long serialVersionUID = 5610360676318237078L;
-    private Long id;
+    private long id;
     private String name;
 
     public Zone() {
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -36,11 +36,11 @@ public class Zone extends EmsDto implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Zone zone = (Zone) o;
-        return getId().equals(zone.getId());
+        return id == zone.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(id);
     }
 }

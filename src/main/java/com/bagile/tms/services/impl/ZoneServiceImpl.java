@@ -56,7 +56,7 @@ public class ZoneServiceImpl implements ZoneService {
 
     @Override
     public List<Zone> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
-        Sort sort = Sort.by(Sort.Direction.DESC, "prmColorUpdateDate");
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size,sort);
         return ZoneMapper.toDtos(zoneRepository.findAll(Search.expression(search, TmsZone.class), pageable), false);
     }
@@ -73,7 +73,7 @@ public class ZoneServiceImpl implements ZoneService {
 
     @Override
     public void delete(Zone zone) {
-        zoneRepository.delete(ZoneMapper.toEntity(zone, false));
+        delete(zone.getId());
     }
 
     @Override
@@ -83,7 +83,7 @@ public class ZoneServiceImpl implements ZoneService {
 
     @Override
     public List<Zone> findAll(int page, int size) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "prmColorUpdateDate");
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size,sort);
         return ZoneMapper.toDtos(zoneRepository.findAll(pageable), false);
     }

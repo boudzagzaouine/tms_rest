@@ -12,6 +12,7 @@ import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -64,7 +65,8 @@ public class ContractTypeServiceImpl implements ContractTypeService {
     }
 
     @Override
-    public List<ContractType> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
+    public List<ContractType> find(String search, int page,int size) throws AttributesNotFound, ErrorType {
+        Pageable pageable= PageRequest.of(page,size);
         return ContractTypeMapper.toDtos(contractTypeRepository.findAll(Search.expression(search, TmsContractType.class), pageable), false);
     }
 
@@ -97,7 +99,8 @@ public class ContractTypeServiceImpl implements ContractTypeService {
     }
 
     @Override
-    public List<ContractType> findAll(Pageable pageable) throws AttributesNotFound, ErrorType {
+    public List<ContractType> findAll(int page,int size) throws AttributesNotFound, ErrorType {
+        Pageable pageable=PageRequest.of(page,size);
         return ContractTypeMapper.toDtos(contractTypeRepository.findAll(pageable), false);
 
     }

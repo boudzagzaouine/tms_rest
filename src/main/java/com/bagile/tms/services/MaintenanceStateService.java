@@ -23,7 +23,7 @@ public interface MaintenanceStateService {
 
     Long size(String search) throws AttributesNotFound, ErrorType;
 
-    void delete(Long id);
+    void delete(long id);
 
     void delete(MaintenanceState maintenanceState);
 

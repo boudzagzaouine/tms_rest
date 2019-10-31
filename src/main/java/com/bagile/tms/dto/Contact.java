@@ -9,7 +9,7 @@ public class Contact extends EmsDto implements Serializable {
      *
      */
     private static final long serialVersionUID = 6104428812454596331L;
-    private Long id;
+    private long id;
     private String name;
     private String surname ;
     private String tele1;
@@ -30,11 +30,11 @@ public class Contact extends EmsDto implements Serializable {
         this.tele1 = tele1;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -99,7 +99,7 @@ public class Contact extends EmsDto implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Contact contact = (Contact) o;
-        return getId().equals(contact.getId());
+        return getId()==(contact.getId());
     }
 
     @Override

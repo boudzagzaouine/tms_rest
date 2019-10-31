@@ -55,7 +55,7 @@ public class BadgeServiceImpl implements BadgeService {
 
     @Override
     public List<Badge> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
-        Sort sort = Sort.by(Sort.Direction.DESC, "prmBadgeUpdateDate");
+        Sort sort = Sort.by(Sort.Direction.DESC, "UpdateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
         return BadgeMapper.toDtos(badgeRepository.findAll(Search.expression(search, TmsBadge.class), pageable), false);
     }
@@ -82,7 +82,7 @@ public class BadgeServiceImpl implements BadgeService {
 
     @Override
     public List<Badge> findAll(int page, int size) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "prmBadgeUpdateDate");
+        Sort sort = Sort.by(Sort.Direction.DESC, "UpdateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
         return BadgeMapper.toDtos(badgeRepository.findAll(pageable), false);
     }

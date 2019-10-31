@@ -14,9 +14,9 @@ public interface WarehouseService {
 
     Long size();
 
-    Boolean isExist(Long id);
+    Boolean isExist(long id);
 
-    Warehouse findById(Long id) throws IdNotFound;
+    Warehouse findById(long id) throws IdNotFound;
 
     Warehouse findOne(String search) throws AttributesNotFound, ErrorType;
 
@@ -26,13 +26,13 @@ public interface WarehouseService {
 
     Long size(String search) throws AttributesNotFound, ErrorType;
 
-    void delete(Long id) throws Exception;
+    void delete(long id) throws Exception;
 
     void delete(Warehouse warehouse);
 
     List<Warehouse> findAll() throws AttributesNotFound, ErrorType;
 
-    List<Warehouse> findAll(Pageable pageable);
+    List<Warehouse> findAll(int page,int size);
 
 
 }

@@ -20,7 +20,7 @@ public interface ContractTypeService {
 
     List<ContractType> find(String search) throws AttributesNotFound, ErrorType;
 
-    List<ContractType> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType;
+    List<ContractType> find(String search, int page,int size) throws AttributesNotFound, ErrorType;
 
     ContractType findOne(String search) throws AttributesNotFound, ErrorType;
 
@@ -32,7 +32,7 @@ public interface ContractTypeService {
 
     List<ContractType> findAll() throws AttributesNotFound, ErrorType;
 
-    List<ContractType> findAll(Pageable pageable) throws AttributesNotFound, ErrorType;
+    List<ContractType> findAll(int page,int size) throws AttributesNotFound, ErrorType;
 
 
 

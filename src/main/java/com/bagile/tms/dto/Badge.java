@@ -16,6 +16,7 @@ public class Badge extends EmsDto implements Serializable {
     public Badge() {
     }
 
+
     public Driver getDriver() {
         return driver;
     }

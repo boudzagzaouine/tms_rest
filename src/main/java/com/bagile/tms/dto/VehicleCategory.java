@@ -10,7 +10,7 @@ public class VehicleCategory extends EmsDto implements Serializable {
      *
      */
     private static final long serialVersionUID = 1545447956689771754L;
-    private Long id;
+    private long id;
     private String code;
     private  String consumption;
     private BigDecimal weight;
@@ -24,11 +24,11 @@ public class VehicleCategory extends EmsDto implements Serializable {
     public VehicleCategory() {
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -101,7 +101,7 @@ public class VehicleCategory extends EmsDto implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         VehicleCategory that = (VehicleCategory) o;
-        return getId().equals(that.getId());
+        return getId()==that.getId();
     }
 
     @Override

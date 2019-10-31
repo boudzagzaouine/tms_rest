@@ -63,7 +63,7 @@ public class MaintenanceTypeServiceImpl implements MaintenanceTypeService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(long id) {
         MaintenancetypeRepository.deleteById(id);
     }
 

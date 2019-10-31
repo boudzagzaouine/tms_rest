@@ -20,7 +20,7 @@ public interface VacationTypeService {
 
     List<VacationType> find(String search) throws AttributesNotFound, ErrorType;
 
-    List<VacationType> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType;
+    List<VacationType> find(String search, int page ,int size) throws AttributesNotFound, ErrorType;
 
     Long size(String search) throws AttributesNotFound, ErrorType;
 
@@ -30,5 +30,5 @@ public interface VacationTypeService {
 
     List<VacationType> findAll();
 
-    List<VacationType> findAll(Pageable pageable);
+    List<VacationType> findAll(int page,int size);
 }
