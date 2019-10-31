@@ -4,10 +4,12 @@ import com.bagile.tms.dto.ContractType;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.NoSuchElementException;
 
@@ -21,7 +23,25 @@ class ContractTypeServiceTest {
 
 
     @Test
+    @Disabled
+    @DirtiesContext
     void save() {
+        ContractType contractTypeact = new ContractType();
+        assertEquals(0,contractTypeact.getId());
+        ContractType save = contractTypeService.save(contractTypeact);
+        assertNotNull(save);
+
+    }
+
+    @Test
+    void update() throws IdNotFound {
+
+        ContractType contracttypeFindByid=contractTypeService.findById(1L);
+        assertNotNull(contracttypeFindByid);
+        contracttypeFindByid.setCode("ddd");
+        ContractType save = contractTypeService.save(contracttypeFindByid);
+        assertNotNull(save);
+        assertEquals("ddd",save.getCode());
 
     }
 
