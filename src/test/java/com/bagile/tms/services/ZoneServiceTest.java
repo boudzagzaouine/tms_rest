@@ -19,8 +19,23 @@ class ZoneServiceTest {
 
 
     @Test
-    void save() {
+    void update() throws IdNotFound {
 
+        Zone zoneFindByid=zoneService.findById(1L);
+        assertNotNull(zoneFindByid);
+        zoneFindByid.setName("ddd");
+        Zone save = zoneService.save(zoneFindByid);
+        assertNotNull(save);
+        assertEquals("ddd",save.getName());
+
+    }
+
+    @Test
+    void save() {
+        Zone zone = new Zone();
+        assertEquals(0,zone.getId());
+        Zone save = zoneService.save(zone);
+        assertNotNull(save);
     }
 
     @Test

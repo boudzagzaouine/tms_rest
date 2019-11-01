@@ -16,7 +16,7 @@ public class TmsBadgeType extends EmsEntity {
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_badge_type_id", allocationSize = 1)
     @Column(name = "tms_badgetypeid", unique = true, nullable = false, precision = 10, scale = 0)
     private long tmsBadgeTypeId;
-    @Column(name = "tms_badgetypecode")
+    @Column(name = "tms_badgetypecode", unique = true, nullable = false, length = 90)
     private String tmsBadgeTypeCode;
 
 

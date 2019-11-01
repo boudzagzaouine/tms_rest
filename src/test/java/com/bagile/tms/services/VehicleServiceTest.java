@@ -19,9 +19,22 @@ class VehicleServiceTest {
 
     @Test
     void save() {
+        Vehicle vehicle = new Vehicle();
+        assertEquals(0,vehicle.getId());
+        Vehicle save = vehicleService.save(vehicle);
+        assertNotNull(save);
+    }
+    @Test
+    void update() throws IdNotFound {
+
+        Vehicle vehicleFindByid=vehicleService.findById(1L);
+        assertNotNull(vehicleFindByid);
+        vehicleFindByid.setCode("vv");
+        Vehicle save = vehicleService.save(vehicleFindByid);
+        assertNotNull(save);
+        assertEquals("VV",save.getCode());
 
     }
-
     @Test
     void size_Db_vide_return_zero() {
 

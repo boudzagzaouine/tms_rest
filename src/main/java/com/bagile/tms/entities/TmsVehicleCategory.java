@@ -14,7 +14,7 @@ public class TmsVehicleCategory  extends EmsEntity {
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_vehicle_category_id", allocationSize = 1)
     @Column(name = "tms_vehiclecategoryid", unique = true, nullable = false, precision = 10, scale = 0)
     private Long tmsVehicleCategoryId;
-    @Column(name = "tms_vehiclecategorycode")
+    @Column(name = "tms_vehiclecategorycode",  unique = true, nullable = false, length = 90)
     private String tmsVehicleCategoryCode;
     @Column(name = "tms_vehiclecategoryconsumption")
     private  String tmsVehicleCategoryConsumption;

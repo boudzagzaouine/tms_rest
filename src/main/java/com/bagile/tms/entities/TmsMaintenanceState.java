@@ -13,7 +13,7 @@ public class TmsMaintenanceState  extends EmsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_maintenancestateid", allocationSize = 1)
-    @Column(name = "tms_maintenancestateid", unique = true, nullable = false, precision = 10, scale = 0)
+    @Column(name = "tms_maintenancestateid", unique = true, nullable = false, length = 90, precision = 10, scale = 0)
     private Long tmsMaintenanceStateId;
     @Column(name = "tms_maintenancestatecode")
     private String tmsMaintenanceStateCode;

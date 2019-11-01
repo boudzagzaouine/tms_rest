@@ -11,7 +11,7 @@ public class TmsContractType extends EmsEntity{
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_contracttype_id", allocationSize = 1)
     @Column(name = "tms_contracttypeid", unique = true, nullable = false, precision = 10, scale = 0)
      private long tmsContractTypeId;
-    @Column(name = "tms_contracttypecode")
+    @Column(name = "tms_contracttypecode", unique = true, nullable = false, length = 90)
     private String tmsContractTypeCode;
 
     @Column(name = "tms_contracttypedescription")

@@ -14,7 +14,7 @@ public class TmsVehicle   extends EmsEntity{
     private long tmsVehicleId;
     @Column(name = "tms_vehiculeregistrationnumber")
     private String tmsRegistrationNumber;
-    @Column(name = "tms_vehiculecode")
+    @Column(name = "tms_vehiculecode", unique = true, nullable = false, length = 90)
    private String tmsVehicleCode;
     @Column(name = "tms_vehiculetechnicalvisit")
    private Date tmsVehicleTechnicalVisit;

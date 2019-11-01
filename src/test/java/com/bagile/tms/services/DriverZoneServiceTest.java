@@ -1,12 +1,15 @@
 package com.bagile.tms.services;
 
+import com.bagile.tms.dto.Driver;
 import com.bagile.tms.dto.DriverZone;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.IdNotFound;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.List;
 
@@ -22,8 +25,17 @@ class DriverZoneServiceTest {
     }
 
     @Test
+    @Disabled
+    @DirtiesContext
     void saveValidDriverZoneShouldReturnTrue() {
+        DriverZone driverZone = new DriverZone();
+        assertEquals(0,driverZone.getId());
+        DriverZone save = driverZoneService.save(driverZone);
+        assertNotNull(save);
     }
+
+
+
 
     @Test
     void sizeOFEmptyDB_ShouldReturn_Zero() {

@@ -3,10 +3,12 @@ package com.bagile.tms.services;
 import com.bagile.tms.dto.Driver;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.IdNotFound;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.List;
 
@@ -22,7 +24,26 @@ class DriverServiceTest {
     }
 
     @Test
+    @Disabled
+    @DirtiesContext
     void saveValidDriverShouldReturnTrue() {
+        Driver driver = new Driver();
+        assertEquals(0,driver.getId());
+        Driver save = driverService.save(driver);
+        assertNotNull(save);
+
+    }
+
+    @Test
+    void update() throws IdNotFound {
+
+        Driver driverFindByid=driverService.findById(1L);
+        assertNotNull(driverFindByid);
+        driverFindByid.setCode("ddd");
+        Driver save = driverService.save(driverFindByid);
+        assertNotNull(save);
+        assertEquals("ddd",save.getCode());
+
     }
 
     @Test

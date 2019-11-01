@@ -15,7 +15,7 @@ public class TmsMaintenancePlan extends EmsEntity {
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_maintenance_plan_id", allocationSize = 1)
     @Column(name = "tms_maintenanceplanid", unique = true, nullable = false, precision = 10, scale = 0)
     private Long tmsMaintenancePlanId;
-    @Column(name = "tms_maintenanceplancode")
+    @Column(name = "tms_maintenanceplancode", unique = true, nullable = false, length = 90)
     private String tmsMaintenancePlanCode;
     @Column(name = "tms_maintenanceplandescription")
     private String tmsMaintenancePlanDescription;

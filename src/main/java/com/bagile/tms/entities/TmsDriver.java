@@ -17,7 +17,7 @@ public class TmsDriver  extends EmsEntity{
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_driver_id", allocationSize = 1)
     @Column(name = "tms_driverid", unique = true, nullable = false, precision = 10, scale = 0)
     private long tmsDriverId;
-    @Column(name = "tms_drivercode")
+    @Column(name = "tms_drivercode", unique = true, nullable = false, length = 90)
     private String tmsDriverCode;
     @Column(name = "tms_drivercin")
     private String tmsDriverCin;
