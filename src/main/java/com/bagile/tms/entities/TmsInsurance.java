@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
-
 @Entity
 @Table(name="tms_insurance")
 public class TmsInsurance extends  EmsEntity{
@@ -27,10 +26,8 @@ public class TmsInsurance extends  EmsEntity{
     private TmsTermInsurance tmsTermInsurance;
     private RcpSupplier rcpSupplier;
 
-
     public TmsInsurance() {
     }
-
 
     public long getTmsInsuranceId() {
         return tmsInsuranceId;

@@ -83,6 +83,9 @@ public class WarehouseServiceImpl implements WarehouseService {
 
     @Override
     public List<Warehouse> find(String search) throws AttributesNotFound, ErrorType {
+        if (search.isBlank ()){
+            return findAll ();
+        }
         if (!search.trim().contains("active:false")) {
             if (!search.endsWith(",")) {
                 search += ",";
@@ -94,6 +97,9 @@ public class WarehouseServiceImpl implements WarehouseService {
 
     @Override
     public List<Warehouse> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
+        if (search.isBlank ()){
+            return findAll (page, size);
+        }
         Sort sort = Sort.by(Sort.Direction.DESC, "wrhWarehouseUpdateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
         if (!search.trim().contains("active:false")) {
@@ -107,6 +113,9 @@ public class WarehouseServiceImpl implements WarehouseService {
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
+        if (search.isBlank ()){
+            return size ();
+        }
         if (!search.trim().contains("active:false")) {
             if (!search.endsWith(",")) {
                 search += ",";

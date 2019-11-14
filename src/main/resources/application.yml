@@ -6,13 +6,12 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-
     show-sql: true
     generate-ddl: true
     database: postgresql
     properties:
       hibernate:
-        default_schema: schema_emstms
+        default_schema: schema_emsgc
         format_sql: false
         generate_statistics: false
         dialect: org.hibernate.dialect.PostgreSQLDialect

@@ -51,11 +51,17 @@ public class VacationServiceImpl implements VacationService {
 
     @Override
     public List<Vacation> find(String search) throws AttributesNotFound, ErrorType {
+        if (search.isBlank ()){
+            return findAll ();
+        }
         return VacationMapper.toDtos(vacationRepository.findAll(Search.expression(search, TmsVacation.class)), false);
     }
 
     @Override
     public List<Vacation> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
+        if (search.isBlank ()){
+            return findAll (page, size);
+        }
         Sort sort = Sort.by(Sort.Direction.DESC, "prmVacationUpdateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
         return VacationMapper.toDtos(vacationRepository.findAll(Search.expression(search, TmsVacation.class), pageable), false);
@@ -63,6 +69,9 @@ public class VacationServiceImpl implements VacationService {
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
+        if (search.isBlank ()){
+            return size ();
+        }
         return vacationRepository.count(Search.expression(search, TmsVacation.class));
     }
 

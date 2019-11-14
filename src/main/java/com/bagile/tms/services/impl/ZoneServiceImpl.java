@@ -51,11 +51,17 @@ public class ZoneServiceImpl implements ZoneService {
 
     @Override
     public List<Zone> find(String search) throws AttributesNotFound, ErrorType {
+        if (search.isBlank ()){
+            return findAll ();
+        }
         return ZoneMapper.toDtos(zoneRepository.findAll(Search.expression(search, TmsZone.class)), false);
     }
 
     @Override
     public List<Zone> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
+        if (search.isBlank ()){
+            return findAll (page, size);
+        }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size,sort);
         return ZoneMapper.toDtos(zoneRepository.findAll(Search.expression(search, TmsZone.class), pageable), false);
@@ -63,6 +69,9 @@ public class ZoneServiceImpl implements ZoneService {
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
+        if (search.isBlank ()){
+            return size ();
+        }
         return zoneRepository.count(Search.expression(search, TmsZone.class));
     }
 

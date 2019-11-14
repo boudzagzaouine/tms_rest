@@ -51,17 +51,26 @@ public class VehicleVehicleCategoryServiceImpl implements VehicleCategoryService
 
     @Override
     public List<VehicleCategory> find(String search) throws AttributesNotFound, ErrorType {
+        if (search.isBlank ()){
+            return findAll ();
+        }
         return VehicleCategoryMapper.toDtos(VehicleCategoryRepository.findAll(Search.expression(search, TmsVehicleCategory.class)), false);
     }
 
     @Override
     public List<VehicleCategory> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
+        if (search.isBlank ()){
+            return findAll (page, size);
+        }
         Pageable pageable = PageRequest.of(page, size);
         return VehicleCategoryMapper.toDtos(VehicleCategoryRepository.findAll(Search.expression(search, TmsVehicleCategory.class), pageable), false);
     }
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
+        if (search.isBlank ()){
+            return size ();
+        }
         return VehicleCategoryRepository.count(Search.expression(search, TmsVehicleCategory.class));
     }
 

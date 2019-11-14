@@ -59,12 +59,18 @@ public class DriverZoneServiceImpl implements DriverZoneService {
 
     @Override
     public List<DriverZone> find(String search) throws AttributesNotFound, ErrorType {
+        if (search.isBlank ()){
+            return findAll ();
+        }
         return DriverZoneMapper.toDtos(driverzoneRepository.findAll(Search.expression(search, TmsDriverZone.class)), false);
 
     }
 
     @Override
     public List<DriverZone> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
+        if (search.isBlank ()){
+            return findAll (page, size);
+        }
         Pageable pageable = PageRequest.of(page, size);
         return DriverZoneMapper.toDtos(driverzoneRepository.findAll(Search.expression(search, TmsDriverZone.class), pageable), false);
 

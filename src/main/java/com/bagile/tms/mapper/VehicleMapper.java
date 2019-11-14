@@ -24,6 +24,7 @@ public class VehicleMapper {
         map.put("updatedBy", "updatedBy");
         map.put("vehicleCategory", "tmsVehicleCategory");
         map.put("badgeType", "tmsBadgeType");
+        map.put("insurance", "tmsInsurance");
 
     }
 
@@ -49,11 +50,10 @@ public class VehicleMapper {
         tmsVehicle.setCreationDate(vehicle.getCreationDate());
         tmsVehicle.setUpdateDate(vehicle.getUpdateDate());
 
-
         if (!lazy) {
             tmsVehicle.setTmsVehicleCategory(VehicleCategoryMapper.toEntity(vehicle.getVehicleCategory(), true));
             tmsVehicle.setTmsBadgeType(BadgeTypeMapper.toEntity(vehicle.getBadgeType(), true));
-
+            tmsVehicle.setTmsInsurance (InsuranceMapper.toEntity (vehicle.getInsurance (), true));
         }
         return tmsVehicle;
 
@@ -74,9 +74,9 @@ public class VehicleMapper {
         vehicle.setUpdateDate(tmsVehicle.getUpdateDate());
 
         if (!lazy) {
-            vehicle.setBadgeType(BadgeTypeMapper.toDto(tmsVehicle.getTmsBadgeType(), lazy));
-            vehicle.setVehicleCategory(VehicleCategoryMapper.toDto(tmsVehicle.getTmsVehicleCategory(), lazy));
-
+            vehicle.setBadgeType(BadgeTypeMapper.toDto(tmsVehicle.getTmsBadgeType(), true));
+            vehicle.setVehicleCategory(VehicleCategoryMapper.toDto(tmsVehicle.getTmsVehicleCategory(), true));
+            vehicle.setInsurance (InsuranceMapper.toDto (tmsVehicle.getTmsInsurance (), true));
         }
         return vehicle;
 
