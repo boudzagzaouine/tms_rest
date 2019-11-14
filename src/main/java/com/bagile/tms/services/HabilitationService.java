@@ -11,6 +11,7 @@ import java.util.List;
 public interface HabilitationService {
 
     public Habilitation save(Habilitation habilitation);
+    public Habilitation save(String[] habilitation);
 
     public Long size();
 

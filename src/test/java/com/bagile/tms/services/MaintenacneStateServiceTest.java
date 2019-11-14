@@ -19,6 +19,20 @@ class MaintenacneStateServiceTest {
 
     @Test
     void save() {
+        MaintenanceState maintenanceState = new MaintenanceState();
+        assertEquals(0,maintenanceState.getId());
+        MaintenanceState save = maintenanceStateService.save(maintenanceState);
+        assertNotNull(save);    }
+
+    @Test
+    void update() throws IdNotFound {
+
+        MaintenanceState maintenanceStateFindByid=maintenanceStateService.findById(1L);
+        assertNotNull(maintenanceStateFindByid);
+        maintenanceStateFindByid.setCode("ddd");
+        MaintenanceState save = maintenanceStateService.save(maintenanceStateFindByid);
+        assertNotNull(save);
+        assertEquals("ddd",save.getCode());
 
     }
 

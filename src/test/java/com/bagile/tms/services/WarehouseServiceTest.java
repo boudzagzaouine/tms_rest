@@ -29,6 +29,19 @@ class WarehouseServiceTest {
         assertNotNull(save);
     }
 
+
+    @Test
+    void update() throws IdNotFound {
+
+        Warehouse WarehouseFindByid=warehouseService.findById(1L);
+        assertNotNull(WarehouseFindByid);
+        WarehouseFindByid.setCode("vv");
+        Warehouse save = warehouseService.save(WarehouseFindByid);
+        assertNotNull(save);
+        assertEquals("VV",save.getCode());
+
+    }
+
     @Test
     void size_Db_vide_return_zero() {
 

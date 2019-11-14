@@ -10,7 +10,7 @@ public class Vacation extends EmsDto implements Serializable {
      *
      */
     private static final long serialVersionUID = -7433270658093374012L;
-    private Long id;
+    private long id;
    private Date startDate;
    private Date endDate;
    private VacationType vacationType;
@@ -29,11 +29,11 @@ public class Vacation extends EmsDto implements Serializable {
         this.driver = driver;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -66,7 +66,7 @@ public class Vacation extends EmsDto implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vacation vacation = (Vacation) o;
-        return getId().equals(vacation.getId());
+        return getId()==(vacation.getId());
     }
 
     @Override

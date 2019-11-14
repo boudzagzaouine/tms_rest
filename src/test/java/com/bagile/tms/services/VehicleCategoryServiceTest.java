@@ -19,6 +19,21 @@ class VehicleCategoryServiceTest {
 
     @Test
     void save() {
+        VehicleCategory vehicleCategory = new VehicleCategory();
+        assertEquals(0,vehicleCategory.getId());
+        VehicleCategory save = vehicleCategoryService.save(vehicleCategory);
+        assertNotNull(save);
+    }
+
+    @Test
+    void update() throws IdNotFound {
+
+        VehicleCategory vehicleCategoryFindByid=vehicleCategoryService.findById(1L);
+        assertNotNull(vehicleCategoryFindByid);
+        vehicleCategoryFindByid.setCode("vv");
+        VehicleCategory save = vehicleCategoryService.save(vehicleCategoryFindByid);
+        assertNotNull(save);
+        assertEquals("vv",save.getCode());
 
     }
 

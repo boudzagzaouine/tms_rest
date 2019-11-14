@@ -17,7 +17,7 @@ public class TmsVacationType   extends EmsEntity{
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_vacation_type_id", allocationSize = 1)
     @Column(name = "tms_vacationtypeid", unique = true, nullable = false, precision = 10, scale = 0)
     private Long tmsVacationTypeId;
-    @Column(name = "tms_vacationtypecode")
+    @Column(name = "tms_vacationtypecode", unique = true, nullable = false, length = 90)
     private String tmsVacationTypeCode;
     @Column(name = "tms_vacationtypedescription")
     private String tmsVacationDescription;

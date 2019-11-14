@@ -17,7 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 @Transactional
@@ -33,13 +33,60 @@ public class HabilitationServiceImpl implements HabilitationService {
     }
 
     @Override
+    public Habilitation save(String[] codes) {
+        Habilitation h = null;
+        for (String code : codes) {
+            Habilitation habilitation = new Habilitation();
+            habilitation.setCode(code.toUpperCase());
+            h = save(habilitation);
+        }
+
+        return h;
+    }
+
+    @Override
     public Habilitation save(Habilitation habilitation) {
         LOGGER.info("save Habilitation");
         habilitation.setUpdateDate(EmsDate.getDateNow());
         if (0 >= habilitation.getId()) {
             habilitation.setCreationDate(EmsDate.getDateNow());
         }
-        return HabilitationMapper.toDto(habilitationRepository.saveAndFlush(HabilitationMapper.toEntity(habilitation, false)), false);
+        UsrHabilitation savedHabilitation = habilitationRepository.save(HabilitationMapper.toEntity(habilitation, false));
+
+        Habilitation view = new Habilitation();
+        view.setCode(habilitation.getCode().toUpperCase() + "_VIEW");
+        view.setCreationDate(habilitation.getCreationDate());
+        view.setUpdateDate(habilitation.getUpdateDate());
+        view.setHabilitation(HabilitationMapper.toDto(savedHabilitation, false));
+
+
+        Habilitation create = new Habilitation();
+        create.setCode(habilitation.getCode().toUpperCase() + "_CREATE");
+        create.setCreationDate(habilitation.getCreationDate());
+        create.setUpdateDate(habilitation.getUpdateDate());
+        create.setHabilitation(HabilitationMapper.toDto(savedHabilitation, false));
+
+        Habilitation edit = new Habilitation();
+        edit.setCode(habilitation.getCode().toUpperCase() + "_EDIT");
+        edit.setCreationDate(habilitation.getCreationDate());
+        edit.setUpdateDate(habilitation.getUpdateDate());
+        edit.setHabilitation(HabilitationMapper.toDto(savedHabilitation, false));
+
+        Habilitation delete = new Habilitation();
+        delete.setCode(habilitation.getCode().toUpperCase() + "_DELETE");
+        delete.setCreationDate(habilitation.getCreationDate());
+        delete.setUpdateDate(habilitation.getUpdateDate());
+        delete.setHabilitation(HabilitationMapper.toDto(savedHabilitation, false));
+
+        Set<Habilitation> list = new HashSet<>();
+        list.add(view);
+        list.add(create);
+        list.add(edit);
+        list.add(delete);
+
+        habilitationRepository.saveAll(HabilitationMapper.toEntities(list, false));
+
+        return HabilitationMapper.toDto(savedHabilitation, false);
     }
 
     @Override

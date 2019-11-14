@@ -7,21 +7,29 @@ import java.util.Date;
 @Table(name="tms_vehicule")
 public class TmsVehicle   extends EmsEntity{
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_vehicule_id", allocationSize = 1)
+    @Column(name = "tms_vehiculeid", unique = true, nullable = false, precision = 10, scale = 0)
     private long tmsVehicleId;
-
+    @Column(name = "tms_vehiculeregistrationnumber")
     private String tmsRegistrationNumber;
-
+    @Column(name = "tms_vehiculecode", unique = true, nullable = false, length = 90)
    private String tmsVehicleCode;
-
+    @Column(name = "tms_vehiculetechnicalvisit")
    private Date tmsVehicleTechnicalVisit;
-
+    @Column(name = "tms_vehiculecreationdate")
+   private Date tmsVehicleCreationDate;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "tms_vehiculecategorieid")
    private TmsVehicleCategory tmsVehicleCategory;
 
-
+    @ManyToOne(fetch = FetchType.LAZY, cascade =CascadeType.MERGE)
+    @JoinColumn(name = "tms_badgetypeid")
    private TmsBadgeType tmsBadgeType;
 
-
+    @OneToOne(fetch = FetchType.LAZY, cascade =CascadeType.MERGE)
+    @JoinColumn(name = "tms_vehicleinsuranceid")
     private TmsInsurance tmsInsurance;
 
 
@@ -29,10 +37,6 @@ public class TmsVehicle   extends EmsEntity{
     public TmsVehicle() {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_vehicule_id", allocationSize = 1)
-    @Column(name = "tms_vehiculeid", unique = true, nullable = false, precision = 10, scale = 0)
     public long getTmsVehicleId() {
         return tmsVehicleId;
     }
@@ -41,7 +45,6 @@ public class TmsVehicle   extends EmsEntity{
         this.tmsVehicleId = tmsVehicleId;
     }
 
-    @Column(name = "tms_vehiculeregistrationnumber", unique = true)
     public String getTmsRegistrationNumber() {
         return tmsRegistrationNumber;
     }
@@ -49,7 +52,7 @@ public class TmsVehicle   extends EmsEntity{
     public void setTmsRegistrationNumber(String tmsRegistrationNumber) {
         this.tmsRegistrationNumber = tmsRegistrationNumber;
     }
-    @Column(name = "tms_vehiculecode", unique = true)
+
     public String getTmsVehicleCode() {
         return tmsVehicleCode;
     }
@@ -58,7 +61,6 @@ public class TmsVehicle   extends EmsEntity{
         this.tmsVehicleCode = tmsVehicleCode;
     }
 
-    @Column(name = "tms_vehiculetechnicalvisit")
     public Date getTmsVehicleTechnicalVisit() {
         return tmsVehicleTechnicalVisit;
     }
@@ -67,8 +69,14 @@ public class TmsVehicle   extends EmsEntity{
         this.tmsVehicleTechnicalVisit = tmsVehicleTechnicalVisit;
     }
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "tms_vehiculecategorieid")
+    public Date getTmsVehicleCreationDate() {
+        return tmsVehicleCreationDate;
+    }
+
+    public void setTmsVehicleCreationDate(Date tmsVehicleCreationDate) {
+        this.tmsVehicleCreationDate = tmsVehicleCreationDate;
+    }
+
     public TmsVehicleCategory getTmsVehicleCategory() {
         return tmsVehicleCategory;
     }
@@ -77,8 +85,6 @@ public class TmsVehicle   extends EmsEntity{
         this.tmsVehicleCategory = tmsVehicleCategory;
     }
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "tms_badgetypeid")
     public TmsBadgeType getTmsBadgeType() {
         return tmsBadgeType;
     }
@@ -87,8 +93,6 @@ public class TmsVehicle   extends EmsEntity{
         this.tmsBadgeType = tmsBadgeType;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "tms_vehicleinsuranceid", unique = true)
     public TmsInsurance getTmsInsurance() {
         return tmsInsurance;
     }

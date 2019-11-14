@@ -19,8 +19,24 @@ class MaintenanceTypeServiceTest {
 
     @Test
     void save() {
+        MaintenanceType maintenanceType = new MaintenanceType();
+        assertEquals(0,maintenanceType.getId());
+        MaintenanceType save = maintenanceTypeService.save(maintenanceType);
+        assertNotNull(save);
+    }
+
+    @Test
+    void update() throws IdNotFound {
+
+        MaintenanceType maintenanceTypeFindByid=maintenanceTypeService.findById(1L);
+        assertNotNull(maintenanceTypeFindByid);
+        maintenanceTypeFindByid.setCode("ddd");
+        MaintenanceType save = maintenanceTypeService.save(maintenanceTypeFindByid);
+        assertNotNull(save);
+        assertEquals("ddd",save.getCode());
 
     }
+
 
     @Test
     void size_Db_vide_return_zero() {

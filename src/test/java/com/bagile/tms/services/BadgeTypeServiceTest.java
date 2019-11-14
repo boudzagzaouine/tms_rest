@@ -3,10 +3,12 @@ package com.bagile.tms.services;
 import com.bagile.tms.dto.BadgeType;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.IdNotFound;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.test.annotation.DirtiesContext;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,10 +19,30 @@ class BadgeTypeServiceTest {
     private BadgeTypeService badgeTypeService;
 
 
+
     @Test
+    @Disabled
+    @DirtiesContext
     void save() {
+        BadgeType badgeType = new BadgeType();
+        assertEquals(0,badgeType.getId());
+        BadgeType save = badgeTypeService.save(badgeType);
+        assertNotNull(save);
+    }
+
+    @Test
+    void update() throws IdNotFound {
+
+        BadgeType badgeTypeFindByid=badgeTypeService.findById(1L);
+        assertNotNull(badgeTypeFindByid);
+        badgeTypeFindByid.setCode("ddd");
+        BadgeType save = badgeTypeService.save(badgeTypeFindByid);
+        assertNotNull(save);
+        assertEquals("ddd",save.getCode());
 
     }
+
+
 
     @Test
     void size_Db_vide_return_zero() {

@@ -27,3 +27,15 @@
 /.vscode/settings.json
 /src/main/resources/application.yml
 /src/main/resources/application.yml
+/src/main/java/com/bagile/tms/config/DBConfig.java
+/src/test/java/com/bagile/tms/services/BadgeServiceTest.java
+/src/test/java/com/bagile/tms/services/BadgeTypeServiceTest.java
+/src/test/java/com/bagile/tms/services/ContactServiceTest.java
+/src/test/java/com/bagile/tms/services/DriverServiceTest.java
+/src/test/java/com/bagile/tms/services/MaintenacneStateServiceTest.java
+/src/test/java/com/bagile/tms/services/MaintenancePlanServiceTest.java
+/src/test/java/com/bagile/tms/services/MaintenanceTypeServiceTest.java
+/src/test/java/com/bagile/tms/services/VacationServiceTest.java
+/src/test/java/com/bagile/tms/services/VacationTypeServiceTest.java
+/src/test/java/com/bagile/tms/services/VehicleCategoryServiceTest.java
+/src/test/java/com/bagile/tms/services/VehicleServiceTest.java

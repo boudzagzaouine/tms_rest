@@ -11,7 +11,7 @@ public class TmsTermInsurance extends  EmsEntity{
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_terminsurance_id", allocationSize = 1)
     @Column(name = "tms_terminsuranceid", unique = true, nullable = false, precision = 10, scale = 0)
     private Long tmsTermInsuranceId;
-    @Column(name = "tms_terminsurancecode")
+    @Column(name = "tms_terminsurancecode", unique = true, nullable = false, length = 90)
     private String tmsTermInsuranceCode;
     @Column(name = "tms_terminsurancedescription")
     private String tmsTermInsuranceDescription;

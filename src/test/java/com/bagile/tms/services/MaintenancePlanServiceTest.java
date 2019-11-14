@@ -24,6 +24,22 @@ class MaintenancePlanServiceTest {
 
     @Test
     void saveValidMaintenancePlanShouldReturnTrue() {
+        MaintenancePlan maintenancePlan = new MaintenancePlan();
+        assertEquals(0,maintenancePlan.getId());
+        MaintenancePlan save = maintenancePlanService.save(maintenancePlan);
+        assertNotNull(save);
+    }
+
+    @Test
+    void update() throws IdNotFound {
+
+        MaintenancePlan maintenancePlanFindByid=maintenancePlanService.findById(1L);
+        assertNotNull(maintenancePlanFindByid);
+        maintenancePlanFindByid.setCode("ddd");
+        MaintenancePlan save = maintenancePlanService.save(maintenancePlanFindByid);
+        assertNotNull(save);
+        assertEquals("DDD",save.getCode());
+
     }
 
     @Test
