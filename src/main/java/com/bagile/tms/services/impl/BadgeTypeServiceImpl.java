@@ -51,7 +51,7 @@ public class BadgeTypeServiceImpl implements BadgeTypeService {
 
     @Override
     public List<BadgeType> find(String search) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return findAll ();
         }
         return BadgeTypeMapper.toDtos(badgeTypeRepository.findAll(Search.expression(search, TmsBadgeType.class)), false);
@@ -59,7 +59,7 @@ public class BadgeTypeServiceImpl implements BadgeTypeService {
 
     @Override
     public List<BadgeType> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return findAll (page, size);
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "prmBadgeTypeUpdateDate");
@@ -69,7 +69,7 @@ public class BadgeTypeServiceImpl implements BadgeTypeService {
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return size ();
         }
         return badgeTypeRepository.count(Search.expression(search, TmsBadgeType.class));

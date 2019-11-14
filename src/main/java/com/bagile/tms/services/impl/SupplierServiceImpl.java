@@ -54,7 +54,7 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public List<Supplier> find(String search) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return findAll ();
         }
         return SupplierMapper.toDtos(supplierRepository.findAll(Search.expression(search, RcpSupplier.class)), false);
@@ -62,7 +62,7 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public List<Supplier> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return findAll (page, size);
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "prmSupplierUpdateDate");
@@ -72,7 +72,7 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return size ();
         }
         return supplierRepository.count(Search.expression(search, RcpSupplier.class));

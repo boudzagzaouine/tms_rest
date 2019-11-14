@@ -53,7 +53,7 @@ public class InsuranceServiceImpl implements InsuranceService {
 
     @Override
     public List<Insurance> find(String search) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return findAll ();
         }
         return InsuranceMapper.toDtos(insuranceRepository.findAll(Search.expression(search, TmsInsurance.class)), false);
@@ -61,7 +61,7 @@ public class InsuranceServiceImpl implements InsuranceService {
 
     @Override
     public List<Insurance> find(String search, int page,int size) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return findAll (page, size);
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
@@ -76,7 +76,7 @@ public class InsuranceServiceImpl implements InsuranceService {
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return size();
         }
         return insuranceRepository.count(Search.expression(search, TmsInsurance.class));

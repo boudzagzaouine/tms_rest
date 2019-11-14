@@ -54,7 +54,7 @@ public class MaintenanceServiceImpl implements MaintenancePlanService {
 
     @Override
     public List<MaintenancePlan> find(String search) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return findAll ();
         }
         return MaintenancePlanMapper.toDtos(maintenancePlanRepository.findAll(Search.expression(search, TmsMaintenancePlan.class)), false);
@@ -62,7 +62,7 @@ public class MaintenanceServiceImpl implements MaintenancePlanService {
 
     @Override
     public List<MaintenancePlan> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return findAll (page, size);
         }
         Pageable pageable = PageRequest.of(page, size);
@@ -71,7 +71,7 @@ public class MaintenanceServiceImpl implements MaintenancePlanService {
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return size ();
         }
         return maintenancePlanRepository.count(Search.expression(search, TmsMaintenancePlan.class));

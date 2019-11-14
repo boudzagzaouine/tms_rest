@@ -51,7 +51,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public List<Vehicle> find(String search) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return findAll ();
         }
         return VehicleMapper.toDtos(vehicleRepository.findAll(Search.expression(search, TmsVehicle.class)), false);
@@ -59,7 +59,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public List<Vehicle> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return findAll (page, size);
         }
         Pageable pageable = PageRequest.of(page, size);
@@ -68,7 +68,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return size ();
         }
         return vehicleRepository.count(Search.expression(search, TmsVehicle.class));

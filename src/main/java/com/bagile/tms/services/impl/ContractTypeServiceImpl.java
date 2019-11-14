@@ -60,7 +60,7 @@ public class ContractTypeServiceImpl implements ContractTypeService {
 
     @Override
     public List<ContractType> find(String search) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return findAll ();
         }
         return ContractTypeMapper.toDtos(contractTypeRepository.findAll(Search.expression(search, TmsContractType.class)), false);
@@ -69,7 +69,7 @@ public class ContractTypeServiceImpl implements ContractTypeService {
 
     @Override
     public List<ContractType> find(String search, int page,int size) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return findAll (page, size);
         }
         Pageable pageable= PageRequest.of(page,size);
@@ -83,7 +83,7 @@ public class ContractTypeServiceImpl implements ContractTypeService {
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return size ();
         }
         return contractTypeRepository.count(Search.expression(search, TmsContractType.class));

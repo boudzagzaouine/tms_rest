@@ -19,6 +19,7 @@ public class Driver extends EmsDto implements Serializable {
     private boolean working;
 
 
+
     public Driver() {
     }
 

@@ -58,7 +58,7 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public List<Driver> find(String search) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals ("")){
             return findAll ();
         }
         return DriverMapper.toDtos(driverRepository.findAll(Search.expression(search, TmsDriver.class)), false);
@@ -66,7 +66,7 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public List<Driver> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return findAll (page, size);
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "tmsDriverUpDateDate");

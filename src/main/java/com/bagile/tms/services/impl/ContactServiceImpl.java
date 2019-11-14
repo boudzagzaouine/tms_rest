@@ -68,7 +68,7 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public List<Contact> find(String search) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return findAll ();
         }
         if (!search.trim ( ).contains ("active:false")) {
@@ -82,7 +82,7 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public List<Contact> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return findAll (page, size);
         }
         if (!search.trim ( ).contains ("active:false")) {
@@ -104,7 +104,7 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return size ();
         }
         if (!search.trim ( ).contains ("active:false")) {

@@ -48,7 +48,7 @@ public class MaintenanceTypeServiceImpl implements MaintenanceTypeService {
 
     @Override
     public List<MaintenanceType> find(String search) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return findAll ();
         }
         return MaintenanceTypeMapper.toDtos(MaintenancetypeRepository.findAll(Search.expression(search, TmsVehicle.class)));
@@ -56,7 +56,7 @@ public class MaintenanceTypeServiceImpl implements MaintenanceTypeService {
 
     @Override
     public List<MaintenanceType> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return findAll (page, size);
         }
         Pageable pageable = PageRequest.of(page, size);
@@ -65,7 +65,7 @@ public class MaintenanceTypeServiceImpl implements MaintenanceTypeService {
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return size ();
         }
         return MaintenancetypeRepository.count(Search.expression(search, TmsVehicle.class));

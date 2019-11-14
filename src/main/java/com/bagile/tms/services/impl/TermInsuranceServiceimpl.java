@@ -61,7 +61,7 @@ public class TermInsuranceServiceimpl implements TermInsuranceService {
 
     @Override
     public List<TermInsurance> find(String search) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return findAll ();
         }
         return TermInsuranceMapper.toDtos(termInsuranceRepository.findAll(Search.expression(search, TmsTermInsurance.class)), false);
@@ -69,7 +69,7 @@ public class TermInsuranceServiceimpl implements TermInsuranceService {
 
     @Override
     public List<TermInsurance> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return findAll (pageable);
         }
         return TermInsuranceMapper.toDtos(termInsuranceRepository.findAll(Search.expression(search, TmsTermInsurance.class), pageable), false);
@@ -82,7 +82,7 @@ public class TermInsuranceServiceimpl implements TermInsuranceService {
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        if (search.isBlank ()){
+        if (search.equals("")){
             return size ();
         }
         return termInsuranceRepository.count(Search.expression(search, TmsTermInsurance.class));
