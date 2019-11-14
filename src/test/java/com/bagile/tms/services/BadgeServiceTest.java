@@ -9,27 +9,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.annotation.DirtiesContext;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@Disabled
 class BadgeServiceTest {
-
     @Autowired
     private BadgeService badgeService;
-
 
     @Test
     @Disabled
     @DirtiesContext
     void save() {
-
         Badge badge = new Badge();
         assertEquals(0,badge.getId());
         Badge save = badgeService.save(badge);
         assertNotNull(save);
-
-
     }
 
     @Test

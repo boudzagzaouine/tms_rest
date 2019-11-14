@@ -1,12 +1,16 @@
 package com.bagile.tms.services;
 
+import com.bagile.tms.dto.BadgeType;
 import com.bagile.tms.dto.Vehicle;
+import com.bagile.tms.dto.VehicleCategory;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.IdNotFound;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.EmptyResultDataAccessException;
+
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,10 +20,54 @@ class VehicleServiceTest {
     @Autowired
     private VehicleService vehicleService;
 
+    @Autowired
+    private VehicleCategoryService vehicleCategoryService;
+
+    @Autowired
+    private BadgeTypeService badgeTypeService;
+
 
     @Test
     void save() {
+        VehicleCategory category = new VehicleCategory ();
+        category.setCode ("CAT1001");
+        VehicleCategory vehicleCategory = vehicleCategoryService.save (category);
+        assertNotNull (vehicleCategory);
 
+        BadgeType badgeType = new BadgeType ();
+        badgeType.setCode ("C");
+        BadgeType badgeType1 = badgeTypeService.save (badgeType);
+        assertNotNull (badgeType1);
+
+        Vehicle vehicle1 = new Vehicle ();
+        vehicle1.setCode ("VEH1002");
+        vehicle1.setRegistrationNumber ("23456-A-15");
+        vehicle1.setTechnicalVisit (new Date ());
+        vehicle1.setBadgeType (badgeType1);
+        vehicle1.setVehicleCategory (vehicleCategory);
+
+        Vehicle vehicle2 = new Vehicle ();
+        vehicle2.setCode ("VEH1002");
+        vehicle2.setRegistrationNumber ("23456-A-15");
+        vehicle2.setTechnicalVisit (new Date ());
+        vehicle2.setBadgeType (badgeType1);
+        vehicle2.setVehicleCategory (vehicleCategory);
+
+        Vehicle vehicle3 = new Vehicle ();
+        vehicle3.setCode ("VEH1002");
+        vehicle3.setRegistrationNumber ("23456-A-15");
+        vehicle3.setTechnicalVisit (new Date ());
+        vehicle3.setBadgeType (badgeType1);
+        vehicle3.setVehicleCategory (vehicleCategory);
+
+
+
+        Vehicle save1 = vehicleService.save (vehicle1);
+        Vehicle save2 = vehicleService.save (vehicle2);
+        Vehicle save3 = vehicleService.save (vehicle3);
+        assertNotNull (save1);
+        assertNotNull (save2);
+        assertNotNull (save3);
     }
 
     @Test

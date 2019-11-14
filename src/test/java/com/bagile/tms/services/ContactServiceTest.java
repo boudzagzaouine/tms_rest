@@ -16,11 +16,11 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@Disabled
 class ContactServiceTest {
 
     @Autowired
     private ContactService contactService;
-
 
     @Test
     @Disabled
@@ -107,12 +107,6 @@ class ContactServiceTest {
     @Test
     void findAll_empty_return_zero() throws AttributesNotFound, ErrorType {
         assertEquals(0, contactService.findAll().size());
-
-    }
-
-    @Test
-    void findAll1_searchPageSize_empty_return_zero() throws AttributesNotFound, ErrorType {
-        assertEquals(0, contactService.findAll(125,3).size());
 
     }
 

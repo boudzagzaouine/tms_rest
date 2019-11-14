@@ -16,11 +16,11 @@ import java.util.NoSuchElementException;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@Disabled
 class ContractTypeServiceTest {
 
     @Autowired
     private ContractTypeService contractTypeService;
-
 
     @Test
     @Disabled
@@ -30,12 +30,10 @@ class ContractTypeServiceTest {
         assertEquals(0,contractTypeact.getId());
         ContractType save = contractTypeService.save(contractTypeact);
         assertNotNull(save);
-
     }
 
     @Test
     void update() throws IdNotFound {
-
         ContractType contracttypeFindByid=contractTypeService.findById(1L);
         assertNotNull(contracttypeFindByid);
         contracttypeFindByid.setCode("ddd");
