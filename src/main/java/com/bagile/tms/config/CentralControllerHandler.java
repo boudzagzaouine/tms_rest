@@ -97,6 +97,12 @@ public class CentralControllerHandler {
         return null;
     }
 
+    @ExceptionHandler({Exception.class})
+    public ResponseEntity<Exception> handleException(Exception pe) {
+        LOGGER.error(pe.getMessage());
+        return new ResponseEntity<>(pe, HttpStatus.SEE_OTHER);
+    }
+
 //    @ExceptionHandler({DataIntegrityViolationException.class})
 //    public ResponseEntity<Exception> handleIdNotFound(DataIntegrityViolationException pe) {
 //        if (pe.getCause() instanceof ConstraintViolationException) {

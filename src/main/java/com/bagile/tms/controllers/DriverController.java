@@ -71,13 +71,15 @@ public class DriverController {
     @ResponseBody
     public List<Driver> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
 
-        return driverService.find(search, page, size);
+        List<Driver> drivers = driverService.find(search, page, size);
+        return drivers;
 
     }
     //@PreAuthorize("hasRole('DRIVER_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Driver add(@RequestBody Driver driver ){return driverService.save(driver);}
+    public Driver add(@RequestBody Driver driver ){
+        return driverService.save(driver);}
     //@PreAuthorize("hasRole('DRIVER_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody

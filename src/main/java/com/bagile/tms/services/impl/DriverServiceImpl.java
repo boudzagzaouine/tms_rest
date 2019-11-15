@@ -69,9 +69,10 @@ public class DriverServiceImpl implements DriverService {
         if (search.equals("")){
             return findAll (page, size);
         }
-        Sort sort = Sort.by(Sort.Direction.DESC, "tmsDriverUpDateDate");
-        Pageable pageable = PageRequest.of(page, size, sort);
-        return DriverMapper.toDtos(driverRepository.findAll(Search.expression(search, TmsDriver.class), pageable), false);
+        //Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
+        Pageable pageable = PageRequest.of(page, size);
+        List<Driver> drivers = DriverMapper.toDtos(driverRepository.findAll(Search.expression(search, TmsDriver.class), pageable), false);
+        return drivers;
     }
 
     @Override
@@ -101,8 +102,8 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public List<Driver> findAll(int page, int size) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "tmsDriverUpDateDate");
-        Pageable pageable = PageRequest.of(page, size, sort);
+        //Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
+        Pageable pageable = PageRequest.of(page, size);
         return DriverMapper.toDtos(driverRepository.findAll(pageable), false);
     }
 

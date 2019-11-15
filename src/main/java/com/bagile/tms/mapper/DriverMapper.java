@@ -26,8 +26,8 @@ public class DriverMapper {
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
-        map.put("createdBy", "createdByUser");
-        map.put("updatedBy", "updatedByUser");
+        map.put("createdBy", "createdBy");
+        map.put("updatedBy", "updatedBy");
 
     }
 
