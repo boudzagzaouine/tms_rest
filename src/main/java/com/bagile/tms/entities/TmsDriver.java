@@ -94,7 +94,7 @@ public class TmsDriver extends EmsEntity {
     }
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "prm_contactid")
     public PrmContact getPrmContact() {
         return prmContact;
@@ -112,7 +112,7 @@ public class TmsDriver extends EmsEntity {
         this.tmsWorking = tmsWorking;
     }
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(optional = false)
     @JoinColumn(name = "tms_badgeid")
     public TmsBadge getTmsBadge() {
         return tmsBadge;
