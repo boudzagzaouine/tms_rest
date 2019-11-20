@@ -60,7 +60,7 @@ public class DriverMapper {
         tmsDriver.setUpdateDate(driver.getUpdateDate());
 
         if (!lazy) {
-            tmsDriver.setTmsContact(ContactMapper.toEntity(driver.getContact(), true));
+            tmsDriver.setPrmContact (ContactMapper.toEntity(driver.getContact(), true));
             tmsDriver.setTmsBadge(BadgeMapper.toEntity(driver.getBadge(), true));
 
 
@@ -89,9 +89,8 @@ public class DriverMapper {
         driver.setUpdateDate(tmsDriver.getUpdateDate());
 
         if (!lazy) {
-            driver.setContact(ContactMapper.toDto(tmsDriver.getprmContact(), true));
+            driver.setContact(ContactMapper.toDto(tmsDriver.getPrmContact (), true));
             driver.setBadge(BadgeMapper.toDto(tmsDriver.getTmsBadge(), true));
-
         }
         return driver;
 
