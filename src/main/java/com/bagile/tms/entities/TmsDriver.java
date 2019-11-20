@@ -29,13 +29,12 @@ public class TmsDriver  extends EmsEntity{
     private Date tmsDriverLastMedicalVisit;
     @Column(name = "tms_drivercommission")
     private BigDecimal tmsDriverCommission;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_contactid")
+
     private PrmContact prmContact;
     @Column(name = "tms_driverworkin")
     private boolean tmsWorking;
 
-
+    private TmsBadge tmsBadge;
 
 
 
@@ -99,7 +98,8 @@ public class TmsDriver  extends EmsEntity{
         this.tmsDriverCommission = tmsDriverCommission;
     }
 
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "prm_contactid")
     public PrmContact getprmContact() {
         return prmContact;
     }
@@ -108,5 +108,13 @@ public class TmsDriver  extends EmsEntity{
         this.prmContact = prmContact;
     }
 
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "tms_badgeid")
+    public TmsBadge getTmsBadge() {
+        return tmsBadge;
+    }
 
+    public void setTmsBadge(TmsBadge tmsbadge) {
+        this.tmsBadge = tmsbadge;
+    }
 }

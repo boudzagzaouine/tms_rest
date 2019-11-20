@@ -11,19 +11,11 @@ public class Badge extends EmsDto implements Serializable {
     private long id;
     private String code;
     private BadgeType badgeType;
-    private Driver driver;
 
     public Badge() {
     }
 
 
-    public Driver getDriver() {
-        return driver;
-    }
-
-    public void setDriver(Driver driver) {
-        this.driver = driver;
-    }
 
     public BadgeType getBadgeType() {
         return badgeType;

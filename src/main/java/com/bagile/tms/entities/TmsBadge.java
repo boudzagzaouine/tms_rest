@@ -15,25 +15,24 @@ public class TmsBadge  extends EmsEntity{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_badge_id", allocationSize = 1)
     @Column(name = "tms_badgeid", unique = true, nullable = false, precision = 10, scale = 0)
-    private long tmsBadgeId;
+    private Long tmsBadgeId;
+
     @Column(name = "tms_badgecode", unique = true, nullable = false, length = 90)
     private String tmsBadgeCode;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_badgetypeid")
     private TmsBadgeType tmsBadgeType;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_driverid")
-    private TmsDriver tmsDriver;
+
 
 
     public TmsBadge() {
     }
 
-    public long getTmsBadgeId() {
+    public Long getTmsBadgeId() {
         return tmsBadgeId;
     }
 
-    public void setTmsBadgeId(int tmsBadgeId) {
+    public void setTmsBadgeId(Long tmsBadgeId) {
         this.tmsBadgeId = tmsBadgeId;
     }
 
@@ -53,11 +52,5 @@ public class TmsBadge  extends EmsEntity{
         this.tmsBadgeType = tmsBadgeType;
     }
 
-    public TmsDriver getTmsDriver() {
-        return tmsDriver;
-    }
 
-    public void setTmsDriver(TmsDriver tmsDriver) {
-        this.tmsDriver = tmsDriver;
-    }
 }

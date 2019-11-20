@@ -15,7 +15,7 @@ public class BadgeMapper {
         map.put("id", "tmsBadgeId");
         map.put("code", "tmsBadgeCode");
         map.put("badgeType", "tmsBadgeType");
-        map.put("driver", "tmsDriver");
+
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -37,7 +37,7 @@ public class BadgeMapper {
         }
         TmsBadge tmsBadge = new TmsBadge();
         tmsBadge.setTmsBadgeCode(badge.getCode());
-        tmsBadge.setTmsBadgeId((int) badge.getId());
+        tmsBadge.setTmsBadgeId(badge.getId());
 
         tmsBadge.setCreatedBy(badge.getCreatedBy());
         tmsBadge.setUpdatedBy(badge.getUpdatedBy());
@@ -45,7 +45,6 @@ public class BadgeMapper {
         tmsBadge.setUpdateDate(badge.getUpdateDate());
         if (!lazy) {
             tmsBadge.setTmsBadgeType(BadgeTypeMapper.toEntity(badge.getBadgeType(), true));
-            tmsBadge.setTmsDriver(DriverMapper.toEntity(badge.getDriver(), true));
         }
         return tmsBadge;
     }
@@ -55,7 +54,7 @@ public class BadgeMapper {
             return null;
         }
         Badge badge = new Badge();
-        badge.setId((int) tmsBadge.getTmsBadgeId());
+        badge.setId(tmsBadge.getTmsBadgeId());
         badge.setCode(tmsBadge.getTmsBadgeCode());
 
         badge.setCreatedBy(tmsBadge.getCreatedBy());
@@ -65,7 +64,6 @@ public class BadgeMapper {
 
         if (!lazy) {
             badge.setBadgeType(BadgeTypeMapper.toDto(tmsBadge.getTmsBadgeType(), true));
-            badge.setDriver(DriverMapper.toDto(tmsBadge.getTmsDriver(), true));
         }
         return badge;
     }

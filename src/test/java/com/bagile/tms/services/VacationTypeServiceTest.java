@@ -4,6 +4,8 @@ import com.bagile.tms.dto.VacationType;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.IdNotFound;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -36,6 +38,46 @@ class VacationTypeServiceTest {
         assertEquals("vv",save.getCode());
 
     }
+
+
+    @ParameterizedTest
+    @ValueSource(strings = {"qs123", "ze5478"})
+    void saveNewValid(String code) {
+
+        VacationType vacationType = new VacationType();
+        vacationType.setCode(code);
+        assertEquals(0,vacationType.getId());
+
+        VacationType save = vacationTypeService.save(vacationType);
+        assertEquals(code.toUpperCase(), save.getCode().toUpperCase());
+        assertNotNull(save);
+
+    }
+
+    @Test
+    void size_Db_return_count() {
+
+        assertEquals(2, vacationTypeService.size());
+
+    }
+    @ParameterizedTest
+    @ValueSource(longs = {1L,2L})
+    void isExist_Id_exist_In_Db_return_true(long id) {
+        boolean d = vacationTypeService.isExist(id);
+        assertTrue(d);
+
+    }
+    @Test
+    void findById_Id_exist_in_db_return_Object() throws IdNotFound {
+        VacationType vacationType = vacationTypeService.findById(1L);
+        assertNotNull(vacationType);
+        assertEquals(1,vacationType.getId());
+    }
+
+
+
+
+
     @Test
     void size_Db_vide_return_zero() {
 

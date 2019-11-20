@@ -4,6 +4,8 @@ import com.bagile.tms.dto.MaintenanceType;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.IdNotFound;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -36,6 +38,43 @@ class MaintenanceTypeServiceTest {
         assertEquals("ddd",save.getCode());
 
     }
+
+
+
+    @ParameterizedTest
+    @ValueSource(strings = {"fg123", "vggf78"})
+    void saveNewValid(String code) {
+
+        MaintenanceType maintenanceType = new MaintenanceType();
+        maintenanceType.setCode(code);
+        assertEquals(0,maintenanceType.getId());
+
+        MaintenanceType save = maintenanceTypeService.save(maintenanceType);
+        assertEquals(code.toUpperCase(), save.getCode().toUpperCase());
+        assertNotNull(save);
+
+    }
+
+    @Test
+    void size_Db_return_count() {
+
+        assertEquals(2, maintenanceTypeService.size());
+
+    }
+    @ParameterizedTest
+    @ValueSource(longs = {1L,2L})
+    void isExist_Id_exist_In_Db_return_true(long id) {
+        boolean d = maintenanceTypeService.isExist(id);
+        assertTrue(d);
+
+    }
+    @Test
+    void findById_Id_exist_in_db_return_Object() throws IdNotFound {
+        MaintenanceType maintenanceType = maintenanceTypeService.findById(1L);
+        assertNotNull(maintenanceType);
+        assertEquals(1,maintenanceType.getId());
+    }
+
 
 
     @Test

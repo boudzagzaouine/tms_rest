@@ -4,6 +4,8 @@ import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.IdNotFound;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -47,6 +49,30 @@ class VacationServiceTest {
         assertEquals(date,save.getStartDate());
 
     }
+
+
+
+
+    @Test
+    void size_Db_return_count() {
+
+        assertEquals(2, vacationService.size());
+
+    }
+    @ParameterizedTest
+    @ValueSource(longs = {1L})
+    void isExist_Id_exist_In_Db_return_true(long id) {
+        boolean d = vacationService.isExist(id);
+        assertTrue(d);
+
+    }
+    @Test
+    void findById_Id_exist_in_db_return_Object() throws IdNotFound {
+        Vacation vacation = vacationService.findById(1L);
+        assertNotNull(vacation);
+        assertEquals(1,vacation.getId());
+    }
+
 
 
     @Test

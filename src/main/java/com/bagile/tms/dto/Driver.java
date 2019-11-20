@@ -17,6 +17,7 @@ public class Driver extends EmsDto implements Serializable {
     private BigDecimal commission;
     private Contact contact;
     private boolean working;
+    private Badge badge;
 
 
 
@@ -85,6 +86,14 @@ public class Driver extends EmsDto implements Serializable {
 
     public void setContact(Contact contact) {
         this.contact = contact;
+    }
+
+    public Badge getBadge() {
+        return badge;
+    }
+
+    public void setBadge(Badge badge) {
+        this.badge = badge;
     }
 
     @Override

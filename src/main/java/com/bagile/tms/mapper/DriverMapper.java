@@ -15,16 +15,21 @@ public class DriverMapper {
         map = new HashMap<>();
 
         map.put("id", "tmsDriverId");
-        map.put("registrationNumber", "tmsRegistrationNumber");
         map.put("code", "tmsDriverCode");
-        map.put("technicalVisit", "tmsDriverTechnicalVisit");
+        map.put("cin", "tmsDriverCin");
+        map.put("birthDate", "tmsDriverbirthDate");
+        map.put("lastMedicalVisit", "tmsDriverLastMedicalVisit");
+        map.put("commission", "tmsDriverCommission");
+        map.put("contact", "prmContact");
+        map.put("working", "tmsWorking");
+        map.put("badge", "tmsBadge");
+
+
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdBy");
         map.put("updatedBy", "updatedBy");
-        map.put("driverCategory", "tmsDriverCategory");
-        map.put("badgeType", "tmsBadgeType");
-        map.put("insurance", "tmsBadgeType");
+
     }
 
     public static Map<String, String> getMap() {
@@ -46,7 +51,7 @@ public class DriverMapper {
         tmsDriver.setTmsDriverCommission(driver.getCommission());
         tmsDriver.setTmsDriverLastMedicalVisit(driver.getLastMedicalVisit());
         tmsDriver.setTmsDriverbirthDate(driver.getBirthDate());
-    
+        tmsDriver.setTmsWorking(driver.isWorking());
 
 
         tmsDriver.setCreatedBy(driver.getCreatedBy());
@@ -54,10 +59,10 @@ public class DriverMapper {
         tmsDriver.setCreationDate(driver.getCreationDate());
         tmsDriver.setUpdateDate(driver.getUpdateDate());
 
-
         if (!lazy) {
             tmsDriver.setTmsContact(ContactMapper.toEntity(driver.getContact(), true));
-          
+            tmsDriver.setTmsBadge(BadgeMapper.toEntity(driver.getBadge(), true));
+
 
         }
         return tmsDriver;
@@ -75,6 +80,7 @@ public class DriverMapper {
         driver.setBirthDate(tmsDriver.getTmsDriverbirthDate());
         driver.setLastMedicalVisit(tmsDriver.getTmsDriverLastMedicalVisit());
         driver.setCommission(tmsDriver.getTmsDriverCommission());
+        driver.setWorking(tmsDriver.isTmsWorking());
 
 
         driver.setCreatedBy(tmsDriver.getCreatedBy());
@@ -83,8 +89,8 @@ public class DriverMapper {
         driver.setUpdateDate(tmsDriver.getUpdateDate());
 
         if (!lazy) {
-            driver.setContact(ContactMapper.toDto(tmsDriver.getprmContact(), lazy));
-           
+            driver.setContact(ContactMapper.toDto(tmsDriver.getprmContact(), true));
+            driver.setBadge(BadgeMapper.toDto(tmsDriver.getTmsBadge(), true));
 
         }
         return driver;

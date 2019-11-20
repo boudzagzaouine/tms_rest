@@ -42,6 +42,41 @@ class BadgeTypeServiceTest {
 
     }
 
+    @Test
+    @Disabled
+    void save_Code_Nullable() {
+
+        BadgeType badgeType = new BadgeType();
+        badgeType.setCode("Sd2542");
+        assertEquals(0,badgeType.getId());
+        BadgeType save = badgeTypeService.save(badgeType);
+        assertNotNull(save);
+
+    }
+
+
+    @Test
+    void size_Db_return_count() {
+
+        assertEquals(1, badgeTypeService.size());
+
+    }
+    @Test
+    void isExist_Id_exist_In_Db_return_true() {
+        boolean d = badgeTypeService.isExist(1L);
+        assertTrue(d);
+
+    }
+
+
+    @Test
+    void findById_Id_exist_in_db_return_Object() throws IdNotFound {
+        BadgeType badge = badgeTypeService.findById(1L);
+        assertNotNull(badge);
+        assertEquals(1,badge.getId());
+    }
+
+
 
 
     @Test

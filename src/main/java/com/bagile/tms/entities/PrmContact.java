@@ -12,7 +12,7 @@ public class PrmContact extends EmsEntity {
     private static final long serialVersionUID = -2556249835469329497L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_prm_contact_id", allocationSize = 1)
+    @SequenceGenerator(name = "seq", sequenceName = "seq_prm_contact", allocationSize = 1)
     @Column(name = "prm_contactid", unique = true, nullable = false, precision = 10, scale = 0)
     private Long prmContactId;
     @Column(name = "prm_contactname")

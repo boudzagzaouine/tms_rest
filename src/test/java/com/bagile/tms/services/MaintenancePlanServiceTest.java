@@ -5,6 +5,8 @@ import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -30,7 +32,7 @@ class MaintenancePlanServiceTest {
         assertNotNull(save);
     }
 
-    @Test
+  /*  @Test
     void update() throws IdNotFound {
 
         MaintenancePlan maintenancePlanFindByid=maintenancePlanService.findById(1L);
@@ -40,7 +42,46 @@ class MaintenancePlanServiceTest {
         assertNotNull(save);
         assertEquals("DDD",save.getCode());
 
+    }*/
+
+
+    @ParameterizedTest
+    @ValueSource(strings = {"qs123", "ze5478"})
+    void saveNewValid(String code) {
+
+        MaintenancePlan maintenancePlan = new MaintenancePlan();
+        maintenancePlan.setCode(code);
+        assertEquals(0,maintenancePlan.getId());
+
+        MaintenancePlan save = maintenancePlanService.save(maintenancePlan);
+        assertEquals(code.toUpperCase(), save.getCode().toUpperCase());
+        assertNotNull(save);
+
     }
+
+    @Test
+    void size_Db_return_count() {
+
+        assertEquals(2, maintenancePlanService.size());
+
+    }
+    @ParameterizedTest
+    @ValueSource(longs = {1L,2L})
+    void isExist_Id_exist_In_Db_return_true(long id) {
+        boolean d = maintenancePlanService.isExist(id);
+        assertTrue(d);
+
+    }
+    @Test
+    void findById_Id_exist_in_db_return_Object() throws IdNotFound {
+        MaintenancePlan maintenancePlan = maintenancePlanService.findById(1L);
+        assertNotNull(maintenancePlan);
+        assertEquals(1,maintenancePlan.getId());
+    }
+
+
+
+
 
     @Test
     void sizeOFEmptyDB_ShouldReturn_Zero() {
