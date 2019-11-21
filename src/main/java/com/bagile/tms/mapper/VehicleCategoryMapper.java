@@ -5,16 +5,15 @@ import com.bagile.tms.entities.TmsVehicleCategory;
 
 import java.util.*;
 
-
 public class VehicleCategoryMapper {
-    private VehicleCategoryMapper() {
-
+    public VehicleCategoryMapper() {
     }
 
     private static Map<String, String> map;
 
     static {
         map = new HashMap<>();
+
         map.put("id", "tmsVehicleCategoryId");
         map.put("code", "tmsVehicleCategoryCode");
         map.put("consumption", "tmsVehicleCategoryConsumption");
@@ -24,6 +23,7 @@ public class VehicleCategoryMapper {
         map.put("tonnage", "tmsVehicleCategoryTonnage");
         map.put("emptyWeight", "tmsVehicleCategoryEmptyWeight");
         map.put("totalWeight", "tmsVehicleCategoryTotalWeight");
+
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdBy");
@@ -34,89 +34,93 @@ public class VehicleCategoryMapper {
         return map;
     }
 
-    public String getField(String key) {
+    public static String getField(String key) {
         return map.get(key);
     }
 
-    public static TmsVehicleCategory toEntity(VehicleCategory vehicleCategory, boolean lazy) {
-        if (null == vehicleCategory) {
+    public static TmsVehicleCategory toEntity(VehicleCategory vehicle, boolean lazy) {
+        if (null == vehicle) {
             return null;
         }
         TmsVehicleCategory tmsVehicleCategory = new TmsVehicleCategory();
-        tmsVehicleCategory.setTmsVehicleCategoryId(vehicleCategory.getId());
-        tmsVehicleCategory.setTmsVehicleCategoryCode(vehicleCategory.getCode());
-        tmsVehicleCategory.setTmsVehicleCategoryConsumption(vehicleCategory.getConsumption());
-        tmsVehicleCategory.setTmsVehicleCategoryEmptyWeight(vehicleCategory.getWeight());
-        tmsVehicleCategory.setTmsVehicleCategoryWidth(vehicleCategory.getWidth());
-        tmsVehicleCategory.setTmsVehicleCategoryDepth(vehicleCategory.getDepth());
-        tmsVehicleCategory.setTmsVehicleCategoryTonnage(vehicleCategory.getTonnage());
-        tmsVehicleCategory.setTmsVehicleCategoryEmptyWeight(vehicleCategory.getEmptyWeight());
-        tmsVehicleCategory.setTmsVehicleCategoryTotalWeight(vehicleCategory.getTotalWeight());
-        tmsVehicleCategory.setCreatedBy(vehicleCategory.getCreatedBy());
-        tmsVehicleCategory.setUpdatedBy(vehicleCategory.getUpdatedBy());
-        tmsVehicleCategory.setCreationDate(vehicleCategory.getCreationDate());
-        tmsVehicleCategory.setUpdateDate(vehicleCategory.getUpdateDate());
+        tmsVehicleCategory.setTmsVehicleCategoryId(vehicle.getId());
+        tmsVehicleCategory.setTmsVehicleCategoryCode(vehicle.getCode() != null ? vehicle.getCode().toUpperCase() : null);
+        tmsVehicleCategory.setTmsVehicleCategoryConsumption (vehicle.getConsumption ());
+        tmsVehicleCategory.setTmsVehicleCategoryWeight (vehicle.getWeight ());
+        tmsVehicleCategory.setTmsVehicleCategoryWidth (vehicle.getWidth ());
+        tmsVehicleCategory.setTmsVehicleCategoryDepth (vehicle.getDepth ());
+        tmsVehicleCategory.setTmsVehicleCategoryTonnage (vehicle.getTonnage ());
+        tmsVehicleCategory.setTmsVehicleCategoryEmptyWeight (vehicle.getEmptyWeight ());
+        tmsVehicleCategory.setTmsVehicleCategoryTotalWeight (vehicle.getTotalWeight ());
 
-        if (!lazy) {
-        }
+
+        tmsVehicleCategory.setCreatedBy(vehicle.getCreatedBy());
+        tmsVehicleCategory.setUpdatedBy(vehicle.getUpdatedBy());
+        tmsVehicleCategory.setCreationDate(vehicle.getCreationDate());
+        tmsVehicleCategory.setUpdateDate(vehicle.getUpdateDate());
+
         return tmsVehicleCategory;
+
     }
 
     public static VehicleCategory toDto(TmsVehicleCategory tmsVehicleCategory, boolean lazy) {
         if (null == tmsVehicleCategory) {
             return null;
         }
-        VehicleCategory vehicleCategory = new VehicleCategory();
-        vehicleCategory.setId(tmsVehicleCategory.getTmsVehicleCategoryId());
-        vehicleCategory.setCode(tmsVehicleCategory.getTmsVehicleCategoryCode());
-        vehicleCategory.setConsumption(tmsVehicleCategory.getTmsVehicleCategoryConsumption());
-        vehicleCategory.setDepth(tmsVehicleCategory.getTmsVehicleCategoryDepth());
-        vehicleCategory.setWeight(tmsVehicleCategory.getTmsVehicleCategoryEmptyWeight());
-        vehicleCategory.setWidth(tmsVehicleCategory.getTmsVehicleCategoryWidth());
-        vehicleCategory.setTonnage(tmsVehicleCategory.getTmsVehicleCategoryTonnage());
-        vehicleCategory.setTotalWeight(tmsVehicleCategory.getTmsVehicleCategoryTotalWeight());
-        vehicleCategory.setEmptyWeight(tmsVehicleCategory.getTmsVehicleCategoryTotalWeight());
-        vehicleCategory.setCreatedBy(tmsVehicleCategory.getCreatedBy());
-        vehicleCategory.setUpdatedBy(tmsVehicleCategory.getUpdatedBy());
-        vehicleCategory.setCreationDate(tmsVehicleCategory.getCreationDate());
-        vehicleCategory.setUpdateDate(tmsVehicleCategory.getUpdateDate());
+        VehicleCategory vehicle = new VehicleCategory();
+        vehicle.setId((int) tmsVehicleCategory.getTmsVehicleCategoryId());
+        vehicle.setCode(tmsVehicleCategory.getTmsVehicleCategoryCode());
+        vehicle.setConsumption (tmsVehicleCategory.getTmsVehicleCategoryConsumption ());
+        vehicle.setWeight (tmsVehicleCategory.getTmsVehicleCategoryWeight ());
+        vehicle.setWidth (tmsVehicleCategory.getTmsVehicleCategoryWidth ());
+        vehicle.setDepth (tmsVehicleCategory.getTmsVehicleCategoryDepth ());
+        vehicle.setTonnage (tmsVehicleCategory.getTmsVehicleCategoryTonnage ());
+        vehicle.setEmptyWeight (tmsVehicleCategory.getTmsVehicleCategoryEmptyWeight ());
+        vehicle.setTotalWeight (tmsVehicleCategory.getTmsVehicleCategoryTotalWeight ());
 
-        if (!lazy) {
-        }
-        return vehicleCategory;
+
+        vehicle.setCreatedBy(tmsVehicleCategory.getCreatedBy());
+        vehicle.setUpdatedBy(tmsVehicleCategory.getUpdatedBy());
+        vehicle.setCreationDate(tmsVehicleCategory.getCreationDate());
+        vehicle.setUpdateDate(tmsVehicleCategory.getUpdateDate());
+
+
+        return vehicle;
+
     }
 
-    public static List<VehicleCategory> toDtos(Iterable<? extends TmsVehicleCategory> tmsCategories, boolean lazy) {
-        if (null == tmsCategories) {
+
+    public static List<VehicleCategory> toDtos(Iterable<? extends TmsVehicleCategory> tmsVehicleCategorys, boolean lazy) {
+        if (null == tmsVehicleCategorys) {
             return null;
         }
-        List<VehicleCategory> categories = new ArrayList<>();
-        for (TmsVehicleCategory tmsVehicleCategory : tmsCategories) {
-            categories.add(toDto(tmsVehicleCategory, lazy));
+        List<VehicleCategory> vehicules = new ArrayList<>();
+
+        for (TmsVehicleCategory tmsVehicleCategory : tmsVehicleCategorys) {
+            vehicules.add(toDto(tmsVehicleCategory, lazy));
         }
-        return categories;
+        return vehicules;
     }
 
-    public static Set<TmsVehicleCategory> toEntities(Set<? extends VehicleCategory> categories, boolean lazy) {
-        if (null == categories) {
+    public static Set<TmsVehicleCategory> toEntities(Set<VehicleCategory> vehicles, boolean lazy) {
+        if (null == vehicles) {
             return null;
         }
-        Set<TmsVehicleCategory> TmsCategories = new HashSet<>();
-        for (VehicleCategory vehicleCategory : categories) {
-            TmsCategories.add(toEntity(vehicleCategory, lazy));
+        Set<TmsVehicleCategory> tmsVehicleCategorys = new HashSet<>();
+        for (VehicleCategory vehicle : vehicles) {
+            tmsVehicleCategorys.add(toEntity(vehicle, lazy));
         }
-        return TmsCategories;
+        return tmsVehicleCategorys;
     }
 
-    public static Set<VehicleCategory> toDtos(Set<? extends TmsVehicleCategory> TmsCategories, boolean lazy) {
-        if (null == TmsCategories) {
+    public static Set<VehicleCategory> toDtos(Set<TmsVehicleCategory> tmsVehicleCategorys, boolean lazy) {
+        if (null == tmsVehicleCategorys) {
             return null;
         }
-        Set<VehicleCategory> categories = new HashSet<>();
-        for (TmsVehicleCategory tmsVehicleCategory : TmsCategories) {
-            categories.add(toDto(tmsVehicleCategory, lazy));
+        Set<VehicleCategory> vehicles = new HashSet<>();
+        for (TmsVehicleCategory tmsVehicleCategory : tmsVehicleCategorys) {
+            vehicles.add(toDto(tmsVehicleCategory, lazy));
         }
-        return categories;
+        return vehicles;
     }
 }
-

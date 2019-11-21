@@ -1,7 +1,5 @@
 package com.bagile.tms.entities;
 
-import com.bagile.tms.dto.Driver;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +18,7 @@ public class TmsBadge  extends EmsEntity{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_badge_id", allocationSize = 1)
     @Column(name = "tms_badgeid", unique = true, nullable = false, precision = 10, scale = 0)
-    private Long tmsBadgeId;
+    private long tmsBadgeId;
 
     @Column(name = "tms_badgecode", unique = true, nullable = false, length = 90)
     private String tmsBadgeCode;
@@ -37,11 +35,11 @@ public class TmsBadge  extends EmsEntity{
     public TmsBadge() {
     }
 
-    public Long getTmsBadgeId() {
+    public long getTmsBadgeId() {
         return tmsBadgeId;
     }
 
-    public void setTmsBadgeId(Long tmsBadgeId) {
+    public void setTmsBadgeId(long tmsBadgeId) {
         this.tmsBadgeId = tmsBadgeId;
     }
 

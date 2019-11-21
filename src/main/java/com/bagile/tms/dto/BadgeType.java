@@ -10,10 +10,7 @@ public class BadgeType extends EmsDto implements Serializable {
     private static final long serialVersionUID = -134482768077497935L;
     private long id;
     private String code;
-
-
-    public BadgeType() {
-    }
+    private String description;
 
     public long getId() {
         return id;
@@ -29,6 +26,14 @@ public class BadgeType extends EmsDto implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override

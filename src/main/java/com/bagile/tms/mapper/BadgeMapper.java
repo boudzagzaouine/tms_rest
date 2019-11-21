@@ -16,7 +16,6 @@ public class BadgeMapper {
         map.put("code", "tmsBadgeCode");
         map.put("badgeType", "tmsBadgeType");
 
-
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdByUser");

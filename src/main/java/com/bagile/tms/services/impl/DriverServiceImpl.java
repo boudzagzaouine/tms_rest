@@ -1,5 +1,6 @@
 package com.bagile.tms.services.impl;
 
+import com.bagile.tms.dto.Contact;
 import com.bagile.tms.dto.Driver;
 import com.bagile.tms.entities.TmsDriver;
 import com.bagile.tms.exceptions.AttributesNotFound;
@@ -7,11 +8,13 @@ import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
 import com.bagile.tms.mapper.DriverMapper;
 import com.bagile.tms.repositories.DriverRepository;
+import com.bagile.tms.services.ContactService;
 import com.bagile.tms.services.DriverService;
 import com.bagile.tms.util.EmsDate;
 import com.bagile.tms.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -23,11 +26,13 @@ import java.util.List;
 @Transactional
 public class DriverServiceImpl implements DriverService {
     private final DriverRepository driverRepository;
+    private final ContactService contactService;
     private final static Logger LOGGER = LoggerFactory
             .getLogger(DriverService.class);
 
-    public DriverServiceImpl(DriverRepository driverRepository) {
+    public DriverServiceImpl(DriverRepository driverRepository, ContactService contactService) {
         this.driverRepository = driverRepository;
+        this.contactService = contactService;
     }
 
     @Override
@@ -37,6 +42,7 @@ public class DriverServiceImpl implements DriverService {
         if (0 <= driver.getId()) {
             driver.setCreationDate(EmsDate.getDateNow());
         }
+
         return DriverMapper.toDto(driverRepository.saveAndFlush(DriverMapper.toEntity(driver, false)), false);
     }
 

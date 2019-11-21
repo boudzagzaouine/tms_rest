@@ -1,42 +1,24 @@
 package com.bagile.tms.entities;
 
 import javax.persistence.*;
-
 import java.util.Date;
+
 @Entity
-@Table(name="tms_vehicule")
-public class TmsVehicle   extends EmsEntity{
+@Table(name = "tms_vehicule")
+public class TmsVehicle extends EmsEntity {
+
+    private long tmsVehicleId;
+    private String tmsRegistrationNumber;
+    private String tmsVehicleCode;
+    private Date tmsVehicleTechnicalVisit;
+    private TmsVehicleCategory tmsVehicleCategory;
+    private TmsBadgeType tmsBadgeType;
+    private TmsInsurance tmsInsurance;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_vehicule_id", allocationSize = 1)
     @Column(name = "tms_vehiculeid", unique = true, nullable = false, precision = 10, scale = 0)
-    private long tmsVehicleId;
-    @Column(name = "tms_vehiculeregistrationnumber")
-    private String tmsRegistrationNumber;
-    @Column(name = "tms_vehiculecode", unique = true, nullable = false, length = 90)
-   private String tmsVehicleCode;
-    @Column(name = "tms_vehiculetechnicalvisit")
-   private Date tmsVehicleTechnicalVisit;
-    @Column(name = "tms_vehiculecreationdate")
-   private Date tmsVehicleCreationDate;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "tms_vehiculecategorieid")
-   private TmsVehicleCategory tmsVehicleCategory;
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade =CascadeType.MERGE)
-    @JoinColumn(name = "tms_badgetypeid")
-   private TmsBadgeType tmsBadgeType;
-
-    @OneToOne(fetch = FetchType.LAZY, cascade =CascadeType.MERGE)
-    @JoinColumn(name = "tms_vehicleinsuranceid")
-    private TmsInsurance tmsInsurance;
-
-
-
-    public TmsVehicle() {
-    }
-
     public long getTmsVehicleId() {
         return tmsVehicleId;
     }
@@ -45,6 +27,7 @@ public class TmsVehicle   extends EmsEntity{
         this.tmsVehicleId = tmsVehicleId;
     }
 
+    @Column(name = "tms_vehiculeregistrationnumber")
     public String getTmsRegistrationNumber() {
         return tmsRegistrationNumber;
     }
@@ -53,6 +36,7 @@ public class TmsVehicle   extends EmsEntity{
         this.tmsRegistrationNumber = tmsRegistrationNumber;
     }
 
+    @Column(name = "tms_vehiculecode", unique = true, nullable = false, length = 90)
     public String getTmsVehicleCode() {
         return tmsVehicleCode;
     }
@@ -61,6 +45,8 @@ public class TmsVehicle   extends EmsEntity{
         this.tmsVehicleCode = tmsVehicleCode;
     }
 
+    @Temporal(TemporalType.DATE)
+    @Column(name = "tms_vehiculetechnicalvisit")
     public Date getTmsVehicleTechnicalVisit() {
         return tmsVehicleTechnicalVisit;
     }
@@ -69,13 +55,8 @@ public class TmsVehicle   extends EmsEntity{
         this.tmsVehicleTechnicalVisit = tmsVehicleTechnicalVisit;
     }
 
-    public Date getTmsVehicleCreationDate() {
-        return tmsVehicleCreationDate;
-    }
-
-    public void setTmsVehicleCreationDate(Date tmsVehicleCreationDate) {
-        this.tmsVehicleCreationDate = tmsVehicleCreationDate;
-    }
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "tms_vehiculecategorieid")
 
     public TmsVehicleCategory getTmsVehicleCategory() {
         return tmsVehicleCategory;
@@ -85,6 +66,8 @@ public class TmsVehicle   extends EmsEntity{
         this.tmsVehicleCategory = tmsVehicleCategory;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "tms_badgetypeid")
     public TmsBadgeType getTmsBadgeType() {
         return tmsBadgeType;
     }
@@ -93,6 +76,8 @@ public class TmsVehicle   extends EmsEntity{
         this.tmsBadgeType = tmsBadgeType;
     }
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "tms_vehicleinsuranceid")
     public TmsInsurance getTmsInsurance() {
         return tmsInsurance;
     }

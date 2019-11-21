@@ -9,8 +9,6 @@ import com.bagile.tms.mapper.BadgeTypeMapper;
 import com.bagile.tms.repositories.BadgeTypeRepository;
 import com.bagile.tms.services.BadgeTypeService;
 import com.bagile.tms.util.Search;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
