@@ -17,7 +17,7 @@ public class DriverZoneMapper {
         map = new HashMap<>();
         map.put("id", "tmsDriverZoneId");
         map.put("driver", "tmsDriverZoneDriver");
-        map.put("zone", "tmsDriverZonezone");
+        map.put("zone", "tmsDriverZoneZone");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");

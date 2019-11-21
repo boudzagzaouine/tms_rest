@@ -23,8 +23,7 @@ public class InsuranceMapper {
         map.put("endDate", "tmsInsuranceEndDate");
         map.put("amount", "tmsInsuranceAmount");
         map.put("contractType", "tmsContractType");
-        map.put("contractType", "tmsTermInsurance");
-
+        map.put("termInsurance", "tmsTermInsurance");
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdByUser");

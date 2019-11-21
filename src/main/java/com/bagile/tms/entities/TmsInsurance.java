@@ -26,9 +26,6 @@ public class TmsInsurance extends  EmsEntity{
     private TmsTermInsurance tmsTermInsurance;
     private RcpSupplier rcpSupplier;
 
-    public TmsInsurance() {
-    }
-
     public long getTmsInsuranceId() {
         return tmsInsuranceId;
     }

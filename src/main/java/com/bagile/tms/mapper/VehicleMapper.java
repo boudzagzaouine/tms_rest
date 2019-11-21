@@ -24,7 +24,7 @@ public class VehicleMapper {
         map.put("updatedBy", "updatedBy");
         map.put("vehicleCategory", "tmsVehicleCategory");
         map.put("badgeType", "tmsBadgeType");
-        map.put("insurance", "tmsBadgeType");
+        map.put("insurance", "TmsInsurance");
     }
 
     public static Map<String, String> getMap() {
@@ -67,7 +67,7 @@ public class VehicleMapper {
         Vehicle vehicle = new Vehicle();
         vehicle.setId((int) tmsVehicle.getTmsVehicleId());
         vehicle.setRegistrationNumber(tmsVehicle.getTmsRegistrationNumber());
-        vehicle.setCode(tmsVehicle.getTmsVehicleCode() != null ? tmsVehicle.getTmsVehicleCode().toUpperCase() : null);
+        vehicle.setCode(tmsVehicle.getTmsVehicleCode());
         vehicle.setTechnicalVisit(tmsVehicle.getTmsVehicleTechnicalVisit());
         vehicle.setCreatedBy(tmsVehicle.getCreatedBy());
         vehicle.setUpdatedBy(tmsVehicle.getUpdatedBy());
@@ -75,9 +75,9 @@ public class VehicleMapper {
         vehicle.setUpdateDate(tmsVehicle.getUpdateDate());
 
         if (!lazy) {
-            vehicle.setBadgeType(BadgeTypeMapper.toDto(tmsVehicle.getTmsBadgeType(), lazy));
-            vehicle.setVehicleCategory(VehicleCategoryMapper.toDto(tmsVehicle.getTmsVehicleCategory(), lazy));
-            vehicle.setInsurance(InsuranceMapper.toDto(tmsVehicle.getTmsInsurance(), lazy));
+            vehicle.setBadgeType(BadgeTypeMapper.toDto(tmsVehicle.getTmsBadgeType(), true));
+            vehicle.setVehicleCategory(VehicleCategoryMapper.toDto(tmsVehicle.getTmsVehicleCategory(), true));
+            vehicle.setInsurance(InsuranceMapper.toDto(tmsVehicle.getTmsInsurance(), true));
 
         }
         return vehicle;

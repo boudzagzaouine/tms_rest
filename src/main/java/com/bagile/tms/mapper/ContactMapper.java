@@ -17,7 +17,6 @@ public class ContactMapper {
         map = new HashMap<>();
         map.put("id","prmContactId");
         map.put("name","prmContactName");
-        map.put("creationDate","prmContactCreationDate");
         map.put("surname","prmContactSurname");
         map.put("tele1","prmContactTele1");
         map.put("fax","prmContactFax");

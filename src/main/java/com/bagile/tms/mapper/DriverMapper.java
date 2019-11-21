@@ -17,7 +17,7 @@ public class DriverMapper {
         map.put("id", "tmsDriverId");
         map.put("code", "tmsDriverCode");
         map.put("cin", "tmsDriverCin");
-        map.put("birthDate", "tmsDriverbirthDate");
+        map.put("birthDate", "tmsDriverBirthDate");
         map.put("lastMedicalVisit", "tmsDriverLastMedicalVisit");
         map.put("commission", "tmsDriverCommission");
         map.put("contact", "prmContact");
@@ -59,7 +59,7 @@ public class DriverMapper {
         tmsDriver.setTmsDriverCode(driver.getCode() != null ? driver.getCode().toUpperCase() : null);
         tmsDriver.setTmsDriverCommission(driver.getCommission());
         tmsDriver.setTmsDriverLastMedicalVisit(driver.getLastMedicalVisit());
-        tmsDriver.setTmsDriverbirthDate(driver.getBirthDate());
+        tmsDriver.setTmsDriverBirthDate (driver.getBirthDate());
         tmsDriver.setTmsWorking(driver.isWorking());
 
         tmsDriver.setTmsDriverName(driver.getName());
@@ -93,7 +93,7 @@ public class DriverMapper {
         driver.setId((int) tmsDriver.getTmsDriverId());
         driver.setCin(tmsDriver.getTmsDriverCin());
         driver.setCode(tmsDriver.getTmsDriverCode() != null ? tmsDriver.getTmsDriverCode().toUpperCase() : null);
-        driver.setBirthDate(tmsDriver.getTmsDriverbirthDate());
+        driver.setBirthDate(tmsDriver.getTmsDriverBirthDate ());
         driver.setLastMedicalVisit(tmsDriver.getTmsDriverLastMedicalVisit());
         driver.setCommission(tmsDriver.getTmsDriverCommission());
         driver.setWorking(tmsDriver.isTmsWorking());

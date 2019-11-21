@@ -6,29 +6,29 @@ import com.bagile.tms.entities.TmsBadgeType;
 import java.util.*;
 
 public class BadgeTypeMapper {
-
-    private BadgeTypeMapper() {
-
+    public BadgeTypeMapper() {
     }
 
     private static Map<String, String> map;
 
     static {
         map = new HashMap<>();
+
         map.put("id", "tmsBadgeTypeId");
         map.put("code", "tmsBadgeTypeCode");
+        map.put("description", "tmsBadgeTypeDescription");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
-        map.put("createdBy", "createdByUser");
-        map.put("updatedBy", "updatedByUser");
+        map.put("createdBy", "createdBy");
+        map.put("updatedBy", "updatedBy");
     }
 
     public static Map<String, String> getMap() {
         return map;
     }
 
-    public String getField(String key) {
+    public static String getField(String key) {
         return map.get(key);
     }
 
@@ -37,9 +37,10 @@ public class BadgeTypeMapper {
             return null;
         }
         TmsBadgeType tmsBadgeType = new TmsBadgeType();
+        tmsBadgeType.setTmsBadgeTypeId(badgeType.getId());
+        tmsBadgeType.setTmsBadgeTypeCode(badgeType.getCode() != null ? badgeType.getCode().toUpperCase() : null);
+        tmsBadgeType.setTmsBadgeTypeDescription (badgeType.getDescription ());
 
-        tmsBadgeType.setTmsBadgeTypeId((int) badgeType.getId());
-        tmsBadgeType.setTmsBadgeTypeCode(badgeType.getCode());
 
         tmsBadgeType.setCreatedBy(badgeType.getCreatedBy());
         tmsBadgeType.setUpdatedBy(badgeType.getUpdatedBy());
@@ -47,6 +48,7 @@ public class BadgeTypeMapper {
         tmsBadgeType.setUpdateDate(badgeType.getUpdateDate());
 
         return tmsBadgeType;
+
     }
 
     public static BadgeType toDto(TmsBadgeType tmsBadgeType, boolean lazy) {
@@ -54,9 +56,9 @@ public class BadgeTypeMapper {
             return null;
         }
         BadgeType badgeType = new BadgeType();
-
         badgeType.setId((int) tmsBadgeType.getTmsBadgeTypeId());
         badgeType.setCode(tmsBadgeType.getTmsBadgeTypeCode());
+        badgeType.setDescription (tmsBadgeType.getTmsBadgeTypeDescription ());
 
         badgeType.setCreatedBy(tmsBadgeType.getCreatedBy());
         badgeType.setUpdatedBy(tmsBadgeType.getUpdatedBy());
@@ -64,22 +66,23 @@ public class BadgeTypeMapper {
         badgeType.setUpdateDate(tmsBadgeType.getUpdateDate());
 
         return badgeType;
-    }
 
+    }
 
 
     public static List<BadgeType> toDtos(Iterable<? extends TmsBadgeType> tmsBadgeTypes, boolean lazy) {
         if (null == tmsBadgeTypes) {
             return null;
         }
-        List<BadgeType> badgeTypes = new ArrayList<>();
+        List<BadgeType> vehicules = new ArrayList<>();
+
         for (TmsBadgeType tmsBadgeType : tmsBadgeTypes) {
-            badgeTypes.add(toDto(tmsBadgeType, lazy));
+            vehicules.add(toDto(tmsBadgeType, lazy));
         }
-        return badgeTypes;
+        return vehicules;
     }
 
-    public static Set<TmsBadgeType> toEntities(Set<? extends BadgeType> badgeTypes, boolean lazy) {
+    public static Set<TmsBadgeType> toEntities(Set<BadgeType> badgeTypes, boolean lazy) {
         if (null == badgeTypes) {
             return null;
         }
@@ -90,7 +93,7 @@ public class BadgeTypeMapper {
         return tmsBadgeTypes;
     }
 
-    public static Set<BadgeType> toDtos(Set<? extends TmsBadgeType> tmsBadgeTypes, boolean lazy) {
+    public static Set<BadgeType> toDtos(Set<TmsBadgeType> tmsBadgeTypes, boolean lazy) {
         if (null == tmsBadgeTypes) {
             return null;
         }
@@ -100,5 +103,4 @@ public class BadgeTypeMapper {
         }
         return badgeTypes;
     }
-
 }
