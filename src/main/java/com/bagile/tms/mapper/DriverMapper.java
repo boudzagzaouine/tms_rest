@@ -24,6 +24,15 @@ public class DriverMapper {
         map.put("working", "tmsWorking");
         map.put("badge", "tmsBadge");
 
+        map.put("name", "tmsDrivertName");
+        map.put("surname", "tmsDriverSurname");
+        map.put("tele1", "tmsDriverTele1");
+        map.put("fax", "tmsDriverFax");
+        map.put("type", "tmsDriverType");
+        map.put("email", "tmsDriverEmail");
+        map.put("comment", "tmsDriverComment");
+
+
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -53,6 +62,13 @@ public class DriverMapper {
         tmsDriver.setTmsDriverbirthDate(driver.getBirthDate());
         tmsDriver.setTmsWorking(driver.isWorking());
 
+        tmsDriver.setTmsDriverName(driver.getName());
+        tmsDriver.setTmsDriverSurname(driver.getSurname());
+        tmsDriver.setTmsDriverTele1(driver.getTele1());
+        tmsDriver.setTmsDriverFax(driver.getFax());
+        tmsDriver.setTmsDriverType(driver.getType());
+        tmsDriver.setTmsDriverEmail(driver.getEmail());
+        tmsDriver.setTmsDriverComment(driver.getComment());
 
         tmsDriver.setCreatedBy(driver.getCreatedBy());
         tmsDriver.setUpdatedBy(driver.getUpdatedBy());
@@ -60,7 +76,7 @@ public class DriverMapper {
         tmsDriver.setUpdateDate(driver.getUpdateDate());
 
         if (!lazy) {
-            tmsDriver.setPrmContact (ContactMapper.toEntity(driver.getContact(), true));
+            //tmsDriver.setPrmContact (ContactMapper.toEntity(driver.getContact(), true));
             tmsDriver.setTmsBadge(BadgeMapper.toEntity(driver.getBadge(), true));
 
 
@@ -82,6 +98,14 @@ public class DriverMapper {
         driver.setCommission(tmsDriver.getTmsDriverCommission());
         driver.setWorking(tmsDriver.isTmsWorking());
 
+        driver.setName(tmsDriver.getTmsDriverName());
+        driver.setSurname(tmsDriver.getTmsDriverSurname());
+        driver.setTele1(tmsDriver.getTmsDriverTele1());
+        driver.setFax(tmsDriver.getTmsDriverFax());
+        driver.setType(tmsDriver.getTmsDriverType());
+        driver.setEmail(tmsDriver.getTmsDriverEmail());
+        driver.setComment(tmsDriver.getTmsDriverComment());
+
 
         driver.setCreatedBy(tmsDriver.getCreatedBy());
         driver.setUpdatedBy(tmsDriver.getUpdatedBy());
@@ -89,7 +113,7 @@ public class DriverMapper {
         driver.setUpdateDate(tmsDriver.getUpdateDate());
 
         if (!lazy) {
-            driver.setContact(ContactMapper.toDto(tmsDriver.getPrmContact (), true));
+           // driver.setContact(ContactMapper.toDto(tmsDriver.getPrmContact (), true));
             driver.setBadge(BadgeMapper.toDto(tmsDriver.getTmsBadge(), true));
         }
         return driver;

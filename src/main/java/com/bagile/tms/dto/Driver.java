@@ -15,9 +15,17 @@ public class Driver extends EmsDto implements Serializable {
     private Date birthDate;
     private Date lastMedicalVisit;
     private BigDecimal commission;
-    private Contact contact;
+    //private Contact contact;
     private boolean working;
     private Badge badge;
+
+    private String name;
+    private String surname ;
+    private String tele1;
+    private String fax ;
+    private String type;
+    private  String email;
+    private String comment;
 
 
 
@@ -80,20 +88,68 @@ public class Driver extends EmsDto implements Serializable {
         this.commission = commission;
     }
 
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
-    }
-
     public Badge getBadge() {
         return badge;
     }
 
     public void setBadge(Badge badge) {
         this.badge = badge;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getTele1() {
+        return tele1;
+    }
+
+    public void setTele1(String tele1) {
+        this.tele1 = tele1;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String Type) {
+        this.type = Type;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     @Override

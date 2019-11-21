@@ -24,11 +24,23 @@ public class TmsDriver extends EmsEntity {
 
     private BigDecimal tmsDriverCommission;
 
-    private PrmContact prmContact;
+   // private PrmContact prmContact;
 
     private boolean tmsWorking;
 
     private TmsBadge tmsBadge;
+
+
+    private String tmsDriverName;
+
+    private String tmsDriverSurname;
+    private String tmsDriverTele1;
+
+    private String tmsDriverFax;
+    private String tmsDriverType;
+    private String tmsDriverEmail;
+    private String tmsDriverComment;
+
 
 
     public TmsDriver() {
@@ -94,16 +106,6 @@ public class TmsDriver extends EmsEntity {
     }
 
 
-    @OneToOne
-    @JoinColumn(name = "prm_contactid")
-    public PrmContact getPrmContact() {
-        return prmContact;
-    }
-
-    public void setPrmContact(PrmContact prmContact) {
-        this.prmContact = prmContact;
-    }
-
     public boolean isTmsWorking() {
         return tmsWorking;
     }
@@ -121,4 +123,68 @@ public class TmsDriver extends EmsEntity {
     public void setTmsBadge(TmsBadge tmsbadge) {
         this.tmsBadge = tmsbadge;
     }
+
+    @Column(name = "tms_drivername")
+    public String getTmsDriverName() {
+        return tmsDriverName;
+    }
+
+    public void setTmsDriverName(String tmsDriverName) {
+        this.tmsDriverName = tmsDriverName;
+    }
+    @Column(name = "tms_driversurname")
+    public String getTmsDriverSurname() {
+        return tmsDriverSurname;
+    }
+
+    public void setTmsDriverSurname(String tmsDriverSurname) {
+        this.tmsDriverSurname = tmsDriverSurname;
+    }
+    @Column(name = "tms_drivertele1")
+
+    public String getTmsDriverTele1() {
+        return tmsDriverTele1;
+    }
+
+    public void setTmsDriverTele1(String tmsDriverTele1) {
+        this.tmsDriverTele1 = tmsDriverTele1;
+    }
+    @Column(name = "tms_driverfax")
+
+    public String getTmsDriverFax() {
+        return tmsDriverFax;
+    }
+
+    public void setTmsDriverFax(String tmsDriverFax) {
+        this.tmsDriverFax = tmsDriverFax;
+    }
+    @Column(name = "tms_drivertype")
+
+    public String getTmsDriverType() {
+        return tmsDriverType;
+    }
+
+    public void setTmsDriverType(String tmsDriverType) {
+        this.tmsDriverType = tmsDriverType;
+    }
+    @Column(name = "tms_driveremail")
+
+    public String getTmsDriverEmail() {
+        return tmsDriverEmail;
+    }
+
+    public void setTmsDriverEmail(String tmsDriverEmail) {
+        this.tmsDriverEmail = tmsDriverEmail;
+    }
+    @Column(name = "tms_drivercomment")
+
+    public String getTmsDriverComment() {
+        return tmsDriverComment;
+    }
+
+    public void setTmsDriverComment(String tmsDriverComment) {
+        this.tmsDriverComment = tmsDriverComment;
+    }
+
+
 }
