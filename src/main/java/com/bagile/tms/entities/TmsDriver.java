@@ -18,7 +18,7 @@ public class TmsDriver extends EmsEntity {
     private String tmsDriverCode;
     private String tmsDriverCin;
 
-    private Date tmsDriverbirthDate;
+    private Date tmsDriverBirthDate;
 
     private Date tmsDriverLastMedicalVisit;
 
@@ -78,12 +78,12 @@ public class TmsDriver extends EmsEntity {
 
     @Temporal(TemporalType.DATE)
     @Column(name = "tms_driverbirthdate")
-    public Date getTmsDriverbirthDate() {
-        return tmsDriverbirthDate;
+    public Date getTmsDriverBirthDate() {
+        return tmsDriverBirthDate;
     }
 
-    public void setTmsDriverbirthDate(Date tmsDriverbirthDate) {
-        this.tmsDriverbirthDate = tmsDriverbirthDate;
+    public void setTmsDriverBirthDate(Date tmsDriverBirthDate) {
+        this.tmsDriverBirthDate = tmsDriverBirthDate;
     }
 
     @Temporal(TemporalType.DATE)

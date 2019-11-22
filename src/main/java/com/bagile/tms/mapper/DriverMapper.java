@@ -2,7 +2,6 @@ package com.bagile.tms.mapper;
 
 import com.bagile.tms.dto.Driver;
 import com.bagile.tms.entities.TmsDriver;
-
 import java.util.*;
 
 public class DriverMapper {
@@ -32,13 +31,10 @@ public class DriverMapper {
         map.put("email", "tmsDriverEmail");
         map.put("comment", "tmsDriverComment");
 
-
-
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdBy");
         map.put("updatedBy", "updatedBy");
-
     }
 
     public static Map<String, String> getMap() {

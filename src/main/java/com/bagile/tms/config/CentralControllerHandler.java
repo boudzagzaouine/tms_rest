@@ -102,24 +102,4 @@ public class CentralControllerHandler {
         LOGGER.error(pe.getMessage());
         return new ResponseEntity<>(pe, HttpStatus.SEE_OTHER);
     }
-
-//    @ExceptionHandler({DataIntegrityViolationException.class})
-//    public ResponseEntity<Exception> handleIdNotFound(DataIntegrityViolationException pe) {
-//        if (pe.getCause() instanceof ConstraintViolationException) {
-//            ConstraintViolationException tmp = (ConstraintViolationException) pe.getCause();
-//            if (tmp.getCause() instanceof PSQLException) {
-//                PSQLException exception = (PSQLException) tmp.getCause();
-//            }
-//            //exception.getMessage();
-//            return new ResponseEntity<Exception>(pe, HttpStatus.SEE_OTHER);
-//        }
-//        if (pe.getCause() instanceof PropertyValueException) {
-//            return new ResponseEntity<Exception>(pe, HttpStatus.SEE_OTHER);
-//        }
-//        if (pe.getCause() instanceof DataException) {
-//            return new ResponseEntity<Exception>(pe, HttpStatus.SEE_OTHER);
-//        }
-//        return new ResponseEntity<Exception>(pe, HttpStatus.SEE_OTHER);
-//    }
-
 }
