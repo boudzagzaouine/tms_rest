@@ -39,8 +39,6 @@ public class BadgeMapper {
         TmsBadge tmsBadge = new TmsBadge();
         tmsBadge.setTmsBadgeId(badge.getId());
         tmsBadge.setTmsBadgeCode(badge.getCode() != null ? badge.getCode().toUpperCase() : null);
-      
-
 
         tmsBadge.setCreatedBy(badge.getCreatedBy());
         tmsBadge.setUpdatedBy(badge.getUpdatedBy());

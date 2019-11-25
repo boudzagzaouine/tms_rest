@@ -4,37 +4,19 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Entity
 @Table(name="tms_badge")
 public class TmsBadge  extends EmsEntity{
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = -2793176710957792974L;
+    private long tmsBadgeId;
+    private String tmsBadgeCode;
+    private TmsBadgeType tmsBadgeType;
+    private List<TmsDriver> tmsDrivers = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_badge_id", allocationSize = 1)
     @Column(name = "tms_badgeid", unique = true, nullable = false, precision = 10, scale = 0)
-    private long tmsBadgeId;
-
-    @Column(name = "tms_badgecode", unique = true, nullable = false, length = 90)
-    private String tmsBadgeCode;
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "tms_badgetypeid")
-    private TmsBadgeType tmsBadgeType;
-
-    @OneToMany(mappedBy = "tmsBadge")
-    private List<TmsDriver> tmsDrivers = new ArrayList<>();
-
-
-
-    public TmsBadge() {
-    }
-
     public long getTmsBadgeId() {
         return tmsBadgeId;
     }
@@ -43,6 +25,7 @@ public class TmsBadge  extends EmsEntity{
         this.tmsBadgeId = tmsBadgeId;
     }
 
+    @Column(name = "tms_badgecode", unique = true, nullable = false, length = 90)
     public String getTmsBadgeCode() {
         return tmsBadgeCode;
     }
@@ -51,6 +34,8 @@ public class TmsBadge  extends EmsEntity{
         this.tmsBadgeCode = tmsBadgeCode;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "tms_badgetypeid")
     public TmsBadgeType getTmsBadgeType() {
         return tmsBadgeType;
     }
@@ -59,6 +44,7 @@ public class TmsBadge  extends EmsEntity{
         this.tmsBadgeType = tmsBadgeType;
     }
 
+    @OneToMany(mappedBy = "tmsBadge")
     public List<TmsDriver> getTmsDrivers() {
         return tmsDrivers;
     }
