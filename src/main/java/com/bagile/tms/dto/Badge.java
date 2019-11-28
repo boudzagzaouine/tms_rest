@@ -4,18 +4,16 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Badge extends EmsDto implements Serializable {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 3467898889038526418L;
+
     private long id;
     private String code;
+    private String description;
     private BadgeType badgeType;
 
     public Badge() {
     }
-
-
 
     public BadgeType getBadgeType() {
         return badgeType;
@@ -39,6 +37,14 @@ public class Badge extends EmsDto implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override

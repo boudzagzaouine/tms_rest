@@ -10,6 +10,7 @@ public class TmsBadge  extends EmsEntity{
 
     private long tmsBadgeId;
     private String tmsBadgeCode;
+    private String tmsBadgeDescription;
     private TmsBadgeType tmsBadgeType;
     private List<TmsDriver> tmsDrivers = new ArrayList<>();
 
@@ -51,5 +52,14 @@ public class TmsBadge  extends EmsEntity{
 
     public void setTmsDrivers(List<TmsDriver> tmsDrivers) {
         this.tmsDrivers = tmsDrivers;
+    }
+
+    @Column(name = "tms_badgedescription")
+    public String getTmsBadgeDescription() {
+        return tmsBadgeDescription;
+    }
+
+    public void setTmsBadgeDescription(String tmsBadgeDescription) {
+        this.tmsBadgeDescription = tmsBadgeDescription;
     }
 }
