@@ -59,7 +59,7 @@ public class BadgeServiceImpl implements BadgeService {
         if (search.equals("")){
             return findAll (page, size);
         }
-        Sort sort = Sort.by(Sort.Direction.DESC, "UpdateDate");
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
         return BadgeMapper.toDtos(badgeRepository.findAll(Search.expression(search, TmsBadge.class), pageable), false);
     }
@@ -89,7 +89,7 @@ public class BadgeServiceImpl implements BadgeService {
 
     @Override
     public List<Badge> findAll(int page, int size) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "UpdateDate");
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
         return BadgeMapper.toDtos(badgeRepository.findAll(pageable), false);
     }

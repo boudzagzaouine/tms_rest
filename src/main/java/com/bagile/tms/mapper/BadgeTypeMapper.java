@@ -60,10 +60,6 @@ public class BadgeTypeMapper {
         badgeType.setCode(tmsBadgeType.getTmsBadgeTypeCode());
         badgeType.setDescription (tmsBadgeType.getTmsBadgeTypeDescription ());
 
-        badgeType.setCreatedBy(tmsBadgeType.getCreatedBy());
-        badgeType.setUpdatedBy(tmsBadgeType.getUpdatedBy());
-        badgeType.setCreationDate(tmsBadgeType.getCreationDate());
-        badgeType.setUpdateDate(tmsBadgeType.getUpdateDate());
 
         return badgeType;
 

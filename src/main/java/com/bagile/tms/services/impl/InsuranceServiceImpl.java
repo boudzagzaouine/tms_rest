@@ -106,4 +106,9 @@ public class InsuranceServiceImpl implements InsuranceService {
         Pageable pageable = PageRequest.of(page, size, sort);
         return InsuranceMapper.toDtos(insuranceRepository.findAll(pageable), false);
     }
+
+    @Override
+    public List<Insurance> findAvailableInsurances() {
+        return  InsuranceMapper.toDtos(insuranceRepository.findByTmsVehicleIsNull (), true);
+    }
 }

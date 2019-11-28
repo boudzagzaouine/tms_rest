@@ -44,10 +44,7 @@ public class VehicleMapper {
         tmsVehicle.setTmsRegistrationNumber(vehicle.getRegistrationNumber());
         tmsVehicle.setTmsVehicleCode(vehicle.getCode() != null ? vehicle.getCode().toUpperCase() : null);
         tmsVehicle.setTmsVehicleTechnicalVisit(vehicle.getTechnicalVisit());
-        tmsVehicle.setCreatedBy(vehicle.getCreatedBy());
-        tmsVehicle.setUpdatedBy(vehicle.getUpdatedBy());
-        tmsVehicle.setCreationDate(vehicle.getCreationDate());
-        tmsVehicle.setUpdateDate(vehicle.getUpdateDate());
+
 
 
         if (!lazy) {

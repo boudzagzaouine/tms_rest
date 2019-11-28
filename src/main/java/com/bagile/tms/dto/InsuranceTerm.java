@@ -1,14 +1,13 @@
 package com.bagile.tms.dto;
 
-public class TermInsurance extends EmsDto{
+public class InsuranceTerm extends EmsDto {
 
+    private Long id;
+    private String code;
+    private String description;
+    private Insurance insurance;
 
-  private Long id;
-  private String code;
-  private String description;
-
-
-    public TermInsurance() {
+    public InsuranceTerm() {
     }
 
     public Long getId() {
@@ -33,5 +32,13 @@ public class TermInsurance extends EmsDto{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Insurance getInsurance() {
+        return insurance;
+    }
+
+    public void setInsurance(Insurance insurance) {
+        this.insurance = insurance;
     }
 }

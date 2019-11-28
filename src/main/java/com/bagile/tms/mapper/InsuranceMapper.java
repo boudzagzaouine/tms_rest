@@ -1,41 +1,42 @@
 package com.bagile.tms.mapper;
 
 import com.bagile.tms.dto.Insurance;
-import com.bagile.tms.dto.TermInsurance;
+import com.bagile.tms.dto.Supplier;
 import com.bagile.tms.entities.TmsInsurance;
 
 import java.util.*;
 
 public class InsuranceMapper {
-
     public InsuranceMapper() {
     }
 
-
     private static Map<String, String> map;
-
 
     static {
         map = new HashMap<>();
+
         map.put("id", "tmsInsuranceId");
         map.put("code", "tmsInsuranceCode");
+        map.put("description", "tmsInsuranceDescription");
+        map.put("amount", "tmsInsuranceAmount");
         map.put("startDate", "tmsInsuranceStartDate");
         map.put("endDate", "tmsInsuranceEndDate");
-        map.put("amount", "tmsInsuranceAmount");
+        map.put("insuranceTerm", "tmsInsuranceTerm");
         map.put("contractType", "tmsContractType");
-        map.put("termInsurance", "tmsTermInsurance");
+        map.put("supplier", "rcpSupplier");
+        map.put("insurance", "tmsInsurance");
+
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
-        map.put("createdBy", "createdByUser");
-        map.put("updatedBy", "updatedByUser");
+        map.put("createdBy", "createdBy");
+        map.put("updatedBy", "updatedBy");
     }
-
 
     public static Map<String, String> getMap() {
         return map;
     }
 
-    public String getField(String key) {
+    public static String getField(String key) {
         return map.get(key);
     }
 
@@ -43,26 +44,27 @@ public class InsuranceMapper {
         if (null == insurance) {
             return null;
         }
-        TmsInsurance tmsinsurance = new TmsInsurance();
-        tmsinsurance.setTmsInsuranceCode(insurance.getCode());
-        tmsinsurance.setTmsInsuranceId((int) insurance.getId());
-        tmsinsurance.setTmsInsuranceStartDate(insurance.getStartDate());
-        tmsinsurance.setTmsInsuranceEndDate(insurance.getEndDate());
-        tmsinsurance.setTmsInsuranceAmount(insurance.getAmount());
+        TmsInsurance tmsInsurance = new TmsInsurance();
+        tmsInsurance.setTmsInsuranceId(insurance.getId());
+        tmsInsurance.setTmsInsuranceCode(insurance.getCode());
+        tmsInsurance.setTmsInsuranceDescription (insurance.getDescription ());
+        tmsInsurance.setTmsInsuranceAmount (insurance.getAmount ());
+        tmsInsurance.setTmsInsuranceStartDate (insurance.getStartDate ());
+        tmsInsurance.setTmsInsuranceEndDate (insurance.getEndDate ());
 
+        tmsInsurance.setCreatedBy(insurance.getCreatedBy());
+        tmsInsurance.setUpdatedBy(insurance.getUpdatedBy());
+        tmsInsurance.setCreationDate(insurance.getCreationDate());
+        tmsInsurance.setUpdateDate(insurance.getUpdateDate());
 
-        tmsinsurance.setCreatedBy(insurance.getCreatedBy());
-        tmsinsurance.setUpdatedBy(insurance.getUpdatedBy());
-        tmsinsurance.setCreationDate(insurance.getCreationDate());
-        tmsinsurance.setUpdateDate(insurance.getUpdateDate());
-        if (!lazy) {
-            tmsinsurance.setTmsContractType(ContractTypeMapper.toEntity(insurance.getContractType(), true));
-            tmsinsurance.setTmsTermInsurance(TermInsuranceMapper.toEntity(insurance.getTermInsurance(),true));
+        if(!lazy) {
+             tmsInsurance.setTmsInsuranceTerm (InsuranceTermMapper.toEntity(insurance.getInsuranceTerm (),true));
+             tmsInsurance.setRcpSupplier (SupplierMapper.toEntity(insurance.getSupplier (),true));
+             tmsInsurance.setTmsContractType (ContractTypeMapper.toEntity(insurance.getContractType (),true));
+             tmsInsurance.setTmsVehicle (VehicleMapper.toEntity (insurance.getVehicle (), true));
         }
-
-        return tmsinsurance;
+        return tmsInsurance;
     }
-
 
     public static Insurance toDto(TmsInsurance tmsInsurance, boolean lazy) {
         if (null == tmsInsurance) {
@@ -71,38 +73,40 @@ public class InsuranceMapper {
         Insurance insurance = new Insurance();
         insurance.setId((int) tmsInsurance.getTmsInsuranceId());
         insurance.setCode(tmsInsurance.getTmsInsuranceCode());
-        insurance.setStartDate(tmsInsurance.getTmsInsuranceStartDate());
-        insurance.setEndDate(tmsInsurance.getTmsInsuranceEndDate());
-        insurance.setAmount(tmsInsurance.getTmsInsuranceAmount());
-
+        insurance.setDescription (tmsInsurance.getTmsInsuranceDescription ());
+        insurance.setAmount (tmsInsurance.getTmsInsuranceAmount ());
+        insurance.setStartDate (tmsInsurance.getTmsInsuranceStartDate ());
+        insurance.setEndDate (tmsInsurance.getTmsInsuranceEndDate ());
 
         insurance.setCreatedBy(tmsInsurance.getCreatedBy());
         insurance.setUpdatedBy(tmsInsurance.getUpdatedBy());
         insurance.setCreationDate(tmsInsurance.getCreationDate());
         insurance.setUpdateDate(tmsInsurance.getUpdateDate());
 
-        if (!lazy) {
-            insurance.setContractType(ContractTypeMapper.toDto(tmsInsurance.getTmsContractType(), true));
-            insurance.setTermInsurance(TermInsuranceMapper.toDto(tmsInsurance.getTmsTermInsurance(), true));
+        if(!lazy) {
+
+             insurance.setInsuranceTerm (InsuranceTermMapper.toDto(tmsInsurance.getTmsInsuranceTerm (),true));
+             insurance.setSupplier (SupplierMapper.toDto (tmsInsurance.getRcpSupplier (), true));
+             insurance.setContractType (ContractTypeMapper.toDto(tmsInsurance.getTmsContractType (),true));
+             insurance.setVehicle (VehicleMapper.toDto (tmsInsurance.getTmsVehicle (), true));
         }
         return insurance;
     }
-
 
 
     public static List<Insurance> toDtos(Iterable<? extends TmsInsurance> tmsInsurances, boolean lazy) {
         if (null == tmsInsurances) {
             return null;
         }
-        List<Insurance> insurances = new ArrayList<>();
+        List<Insurance> vehicules = new ArrayList<>();
+
         for (TmsInsurance tmsInsurance : tmsInsurances) {
-            insurances.add(toDto(tmsInsurance, lazy));
+            vehicules.add(toDto(tmsInsurance, lazy));
         }
-        return insurances;
+        return vehicules;
     }
 
-
-    public static Set<TmsInsurance> toEntities(Set<? extends Insurance> insurances, boolean lazy) {
+    public static Set<TmsInsurance> toEntities(Set<Insurance> insurances, boolean lazy) {
         if (null == insurances) {
             return null;
         }
@@ -113,8 +117,7 @@ public class InsuranceMapper {
         return tmsInsurances;
     }
 
-
-    public static Set<Insurance> toDtos(Set<? extends TmsInsurance> tmsInsurances, boolean lazy) {
+    public static Set<Insurance> toDtos(Set<TmsInsurance> tmsInsurances, boolean lazy) {
         if (null == tmsInsurances) {
             return null;
         }
@@ -124,5 +127,4 @@ public class InsuranceMapper {
         }
         return insurances;
     }
-
 }

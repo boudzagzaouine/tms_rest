@@ -95,4 +95,9 @@ public class InsuranceController {
         insuranceService.delete(id);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/findAvailable")
+    @ResponseBody
+    public List<Insurance> findAvailableInsurances() throws AttributesNotFound, ErrorType {
+        return insuranceService.findAvailableInsurances ();
+    }
 }

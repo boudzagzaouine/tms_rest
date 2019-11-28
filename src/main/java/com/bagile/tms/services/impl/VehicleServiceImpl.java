@@ -13,9 +13,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityListeners;
 import java.util.List;
 
 @Service
@@ -91,7 +94,9 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public List<Vehicle> findAll(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
+        Sort sort = Sort.by (Sort.Direction.DESC, "updateDate");
+        Pageable pageable = PageRequest.of(page, size, sort);
+
         return VehicleMapper.toDtos(vehicleRepository.findAll(pageable), false);
     }
 }

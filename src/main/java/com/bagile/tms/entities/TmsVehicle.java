@@ -76,7 +76,7 @@ public class TmsVehicle extends EmsEntity {
         this.tmsBadgeType = tmsBadgeType;
     }
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "tms_vehicleinsuranceid")
     public TmsInsurance getTmsInsurance() {
         return tmsInsurance;

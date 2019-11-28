@@ -65,7 +65,7 @@ public class SupplierServiceImpl implements SupplierService {
         if (search.equals("")){
             return findAll (page, size);
         }
-        Sort sort = Sort.by(Sort.Direction.DESC, "prmSupplierUpdateDate");
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
         return SupplierMapper.toDtos(supplierRepository.findAll(Search.expression(search, RcpSupplier.class), pageable), false);
     }
@@ -97,7 +97,7 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public List<Supplier> findAll(int page, int size) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "prmSupplierUpdateDate");
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
         return SupplierMapper.toDtos(supplierRepository.findAll(pageable), false);
     }

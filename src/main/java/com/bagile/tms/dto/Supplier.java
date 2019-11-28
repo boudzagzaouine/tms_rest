@@ -1,11 +1,5 @@
 package com.bagile.tms.dto;
 
-import org.apache.tomcat.jni.Address;
-
-import java.io.Serializable;
-import java.util.Date;
-import java.util.Set;
-
 public class Supplier extends EmsDto {
 
     private long id;

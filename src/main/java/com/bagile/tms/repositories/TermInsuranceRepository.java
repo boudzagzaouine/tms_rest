@@ -1,10 +1,16 @@
 package com.bagile.tms.repositories;
 
-import com.bagile.tms.entities.TmsTermInsurance;
+import com.bagile.tms.entities.TmsInsurance;
+import com.bagile.tms.entities.TmsInsuranceTerm;
+import org.hibernate.validator.constraints.EAN;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
-public interface TermInsuranceRepository extends JpaRepository<TmsTermInsurance,Long>,
+import java.util.List;
 
-        QuerydslPredicateExecutor<TmsTermInsurance> {
+public interface TermInsuranceRepository extends JpaRepository<TmsInsuranceTerm,Long>,
+        QuerydslPredicateExecutor<TmsInsuranceTerm> {
+
+
 }

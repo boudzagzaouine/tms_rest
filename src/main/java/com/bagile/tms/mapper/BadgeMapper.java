@@ -42,8 +42,6 @@ public class BadgeMapper {
 
         tmsBadge.setCreatedBy(badge.getCreatedBy());
         tmsBadge.setUpdatedBy(badge.getUpdatedBy());
-        tmsBadge.setCreationDate(badge.getCreationDate());
-        tmsBadge.setUpdateDate(badge.getUpdateDate());
 
         if(!lazy) {
 

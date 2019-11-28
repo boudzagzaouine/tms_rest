@@ -7,12 +7,14 @@ public class Insurance extends EmsDto{
 
     private long id;
     private String code;
+    private String description;
     private Date startDate;
     private Date endDate;
     private BigDecimal amount;
     private ContractType contractType;
-    private TermInsurance termInsurance;
+    private InsuranceTerm insuranceTerm;
     private Supplier supplier;
+    private Vehicle vehicle;
 
 
     public Insurance() {
@@ -32,6 +34,14 @@ public class Insurance extends EmsDto{
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Date getStartDate() {
@@ -66,12 +76,12 @@ public class Insurance extends EmsDto{
         this.contractType = contractType;
     }
 
-    public TermInsurance getTermInsurance() {
-        return termInsurance;
+    public InsuranceTerm getInsuranceTerm() {
+        return insuranceTerm;
     }
 
-    public void setTermInsurance(TermInsurance termInsurance) {
-        this.termInsurance = termInsurance;
+    public void setInsuranceTerm(InsuranceTerm insuranceTerm) {
+        this.insuranceTerm = insuranceTerm;
     }
 
     public Supplier getSupplier() {
@@ -80,5 +90,13 @@ public class Insurance extends EmsDto{
 
     public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 }

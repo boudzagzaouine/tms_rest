@@ -62,7 +62,7 @@ public class VacationServiceImpl implements VacationService {
         if (search.equals("")){
             return findAll (page, size);
         }
-        Sort sort = Sort.by(Sort.Direction.DESC, "prmVacationUpdateDate");
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
         return VacationMapper.toDtos(vacationRepository.findAll(Search.expression(search, TmsVacation.class), pageable), false);
     }
@@ -92,7 +92,7 @@ public class VacationServiceImpl implements VacationService {
 
     @Override
     public List<Vacation> findAll(int page, int size) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "prmVacationUpdateDate");
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
         return VacationMapper.toDtos(vacationRepository.findAll(pageable), false);
     }

@@ -6,9 +6,6 @@ import javax.persistence.*;
 @Table(name="prm_contact")
 public class PrmContact extends EmsEntity {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = -2556249835469329497L;
 
     private Long prmContactId;
@@ -22,7 +19,7 @@ public class PrmContact extends EmsEntity {
     private String prmContactType;
     private String prmContactEmail;
     private String prmContactComment;
-    private boolean prmContactActive;
+    private Boolean prmContactActive;
 
 
     @Id
@@ -96,10 +93,14 @@ public class PrmContact extends EmsEntity {
     }
 
     @Column(name = "prm_contactactive")
-    public boolean isPrmContactActive() {
+    public Boolean isPrmContactActive() {
         return prmContactActive;
     }
-    public void setPrmContactActive(boolean prmContactActive) {
+    public void setPrmContactActive(Boolean prmContactActive) {
+        if (prmContactActive == null) {
+            this.prmContactActive = false;
+            return;
+        }
         this.prmContactActive = prmContactActive;
     }
 

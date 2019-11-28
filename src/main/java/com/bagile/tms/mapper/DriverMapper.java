@@ -66,10 +66,7 @@ public class DriverMapper {
         tmsDriver.setTmsDriverEmail(driver.getEmail());
         tmsDriver.setTmsDriverComment(driver.getComment());
 
-        tmsDriver.setCreatedBy(driver.getCreatedBy());
-        tmsDriver.setUpdatedBy(driver.getUpdatedBy());
-        tmsDriver.setCreationDate(driver.getCreationDate());
-        tmsDriver.setUpdateDate(driver.getUpdateDate());
+
 
         if (!lazy) {
             //tmsDriver.setPrmContact (ContactMapper.toEntity(driver.getContact(), true));
@@ -101,7 +98,6 @@ public class DriverMapper {
         driver.setType(tmsDriver.getTmsDriverType());
         driver.setEmail(tmsDriver.getTmsDriverEmail());
         driver.setComment(tmsDriver.getTmsDriverComment());
-
 
         driver.setCreatedBy(tmsDriver.getCreatedBy());
         driver.setUpdatedBy(tmsDriver.getUpdatedBy());
