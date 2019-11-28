@@ -1,6 +1,7 @@
 package com.bagile.tms.services.impl;
 
 import com.bagile.tms.dto.MaintenanceState;
+import com.bagile.tms.entities.TmsMaintenanceState;
 import com.bagile.tms.entities.TmsVehicle;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
@@ -51,7 +52,7 @@ public class MaintenanceStateServiceImpl implements MaintenanceStateService {
         if (search.equals("")){
             return findAll ();
         }
-        return MaintenanceStateMapper.toDtos(maintenanceStateRepository.findAll(Search.expression(search, TmsVehicle.class)), false);
+        return MaintenanceStateMapper.toDtos(maintenanceStateRepository.findAll(Search.expression(search, TmsMaintenanceState.class)), false);
     }
 
     @Override
@@ -60,7 +61,7 @@ public class MaintenanceStateServiceImpl implements MaintenanceStateService {
             return findAll (page, size);
         }
         Pageable pageable = PageRequest.of(page, size);
-        return MaintenanceStateMapper.toDtos(maintenanceStateRepository.findAll(Search.expression(search, TmsVehicle.class), pageable), false);
+        return MaintenanceStateMapper.toDtos(maintenanceStateRepository.findAll(Search.expression(search, TmsMaintenanceState.class), pageable), false);
     }
 
     @Override
@@ -68,7 +69,7 @@ public class MaintenanceStateServiceImpl implements MaintenanceStateService {
         if (search.equals("")){
             return size ();
         }
-        return maintenanceStateRepository.count(Search.expression(search, TmsVehicle.class));
+        return maintenanceStateRepository.count(Search.expression(search, TmsMaintenanceState.class));
     }
 
     @Override

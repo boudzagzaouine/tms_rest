@@ -1,6 +1,7 @@
 package com.bagile.tms.services.impl;
 
 import com.bagile.tms.dto.MaintenanceType;
+import com.bagile.tms.entities.TmsMaintenanceType;
 import com.bagile.tms.entities.TmsVehicle;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
@@ -51,7 +52,7 @@ public class MaintenanceTypeServiceImpl implements MaintenanceTypeService {
         if (search.equals("")){
             return findAll ();
         }
-        return MaintenanceTypeMapper.toDtos(MaintenancetypeRepository.findAll(Search.expression(search, TmsVehicle.class)));
+        return MaintenanceTypeMapper.toDtos(MaintenancetypeRepository.findAll(Search.expression(search, TmsMaintenanceType.class)));
     }
 
     @Override
@@ -60,7 +61,7 @@ public class MaintenanceTypeServiceImpl implements MaintenanceTypeService {
             return findAll (page, size);
         }
         Pageable pageable = PageRequest.of(page, size);
-        return MaintenanceTypeMapper.toDtos(MaintenancetypeRepository.findAll(Search.expression(search, TmsVehicle.class), pageable));
+        return MaintenanceTypeMapper.toDtos(MaintenancetypeRepository.findAll(Search.expression(search, TmsMaintenanceType.class), pageable));
     }
 
     @Override
@@ -68,7 +69,7 @@ public class MaintenanceTypeServiceImpl implements MaintenanceTypeService {
         if (search.equals("")){
             return size ();
         }
-        return MaintenancetypeRepository.count(Search.expression(search, TmsVehicle.class));
+        return MaintenancetypeRepository.count(Search.expression(search, TmsMaintenanceType.class));
     }
 
     @Override
