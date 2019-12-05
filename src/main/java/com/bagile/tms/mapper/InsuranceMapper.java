@@ -1,7 +1,6 @@
 package com.bagile.tms.mapper;
 
 import com.bagile.tms.dto.Insurance;
-import com.bagile.tms.dto.Supplier;
 import com.bagile.tms.entities.TmsInsurance;
 
 import java.util.*;
@@ -17,12 +16,12 @@ public class InsuranceMapper {
 
         map.put("id", "tmsInsuranceId");
         map.put("code", "tmsInsuranceCode");
+        map.put("number", "tmsInsuranceNumber");
         map.put("description", "tmsInsuranceDescription");
         map.put("amount", "tmsInsuranceAmount");
         map.put("startDate", "tmsInsuranceStartDate");
         map.put("endDate", "tmsInsuranceEndDate");
         map.put("insuranceTerm", "tmsInsuranceTerm");
-        map.put("contractType", "tmsContractType");
         map.put("supplier", "rcpSupplier");
         map.put("insurance", "tmsInsurance");
 
@@ -47,6 +46,7 @@ public class InsuranceMapper {
         TmsInsurance tmsInsurance = new TmsInsurance();
         tmsInsurance.setTmsInsuranceId(insurance.getId());
         tmsInsurance.setTmsInsuranceCode(insurance.getCode());
+        tmsInsurance.setTmsInsuranceNumber (insurance.getNumber ());
         tmsInsurance.setTmsInsuranceDescription (insurance.getDescription ());
         tmsInsurance.setTmsInsuranceAmount (insurance.getAmount ());
         tmsInsurance.setTmsInsuranceStartDate (insurance.getStartDate ());
@@ -60,7 +60,6 @@ public class InsuranceMapper {
         if(!lazy) {
              tmsInsurance.setTmsInsuranceTerm (InsuranceTermMapper.toEntity(insurance.getInsuranceTerm (),true));
              tmsInsurance.setRcpSupplier (SupplierMapper.toEntity(insurance.getSupplier (),true));
-             tmsInsurance.setTmsContractType (ContractTypeMapper.toEntity(insurance.getContractType (),true));
              tmsInsurance.setTmsVehicle (VehicleMapper.toEntity (insurance.getVehicle (), true));
         }
         return tmsInsurance;
@@ -73,6 +72,7 @@ public class InsuranceMapper {
         Insurance insurance = new Insurance();
         insurance.setId((int) tmsInsurance.getTmsInsuranceId());
         insurance.setCode(tmsInsurance.getTmsInsuranceCode());
+        insurance.setNumber (tmsInsurance.getTmsInsuranceNumber ());
         insurance.setDescription (tmsInsurance.getTmsInsuranceDescription ());
         insurance.setAmount (tmsInsurance.getTmsInsuranceAmount ());
         insurance.setStartDate (tmsInsurance.getTmsInsuranceStartDate ());
@@ -87,7 +87,6 @@ public class InsuranceMapper {
 
              insurance.setInsuranceTerm (InsuranceTermMapper.toDto(tmsInsurance.getTmsInsuranceTerm (),true));
              insurance.setSupplier (SupplierMapper.toDto (tmsInsurance.getRcpSupplier (), true));
-             insurance.setContractType (ContractTypeMapper.toDto(tmsInsurance.getTmsContractType (),true));
              insurance.setVehicle (VehicleMapper.toDto (tmsInsurance.getTmsVehicle (), true));
         }
         return insurance;

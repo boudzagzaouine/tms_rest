@@ -52,6 +52,7 @@ public class SupplierMapper {
         if (!lazy) {
             rcpSupplier.setOwnOwner(OwnerMapper.toEntity(supplier.getOwner(), true));
             rcpSupplier.setPrmContact(ContactMapper.toEntity(supplier.getContact(), true));
+            rcpSupplier.setAdrAddress (AddressMapper.toEntity (supplier.getAddress (), true));
         }
         return rcpSupplier;
     }
@@ -72,6 +73,7 @@ public class SupplierMapper {
         if (!lazy) {
             supplier.setOwner(OwnerMapper.toDto(rcpSupplier.getOwnOwner(), true));
             supplier.setContact(ContactMapper.toDto(rcpSupplier.getPrmContact(), true));
+            supplier.setAddress (AddressMapper.toDto (rcpSupplier.getAdrAddress (), true));
         }
         return supplier;
     }

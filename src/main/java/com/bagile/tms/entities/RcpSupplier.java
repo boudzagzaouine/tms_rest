@@ -65,6 +65,7 @@ public class RcpSupplier extends EmsEntity implements java.io.Serializable {
     public void setPrmContact(PrmContact prmContact) {
         this.prmContact = prmContact;
     }
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "rcp_supplieraddressid")
     public AdrAddress getAdrAddress() {

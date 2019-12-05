@@ -14,6 +14,7 @@ public class TmsVehicle extends EmsEntity {
     private TmsVehicleCategory tmsVehicleCategory;
     private TmsBadgeType tmsBadgeType;
     private TmsInsurance tmsInsurance;
+    private TmsContractType tmsContractType;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -85,4 +86,15 @@ public class TmsVehicle extends EmsEntity {
     public void setTmsInsurance(TmsInsurance tmsInsurance) {
         this.tmsInsurance = tmsInsurance;
     }
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "tms_contracttypeid")
+    public TmsContractType getTmsContractType() {
+        return tmsContractType;
+    }
+
+    public void setTmsContractType(TmsContractType tmsContractType) {
+        this.tmsContractType = tmsContractType;
+    }
+
 }

@@ -15,12 +15,12 @@ public class TracingAspect {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass() );
 
-    @Before("execution(* com.bagile.tms.controllers.*.*(..))")
+    @Before("within(com.bagile.tms.services..*)")
     public void entering(JoinPoint joinPoint){
         logger.info("Executing -- : " + joinPoint.getStaticPart().getSignature().toString());
     }
 
-    @After("execution(* com.bagile.tms.controllers.*.*(..))")
+    @After("within(com.bagile.tms.services..*)")
     public void exiting(JoinPoint joinPoint){
         logger.info("Finished -- : " + joinPoint.getStaticPart().getSignature().toString());
     }

@@ -12,6 +12,7 @@ import com.bagile.tms.services.MaintenanceTypeService;
 import com.bagile.tms.util.Search;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,7 +61,8 @@ public class MaintenanceTypeServiceImpl implements MaintenanceTypeService {
         if (search.equals("")){
             return findAll (page, size);
         }
-        Pageable pageable = PageRequest.of(page, size);
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
+        Pageable pageable = PageRequest.of(page, size, sort);
         return MaintenanceTypeMapper.toDtos(MaintenancetypeRepository.findAll(Search.expression(search, TmsMaintenanceType.class), pageable));
     }
 
@@ -89,7 +91,8 @@ public class MaintenanceTypeServiceImpl implements MaintenanceTypeService {
 
     @Override
     public List<MaintenanceType> findAll(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
+        Pageable pageable = PageRequest.of(page, size, sort);
         return MaintenanceTypeMapper.toDtos(MaintenancetypeRepository.findAll(pageable));
     }
 }

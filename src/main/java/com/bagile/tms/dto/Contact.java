@@ -12,7 +12,8 @@ public class Contact extends EmsDto implements Serializable {
     private long id;
     private String name;
     private String surname ;
-    private String tele1;
+    private String tel1;
+    private String tel2;
     private String fax ;
     private String contactType;
     private  String email;
@@ -22,12 +23,20 @@ public class Contact extends EmsDto implements Serializable {
     public Contact() {
     }
 
-    public String getTele1() {
-        return tele1;
+    public String getTel1() {
+        return tel1;
     }
 
-    public void setTele1(String tele1) {
-        this.tele1 = tele1;
+    public void setTel1(String tel1) {
+        this.tel1 = tel1;
+    }
+
+    public String getTel2() {
+        return tel2;
+    }
+
+    public void setTel2(String tel2) {
+        this.tel2 = tel2;
     }
 
     public long getId() {

@@ -10,11 +10,11 @@ public class TmsInsurance extends  EmsEntity{
     private long tmsInsuranceId;
 
     private String tmsInsuranceCode;
+    private String tmsInsuranceNumber;
     private String tmsInsuranceDescription;
     private Date tmsInsuranceStartDate;
     private Date tmsInsuranceEndDate;
     private BigDecimal tmsInsuranceAmount;
-    private TmsContractType tmsContractType;
     private TmsInsuranceTerm tmsInsuranceTerm;
     private RcpSupplier rcpSupplier;
     private TmsVehicle tmsVehicle;
@@ -74,16 +74,6 @@ public class TmsInsurance extends  EmsEntity{
         this.tmsInsuranceAmount = tmsInsuranceAmount;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_contracttypeid")
-    public TmsContractType getTmsContractType() {
-        return tmsContractType;
-    }
-
-    public void setTmsContractType(TmsContractType tmsContractType) {
-        this.tmsContractType = tmsContractType;
-    }
-
     @OneToOne
     @JoinColumn(name = "tms_insuranceinsurancetermid")
     public TmsInsuranceTerm getTmsInsuranceTerm() {
@@ -111,5 +101,14 @@ public class TmsInsurance extends  EmsEntity{
 
     public void setTmsVehicle(TmsVehicle tmsVehicle) {
         this.tmsVehicle = tmsVehicle;
+    }
+
+    @Column(name = "tms_insurancenumber")
+    public String getTmsInsuranceNumber() {
+        return tmsInsuranceNumber;
+    }
+
+    public void setTmsInsuranceNumber(String tmsInsuranceNumber) {
+        this.tmsInsuranceNumber = tmsInsuranceNumber;
     }
 }

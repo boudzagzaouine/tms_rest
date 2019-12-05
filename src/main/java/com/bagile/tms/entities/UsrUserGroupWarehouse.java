@@ -2,9 +2,6 @@ package com.bagile.tms.entities;
 
 import javax.persistence.*;
 
-/**
- * Created by adadi on 2/25/2016.
- */
 @Entity
 @Table(name = "usr_usergroup_wrh_warehouse")
 public class UsrUserGroupWarehouse extends EmsEntity {

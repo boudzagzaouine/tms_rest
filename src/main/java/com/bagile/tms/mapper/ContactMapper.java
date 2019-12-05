@@ -18,7 +18,8 @@ public class ContactMapper {
         map.put("id","prmContactId");
         map.put("name","prmContactName");
         map.put("surname","prmContactSurname");
-        map.put("tele1","prmContactTele1");
+        map.put("tel1","prmContactTel1");
+        map.put("tel2","prmContactTel2");
         map.put("fax","prmContactFax");
         map.put("contactType", "prmContactType");
         map.put("email", "prmContactEmail");
@@ -49,7 +50,8 @@ public class ContactMapper {
         tmsContact.setPrmContactName(contact.getName());
         tmsContact.setPrmContactType(contact.getContactType());
         tmsContact.setPrmContactSurname(contact.getSurname());
-        tmsContact.setPrmContactTele1(contact.getTele1());
+        tmsContact.setPrmContactTel1 (contact.getTel1 ());
+        tmsContact.setPrmContactTel2 (contact.getTel2 ());
         tmsContact.setPrmContactFax(contact.getFax());
         tmsContact.setPrmContactEmail(contact.getEmail());
          tmsContact.setPrmContactComment(contact.getComment());
@@ -78,13 +80,13 @@ public class ContactMapper {
         contact.setId(tmsContact.getPrmContactId());
         contact.setName(tmsContact.getPrmContactName());
         contact.setSurname(tmsContact.getPrmContactSurname());
-        contact.setTele1(tmsContact.getPrmContactTele1());
+        contact.setTel1 (tmsContact.getPrmContactTel1 ());
+        contact.setTel2 (tmsContact.getPrmContactTel2 ());
         contact.setFax(tmsContact.getPrmContactFax());
         contact.setContactType(tmsContact.getPrmContactType());
         contact.setEmail(tmsContact.getPrmContactEmail());
         contact.setComment(tmsContact.getPrmContactComment());
         contact.setActive(tmsContact.isPrmContactActive());
-
 
         contact.setCreatedBy(tmsContact.getCreatedBy());
         contact.setUpdatedBy(tmsContact.getUpdatedBy());

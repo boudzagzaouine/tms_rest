@@ -25,6 +25,7 @@ public class VehicleMapper {
         map.put("vehicleCategory", "tmsVehicleCategory");
         map.put("badgeType", "tmsBadgeType");
         map.put("insurance", "TmsInsurance");
+        map.put("contractType", "TmsContractType");
     }
 
     public static Map<String, String> getMap() {
@@ -51,6 +52,7 @@ public class VehicleMapper {
             tmsVehicle.setTmsVehicleCategory(VehicleCategoryMapper.toEntity(vehicle.getVehicleCategory(), true));
             tmsVehicle.setTmsBadgeType(BadgeTypeMapper.toEntity(vehicle.getBadgeType(), true));
             tmsVehicle.setTmsInsurance(InsuranceMapper.toEntity(vehicle.getInsurance(), true));
+            tmsVehicle.setTmsContractType (ContractTypeMapper.toEntity (vehicle.getContractType (), true));
 
         }
         return tmsVehicle;
@@ -75,7 +77,7 @@ public class VehicleMapper {
             vehicle.setBadgeType(BadgeTypeMapper.toDto(tmsVehicle.getTmsBadgeType(), true));
             vehicle.setVehicleCategory(VehicleCategoryMapper.toDto(tmsVehicle.getTmsVehicleCategory(), true));
             vehicle.setInsurance(InsuranceMapper.toDto(tmsVehicle.getTmsInsurance(), true));
-
+            vehicle.setContractType (ContractTypeMapper.toDto (tmsVehicle.getTmsContractType (), true));
         }
         return vehicle;
 

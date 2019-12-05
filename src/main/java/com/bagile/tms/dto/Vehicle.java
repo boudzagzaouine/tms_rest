@@ -19,6 +19,7 @@ public class Vehicle extends EmsDto implements Serializable {
     private VehicleCategory vehicleCategory;
     private BadgeType badgeType;
     private Insurance insurance;
+    private ContractType contractType;
 
 
     public Vehicle() {
@@ -86,6 +87,14 @@ public class Vehicle extends EmsDto implements Serializable {
 
     public void setInsurance(Insurance insurance) {
         this.insurance = insurance;
+    }
+
+    public ContractType getContractType() {
+        return contractType;
+    }
+
+    public void setContractType(ContractType contractType) {
+        this.contractType = contractType;
     }
 
     @Override

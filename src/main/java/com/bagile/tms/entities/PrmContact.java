@@ -13,7 +13,8 @@ public class PrmContact extends EmsEntity {
     private String prmContactName;
 
     private String prmContactSurname;
-    private String prmContactTele1;
+    private String prmContactTel1;
+    private String prmContactTel2;
 
     private String prmContactFax;
     private String prmContactType;
@@ -50,13 +51,22 @@ public class PrmContact extends EmsEntity {
         this.prmContactSurname = prmContactSurname;
     }
 
-    @Column(name = "prm_Contacttele1")
-    public String getPrmContactTele1() {
-        return prmContactTele1;
+    @Column(name = "prm_contacttel1")
+    public String getPrmContactTel1() {
+        return prmContactTel1;
     }
 
-    public void setPrmContactTele1(String prmContactTele1) {
-        this.prmContactTele1 = prmContactTele1;
+    public void setPrmContactTel1(String prmContactTel1) {
+        this.prmContactTel1 = prmContactTel1;
+    }
+
+    @Column(name = "prm_contacttel2")
+    public String getPrmContactTel2() {
+        return prmContactTel2;
+    }
+
+    public void setPrmContactTel2(String prmContactTel2) {
+        this.prmContactTel2 = prmContactTel2;
     }
 
     @Column(name = "prm_contactfax")

@@ -6,21 +6,16 @@ import javax.persistence.*;
 @Table(name="tms_maintenancestate")
 public class TmsMaintenanceState  extends EmsEntity {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 6583945389627755380L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_maintenancestateid", allocationSize = 1)
     @Column(name = "tms_maintenancestateid", unique = true, nullable = false, length = 90, precision = 10, scale = 0)
     private Long tmsMaintenanceStateId;
-    @Column(name = "tms_maintenancestatecode")
+    @Column(name = "tms_maintenancestatecode", unique = true, nullable = false, length = 90)
     private String tmsMaintenanceStateCode;
     @Column(name = "tms_maintenancestatedescription")
     private String tmsMaintenanceStateDescription;
-
-
 
     public TmsMaintenanceState() {
     }

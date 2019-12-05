@@ -8,10 +8,10 @@ public class Insurance extends EmsDto{
     private long id;
     private String code;
     private String description;
+    private String number;
     private Date startDate;
     private Date endDate;
     private BigDecimal amount;
-    private ContractType contractType;
     private InsuranceTerm insuranceTerm;
     private Supplier supplier;
     private Vehicle vehicle;
@@ -34,6 +34,14 @@ public class Insurance extends EmsDto{
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public String getDescription() {
@@ -66,14 +74,6 @@ public class Insurance extends EmsDto{
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
-    }
-
-    public ContractType getContractType() {
-        return contractType;
-    }
-
-    public void setContractType(ContractType contractType) {
-        this.contractType = contractType;
     }
 
     public InsuranceTerm getInsuranceTerm() {
