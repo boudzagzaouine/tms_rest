@@ -1,6 +1,8 @@
 package com.bagile.tms.mapper;
 
 import com.bagile.tms.dto.MaintenanceLine;
+import com.bagile.tms.dto.MaintenancePlan;
+import com.bagile.tms.dto.Product;
 import com.bagile.tms.entities.TmsMaintenanceLine;
 
 import java.util.*;
@@ -15,15 +17,13 @@ public class MaintenanceLineMapper {
         map = new HashMap<>();
 
         map.put("id", "tmsMaintenanceLineId");
-        map.put("code", "tmsMaintenanceLineCode");
-        map.put("number", "tmsMaintenanceLineNumber");
-        map.put("description", "tmsMaintenanceLineDescription");
-        map.put("amount", "tmsMaintenanceLineAmount");
-        map.put("startDate", "tmsMaintenanceLineStartDate");
-        map.put("endDate", "tmsMaintenanceLineEndDate");
-        map.put("maintenanceLineTerm", "tmsMaintenanceLineTerm");
-        map.put("supplier", "rcpSupplier");
-        map.put("maintenanceLine", "tmsMaintenanceLine");
+        map.put("product", "tmsMaintenanceLineCode");
+        map.put("description", "tmsMaintenanceLineNumber");
+        map.put("unitPrice", "tmsMaintenanceLineDescription");
+        map.put("totalPriceHT", "tmsMaintenanceLineAmount");
+        map.put("totalPriceTTC", "tmsMaintenanceLineStartDate");
+        map.put("maintenancePlan", "tmsMaintenanceLineEndDate");
+
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -45,12 +45,11 @@ public class MaintenanceLineMapper {
         }
         TmsMaintenanceLine tmsMaintenanceLine = new TmsMaintenanceLine();
         tmsMaintenanceLine.setTmsMaintenanceLineId(maintenanceLine.getId());
-        tmsMaintenanceLine.setTmsMaintenanceLineCode(maintenanceLine.getCode());
-        tmsMaintenanceLine.setTmsMaintenanceLineNumber (maintenanceLine.getNumber ());
         tmsMaintenanceLine.setTmsMaintenanceLineDescription (maintenanceLine.getDescription ());
-        tmsMaintenanceLine.setTmsMaintenanceLineAmount (maintenanceLine.getAmount ());
-        tmsMaintenanceLine.setTmsMaintenanceLineStartDate (maintenanceLine.getStartDate ());
-        tmsMaintenanceLine.setTmsMaintenanceLineEndDate (maintenanceLine.getEndDate ());
+        tmsMaintenanceLine.setTmsMaintenanceLineQuantity (maintenanceLine.getQuantity ());
+        tmsMaintenanceLine.setTmsMaintenanceLineUnitPrice (maintenanceLine.getUnitPrice ());
+        tmsMaintenanceLine.setTmsMaintenanceLineTotalPriceHT (maintenanceLine.getTotalPriceHT ());
+        tmsMaintenanceLine.setTmsMaintenanceLineTotalPriceTTC (maintenanceLine.getTotalPriceTTC ());
 
         tmsMaintenanceLine.setCreatedBy(maintenanceLine.getCreatedBy());
         tmsMaintenanceLine.setUpdatedBy(maintenanceLine.getUpdatedBy());
@@ -58,9 +57,9 @@ public class MaintenanceLineMapper {
         tmsMaintenanceLine.setUpdateDate(maintenanceLine.getUpdateDate());
 
         if(!lazy) {
-             tmsMaintenanceLine.setTmsMaintenanceLineTerm (MaintenanceLineTermMapper.toEntity(maintenanceLine.getMaintenanceLineTerm (),true));
-             tmsMaintenanceLine.setRcpSupplier (SupplierMapper.toEntity(maintenanceLine.getSupplier (),true));
-             tmsMaintenanceLine.setTmsVehicle (VehicleMapper.toEntity (maintenanceLine.getVehicle (), true));
+             tmsMaintenanceLine.setTmsMaintenanceLineProduct (ProductMapper.toEntity(maintenanceLine.getProduct (),true));
+            tmsMaintenanceLine.setTmsMaintenanceLineMaintenancePlan (MaintenancePlanMapper.toEntity(maintenanceLine.getMaintenancePlan (),true));
+
         }
         return tmsMaintenanceLine;
     }
@@ -71,12 +70,11 @@ public class MaintenanceLineMapper {
         }
         MaintenanceLine maintenanceLine = new MaintenanceLine();
         maintenanceLine.setId((int) tmsMaintenanceLine.getTmsMaintenanceLineId());
-        maintenanceLine.setCode(tmsMaintenanceLine.getTmsMaintenanceLineCode());
-        maintenanceLine.setNumber (tmsMaintenanceLine.getTmsMaintenanceLineNumber ());
-        maintenanceLine.setDescription (tmsMaintenanceLine.getTmsMaintenanceLineDescription ());
-        maintenanceLine.setAmount (tmsMaintenanceLine.getTmsMaintenanceLineAmount ());
-        maintenanceLine.setStartDate (tmsMaintenanceLine.getTmsMaintenanceLineStartDate ());
-        maintenanceLine.setEndDate (tmsMaintenanceLine.getTmsMaintenanceLineEndDate ());
+        maintenanceLine.setDescription(tmsMaintenanceLine.getTmsMaintenanceLineDescription());
+        maintenanceLine.setQuantity (tmsMaintenanceLine.getTmsMaintenanceLineQuantity ());
+        maintenanceLine.setUnitPrice (tmsMaintenanceLine.getTmsMaintenanceLineUnitPrice ());
+        maintenanceLine.setTotalPriceHT (tmsMaintenanceLine.getTmsMaintenanceLineTotalPriceHT ());
+        maintenanceLine.setTotalPriceTTC (tmsMaintenanceLine.getTmsMaintenanceLineTotalPriceTTC ());
 
         maintenanceLine.setCreatedBy(tmsMaintenanceLine.getCreatedBy());
         maintenanceLine.setUpdatedBy(tmsMaintenanceLine.getUpdatedBy());
@@ -85,9 +83,8 @@ public class MaintenanceLineMapper {
 
         if(!lazy) {
 
-             maintenanceLine.setMaintenanceLineTerm (MaintenanceLineTermMapper.toDto(tmsMaintenanceLine.getTmsMaintenanceLineTerm (),true));
-             maintenanceLine.setSupplier (SupplierMapper.toDto (tmsMaintenanceLine.getRcpSupplier (), true));
-             maintenanceLine.setVehicle (VehicleMapper.toDto (tmsMaintenanceLine.getTmsVehicle (), true));
+             maintenanceLine.setProduct (ProductMapper.toDto (tmsMaintenanceLine.getTmsMaintenanceLineProduct (), true));
+             maintenanceLine.setMaintenancePlan (MaintenancePlanMapper.toDto (tmsMaintenanceLine.getTmsMaintenanceLineMaintenancePlan (), true));
         }
         return maintenanceLine;
     }

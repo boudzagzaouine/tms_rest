@@ -2,7 +2,8 @@ package com.bagile.tms.entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-
+@Entity
+@Table(name="tms_maintenanceline")
 public class TmsMaintenanceLine extends EmsEntity {
     private long tmsMaintenanceLineId;
     private PdtProduct tmsMaintenanceLineProduct;
