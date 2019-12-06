@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class ProductPack extends EmsDTO implements Serializable {
+public class ProductPack extends EmsDto implements Serializable {
 
     private static final long serialVersionUID = 2363111932810486334L;
 
@@ -14,7 +14,6 @@ public class ProductPack extends EmsDTO implements Serializable {
     private Date updateDate;
     private Date creationDate;
     private Product product;
-    private Alias alias;
     private Uom uom;
     private BigDecimal weight;
     private BigDecimal height;
@@ -78,13 +77,6 @@ public class ProductPack extends EmsDTO implements Serializable {
         this.product = product;
     }
 
-    public Alias getAlias() {
-        return this.alias;
-    }
-
-    public void setAlias(Alias alias) {
-        this.alias = alias;
-    }
 
     public Uom getUom() {
         return this.uom;

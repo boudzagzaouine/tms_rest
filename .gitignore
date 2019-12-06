@@ -39,3 +39,5 @@
 /src/test/java/com/bagile/tms/services/VacationTypeServiceTest.java
 /src/test/java/com/bagile/tms/services/VehicleCategoryServiceTest.java
 /src/test/java/com/bagile/tms/services/VehicleServiceTest.java
+/src/test/java/com/bagile/tms/services/DriverServiceTest.java.orig
+/src/test/java/com/bagile/tms/services/VehicleServiceTest.java.orig

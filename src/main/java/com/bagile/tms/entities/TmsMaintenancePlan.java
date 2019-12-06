@@ -2,6 +2,8 @@ package com.bagile.tms.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+
 @Entity
 @Table(name="tms_maintenanceplan")
 public class TmsMaintenancePlan extends EmsEntity {
@@ -32,6 +34,10 @@ public class TmsMaintenancePlan extends EmsEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_vehiculeid")
    private TmsVehicle tmsVehicle;
+
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "tmsMaintenanceLineMaintenancePlan")
+    private List<TmsMaintenanceLine> tmsMaintenanceLines;
 
 
     public TmsMaintenancePlan() {

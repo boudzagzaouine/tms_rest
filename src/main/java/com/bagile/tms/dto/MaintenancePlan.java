@@ -1,10 +1,9 @@
 package com.bagile.tms.dto;
 
-import antlr.collections.List;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class MaintenancePlan extends EmsDto implements Serializable {
@@ -24,7 +23,7 @@ public class MaintenancePlan extends EmsDto implements Serializable {
     private Vehicle vehicle;
     private double mileage;
    private BigDecimal totalPrice;
-    private List<MaintenaceLine> maintenaceLineList;
+    private List<MaintenanceLine> maintenanceLineList;
 
 
     public MaintenancePlan() {
@@ -110,12 +109,12 @@ public class MaintenancePlan extends EmsDto implements Serializable {
         this.totalPrice = totalPrice;
     }
 
-    public List<MaintenaceLine> getMaintenaceLineList() {
-        return maintenaceLineList;
+    public List<MaintenanceLine> getMaintenanceLineList() {
+        return maintenanceLineList;
     }
 
-    public void setMaintenaceLineList(List<MaintenaceLine> maintenaceLineList) {
-        this.maintenaceLineList = maintenaceLineList;
+    public void setMaintenanceLineList(List<MaintenanceLine> maintenanceLineList) {
+        this.maintenanceLineList = maintenanceLineList;
     }
 
     @Override
