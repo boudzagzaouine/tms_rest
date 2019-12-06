@@ -9,7 +9,6 @@ import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
@@ -20,13 +19,14 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "pdt_product", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "pdt_productcode")})
-public class PdtProduct extends EmsEntity implements Serializable {
+        @UniqueConstraint(columnNames = {"pdt_productcode", "pdt_productownerid"})})
+public class PdtProduct extends EmsEntity implements java.io.Serializable {
 
     private long pdtProductId;
+
     @NotNull
     private OwnOwner ownOwner;
-
+    private PdtProduct pdtProductParent;
     private PdtProductType pdtProductTypeByPdtProductTypeId;
     private PdtProductType pdtProductTypeByPdtProductSubTypeId;
     private PdtUom pdtUomByPdtProductUomSaleId;
@@ -34,22 +34,29 @@ public class PdtProduct extends EmsEntity implements Serializable {
     private PdtUom pdtUomByPdtProductUomPurshaseId;
     private RcpSupplier rcpSupplier;
     private WrhWarehouse wrhWarehouse;
-
     @Size(max = 30)
     @NotNull
     private String pdtProductCode;
+    @Size(max = 1)
+    @NotNull
+    private String pdtProductMaterialABCCode;
     private Boolean pdtProductDlcControl;
     private Boolean pdtProductDluoControl;
     private Boolean pdtProductSerialNoControl;
     private Boolean pdtProductLotControl;
     private Boolean pdtProductColorControl;
     private Boolean pdtProductControlWeight;
-    //TODO
 
+    private BigDecimal pdtProductCoefficient;
+    private BigDecimal pdtProductProductionCost;
     @Max(999999999)
-    private Long pdtProductSuppOfLife;
+    private BigDecimal pdtProductSalePriceUB;
     @Max(999999999)
-    private BigDecimal pdtProductPriceUB;
+    private BigDecimal pdtProductTTCSalePriceUB;
+    @Max(999999999)
+    private BigDecimal pdtProductPurshasePriceUB;
+    @Max(999999999)
+    private BigDecimal pdtProductTTCPurshasePriceUB;
     //TODO Value 1 to LIFO, 2 to FIFO, 3 to CUMB, 4 to NIFO
     @Max(999999999)
     private Long pdtProductRaisonToOut;
@@ -57,8 +64,6 @@ public class PdtProduct extends EmsEntity implements Serializable {
     private String pdtProductDesc;
     @Size(max = 80)
     private String pdtProductShortDesc;
-    @Size(max = 255)
-    private String pdtProductDescSecondLanguage;
     private Integer pdtProductDaysOfLife;
     private Byte pdtProductContainerStack;
     @Size(max = 80)
@@ -123,17 +128,33 @@ public class PdtProduct extends EmsEntity implements Serializable {
     @Size(max = 255)
     private String pdtProductVariable10;
     private Boolean pdtProductQualityOfControl;
-    private BigDecimal pdtProductSamplingPercentage;
     private PdtUom pickingPdtUom;
     private BigDecimal pdtMinimalThreshold;
     private BigDecimal pdtCapacity;
     private Boolean pdtIsReception;
     private PdtProductPack pdtProductPack;
-    private Boolean pdtProductReqExp;
-    private Boolean pdtProductReqRec;
-    private PdtProductPack pdtKitProductPack;
-    private Set<PdtProductPack> pdtProductPacks = new HashSet<PdtProductPack>(0);
+    private Boolean pdtProductWarrantyManagement;
+    private BigDecimal pdtProductDiscount;
+    private Boolean pdtProductStockManaged;
+    private Boolean pdtProductDimension;
+    private Boolean pdtProductStocked;
+    private Boolean pdtProductOutOfStock;
+    private Integer pdtProductSupplierDelay;
+    private BigDecimal pdtProductMarginOfPurchase;
+    private BigDecimal pdtProductMarginOfCostsOfReturn;
+    private BigDecimal pdtProductCostsOfReturn;
+    private Set<PdtProductPack> pdtProductPacks = new HashSet<PdtProductPack> (0);
     private Date pdtProductLastInventoryDate;
+    private Long pdtProductVersion;
+    private Boolean pdtProductForBuying;
+    private String pdtProductTechnicalSheet;
+    private Boolean pdtProductPackaging;
+    private Boolean pdtProductCharge;
+    private BigDecimal pdtProductProfessionalSalePrice;
+    private BigDecimal pdtProductProfessionalTTCSalePrice;
+    private Boolean pdtProductVariableWeight;
+    private BigDecimal pdtProductCustomsPercentage;
+    private BigDecimal pdtProductAvailableQuantity;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -148,7 +169,6 @@ public class PdtProduct extends EmsEntity implements Serializable {
     }
 
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pdt_productownerid", nullable = false)
     public OwnOwner getOwnOwner() {
@@ -159,6 +179,15 @@ public class PdtProduct extends EmsEntity implements Serializable {
         this.ownOwner = ownOwner;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pdt_productaltproductid")
+    public PdtProduct getPdtProductParent() {
+        return this.pdtProductParent;
+    }
+
+    public void setPdtProductParent(PdtProduct pdtProductParent) {
+        this.pdtProductParent = pdtProductParent;
+    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pdt_producttypeid")
@@ -235,15 +264,6 @@ public class PdtProduct extends EmsEntity implements Serializable {
         this.wrhWarehouse = wrhWarehouse;
     }
 
-    @Column(name = "pdt_productsuppoflife", precision = 12, scale = 0)
-    public Long getPdtProductSuppOfLife() {
-        return pdtProductSuppOfLife;
-    }
-
-    public void setPdtProductSuppOfLife(Long pdtProductSuppOfLife) {
-        this.pdtProductSuppOfLife = pdtProductSuppOfLife;
-    }
-
     @Column(name = "pdt_productraisontoout", precision = 12, scale = 0)
     public Long getPdtProductRaisonToOut() {
         return pdtProductRaisonToOut;
@@ -253,7 +273,7 @@ public class PdtProduct extends EmsEntity implements Serializable {
         this.pdtProductRaisonToOut = pdtProductRaisonToOut;
     }
 
-    @Column(name = "pdt_productcode", unique = true, nullable = false, length = 30)
+    @Column(name = "pdt_productcode", nullable = false, length = 30)
     public String getPdtProductCode() {
         return this.pdtProductCode;
     }
@@ -263,12 +283,21 @@ public class PdtProduct extends EmsEntity implements Serializable {
     }
 
     @Column(name = "pdt_productpriceub")
-    public BigDecimal getPdtProductPriceUB() {
-        return pdtProductPriceUB;
+    public BigDecimal getPdtProductSalePriceUB() {
+        return pdtProductSalePriceUB;
     }
 
-    public void setPdtProductPriceUB(BigDecimal pdtProductPriceUB) {
-        this.pdtProductPriceUB = pdtProductPriceUB;
+    public void setPdtProductSalePriceUB(BigDecimal pdtProductSalePriceUB) {
+        this.pdtProductSalePriceUB = pdtProductSalePriceUB;
+    }
+
+    @Column(name = "pdt_productmaterialabccode", nullable = false, precision = 1, scale = 0)
+    public String getPdtProductMaterialABCCode() {
+        return this.pdtProductMaterialABCCode;
+    }
+
+    public void setPdtProductMaterialABCCode(String pdtProductMaterialABCCode) {
+        this.pdtProductMaterialABCCode = pdtProductMaterialABCCode;
     }
 
     @Column(name = "pdt_productdlccontrol")
@@ -323,15 +352,6 @@ public class PdtProduct extends EmsEntity implements Serializable {
 
     public void setPdtProductDesc(String pdtProductDesc) {
         this.pdtProductDesc = pdtProductDesc;
-    }
-
-    @Column(name = "pdt_productdescsecondlanguage")
-    public String getPdtProductDescSecondLanguage() {
-        return pdtProductDescSecondLanguage;
-    }
-
-    public void setPdtProductDescSecondLanguage(String pdtProductDescSecondLanguage) {
-        this.pdtProductDescSecondLanguage = pdtProductDescSecondLanguage;
     }
 
     @Column(name = "pdt_productshortdesc", length = 80)
@@ -583,7 +603,6 @@ public class PdtProduct extends EmsEntity implements Serializable {
         this.pdtProductVariable10 = pdtProductVariable10;
     }
 
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct")
     public Set<PdtProductPack> getPdtProductPacks() {
         return this.pdtProductPacks;
@@ -592,7 +611,6 @@ public class PdtProduct extends EmsEntity implements Serializable {
     public void setPdtProductPacks(Set<PdtProductPack> pdtProductPacks) {
         this.pdtProductPacks = pdtProductPacks;
     }
-
 
     @Column(name = "pdt_productiskit")
     public Boolean getPdtProductIsKit() {
@@ -612,17 +630,7 @@ public class PdtProduct extends EmsEntity implements Serializable {
         this.pdtProductQualityOfControl = pdtProductQualityOfControl;
     }
 
-    @Column(name = "pdt_productsamplingpercentage")
-
-    public BigDecimal getPdtProductSamplingPercentage() {
-        return pdtProductSamplingPercentage;
-    }
-
-    public void setPdtProductSamplingPercentage(BigDecimal pdtProductSamplingPercentage) {
-        this.pdtProductSamplingPercentage = pdtProductSamplingPercentage;
-    }
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pdt_productproductpackid")
     public PdtProductPack getPdtProductPack() {
         return pdtProductPack;
@@ -670,26 +678,6 @@ public class PdtProduct extends EmsEntity implements Serializable {
 
     }
 
-    @Column(name = "pdt_productreqexp")
-
-    public Boolean getPdtProductReqExp() {
-        return pdtProductReqExp;
-    }
-
-    public void setPdtProductReqExp(Boolean pdtProductReqExp) {
-        this.pdtProductReqExp = pdtProductReqExp;
-    }
-
-    @Column(name = "pdt_productreqrec")
-
-    public Boolean getPdtProductReqRec() {
-        return pdtProductReqRec;
-    }
-
-    public void setPdtProductReqRec(Boolean pdtProductReqRec) {
-        this.pdtProductReqRec = pdtProductReqRec;
-    }
-
     @Column(name = "pdt_productcontrolweight")
     public Boolean getPdtProductControlWeight() {
         return pdtProductControlWeight;
@@ -699,8 +687,166 @@ public class PdtProduct extends EmsEntity implements Serializable {
         this.pdtProductControlWeight = pdtProductControlWeight;
     }
 
-    public void setPdtProductLastInventoryDate(Date pdtProductLastInventoryDate) {
-        this.pdtProductLastInventoryDate = pdtProductLastInventoryDate;
+    @Column(name = "pdt_productwarrantymanagement")
+
+    public Boolean getPdtProductWarrantyManagement() {
+        return pdtProductWarrantyManagement;
+    }
+
+    public void setPdtProductWarrantyManagement(Boolean pdtProductWarrantyManagement) {
+        this.pdtProductWarrantyManagement = pdtProductWarrantyManagement;
+    }
+
+    @Column(name = "pdt_productdiscount")
+    public BigDecimal getPdtProductDiscount() {
+        return pdtProductDiscount;
+    }
+
+    public void setPdtProductDiscount(BigDecimal pdtProductDiscount) {
+        this.pdtProductDiscount = pdtProductDiscount;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pdt_productwarrantyperiodid")
+
+
+    @Column(name = "pdt_productpurshasepriceub")
+
+    public BigDecimal getPdtProductPurshasePriceUB() {
+        return pdtProductPurshasePriceUB;
+    }
+
+    public void setPdtProductPurshasePriceUB(BigDecimal pdtProductPurshasePriceUB) {
+        this.pdtProductPurshasePriceUB = pdtProductPurshasePriceUB;
+    }
+
+    @Column(name = "pdt_productdimension")
+    public Boolean getPdtProductDimension() {
+        return pdtProductDimension;
+    }
+
+    public void setPdtProductDimension(Boolean pdtProductDimension) {
+        this.pdtProductDimension = pdtProductDimension;
+    }
+
+    @Column(name = "pdt_productcoefficient")
+    public BigDecimal getPdtProductCoefficient() {
+        return pdtProductCoefficient;
+    }
+
+    public void setPdtProductCoefficient(BigDecimal pdtProductCoefficient) {
+        this.pdtProductCoefficient = pdtProductCoefficient;
+    }
+
+    @Column(name = "pdt_productproductioncost")
+    public BigDecimal getPdtProductProductionCost() {
+        return pdtProductProductionCost;
+    }
+
+    public void setPdtProductProductionCost(BigDecimal pdtProductProductionCost) {
+        this.pdtProductProductionCost = pdtProductProductionCost;
+    }
+
+    @Column(name = "pdt_productversion")
+    public Long getPdtProductVersion() {
+        return pdtProductVersion;
+    }
+
+    public void setPdtProductVersion(Long pdtProductVersion) {
+        this.pdtProductVersion = pdtProductVersion;
+    }
+
+    @Column(name = "pdt_productstocked")
+    public Boolean getPdtProductStocked() {
+        return pdtProductStocked;
+    }
+
+    public void setPdtProductStocked(Boolean pdtProductStocked) {
+        this.pdtProductStocked = pdtProductStocked;
+    }
+
+    @Column(name = "pdt_productforbuying")
+    public Boolean getPdtProductForBuying() {
+        return pdtProductForBuying;
+    }
+
+    public void setPdtProductForBuying(Boolean pdtProductForBuying) {
+        this.pdtProductForBuying = pdtProductForBuying;
+    }
+
+    @Column(name = "pdt_productstockmanaged")
+    public Boolean getPdtProductStockManaged() {
+        return pdtProductStockManaged;
+    }
+
+    public void setPdtProductStockManaged(Boolean pdtProductStockManaged) {
+        this.pdtProductStockManaged = pdtProductStockManaged;
+    }
+
+    @Column(name = "pdt_productoutofstock")
+    public Boolean getPdtProductOutOfStock() {
+        return pdtProductOutOfStock;
+    }
+
+    public void setPdtProductOutOfStock(Boolean pdtProductOutOfStock) {
+        this.pdtProductOutOfStock = pdtProductOutOfStock;
+    }
+
+    @Column(name = "pdt_productmarginofpurchase")
+    public BigDecimal getPdtProductMarginOfPurchase() {
+        return pdtProductMarginOfPurchase;
+    }
+
+    public void setPdtProductMarginOfPurchase(BigDecimal pdtProductMarginOfPurchase) {
+        this.pdtProductMarginOfPurchase = pdtProductMarginOfPurchase;
+    }
+
+    @Column(name = "pdt_productmarginofcostsofreturn")
+
+    public BigDecimal getPdtProductMarginOfCostsOfReturn() {
+        return pdtProductMarginOfCostsOfReturn;
+    }
+
+    public void setPdtProductMarginOfCostsOfReturn(BigDecimal pdtProductMarginOfCostsOfReturn) {
+        this.pdtProductMarginOfCostsOfReturn = pdtProductMarginOfCostsOfReturn;
+    }
+
+    @Column(name = "pdt_productcostsofreturn")
+
+    public BigDecimal getPdtProductCostsOfReturn() {
+        return pdtProductCostsOfReturn;
+    }
+
+    public void setPdtProductCostsOfReturn(BigDecimal pdtProductCostsOfReturn) {
+        this.pdtProductCostsOfReturn = pdtProductCostsOfReturn;
+    }
+
+    @Column(name = "pdt_producttechnicalsheet", columnDefinition = "TEXT")
+    public String getPdtProductTechnicalSheet() {
+        return pdtProductTechnicalSheet;
+    }
+
+    public void setPdtProductTechnicalSheet(String pdtProductTechnicalSheet) {
+        this.pdtProductTechnicalSheet = pdtProductTechnicalSheet;
+    }
+
+    @Column(name = "pdt_productpackaging")
+    public Boolean getPdtProductPackaging() {
+        return pdtProductPackaging;
+    }
+
+    public void setPdtProductPackaging(Boolean pdtProductPackaging) {
+        this.pdtProductPackaging = pdtProductPackaging;
+    }
+
+    @Column(name = "pdt_productcharge")
+
+    public Boolean getPdtProductCharge() {
+        return pdtProductCharge;
+    }
+
+    public void setPdtProductCharge(Boolean pdtProductCharge) {
+        this.pdtProductCharge = pdtProductCharge;
     }
 
     @Column(name = "pdt_productlastinventorydate")
@@ -708,13 +854,84 @@ public class PdtProduct extends EmsEntity implements Serializable {
         return pdtProductLastInventoryDate;
     }
 
-    @JoinColumn(name = "pdt_productkitpackid")
-    @ManyToOne(fetch = FetchType.LAZY)
-    public PdtProductPack getPdtKitProductPack() {
-        return pdtKitProductPack;
+    public void setPdtProductLastInventoryDate(Date pdtProductLastInventoryDate) {
+        this.pdtProductLastInventoryDate = pdtProductLastInventoryDate;
     }
 
-    public void setPdtKitProductPack(PdtProductPack pdtKitProductPack) {
-        this.pdtKitProductPack = pdtKitProductPack;
+    @Column(name = "pdt_productsuplierdelay")
+    public Integer getPdtProductSupplierDelay() {
+        return pdtProductSupplierDelay;
+    }
+
+    public void setPdtProductSupplierDelay(Integer pdtProductSupplierDelay) {
+        this.pdtProductSupplierDelay = pdtProductSupplierDelay;
+    }
+
+    @Column(name = "pdt_productprofessionalsaleprice")
+    public BigDecimal getPdtProductProfessionalSalePrice() {
+        return pdtProductProfessionalSalePrice;
+    }
+
+    public void setPdtProductProfessionalSalePrice(BigDecimal pdtProductProfessionalSalePrice) {
+        this.pdtProductProfessionalSalePrice = pdtProductProfessionalSalePrice;
+    }
+
+    @Column(name = "pdt_productvariableweight")
+    public Boolean getPdtProductVariableWeight() {
+        return pdtProductVariableWeight;
+    }
+
+    public void setPdtProductVariableWeight(Boolean pdtProductVariableWeight) {
+        this.pdtProductVariableWeight = pdtProductVariableWeight;
+    }
+
+    @Column(name = "pdt_productcustomspercentage")
+    public BigDecimal getPdtProductCustomsPercentage() {
+        return pdtProductCustomsPercentage;
+    }
+
+    public void setPdtProductCustomsPercentage(BigDecimal pdtProductCustomsPercentage) {
+        this.pdtProductCustomsPercentage = pdtProductCustomsPercentage;
+    }
+
+    @Transient
+    public BigDecimal getPdtProductAvailableQuantity() {
+        return pdtProductAvailableQuantity;
+    }
+
+    public void setPdtProductAvailableQuantity(BigDecimal pdtProductAvailableQuantity) {
+        this.pdtProductAvailableQuantity = pdtProductAvailableQuantity;
+    }
+
+    @Column(name = "pdt_productttcsaleprice")
+    public BigDecimal getPdtProductTTCSalePriceUB() {
+        return pdtProductTTCSalePriceUB;
+    }
+
+    public void setPdtProductTTCSalePriceUB(BigDecimal pdtProductTTCSalePriceUB) {
+        this.pdtProductTTCSalePriceUB = pdtProductTTCSalePriceUB;
+    }
+
+    @Column(name = "pdt_productttcpurchaseprice")
+    public BigDecimal getPdtProductTTCPurshasePriceUB() {
+        return pdtProductTTCPurshasePriceUB;
+    }
+
+    public void setPdtProductTTCPurshasePriceUB(BigDecimal pdtProductTTCPurshasePriceUB) {
+        this.pdtProductTTCPurshasePriceUB = pdtProductTTCPurshasePriceUB;
+    }
+
+    @Column(name = "pdt_productttcprofessionalttcsaleprice")
+    public BigDecimal getPdtProductProfessionalTTCSalePrice() {
+        return pdtProductProfessionalTTCSalePrice;
+    }
+
+    public void setPdtProductProfessionalTTCSalePrice(BigDecimal pdtProductProfessionalTTCSalePrice) {
+        this.pdtProductProfessionalTTCSalePrice = pdtProductProfessionalTTCSalePrice;
+    }
+
+    @PostLoad
+    private void postLoad() {
+
     }
 }
