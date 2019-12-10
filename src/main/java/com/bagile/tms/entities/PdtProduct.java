@@ -706,12 +706,7 @@ public class PdtProduct extends EmsEntity implements java.io.Serializable {
         this.pdtProductDiscount = pdtProductDiscount;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pdt_productwarrantyperiodid")
-
-
     @Column(name = "pdt_productpurshasepriceub")
-
     public BigDecimal getPdtProductPurshasePriceUB() {
         return pdtProductPurshasePriceUB;
     }

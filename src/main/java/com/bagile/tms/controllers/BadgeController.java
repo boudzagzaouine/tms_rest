@@ -39,24 +39,28 @@ public class BadgeController {
     public Long size() {
         return badgeService.size();
     }
+
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
         return badgeService.size(search);
     }
+
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
         return badgeService.isExist(id);
     }
+
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
     public Badge getBadge(@PathVariable("id") Long id) throws IdNotFound {
         return badgeService.findById(id);
     }
+
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
@@ -70,18 +74,21 @@ public class BadgeController {
     public List<Badge> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         return badgeService.find(search, page, size);
     }
+
     //@PreAuthorize("hasRole('BADGE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Badge add(@RequestBody Badge badge) {
         return badgeService.save(badge);
     }
+
     //@PreAuthorize("hasRole('BADGE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Badge set(@RequestBody Badge badge) {
         return badgeService.save(badge);
     }
+
     //@PreAuthorize("hasRole('BADGE_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody

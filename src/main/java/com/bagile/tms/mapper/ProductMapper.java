@@ -299,7 +299,7 @@ public class ProductMapper {
         return product;
     }
 
-    public static List<Product> toDtos(List<PdtProduct> pdtProducts, boolean lazy) {
+    public static List<Product> toDtos(Iterable<? extends PdtProduct> pdtProducts, boolean lazy) {
         if (null == pdtProducts) {
             return null;
         }
@@ -310,18 +310,7 @@ public class ProductMapper {
         return products;
     }
 
-    public static List<Product> toDtos(Iterable<PdtProduct> pdtProducts, boolean lazy) {
-        if (null == pdtProducts) {
-            return null;
-        }
-        List<Product> products = new ArrayList<> ();
-        for (PdtProduct pdtProduct : pdtProducts) {
-            products.add(toDto(pdtProduct, lazy));
-        }
-        return products;
-    }
-
-    public static Set<PdtProduct> toEntities(Set<Product> products, boolean lazy) {
+    public static Set<PdtProduct> toEntities(Set<? extends Product> products, boolean lazy) {
         if (null == products) {
             return null;
         }
@@ -332,7 +321,7 @@ public class ProductMapper {
         return pdtProducts;
     }
 
-    public static Set<Product> toDtos(Set<PdtProduct> pdtProducts, boolean lazy) {
+    public static Set<Product> toDtos(Set<? extends PdtProduct> pdtProducts, boolean lazy) {
         if (null == pdtProducts) {
             return null;
         }

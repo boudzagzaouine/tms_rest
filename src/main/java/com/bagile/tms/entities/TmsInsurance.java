@@ -18,6 +18,7 @@ public class TmsInsurance extends  EmsEntity{
     private TmsInsuranceTerm tmsInsuranceTerm;
     private RcpSupplier rcpSupplier;
     private TmsVehicle tmsVehicle;
+    private String tmsInsuranceVehicleCode;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -110,5 +111,15 @@ public class TmsInsurance extends  EmsEntity{
 
     public void setTmsInsuranceNumber(String tmsInsuranceNumber) {
         this.tmsInsuranceNumber = tmsInsuranceNumber;
+    }
+
+
+    @Column(name = "tms_insurancevehiclecode")
+    public String getTmsInsuranceVehicleCode() {
+        return tmsInsuranceVehicleCode;
+    }
+
+    public void setTmsInsuranceVehicleCode(String tmsInsuranceVehicleCode) {
+        this.tmsInsuranceVehicleCode = tmsInsuranceVehicleCode;
     }
 }

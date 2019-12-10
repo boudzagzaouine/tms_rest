@@ -23,7 +23,7 @@ public class InsuranceMapper {
         map.put("endDate", "tmsInsuranceEndDate");
         map.put("insuranceTerm", "tmsInsuranceTerm");
         map.put("supplier", "rcpSupplier");
-        map.put("insurance", "tmsInsurance");
+        map.put("vehicleCode", "tmsInsuranceVehicleCode");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -51,6 +51,7 @@ public class InsuranceMapper {
         tmsInsurance.setTmsInsuranceAmount (insurance.getAmount ());
         tmsInsurance.setTmsInsuranceStartDate (insurance.getStartDate ());
         tmsInsurance.setTmsInsuranceEndDate (insurance.getEndDate ());
+        tmsInsurance.setTmsInsuranceVehicleCode (insurance.getVehicleCode ());
 
         tmsInsurance.setCreatedBy(insurance.getCreatedBy());
         tmsInsurance.setUpdatedBy(insurance.getUpdatedBy());
@@ -77,6 +78,7 @@ public class InsuranceMapper {
         insurance.setAmount (tmsInsurance.getTmsInsuranceAmount ());
         insurance.setStartDate (tmsInsurance.getTmsInsuranceStartDate ());
         insurance.setEndDate (tmsInsurance.getTmsInsuranceEndDate ());
+        insurance.setVehicleCode (tmsInsurance.getTmsInsuranceVehicleCode ());
 
         insurance.setCreatedBy(tmsInsurance.getCreatedBy());
         insurance.setUpdatedBy(tmsInsurance.getUpdatedBy());

@@ -87,7 +87,6 @@ public class Product extends EmsEntity {
     private BigDecimal coefficient;
     private BigDecimal productionCost;
     private Long version;
-    private Process process;
     private Boolean stocked = true;
     private Boolean forBuying = true;
     private Boolean stockManaged = true;
@@ -100,7 +99,7 @@ public class Product extends EmsEntity {
     private BigDecimal professionalSalePrice;
     private Boolean variableWeight=false;
     private BigDecimal customsPercentage;
-    private BigDecimal availableQuatity;
+    private BigDecimal availableQuantity;
     private BigDecimal professionalTTCSalePrice;
 
 
@@ -665,14 +664,6 @@ public class Product extends EmsEntity {
         this.version = version;
     }
 
-    public Process getProcess() {
-        return process;
-    }
-
-    public void setProcess(Process process) {
-        this.process = process;
-    }
-
     public Boolean getStocked() {
         return stocked;
     }
@@ -801,12 +792,12 @@ public class Product extends EmsEntity {
         this.customsPercentage = customsPercentage;
     }
 
-    public BigDecimal getAvailableQuatity() {
-        return availableQuatity;
+    public BigDecimal getAvailableQuantity() {
+        return availableQuantity;
     }
 
-    public void setAvailableQuatity(BigDecimal availableQuatity) {
-        this.availableQuatity = availableQuatity;
+    public void setAvailableQuantity(BigDecimal availableQuantity) {
+        this.availableQuantity = availableQuantity;
     }
 
     public BigDecimal getSalePriceTTCUB() {

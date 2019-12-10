@@ -15,6 +15,8 @@ public class Insurance extends EmsDto{
     private InsuranceTerm insuranceTerm;
     private Supplier supplier;
     private Vehicle vehicle;
+    private String vehicleCode;
+
 
 
     public Insurance() {
@@ -98,5 +100,13 @@ public class Insurance extends EmsDto{
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
+    }
+
+    public String getVehicleCode() {
+        return vehicleCode;
+    }
+
+    public void setVehicleCode(String vehicleCode) {
+        this.vehicleCode = vehicleCode;
     }
 }

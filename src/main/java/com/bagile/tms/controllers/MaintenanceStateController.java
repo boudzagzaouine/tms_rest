@@ -5,9 +5,6 @@ import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
 import com.bagile.tms.services.MaintenanceStateService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -81,7 +78,6 @@ public class MaintenanceStateController {
     @ResponseBody
     public List<MaintenanceState> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         return maintenanceService.find(search, page, size);
-
     }
 
     //@PreAuthorize("hasRole('MAINTENANCE_CREATE')")
