@@ -1,6 +1,7 @@
 package com.bagile.tms.dto;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
@@ -20,6 +21,20 @@ public class Vehicle extends EmsDto implements Serializable {
     private BadgeType badgeType;
     private Insurance insurance;
     private ContractType contractType;
+
+    private BigDecimal engineOil ;
+   private BigDecimal  rearDeck ;
+   private BigDecimal direction ;
+   private BigDecimal airFilter ;
+   private BigDecimal radiator ;
+    private BigDecimal gearBox ;
+   private BigDecimal desiccantFilter ;
+   private String  grayCard ;
+   private BigDecimal numberCylinder ;
+   private BigDecimal fiscalPower ;
+   private String body;
+   private String chassisNumber ;
+   private String energy ;
 
 
     public Vehicle() {
@@ -95,6 +110,111 @@ public class Vehicle extends EmsDto implements Serializable {
 
     public void setContractType(ContractType contractType) {
         this.contractType = contractType;
+    }
+
+
+    public BigDecimal getEngineOil() {
+        return engineOil;
+    }
+
+    public void setEngineOil(BigDecimal engineOil) {
+        this.engineOil = engineOil;
+    }
+
+    public BigDecimal getRearDeck() {
+        return rearDeck;
+    }
+
+    public void setRearDeck(BigDecimal rearDeck) {
+        this.rearDeck = rearDeck;
+    }
+
+    public BigDecimal getDirection() {
+        return direction;
+    }
+
+    public void setDirection(BigDecimal direction) {
+        this.direction = direction;
+    }
+
+    public BigDecimal getAirFilter() {
+        return airFilter;
+    }
+
+    public void setAirFilter(BigDecimal airFilter) {
+        this.airFilter = airFilter;
+    }
+
+    public BigDecimal getRadiator() {
+        return radiator;
+    }
+
+    public void setRadiator(BigDecimal radiator) {
+        this.radiator = radiator;
+    }
+
+    public BigDecimal getGearBox() {
+        return gearBox;
+    }
+
+    public void setGearBox(BigDecimal gearBox) {
+        this.gearBox = gearBox;
+    }
+
+    public BigDecimal getDesiccantFilter() {
+        return desiccantFilter;
+    }
+
+    public void setDesiccantFilter(BigDecimal desiccantFilter) {
+        this.desiccantFilter = desiccantFilter;
+    }
+
+    public String getGrayCard() {
+        return grayCard;
+    }
+
+    public void setGrayCard(String grayCard) {
+        this.grayCard = grayCard;
+    }
+
+    public BigDecimal getNumberCylinder() {
+        return numberCylinder;
+    }
+
+    public void setNumberCylinder(BigDecimal numberCylinder) {
+        this.numberCylinder = numberCylinder;
+    }
+
+    public BigDecimal getFiscalPower() {
+        return fiscalPower;
+    }
+
+    public void setFiscalPower(BigDecimal fiscalPower) {
+        this.fiscalPower = fiscalPower;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public String getChassisNumber() {
+        return chassisNumber;
+    }
+
+    public void setChassisNumber(String chassisNumber) {
+        this.chassisNumber = chassisNumber;
+    }
+
+    public String getenergy() {
+        return energy;
+    }
+
+    public void setEnergy(String energy) {
+        energy = energy;
     }
 
     @Override

@@ -26,6 +26,21 @@ public class VehicleMapper {
         map.put("badgeType", "tmsBadgeType");
         map.put("insurance", "TmsInsurance");
         map.put("contractType", "TmsContractType");
+
+        map.put("engineOil", "tmsVehicleEngineOil");
+        map.put("rearDeck", "tmsVehicleRearDeck");
+        map.put("direction", "tmsVehicleDirection");
+        map.put("airFilter", "tmsVehicleAirFilter");
+        map.put("radiator", "tmsVehicleRadiator");
+        map.put("gearBox", "tmsVehicleGearBox");
+        map.put("desiccantFilter", "tmsVehicleDesiccantFilter");
+        map.put("grayCard", "tmsVehicleGrayCard");
+        map.put("numberCylinder", "tmsVehicleNumberCylinder");
+        map.put("fiscalPower", "tmsVehicleFiscalPower");
+        map.put("body", "tmsVehicleBody");
+        map.put("chassisNumber", "tmsVehicleChassisNumber");
+        map.put("Energy", "tmsVehicleEnergy");
+
     }
 
     public static Map<String, String> getMap() {
@@ -45,6 +60,21 @@ public class VehicleMapper {
         tmsVehicle.setTmsRegistrationNumber(vehicle.getRegistrationNumber());
         tmsVehicle.setTmsVehicleCode(vehicle.getCode() != null ? vehicle.getCode().toUpperCase() : null);
         tmsVehicle.setTmsVehicleTechnicalVisit(vehicle.getTechnicalVisit());
+
+
+        tmsVehicle.setTmsVehicleEngineOil(vehicle.getEngineOil());
+        tmsVehicle.setTmsVehicleRearDeck(vehicle.getRearDeck());
+        tmsVehicle.setTmsVehicleDirection(vehicle.getDirection());
+        tmsVehicle.setTmsVehicleAirFilter(vehicle.getAirFilter());
+        tmsVehicle.setTmsVehicleRadiator(vehicle.getRadiator());
+        tmsVehicle.setTmsVehicleGearBox(vehicle.getGearBox());
+        tmsVehicle.setTmsVehicleDesiccantFilter(vehicle.getDesiccantFilter());
+        tmsVehicle.setTmsVehicleGrayCard(vehicle.getGrayCard());
+        tmsVehicle.setTmsVehicleNumberCylinder (vehicle.getNumberCylinder());
+        tmsVehicle.setTmsVehicleFiscalPower(vehicle.getFiscalPower());
+        tmsVehicle.setTmsVehicleBody(vehicle.getBody());
+        tmsVehicle.setTmsVehicleChassisNumber(vehicle.getChassisNumber());
+        tmsVehicle.setTmsVehicleEnergy (vehicle.getenergy());
 
 
 
@@ -68,10 +98,27 @@ public class VehicleMapper {
         vehicle.setRegistrationNumber(tmsVehicle.getTmsRegistrationNumber());
         vehicle.setCode(tmsVehicle.getTmsVehicleCode());
         vehicle.setTechnicalVisit(tmsVehicle.getTmsVehicleTechnicalVisit());
+
         vehicle.setCreatedBy(tmsVehicle.getCreatedBy());
         vehicle.setUpdatedBy(tmsVehicle.getUpdatedBy());
         vehicle.setCreationDate(tmsVehicle.getCreationDate());
         vehicle.setUpdateDate(tmsVehicle.getUpdateDate());
+
+
+        vehicle.setEngineOil(tmsVehicle.getTmsVehicleEngineOil());
+        vehicle.setRearDeck(tmsVehicle.getTmsVehicleRearDeck());
+        vehicle.setDirection(tmsVehicle.getTmsVehicleDirection());
+        vehicle.setAirFilter(tmsVehicle.getTmsVehicleAirFilter());
+        vehicle.setRadiator(tmsVehicle.getTmsVehicleRadiator());
+        vehicle.setGearBox(tmsVehicle.getTmsVehicleGearBox());
+        vehicle.setDesiccantFilter(tmsVehicle.getTmsVehicleDesiccantFilter());
+        vehicle.setGrayCard(tmsVehicle.getTmsVehicleGrayCard());
+        vehicle.setNumberCylinder(tmsVehicle.getTmsVehicleNumberCylinder());
+        vehicle.setFiscalPower(tmsVehicle.getTmsVehicleFiscalPower());
+        vehicle.setBody(tmsVehicle.getTmsVehicleBody());
+        vehicle.setChassisNumber(tmsVehicle.getTmsVehicleChassisNumber());
+        vehicle.setEnergy(tmsVehicle.getTmsVehicleEnergy());
+
 
         if (!lazy) {
             vehicle.setBadgeType(BadgeTypeMapper.toDto(tmsVehicle.getTmsBadgeType(), true));

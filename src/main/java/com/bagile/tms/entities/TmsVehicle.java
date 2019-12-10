@@ -1,6 +1,7 @@
 package com.bagile.tms.entities;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -15,6 +16,21 @@ public class TmsVehicle extends EmsEntity {
     private TmsBadgeType tmsBadgeType;
     private TmsInsurance tmsInsurance;
     private TmsContractType tmsContractType;
+
+    private BigDecimal tmsVehicleEngineOil ;
+    private BigDecimal  tmsVehicleRearDeck ;
+    private BigDecimal tmsVehicleDirection ;
+    private BigDecimal tmsVehicleAirFilter ;
+    private BigDecimal tmsVehicleRadiator ;
+    private BigDecimal tmsVehicleGearBox ;
+    private BigDecimal tmsVehicleDesiccantFilter ;
+    private String  tmsVehicleGrayCard ;
+    private BigDecimal tmsVehicleNumberCylinder ;
+    private BigDecimal tmsVehicleFiscalPower ;
+    private String tmsVehicleBody;
+    private String tmsVehicleChassisNumber ;
+    private String tmsVehicleEnergy ;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -77,7 +93,7 @@ public class TmsVehicle extends EmsEntity {
         this.tmsBadgeType = tmsBadgeType;
     }
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "tms_vehicleinsuranceid")
     public TmsInsurance getTmsInsurance() {
         return tmsInsurance;
@@ -87,7 +103,7 @@ public class TmsVehicle extends EmsEntity {
         this.tmsInsurance = tmsInsurance;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "tms_contracttypeid")
     public TmsContractType getTmsContractType() {
         return tmsContractType;
@@ -97,4 +113,121 @@ public class TmsVehicle extends EmsEntity {
         this.tmsContractType = tmsContractType;
     }
 
+    @Column(name = "tms_vehiculeengineoil")
+
+    public BigDecimal getTmsVehicleEngineOil() {
+        return tmsVehicleEngineOil;
+    }
+
+    public void setTmsVehicleEngineOil(BigDecimal tmsVehicleEngineOil) {
+        this.tmsVehicleEngineOil = tmsVehicleEngineOil;
+    }
+
+    @Column(name = "tms_vehiculereardeck")
+    public BigDecimal getTmsVehicleRearDeck() {
+        return tmsVehicleRearDeck;
+    }
+
+    public void setTmsVehicleRearDeck(BigDecimal tmsVehicleRearDeck) {
+        this.tmsVehicleRearDeck = tmsVehicleRearDeck;
+    }
+
+    @Column(name = "tms_vehiculedirection")
+    public BigDecimal getTmsVehicleDirection() {
+        return tmsVehicleDirection;
+    }
+
+    public void setTmsVehicleDirection(BigDecimal tmsVehicleDirection) {
+        this.tmsVehicleDirection = tmsVehicleDirection;
+    }
+
+    @Column(name = "tms_vehiculeairfilter")
+    public BigDecimal getTmsVehicleAirFilter() {
+        return tmsVehicleAirFilter;
+    }
+
+    public void setTmsVehicleAirFilter(BigDecimal tmsVehicleAirFilter) {
+        this.tmsVehicleAirFilter = tmsVehicleAirFilter;
+    }
+
+    @Column(name = "tms_vehiculeradiator")
+    public BigDecimal getTmsVehicleRadiator() {
+        return tmsVehicleRadiator;
+    }
+
+    public void setTmsVehicleRadiator(BigDecimal tmsVehicleRadiator) {
+        this.tmsVehicleRadiator = tmsVehicleRadiator;
+    }
+
+    @Column(name = "tms_vehiculegearbox")
+    public BigDecimal getTmsVehicleGearBox() {
+        return tmsVehicleGearBox;
+    }
+
+    public void setTmsVehicleGearBox(BigDecimal tmsVehicleGearBox) {
+        this.tmsVehicleGearBox = tmsVehicleGearBox;
+    }
+
+    @Column(name = "tms_vehiculedesiccantfilter")
+    public BigDecimal getTmsVehicleDesiccantFilter() {
+        return tmsVehicleDesiccantFilter;
+    }
+
+    public void setTmsVehicleDesiccantFilter(BigDecimal tmsVehicleDesiccantFilter) {
+        this.tmsVehicleDesiccantFilter = tmsVehicleDesiccantFilter;
+    }
+
+    @Column(name = "tms_vehiculegraycard")
+    public String getTmsVehicleGrayCard() {
+        return tmsVehicleGrayCard;
+    }
+
+    public void setTmsVehicleGrayCard(String tmsVehicleGrayCard) {
+        this.tmsVehicleGrayCard = tmsVehicleGrayCard;
+    }
+
+    @Column(name = "tms_vehiculenumbercylinder")
+    public BigDecimal getTmsVehicleNumberCylinder() {
+        return tmsVehicleNumberCylinder;
+    }
+
+    public void setTmsVehicleNumberCylinder(BigDecimal tmsVehicleNumberCylinder) {
+        this.tmsVehicleNumberCylinder = tmsVehicleNumberCylinder;
+    }
+
+    @Column(name = "tms_vehiculefiscalpower")
+    public BigDecimal getTmsVehicleFiscalPower() {
+        return tmsVehicleFiscalPower;
+    }
+
+    public void setTmsVehicleFiscalPower(BigDecimal tmsVehicleFiscalPower) {
+        this.tmsVehicleFiscalPower = tmsVehicleFiscalPower;
+    }
+
+    @Column(name = "tms_vehiculebody")
+    public String getTmsVehicleBody() {
+        return tmsVehicleBody;
+    }
+
+    public void setTmsVehicleBody(String tmsVehicleBody) {
+        this.tmsVehicleBody = tmsVehicleBody;
+    }
+
+    @Column(name = "tms_vehiculechassisnumber")
+    public String getTmsVehicleChassisNumber() {
+        return tmsVehicleChassisNumber;
+    }
+
+    public void setTmsVehicleChassisNumber(String tmsVehicleChassisNumber) {
+        this.tmsVehicleChassisNumber = tmsVehicleChassisNumber;
+    }
+
+    @Column(name = "tms_vehiculeenergy")
+    public String getTmsVehicleEnergy() {
+        return tmsVehicleEnergy;
+    }
+
+    public void setTmsVehicleEnergy(String tmsVehicleEnergy) {
+        this.tmsVehicleEnergy = tmsVehicleEnergy;
+    }
 }
