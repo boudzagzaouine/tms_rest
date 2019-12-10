@@ -1,8 +1,6 @@
 package com.bagile.tms.mapper;
 
 import com.bagile.tms.dto.MaintenanceLine;
-import com.bagile.tms.dto.MaintenancePlan;
-import com.bagile.tms.dto.Product;
 import com.bagile.tms.entities.TmsMaintenanceLine;
 
 import java.util.*;
@@ -23,7 +21,6 @@ public class MaintenanceLineMapper {
         map.put("totalPriceHT", "tmsMaintenanceLineAmount");
         map.put("totalPriceTTC", "tmsMaintenanceLineStartDate");
         map.put("maintenancePlan", "tmsMaintenanceLineEndDate");
-
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
