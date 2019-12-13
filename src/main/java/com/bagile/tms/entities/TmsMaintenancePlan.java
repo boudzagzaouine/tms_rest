@@ -1,11 +1,13 @@
 package com.bagile.tms.entities;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name="tms_maintenanceplan")
+@Table(name = "tms_maintenanceplan")
 public class TmsMaintenancePlan extends EmsEntity {
 
     /**
@@ -33,11 +35,13 @@ public class TmsMaintenancePlan extends EmsEntity {
     private TmsMaintenanceState tmsMaintenanceState;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_vehiculeid")
-   private TmsVehicle tmsVehicle;
-
-
+    private TmsVehicle tmsVehicle;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "tmsMaintenanceLineMaintenancePlan")
-    private List<TmsMaintenanceLine> tmsMaintenanceLines;
+    private Set<TmsMaintenanceLine> tmsMaintenanceLines = new HashSet<> ();
+    @Column(name = "tms_maintenanceplantotalprice")
+    private BigDecimal tmsMaintenancePlanTotalPrice = BigDecimal.ZERO;
+    @Column(name = "tms_maintenanceplanmileage")
+    private Double tmsMaintenancePlanMileage = 0.0;
 
 
     public TmsMaintenancePlan() {
@@ -66,7 +70,6 @@ public class TmsMaintenancePlan extends EmsEntity {
     public void setTmsMaintenancePlanDescription(String tmsMaintenancePlanDescription) {
         this.tmsMaintenancePlanDescription = tmsMaintenancePlanDescription;
     }
-
 
 
     public Date getTmsMaintenancePlanStartDate() {
@@ -107,5 +110,32 @@ public class TmsMaintenancePlan extends EmsEntity {
 
     public void setTmsVehicle(TmsVehicle tmsVehicle) {
         this.tmsVehicle = tmsVehicle;
+    }
+
+    public Set<TmsMaintenanceLine> getTmsMaintenanceLines() {
+        return tmsMaintenanceLines;
+    }
+
+    public BigDecimal getTmsMaintenancePlanTotalPrice() {
+        return tmsMaintenancePlanTotalPrice;
+    }
+
+    public void setTmsMaintenancePlanTotalPrice(BigDecimal tmsMaintenancePlanTotalPrice) {
+        this.tmsMaintenancePlanTotalPrice = tmsMaintenancePlanTotalPrice;
+    }
+
+    public void setTmsMaintenanceLines(Set<TmsMaintenanceLine> tmsMaintenanceLines) {
+        this.tmsMaintenanceLines = tmsMaintenanceLines;
+        tmsMaintenanceLines.forEach (
+                l -> l.setTmsMaintenanceLineMaintenancePlan (this)
+        );
+    }
+
+    public Double getTmsMaintenancePlanMileage() {
+        return tmsMaintenancePlanMileage;
+    }
+
+    public void setTmsMaintenancePlanMileage(Double tmsMaintenancePlanMileage) {
+        this.tmsMaintenancePlanMileage = tmsMaintenancePlanMileage;
     }
 }

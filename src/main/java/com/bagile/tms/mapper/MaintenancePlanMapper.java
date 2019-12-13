@@ -17,11 +17,12 @@ public class MaintenancePlanMapper {
         map.put("id", "tmsMaintenancePlanId");
         map.put("code", "tmsMaintenancePlanCode");
         map.put("description", "tmsMaintenancePlanDescription");
-        map.put("begin", "tmsMaintenancePlanStartDate");
-        map.put("end", "tmsMaintenancePlanEndDate");
+        map.put("beginDate", "tmsMaintenancePlanStartDate");
+        map.put("endDate", "tmsMaintenancePlanEndDate");
         map.put("maintenanceType", "tmsMaintenanceType");
         map.put("maintenanceState", "tmsMaintenanceState");
         map.put("vehicle", "tmsVehicle");
+        map.put("totalPrice", "tmsMaintenancePlanTotalPrice");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -47,9 +48,10 @@ public class MaintenancePlanMapper {
         tmsMaintenancePlan.setTmsMaintenancePlanId(maintenancePlan.getId());
         tmsMaintenancePlan.setTmsMaintenancePlanCode(maintenancePlan.getCode() != null ? maintenancePlan.getCode().toUpperCase() : null);
         tmsMaintenancePlan.setTmsMaintenancePlanDescription(maintenancePlan.getDescription());
-        tmsMaintenancePlan.setTmsMaintenancePlanStartDate(maintenancePlan.getBegin());
-        tmsMaintenancePlan.setTmsMaintenancePlanEndDate(maintenancePlan.getEnd());
-
+        tmsMaintenancePlan.setTmsMaintenancePlanStartDate(maintenancePlan.getStartDate ());
+        tmsMaintenancePlan.setTmsMaintenancePlanEndDate(maintenancePlan.getEndDate ());
+        tmsMaintenancePlan.setTmsMaintenancePlanTotalPrice (maintenancePlan.getTotalPrice ());
+        tmsMaintenancePlan.setTmsMaintenancePlanMileage (maintenancePlan.getMileage ());
 
         tmsMaintenancePlan.setCreatedBy(maintenancePlan.getCreatedBy());
         tmsMaintenancePlan.setUpdatedBy(maintenancePlan.getUpdatedBy());
@@ -60,6 +62,8 @@ public class MaintenancePlanMapper {
             tmsMaintenancePlan.setTmsMaintenanceType(MaintenanceTypeMapper.toEntity(maintenancePlan.getMaintenanceType(), true));
             tmsMaintenancePlan.setTmsMaintenanceState(MaintenanceStateMapper.toEntity(maintenancePlan.getMaintenanceState(), true));
             tmsMaintenancePlan.setTmsVehicle(VehicleMapper.toEntity(maintenancePlan.getVehicle(),true));
+            tmsMaintenancePlan.setTmsMaintenanceLines (MaintenanceLineMapper.toEntities (maintenancePlan.getMaintenanceLineList (), false));
+
         }
         return tmsMaintenancePlan;
     }
@@ -72,8 +76,10 @@ public class MaintenancePlanMapper {
         maintenancePlan.setId(tmsMaintenancePlan.getTmsMaintenancePlanId());
         maintenancePlan.setCode(tmsMaintenancePlan.getTmsMaintenancePlanCode());
         maintenancePlan.setDescription(tmsMaintenancePlan.getTmsMaintenancePlanDescription());
-        maintenancePlan.setBegin(tmsMaintenancePlan.getTmsMaintenancePlanStartDate());
-        maintenancePlan.setEnd(tmsMaintenancePlan.getTmsMaintenancePlanEndDate());
+        maintenancePlan.setStartDate (tmsMaintenancePlan.getTmsMaintenancePlanStartDate());
+        maintenancePlan.setEndDate (tmsMaintenancePlan.getTmsMaintenancePlanEndDate());
+        maintenancePlan.setTotalPrice (tmsMaintenancePlan.getTmsMaintenancePlanTotalPrice ());
+        maintenancePlan.setMileage (tmsMaintenancePlan.getTmsMaintenancePlanMileage ());
 
         maintenancePlan.setCreatedBy(tmsMaintenancePlan.getCreatedBy());
         maintenancePlan.setUpdatedBy(tmsMaintenancePlan.getUpdatedBy());
@@ -84,12 +90,11 @@ public class MaintenancePlanMapper {
             maintenancePlan.setMaintenanceState(MaintenanceStateMapper.toDto(tmsMaintenancePlan.getTmsMaintenanceState(), true));
             //maintenancePlan.setActes(ActeMapper.toDtos(tmsMaintenancePlan.getTmsMaintenancePlanActes(),true));
             maintenancePlan.setVehicle(VehicleMapper.toDto(tmsMaintenancePlan.getTmsVehicle(),true));
+            maintenancePlan.setMaintenanceLineList (MaintenanceLineMapper.toDtos (tmsMaintenancePlan.getTmsMaintenanceLines (), false));
         }
 
         return maintenancePlan;
     }
-
-
 
     public static List<MaintenancePlan> toDtos(Iterable<? extends TmsMaintenancePlan> mntMaintenancePlans, boolean lazy) {
         if (null == mntMaintenancePlans) {
@@ -124,6 +129,5 @@ public class MaintenancePlanMapper {
         }
         return maintenancePlans;
     }
-
 
 }

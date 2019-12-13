@@ -79,10 +79,10 @@ public class VehicleMapper {
 
 
         if (!lazy) {
-            tmsVehicle.setTmsVehicleCategory(VehicleCategoryMapper.toEntity(vehicle.getVehicleCategory(), true));
-            tmsVehicle.setTmsBadgeType(BadgeTypeMapper.toEntity(vehicle.getBadgeType(), true));
-            tmsVehicle.setTmsInsurance(InsuranceMapper.toEntity(vehicle.getInsurance(), true));
-            tmsVehicle.setTmsContractType (ContractTypeMapper.toEntity (vehicle.getContractType (), true));
+            tmsVehicle.setTmsVehicleCategory(VehicleCategoryMapper.toEntity(vehicle.getVehicleCategory(), false));
+            tmsVehicle.setTmsBadgeType(BadgeTypeMapper.toEntity(vehicle.getBadgeType(), false));
+            tmsVehicle.setTmsInsurance(InsuranceMapper.toEntity(vehicle.getInsurance(), false));
+            tmsVehicle.setTmsContractType (ContractTypeMapper.toEntity (vehicle.getContractType (), false));
 
         }
         return tmsVehicle;
@@ -123,7 +123,7 @@ public class VehicleMapper {
         if (!lazy) {
             vehicle.setBadgeType(BadgeTypeMapper.toDto(tmsVehicle.getTmsBadgeType(), true));
             vehicle.setVehicleCategory(VehicleCategoryMapper.toDto(tmsVehicle.getTmsVehicleCategory(), true));
-            vehicle.setInsurance(InsuranceMapper.toDto(tmsVehicle.getTmsInsurance(), true));
+            vehicle.setInsurance(InsuranceMapper.toDto(tmsVehicle.getTmsInsurance(), false));
             vehicle.setContractType (ContractTypeMapper.toDto (tmsVehicle.getTmsContractType (), true));
         }
         return vehicle;
@@ -135,12 +135,12 @@ public class VehicleMapper {
         if (null == tmsVehicles) {
             return null;
         }
-        List<Vehicle> vehicules = new ArrayList<>();
+        List<Vehicle> vehicles = new ArrayList<>();
 
         for (TmsVehicle tmsVehicle : tmsVehicles) {
-            vehicules.add(toDto(tmsVehicle, lazy));
+            vehicles.add(toDto(tmsVehicle, lazy));
         }
-        return vehicules;
+        return vehicles;
     }
 
     public static Set<TmsVehicle> toEntities(Set<Vehicle> vehicles, boolean lazy) {

@@ -99,7 +99,7 @@ public class MaintenanceLineMapper {
         return vehicules;
     }
 
-    public static Set<TmsMaintenanceLine> toEntities(Set<MaintenanceLine> maintenanceLines, boolean lazy) {
+    public static Set<TmsMaintenanceLine> toEntities(Iterable<? extends MaintenanceLine> maintenanceLines, boolean lazy) {
         if (null == maintenanceLines) {
             return null;
         }
@@ -108,16 +108,5 @@ public class MaintenanceLineMapper {
             tmsMaintenanceLines.add(toEntity(maintenanceLine, lazy));
         }
         return tmsMaintenanceLines;
-    }
-
-    public static Set<MaintenanceLine> toDtos(Set<TmsMaintenanceLine> tmsMaintenanceLines, boolean lazy) {
-        if (null == tmsMaintenanceLines) {
-            return null;
-        }
-        Set<MaintenanceLine> maintenanceLines = new HashSet<>();
-        for (TmsMaintenanceLine tmsMaintenanceLine : tmsMaintenanceLines) {
-            maintenanceLines.add(toDto(tmsMaintenanceLine, lazy));
-        }
-        return maintenanceLines;
     }
 }

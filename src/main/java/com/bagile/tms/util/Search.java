@@ -132,35 +132,4 @@ public class Search {
         }
         return builder.buildAND (entity);
     }
-
-    public static void main(String[] args) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException, NoSuchFieldException, ClassNotFoundException {
-        String search = "product.aliases.eanCode";
-        String name = "Stock";
-        StringTokenizer stringTokenizer = new StringTokenizer (search, ".");
-        String str = (String) stringTokenizer.nextElement ( );
-        Class<?> cls = Class.forName ("com.bagile.tms.mapper." + name + "Mapper");
-        Object mapper = cls.newInstance ( );
-        Method method = cls.getDeclaredMethod ("getField", String.class);
-        String field = (String) method.invoke (mapper, str);
-        cls = Class.forName ("com.bagile.tms.dto." + name);
-        Class<?> type = cls.getDeclaredField (str).getType ( );
-        if (type.getTypeName ( ).toString ( ).equals ("java.util.Set")) {
-            ParameterizedType parameterizedType = (ParameterizedType) cls.getDeclaredField (str).getGenericType ( );
-            type = (Class<?>) parameterizedType.getActualTypeArguments ( )[0];
-        }
-        while (stringTokenizer.hasMoreElements ( )) {
-            str = (String) stringTokenizer.nextElement ( );
-            name = type.getSimpleName ( );
-            cls = Class.forName ("com.bagile.tms.mapper." + name + "Mapper");
-            mapper = cls.newInstance ( );
-            method = cls.getDeclaredMethod ("getField", String.class);
-            field += "." + (String) method.invoke (mapper, str);
-            cls = Class.forName ("com.bagile.tms.dto." + name);
-            type = cls.getDeclaredField (str).getType ( );
-            if (type.getTypeName ( ).toString ( ).equals ("java.util.Set")) {
-                ParameterizedType parameterizedType = (ParameterizedType) cls.getDeclaredField (str).getGenericType ( );
-                type = (Class<?>) parameterizedType.getActualTypeArguments ( )[0];
-            }
-        }
-    }
 }

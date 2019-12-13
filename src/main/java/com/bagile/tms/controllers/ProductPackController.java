@@ -26,7 +26,7 @@ public class ProductPackController {
     private UserDetailsServiceWarehouse userDetailsService;
 
 
-    @PreAuthorize("hasRole('PRODUCT_PACK_VIEW')")
+   //  @PreAuthorize("hasRole('PRODUCT_PACK_VIEW')")
     @RequestMapping(method = RequestMethod.GET,value = "/list")
     @ResponseBody
     public List<ProductPack> getProductPacks() throws AttributesNotFound, ErrorType {
@@ -38,7 +38,7 @@ public class ProductPackController {
 
         //return productPackService.findAll();
     }
-    @PreAuthorize("hasRole('PRODUCT_PACK_VIEW')")
+   //  @PreAuthorize("hasRole('PRODUCT_PACK_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/findOne")
     @ResponseBody
     public ProductPack findOne(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
@@ -51,7 +51,7 @@ public class ProductPackController {
         return productPackService.findOne(search + userDetailsService.getOwners().toString());
 
     }
-    @PreAuthorize("hasRole('PRODUCT_PACK_VIEW')")
+   //  @PreAuthorize("hasRole('PRODUCT_PACK_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
     public List<ProductPack> getProductPacks(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
@@ -64,40 +64,40 @@ public class ProductPackController {
         //return productPackService.findAll(pageable);
     }
 
-    @PreAuthorize("hasRole('PRODUCT_PACK_VIEW')")
+   //  @PreAuthorize("hasRole('PRODUCT_PACK_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
     public Long size() {
         return productPackService.size();
     }
 
-    @PreAuthorize("hasRole('PRODUCT_PACK_VIEW')")
+   //  @PreAuthorize("hasRole('PRODUCT_PACK_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
         return productPackService.size(search);
     }
 
-    @PreAuthorize("hasRole('PRODUCT_PACK_VIEW')")
+   //  @PreAuthorize("hasRole('PRODUCT_PACK_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
         return productPackService.isExist(id);
-    }    @PreAuthorize("hasRole('PRODUCT_PACK_VIEW')")
+    }   //  @PreAuthorize("hasRole('PRODUCT_PACK_VIEW')")
     @RequestMapping(method = RequestMethod.GET,value = "/{id}")
     @ResponseBody
     public ProductPack getProductPack(@PathVariable("id") Long id) throws IdNotFound {
         return productPackService.findById(id);
     }
 
-    @PreAuthorize("hasRole('PRODUCT_PACK_VIEW')")
+   //  @PreAuthorize("hasRole('PRODUCT_PACK_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
     public List<ProductPack> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
         return productPackService.find(search);
     }
 
-    @PreAuthorize("hasRole('PRODUCT_PACK_VIEW')")
+   //  @PreAuthorize("hasRole('PRODUCT_PACK_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<ProductPack> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
@@ -105,21 +105,21 @@ public class ProductPackController {
         return productPackService.find(search, page, size);
     }
 
-    @PreAuthorize("hasRole('PRODUCT_PACK_CREATE')")
+   //  @PreAuthorize("hasRole('PRODUCT_PACK_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ProductPack add(@RequestBody ProductPack productPack) throws IdNotFound {
         return productPackService.save(productPack);
     }
 
-    @PreAuthorize("hasRole('PRODUCT_PACK_EDIT')")
+   //  @PreAuthorize("hasRole('PRODUCT_PACK_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ProductPack set(@RequestBody ProductPack productPack) throws IdNotFound {
         return productPackService.save(productPack);
     }
 
-    @PreAuthorize("hasRole('PRODUCT_PACK_DELETE')")
+   //  @PreAuthorize("hasRole('PRODUCT_PACK_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@RequestBody ProductPack productPack) {
@@ -127,7 +127,7 @@ public class ProductPackController {
         productPackService.delete(productPack);
     }
 
-    @PreAuthorize("hasRole('PRODUCT_PACK_DELETE')")
+   //  @PreAuthorize("hasRole('PRODUCT_PACK_DELETE')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@PathVariable Long id) {

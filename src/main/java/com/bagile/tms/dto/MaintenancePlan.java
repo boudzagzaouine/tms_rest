@@ -16,13 +16,13 @@ public class MaintenancePlan extends EmsDto implements Serializable {
     private long id;
     private String code;
     private String description;
-    private Date begin;
-    private Date end;
+    private Date startDate;
+    private Date endDate;
     private MaintenanceType maintenanceType;
     private MaintenanceState maintenanceState;
     private Vehicle vehicle;
-    private double mileage;
-   private BigDecimal totalPrice;
+    private Double mileage = 0.0;
+    private BigDecimal totalPrice;
     private List<MaintenanceLine> maintenanceLineList;
 
 
@@ -53,20 +53,20 @@ public class MaintenancePlan extends EmsDto implements Serializable {
         this.description = description;
     }
 
-    public Date getBegin() {
-        return begin;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setBegin(Date begin) {
-        this.begin = begin;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public Date getEnd() {
-        return end;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setEnd(Date end) {
-        this.end = end;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public MaintenanceType getMaintenanceType() {
@@ -93,11 +93,11 @@ public class MaintenancePlan extends EmsDto implements Serializable {
         this.vehicle = vehicle;
     }
 
-    public double getMileage() {
+    public Double getMileage() {
         return mileage;
     }
 
-    public void setMileage(double mileage) {
+    public void setMileage(Double mileage) {
         this.mileage = mileage;
     }
 

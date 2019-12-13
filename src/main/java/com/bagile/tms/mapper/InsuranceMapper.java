@@ -107,7 +107,7 @@ public class InsuranceMapper {
         return vehicules;
     }
 
-    public static Set<TmsInsurance> toEntities(Set<Insurance> insurances, boolean lazy) {
+    public static Set<TmsInsurance> toEntities(Iterable<? extends Insurance> insurances, boolean lazy) {
         if (null == insurances) {
             return null;
         }

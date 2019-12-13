@@ -9,19 +9,15 @@ public class PrmContact extends EmsEntity {
     private static final long serialVersionUID = -2556249835469329497L;
 
     private Long prmContactId;
-
     private String prmContactName;
-
     private String prmContactSurname;
     private String prmContactTel1;
     private String prmContactTel2;
-
     private String prmContactFax;
     private String prmContactType;
     private String prmContactEmail;
     private String prmContactComment;
     private Boolean prmContactActive;
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
