@@ -95,7 +95,7 @@ public class TmsInsurance extends  EmsEntity{
         this.rcpSupplier = rcpSupplier;
     }
 
-    @OneToOne(mappedBy = "tmsInsurance", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "tmsInsurance")
     public TmsVehicle getTmsVehicle() {
         return tmsVehicle;
     }

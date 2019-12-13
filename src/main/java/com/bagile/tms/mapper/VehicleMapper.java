@@ -79,10 +79,10 @@ public class VehicleMapper {
 
 
         if (!lazy) {
-            tmsVehicle.setTmsVehicleCategory(VehicleCategoryMapper.toEntity(vehicle.getVehicleCategory(), false));
-            tmsVehicle.setTmsBadgeType(BadgeTypeMapper.toEntity(vehicle.getBadgeType(), false));
+            tmsVehicle.setTmsVehicleCategory(VehicleCategoryMapper.toEntity(vehicle.getVehicleCategory(), true));
+            tmsVehicle.setTmsBadgeType(BadgeTypeMapper.toEntity(vehicle.getBadgeType(), true));
             tmsVehicle.setTmsInsurance(InsuranceMapper.toEntity(vehicle.getInsurance(), false));
-            tmsVehicle.setTmsContractType (ContractTypeMapper.toEntity (vehicle.getContractType (), false));
+            tmsVehicle.setTmsContractType (ContractTypeMapper.toEntity (vehicle.getContractType (), true));
 
         }
         return tmsVehicle;

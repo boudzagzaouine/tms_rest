@@ -59,9 +59,9 @@ public class InsuranceMapper {
         tmsInsurance.setUpdateDate(insurance.getUpdateDate());
 
         if(!lazy) {
-             tmsInsurance.setTmsInsuranceTerm (InsuranceTermMapper.toEntity(insurance.getInsuranceTerm (),true));
-             tmsInsurance.setRcpSupplier (SupplierMapper.toEntity(insurance.getSupplier (),true));
-             tmsInsurance.setTmsVehicle (VehicleMapper.toEntity (insurance.getVehicle (), true));
+             tmsInsurance.setTmsInsuranceTerm (InsuranceTermMapper.toEntity(insurance.getInsuranceTerm (),false));
+             tmsInsurance.setRcpSupplier (SupplierMapper.toEntity(insurance.getSupplier (),false));
+             //tmsInsurance.setTmsVehicle (VehicleMapper.toEntity (insurance.getVehicle (), true));
         }
         return tmsInsurance;
     }
@@ -87,8 +87,8 @@ public class InsuranceMapper {
 
         if(!lazy) {
 
-             insurance.setInsuranceTerm (InsuranceTermMapper.toDto(tmsInsurance.getTmsInsuranceTerm (),true));
-             insurance.setSupplier (SupplierMapper.toDto (tmsInsurance.getRcpSupplier (), true));
+             insurance.setInsuranceTerm (InsuranceTermMapper.toDto(tmsInsurance.getTmsInsuranceTerm (),false));
+             insurance.setSupplier (SupplierMapper.toDto (tmsInsurance.getRcpSupplier (), false));
              insurance.setVehicle (VehicleMapper.toDto (tmsInsurance.getTmsVehicle (), true));
         }
         return insurance;
