@@ -85,7 +85,7 @@ public class TmsInsurance extends  EmsEntity{
         this.tmsInsuranceTerm = tmsInsuranceTerm;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne( cascade = CascadeType.MERGE)
     @JoinColumn(name = "tms_insurancesupplierid")
     public RcpSupplier getRcpSupplier() {
         return rcpSupplier;

@@ -92,6 +92,7 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public List<Supplier> findAll() {
+
         return SupplierMapper.toDtos(supplierRepository.findAll(), false);
     }
 

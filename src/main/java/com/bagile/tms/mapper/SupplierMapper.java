@@ -6,8 +6,7 @@ import com.bagile.tms.entities.RcpSupplier;
 import java.util.*;
 
 public class SupplierMapper {
-    private SupplierMapper() {
-    }
+
 
     private static Map<String, String> map;
 
