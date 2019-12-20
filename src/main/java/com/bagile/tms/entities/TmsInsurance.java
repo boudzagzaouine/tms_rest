@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Table(name="tms_insurance")
-public class TmsInsurance extends  EmsEntity{
+@Table(name = "tms_insurance")
+public class TmsInsurance extends EmsEntity {
     private long tmsInsuranceId;
 
     private String tmsInsuranceCode;
@@ -31,6 +31,7 @@ public class TmsInsurance extends  EmsEntity{
     public void setTmsInsuranceId(long tmsInsuranceId) {
         this.tmsInsuranceId = tmsInsuranceId;
     }
+
     @Column(name = "tms_insurancecode", unique = true, nullable = false, length = 90)
     public String getTmsInsuranceCode() {
         return tmsInsuranceCode;
@@ -39,6 +40,7 @@ public class TmsInsurance extends  EmsEntity{
     public void setTmsInsuranceCode(String tmsInsuranceCode) {
         this.tmsInsuranceCode = tmsInsuranceCode;
     }
+
     @Column(name = "tms_insurancedescription")
     public String getTmsInsuranceDescription() {
         return tmsInsuranceDescription;
@@ -48,7 +50,7 @@ public class TmsInsurance extends  EmsEntity{
         this.tmsInsuranceDescription = tmsInsuranceDescription;
     }
 
-    @Temporal (TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "tms_insurancestartdate")
     public Date getTmsInsuranceStartDate() {
         return tmsInsuranceStartDate;
@@ -57,7 +59,8 @@ public class TmsInsurance extends  EmsEntity{
     public void setTmsInsuranceStartDate(Date tmsInsuranceStartDate) {
         this.tmsInsuranceStartDate = tmsInsuranceStartDate;
     }
-    @Temporal (TemporalType.TIMESTAMP)
+
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "tms_insuranceenddate")
     public Date getTmsInsuranceEndDate() {
         return tmsInsuranceEndDate;
@@ -66,6 +69,7 @@ public class TmsInsurance extends  EmsEntity{
     public void setTmsInsuranceEndDate(Date tmsInsuranceEndDate) {
         this.tmsInsuranceEndDate = tmsInsuranceEndDate;
     }
+
     @Column(name = "tms_insuranceamount")
     public BigDecimal getTmsInsuranceAmount() {
         return tmsInsuranceAmount;
@@ -85,7 +89,7 @@ public class TmsInsurance extends  EmsEntity{
         this.tmsInsuranceTerm = tmsInsuranceTerm;
     }
 
-    @ManyToOne( cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "tms_insurancesupplierid")
     public RcpSupplier getRcpSupplier() {
         return rcpSupplier;
@@ -95,13 +99,14 @@ public class TmsInsurance extends  EmsEntity{
         this.rcpSupplier = rcpSupplier;
     }
 
-    @OneToOne(mappedBy = "tmsInsurance")
+    @OneToOne(mappedBy = "tmsInsurance", cascade = CascadeType.ALL)
     public TmsVehicle getTmsVehicle() {
         return tmsVehicle;
     }
 
     public void setTmsVehicle(TmsVehicle tmsVehicle) {
         this.tmsVehicle = tmsVehicle;
+
     }
 
     @Column(name = "tms_insurancenumber")
@@ -122,4 +127,14 @@ public class TmsInsurance extends  EmsEntity{
     public void setTmsInsuranceVehicleCode(String tmsInsuranceVehicleCode) {
         this.tmsInsuranceVehicleCode = tmsInsuranceVehicleCode;
     }
+
+  /*  @PrePersist
+    @PreUpdate
+    void prePersist() {
+        if (tmsVehicle != null) {
+            this.setTmsInsuranceVehicleCode(tmsVehicle.getTmsVehicleCode());
+        } else {
+            this.setTmsInsuranceVehicleCode(null);
+        }
+    }*/
 }

@@ -93,7 +93,7 @@ public class TmsVehicle extends EmsEntity {
         this.tmsBadgeType = tmsBadgeType;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "tms_vehicleinsuranceid")
     public TmsInsurance getTmsInsurance() {
         return tmsInsurance;
@@ -230,4 +230,7 @@ public class TmsVehicle extends EmsEntity {
     public void setTmsVehicleEnergy(String tmsVehicleEnergy) {
         this.tmsVehicleEnergy = tmsVehicleEnergy;
     }
+
+
+
 }
