@@ -1,7 +1,9 @@
 package com.bagile.tms.dto;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Insurance extends EmsDto{
 
@@ -12,11 +14,11 @@ public class Insurance extends EmsDto{
     private Date startDate;
     private Date endDate;
     private BigDecimal amount;
-    private InsuranceTerm insuranceTerm;
     private Supplier supplier;
     private Vehicle vehicle;
     private String vehicleCode;
 
+    private List<InsuranceTermLigne> insuranceTermLignes = new ArrayList<>();
 
 
     public Insurance() {
@@ -78,14 +80,6 @@ public class Insurance extends EmsDto{
         this.amount = amount;
     }
 
-    public InsuranceTerm getInsuranceTerm() {
-        return insuranceTerm;
-    }
-
-    public void setInsuranceTerm(InsuranceTerm insuranceTerm) {
-        this.insuranceTerm = insuranceTerm;
-    }
-
     public Supplier getSupplier() {
         return supplier;
     }
@@ -108,5 +102,13 @@ public class Insurance extends EmsDto{
 
     public void setVehicleCode(String vehicleCode) {
         this.vehicleCode = vehicleCode;
+    }
+
+    public List<InsuranceTermLigne> getInsuranceTermLignes() {
+        return insuranceTermLignes;
+    }
+
+    public void setInsuranceTermLignes(List<InsuranceTermLigne> insuranceTermLignes) {
+        this.insuranceTermLignes = insuranceTermLignes;
     }
 }

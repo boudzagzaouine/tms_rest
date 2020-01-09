@@ -1,11 +1,14 @@
 package com.bagile.tms.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InsuranceTerm extends EmsDto {
 
     private Long id;
     private String code;
     private String description;
-    private Insurance insurance;
+    private List<InsuranceTermLigne> insuranceTermLignes=new ArrayList<>();
 
     public InsuranceTerm() {
     }
@@ -34,11 +37,12 @@ public class InsuranceTerm extends EmsDto {
         this.description = description;
     }
 
-    public Insurance getInsurance() {
-        return insurance;
+
+    public List<InsuranceTermLigne> getInsuranceTermLignes() {
+        return insuranceTermLignes;
     }
 
-    public void setInsurance(Insurance insurance) {
-        this.insurance = insurance;
+    public void setInsuranceTermLignes(List<InsuranceTermLigne> insuranceTermLignes) {
+        this.insuranceTermLignes = insuranceTermLignes;
     }
 }

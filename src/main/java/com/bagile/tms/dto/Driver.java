@@ -2,7 +2,9 @@ package com.bagile.tms.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class Driver extends EmsDto implements Serializable {
@@ -14,7 +16,7 @@ public class Driver extends EmsDto implements Serializable {
     private String cin;
     private Date birthDate;
     private Date lastMedicalVisit;
-    private BigDecimal commission;
+   // private BigDecimal commission;
     //private Contact contact;
     private boolean working;
     private Badge badge;
@@ -26,8 +28,8 @@ public class Driver extends EmsDto implements Serializable {
     private String type;
     private  String email;
     private String comment;
-
-
+    private List<Commission> commissions=new ArrayList<>();
+    private List<BadgeTypeDriver> badgeTypes = new ArrayList<>();
 
     public Driver() {
     }
@@ -80,13 +82,6 @@ public class Driver extends EmsDto implements Serializable {
         this.lastMedicalVisit = lastMedicalVisit;
     }
 
-    public BigDecimal getCommission() {
-        return commission;
-    }
-
-    public void setCommission(BigDecimal commission) {
-        this.commission = commission;
-    }
 
     public Badge getBadge() {
         return badge;
@@ -150,6 +145,22 @@ public class Driver extends EmsDto implements Serializable {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public List<Commission> getCommissions() {
+        return commissions;
+    }
+
+    public void setCommissions(List<Commission> commissions) {
+        this.commissions = commissions;
+    }
+
+    public List<BadgeTypeDriver> getBadgeTypes() {
+        return badgeTypes;
+    }
+
+    public void setBadgeTypes(List<BadgeTypeDriver> badgeTypes) {
+        this.badgeTypes = badgeTypes;
     }
 
     @Override

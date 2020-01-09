@@ -1,6 +1,8 @@
 package com.bagile.tms.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class BadgeType extends EmsDto implements Serializable {
@@ -11,12 +13,13 @@ public class BadgeType extends EmsDto implements Serializable {
     private long id;
     private String code;
     private String description;
+    private List<BadgeTypeDriver> badgeTypeDrivers = new ArrayList<>();
 
     public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -34,6 +37,14 @@ public class BadgeType extends EmsDto implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<BadgeTypeDriver> getBadgeTypeDrivers() {
+        return badgeTypeDrivers;
+    }
+
+    public void setBadgeTypeDrivers(List<BadgeTypeDriver> badgeTypeDrivers) {
+        this.badgeTypeDrivers = badgeTypeDrivers;
     }
 
     @Override
