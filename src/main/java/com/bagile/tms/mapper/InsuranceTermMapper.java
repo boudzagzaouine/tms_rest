@@ -46,9 +46,9 @@ public class InsuranceTermMapper {
         tmsInsuranceTerm.setUpdatedBy(insuranceTerm.getUpdatedBy());
         tmsInsuranceTerm.setCreationDate(insuranceTerm.getCreationDate());
         tmsInsuranceTerm.setUpdateDate(insuranceTerm.getUpdateDate());
-        if(!lazy){
+       /* if(!lazy){
             tmsInsuranceTerm.setTmsInsurance (InsuranceMapper.toEntity (insuranceTerm.getInsurance(), true));
-        }
+        }*/
 
         return tmsInsuranceTerm;
 
@@ -67,9 +67,9 @@ public class InsuranceTermMapper {
         insuranceTerm.setUpdatedBy(tmsInsuranceTerm.getUpdatedBy());
         insuranceTerm.setCreationDate(tmsInsuranceTerm.getCreationDate());
         insuranceTerm.setUpdateDate(tmsInsuranceTerm.getUpdateDate());
-        if (!lazy){
+     /*   if (!lazy){
             insuranceTerm.setInsurance (InsuranceMapper.toDto (tmsInsuranceTerm.getTmsInsurance (), true));
-        }
+        }*/
 
         return insuranceTerm;
 
