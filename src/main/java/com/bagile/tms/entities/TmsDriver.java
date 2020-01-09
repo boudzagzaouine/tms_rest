@@ -2,7 +2,9 @@ package com.bagile.tms.entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "tms_driver")
@@ -41,7 +43,8 @@ public class TmsDriver extends EmsEntity {
     private String tmsDriverEmail;
     private String tmsDriverComment;
 
-
+    private List<TmsCommission> tmsCommissions = new ArrayList<>();
+    private List<TmsBadgeTypeDriver> tmsBadgeTypeDrivers=new ArrayList<>();
 
     public TmsDriver() {
     }
@@ -186,5 +189,21 @@ public class TmsDriver extends EmsEntity {
         this.tmsDriverComment = tmsDriverComment;
     }
 
+    @OneToMany (mappedBy = "tmsDriver")
+    public List<TmsCommission> getTmsCommissions() {
+        return tmsCommissions;
+    }
 
+    public void setTmsCommissions(List<TmsCommission> tmsCommissions) {
+        this.tmsCommissions = tmsCommissions;
+    }
+
+    @OneToMany(mappedBy = "tmsDriver",cascade = CascadeType.MERGE)
+    public List<TmsBadgeTypeDriver> getTmsBadgeTypeDrivers() {
+        return tmsBadgeTypeDrivers;
+    }
+
+    public void setTmsBadgeTypeDrivers(List<TmsBadgeTypeDriver> tmsBadgeTypeDrivers) {
+        this.tmsBadgeTypeDrivers = tmsBadgeTypeDrivers;
+    }
 }

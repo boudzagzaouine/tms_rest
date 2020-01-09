@@ -1,6 +1,8 @@
 package com.bagile.tms.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="tms_terminsurance")
@@ -10,7 +12,8 @@ public class TmsInsuranceTerm extends  EmsEntity{
     private Long tmsInsuranceTermId;
     private String tmsInsuranceTermCode;
     private String tmsInsuranceTermDescription;
-    private TmsInsurance tmsInsurance;
+  //  private TmsInsurance tmsInsurance;
+    private List<TmsInsuranceTermLigne> tmsInsuranceTermInsurances=new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -40,12 +43,21 @@ public class TmsInsuranceTerm extends  EmsEntity{
         this.tmsInsuranceTermDescription = tmsInsuranceTermDescription;
     }
 
-    @OneToOne
+    @OneToMany(mappedBy = "tmsInsuranceTerm")
+    public List<TmsInsuranceTermLigne> getTmsInsuranceTermLigne() {
+        return tmsInsuranceTermInsurances;
+    }
+
+    public void setTmsInsuranceTermLigne(List<TmsInsuranceTermLigne> tmsInsuranceTermInsurances) {
+        this.tmsInsuranceTermInsurances = tmsInsuranceTermInsurances;
+    }
+   /* @OneToOne
     public TmsInsurance getTmsInsurance() {
         return tmsInsurance;
     }
 
     public void setTmsInsurance(TmsInsurance tmsInsurance) {
         this.tmsInsurance = tmsInsurance;
-    }
+    }*/
+
 }

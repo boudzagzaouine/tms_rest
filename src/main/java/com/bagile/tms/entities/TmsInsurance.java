@@ -2,7 +2,9 @@ package com.bagile.tms.entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "tms_insurance")
@@ -15,10 +17,12 @@ public class TmsInsurance extends EmsEntity {
     private Date tmsInsuranceStartDate;
     private Date tmsInsuranceEndDate;
     private BigDecimal tmsInsuranceAmount;
-    private TmsInsuranceTerm tmsInsuranceTerm;
+   // private TmsInsuranceTerm tmsInsuranceTerm;
     private RcpSupplier rcpSupplier;
     private TmsVehicle tmsVehicle;
     private String tmsInsuranceVehicleCode;
+
+    private List<TmsInsuranceTermLigne> tmsInsuranceTermInsurances = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -79,7 +83,7 @@ public class TmsInsurance extends EmsEntity {
         this.tmsInsuranceAmount = tmsInsuranceAmount;
     }
 
-    @OneToOne
+   /* @OneToOne
     @JoinColumn(name = "tms_insuranceinsurancetermid")
     public TmsInsuranceTerm getTmsInsuranceTerm() {
         return tmsInsuranceTerm;
@@ -87,7 +91,7 @@ public class TmsInsurance extends EmsEntity {
 
     public void setTmsInsuranceTerm(TmsInsuranceTerm tmsInsuranceTerm) {
         this.tmsInsuranceTerm = tmsInsuranceTerm;
-    }
+    }*/
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "tms_insurancesupplierid")
@@ -128,7 +132,17 @@ public class TmsInsurance extends EmsEntity {
         this.tmsInsuranceVehicleCode = tmsInsuranceVehicleCode;
     }
 
-  /*  @PrePersist
+    @OneToMany(mappedBy = "tmsInsurance")
+    public List<TmsInsuranceTermLigne> getTmsInsuranceTermLigne() {
+        return tmsInsuranceTermInsurances;
+    }
+
+    public void setTmsInsuranceTermLigne(List<TmsInsuranceTermLigne> tmsInsuranceTermInsurances) {
+        this.tmsInsuranceTermInsurances = tmsInsuranceTermInsurances;
+    }
+
+
+/*  @PrePersist
     @PreUpdate
     void prePersist() {
         if (tmsVehicle != null) {
