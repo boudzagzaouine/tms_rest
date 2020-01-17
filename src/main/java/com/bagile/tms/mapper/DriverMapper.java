@@ -2,6 +2,8 @@ package com.bagile.tms.mapper;
 
 import com.bagile.tms.dto.Driver;
 import com.bagile.tms.entities.TmsDriver;
+import com.bagile.tms.entities.TmsInsurance;
+
 import java.util.*;
 
 public class DriverMapper {
@@ -21,7 +23,7 @@ public class DriverMapper {
        // map.put("commission", "tmsDriverCommission");
         map.put("contact", "prmContact");
         map.put("working", "tmsWorking");
-        map.put("badge", "tmsBadge");
+       map.put("badgeTypeDrivers", "tmsBadgeTypeDrivers");
 
         map.put("name", "tmsDrivertName");
         map.put("surname", "tmsDriverSurname");
@@ -53,11 +55,11 @@ public class DriverMapper {
         tmsDriver.setTmsDriverId(driver.getId());
         tmsDriver.setTmsDriverCin(driver.getCin());
         tmsDriver.setTmsDriverCode(driver.getCode() != null ? driver.getCode().toUpperCase() : null);
-       // tmsDriver.setTmsDriverCommission(driver.getCommission());
+      // tmsDriver.setTmsDriverCommission(driver.getCommissions());
         tmsDriver.setTmsDriverLastMedicalVisit(driver.getLastMedicalVisit());
         tmsDriver.setTmsDriverBirthDate (driver.getBirthDate());
         tmsDriver.setTmsWorking(driver.isWorking());
-
+       // tmsDriver.setTmsBadgeTypeDrivers(driver.getBadgeTypeDrivers());
         tmsDriver.setTmsDriverName(driver.getName());
         tmsDriver.setTmsDriverSurname(driver.getSurname());
         tmsDriver.setTmsDriverTele1(driver.getTele1());
@@ -70,14 +72,25 @@ public class DriverMapper {
 
         if (!lazy) {
             //tmsDriver.setPrmContact (ContactMapper.toEntity(driver.getContact(), true));
-            tmsDriver.setTmsBadge(BadgeMapper.toEntity(driver.getBadge(), true));
+            tmsDriver.setTmsBadgeTypeDrivers(BadgeTypeDriverMapper.toEntities(driver.getBadgeTypeDrivers(), false));
 
+            oneToMany(tmsDriver);
 
         }
         return tmsDriver;
 
     }
 
+    private static void oneToMany(TmsDriver driver){
+        driver.getTmsBadgeTypeDrivers().forEach(
+                e->{
+                    e.setCreationDate(new Date());
+                    e.setTmsDriver(driver);
+                }
+        );
+
+
+    }
     public static Driver toDto(TmsDriver tmsDriver, boolean lazy) {
         if (null == tmsDriver) {
             return null;
@@ -106,7 +119,7 @@ public class DriverMapper {
 
         if (!lazy) {
            // driver.setContact(ContactMapper.toDto(tmsDriver.getPrmContact (), true));
-            driver.setBadge(BadgeMapper.toDto(tmsDriver.getTmsBadge(), true));
+            driver.setBadgeTypeDrivers(BadgeTypeDriverMapper.toDtos(tmsDriver.getTmsBadgeTypeDrivers(), false));
         }
         return driver;
 

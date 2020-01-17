@@ -2,9 +2,7 @@ package com.bagile.tms.entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "tms_driver")
@@ -28,9 +26,9 @@ public class TmsDriver extends EmsEntity {
 
    // private PrmContact prmContact;
 
-    private boolean tmsWorking;
+    private Boolean tmsWorking=false;
 
-    private TmsBadge tmsBadge;
+    //private TmsBadge tmsBadge;
 
 
     private String tmsDriverName;
@@ -44,7 +42,7 @@ public class TmsDriver extends EmsEntity {
     private String tmsDriverComment;
 
     private List<TmsCommission> tmsCommissions = new ArrayList<>();
-    private List<TmsBadgeTypeDriver> tmsBadgeTypeDrivers=new ArrayList<>();
+    private Set<TmsBadgeTypeDriver> tmsBadgeTypeDrivers=new HashSet<>();
 
     public TmsDriver() {
     }
@@ -100,6 +98,7 @@ public class TmsDriver extends EmsEntity {
     }
 
     @Column(name = "tms_drivercommission")
+
     public BigDecimal getTmsDriverCommission() {
         return tmsDriverCommission;
     }
@@ -108,16 +107,19 @@ public class TmsDriver extends EmsEntity {
         this.tmsDriverCommission = tmsDriverCommission;
     }
 
-
-    public boolean isTmsWorking() {
+    @Column(name = "tms_driverisworking")
+    public Boolean isTmsWorking() {
         return tmsWorking;
     }
 
-    public void setTmsWorking(boolean tmsWorking) {
-        this.tmsWorking = tmsWorking;
+    public void setTmsWorking(Boolean tmsWorking) {
+        if(tmsWorking==null){
+            this.tmsWorking=false;
+        }
+        else {this.tmsWorking = tmsWorking;}
     }
 
-    @ManyToOne(optional = false)
+  /*  @ManyToOne(optional = false)
     @JoinColumn(name = "tms_badgeid")
     public TmsBadge getTmsBadge() {
         return tmsBadge;
@@ -125,7 +127,7 @@ public class TmsDriver extends EmsEntity {
 
     public void setTmsBadge(TmsBadge tmsbadge) {
         this.tmsBadge = tmsbadge;
-    }
+    }*/
 
     @Column(name = "tms_drivername")
     public String getTmsDriverName() {
@@ -189,7 +191,7 @@ public class TmsDriver extends EmsEntity {
         this.tmsDriverComment = tmsDriverComment;
     }
 
-    @OneToMany (mappedBy = "tmsDriver")
+    @OneToMany (mappedBy = "tmsDriver",cascade = CascadeType.ALL)
     public List<TmsCommission> getTmsCommissions() {
         return tmsCommissions;
     }
@@ -198,12 +200,13 @@ public class TmsDriver extends EmsEntity {
         this.tmsCommissions = tmsCommissions;
     }
 
-    @OneToMany(mappedBy = "tmsDriver",cascade = CascadeType.MERGE)
-    public List<TmsBadgeTypeDriver> getTmsBadgeTypeDrivers() {
+    @OneToMany(mappedBy = "tmsDriver",cascade = CascadeType.ALL)
+
+    public Set<TmsBadgeTypeDriver> getTmsBadgeTypeDrivers() {
         return tmsBadgeTypeDrivers;
     }
 
-    public void setTmsBadgeTypeDrivers(List<TmsBadgeTypeDriver> tmsBadgeTypeDrivers) {
+    public void setTmsBadgeTypeDrivers(Set<TmsBadgeTypeDriver> tmsBadgeTypeDrivers) {
         this.tmsBadgeTypeDrivers = tmsBadgeTypeDrivers;
     }
 }
