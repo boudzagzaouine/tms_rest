@@ -19,6 +19,9 @@ public class BadgeTypeDriverMapper {
         map.put("id", "tmsBadgeTypeDriverId");
         map.put("driver", "tmsDriver");
         map.put("badgeType", "tmsBadgeType");
+        map.put("badgeNumber", "tmsBadgeNumber");
+        map.put("deliveranceDate", "tmsDeliveranceDate");
+        map.put("validityEndDate", "tmsValidityEndDate");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -40,6 +43,10 @@ public class BadgeTypeDriverMapper {
         }
         TmsBadgeTypeDriver tmsBadgeTypeDriver = new TmsBadgeTypeDriver();
         tmsBadgeTypeDriver.setTmsBadgeTypeDriverId(badgeTypeDriver.getId());
+        tmsBadgeTypeDriver.setTmsBadgeNumber(badgeTypeDriver.getBadgeNumber());
+        tmsBadgeTypeDriver.setTmsDeliveranceDate(badgeTypeDriver.getDeliveranceDate());
+        tmsBadgeTypeDriver.setTmsValidityEndDate(badgeTypeDriver.getValidityEndDate());
+
 
         tmsBadgeTypeDriver.setCreatedBy(badgeTypeDriver.getCreatedBy());
         tmsBadgeTypeDriver.setUpdatedBy(badgeTypeDriver.getUpdatedBy());
@@ -60,6 +67,10 @@ public class BadgeTypeDriverMapper {
         }
         BadgeTypeDriver badgeTypeDriver = new BadgeTypeDriver();
         badgeTypeDriver.setId((int) tmsBadgeTypeDriver.getTmsBadgeTypeDriverId());
+        badgeTypeDriver.setBadgeNumber( tmsBadgeTypeDriver.getTmsBadgeNumber());
+        badgeTypeDriver.setDeliveranceDate( tmsBadgeTypeDriver.getTmsDeliveranceDate());
+        badgeTypeDriver.setValidityEndDate( tmsBadgeTypeDriver.getTmsValidityEndDate());
+
 
         if (!lazy) {
             badgeTypeDriver.setDriver(DriverMapper.toDto(tmsBadgeTypeDriver.getTmsDriver(), true));
@@ -83,7 +94,7 @@ public class BadgeTypeDriverMapper {
         return badgeTypeDrivers;
     }
 
-    public static Set<TmsBadgeTypeDriver> toEntities(Set<BadgeTypeDriver> badgeTypeDriverType, boolean lazy) {
+    public static Set<TmsBadgeTypeDriver> toEntities(Iterable<? extends  BadgeTypeDriver> badgeTypeDriverType, boolean lazy) {
         if (null == badgeTypeDriverType) {
             return null;
         }
@@ -94,7 +105,7 @@ public class BadgeTypeDriverMapper {
         return tmsBadgeTypeDrivers;
     }
 
-    public static Set<BadgeTypeDriver> toDtos(Set<TmsBadgeTypeDriver> tmsBadgeTypeDrivers, boolean lazy) {
+    /*public static Set<BadgeTypeDriver> toDtos(Set<TmsBadgeTypeDriver> tmsBadgeTypeDrivers, boolean lazy) {
         if (null == tmsBadgeTypeDrivers) {
             return null;
         }
@@ -103,5 +114,5 @@ public class BadgeTypeDriverMapper {
             badgeTypeDriverType.add(toDto(tmsBadgeTypeDriver, lazy));
         }
         return badgeTypeDriverType;
-    }
+    }*/
 }

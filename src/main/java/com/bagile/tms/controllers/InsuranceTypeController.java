@@ -1,11 +1,10 @@
 package com.bagile.tms.controllers;
 
-import com.bagile.tms.dto.CommissionType;
+import com.bagile.tms.dto.InsuranceType;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.services.CommissionTypeService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.bagile.tms.services.InsuranceTypeService;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,12 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/commissiontypes")
-public class CommissiontypeController {
+@RequestMapping(value = "/insurancetypes")
+public class InsuranceTypeController {
 
-    private final CommissionTypeService commissionTypeService;
-    public CommissiontypeController(CommissionTypeService commissionTypeService) {
-        this.commissionTypeService = commissionTypeService;
+    private final InsuranceTypeService insuranceTypeService;
+    public InsuranceTypeController(InsuranceTypeService insuranceTypeService) {
+        this.insuranceTypeService = insuranceTypeService;
     }
 
 
@@ -29,16 +28,16 @@ public class CommissiontypeController {
     //@PreAuthorize("hasAnyRole('CONTACT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','TRANSPORT_VIEW','INVOICE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
-    public List<CommissionType> getCommissionTypes() throws AttributesNotFound, ErrorType {
+    public List<InsuranceType> getCommissionTypes() throws AttributesNotFound, ErrorType {
 
-        return commissionTypeService.findAll();
+        return insuranceTypeService.findAll();
     }
 
     //@PreAuthorize("hasAnyRole('CONTACT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','TRANSPORT_VIEW','INVOICE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
-    public List<CommissionType> getCommissionTypes(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-               return commissionTypeService.findAll( page, size);
+    public List<InsuranceType> getCommissionTypes(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
+               return insuranceTypeService.findAll( page, size);
     }
 
     //@PreAuthorize("hasAnyRole('CONTACT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','TRANSPORT_VIEW','INVOICE_VIEW')")
@@ -46,7 +45,7 @@ public class CommissiontypeController {
     @ResponseBody
     public Long size() throws AttributesNotFound, ErrorType {
 
-        return commissionTypeService.size();
+        return insuranceTypeService.size();
     }
 
     //@PreAuthorize("hasAnyRole('CONTACT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','TRANSPORT_VIEW','INVOICE_VIEW')")
@@ -58,73 +57,73 @@ public class CommissiontypeController {
         if (!search.endsWith(",")) {
             search += ",";
         }
-        return commissionTypeService.size();
+        return insuranceTypeService.size();
     }
 
     //@PreAuthorize("hasAnyRole('CONTACT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','TRANSPORT_VIEW','INVOICE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
-        return commissionTypeService.isExist(id);
+        return insuranceTypeService.isExist(id);
     }
 
     //@PreAuthorize("hasAnyRole('CONTACT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','TRANSPORT_VIEW','INVOICE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
-    public CommissionType getCommissionType(@PathVariable("id") Long id) throws IdNotFound {
-        return commissionTypeService.findById(id);
+    public InsuranceType getCommissionType(@PathVariable("id") Long id) throws IdNotFound {
+        return insuranceTypeService.findById(id);
     }
 
     //@PreAuthorize("hasAnyRole('CONTACT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','TRANSPORT_VIEW','INVOICE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
-    public List<CommissionType> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
+    public List<InsuranceType> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
 
         if (!search.endsWith(",")) {
             search += ",";
         }
 
-        return commissionTypeService.find(search);
+        return insuranceTypeService.find(search);
     }
 
     //@PreAuthorize("hasAnyRole('CONTACT_VIEW','SUPPLIER_VIEW','ACCOUNT_VIEW','TRANSPORT_VIEW','INVOICE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
-    public List<CommissionType> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
+    public List<InsuranceType> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
 
         /*if (!search.endsWith(",")) {
             search += ",";
         }*/
-        return commissionTypeService.find(search, page, size);
+        return insuranceTypeService.find(search, page, size);
     }
 
     //@PreAuthorize("hasAnyRole('CONTACT_CREATE','SUPPLIER_VIEW','ACCOUNT_VIEW','TRANSPORT_VIEW','INVOICE_VIEW')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public CommissionType add(@RequestBody CommissionType contact) {
-        return commissionTypeService.save(contact);
+    public InsuranceType add(@RequestBody InsuranceType contact) {
+        return insuranceTypeService.save(contact);
     }
 
     //@PreAuthorize("hasAnyRole('CONTACT_EDIT','SUPPLIER_VIEW','ACCOUNT_VIEW','TRANSPORT_VIEW','INVOICE_VIEW')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public CommissionType set(@RequestBody CommissionType contact) {
-        return commissionTypeService.save(contact);
+    public InsuranceType set(@RequestBody InsuranceType contact) {
+        return insuranceTypeService.save(contact);
     }
 
     //@PreAuthorize("hasRole('CONTACT_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@RequestBody CommissionType contact) {
+    public void delete(@RequestBody InsuranceType contact) {
 
-        commissionTypeService.delete(contact);
+        insuranceTypeService.delete(contact);
     }
 
     //@PreAuthorize("hasRole('CONTACT_DELETE')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@PathVariable Long id) throws IdNotFound {
-        commissionTypeService.delete(id);
+        insuranceTypeService.delete(id);
     }
 
 }

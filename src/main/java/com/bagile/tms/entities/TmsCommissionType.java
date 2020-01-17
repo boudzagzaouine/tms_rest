@@ -29,7 +29,7 @@ public class TmsCommissionType extends EmsEntity {
         this.tmsCommissionTypeId = tmsCommissionTypeId;
     }
 
-    @Column(name = "tms_Commissiontypecode", unique = true, nullable = false, length = 90)
+    @Column(name = "tms_Commissiontypecode", unique = true ,length = 90)
     public String getTmsCommissionTypeCode() {
         return tmsCommissionTypeCode;
     }
@@ -37,7 +37,7 @@ public class TmsCommissionType extends EmsEntity {
         this.tmsCommissionTypeCode = tmsCommissionTypeCode;
     }
 
-    @Column(name = "tms_commissiontypedescription", unique = true, nullable = false, length = 90)
+    @Column(name = "tms_commissiontypedescription"  )
     public String getTmsCommissionTypeDescription() {
         return tmsCommissionTypeDescription;
     }
@@ -45,7 +45,7 @@ public class TmsCommissionType extends EmsEntity {
     public void setTmsCommissionTypeDescription(String tmsCommissionTypeDescription) {
         this.tmsCommissionTypeDescription = tmsCommissionTypeDescription;
     }
-    @Column(name = "tms_commissiontypepourcentage", unique = true, nullable = false, length = 90)
+    @Column(name = "tms_commissiontypepourcentage", length = 90)
     public BigDecimal getTmsCommissionTypepercentage() {
         return tmsCommissionTypePercentage;
     }
