@@ -17,6 +17,7 @@ public class InsuranceTermMapper {
         map.put("id", "tmsInsuranceTermId");
         map.put("code", "tmsInsuranceTermCode");
         map.put("description", "tmsInsuranceTermDescription");
+        map.put("isValue", "tmsInsuranceTermIsValue");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -40,6 +41,7 @@ public class InsuranceTermMapper {
         tmsInsuranceTerm.setTmsInsuranceTermId(insuranceTerm.getId());
         tmsInsuranceTerm.setTmsInsuranceTermCode(insuranceTerm.getCode() != null ? insuranceTerm.getCode().toUpperCase() : null);
         tmsInsuranceTerm.setTmsInsuranceTermDescription (insuranceTerm.getDescription ());
+        tmsInsuranceTerm.setTmsInsuranceTermRoofed(insuranceTerm.isRoofed());
 
 
         tmsInsuranceTerm.setCreatedBy(insuranceTerm.getCreatedBy());
@@ -62,6 +64,7 @@ public class InsuranceTermMapper {
         insuranceTerm.setId(tmsInsuranceTerm.getTmsInsuranceTermId());
         insuranceTerm.setCode(tmsInsuranceTerm.getTmsInsuranceTermCode());
         insuranceTerm.setDescription (tmsInsuranceTerm.getTmsInsuranceTermDescription ());
+        insuranceTerm.setRoofed(tmsInsuranceTerm.isTmsInsuranceTermRoofed());
 
         insuranceTerm.setCreatedBy(tmsInsuranceTerm.getCreatedBy());
         insuranceTerm.setUpdatedBy(tmsInsuranceTerm.getUpdatedBy());

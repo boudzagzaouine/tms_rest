@@ -54,17 +54,16 @@ public class InsuranceMapper {
         tmsInsurance.setTmsInsuranceEndDate (insurance.getEndDate ());
         tmsInsurance.setTmsInsuranceVehicleCode (insurance.getVehicleCode ());
 
-
-
         tmsInsurance.setCreatedBy(insurance.getCreatedBy());
         tmsInsurance.setUpdatedBy(insurance.getUpdatedBy());
         tmsInsurance.setCreationDate(insurance.getCreationDate());
         tmsInsurance.setUpdateDate(insurance.getUpdateDate());
 
         if(!lazy) {
-          //tmsInsurance.setTmsInsuranceTerm (InsuranceTermMapper.toEntity(insurance.getInsuranceTerm (),true));
+          tmsInsurance.setTmsInsuranceTermLigne (InsuranceTermLigneMapper.toEntities(insurance.getInsuranceTermLignes(),false));
              tmsInsurance.setRcpSupplier (SupplierMapper.toEntity(insurance.getSupplier (),false));
              //tmsInsurance.setTmsVehicle (VehicleMapper.toEntity (insurance.getVehicle (), true));
+            oneToMany(tmsInsurance);
         }
         return tmsInsurance;
     }
@@ -90,13 +89,24 @@ public class InsuranceMapper {
 
         if(!lazy) {
 
-            // insurance.setInsuranceTerm (InsuranceTermMapper.toDto(tmsInsurance.getTmsInsuranceTerm (),true));
+           insurance.setInsuranceTermLignes (InsuranceTermLigneMapper.toDtos(tmsInsurance.getTmsInsuranceTermLigne (),false));
              insurance.setSupplier (SupplierMapper.toDto (tmsInsurance.getRcpSupplier (), false));
-             //insurance.setVehicle (VehicleMapper.toDto (tmsInsurance.getTmsVehicle (), true));
+             insurance.setVehicle (VehicleMapper.toDto (tmsInsurance.getTmsVehicle (), true));
         }
         return insurance;
     }
 
+
+    private static void oneToMany(TmsInsurance insurance){
+        insurance.getTmsInsuranceTermLigne().forEach(
+                e->{
+                     e.setCreationDate(new Date());
+                    e.setTmsInsurance(insurance);
+                }
+        );
+
+
+    }
 
     public static List<Insurance> toDtos(Iterable<? extends TmsInsurance> tmsInsurances, boolean lazy) {
         if (null == tmsInsurances) {

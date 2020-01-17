@@ -1,10 +1,10 @@
 package com.bagile.tms.entities;
 
+import com.bagile.tms.dto.InsuranceTermLigne;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "tms_insurance")
@@ -21,8 +21,10 @@ public class TmsInsurance extends EmsEntity {
     private RcpSupplier rcpSupplier;
     private TmsVehicle tmsVehicle;
     private String tmsInsuranceVehicleCode;
+    private TmsInsuranceType tmsInsuranceType;
 
-    private List<TmsInsuranceTermLigne> tmsInsuranceTermInsurances = new ArrayList<>();
+
+    private Set<TmsInsuranceTermLigne> tmsInsuranceTermInsurances = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -103,6 +105,16 @@ public class TmsInsurance extends EmsEntity {
         this.rcpSupplier = rcpSupplier;
     }
 
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "tms_insurancetypeid")
+    public TmsInsuranceType getTmsInsuranceType() {
+        return tmsInsuranceType;
+    }
+
+    public void setTmsInsuranceType(TmsInsuranceType tmsInsuranceType) {
+        this.tmsInsuranceType = tmsInsuranceType;
+    }
+
     @OneToOne(mappedBy = "tmsInsurance", cascade = CascadeType.ALL)
     public TmsVehicle getTmsVehicle() {
         return tmsVehicle;
@@ -132,12 +144,12 @@ public class TmsInsurance extends EmsEntity {
         this.tmsInsuranceVehicleCode = tmsInsuranceVehicleCode;
     }
 
-    @OneToMany(mappedBy = "tmsInsurance")
-    public List<TmsInsuranceTermLigne> getTmsInsuranceTermLigne() {
+    @OneToMany(mappedBy = "tmsInsurance",cascade = CascadeType.ALL)
+    public Set<TmsInsuranceTermLigne> getTmsInsuranceTermLigne() {
         return tmsInsuranceTermInsurances;
     }
 
-    public void setTmsInsuranceTermLigne(List<TmsInsuranceTermLigne> tmsInsuranceTermInsurances) {
+    public void setTmsInsuranceTermLigne(Set<TmsInsuranceTermLigne> tmsInsuranceTermInsurances) {
         this.tmsInsuranceTermInsurances = tmsInsuranceTermInsurances;
     }
 

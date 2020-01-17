@@ -17,7 +17,7 @@ public class Insurance extends EmsDto{
     private Supplier supplier;
     private Vehicle vehicle;
     private String vehicleCode;
-
+ private Insurance insurance;
     private List<InsuranceTermLigne> insuranceTermLignes = new ArrayList<>();
 
 
@@ -110,5 +110,13 @@ public class Insurance extends EmsDto{
 
     public void setInsuranceTermLignes(List<InsuranceTermLigne> insuranceTermLignes) {
         this.insuranceTermLignes = insuranceTermLignes;
+    }
+
+    public Insurance getInsurance() {
+        return insurance;
+    }
+
+    public void setInsurance(Insurance insurance) {
+        this.insurance = insurance;
     }
 }

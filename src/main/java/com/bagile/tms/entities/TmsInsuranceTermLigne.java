@@ -26,7 +26,7 @@ public class TmsInsuranceTermLigne extends EmsEntity {
         this.tmsInsuranceTermLigneId = tmsInsuranceTermLigneId;
     }
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "tms_insuranceid")
     public TmsInsurance getTmsInsurance() {
         return tmsInsurance;

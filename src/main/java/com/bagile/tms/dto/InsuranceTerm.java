@@ -8,6 +8,7 @@ public class InsuranceTerm extends EmsDto {
     private Long id;
     private String code;
     private String description;
+    private boolean roofed=false;
     private List<InsuranceTermLigne> insuranceTermLignes=new ArrayList<>();
 
     public InsuranceTerm() {
@@ -37,6 +38,13 @@ public class InsuranceTerm extends EmsDto {
         this.description = description;
     }
 
+    public boolean isRoofed() {
+        return roofed;
+    }
+
+    public void setRoofed(boolean roofed) {
+        this.roofed = roofed;
+    }
 
     public List<InsuranceTermLigne> getInsuranceTermLignes() {
         return insuranceTermLignes;

@@ -12,6 +12,7 @@ public class TmsInsuranceTerm extends  EmsEntity{
     private Long tmsInsuranceTermId;
     private String tmsInsuranceTermCode;
     private String tmsInsuranceTermDescription;
+    private boolean tmsInsuranceTermRoofed=false;
   //  private TmsInsurance tmsInsurance;
     private List<TmsInsuranceTermLigne> tmsInsuranceTermInsurances=new ArrayList<>();
 
@@ -51,7 +52,20 @@ public class TmsInsuranceTerm extends  EmsEntity{
     public void setTmsInsuranceTermLigne(List<TmsInsuranceTermLigne> tmsInsuranceTermInsurances) {
         this.tmsInsuranceTermInsurances = tmsInsuranceTermInsurances;
     }
-   /* @OneToOne
+
+    @Column(name = "tms_terminsuranceroofed", columnDefinition = "boolean default false")
+    public boolean isTmsInsuranceTermRoofed() {
+        return tmsInsuranceTermRoofed;
+    }
+
+    public void setTmsInsuranceTermRoofed(boolean tmsInsuranceTermIsValue) {
+
+        this.tmsInsuranceTermRoofed = tmsInsuranceTermIsValue;
+
+
+    }
+
+    /* @OneToOne
     public TmsInsurance getTmsInsurance() {
         return tmsInsurance;
     }

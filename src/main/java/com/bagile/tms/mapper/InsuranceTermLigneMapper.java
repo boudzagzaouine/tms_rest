@@ -67,7 +67,6 @@ public class InsuranceTermLigneMapper {
         if (!lazy) {
             insuranceTermInsurance.setInsurance(InsuranceMapper.toDto(tmsinsuranceTermInsurances.getTmsInsurance(), true));
             insuranceTermInsurance.setInsuranceTerm(InsuranceTermMapper.toDto(tmsinsuranceTermInsurances.getTmsInsuranceTerm(), true));
-
         }
 
         return insuranceTermInsurance;
@@ -87,7 +86,7 @@ public class InsuranceTermLigneMapper {
         return insuranceTermInsurances;
     }
 
-    public static Set<TmsInsuranceTermLigne> toEntities(Set<InsuranceTermLigne> insuranceTermInsurances, boolean lazy) {
+    public static Set<TmsInsuranceTermLigne> toEntities(Iterable<? extends InsuranceTermLigne> insuranceTermInsurances, boolean lazy) {
         if (null == insuranceTermInsurances) {
             return null;
         }
@@ -98,14 +97,4 @@ public class InsuranceTermLigneMapper {
         return tmsInsuranceTermLignes;
     }
 
-    public static Set<InsuranceTermLigne> toDtos(Set<TmsInsuranceTermLigne> tmsInsuranceTermLignes, boolean lazy) {
-        if (null == tmsInsuranceTermLignes) {
-            return null;
-        }
-        Set<InsuranceTermLigne> insuranceTermInsurances = new HashSet<>();
-        for (TmsInsuranceTermLigne tmsinsuranceTermInsurances : tmsInsuranceTermLignes) {
-            insuranceTermInsurances.add(toDto(tmsinsuranceTermInsurances, lazy));
-        }
-        return insuranceTermInsurances;
-    }
 }
