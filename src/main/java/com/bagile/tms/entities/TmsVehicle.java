@@ -12,6 +12,7 @@ public class TmsVehicle extends EmsEntity {
     private String tmsRegistrationNumber;
     private String tmsVehicleCode;
     private Date tmsVehicleTechnicalVisit;
+    private BigDecimal tmsVehicleValueTechnicalvisit;
     private TmsVehicleCategory tmsVehicleCategory;
     private TmsBadgeType tmsBadgeType;
     private TmsInsurance tmsInsurance;
@@ -30,6 +31,8 @@ public class TmsVehicle extends EmsEntity {
     private String tmsVehicleBody;
     private String tmsVehicleChassisNumber ;
     private String tmsVehicleEnergy ;
+    private  Date tmsVehicleVignette;
+    private BigDecimal tmsVehicleValueVignete;
 
 
     @Id
@@ -70,6 +73,15 @@ public class TmsVehicle extends EmsEntity {
 
     public void setTmsVehicleTechnicalVisit(Date tmsVehicleTechnicalVisit) {
         this.tmsVehicleTechnicalVisit = tmsVehicleTechnicalVisit;
+    }
+
+    @Column(name = "tms_vehiculevaluetechnicalvisit")
+    public BigDecimal getTmsVehicleValueTechnicalvisit() {
+        return tmsVehicleValueTechnicalvisit;
+    }
+
+    public void setTmsVehicleValueTechnicalvisit(BigDecimal tmsVehicleValueTechnicalvisit) {
+        this.tmsVehicleValueTechnicalvisit = tmsVehicleValueTechnicalvisit;
     }
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
@@ -231,6 +243,20 @@ public class TmsVehicle extends EmsEntity {
         this.tmsVehicleEnergy = tmsVehicleEnergy;
     }
 
+    @Column(name = "tms_vehiculevignette")
+    public Date getTmsVehicleVignette() {
+        return tmsVehicleVignette;
+    }
 
+    public void setTmsVehicleVignette(Date tmsVehicleVignette) {
+        this.tmsVehicleVignette = tmsVehicleVignette;
+    }
+    @Column(name = "tms_vehiculevaluevignette")
+    public BigDecimal getTmsVehicleValueVignete() {
+        return tmsVehicleValueVignete;
+    }
 
+    public void setTmsVehicleValueVignete(BigDecimal tmsVehicleValueVignete) {
+        this.tmsVehicleValueVignete = tmsVehicleValueVignete;
+    }
 }

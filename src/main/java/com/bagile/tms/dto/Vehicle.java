@@ -16,6 +16,7 @@ public class Vehicle extends EmsDto implements Serializable {
     private String registrationNumber;
     private String code;
     private Date technicalVisit;
+    private BigDecimal valueTechnicalVisit;
     private Date creationDate;
     private VehicleCategory vehicleCategory;
     private BadgeType badgeType;
@@ -35,7 +36,8 @@ public class Vehicle extends EmsDto implements Serializable {
    private String body;
    private String chassisNumber ;
    private String energy ;
-
+   private Date     vignette ;
+   private BigDecimal valueVignette;
 
     public Vehicle() {
     }
@@ -70,6 +72,15 @@ public class Vehicle extends EmsDto implements Serializable {
 
     public void setTechnicalVisit(Date technicalVisit) {
         this.technicalVisit = technicalVisit;
+    }
+
+
+    public BigDecimal getValueTechnicalVisit() {
+        return valueTechnicalVisit;
+    }
+
+    public void setValueTechnicalVisit(BigDecimal valueTechnicalVisit) {
+        this.valueTechnicalVisit = valueTechnicalVisit;
     }
 
     public Date getCreationDate() {
@@ -209,12 +220,28 @@ public class Vehicle extends EmsDto implements Serializable {
         this.chassisNumber = chassisNumber;
     }
 
-    public String getenergy() {
+    public String getEnergy() {
         return energy;
     }
 
     public void setEnergy(String energy) {
-        energy = energy;
+        this.energy = energy;
+    }
+
+    public Date getVignette() {
+        return vignette;
+    }
+
+    public void setVignette(Date vignette) {
+        this.vignette = vignette;
+    }
+
+    public BigDecimal getValueVignette() {
+        return valueVignette;
+    }
+
+    public void setValueVignette(BigDecimal valueVignette) {
+        this.valueVignette = valueVignette;
     }
 
     @Override

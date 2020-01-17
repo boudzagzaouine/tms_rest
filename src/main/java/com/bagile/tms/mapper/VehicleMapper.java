@@ -18,6 +18,7 @@ public class VehicleMapper {
         map.put("registrationNumber", "tmsRegistrationNumber");
         map.put("code", "tmsVehicleCode");
         map.put("technicalVisit", "tmsVehicleTechnicalVisit");
+        map.put("valueTechnicalVisit", "tmsVehicleValueTechnicalvisit");
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdBy");
@@ -26,6 +27,8 @@ public class VehicleMapper {
         map.put("badgeType", "tmsBadgeType");
         map.put("insurance", "TmsInsurance");
         map.put("contractType", "TmsContractType");
+        map.put("vignette", "tmsVehicleVignette");
+        map.put("valueVignette", "tmsVehicleValueVignete");
 
         map.put("engineOil", "tmsVehicleEngineOil");
         map.put("rearDeck", "tmsVehicleRearDeck");
@@ -60,7 +63,7 @@ public class VehicleMapper {
         tmsVehicle.setTmsRegistrationNumber(vehicle.getRegistrationNumber());
         tmsVehicle.setTmsVehicleCode(vehicle.getCode() != null ? vehicle.getCode().toUpperCase() : null);
         tmsVehicle.setTmsVehicleTechnicalVisit(vehicle.getTechnicalVisit());
-
+        tmsVehicle.setTmsVehicleValueTechnicalvisit(vehicle.getValueTechnicalVisit());
 
         tmsVehicle.setTmsVehicleEngineOil(vehicle.getEngineOil());
         tmsVehicle.setTmsVehicleRearDeck(vehicle.getRearDeck());
@@ -74,16 +77,16 @@ public class VehicleMapper {
         tmsVehicle.setTmsVehicleFiscalPower(vehicle.getFiscalPower());
         tmsVehicle.setTmsVehicleBody(vehicle.getBody());
         tmsVehicle.setTmsVehicleChassisNumber(vehicle.getChassisNumber());
-        tmsVehicle.setTmsVehicleEnergy (vehicle.getenergy());
+        tmsVehicle.setTmsVehicleEnergy (vehicle.getEnergy());
 
-
+        tmsVehicle.setTmsVehicleVignette (vehicle.getVignette());
+        tmsVehicle.setTmsVehicleValueVignete(vehicle.getValueVignette());
 
         if (!lazy) {
             tmsVehicle.setTmsVehicleCategory(VehicleCategoryMapper.toEntity(vehicle.getVehicleCategory(), true));
             tmsVehicle.setTmsBadgeType(BadgeTypeMapper.toEntity(vehicle.getBadgeType(), true));
             tmsVehicle.setTmsInsurance(InsuranceMapper.toEntity(vehicle.getInsurance(), false));
             tmsVehicle.setTmsContractType (ContractTypeMapper.toEntity (vehicle.getContractType (), true));
-
         }
         return tmsVehicle;
 
@@ -98,6 +101,8 @@ public class VehicleMapper {
         vehicle.setRegistrationNumber(tmsVehicle.getTmsRegistrationNumber());
         vehicle.setCode(tmsVehicle.getTmsVehicleCode());
         vehicle.setTechnicalVisit(tmsVehicle.getTmsVehicleTechnicalVisit());
+        vehicle.setValueTechnicalVisit(tmsVehicle.getTmsVehicleValueTechnicalvisit());
+
 
         vehicle.setCreatedBy(tmsVehicle.getCreatedBy());
         vehicle.setUpdatedBy(tmsVehicle.getUpdatedBy());
@@ -119,6 +124,8 @@ public class VehicleMapper {
         vehicle.setChassisNumber(tmsVehicle.getTmsVehicleChassisNumber());
         vehicle.setEnergy(tmsVehicle.getTmsVehicleEnergy());
 
+        vehicle.setVignette(tmsVehicle.getTmsVehicleVignette());
+        vehicle.setValueVignette(tmsVehicle.getTmsVehicleValueVignete());
 
         if (!lazy) {
             vehicle.setBadgeType(BadgeTypeMapper.toDto(tmsVehicle.getTmsBadgeType(), true));
