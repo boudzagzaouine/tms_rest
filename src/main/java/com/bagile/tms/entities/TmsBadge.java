@@ -12,7 +12,7 @@ public class TmsBadge  extends EmsEntity{
     private String tmsBadgeCode;
     private String tmsBadgeDescription;
     private TmsBadgeType tmsBadgeType;
-    private List<TmsDriver> tmsDrivers = new ArrayList<>();
+   // private List<TmsDriver> tmsDrivers = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -45,14 +45,14 @@ public class TmsBadge  extends EmsEntity{
         this.tmsBadgeType = tmsBadgeType;
     }
 
-    @OneToMany(mappedBy = "tmsBadge")
+   /* @OneToMany(mappedBy = "tmsBadge")
     public List<TmsDriver> getTmsDrivers() {
         return tmsDrivers;
     }
 
     public void setTmsDrivers(List<TmsDriver> tmsDrivers) {
         this.tmsDrivers = tmsDrivers;
-    }
+    }*/
 
     @Column(name = "tms_badgedescription")
     public String getTmsBadgeDescription() {

@@ -45,7 +45,7 @@ public class TmsBadgeType extends EmsEntity {
         this.tmsBadgeTypeDescription = tmsBadgeTypeDescription;
     }
 
-    @OneToMany(mappedBy = "tmsBadgeType",cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "tmsBadgeType", cascade = CascadeType.ALL)
     public List<TmsBadgeTypeDriver> getTmsBadgeTypeDrivers() {
         return tmsBadgeTypeDrivers;
     }

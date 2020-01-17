@@ -1,7 +1,7 @@
 package com.bagile.tms.entities;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+import java.util.Date;
 
 
 @Entity
@@ -10,7 +10,10 @@ public class TmsBadgeTypeDriver extends EmsEntity {
 
     private long tmsBadgeTypeDriverId;
     private TmsDriver tmsDriver;
-    private  TmsBadgeType tmsBadgeType;
+    private TmsBadgeType tmsBadgeType;
+    private String tmsBadgeNumber;
+    private Date tmsDeliveranceDate;
+    private Date tmsValidityEndDate;
 
 
     @Id
@@ -24,7 +27,7 @@ public class TmsBadgeTypeDriver extends EmsEntity {
     public void setTmsBadgeTypeDriverId(long tmsBadgeTypeDriverId) {
         this.tmsBadgeTypeDriverId = tmsBadgeTypeDriverId;
     }
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "tms_driverid")
     public TmsDriver getTmsDriver() {
         return tmsDriver;
@@ -42,4 +45,33 @@ public class TmsBadgeTypeDriver extends EmsEntity {
     public void setTmsBadgeType(TmsBadgeType tmsBadgeType) {
         this.tmsBadgeType = tmsBadgeType;
     }
+
+    @Column(name = "tms_badgetypedriverbadgenumber")
+    public String getTmsBadgeNumber() {
+        return tmsBadgeNumber;
+    }
+
+    public void setTmsBadgeNumber(String tmsNumeroBadge) {
+        this.tmsBadgeNumber = tmsNumeroBadge;
+    }
+
+    @Column(name = "tms_badgetypedriverdeliverancedate")
+    public Date getTmsDeliveranceDate() {
+        return tmsDeliveranceDate;
+    }
+
+    public void setTmsDeliveranceDate(Date tmsdateDeliverance) {
+        this.tmsDeliveranceDate = tmsdateDeliverance;
+    }
+
+    @Column(name = "tms_badgetypedrivervalidityenddate")
+    public Date getTmsValidityEndDate() {
+        return tmsValidityEndDate;
+    }
+
+    public void setTmsValidityEndDate(Date tmsdateFinValidite) {
+        this.tmsValidityEndDate = tmsdateFinValidite;
+    }
+
+
 }
