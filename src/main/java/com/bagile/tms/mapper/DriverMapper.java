@@ -32,7 +32,7 @@ public class DriverMapper {
         map.put("type", "tmsDriverType");
         map.put("email", "tmsDriverEmail");
         map.put("comment", "tmsDriverComment");
-
+        map.put("catre", "tmsCarte");
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdBy");
@@ -67,11 +67,11 @@ public class DriverMapper {
         tmsDriver.setTmsDriverType(driver.getType());
         tmsDriver.setTmsDriverEmail(driver.getEmail());
         tmsDriver.setTmsDriverComment(driver.getComment());
-
+ tmsDriver.setTmsCarte((driver.getCarte()));
 
 
         if (!lazy) {
-            //tmsDriver.setPrmContact (ContactMapper.toEntity(driver.getContact(), true));
+            tmsDriver.setTmsCommissions(CommissionDriverMapper.toEntities(driver.getCommissions(), false));
             tmsDriver.setTmsBadgeTypeDrivers(BadgeTypeDriverMapper.toEntities(driver.getBadgeTypeDrivers(), false));
 
             oneToMany(tmsDriver);
@@ -88,9 +88,15 @@ public class DriverMapper {
                     e.setTmsDriver(driver);
                 }
         );
-
+        driver.getTmsCommissions().forEach(
+                e->{
+                    e.setCreationDate(new Date());
+                    e.setTmsDriver(driver);
+                }
+        );
 
     }
+
     public static Driver toDto(TmsDriver tmsDriver, boolean lazy) {
         if (null == tmsDriver) {
             return null;
@@ -103,6 +109,7 @@ public class DriverMapper {
         driver.setLastMedicalVisit(tmsDriver.getTmsDriverLastMedicalVisit());
        // driver.setCommission(tmsDriver.getTmsDriverCommission());
         driver.setWorking(tmsDriver.isTmsWorking());
+        driver.setCarte((tmsDriver.getTmsCarte()));
 
         driver.setName(tmsDriver.getTmsDriverName());
         driver.setSurname(tmsDriver.getTmsDriverSurname());
@@ -118,7 +125,7 @@ public class DriverMapper {
         driver.setUpdateDate(tmsDriver.getUpdateDate());
 
         if (!lazy) {
-           // driver.setContact(ContactMapper.toDto(tmsDriver.getPrmContact (), true));
+            driver.setCommissions(CommissionDriverMapper.toDtos(tmsDriver.getTmsCommissions (), false));
             driver.setBadgeTypeDrivers(BadgeTypeDriverMapper.toDtos(tmsDriver.getTmsBadgeTypeDrivers(), false));
         }
         return driver;

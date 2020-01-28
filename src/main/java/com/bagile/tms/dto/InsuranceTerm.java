@@ -1,7 +1,9 @@
 package com.bagile.tms.dto;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class InsuranceTerm extends EmsDto {
 
@@ -9,7 +11,10 @@ public class InsuranceTerm extends EmsDto {
     private String code;
     private String description;
     private boolean roofed=false;
-    private List<InsuranceTermLigne> insuranceTermLignes=new ArrayList<>();
+   // private List<InsuranceTermLigne> insuranceTermLignes=new ArrayList<>();
+
+    private List<InsuranceTypeTerms> insuranceTypeTermsSet=new ArrayList<>();
+
 
     public InsuranceTerm() {
     }
@@ -46,11 +51,21 @@ public class InsuranceTerm extends EmsDto {
         this.roofed = roofed;
     }
 
-    public List<InsuranceTermLigne> getInsuranceTermLignes() {
+    public List<InsuranceTypeTerms> getInsuranceTypeTermsSet() {
+        return insuranceTypeTermsSet;
+    }
+
+    public void setInsuranceTypeTermsSet(List<InsuranceTypeTerms> insuranceTypeTermsSet) {
+        this.insuranceTypeTermsSet = insuranceTypeTermsSet;
+    }
+
+    /* public List<InsuranceTermLigne> getInsuranceTermLignes() {
         return insuranceTermLignes;
     }
 
     public void setInsuranceTermLignes(List<InsuranceTermLigne> insuranceTermLignes) {
         this.insuranceTermLignes = insuranceTermLignes;
-    }
+    }*/
+
+
 }

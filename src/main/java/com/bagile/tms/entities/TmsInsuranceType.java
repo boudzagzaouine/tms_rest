@@ -16,6 +16,11 @@ public class TmsInsuranceType extends EmsEntity {
     private String tmsInsuranceTypeDescription;
     private Set<TmsInsurance> tmsInsurances= new HashSet<>();
 
+   // private Set<TmsVehicleCategory> tmsVehicleCategories= new HashSet<>();
+
+    private Set<TmsInsuranceTypeTerms> tmsInsuranceTypeTerms=new HashSet<>();
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_insurancetype_id", allocationSize = 1)
@@ -44,7 +49,7 @@ public class TmsInsuranceType extends EmsEntity {
         this.tmsInsuranceTypeDescription = tmsInsuranceTypeDescription;
     }
 
-    @OneToMany(mappedBy = "tmsInsuranceType",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tmsInsuranceType")
     public Set<TmsInsurance> getTmsInsurances() {
         return tmsInsurances;
     }
@@ -52,4 +57,24 @@ public class TmsInsuranceType extends EmsEntity {
     public void setTmsInsurances(Set<TmsInsurance> tmsInsurances) {
         this.tmsInsurances = tmsInsurances;
     }
+
+
+  /* @OneToMany(mappedBy = "tmsInsuranceType",)
+    public Set<TmsVehicleCategory> getTmsVehicleCategories() {
+        return tmsVehicleCategories;
+    }
+
+    public void setTmsVehicleCategories(Set<TmsVehicleCategory> tmsVehicleCategories) {
+        this.tmsVehicleCategories = tmsVehicleCategories;
+    }
+*/
+    @OneToMany(mappedBy = "tmsInsuranceType", cascade = CascadeType.ALL)
+    public Set<TmsInsuranceTypeTerms> getTmsInsuranceTypeTerms() {
+        return tmsInsuranceTypeTerms;
+    }
+
+    public void setTmsInsuranceTypeTerms(Set<TmsInsuranceTypeTerms> tmsInsuranceTypeTerms) {
+        this.tmsInsuranceTypeTerms = tmsInsuranceTypeTerms;
+    }
+
 }

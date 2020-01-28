@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class CommissionType extends EmsDto implements Serializable {
     /**
@@ -15,7 +14,7 @@ public class CommissionType extends EmsDto implements Serializable {
     private String code;
     private String description;
     private BigDecimal percentage ;
-    private List<Commission> commissions = new ArrayList<>();
+    private List<CommissionDriver> commissions = new ArrayList<>();
 
     public BigDecimal getPercentage() {
         return percentage;
@@ -50,11 +49,11 @@ public class CommissionType extends EmsDto implements Serializable {
     }
 
 
-    public List<Commission> getCommissions() {
+    public List<CommissionDriver> getCommissions() {
         return commissions;
     }
 
-    public void setCommissions(List<Commission> commissions) {
+    public void setCommissions(List<CommissionDriver> commissions) {
         this.commissions = commissions;
     }
 }

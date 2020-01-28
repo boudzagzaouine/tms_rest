@@ -2,7 +2,9 @@ package com.bagile.tms.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class VehicleCategory extends EmsDto implements Serializable {
 
@@ -20,6 +22,9 @@ public class VehicleCategory extends EmsDto implements Serializable {
     private  BigDecimal emptyWeight;
     private BigDecimal totalWeight;
 
+    private InsuranceType insuranceType;
+
+    private Set<Vehicle> vehicles = new HashSet<>();
 
     public VehicleCategory() {
     }
@@ -94,6 +99,24 @@ public class VehicleCategory extends EmsDto implements Serializable {
 
     public void setTotalWeight(BigDecimal totalWeight) {
         this.totalWeight = totalWeight;
+    }
+
+
+    public InsuranceType getInsuranceType() {
+        return insuranceType;
+    }
+
+    public void setInsuranceType(InsuranceType insuranceType) {
+        this.insuranceType = insuranceType;
+    }
+
+
+    public Set<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(Set<Vehicle> vehicles) {
+        this.vehicles = vehicles;
     }
 
     @Override

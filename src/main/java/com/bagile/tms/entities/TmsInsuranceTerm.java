@@ -2,7 +2,9 @@ package com.bagile.tms.entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="tms_terminsurance")
@@ -14,7 +16,10 @@ public class TmsInsuranceTerm extends  EmsEntity{
     private String tmsInsuranceTermDescription;
     private boolean tmsInsuranceTermRoofed=false;
   //  private TmsInsurance tmsInsurance;
-    private List<TmsInsuranceTermLigne> tmsInsuranceTermInsurances=new ArrayList<>();
+   // private List<TmsInsuranceTermLigne> tmsInsuranceTermInsurances=new ArrayList<>();
+
+    private Set<TmsInsuranceTypeTerms> tmsInsuranceTypeTerms=new HashSet<>();
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -44,13 +49,22 @@ public class TmsInsuranceTerm extends  EmsEntity{
         this.tmsInsuranceTermDescription = tmsInsuranceTermDescription;
     }
 
-    @OneToMany(mappedBy = "tmsInsuranceTerm")
+   /* @OneToMany(mappedBy = "tmsInsuranceTerm")
     public List<TmsInsuranceTermLigne> getTmsInsuranceTermLigne() {
         return tmsInsuranceTermInsurances;
     }
 
     public void setTmsInsuranceTermLigne(List<TmsInsuranceTermLigne> tmsInsuranceTermInsurances) {
         this.tmsInsuranceTermInsurances = tmsInsuranceTermInsurances;
+    }*/
+
+    @OneToMany(mappedBy = "tmsInsuranceTerm", cascade = CascadeType.ALL)
+    public Set<TmsInsuranceTypeTerms> getTmsInsuranceTypeTerms() {
+        return tmsInsuranceTypeTerms;
+    }
+
+    public void setTmsInsuranceTypeTerms(Set<TmsInsuranceTypeTerms> tmsInsuranceTypeTerms) {
+        this.tmsInsuranceTypeTerms = tmsInsuranceTypeTerms;
     }
 
     @Column(name = "tms_terminsuranceroofed", columnDefinition = "boolean default false")

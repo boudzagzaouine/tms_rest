@@ -2,9 +2,10 @@ package com.bagile.tms.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Objects;
 
-public class Commission extends EmsDto implements Serializable {
+public class CommissionDriver extends EmsDto implements Serializable {
     /**
      *
      */
@@ -12,7 +13,8 @@ public class Commission extends EmsDto implements Serializable {
     private long id;
     private Driver driver;
     private CommissionType commissionType;
-    private BigDecimal amount;
+    private Date datee;
+
 
 
 
@@ -33,13 +35,6 @@ public class Commission extends EmsDto implements Serializable {
         this.commissionType = commissionType;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
 
     public long getId() {
         return id;
@@ -49,7 +44,11 @@ public class Commission extends EmsDto implements Serializable {
         this.id = id;
     }
 
+    public Date getDatee() {
+        return datee;
+    }
 
-
-
+    public void setDatee(Date datee) {
+        this.datee = datee;
+    }
 }

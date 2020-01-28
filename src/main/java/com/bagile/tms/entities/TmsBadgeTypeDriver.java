@@ -27,7 +27,7 @@ public class TmsBadgeTypeDriver extends EmsEntity {
     public void setTmsBadgeTypeDriverId(long tmsBadgeTypeDriverId) {
         this.tmsBadgeTypeDriverId = tmsBadgeTypeDriverId;
     }
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "tms_driverid")
     public TmsDriver getTmsDriver() {
         return tmsDriver;

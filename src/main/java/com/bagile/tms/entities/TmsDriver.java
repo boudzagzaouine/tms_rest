@@ -30,6 +30,7 @@ public class TmsDriver extends EmsEntity {
 
     //private TmsBadge tmsBadge;
 
+    private String tmsCarte;
 
     private String tmsDriverName;
 
@@ -41,7 +42,7 @@ public class TmsDriver extends EmsEntity {
     private String tmsDriverEmail;
     private String tmsDriverComment;
 
-    private List<TmsCommission> tmsCommissions = new ArrayList<>();
+    private Set<TmsCommissionDriver> tmsCommissions = new HashSet<>();
     private Set<TmsBadgeTypeDriver> tmsBadgeTypeDrivers=new HashSet<>();
 
     public TmsDriver() {
@@ -191,22 +192,31 @@ public class TmsDriver extends EmsEntity {
         this.tmsDriverComment = tmsDriverComment;
     }
 
-    @OneToMany (mappedBy = "tmsDriver",cascade = CascadeType.ALL)
-    public List<TmsCommission> getTmsCommissions() {
+    @OneToMany (mappedBy = "tmsDriver",cascade = CascadeType.ALL,orphanRemoval = true)
+    public Set<TmsCommissionDriver> getTmsCommissions() {
         return tmsCommissions;
     }
 
-    public void setTmsCommissions(List<TmsCommission> tmsCommissions) {
+    public void setTmsCommissions(Set<TmsCommissionDriver> tmsCommissions) {
         this.tmsCommissions = tmsCommissions;
     }
 
-    @OneToMany(mappedBy = "tmsDriver",cascade = CascadeType.ALL)
-
+    @OneToMany(mappedBy = "tmsDriver",cascade = CascadeType.ALL,orphanRemoval = true)
     public Set<TmsBadgeTypeDriver> getTmsBadgeTypeDrivers() {
         return tmsBadgeTypeDrivers;
     }
 
     public void setTmsBadgeTypeDrivers(Set<TmsBadgeTypeDriver> tmsBadgeTypeDrivers) {
         this.tmsBadgeTypeDrivers = tmsBadgeTypeDrivers;
+    }
+
+
+    @Column(name = "tms_drivercarte")
+    public String getTmsCarte() {
+        return tmsCarte;
+    }
+
+    public void setTmsCarte(String tmsCarte) {
+        this.tmsCarte = tmsCarte;
     }
 }

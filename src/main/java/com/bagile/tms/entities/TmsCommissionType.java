@@ -14,7 +14,7 @@ public class TmsCommissionType extends EmsEntity {
     private String tmsCommissionTypeCode;
     private String tmsCommissionTypeDescription;
     private BigDecimal tmsCommissionTypePercentage;
-    private List<TmsCommission> tmsCommissions = new ArrayList<>();
+    private List<TmsCommissionDriver> tmsCommissions = new ArrayList<>();
 
 
 
@@ -55,11 +55,11 @@ public class TmsCommissionType extends EmsEntity {
     }
 
     @OneToMany(mappedBy = "tmsCommissionType",cascade = CascadeType.ALL)
-    public List<TmsCommission> getTmsCommissions() {
+    public List<TmsCommissionDriver> getTmsCommissions() {
         return tmsCommissions;
     }
 
-    public void setTmsCommissions(List<TmsCommission> tmsCommissions) {
+    public void setTmsCommissions(List<TmsCommissionDriver> tmsCommissions) {
         this.tmsCommissions = tmsCommissions;
     }
 

@@ -1,12 +1,12 @@
 package com.bagile.tms.mapper;
 
-import com.bagile.tms.dto.Commission;
-import com.bagile.tms.entities.TmsCommission;
+import com.bagile.tms.dto.CommissionDriver;
+import com.bagile.tms.entities.TmsCommissionDriver;
 
 import java.util.*;
 
-public class CommissionMapper {
-    public CommissionMapper() {
+public class CommissionDriverMapper {
+    public CommissionDriverMapper() {
     }
 
     private static Map<String, String> map;
@@ -17,7 +17,8 @@ public class CommissionMapper {
         map.put("id", "tmsCommissionId");
         map.put("driver", "tmsDriver");
         map.put("commissionType", "tmsCommissionType");
-        map.put("amount", "tmsAmount");
+        map.put("datee", "tmsDatte");
+
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -33,13 +34,13 @@ public class CommissionMapper {
         return map.get(key);
     }
 
-    public static TmsCommission toEntity(Commission commission, boolean lazy) {
+    public static TmsCommissionDriver toEntity(CommissionDriver commission, boolean lazy) {
         if (null == commission) {
             return null;
         }
-        TmsCommission tmsCommission = new TmsCommission();
+        TmsCommissionDriver tmsCommission = new TmsCommissionDriver();
         tmsCommission.setTmsCommissionId(commission.getId());
-        tmsCommission.setTmsAmount (commission.getAmount ());
+        tmsCommission.setTmsDatee(commission.getDatee());
 
         tmsCommission.setCreatedBy(commission.getCreatedBy());
         tmsCommission.setUpdatedBy(commission.getUpdatedBy());
@@ -54,16 +55,18 @@ public class CommissionMapper {
 
     }
 
-    public static Commission toDto(TmsCommission tmsCommission, boolean lazy) {
+    public static CommissionDriver toDto(TmsCommissionDriver tmsCommission, boolean lazy) {
         if (null == tmsCommission) {
             return null;
         }
-        Commission commission = new Commission();
+        CommissionDriver commission = new CommissionDriver();
         commission.setId((int) tmsCommission.getTmsCommissionId());
-        commission.setAmount(tmsCommission.getTmsAmount());
+
+        commission.setDatee(tmsCommission.getTmsDatee());
 
         if (!lazy) {
             commission.setDriver(DriverMapper.toDto(tmsCommission.getTmsDriver(), true));
+
             commission.setCommissionType(CommissionTypeMapper.toDto(tmsCommission.getTmsCommissionType(), true));
 
         }
@@ -73,37 +76,37 @@ public class CommissionMapper {
     }
 
 
-    public static List<Commission> toDtos(Iterable<? extends TmsCommission> tmsCommissions, boolean lazy) {
+    public static List<CommissionDriver> toDtos(Iterable<? extends TmsCommissionDriver> tmsCommissions, boolean lazy) {
         if (null == tmsCommissions) {
             return null;
         }
-        List<Commission> commissions = new ArrayList<>();
+        List<CommissionDriver> commissions = new ArrayList<>();
 
-        for (TmsCommission tmsCommission : tmsCommissions) {
+        for (TmsCommissionDriver tmsCommission : tmsCommissions) {
             commissions.add(toDto(tmsCommission, lazy));
         }
         return commissions;
     }
 
-    public static Set<TmsCommission> toEntities(Set<Commission> commissionType, boolean lazy) {
+    public static Set<TmsCommissionDriver> toEntities(Iterable<? extends CommissionDriver> commissionType, boolean lazy) {
         if (null == commissionType) {
             return null;
         }
-        Set<TmsCommission> tmsCommissions = new HashSet<>();
-        for (Commission commission : commissionType) {
+        Set<TmsCommissionDriver> tmsCommissions = new HashSet<>();
+        for (CommissionDriver commission : commissionType) {
             tmsCommissions.add(toEntity(commission, lazy));
         }
         return tmsCommissions;
     }
 
-    public static Set<Commission> toDtos(Set<TmsCommission> tmsCommissions, boolean lazy) {
+   /* public static List<CommissionDriver> toDtos(Iterable<? extends TmsCommissionDriver> tmsCommissions, boolean lazy) {
         if (null == tmsCommissions) {
             return null;
         }
-        Set<Commission> commissionType = new HashSet<>();
-        for (TmsCommission tmsCommission : tmsCommissions) {
+        List<CommissionDriver> commissionType = new ArrayList<>();
+        for (TmsCommissionDriver tmsCommission : tmsCommissions) {
             commissionType.add(toDto(tmsCommission, lazy));
         }
         return commissionType;
-    }
+    }*/
 }

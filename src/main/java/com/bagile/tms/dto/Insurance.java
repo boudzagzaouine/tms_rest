@@ -17,8 +17,8 @@ public class Insurance extends EmsDto{
     private Supplier supplier;
     private Vehicle vehicle;
     private String vehicleCode;
- private Insurance insurance;
-    private List<InsuranceTermLigne> insuranceTermLignes = new ArrayList<>();
+   private InsuranceType insuranceType;
+   // private List<InsuranceTermLigne> insuranceTermLignes = new ArrayList<>();
 
 
     public Insurance() {
@@ -104,19 +104,19 @@ public class Insurance extends EmsDto{
         this.vehicleCode = vehicleCode;
     }
 
-    public List<InsuranceTermLigne> getInsuranceTermLignes() {
+   /* public List<InsuranceTermLigne> getInsuranceTermLignes() {
         return insuranceTermLignes;
     }
 
     public void setInsuranceTermLignes(List<InsuranceTermLigne> insuranceTermLignes) {
         this.insuranceTermLignes = insuranceTermLignes;
+    }*/
+
+    public InsuranceType getInsuranceType() {
+        return insuranceType;
     }
 
-    public Insurance getInsurance() {
-        return insurance;
-    }
-
-    public void setInsurance(Insurance insurance) {
-        this.insurance = insurance;
+    public void setInsuranceType(InsuranceType insuranceType) {
+        this.insuranceType = insuranceType;
     }
 }

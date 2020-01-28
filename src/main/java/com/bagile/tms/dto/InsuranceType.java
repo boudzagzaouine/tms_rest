@@ -12,6 +12,9 @@ public class InsuranceType extends EmsDto implements Serializable {
     private String code;
     private String description;
     private Set<Insurance> insurances=new HashSet<>();
+   // private Set<VehicleCategory> vehicleCategories = new HashSet<>();
+
+    private List<InsuranceTypeTerms> insuranceTypeTermsSet=new ArrayList<>();
 
 
     public long getId() {
@@ -45,6 +48,22 @@ public class InsuranceType extends EmsDto implements Serializable {
 
     public void setInsurances(Set<Insurance> insurances) {
         this.insurances = insurances;
+    }
+
+  /*  public Set<VehicleCategory> getVehicleCategories() {
+        return vehicleCategories;
+    }
+
+    public void setVehicleCategories(Set<VehicleCategory> vehicleCategories) {
+        this.vehicleCategories = vehicleCategories;
+    }
+*/
+    public List<InsuranceTypeTerms> getInsuranceTypeTermsSet() {
+        return insuranceTypeTermsSet;
+    }
+
+    public void setInsuranceTypeTermsSet(List<InsuranceTypeTerms> insuranceTypeTermsSet) {
+        this.insuranceTypeTermsSet = insuranceTypeTermsSet;
     }
 
     @Override

@@ -84,6 +84,7 @@ public class DriverController {
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Driver set(@RequestBody Driver driver) {
+
         return driverService.save(driver);
     }
    /* //@PreAuthorize("hasRole('DRIVER_DELETE')")

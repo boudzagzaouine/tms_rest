@@ -6,13 +6,15 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
     generate-ddl: true
     database: postgresql
     properties:
       hibernate:
         default_schema: schema_emsgc
-        format_sql: false
+        format_sql: true
         generate_statistics: false
         dialect: org.hibernate.dialect.PostgreSQLDialect
 server:

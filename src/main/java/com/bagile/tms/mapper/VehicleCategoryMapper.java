@@ -24,6 +24,10 @@ public class VehicleCategoryMapper {
         map.put("emptyWeight", "tmsVehicleCategoryEmptyWeight");
         map.put("totalWeight", "tmsVehicleCategoryTotalWeight");
 
+        map.put("insuranceType", "tmsInsuranceType");
+
+        map.put("vehicles", "tmsVehicles");
+
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdBy");
@@ -59,7 +63,12 @@ public class VehicleCategoryMapper {
         tmsVehicleCategory.setCreationDate(vehicle.getCreationDate());
         tmsVehicleCategory.setUpdateDate(vehicle.getUpdateDate());
 
-        return tmsVehicleCategory;
+        if(!lazy) {
+            tmsVehicleCategory.setTmsInsuranceType (InsuranceTypeMapper.toEntity(vehicle.getInsuranceType(),true));
+           // tmsVehicleCategory.setTmsVehicles (VehicleMapper.toEntities(vehicle.getVehicles(),false));
+
+        }
+            return tmsVehicleCategory;
 
     }
 
@@ -84,8 +93,13 @@ public class VehicleCategoryMapper {
         vehicle.setCreationDate(tmsVehicleCategory.getCreationDate());
         vehicle.setUpdateDate(tmsVehicleCategory.getUpdateDate());
 
+        if(!lazy) {
 
-        return vehicle;
+            vehicle.setInsuranceType (InsuranceTypeMapper.toDto(tmsVehicleCategory.getTmsInsuranceType (),true));
+          //  vehicle.setVehicles (VehicleMapper.toDtos(tmsVehicleCategory.getTmsVehicles (),false));
+
+        }
+            return vehicle;
 
     }
 
@@ -102,7 +116,7 @@ public class VehicleCategoryMapper {
         return vehicules;
     }
 
-    public static Set<TmsVehicleCategory> toEntities(Set<VehicleCategory> vehicles, boolean lazy) {
+    public static Set<TmsVehicleCategory> toEntities(Iterable<? extends VehicleCategory> vehicles, boolean lazy) {
         if (null == vehicles) {
             return null;
         }

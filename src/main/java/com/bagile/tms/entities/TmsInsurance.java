@@ -23,7 +23,6 @@ public class TmsInsurance extends EmsEntity {
     private String tmsInsuranceVehicleCode;
     private TmsInsuranceType tmsInsuranceType;
 
-
     private Set<TmsInsuranceTermLigne> tmsInsuranceTermInsurances = new HashSet<>();
 
     @Id

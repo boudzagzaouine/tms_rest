@@ -1,7 +1,5 @@
 package com.bagile.tms.dto;
 
-import com.bagile.tms.entities.TmsBadgeTypeDriver;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,7 +19,7 @@ public class Driver extends EmsDto implements Serializable {
     //private Contact contact;
     private Boolean working=false;
    // private Badge badge;
-
+private String carte;
     private String name;
     private String surname ;
     private String tele1;
@@ -29,7 +27,7 @@ public class Driver extends EmsDto implements Serializable {
     private String type;
     private  String email;
     private String comment;
-    private List<Commission> commissions=new ArrayList<>();
+    private List<CommissionDriver> commissions=new ArrayList<>();
     private List<BadgeTypeDriver> badgeTypeDrivers = new ArrayList<>();
 
     public Driver() {
@@ -148,11 +146,11 @@ public class Driver extends EmsDto implements Serializable {
         this.comment = comment;
     }
 
-    public List<Commission> getCommissions() {
+    public List<CommissionDriver> getCommissions() {
         return commissions;
     }
 
-    public void setCommissions(List<Commission> commissions) {
+    public void setCommissions(List<CommissionDriver> commissions) {
         this.commissions = commissions;
     }
 
@@ -163,6 +161,8 @@ public class Driver extends EmsDto implements Serializable {
     public void setBadgeTypeDrivers(List<BadgeTypeDriver> badgeTypeDrivers) {
         this.badgeTypeDrivers = badgeTypeDrivers;
     }
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -175,5 +175,13 @@ public class Driver extends EmsDto implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getId());
+    }
+
+    public String getCarte() {
+        return carte;
+    }
+
+    public void setCarte(String carte) {
+        this.carte = carte;
     }
 }

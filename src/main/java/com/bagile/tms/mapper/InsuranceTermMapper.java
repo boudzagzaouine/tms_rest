@@ -1,6 +1,7 @@
 package com.bagile.tms.mapper;
 
 import com.bagile.tms.dto.InsuranceTerm;
+import com.bagile.tms.dto.InsuranceTypeTerms;
 import com.bagile.tms.entities.TmsInsuranceTerm;
 
 import java.util.*;
@@ -18,6 +19,9 @@ public class InsuranceTermMapper {
         map.put("code", "tmsInsuranceTermCode");
         map.put("description", "tmsInsuranceTermDescription");
         map.put("isValue", "tmsInsuranceTermIsValue");
+
+        map.put("insuranceTypeTermsSet", "tmsInsuranceTypeTerms");
+
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -48,9 +52,7 @@ public class InsuranceTermMapper {
         tmsInsuranceTerm.setUpdatedBy(insuranceTerm.getUpdatedBy());
         tmsInsuranceTerm.setCreationDate(insuranceTerm.getCreationDate());
         tmsInsuranceTerm.setUpdateDate(insuranceTerm.getUpdateDate());
-       /* if(!lazy){
-            tmsInsuranceTerm.setTmsInsurance (InsuranceMapper.toEntity (insuranceTerm.getInsurance(), true));
-        }*/
+
 
         return tmsInsuranceTerm;
 
@@ -70,9 +72,7 @@ public class InsuranceTermMapper {
         insuranceTerm.setUpdatedBy(tmsInsuranceTerm.getUpdatedBy());
         insuranceTerm.setCreationDate(tmsInsuranceTerm.getCreationDate());
         insuranceTerm.setUpdateDate(tmsInsuranceTerm.getUpdateDate());
-     /*   if (!lazy){
-            insuranceTerm.setInsurance (InsuranceMapper.toDto (tmsInsuranceTerm.getTmsInsurance (), true));
-        }*/
+
 
         return insuranceTerm;
 
@@ -91,7 +91,7 @@ public class InsuranceTermMapper {
         return vehicules;
     }
 
-    public static Set<TmsInsuranceTerm> toEntities(Set<InsuranceTerm> insuranceTerms, boolean lazy) {
+    public static Set<TmsInsuranceTerm> toEntities(Iterable<? extends InsuranceTerm> insuranceTerms, boolean lazy) {
         if (null == insuranceTerms) {
             return null;
         }

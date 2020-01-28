@@ -1,7 +1,7 @@
 package com.bagile.tms.services.impl;
 
 import com.bagile.tms.dto.InsuranceType;
-import com.bagile.tms.entities.TmsCommissionType;
+import com.bagile.tms.entities.TmsInsuranceType;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
@@ -52,7 +52,7 @@ public class InsuranceTypeServiceImpl implements InsuranceTypeService {
         if (search.equals("")){
             return findAll ();
         }
-        return InsuranceTypeMapper.toDtos(insuranceTypeRepository.findAll(Search.expression(search, TmsCommissionType.class)), false);
+        return InsuranceTypeMapper.toDtos(insuranceTypeRepository.findAll(Search.expression(search, TmsInsuranceType.class)), false);
     }
 
     @Override
@@ -62,12 +62,12 @@ public class InsuranceTypeServiceImpl implements InsuranceTypeService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return InsuranceTypeMapper.toDtos(insuranceTypeRepository.findAll(Search.expression(search, TmsCommissionType.class), pageable), false);
+        return InsuranceTypeMapper.toDtos(insuranceTypeRepository.findAll(Search.expression(search, TmsInsuranceType.class), pageable), false);
     }
 
     @Override
     public InsuranceType findOne(String search) throws AttributesNotFound, ErrorType {
-        return InsuranceTypeMapper.toDto (insuranceTypeRepository.findOne (Search.expression (search, TmsCommissionType.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
+        return InsuranceTypeMapper.toDto (insuranceTypeRepository.findOne (Search.expression (search, TmsInsuranceType.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
 
     }
 
@@ -76,7 +76,7 @@ public class InsuranceTypeServiceImpl implements InsuranceTypeService {
         if (search.equals("")){
             return size ();
         }
-        return insuranceTypeRepository.count(Search.expression(search, TmsCommissionType.class));
+        return insuranceTypeRepository.count(Search.expression(search, TmsInsuranceType.class));
     }
 
     @Override

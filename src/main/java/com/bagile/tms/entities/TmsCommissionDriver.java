@@ -4,16 +4,17 @@ import com.bagile.tms.dto.Driver;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 
 
 @Entity
-@Table(name = "tms_commission")
-public class TmsCommission extends EmsEntity {
+@Table(name = "tms_commissiondriver")
+public class TmsCommissionDriver extends EmsEntity {
 
     private long tmsCommissionId;
     private TmsDriver tmsDriver;
     private TmsCommissionType tmsCommissionType;
-    private BigDecimal tmsAmount;
+    private Date tmsDatee;
 
 
     @Id
@@ -48,12 +49,14 @@ public class TmsCommission extends EmsEntity {
     }
 
 
-    @Column(name = "tms_Commissionamount", unique = true, nullable = false, precision = 10, scale = 0)
-    public BigDecimal getTmsAmount() {
-        return tmsAmount;
+
+
+    @Column(name = "tms_commissiondate", nullable = false, precision = 10, scale = 0)
+    public Date getTmsDatee() {
+        return tmsDatee;
     }
 
-    public void setTmsAmount(BigDecimal tmsAmount) {
-        this.tmsAmount = tmsAmount;
+    public void setTmsDatee(Date tmsDatee) {
+        this.tmsDatee = tmsDatee;
     }
 }

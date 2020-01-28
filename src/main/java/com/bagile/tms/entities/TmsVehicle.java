@@ -35,6 +35,7 @@ public class TmsVehicle extends EmsEntity {
     private BigDecimal tmsVehicleValueVignete;
 
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_vehicule_id", allocationSize = 1)
@@ -86,7 +87,6 @@ public class TmsVehicle extends EmsEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "tms_vehiculecategorieid")
-
     public TmsVehicleCategory getTmsVehicleCategory() {
         return tmsVehicleCategory;
     }

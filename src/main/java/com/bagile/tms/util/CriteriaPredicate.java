@@ -28,7 +28,7 @@ public class CriteriaPredicate {
     public Type getType(String key, Class<?> entityClass) throws NoSuchFieldException, ClassNotFoundException {
         if (!key.contains(".")) {
             Type type = entityClass.getDeclaredField(key).getType();
-            if (type.getTypeName().toString().equals("java.util.Set")) {
+            if (type.getTypeName().toString().equals("java.util.Set") || type.getTypeName().toString().equals("java.util.List")) {
                 ParameterizedType parameterizedType = (ParameterizedType) entityClass.getDeclaredField(key).getGenericType();
                 type = parameterizedType.getActualTypeArguments()[0];
             }

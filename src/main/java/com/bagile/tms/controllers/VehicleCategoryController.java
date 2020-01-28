@@ -88,22 +88,22 @@ public class VehicleCategoryController {
     //@PreAuthorize("hasRole('CATEGORY_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public VehicleCategory add(@RequestBody VehicleCategory maintenancePlan) {
-        return vehicleCategoryService.save(maintenancePlan);
+    public VehicleCategory add(@RequestBody VehicleCategory vehicleCategory) {
+        return vehicleCategoryService.save(vehicleCategory);
     }
 
     //@PreAuthorize("hasRole('CATEGORY_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public VehicleCategory set(@RequestBody VehicleCategory maintenancePlan) {
-        return vehicleCategoryService.save(maintenancePlan);
+    public VehicleCategory set(@RequestBody VehicleCategory vehicleCategory) {
+        return vehicleCategoryService.save(vehicleCategory);
     }
 
     //@PreAuthorize("hasRole('CATEGORY_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@RequestBody VehicleCategory maintenancePlan) {
-        vehicleCategoryService.delete(maintenancePlan);
+    public void delete(@RequestBody VehicleCategory vehicleCategory) {
+        vehicleCategoryService.delete(vehicleCategory);
     }
 
 

@@ -91,7 +91,7 @@ public class CentralControllerHandler {
     public ResponseEntity<ConstraintException> dataIntegrityViolationException(DataIntegrityViolationException pe) {
         if (pe.getCause() instanceof org.hibernate.exception.ConstraintViolationException) {
             ConstraintException constraintException = new ConstraintException((org.hibernate.exception.ConstraintViolationException) pe.getCause());
-            LOGGER.error(constraintException.getMessage());
+            LOGGER.error(constraintException.getMessage(),constraintException);
             return new ResponseEntity<ConstraintException>(constraintException, HttpStatus.SEE_OTHER);
         }
         return null;
