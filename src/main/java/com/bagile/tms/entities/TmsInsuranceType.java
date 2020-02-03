@@ -14,11 +14,11 @@ public class TmsInsuranceType extends EmsEntity {
     private long tmsInsuranceTypeId;
     private String tmsInsuranceTypeCode;
     private String tmsInsuranceTypeDescription;
-    private Set<TmsInsurance> tmsInsurances= new HashSet<>();
+   // private Set<TmsInsurance> tmsInsurances= new HashSet<>();
 
    // private Set<TmsVehicleCategory> tmsVehicleCategories= new HashSet<>();
 
-    private Set<TmsInsuranceTypeTerms> tmsInsuranceTypeTerms=new HashSet<>();
+ private Set<TmsInsuranceTypeTerms> tmsInsuranceTypeTerms=new HashSet<>();
 
 
     @Id
@@ -49,15 +49,7 @@ public class TmsInsuranceType extends EmsEntity {
         this.tmsInsuranceTypeDescription = tmsInsuranceTypeDescription;
     }
 
-    @OneToMany(mappedBy = "tmsInsuranceType")
-    public Set<TmsInsurance> getTmsInsurances() {
-        return tmsInsurances;
-    }
-
-    public void setTmsInsurances(Set<TmsInsurance> tmsInsurances) {
-        this.tmsInsurances = tmsInsurances;
-    }
-
+    /*
 
   /* @OneToMany(mappedBy = "tmsInsuranceType",)
     public Set<TmsVehicleCategory> getTmsVehicleCategories() {
@@ -66,9 +58,9 @@ public class TmsInsuranceType extends EmsEntity {
 
     public void setTmsVehicleCategories(Set<TmsVehicleCategory> tmsVehicleCategories) {
         this.tmsVehicleCategories = tmsVehicleCategories;
-    }
-*/
-    @OneToMany(mappedBy = "tmsInsuranceType", cascade = CascadeType.ALL)
+    }*/
+
+    @OneToMany(mappedBy = "tmsInsuranceType", cascade = CascadeType.ALL,orphanRemoval = true)
     public Set<TmsInsuranceTypeTerms> getTmsInsuranceTypeTerms() {
         return tmsInsuranceTypeTerms;
     }

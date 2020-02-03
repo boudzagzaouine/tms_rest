@@ -17,7 +17,7 @@ public class CommissionDriverMapper {
         map.put("id", "tmsCommissionId");
         map.put("driver", "tmsDriver");
         map.put("commissionType", "tmsCommissionType");
-        map.put("datee", "tmsDatte");
+        map.put("datee", "tmsDatee");
 
 
         map.put("creationDate", "creationDate");

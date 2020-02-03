@@ -20,6 +20,8 @@ public class TmsInsuranceTerm extends  EmsEntity{
 
     private Set<TmsInsuranceTypeTerms> tmsInsuranceTypeTerms=new HashSet<>();
 
+    private Set<TmsInsuranceTermsVehicule> tmsInsuranceTermsVehicules=new HashSet<>();
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -79,13 +81,12 @@ public class TmsInsuranceTerm extends  EmsEntity{
 
     }
 
-    /* @OneToOne
-    public TmsInsurance getTmsInsurance() {
-        return tmsInsurance;
+    @OneToMany(mappedBy = "tmsInsuranceTerm", cascade = CascadeType.ALL)
+    public Set<TmsInsuranceTermsVehicule> getTmsInsuranceTermsVehicules() {
+        return tmsInsuranceTermsVehicules;
     }
 
-    public void setTmsInsurance(TmsInsurance tmsInsurance) {
-        this.tmsInsurance = tmsInsurance;
-    }*/
-
+    public void setTmsInsuranceTermsVehicules(Set<TmsInsuranceTermsVehicule> tmsInsuranceTermsVehicules) {
+        this.tmsInsuranceTermsVehicules = tmsInsuranceTermsVehicules;
+    }
 }

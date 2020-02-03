@@ -117,7 +117,7 @@ public class TmsVehicleCategory  extends EmsEntity {
     }
 
 //cascade =  {CascadeType.MERGE,CascadeType.PERSIST}
-    @ManyToOne(cascade = {CascadeType.MERGE},fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "tms_insurancetypeid")
     public TmsInsuranceType getTmsInsuranceType() {
         return tmsInsuranceType;

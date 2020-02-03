@@ -1,6 +1,8 @@
 package com.bagile.tms.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="tms_contracttype")
@@ -17,7 +19,19 @@ public class TmsContractType extends EmsEntity{
     @Column(name = "tms_contracttypedescription")
     private String tmsContractTypeDescription;
 
+    @OneToMany(mappedBy = "tmsContractType",cascade = CascadeType.ALL)
+    private Set<TmsVehicle> tmsVehicles = new HashSet<>();
+
+
     public TmsContractType() {
+    }
+
+    public Set<TmsVehicle> getTmsVehicles() {
+        return tmsVehicles;
+    }
+
+    public void setTmsVehicles(Set<TmsVehicle> tmsVehicles) {
+        this.tmsVehicles = tmsVehicles;
     }
 
     public long getTmsContractTypeId() {

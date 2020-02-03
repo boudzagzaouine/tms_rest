@@ -2,7 +2,9 @@ package com.bagile.tms.entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -13,7 +15,7 @@ public class TmsBadgeType extends EmsEntity {
     private String tmsBadgeTypeCode;
     private String tmsBadgeTypeDescription;
 
-    private List<TmsBadgeTypeDriver> tmsBadgeTypeDrivers=new ArrayList<>();
+    private Set<TmsBadgeTypeDriver> tmsBadgeTypeDrivers=new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -45,12 +47,12 @@ public class TmsBadgeType extends EmsEntity {
         this.tmsBadgeTypeDescription = tmsBadgeTypeDescription;
     }
 
-    @OneToMany(mappedBy = "tmsBadgeType", cascade = CascadeType.ALL)
-    public List<TmsBadgeTypeDriver> getTmsBadgeTypeDrivers() {
+    @OneToMany(mappedBy = "tmsBadgeType", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    public Set<TmsBadgeTypeDriver> getTmsBadgeTypeDrivers() {
         return tmsBadgeTypeDrivers;
     }
 
-    public void setTmsBadgeTypeDrivers(List<TmsBadgeTypeDriver> tmsBadgeTypeDrivers) {
+    public void setTmsBadgeTypeDrivers(Set<TmsBadgeTypeDriver> tmsBadgeTypeDrivers) {
         this.tmsBadgeTypeDrivers = tmsBadgeTypeDrivers;
     }
 }

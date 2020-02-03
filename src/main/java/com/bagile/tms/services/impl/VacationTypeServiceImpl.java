@@ -89,6 +89,8 @@ public class VacationTypeServiceImpl implements VacationTypeService {
 
     @Override
     public List<VacationType> findAll() {
+
+
         return VacationTypeMapper.toDtos(vacationtyperepository.findAll(), false);
     }
 

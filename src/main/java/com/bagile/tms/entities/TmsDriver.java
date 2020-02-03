@@ -42,7 +42,7 @@ public class TmsDriver extends EmsEntity {
     private String tmsDriverEmail;
     private String tmsDriverComment;
 
-    private Set<TmsCommissionDriver> tmsCommissions = new HashSet<>();
+   // private Set<TmsCommissionDriver> tmsCommissions = new HashSet<>();
     private Set<TmsBadgeTypeDriver> tmsBadgeTypeDrivers=new HashSet<>();
 
     public TmsDriver() {
@@ -192,16 +192,16 @@ public class TmsDriver extends EmsEntity {
         this.tmsDriverComment = tmsDriverComment;
     }
 
-    @OneToMany (mappedBy = "tmsDriver",cascade = CascadeType.ALL,orphanRemoval = true)
+   /* @OneToMany (mappedBy = "tmsDriver",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     public Set<TmsCommissionDriver> getTmsCommissions() {
         return tmsCommissions;
     }
 
     public void setTmsCommissions(Set<TmsCommissionDriver> tmsCommissions) {
         this.tmsCommissions = tmsCommissions;
-    }
+    }*/
 
-    @OneToMany(mappedBy = "tmsDriver",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "tmsDriver",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
     public Set<TmsBadgeTypeDriver> getTmsBadgeTypeDrivers() {
         return tmsBadgeTypeDrivers;
     }

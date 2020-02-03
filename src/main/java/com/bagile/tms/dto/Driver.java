@@ -27,7 +27,7 @@ private String carte;
     private String type;
     private  String email;
     private String comment;
-    private List<CommissionDriver> commissions=new ArrayList<>();
+    //private List<CommissionDriver> commissions=new ArrayList<>();
     private List<BadgeTypeDriver> badgeTypeDrivers = new ArrayList<>();
 
     public Driver() {
@@ -146,13 +146,13 @@ private String carte;
         this.comment = comment;
     }
 
-    public List<CommissionDriver> getCommissions() {
+    /*public List<CommissionDriver> getCommissions() {
         return commissions;
     }
 
     public void setCommissions(List<CommissionDriver> commissions) {
         this.commissions = commissions;
-    }
+    }*/
 
     public List<BadgeTypeDriver> getBadgeTypeDrivers() {
         return badgeTypeDrivers;

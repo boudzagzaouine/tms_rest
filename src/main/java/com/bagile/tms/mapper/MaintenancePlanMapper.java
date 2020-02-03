@@ -61,7 +61,7 @@ public class MaintenancePlanMapper {
         if (!lazy) {
             tmsMaintenancePlan.setTmsMaintenanceType(MaintenanceTypeMapper.toEntity(maintenancePlan.getMaintenanceType(), true));
             tmsMaintenancePlan.setTmsMaintenanceState(MaintenanceStateMapper.toEntity(maintenancePlan.getMaintenanceState(), true));
-            tmsMaintenancePlan.setTmsVehicle(VehicleMapper.toEntity(maintenancePlan.getVehicle(),true));
+            tmsMaintenancePlan.setTmsVehicle(VehicleMapper.toEntity(maintenancePlan.getVehicle(),false));
             tmsMaintenancePlan.setTmsMaintenanceLines (MaintenanceLineMapper.toEntities (maintenancePlan.getMaintenanceLineList (), false));
 
         }
@@ -89,7 +89,7 @@ public class MaintenancePlanMapper {
             maintenancePlan.setMaintenanceType(MaintenanceTypeMapper.toDto(tmsMaintenancePlan.getTmsMaintenanceType(), true));
             maintenancePlan.setMaintenanceState(MaintenanceStateMapper.toDto(tmsMaintenancePlan.getTmsMaintenanceState(), true));
             //maintenancePlan.setActes(ActeMapper.toDtos(tmsMaintenancePlan.getTmsMaintenancePlanActes(),true));
-            maintenancePlan.setVehicle(VehicleMapper.toDto(tmsMaintenancePlan.getTmsVehicle(),true));
+            maintenancePlan.setVehicle(VehicleMapper.toDto(tmsMaintenancePlan.getTmsVehicle(),false));
             maintenancePlan.setMaintenanceLineList (MaintenanceLineMapper.toDtos (tmsMaintenancePlan.getTmsMaintenanceLines (), false));
         }
 

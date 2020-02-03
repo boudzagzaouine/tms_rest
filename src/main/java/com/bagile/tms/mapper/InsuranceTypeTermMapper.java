@@ -1,7 +1,11 @@
 package com.bagile.tms.mapper;
 
+import com.bagile.tms.dto.InsuranceTerm;
 import com.bagile.tms.dto.InsuranceTypeTerms;
+import com.bagile.tms.dto.VehicleCategory;
+import com.bagile.tms.entities.TmsInsuranceTerm;
 import com.bagile.tms.entities.TmsInsuranceTypeTerms;
+import com.bagile.tms.entities.TmsVehicleCategory;
 
 import java.util.*;
 
@@ -47,7 +51,7 @@ public class InsuranceTypeTermMapper {
         tmsinsuranceTermInsurances.setCreationDate(insuranceTypeTerms.getCreationDate());
         tmsinsuranceTermInsurances.setUpdateDate(insuranceTypeTerms.getUpdateDate());
         if (!lazy) {
-            tmsinsuranceTermInsurances.setTmsInsuranceTerm(InsuranceTermMapper.toEntity(insuranceTypeTerms.getInsuranceTerm(), true));
+            tmsinsuranceTermInsurances.setTmsInsuranceTerm(InsuranceTermMapper.toEntity(insuranceTypeTerms.getInsuranceTerm(), false));
             tmsinsuranceTermInsurances.setTmsInsuranceType(InsuranceTypeMapper.toEntity(insuranceTypeTerms.getInsuranceType(),true));
 
         }
@@ -65,7 +69,7 @@ public class InsuranceTypeTermMapper {
 
 
         if (!lazy) {
-            insuranceTypeTerms.setInsuranceTerm(InsuranceTermMapper.toDto(tmsinsuranceTermInsurances.getTmsInsuranceTerm(), true));
+            insuranceTypeTerms.setInsuranceTerm(InsuranceTermMapper.toDto(tmsinsuranceTermInsurances.getTmsInsuranceTerm(), false));
             insuranceTypeTerms.setInsuranceType(InsuranceTypeMapper.toDto(tmsinsuranceTermInsurances.getTmsInsuranceType(), true));
         }
 
@@ -96,5 +100,7 @@ public class InsuranceTypeTermMapper {
         }
         return tmsInsuranceTypeTerms;
     }
+
+
 
 }

@@ -3,6 +3,8 @@ package com.bagile.tms.entities;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tms_vehicule")
@@ -17,7 +19,8 @@ public class TmsVehicle extends EmsEntity {
     private TmsBadgeType tmsBadgeType;
     private TmsInsurance tmsInsurance;
     private TmsContractType tmsContractType;
-
+    private Date tmsAquisitionDate;
+    private BigDecimal tmsAamount;
     private BigDecimal tmsVehicleEngineOil ;
     private BigDecimal  tmsVehicleRearDeck ;
     private BigDecimal tmsVehicleDirection ;
@@ -33,6 +36,7 @@ public class TmsVehicle extends EmsEntity {
     private String tmsVehicleEnergy ;
     private  Date tmsVehicleVignette;
     private BigDecimal tmsVehicleValueVignete;
+    private Set<TmsInsuranceTermsVehicule> tmsInsuranceTermsVehicules=new HashSet<>();
 
 
 
@@ -85,7 +89,25 @@ public class TmsVehicle extends EmsEntity {
         this.tmsVehicleValueTechnicalvisit = tmsVehicleValueTechnicalvisit;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @Column(name = "tms_vehiculeaquisitiondate")
+    public Date getTmsAquisitionDate() {
+        return tmsAquisitionDate;
+    }
+
+    public void setTmsAquisitionDate(Date tmsAquisitionDate) {
+        this.tmsAquisitionDate = tmsAquisitionDate;
+    }
+
+    @Column(name = "tms_vehiculeamount")
+    public BigDecimal getTmsAamount() {
+        return tmsAamount;
+    }
+
+    public void setTmsAamount(BigDecimal tmsAamount) {
+        this.tmsAamount = tmsAamount;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_vehiculecategorieid")
     public TmsVehicleCategory getTmsVehicleCategory() {
         return tmsVehicleCategory;
@@ -258,5 +280,14 @@ public class TmsVehicle extends EmsEntity {
 
     public void setTmsVehicleValueVignete(BigDecimal tmsVehicleValueVignete) {
         this.tmsVehicleValueVignete = tmsVehicleValueVignete;
+    }
+
+    @OneToMany(mappedBy = "tmsVehicle",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+    public Set<TmsInsuranceTermsVehicule> getTmsInsuranceTermsVehicules() {
+        return tmsInsuranceTermsVehicules;
+    }
+
+    public void setTmsInsuranceTermsVehicules(Set<TmsInsuranceTermsVehicule> tmsInsuranceTermsVehicules) {
+        this.tmsInsuranceTermsVehicules = tmsInsuranceTermsVehicules;
     }
 }

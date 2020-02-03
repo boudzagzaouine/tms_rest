@@ -93,6 +93,9 @@ public class InsuranceTypeTermsController {
     @ResponseBody
     public List<InsuranceTypeTerms> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
 
+        if(search=="" || search ==null){
+            return insuranceTypeTermsService.findAll(page, size);
+        }
         if (!search.endsWith(",")) {
             search += ",";
         }

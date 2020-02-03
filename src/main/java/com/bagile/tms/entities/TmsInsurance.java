@@ -21,9 +21,9 @@ public class TmsInsurance extends EmsEntity {
     private RcpSupplier rcpSupplier;
     private TmsVehicle tmsVehicle;
     private String tmsInsuranceVehicleCode;
-    private TmsInsuranceType tmsInsuranceType;
+    //private TmsInsuranceType tmsInsuranceType;
 
-    private Set<TmsInsuranceTermLigne> tmsInsuranceTermInsurances = new HashSet<>();
+    //private Set<TmsInsuranceTermLigne> tmsInsuranceTermInsurances = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -104,7 +104,7 @@ public class TmsInsurance extends EmsEntity {
         this.rcpSupplier = rcpSupplier;
     }
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    /*@ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "tms_insurancetypeid")
     public TmsInsuranceType getTmsInsuranceType() {
         return tmsInsuranceType;
@@ -112,7 +112,7 @@ public class TmsInsurance extends EmsEntity {
 
     public void setTmsInsuranceType(TmsInsuranceType tmsInsuranceType) {
         this.tmsInsuranceType = tmsInsuranceType;
-    }
+    }*/
 
     @OneToOne(mappedBy = "tmsInsurance", cascade = CascadeType.ALL)
     public TmsVehicle getTmsVehicle() {
@@ -143,14 +143,14 @@ public class TmsInsurance extends EmsEntity {
         this.tmsInsuranceVehicleCode = tmsInsuranceVehicleCode;
     }
 
-    @OneToMany(mappedBy = "tmsInsurance",cascade = CascadeType.ALL)
+   /* @OneToMany(mappedBy = "tmsInsurance",cascade = CascadeType.ALL)
     public Set<TmsInsuranceTermLigne> getTmsInsuranceTermLigne() {
         return tmsInsuranceTermInsurances;
     }
 
     public void setTmsInsuranceTermLigne(Set<TmsInsuranceTermLigne> tmsInsuranceTermInsurances) {
         this.tmsInsuranceTermInsurances = tmsInsuranceTermInsurances;
-    }
+    }*/
 
 
 /*  @PrePersist

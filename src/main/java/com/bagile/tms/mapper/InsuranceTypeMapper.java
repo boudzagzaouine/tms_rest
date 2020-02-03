@@ -15,11 +15,10 @@ public class InsuranceTypeMapper {
     static {
         map = new HashMap<>();
 
-        map.put("id", "tmsInsuranceId");
-        map.put("code", "tmsInsuranceCode");
-        map.put("description", "tmsInsuranceDescription");
-        map.put("insurances", "tmsInsurances");
-        map.put("insuranceTypeTermsSet", "tmsInsuranceTypeTerms");
+        map.put("id", "tmsInsuranceTypeId");
+        map.put("code", "tmsInsuranceTypeCode");
+        map.put("description", "tmsInsuranceTypeDescription");
+       map.put("insuranceTypeTermsSet", "tmsInsuranceTypeTerms");
 
         //map.put("vehicleCategories", "tmsVehicleCategories");
 
@@ -55,9 +54,8 @@ public class InsuranceTypeMapper {
         tmsInsuranceType.setUpdateDate(insuranceType.getUpdateDate());
 
         if(!lazy) {
-          tmsInsuranceType.setTmsInsurances (InsuranceMapper.toEntities(insuranceType.getInsurances(),false));
-          tmsInsuranceType.setTmsInsuranceTypeTerms (InsuranceTypeTermMapper.toEntities(insuranceType.getInsuranceTypeTermsSet(),false));
-            oneToMany(tmsInsuranceType);
+       tmsInsuranceType.setTmsInsuranceTypeTerms (InsuranceTypeTermMapper.toEntities(insuranceType.getInsuranceTypeTermsSet(),false));
+       //     oneToMany(tmsInsuranceType);
         }
         return tmsInsuranceType;
     }
@@ -79,21 +77,21 @@ public class InsuranceTypeMapper {
 
         if(!lazy) {
 
-           insuranceType.setInsurances (InsuranceMapper.toDtos(tmsInsuranceType.getTmsInsurances (),false));
-           insuranceType.setInsuranceTypeTermsSet (InsuranceTypeTermMapper.toDtos(tmsInsuranceType.getTmsInsuranceTypeTerms (),false));
+       //   insuranceType.setInsurances (InsuranceMapper.toDtos(tmsInsuranceType.getTmsInsurances (),false));
+        insuranceType.setInsuranceTypeTermsSet (InsuranceTypeTermMapper.toDtos(tmsInsuranceType.getTmsInsuranceTypeTerms (),false));
 
         }
         return insuranceType;
     }
 
-    private static void oneToMany(TmsInsuranceType insuranceType) {
+   /* private static void oneToMany(TmsInsuranceType insuranceType) {
         insuranceType.getTmsInsuranceTypeTerms().forEach(
                 e -> {
                     e.setCreationDate(new Date());
                     e.setTmsInsuranceType(insuranceType);
                 }
         );
-    }
+    }*/
 
     public static List<InsuranceType> toDtos(Iterable<? extends TmsInsuranceType> tmsInsurances, boolean lazy) {
         if (null == tmsInsurances) {

@@ -1,6 +1,7 @@
 package com.bagile.tms.mapper;
 
 import com.bagile.tms.dto.Vehicle;
+import com.bagile.tms.entities.TmsDriver;
 import com.bagile.tms.entities.TmsVehicle;
 
 import java.util.*;
@@ -29,7 +30,8 @@ public class VehicleMapper {
         map.put("contractType", "TmsContractType");
         map.put("vignette", "tmsVehicleVignette");
         map.put("valueVignette", "tmsVehicleValueVignete");
-
+        map.put("aquisitionDate", "tmsAquisitionDate");
+        map.put("amount", "tmsAamount");
         map.put("engineOil", "tmsVehicleEngineOil");
         map.put("rearDeck", "tmsVehicleRearDeck");
         map.put("direction", "tmsVehicleDirection");
@@ -43,6 +45,8 @@ public class VehicleMapper {
         map.put("body", "tmsVehicleBody");
         map.put("chassisNumber", "tmsVehicleChassisNumber");
         map.put("Energy", "tmsVehicleEnergy");
+
+        map.put("insuranceTermVehicles", "tmsInsuranceTermsVehicules");
 
     }
 
@@ -64,6 +68,8 @@ public class VehicleMapper {
         tmsVehicle.setTmsVehicleCode(vehicle.getCode() != null ? vehicle.getCode().toUpperCase() : null);
         tmsVehicle.setTmsVehicleTechnicalVisit(vehicle.getTechnicalVisit());
         tmsVehicle.setTmsVehicleValueTechnicalvisit(vehicle.getValueTechnicalVisit());
+        tmsVehicle.setTmsAquisitionDate(vehicle.getAquisitionDate());
+        tmsVehicle.setTmsAamount(vehicle.getAmount());
 
         tmsVehicle.setTmsVehicleEngineOil(vehicle.getEngineOil());
         tmsVehicle.setTmsVehicleRearDeck(vehicle.getRearDeck());
@@ -87,6 +93,8 @@ public class VehicleMapper {
             tmsVehicle.setTmsBadgeType(BadgeTypeMapper.toEntity(vehicle.getBadgeType(), true));
             tmsVehicle.setTmsInsurance(InsuranceMapper.toEntity(vehicle.getInsurance(), false));
             tmsVehicle.setTmsContractType (ContractTypeMapper.toEntity (vehicle.getContractType (), true));
+            tmsVehicle.setTmsInsuranceTermsVehicules (InsuranceTermsVehicleMapper.toEntities (vehicle.getInsuranceTermVehicles (), false));
+            oneToMany(tmsVehicle);
         }
         return tmsVehicle;
 
@@ -103,6 +111,8 @@ public class VehicleMapper {
         vehicle.setTechnicalVisit(tmsVehicle.getTmsVehicleTechnicalVisit());
         vehicle.setValueTechnicalVisit(tmsVehicle.getTmsVehicleValueTechnicalvisit());
 
+        vehicle.setAquisitionDate(tmsVehicle.getTmsAquisitionDate());
+        vehicle.setAmount(tmsVehicle.getTmsAamount());
 
         vehicle.setCreatedBy(tmsVehicle.getCreatedBy());
         vehicle.setUpdatedBy(tmsVehicle.getUpdatedBy());
@@ -129,14 +139,23 @@ public class VehicleMapper {
 
         if (!lazy) {
             vehicle.setBadgeType(BadgeTypeMapper.toDto(tmsVehicle.getTmsBadgeType(), true));
-            vehicle.setVehicleCategory(VehicleCategoryMapper.toDto(tmsVehicle.getTmsVehicleCategory(), true));
+            vehicle.setVehicleCategory(VehicleCategoryMapper.toDto(tmsVehicle.getTmsVehicleCategory(), false));
             vehicle.setInsurance(InsuranceMapper.toDto(tmsVehicle.getTmsInsurance(), false));
             vehicle.setContractType (ContractTypeMapper.toDto (tmsVehicle.getTmsContractType (), true));
+            vehicle.setInsuranceTermVehicles (InsuranceTermsVehicleMapper.toDtos(tmsVehicle.getTmsInsuranceTermsVehicules (), false));
+
         }
         return vehicle;
 
     }
-
+    private static void oneToMany(TmsVehicle vehicle) {
+        vehicle.getTmsInsuranceTermsVehicules().forEach(
+                e -> {
+                    e.setCreationDate(new Date());
+                    e.setTmsVehicle(vehicle);
+                }
+        );
+    }
 
     public static List<Vehicle> toDtos(Iterable<? extends TmsVehicle> tmsVehicles, boolean lazy) {
         if (null == tmsVehicles) {

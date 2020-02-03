@@ -1,5 +1,8 @@
 package com.bagile.tms.entities;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -30,7 +33,7 @@ public class TmsInsuranceTypeTerms extends  EmsEntity{
         this.tmsInsuranceTypeTermId = tmsInsuranceTypeTermId;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "tms_insurancetermsid")
     public TmsInsuranceTerm getTmsInsuranceTerm() {
         return tmsInsuranceTerm;
@@ -40,7 +43,7 @@ public class TmsInsuranceTypeTerms extends  EmsEntity{
         this.tmsInsuranceTerm = tmsInsuranceTerm;
     }
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne()
     @JoinColumn(name = "tms_insurancetypeid")
     public TmsInsuranceType getTmsInsuranceType() {
         return tmsInsuranceType;
@@ -50,7 +53,7 @@ public class TmsInsuranceTypeTerms extends  EmsEntity{
         this.tmsInsuranceType = tmsInsuranceType;
     }
 
-    @Column(name = "tms_insurancetypetermsamount",  nullable = false, precision = 10, scale = 0)
+    @Column(name = "tms_insurancetypetermsamount", precision = 10, scale = 0)
     public BigDecimal getTmsAmount() {
         return tmsAmount;
     }

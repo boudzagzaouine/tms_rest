@@ -64,7 +64,7 @@ public class VehicleCategoryMapper {
         tmsVehicleCategory.setUpdateDate(vehicle.getUpdateDate());
 
         if(!lazy) {
-            tmsVehicleCategory.setTmsInsuranceType (InsuranceTypeMapper.toEntity(vehicle.getInsuranceType(),true));
+            tmsVehicleCategory.setTmsInsuranceType (InsuranceTypeMapper.toEntity(vehicle.getInsuranceType(),false));
            // tmsVehicleCategory.setTmsVehicles (VehicleMapper.toEntities(vehicle.getVehicles(),false));
 
         }
@@ -95,8 +95,8 @@ public class VehicleCategoryMapper {
 
         if(!lazy) {
 
-            vehicle.setInsuranceType (InsuranceTypeMapper.toDto(tmsVehicleCategory.getTmsInsuranceType (),true));
-          //  vehicle.setVehicles (VehicleMapper.toDtos(tmsVehicleCategory.getTmsVehicles (),false));
+            vehicle.setInsuranceType (InsuranceTypeMapper.toDto(tmsVehicleCategory.getTmsInsuranceType (),false));
+           // vehicle.setVehicles (VehicleMapper.toDtos(tmsVehicleCategory.get (),false));
 
         }
             return vehicle;

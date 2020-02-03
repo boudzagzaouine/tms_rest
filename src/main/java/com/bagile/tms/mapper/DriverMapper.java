@@ -20,7 +20,7 @@ public class DriverMapper {
         map.put("cin", "tmsDriverCin");
         map.put("birthDate", "tmsDriverBirthDate");
         map.put("lastMedicalVisit", "tmsDriverLastMedicalVisit");
-       // map.put("commission", "tmsDriverCommission");
+      //  map.put("commission", "tmsDriverCommission");
         map.put("contact", "prmContact");
         map.put("working", "tmsWorking");
        map.put("badgeTypeDrivers", "tmsBadgeTypeDrivers");
@@ -71,10 +71,11 @@ public class DriverMapper {
 
 
         if (!lazy) {
-            tmsDriver.setTmsCommissions(CommissionDriverMapper.toEntities(driver.getCommissions(), false));
+            //tmsDriver.setTmsCommissions(CommissionDriverMapper.toEntities(driver.getCommissions(), false));
             tmsDriver.setTmsBadgeTypeDrivers(BadgeTypeDriverMapper.toEntities(driver.getBadgeTypeDrivers(), false));
 
             oneToMany(tmsDriver);
+
 
         }
         return tmsDriver;
@@ -88,12 +89,12 @@ public class DriverMapper {
                     e.setTmsDriver(driver);
                 }
         );
-        driver.getTmsCommissions().forEach(
+       /* driver.getTmsCommissions().forEach(
                 e->{
                     e.setCreationDate(new Date());
                     e.setTmsDriver(driver);
                 }
-        );
+        );*/
 
     }
 
@@ -125,7 +126,7 @@ public class DriverMapper {
         driver.setUpdateDate(tmsDriver.getUpdateDate());
 
         if (!lazy) {
-            driver.setCommissions(CommissionDriverMapper.toDtos(tmsDriver.getTmsCommissions (), false));
+         //   driver.setCommissions(CommissionDriverMapper.toDtos(tmsDriver.getTmsCommissions (), false));
             driver.setBadgeTypeDrivers(BadgeTypeDriverMapper.toDtos(tmsDriver.getTmsBadgeTypeDrivers(), false));
         }
         return driver;

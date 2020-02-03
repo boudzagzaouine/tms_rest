@@ -11,10 +11,10 @@ public class InsuranceType extends EmsDto implements Serializable {
     private long id;
     private String code;
     private String description;
-    private Set<Insurance> insurances=new HashSet<>();
+    //private Set<Insurance> insurances=new HashSet<>();
    // private Set<VehicleCategory> vehicleCategories = new HashSet<>();
 
-    private List<InsuranceTypeTerms> insuranceTypeTermsSet=new ArrayList<>();
+   private List<InsuranceTypeTerms> insuranceTypeTermsSet=new ArrayList<>();
 
 
     public long getId() {
@@ -42,13 +42,6 @@ public class InsuranceType extends EmsDto implements Serializable {
     }
 
 
-    public Set<Insurance> getInsurances() {
-        return insurances;
-    }
-
-    public void setInsurances(Set<Insurance> insurances) {
-        this.insurances = insurances;
-    }
 
   /*  public Set<VehicleCategory> getVehicleCategories() {
         return vehicleCategories;
@@ -58,7 +51,7 @@ public class InsuranceType extends EmsDto implements Serializable {
         this.vehicleCategories = vehicleCategories;
     }
 */
-    public List<InsuranceTypeTerms> getInsuranceTypeTermsSet() {
+   public List<InsuranceTypeTerms> getInsuranceTypeTermsSet() {
         return insuranceTypeTermsSet;
     }
 

@@ -3,7 +3,9 @@ package com.bagile.tms.entities;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -14,7 +16,7 @@ public class TmsCommissionType extends EmsEntity {
     private String tmsCommissionTypeCode;
     private String tmsCommissionTypeDescription;
     private BigDecimal tmsCommissionTypePercentage;
-    private List<TmsCommissionDriver> tmsCommissions = new ArrayList<>();
+    private Set<TmsCommissionDriver> tmsCommissions = new HashSet<>();
 
 
 
@@ -54,12 +56,12 @@ public class TmsCommissionType extends EmsEntity {
         this.tmsCommissionTypePercentage = tmsCommissionTypepercentage;
     }
 
-    @OneToMany(mappedBy = "tmsCommissionType",cascade = CascadeType.ALL)
-    public List<TmsCommissionDriver> getTmsCommissions() {
+    @OneToMany(mappedBy = "tmsCommissionType",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    public Set<TmsCommissionDriver> getTmsCommissions() {
         return tmsCommissions;
     }
 
-    public void setTmsCommissions(List<TmsCommissionDriver> tmsCommissions) {
+    public void setTmsCommissions(Set<TmsCommissionDriver> tmsCommissions) {
         this.tmsCommissions = tmsCommissions;
     }
 

@@ -2,7 +2,9 @@ package com.bagile.tms.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class Vehicle extends EmsDto implements Serializable {
@@ -38,6 +40,11 @@ public class Vehicle extends EmsDto implements Serializable {
    private String energy ;
    private Date     vignette ;
    private BigDecimal valueVignette;
+   private Date aquisitionDate;
+   private BigDecimal amount;
+
+    private List<InsuranceTermsVehicle> insuranceTermVehicles=new ArrayList<>();
+
 
     public Vehicle() {
     }
@@ -74,6 +81,21 @@ public class Vehicle extends EmsDto implements Serializable {
         this.technicalVisit = technicalVisit;
     }
 
+    public Date getAquisitionDate() {
+        return aquisitionDate;
+    }
+
+    public void setAquisitionDate(Date aquisitionDate) {
+        this.aquisitionDate = aquisitionDate;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
 
     public BigDecimal getValueTechnicalVisit() {
         return valueTechnicalVisit;
@@ -244,6 +266,14 @@ public class Vehicle extends EmsDto implements Serializable {
         this.valueVignette = valueVignette;
     }
 
+    public List<InsuranceTermsVehicle> getInsuranceTermVehicles() {
+        return insuranceTermVehicles;
+    }
+
+    public void setInsuranceTermVehicles(List<InsuranceTermsVehicle> insuranceTermVehicles) {
+        this.insuranceTermVehicles = insuranceTermVehicles;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -256,4 +286,6 @@ public class Vehicle extends EmsDto implements Serializable {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
+
 }

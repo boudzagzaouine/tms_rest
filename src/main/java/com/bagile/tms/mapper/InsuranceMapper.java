@@ -62,9 +62,9 @@ public class InsuranceMapper {
         if(!lazy) {
          // tmsInsurance.setTmsInsuranceTermLigne (InsuranceTermLigneMapper.toEntities(insurance.getInsuranceTermLignes(),false));
              tmsInsurance.setRcpSupplier (SupplierMapper.toEntity(insurance.getSupplier (),false));
-             tmsInsurance.setTmsInsuranceType (InsuranceTypeMapper.toEntity (insurance.getInsuranceType (), true));
+           //  tmsInsurance.setTmsInsuranceType (InsuranceTypeMapper.toEntity (insurance.getInsuranceType (), true));
 
-            oneToMany(tmsInsurance);
+           // oneToMany(tmsInsurance);
         }
         return tmsInsurance;
     }
@@ -92,13 +92,13 @@ public class InsuranceMapper {
 
          //  insurance.setInsuranceTermLignes (InsuranceTermLigneMapper.toDtos(tmsInsurance.getTmsInsuranceTermLigne (),false));
              insurance.setSupplier (SupplierMapper.toDto (tmsInsurance.getRcpSupplier (), false));
-             insurance.setInsuranceType (InsuranceTypeMapper.toDto (tmsInsurance.getTmsInsuranceType (), true));
+            // insurance.setInsuranceType (InsuranceTypeMapper.toDto (tmsInsurance.getTmsInsuranceType (), true));
         }
         return insurance;
     }
 
 
-    private static void oneToMany(TmsInsurance insurance){
+   /* private static void oneToMany(TmsInsurance insurance){
         insurance.getTmsInsuranceTermLigne().forEach(
                 e->{
                      e.setCreationDate(new Date());
@@ -107,7 +107,7 @@ public class InsuranceMapper {
         );
 
 
-    }
+    }*/
 
     public static List<Insurance> toDtos(Iterable<? extends TmsInsurance> tmsInsurances, boolean lazy) {
         if (null == tmsInsurances) {

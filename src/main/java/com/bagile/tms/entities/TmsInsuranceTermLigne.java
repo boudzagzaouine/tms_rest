@@ -35,7 +35,7 @@ public class TmsInsuranceTermLigne extends EmsEntity {
     public void setTmsInsurance(TmsInsurance tmsInsurance) {
         this.tmsInsurance = tmsInsurance;
     }
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_insurancetermid")
     public TmsInsuranceTerm getTmsInsuranceTerm() {
         return tmsInsuranceTerm;
@@ -45,7 +45,7 @@ public class TmsInsuranceTermLigne extends EmsEntity {
         this.tmsInsuranceTerm = tmsInsuranceTerm;
     }
 
-    @Column(name = "tms_insurancetermligneamount")
+    @Column(name = "tms_insurancetermligneamount" )
     public BigDecimal getTmsAmount() {
         return tmsAmount;
     }
