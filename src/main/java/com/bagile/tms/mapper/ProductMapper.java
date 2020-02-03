@@ -202,6 +202,9 @@ public class ProductMapper {
             pdtProduct.setPdtProductParent(toEntity(product.getProduct(), true));
             pdtProduct.setWrhWarehouse(WarehouseMapper.toEntity(product.getWarehouse(), true));
             pdtProduct.setPdtProductPacks(ProductPackMapper.toEntities(product.getProductPacks(), false));
+
+            pdtProduct.setPrmVat(VatMapper.toEntity(product.getVat(), true));
+
         }
         return pdtProduct;
     }
@@ -295,6 +298,9 @@ public class ProductMapper {
             product.setWarehouse(WarehouseMapper.toDto(pdtProduct.getWrhWarehouse(), true));
             product.setProductPacks(ProductPackMapper.toDtos(pdtProduct.getPdtProductPacks(), false));
           //  product.setProductDimensions(ProductDimensionMapper.toDtos(pdtProduct.getPdtProductDimensions(), false));
+
+            product.setVat(VatMapper.toDto(pdtProduct.getPrmVat(), false));
+
         }
         return product;
     }

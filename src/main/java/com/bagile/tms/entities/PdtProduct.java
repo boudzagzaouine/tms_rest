@@ -155,6 +155,7 @@ public class PdtProduct extends EmsEntity implements java.io.Serializable {
     private Boolean pdtProductVariableWeight;
     private BigDecimal pdtProductCustomsPercentage;
     private BigDecimal pdtProductAvailableQuantity;
+    private PrmVat prmVat;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -928,5 +929,14 @@ public class PdtProduct extends EmsEntity implements java.io.Serializable {
     @PostLoad
     private void postLoad() {
 
+    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pdt_productvatid")
+    public PrmVat getPrmVat() {
+        return prmVat;
+    }
+
+    public void setPrmVat(PrmVat prmVat) {
+        this.prmVat = prmVat;
     }
 }

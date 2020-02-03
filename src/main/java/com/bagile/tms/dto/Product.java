@@ -102,7 +102,16 @@ public class Product extends EmsEntity {
     private BigDecimal availableQuantity;
     private BigDecimal professionalTTCSalePrice;
 
+ private Vat vat;
 
+
+    public Vat getVat() {
+        return vat;
+    }
+
+    public void setVat(Vat vat) {
+        this.vat = vat;
+    }
 
     public long getId() {
         return id;
