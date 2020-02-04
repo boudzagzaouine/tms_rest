@@ -157,6 +157,7 @@ public class PdtProduct extends EmsEntity implements java.io.Serializable {
     private BigDecimal pdtProductAvailableQuantity;
     private PrmVat prmVat;
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_pdt_product", allocationSize = 1)

@@ -21,6 +21,7 @@ public class MaintenanceLineMapper {
         map.put("totalPriceHT", "tmsMaintenanceLineAmount");
         map.put("totalPriceTTC", "tmsMaintenanceLineStartDate");
         map.put("maintenancePlan", "tmsMaintenanceLineEndDate");
+        map.put("amountVat", "tmsAmountVat");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -47,6 +48,7 @@ public class MaintenanceLineMapper {
         tmsMaintenanceLine.setTmsMaintenanceLineUnitPrice (maintenanceLine.getUnitPrice ());
         tmsMaintenanceLine.setTmsMaintenanceLineTotalPriceHT (maintenanceLine.getTotalPriceHT ());
         tmsMaintenanceLine.setTmsMaintenanceLineTotalPriceTTC (maintenanceLine.getTotalPriceTTC ());
+        tmsMaintenanceLine.setTmsAmountVat (maintenanceLine.getAmountVat ());
 
         tmsMaintenanceLine.setCreatedBy(maintenanceLine.getCreatedBy());
         tmsMaintenanceLine.setUpdatedBy(maintenanceLine.getUpdatedBy());
@@ -54,7 +56,7 @@ public class MaintenanceLineMapper {
         tmsMaintenanceLine.setUpdateDate(maintenanceLine.getUpdateDate());
 
         if(!lazy) {
-             tmsMaintenanceLine.setTmsMaintenanceLineProduct (ProductMapper.toEntity(maintenanceLine.getProduct (),true));
+             tmsMaintenanceLine.setTmsMaintenanceLineProduct (ProductMapper.toEntity(maintenanceLine.getProduct (),false));
             tmsMaintenanceLine.setTmsMaintenanceLineMaintenancePlan (MaintenancePlanMapper.toEntity(maintenanceLine.getMaintenancePlan (),true));
 
         }
@@ -72,6 +74,7 @@ public class MaintenanceLineMapper {
         maintenanceLine.setUnitPrice (tmsMaintenanceLine.getTmsMaintenanceLineUnitPrice ());
         maintenanceLine.setTotalPriceHT (tmsMaintenanceLine.getTmsMaintenanceLineTotalPriceHT ());
         maintenanceLine.setTotalPriceTTC (tmsMaintenanceLine.getTmsMaintenanceLineTotalPriceTTC ());
+        maintenanceLine.setAmountVat (tmsMaintenanceLine.getTmsAmountVat ());
 
         maintenanceLine.setCreatedBy(tmsMaintenanceLine.getCreatedBy());
         maintenanceLine.setUpdatedBy(tmsMaintenanceLine.getUpdatedBy());
@@ -80,7 +83,7 @@ public class MaintenanceLineMapper {
 
         if(!lazy) {
 
-             maintenanceLine.setProduct (ProductMapper.toDto (tmsMaintenanceLine.getTmsMaintenanceLineProduct (), true));
+             maintenanceLine.setProduct (ProductMapper.toDto (tmsMaintenanceLine.getTmsMaintenanceLineProduct (), false));
              maintenanceLine.setMaintenancePlan (MaintenancePlanMapper.toDto (tmsMaintenanceLine.getTmsMaintenanceLineMaintenancePlan (), true));
         }
         return maintenanceLine;

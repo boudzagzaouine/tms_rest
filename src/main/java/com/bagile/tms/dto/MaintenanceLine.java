@@ -13,6 +13,7 @@ public class MaintenanceLine extends EmsDto {
     private BigDecimal totalPriceHT;
     private BigDecimal totalPriceTTC;
     private MaintenancePlan maintenancePlan;
+    private BigDecimal amountVat;
 
     public long getId() {
         return id;
@@ -76,6 +77,14 @@ public class MaintenanceLine extends EmsDto {
 
     public void setMaintenancePlan(MaintenancePlan maintenancePlan) {
         this.maintenancePlan = maintenancePlan;
+    }
+
+    public BigDecimal getAmountVat() {
+        return amountVat;
+    }
+
+    public void setAmountVat(BigDecimal amountVat) {
+        this.amountVat = amountVat;
     }
 
     @Override

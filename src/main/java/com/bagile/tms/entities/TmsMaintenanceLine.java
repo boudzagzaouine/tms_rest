@@ -13,7 +13,7 @@ public class TmsMaintenanceLine extends EmsEntity {
     private BigDecimal tmsMaintenanceLineTotalPriceHT;
     private BigDecimal tmsMaintenanceLineTotalPriceTTC;
     private TmsMaintenancePlan tmsMaintenanceLineMaintenancePlan;
-
+ private  BigDecimal tmsAmountVat;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "seq")
     @SequenceGenerator (name = "seq", sequenceName = "seq_tms_maintenance_line_id", allocationSize = 1)
@@ -42,6 +42,15 @@ public class TmsMaintenanceLine extends EmsEntity {
 
     public void setTmsMaintenanceLineDescription(String tmsMaintenanceLineDescription) {
         this.tmsMaintenanceLineDescription = tmsMaintenanceLineDescription;
+    }
+
+    @Column(name = "tms_maintenancelineamountvat")
+    public BigDecimal getTmsAmountVat() {
+        return tmsAmountVat;
+    }
+
+    public void setTmsAmountVat(BigDecimal tmsAmountVat) {
+        this.tmsAmountVat = tmsAmountVat;
     }
 
     @Column(name = "tms_maintenancelinequantity")
@@ -78,7 +87,7 @@ public class TmsMaintenanceLine extends EmsEntity {
         this.tmsMaintenanceLineTotalPriceTTC = tmsMaintenanceLineTotalPriceTTC;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "tms_maintenancelinemaintenanceplanid")
     public TmsMaintenancePlan getTmsMaintenanceLineMaintenancePlan() {
         return tmsMaintenanceLineMaintenancePlan;
