@@ -68,6 +68,7 @@ public class CentralControllerHandler {
             LOGGER.error(e.getMessage());
             //e.printStackTrace();
         }
+        LOGGER.error(pe.getMessage());
         return new ResponseEntity<ValidatorException>(validatorException, HttpStatus.SEE_OTHER);
     }
 

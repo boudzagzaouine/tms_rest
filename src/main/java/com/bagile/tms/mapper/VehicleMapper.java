@@ -45,6 +45,7 @@ public class VehicleMapper {
         map.put("body", "tmsVehicleBody");
         map.put("chassisNumber", "tmsVehicleChassisNumber");
         map.put("Energy", "tmsVehicleEnergy");
+        map.put("transport", "trpTransport");
 
         map.put("insuranceTermVehicles", "tmsInsuranceTermsVehicules");
 
@@ -94,6 +95,8 @@ public class VehicleMapper {
             tmsVehicle.setTmsInsurance(InsuranceMapper.toEntity(vehicle.getInsurance(), false));
             tmsVehicle.setTmsContractType (ContractTypeMapper.toEntity (vehicle.getContractType (), true));
             tmsVehicle.setTmsInsuranceTermsVehicules (InsuranceTermsVehicleMapper.toEntities (vehicle.getInsuranceTermVehicles (), false));
+            tmsVehicle.setTrpTransport (TransportMapper.toEntity (vehicle.getTransport (), false));
+
             oneToMany(tmsVehicle);
         }
         return tmsVehicle;
@@ -143,6 +146,7 @@ public class VehicleMapper {
             vehicle.setInsurance(InsuranceMapper.toDto(tmsVehicle.getTmsInsurance(), false));
             vehicle.setContractType (ContractTypeMapper.toDto (tmsVehicle.getTmsContractType (), true));
             vehicle.setInsuranceTermVehicles (InsuranceTermsVehicleMapper.toDtos(tmsVehicle.getTmsInsuranceTermsVehicules (), false));
+            vehicle.setTransport (TransportMapper.toDto (tmsVehicle.getTrpTransport (), false));
 
         }
         return vehicle;

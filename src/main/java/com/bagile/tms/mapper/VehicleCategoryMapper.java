@@ -1,5 +1,6 @@
 package com.bagile.tms.mapper;
 
+import com.bagile.tms.dto.TransportCategoryVehicle;
 import com.bagile.tms.dto.VehicleCategory;
 import com.bagile.tms.entities.TmsVehicleCategory;
 
@@ -65,7 +66,9 @@ public class VehicleCategoryMapper {
 
         if(!lazy) {
             tmsVehicleCategory.setTmsInsuranceType (InsuranceTypeMapper.toEntity(vehicle.getInsuranceType(),false));
-           // tmsVehicleCategory.setTmsVehicles (VehicleMapper.toEntities(vehicle.getVehicles(),false));
+           // tmsVehicleCategory.setTmsTransportCategoryVehicles (TransportCategoryVehicleMapper.toEntities(vehicle.getTransportCategorieVehicules(),true));
+
+            // tmsVehicleCategory.setTmsVehicles (VehicleMapper.toEntities(vehicle.getVehicles(),false));
 
         }
             return tmsVehicleCategory;
@@ -96,7 +99,9 @@ public class VehicleCategoryMapper {
         if(!lazy) {
 
             vehicle.setInsuranceType (InsuranceTypeMapper.toDto(tmsVehicleCategory.getTmsInsuranceType (),false));
-           // vehicle.setVehicles (VehicleMapper.toDtos(tmsVehicleCategory.get (),false));
+         //   vehicle.setTransportCategorieVehicules (TransportCategoryVehicleMapper.toDtos(tmsVehicleCategory.getTmsTransportCategoryVehicles (),true));
+
+            // vehicle.setVehicles (VehicleMapper.toDtos(tmsVehicleCategory.get (),false));
 
         }
             return vehicle;

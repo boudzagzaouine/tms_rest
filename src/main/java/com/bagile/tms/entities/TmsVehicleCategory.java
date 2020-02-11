@@ -25,7 +25,9 @@ public class TmsVehicleCategory  extends EmsEntity {
 
     private TmsInsuranceType tmsInsuranceType;
 
-   // private Set<TmsVehicle> tmsVehicles=new HashSet<>();
+   // private Set<TmsTransportCategoryVehicle> tmsTransportCategoryVehicles=new HashSet<>();
+
+    // private Set<TmsVehicle> tmsVehicles=new HashSet<>();
 
 
     public TmsVehicleCategory() {
@@ -126,7 +128,14 @@ public class TmsVehicleCategory  extends EmsEntity {
         this.tmsInsuranceType = tmsInsuranceType;
     }
 
+    /*@OneToMany(mappedBy = "tmsVehicleCategory",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+    public Set<TmsTransportCategoryVehicle> getTmsTransportCategoryVehicles() {
+        return tmsTransportCategoryVehicles;
+    }
 
+    public void setTmsTransportCategoryVehicles(Set<TmsTransportCategoryVehicle> tmsTransportCategoryVehicles) {
+        this.tmsTransportCategoryVehicles = tmsTransportCategoryVehicles;
+    }*/
 
    /* @OneToMany(mappedBy = "tmsVehicleCategory", cascade = CascadeType.ALL)
     public Set<TmsVehicle> getTmsVehicles() {

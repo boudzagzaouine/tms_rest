@@ -42,6 +42,7 @@ public class Vehicle extends EmsDto implements Serializable {
    private BigDecimal valueVignette;
    private Date aquisitionDate;
    private BigDecimal amount;
+   private Transport transport;
 
     private List<InsuranceTermsVehicle> insuranceTermVehicles=new ArrayList<>();
 
@@ -272,6 +273,14 @@ public class Vehicle extends EmsDto implements Serializable {
 
     public void setInsuranceTermVehicles(List<InsuranceTermsVehicle> insuranceTermVehicles) {
         this.insuranceTermVehicles = insuranceTermVehicles;
+    }
+
+    public Transport getTransport() {
+        return transport;
+    }
+
+    public void setTransport(Transport transport) {
+        this.transport = transport;
     }
 
     @Override

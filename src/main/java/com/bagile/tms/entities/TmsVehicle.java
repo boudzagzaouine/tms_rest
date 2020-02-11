@@ -38,6 +38,7 @@ public class TmsVehicle extends EmsEntity {
     private BigDecimal tmsVehicleValueVignete;
     private Set<TmsInsuranceTermsVehicule> tmsInsuranceTermsVehicules=new HashSet<>();
 
+    private TrpTransport trpTransport;
 
 
     @Id
@@ -289,5 +290,14 @@ public class TmsVehicle extends EmsEntity {
 
     public void setTmsInsuranceTermsVehicules(Set<TmsInsuranceTermsVehicule> tmsInsuranceTermsVehicules) {
         this.tmsInsuranceTermsVehicules = tmsInsuranceTermsVehicules;
+    }
+    @ManyToOne()
+    @JoinColumn(name = "trp_transportid")
+    public TrpTransport getTrpTransport() {
+        return trpTransport;
+    }
+
+    public void setTrpTransport(TrpTransport trpTransport) {
+        this.trpTransport = trpTransport;
     }
 }
