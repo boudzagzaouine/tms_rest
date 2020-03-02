@@ -1,10 +1,10 @@
-package com.sinno.ems.dto;
+package com.bagile.tms.dto;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-public class OrderType  extends BaseEntity implements Serializable {
+public class OrderType  extends EmsDto implements Serializable {
 
     private static final long serialVersionUID = -361646146477953897L;
 
@@ -12,13 +12,10 @@ public class OrderType  extends BaseEntity implements Serializable {
     private String code;
     private Date updateDate;
     private Set<SaleOrder> saleOrders;
-    private Set<Reception> receptions;
     private Date creationDate;
     private String description;
     private Long flow;
     private Boolean active;
-    private Set<PurshaseOrder> purshaseOrders;
-    private Organisation organisation;
 
 
     public long getId() {
@@ -53,13 +50,6 @@ public class OrderType  extends BaseEntity implements Serializable {
         this.saleOrders = saleOrders;
     }
 
-    public Set<Reception> getReceptions() {
-        return receptions;
-    }
-
-    public void setReceptions(Set<Reception> receptions) {
-        this.receptions = receptions;
-    }
 
     public Date getCreationDate() {
         return creationDate;
@@ -77,13 +67,6 @@ public class OrderType  extends BaseEntity implements Serializable {
         this.description = description;
     }
 
-    public Set<PurshaseOrder> getPurshaseOrders() {
-        return purshaseOrders;
-    }
-
-    public void setPurshaseOrders(Set<PurshaseOrder> purshaseOrders) {
-        this.purshaseOrders = purshaseOrders;
-    }
 
     public Long getFlow() {
         return flow;
@@ -101,13 +84,6 @@ public class OrderType  extends BaseEntity implements Serializable {
         this.active = active;
     }
 
-    public Organisation getOrganisation() {
-        return organisation;
-    }
-
-    public void setOrganisation(Organisation organisation) {
-        this.organisation = organisation;
-    }
 
     @Override
     public boolean equals(Object object) {
