@@ -55,17 +55,17 @@ public class ProductPackMapper {
         pdtProductPack.setPdtProductPackDepth(productPack.getDepth());
         pdtProductPack.setPdtProductPackCreationDate(productPack.getCreationDate());
         pdtProductPack.setPdtProductQuantity(productPack.getQuantity());
-        pdtProductPack.setPdtProductPrice(productPack.getPrice());
+        pdtProductPack.setPdtProductPrice(productPack.getSalePrice());
         pdtProductPack.setPdtProductPackTypePck(productPack.getTypePck());
         pdtProductPack.setPdtProductPackWidth(productPack.getWidth());
         pdtProductPack.setPdtProductPackWeightControl(productPack.getWeightControl());
-        pdtProductPack.setPdtProductPackPickingPrice(productPack.getPickingPrice());
-        pdtProductPack.setPdtProductPackAnotherPackQuantity(productPack.getQuantityAnotherPack());
+     //   pdtProductPack.setPdtProductPackPickingPrice(productPack.getPickingPrice());
+      //  pdtProductPack.setPdtProductPackAnotherPackQuantity(productPack.getQuantityAnotherPack());
         if (!lazy) {
             pdtProductPack.setPdtProduct(ProductMapper.toEntity(productPack.getProduct(), true));
             pdtProductPack.setOwnOwner(OwnerMapper.toEntity(productPack.getOwner(), true));
             pdtProductPack.setPdtUom(UomMapper.toEntity(productPack.getUom(), true));
-            pdtProductPack.setPdtUomAnotherPack(UomMapper.toEntity(productPack.getAnotherPack(), true));
+         //   pdtProductPack.setPdtUomAnotherPack(UomMapper.toEntity(productPack.getAnotherPack(), true));
         }
         return pdtProductPack;
     }
@@ -83,17 +83,17 @@ public class ProductPackMapper {
         productPack.setDepth(pdtProductPack.getPdtProductPackDepth());
         productPack.setCreationDate(pdtProductPack.getPdtProductPackCreationDate());
         productPack.setTypePck(pdtProductPack.getPdtProductPackTypePck());
-        productPack.setPrice(pdtProductPack.getPdtProductPrice());
+        productPack.setSalePrice(pdtProductPack.getPdtProductPrice());
         productPack.setQuantity(pdtProductPack.getPdtProductQuantity());
         productPack.setWidth(pdtProductPack.getPdtProductPackWidth());
         productPack.setWeightControl(pdtProductPack.getPdtProductPackWeightControl());
-        productPack.setPickingPrice(pdtProductPack.getPdtProductPackPickingPrice());
-        productPack.setQuantityAnotherPack(pdtProductPack.getPdtProductPackAnotherPackQuantity());
+       // productPack.setPickingPrice(pdtProductPack.getPdtProductPackPickingPrice());
+       // productPack.setQuantityAnotherPack(pdtProductPack.getPdtProductPackAnotherPackQuantity());
         if (!lazy) {
             productPack.setProduct(ProductMapper.toDto(pdtProductPack.getPdtProduct(), true));
             productPack.setOwner(OwnerMapper.toDto(pdtProductPack.getOwnOwner(), true));
             productPack.setUom(UomMapper.toDto(pdtProductPack.getPdtUom(), true));
-            productPack.setAnotherPack(UomMapper.toDto(pdtProductPack.getPdtUomAnotherPack(), true));
+          //  productPack.setAnotherPack(UomMapper.toDto(pdtProductPack.getPdtUomAnotherPack(), true));
         }
         return productPack;
     }
