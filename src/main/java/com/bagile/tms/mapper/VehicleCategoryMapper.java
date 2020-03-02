@@ -67,7 +67,6 @@ public class VehicleCategoryMapper {
         if(!lazy) {
             tmsVehicleCategory.setTmsInsuranceType (InsuranceTypeMapper.toEntity(vehicle.getInsuranceType(),false));
            // tmsVehicleCategory.setTmsTransportCategoryVehicles (TransportCategoryVehicleMapper.toEntities(vehicle.getTransportCategorieVehicules(),true));
-
             // tmsVehicleCategory.setTmsVehicles (VehicleMapper.toEntities(vehicle.getVehicles(),false));
 
         }
