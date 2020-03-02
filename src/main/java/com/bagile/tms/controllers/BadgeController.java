@@ -95,6 +95,7 @@ public class BadgeController {
     public void delete(@RequestBody Badge badge) {
         badgeService.delete(badge);
     }
+
     //@PreAuthorize("hasRole('BADGE_DELETE')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
