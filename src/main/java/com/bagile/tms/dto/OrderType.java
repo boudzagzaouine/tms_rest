@@ -1,22 +1,25 @@
-package com.bagile.tms.dto;
+package com.sinno.ems.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-public class ProductType extends EmsDto {
+public class OrderType  extends BaseEntity implements Serializable {
 
-    private static final long serialVersionUID = 1404056929988728822L;
+    private static final long serialVersionUID = -361646146477953897L;
 
     private long id;
-    private Owner owner;
     private String code;
     private Date updateDate;
+    private Set<SaleOrder> saleOrders;
+    private Set<Reception> receptions;
     private Date creationDate;
     private String description;
-    private Set<ProductType> productTypes;
-    private ProductType productType;
-    private Set<Product> productsForProductType;
-    private Set<Product> productsForProductSubType;
+    private Long flow;
+    private Boolean active;
+    private Set<PurshaseOrder> purshaseOrders;
+    private Organisation organisation;
+
 
     public long getId() {
         return id;
@@ -24,14 +27,6 @@ public class ProductType extends EmsDto {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public Owner getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Owner owner) {
-        this.owner = owner;
     }
 
     public String getCode() {
@@ -50,6 +45,22 @@ public class ProductType extends EmsDto {
         this.updateDate = updateDate;
     }
 
+    public Set<SaleOrder> getSaleOrders() {
+        return saleOrders;
+    }
+
+    public void setSaleOrders(Set<SaleOrder> saleOrders) {
+        this.saleOrders = saleOrders;
+    }
+
+    public Set<Reception> getReceptions() {
+        return receptions;
+    }
+
+    public void setReceptions(Set<Reception> receptions) {
+        this.receptions = receptions;
+    }
+
     public Date getCreationDate() {
         return creationDate;
     }
@@ -66,36 +77,36 @@ public class ProductType extends EmsDto {
         this.description = description;
     }
 
-    public Set<ProductType> getProductTypes() {
-        return productTypes;
+    public Set<PurshaseOrder> getPurshaseOrders() {
+        return purshaseOrders;
     }
 
-    public void setProductTypes(Set<ProductType> productTypes) {
-        this.productTypes = productTypes;
+    public void setPurshaseOrders(Set<PurshaseOrder> purshaseOrders) {
+        this.purshaseOrders = purshaseOrders;
     }
 
-    public ProductType getProductType() {
-        return productType;
+    public Long getFlow() {
+        return flow;
     }
 
-    public void setProductType(ProductType productType) {
-        this.productType = productType;
+    public void setFlow(Long flow) {
+        this.flow = flow;
     }
 
-    public Set<Product> getProductsForProductType() {
-        return productsForProductType;
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setProductsForProductType(Set<Product> productsForProductType) {
-        this.productsForProductType = productsForProductType;
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
-    public Set<Product> getProductsForProductSubType() {
-        return productsForProductSubType;
+    public Organisation getOrganisation() {
+        return organisation;
     }
 
-    public void setProductsForProductSubType(Set<Product> productsForProductSubType) {
-        this.productsForProductSubType = productsForProductSubType;
+    public void setOrganisation(Organisation organisation) {
+        this.organisation = organisation;
     }
 
     @Override
@@ -104,7 +115,7 @@ public class ProductType extends EmsDto {
         if (object == null || object.getClass() != getClass()) {
             result = false;
         } else {
-            ProductType obj = (ProductType) object;
+            OrderType obj = (OrderType) object;
             if (this.id == obj.getId()) {
                 result = true;
             }
