@@ -2,7 +2,7 @@ package com.bagile.tms.services.impl;
 
 import com.bagile.tms.dto.Delivery;
 import com.bagile.tms.dto.SaleOrder;
-import com.bagile.tms.entities.CmdDeliveryLine;
+import com.bagile.tms.entities.CmdDelivery;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.CustomException;
 import com.bagile.tms.exceptions.ErrorType;
@@ -59,7 +59,7 @@ public class DeliveryServiceImpl implements DeliveryService {
         if (search.equals("")){
             return findAll ();
         }
-        return DeliveryMapper.toDtos(deliveryRepository.findAll(Search.expression(search, CmdDeliveryLine.class)), false);
+        return DeliveryMapper.toDtos(deliveryRepository.findAll(Search.expression(search, CmdDelivery.class)), false);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class DeliveryServiceImpl implements DeliveryService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return DeliveryMapper.toDtos(deliveryRepository.findAll(Search.expression(search, CmdDeliveryLine.class), pageable), false);
+        return DeliveryMapper.toDtos(deliveryRepository.findAll(Search.expression(search, CmdDelivery.class), pageable), false);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class DeliveryServiceImpl implements DeliveryService {
         if (search.equals("")){
             return size ();
         }
-        return deliveryRepository.count(Search.expression(search, CmdDeliveryLine.class));
+        return deliveryRepository.count(Search.expression(search, CmdDelivery.class));
     }
 
     @Override

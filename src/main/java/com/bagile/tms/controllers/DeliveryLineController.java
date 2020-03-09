@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Created by Enissay on 21/04/2016.
- */
+
 @Controller
 @RequestMapping(value = "/deliverylines/")
 public class DeliveryLineController {
