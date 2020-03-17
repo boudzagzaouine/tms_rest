@@ -32,6 +32,8 @@ public class Transport  extends EmsDto implements Serializable {
 
     private List<TransportCategoryVehicle> transportCategorieVehicules=new ArrayList<>();
 
+    private List<Turn> turns=new ArrayList<>();
+
 
     public long getId() {
         return id;
@@ -207,6 +209,15 @@ public class Transport  extends EmsDto implements Serializable {
 
     public void setTransportCategorieVehicules(List<TransportCategoryVehicle> transportCategorieVehicules) {
         this.transportCategorieVehicules = transportCategorieVehicules;
+    }
+
+
+    public List<Turn> getTurns() {
+        return turns;
+    }
+
+    public void setTurns(List<Turn> turns) {
+        this.turns = turns;
     }
 
     @Override

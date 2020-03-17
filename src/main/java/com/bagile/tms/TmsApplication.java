@@ -7,13 +7,10 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 
 @SpringBootApplication
-public class TmsApplication extends SpringBootServletInitializer {
+public class TmsApplication {
 
     public static void main(String[] args) { SpringApplication.run(TmsApplication.class, args);
     }
 
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(TmsApplication.class);
-    }
+
 }

@@ -45,6 +45,9 @@ public class TmsDriver extends EmsEntity {
    // private Set<TmsCommissionDriver> tmsCommissions = new HashSet<>();
     private Set<TmsBadgeTypeDriver> tmsBadgeTypeDrivers=new HashSet<>();
 
+    private Set<TmsTurn> tmsTurns = new HashSet<>();
+
+
     public TmsDriver() {
     }
 
@@ -218,5 +221,14 @@ public class TmsDriver extends EmsEntity {
 
     public void setTmsCarte(String tmsCarte) {
         this.tmsCarte = tmsCarte;
+    }
+
+    @ManyToMany(mappedBy = "tmsDrivers")
+    public Set<TmsTurn> getTmsTurns() {
+        return tmsTurns;
+    }
+
+    public void setTmsTurns(Set<TmsTurn> tmsTurns) {
+        this.tmsTurns = tmsTurns;
     }
 }

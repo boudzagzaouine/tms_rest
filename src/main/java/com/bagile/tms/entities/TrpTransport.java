@@ -61,6 +61,8 @@ public class TrpTransport extends EmsEntity implements java.io.Serializable {
 
     private Set<TmsTransportCategoryVehicle> tmsTransportCategoryVehicles=new HashSet<>();
 
+    private Set<TmsTurn> tmsTurns=new HashSet<>();
+
 
     public TrpTransport() {
     }
@@ -239,5 +241,14 @@ public class TrpTransport extends EmsEntity implements java.io.Serializable {
 
     public void setTmsTransportCategoryVehicles(Set<TmsTransportCategoryVehicle> tmsTransportCategoryVehicles) {
         this.tmsTransportCategoryVehicles = tmsTransportCategoryVehicles;
+    }
+
+    @OneToMany(mappedBy = "trpTransport",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    public Set<TmsTurn> getTmsTurns() {
+        return tmsTurns;
+    }
+
+    public void setTmsTurns(Set<TmsTurn> tmsTurns) {
+        this.tmsTurns = tmsTurns;
     }
 }

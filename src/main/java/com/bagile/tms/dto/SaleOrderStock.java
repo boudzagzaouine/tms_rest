@@ -39,6 +39,8 @@ public class SaleOrderStock  extends EmsDto implements Serializable {
    // private ProductDimension productDimension;
     private ProductPack productPack;
 
+
+
    /* public Location getLocation() {
         return this.location;
     }
@@ -245,6 +247,9 @@ public class SaleOrderStock  extends EmsDto implements Serializable {
     public void setProductPack(ProductPack productPack) {
         this.productPack = productPack;
     }
+
+
+
     @Override
     public boolean equals(Object object) {
         boolean result = false;

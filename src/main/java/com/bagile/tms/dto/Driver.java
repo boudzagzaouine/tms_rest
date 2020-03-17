@@ -30,6 +30,9 @@ private String carte;
     //private List<CommissionDriver> commissions=new ArrayList<>();
     private List<BadgeTypeDriver> badgeTypeDrivers = new ArrayList<>();
 
+    private List<Turn> turns = new ArrayList<>();
+
+
     public Driver() {
     }
 
@@ -162,7 +165,13 @@ private String carte;
         this.badgeTypeDrivers = badgeTypeDrivers;
     }
 
+    public List<Turn> getTurns() {
+        return turns;
+    }
 
+    public void setTurns(List<Turn> turns) {
+        this.turns = turns;
+    }
 
     @Override
     public boolean equals(Object o) {

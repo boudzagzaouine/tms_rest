@@ -42,6 +42,8 @@ public class DeliveryLine  extends EmsDto {
     private Product menu;
     private Long  menuQuantity;
     private Long menuNumber;
+   private ProductPack productPack;
+
 
     public DeliveryLine() {
     }
@@ -294,4 +296,11 @@ public class DeliveryLine  extends EmsDto {
         this.menuNumber = menuNumber;
     }
 
+    public ProductPack getProductPack() {
+        return productPack;
+    }
+
+    public void setProductPack(ProductPack productPack) {
+        this.productPack = productPack;
+    }
 }

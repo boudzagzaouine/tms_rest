@@ -97,7 +97,7 @@ public class DeliveryLineMapper {
             cdl.setWrhWarehouse(WarehouseMapper.toEntity(deliveryLine.getWarehouse(), true));
             cdl.setPrmOrderStatus(OrderStatusMapper.toEntity(deliveryLine.getOrderStatus(), true));
             cdl.setOwnOwner(OwnerMapper.toEntity(deliveryLine.getOwner(), true));
-
+            cdl.setPdtProductPack(ProductPackMapper.toEntity(deliveryLine.getProductPack(),true));
         }
         return cdl;
     }
@@ -140,6 +140,7 @@ public class DeliveryLineMapper {
             dl.setWarehouse(WarehouseMapper.toDto(cmdDeliveryLine.getWrhWarehouse(), true));
             dl.setOrderStatus(OrderStatusMapper.toDto(cmdDeliveryLine.getPrmOrderStatus(), true));
             dl.setOwner(OwnerMapper.toDto(cmdDeliveryLine.getOwnOwner(), true));
+            dl.setProductPack(ProductPackMapper.toDto(cmdDeliveryLine.getPdtProductPack(),true));
         }
         return dl;
     }

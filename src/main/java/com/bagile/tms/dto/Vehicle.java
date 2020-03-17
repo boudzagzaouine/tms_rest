@@ -46,6 +46,8 @@ public class Vehicle extends EmsDto implements Serializable {
 
     private List<InsuranceTermsVehicle> insuranceTermVehicles=new ArrayList<>();
 
+    private List<Turn> turns=new ArrayList<>();
+
 
     public Vehicle() {
     }
@@ -273,6 +275,14 @@ public class Vehicle extends EmsDto implements Serializable {
 
     public void setInsuranceTermVehicles(List<InsuranceTermsVehicle> insuranceTermVehicles) {
         this.insuranceTermVehicles = insuranceTermVehicles;
+    }
+
+    public List<Turn> getTurns() {
+        return turns;
+    }
+
+    public void setTurns(List<Turn> turns) {
+        this.turns = turns;
     }
 
     public Transport getTransport() {

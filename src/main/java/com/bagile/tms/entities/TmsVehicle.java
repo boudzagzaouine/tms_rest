@@ -40,6 +40,8 @@ public class TmsVehicle extends EmsEntity {
 
     private TrpTransport trpTransport;
 
+    private Set<TmsTurn> tmsTurns=new HashSet<>();
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -299,5 +301,15 @@ public class TmsVehicle extends EmsEntity {
 
     public void setTrpTransport(TrpTransport trpTransport) {
         this.trpTransport = trpTransport;
+    }
+
+
+    @OneToMany(mappedBy = "tmsVehicle",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+    public Set<TmsTurn> getTmsTurns() {
+        return tmsTurns;
+    }
+
+    public void setTmsTurns(Set<TmsTurn> tmsTurns) {
+        this.tmsTurns = tmsTurns;
     }
 }
