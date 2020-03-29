@@ -1,18 +1,16 @@
 package com.bagile.tms.services;
 
-import com.bagile.tms.dto.SaleOrder;
 import com.bagile.tms.dto.SaleOrderLine;
-import com.bagile.tms.exceptions.*;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
 
-import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.math.BigDecimal;
 import java.util.List;
 
-public interface SaleOrderLineService {
 
-    SaleOrderLine save(SaleOrderLine saleOrderLine) throws ProductControls;
+public interface SaleOrderLineService {
+    SaleOrderLine save(SaleOrderLine saleOrderLine);
+
 
     Long size();
 
@@ -34,14 +32,9 @@ public interface SaleOrderLineService {
 
     List<SaleOrderLine> findAll();
 
-    List<SaleOrderLine> findAll( int page, int size);
+    List<SaleOrderLine> findAll(int page, int size);
 
-    @Transactional
-    SaleOrderLine loadWmsSaleOrderLine(SaleOrderLine saleOrderLine) throws IdNotFound;
+    String getNextVal();
 
-    void updateSaleOrderLine(SaleOrderLine saleOrderLine, BigDecimal quantiyServed);
-
-    SaleOrderLine cancelSaleOrderLine(SaleOrderLine saleOrderLine) throws AttributesNotFound, ErrorType, IdNotFound, CustomException;
-
-    void cancelSaleOrderLine(SaleOrder saleOrder, SaleOrderLine saleOrderLine) throws AttributesNotFound, ErrorType;
+   
 }

@@ -67,6 +67,7 @@ public class SaleOrderMapper {
         map.put("dealCode", "cmdSaleOrderDealCode");
         map.put("confirmed", "cmdSaleOrderConfirmed");
         map.put("dealResponsible", "cmdDealResponsible");
+        map.put("lines","cmdSaleOrderLines");
 
     }
 
@@ -136,6 +137,7 @@ public class SaleOrderMapper {
             saleOrder.setTransport(TransportMapper.toDto(cmdSaleOrder.getTrpTransport(), true));
             saleOrder.setWarehouse(WarehouseMapper.toDto(cmdSaleOrder.getWrhWarehouseSource(), true));
             saleOrder.setWarehouseDestination(WarehouseMapper.toDto(cmdSaleOrder.getWrhWarehouseDestination(), true));
+            saleOrder.setLines(SaleOrderLineMapper.toDtos(cmdSaleOrder.getCmdSaleOrderLines(), false));
 
         }
         return saleOrder;
@@ -199,6 +201,8 @@ public class SaleOrderMapper {
             cmdSaleOrder.setTrpTransport(TransportMapper.toEntity(saleOrder.getTransport(), true));
             cmdSaleOrder.setWrhWarehouseSource(WarehouseMapper.toEntity(saleOrder.getWarehouse(), true));
             cmdSaleOrder.setWrhWarehouseDestination(WarehouseMapper.toEntity(saleOrder.getWarehouseDestination(), true));
+            cmdSaleOrder.setCmdSaleOrderLines(SaleOrderLineMapper.toEntities(saleOrder.getLines(), false));
+
         }
         return cmdSaleOrder;
     }

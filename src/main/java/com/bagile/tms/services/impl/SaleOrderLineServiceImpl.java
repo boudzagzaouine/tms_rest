@@ -1,9 +1,8 @@
 package com.bagile.tms.services.impl;
-import com.bagile.tms.dto.SaleOrder;
+
 import com.bagile.tms.dto.SaleOrderLine;
-import com.bagile.tms.entities.CmdSaleOrderLine;
+import com.bagile.tms.entities.CmdSaleOrder;
 import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.CustomException;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
 import com.bagile.tms.mapper.SaleOrderLineMapper;
@@ -16,16 +15,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.List;
 
 
 @Service
 @Transactional
 public class SaleOrderLineServiceImpl implements SaleOrderLineService {
-
     private final SaleOrderLineRepository saleOrderLineRepository;
     public SaleOrderLineServiceImpl(SaleOrderLineRepository saleOrderLineRepository) {
         this.saleOrderLineRepository = saleOrderLineRepository;
@@ -61,7 +56,7 @@ public class SaleOrderLineServiceImpl implements SaleOrderLineService {
         if (search.equals("")){
             return findAll ();
         }
-        return SaleOrderLineMapper.toDtos(saleOrderLineRepository.findAll(Search.expression(search, CmdSaleOrderLine.class)), false);
+        return SaleOrderLineMapper.toDtos(saleOrderLineRepository.findAll(Search.expression(search, CmdSaleOrder.class)), false);
     }
 
     @Override
@@ -71,7 +66,7 @@ public class SaleOrderLineServiceImpl implements SaleOrderLineService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return SaleOrderLineMapper.toDtos(saleOrderLineRepository.findAll(Search.expression(search, CmdSaleOrderLine.class), pageable), false);
+        return SaleOrderLineMapper.toDtos(saleOrderLineRepository.findAll(Search.expression(search, CmdSaleOrder.class), pageable), false);
     }
 
     @Override
@@ -79,7 +74,7 @@ public class SaleOrderLineServiceImpl implements SaleOrderLineService {
         if (search.equals("")){
             return size ();
         }
-        return saleOrderLineRepository.count(Search.expression(search, CmdSaleOrderLine.class));
+        return saleOrderLineRepository.count(Search.expression(search, CmdSaleOrder.class));
     }
 
     @Override
@@ -98,27 +93,11 @@ public class SaleOrderLineServiceImpl implements SaleOrderLineService {
     }
 
 
-
     @Override
-    public SaleOrderLine loadWmsSaleOrderLine(SaleOrderLine saleOrderLine) throws IdNotFound {
+    public String getNextVal() {
         return null;
     }
-
-    @Override
-    public void updateSaleOrderLine(SaleOrderLine saleOrderLine, BigDecimal quantiyServed) {
-
-    }
-
-
-    @Override
-    public SaleOrderLine cancelSaleOrderLine(SaleOrderLine saleOrderLine) throws AttributesNotFound, ErrorType, IdNotFound, CustomException{
-        return null;
-    }
-
-    @Override
-    public void cancelSaleOrderLine(SaleOrder saleOrder, SaleOrderLine saleOrderLine) throws AttributesNotFound, ErrorType {
-
-    }
+    
 
     @Override
     public List<SaleOrderLine> findAll(int page, int size) {

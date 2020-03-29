@@ -1,143 +1,105 @@
 package com.bagile.tms.controllers;
 
 import com.bagile.tms.dto.SaleOrderLine;
-import com.bagile.tms.exceptions.*;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
 import com.bagile.tms.services.SaleOrderLineService;
-import com.bagile.tms.services.UserDetailsServiceWarehouse;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/saleOrderLines/")
+@RequestMapping(value="/SaleOrderlines/")
 public class SaleOrderLineController {
+    private final SaleOrderLineService saleOrderLineService;
 
-    @Autowired
-    private SaleOrderLineService saleOrderLineService;
-    @Autowired
-    @Qualifier("userDetailsService")
-    private UserDetailsServiceWarehouse userDetailsService;
-
-    @PreAuthorize("hasAnyRole('SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW')")
-    @RequestMapping(method = RequestMethod.GET,value = "/list")
-    @ResponseBody
-    public List<SaleOrderLine> getSaleOrderLines() throws AttributesNotFound, ErrorType {
-        if ( null==userDetailsService.getOwners())
-        { return null;}
-        return saleOrderLineService.find(userDetailsService.getOwners().toString());
-       // return saleOrderLineService.findAll();
+    public SaleOrderLineController(SaleOrderLineService saleOrderLineService) {
+        this.saleOrderLineService = saleOrderLineService;
     }
 
-    @PreAuthorize("hasAnyRole('SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW')")
+    //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
+    @RequestMapping(method = RequestMethod.GET, value = "/list")
+    @ResponseBody
+    public List<SaleOrderLine> getSaleOrders() {
+        return saleOrderLineService.findAll();
+    }
+    //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
-    public List<SaleOrderLine> getSaleOrderLines(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        if ( null==userDetailsService.getOwners()) {
-            return null;
-        }
-        return saleOrderLineService.find(userDetailsService.getOwners().toString(), page,size);
-       // return saleOrderLineService.findAll(pageable);
-    }
+    public List<SaleOrderLine> getSaleOrders(@RequestParam int page, @RequestParam int size) {
+        return saleOrderLineService.findAll(page, size);
 
-    @PreAuthorize("hasAnyRole('SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW')")
+    }
+    //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
-    public Long size() throws AttributesNotFound, ErrorType {
-        if ( null==userDetailsService.getOwners()) {
-            return null;
-        }
-        return saleOrderLineService.size(userDetailsService.getOwners().toString());
+    public Long size() {
+        return saleOrderLineService.size();
     }
 
-    @PreAuthorize("hasAnyRole('SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW')")
+    //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
-        if ( null==userDetailsService.getOwners()) {
-            return null;
-        }
-        if (!search.endsWith(",")) {
-            search += ",";
-        }
-        return saleOrderLineService.size(search + userDetailsService.getOwners().toString());
+        return saleOrderLineService.size(search);
     }
 
-    @PreAuthorize("hasAnyRole('SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW')")
+    //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
         return saleOrderLineService.isExist(id);
-    }    @PreAuthorize("hasRole('SALE_ORDER_LINE_VIEW')")
-    @RequestMapping(method = RequestMethod.GET,value = "/{id}")
+    }
+
+    //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
-    public SaleOrderLine getSaleOrderLine(@PathVariable("id") Long id) throws IdNotFound {
+    public SaleOrderLine getSaleOrder(@PathVariable("id") Long id) throws IdNotFound {
         return saleOrderLineService.findById(id);
     }
 
-    @PreAuthorize("hasAnyRole('SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW')")
+    //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
     public List<SaleOrderLine> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
-        if ( null==userDetailsService.getOwners())
-            return null;
-        if (!search.endsWith(",")) {
-            search += ",";
-        }
-        return saleOrderLineService.find(search +userDetailsService.getOwners().toString());
+        return saleOrderLineService.find(search);
     }
 
-    @PreAuthorize("hasAnyRole('SALE_ORDER_LINE_VIEW','DELIVERY_LINE_VIEW')")
+    //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<SaleOrderLine> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        if ( null==userDetailsService.getOwners()) {
-            return null;
-        }
-        if (!search.endsWith(",")) {
-            search += ",";
-        }
-        return saleOrderLineService.find(search + userDetailsService.getOwners().toString(), page,size);
+        return saleOrderLineService.find(search, page, size);
     }
 
-    @PreAuthorize("hasRole('SALE_ORDER_LINE_CREATE')")
+    //@PreAuthorize("hasRole('BADGE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public SaleOrderLine add(@RequestBody SaleOrderLine saleOrderLine) throws ProductControls {
+    public SaleOrderLine add(@RequestBody SaleOrderLine saleOrderLine) {
         return saleOrderLineService.save(saleOrderLine);
     }
 
-    @PreAuthorize("hasRole('SALE_ORDER_LINE_EDIT')")
+    //@PreAuthorize("hasRole('BADGE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public SaleOrderLine set(@RequestBody SaleOrderLine saleOrderLine) throws ProductControls {
+    public SaleOrderLine set(@RequestBody SaleOrderLine saleOrderLine) {
         return saleOrderLineService.save(saleOrderLine);
     }
 
-    @PreAuthorize("hasRole('SALE_ORDER_LINE_DELETE')")
+    //@PreAuthorize("hasRole('BADGE_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@RequestBody SaleOrderLine saleOrderLine) {
         saleOrderLineService.delete(saleOrderLine);
     }
-
-    @PreAuthorize("hasRole('SALE_ORDER_LINE_DELETE')")
+    //@PreAuthorize("hasRole('BADGE_DELETE')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@PathVariable Long id) {
         saleOrderLineService.delete(id);
-    }
-
-    @PreAuthorize("hasRole('SALE_ORDER_LINE_EDIT')")
-    @RequestMapping(value = "/cancel", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public void cancelSaleOrderLine(@RequestBody SaleOrderLine saleOrderLine) throws AttributesNotFound, ErrorType, IdNotFound, CustomException {
-        saleOrderLineService.cancelSaleOrderLine(saleOrderLine);
     }
 
 }

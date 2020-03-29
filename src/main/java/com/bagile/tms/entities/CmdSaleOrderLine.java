@@ -47,6 +47,18 @@ public class CmdSaleOrderLine extends EmsDto implements Serializable  {
     private BigDecimal cmdSaleOrderLineQuantity;
 
     @Max(999999999)
+    private BigDecimal cmdSaleOrderLineReserved;
+
+    @Max(999999999)
+    private BigDecimal cmdSaleOrderLinePrepare;
+
+    @Max(999999999)
+    private BigDecimal cmdSaleOrderLineDeliver;
+
+
+
+
+    @Max(999999999)
     private BigDecimal cmdSaleOrderLineQuantityServed;
     @Size(max = 255)
     private String cmdSaleOrderLineDescription;
@@ -208,6 +220,32 @@ public class CmdSaleOrderLine extends EmsDto implements Serializable  {
 
     public void setCmdSaleOrderLineQuantity(BigDecimal cmdSaleOrderLineQuantity) {
         this.cmdSaleOrderLineQuantity = cmdSaleOrderLineQuantity;
+    }
+    @Column(name = "cmd_saleorderlinereserved", precision = 12, scale = 5)
+    public BigDecimal getCmdSaleOrderLineReserved() {
+        return cmdSaleOrderLineReserved;
+    }
+
+    public void setCmdSaleOrderLineReserved(BigDecimal cmdSaleOrderLineReserved) {
+        this.cmdSaleOrderLineReserved = cmdSaleOrderLineReserved;
+    }
+
+    @Column(name = "cmd_saleorderlineprepare", precision = 12, scale = 5)
+    public BigDecimal getCmdSaleOrderLinePrepare() {
+        return cmdSaleOrderLinePrepare;
+    }
+
+    public void setCmdSaleOrderLinePrepare(BigDecimal cmdSaleOrderLinePrepare) {
+        this.cmdSaleOrderLinePrepare = cmdSaleOrderLinePrepare;
+    }
+
+    @Column(name = "cmd_saleorderlinedeliver", precision = 12, scale = 5)
+    public BigDecimal getCmdSaleOrderLineDeliver() {
+        return cmdSaleOrderLineDeliver;
+    }
+
+    public void setCmdSaleOrderLineDeliver(BigDecimal cmdSaleOrderLineDeliver) {
+        this.cmdSaleOrderLineDeliver = cmdSaleOrderLineDeliver;
     }
 
     @Column(name = "cmd_saleorderlinequantityserved", precision = 12, scale = 5)

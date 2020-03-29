@@ -40,6 +40,9 @@ public class SaleOrderLine  extends EmsDto implements Serializable {
     private BigDecimal quantityServed;
     private OrderStatus orderStatus;
     private BigDecimal quantity;
+    private BigDecimal quantityReserved;
+    private BigDecimal quantityPrepare;
+    private BigDecimal quantityDeliver;
     private Uom uom;
 
     private String comment;
@@ -57,7 +60,7 @@ public class SaleOrderLine  extends EmsDto implements Serializable {
     private SaleOrderLine parentService;
     private Set<SaleOrderLine> services;
     private Boolean isPromotion;
-
+   private ProductPack productPack;
 
 
     public long getId() {
@@ -284,6 +287,30 @@ public class SaleOrderLine  extends EmsDto implements Serializable {
         this.quantity = quantity;
     }
 
+    public BigDecimal getQuantityReserved() {
+        return quantityReserved;
+    }
+
+    public void setQuantityReserved(BigDecimal quantityReserved) {
+        this.quantityReserved = quantityReserved;
+    }
+
+    public BigDecimal getQuantityPrepare() {
+        return quantityPrepare;
+    }
+
+    public void setQuantityPrepare(BigDecimal quantityPrepare) {
+        this.quantityPrepare = quantityPrepare;
+    }
+
+    public BigDecimal getQuantityDeliver() {
+        return quantityDeliver;
+    }
+
+    public void setQuantityDeliver(BigDecimal quantityDeliver) {
+        this.quantityDeliver = quantityDeliver;
+    }
+
     public Uom getUom() {
         return this.uom;
     }
@@ -412,5 +439,13 @@ public class SaleOrderLine  extends EmsDto implements Serializable {
 
     public void setPromotion(Boolean promotion) {
         isPromotion = promotion;
+    }
+
+    public ProductPack getProductPack() {
+        return productPack;
+    }
+
+    public void setProductPack(ProductPack productPack) {
+        this.productPack = productPack;
     }
 }

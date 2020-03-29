@@ -33,6 +33,10 @@ public class SaleOrderLineMapper {
         map.put("warehouse", "wrhWarehouse");
         map.put("lineNumber", "cmdSaleOrderLineLineNumber");
         map.put("quantity", "cmdSaleOrderLineQuantity");
+        map.put("quantityReserved", "cmdSaleOrderLineReserved");
+        map.put("quantityPrepare", "cmdSaleOrderLinePrepare");
+        map.put("quantityDeliver", "cmdSaleOrderLineDeliver");
+
         map.put("quantityServed", "cmdSaleOrderLineQuantityServed");
         map.put("description", "cmdSaleOrderLineDescription");
         map.put("container", "stkContainer");
@@ -92,6 +96,10 @@ public class SaleOrderLineMapper {
         saleOrderLine.setLineNumber(cmdSaleOrderLine.getCmdSaleOrderLineLineNumber());
         saleOrderLine.setLot(cmdSaleOrderLine.getCmdSaleOrderLineLot());
         saleOrderLine.setQuantity(cmdSaleOrderLine.getCmdSaleOrderLineQuantity());
+        saleOrderLine.setQuantityReserved(cmdSaleOrderLine.getCmdSaleOrderLineReserved());
+        saleOrderLine.setQuantityPrepare(cmdSaleOrderLine.getCmdSaleOrderLinePrepare());
+        saleOrderLine.setQuantityDeliver(cmdSaleOrderLine.getCmdSaleOrderLineDeliver());
+
         saleOrderLine.setQuantityServed(cmdSaleOrderLine.getCmdSaleOrderLineQuantityServed());
         saleOrderLine.setSerialNo(cmdSaleOrderLine.getCmdSaleOrderLineSerialNo());
         saleOrderLine.setUpdateDate(cmdSaleOrderLine.getCmdSaleOrderLineUpdateDate());
@@ -131,6 +139,8 @@ public class SaleOrderLineMapper {
             saleOrderLine.setWarehouse(WarehouseMapper.toDto(cmdSaleOrderLine.getWrhWarehouse(), true));
             saleOrderLine.setParentService(toDto(cmdSaleOrderLine.getServiceParent(), true));
             saleOrderLine.setServices(toDtos(cmdSaleOrderLine.getServices(), false));
+            saleOrderLine.setProductPack(ProductPackMapper.toDto(cmdSaleOrderLine.getPdtProductPack(), false));
+
         }
         return saleOrderLine;
     }
@@ -149,6 +159,12 @@ public class SaleOrderLineMapper {
         cmdSaleOrderLine.setCmdSaleOrderLineLineNumber(saleOrderLine.getLineNumber());
         cmdSaleOrderLine.setCmdSaleOrderLineLot(saleOrderLine.getLot());
         cmdSaleOrderLine.setCmdSaleOrderLineQuantity(saleOrderLine.getQuantity());
+        cmdSaleOrderLine.setCmdSaleOrderLineReserved(saleOrderLine.getQuantityReserved());
+        cmdSaleOrderLine.setCmdSaleOrderLinePrepare(saleOrderLine.getQuantityPrepare());
+        cmdSaleOrderLine.setCmdSaleOrderLineDeliver(saleOrderLine.getQuantityDeliver());
+
+
+
         cmdSaleOrderLine.setCmdSaleOrderLineQuantityServed(saleOrderLine.getQuantityServed());
         cmdSaleOrderLine.setCmdSaleOrderLineSerialNo(saleOrderLine.getSerialNo());
         cmdSaleOrderLine.setCmdSaleOrderLineUpdateDate(saleOrderLine.getUpdateDate());
@@ -187,6 +203,8 @@ public class SaleOrderLineMapper {
             cmdSaleOrderLine.setWrhWarehouse(WarehouseMapper.toEntity(saleOrderLine.getWarehouse(), true));
             cmdSaleOrderLine.setServiceParent(toEntity(saleOrderLine.getParentService(), true));
             cmdSaleOrderLine.setServices(toEntities(saleOrderLine.getServices(), false));
+            cmdSaleOrderLine.setPdtProductPack(ProductPackMapper.toEntity(saleOrderLine.getProductPack(), true));
+
             oneToMany(cmdSaleOrderLine);
         }
         return cmdSaleOrderLine;
