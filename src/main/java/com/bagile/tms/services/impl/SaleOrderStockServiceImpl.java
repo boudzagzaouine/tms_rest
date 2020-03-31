@@ -1,7 +1,6 @@
 package com.bagile.tms.services.impl;
 
 import com.bagile.tms.dto.SaleOrderStock;
-import com.bagile.tms.dto.SaleOrderLine;
 import com.bagile.tms.entities.CmdSaleOrderStock;
 import com.bagile.tms.exceptions.*;
 import com.bagile.tms.mapper.SaleOrderStockMapper;
@@ -14,8 +13,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
-import java.util.Collection;
 import java.util.List;
 
 

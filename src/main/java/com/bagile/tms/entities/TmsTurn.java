@@ -1,10 +1,5 @@
 package com.bagile.tms.entities;
 
-import com.bagile.tms.dto.Driver;
-import com.bagile.tms.dto.SaleOrderStock;
-import com.bagile.tms.dto.Transport;
-import com.bagile.tms.dto.Vehicle;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -19,7 +14,7 @@ public class TmsTurn extends EmsEntity {
     private TmsVehicle tmsVehicle;
     private TrpTransport trpTransport;
     private Date dateDelivery ;
-    private Set<CmdSaleOrderStock> cmdSaleOrderStocks = new HashSet<>();
+    private Set<TmsTurnLine> tmsTurnLines = new HashSet<>();
 
 
 
@@ -76,16 +71,12 @@ public class TmsTurn extends EmsEntity {
         this.dateDelivery = dateDelivery;
     }
 
-    @OneToMany
-    @JoinTable(
-            name = "tms_tour_sale_order_stock",
-            joinColumns = @JoinColumn(name = "tms_tour_id",referencedColumnName="tms_turnid"),
-            inverseJoinColumns = @JoinColumn(name = "tms_sale_order_stock_id",referencedColumnName="cmd_saleorderstockid"))
-    public Set<CmdSaleOrderStock> getCmdSaleOrderStocks() {
-        return cmdSaleOrderStocks;
+    @OneToMany(mappedBy = "tmsTurn")
+    public Set<TmsTurnLine> getTmsTurnLines() {
+        return tmsTurnLines;
     }
 
-    public void setCmdSaleOrderStocks(Set<CmdSaleOrderStock> cmdSaleOrderStocks) {
-        this.cmdSaleOrderStocks = cmdSaleOrderStocks;
+    public void setTmsTurnLines(Set<TmsTurnLine> tmsTurnLines) {
+        this.tmsTurnLines = tmsTurnLines;
     }
 }

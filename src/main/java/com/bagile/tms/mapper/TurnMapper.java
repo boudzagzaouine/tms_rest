@@ -1,7 +1,6 @@
 package com.bagile.tms.mapper;
 
 import com.bagile.tms.dto.Turn;
-import com.bagile.tms.dto.Vehicle;
 import com.bagile.tms.entities.TmsTurn;
 
 import java.util.*;
@@ -47,10 +46,11 @@ public class TurnMapper {
         
         if (!lazy) {
             //tmsTurn.setTmsCommissions(CommissionTurnMapper.toEntities(turn.getCommissions(), false));
-            tmsTurn.setCmdSaleOrderStocks(SaleOrderStockMapper.toEntities(turn.getSaleOrderStocks(), false));
+            tmsTurn.setTmsTurnLines(TurnLineMapper.toEntities(turn.getTurnLines(), false));
             tmsTurn.setTmsDrivers(DriverMapper.toEntities(turn.getDrivers(), false));
             tmsTurn.setTrpTransport(TransportMapper.toEntity(turn.getTransport(), false));
             tmsTurn.setTmsVehicle(VehicleMapper.toEntity(turn.getVehicle(), false));
+            tmsTurn.setTmsTurnLines(TurnLineMapper.toEntities(turn.getTurnLines(), false));
 
 
 
@@ -78,9 +78,10 @@ public class TurnMapper {
         if (!lazy) {
          //   turn.setCommissions(CommissionTurnMapper.toDtos(tmsTurn.getTmsCommissions (), false));
             turn.setDrivers(DriverMapper.toDtos(tmsTurn.getTmsDrivers(), false));
-           turn.setSaleOrderStocks(SaleOrderStockMapper.toDtos(tmsTurn.getCmdSaleOrderStocks(), false));
+           turn.setTurnLines(TurnLineMapper.toDtos(tmsTurn.getTmsTurnLines(), false));
             turn.setTransport(TransportMapper.toDto(tmsTurn.getTrpTransport(), false));
             turn.setVehicle(VehicleMapper.toDto(tmsTurn.getTmsVehicle(), false));
+            turn.setTurnLines(TurnLineMapper.toDtos(tmsTurn.getTmsTurnLines(), false));
 
         }
         return turn;
