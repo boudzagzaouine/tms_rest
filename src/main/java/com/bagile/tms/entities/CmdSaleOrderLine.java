@@ -119,6 +119,9 @@ public class CmdSaleOrderLine extends EmsDto implements Serializable  {
     private Set<CmdSaleOrderLine> services;
     private PdtProductPack pdtProductPack;
     private Boolean cmdSaleOrderLineIsPromotion;
+
+    @Transient
+    private BigDecimal cmdSaleOrderLineRemainingQuantity;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_cmd_saleorderline", allocationSize = 1)
@@ -579,6 +582,24 @@ public class CmdSaleOrderLine extends EmsDto implements Serializable  {
 
     public void setCmdSaleOrderLineIsPromotion(Boolean cmdSaleOrderLineIsPromotion) {
         this.cmdSaleOrderLineIsPromotion = cmdSaleOrderLineIsPromotion;
+    }
+
+    public BigDecimal getCmdSaleOrderLineRemainingQuantity() {
+        return cmdSaleOrderLineRemainingQuantity;
+    }
+
+    public void setCmdSaleOrderLineRemainingQuantity(BigDecimal cmdSaleOrderLineRemainingQuantity) {
+        this.cmdSaleOrderLineRemainingQuantity = cmdSaleOrderLineRemainingQuantity;
+    }
+
+    @PostLoad
+    void postLoad() {
+        if (cmdSaleOrderLineQuantity != null){
+            if (cmdSaleOrderLineQuantityServed == null) {
+                cmdSaleOrderLineQuantityServed = BigDecimal.ZERO;
+            }
+        cmdSaleOrderLineRemainingQuantity = cmdSaleOrderLineQuantity.subtract (cmdSaleOrderLineQuantityServed);
+        }
     }
 }
 
