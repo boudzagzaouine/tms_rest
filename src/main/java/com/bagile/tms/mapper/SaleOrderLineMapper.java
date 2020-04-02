@@ -101,6 +101,7 @@ public class SaleOrderLineMapper {
         saleOrderLine.setQuantityDeliver(cmdSaleOrderLine.getCmdSaleOrderLineDeliver());
 
         saleOrderLine.setQuantityServed(cmdSaleOrderLine.getCmdSaleOrderLineQuantityServed());
+        saleOrderLine.setQantityToLoad (cmdSaleOrderLine.getCmdSaleOrderLineQuantityToLoad ());
         saleOrderLine.setRemainingQuantity (cmdSaleOrderLine.getCmdSaleOrderLineRemainingQuantity ());
         saleOrderLine.setSerialNo(cmdSaleOrderLine.getCmdSaleOrderLineSerialNo());
         saleOrderLine.setUpdateDate(cmdSaleOrderLine.getCmdSaleOrderLineUpdateDate());
@@ -168,6 +169,7 @@ public class SaleOrderLineMapper {
 
         cmdSaleOrderLine.setCmdSaleOrderLineQuantityServed(saleOrderLine.getQuantityServed());
         cmdSaleOrderLine.setCmdSaleOrderLineRemainingQuantity (saleOrderLine.getRemainingQuantity ());
+        cmdSaleOrderLine.setCmdSaleOrderLineQuantityToLoad (saleOrderLine.getQantityToLoad ());
         cmdSaleOrderLine.setCmdSaleOrderLineSerialNo(saleOrderLine.getSerialNo());
         cmdSaleOrderLine.setCmdSaleOrderLineUpdateDate(saleOrderLine.getUpdateDate());
         cmdSaleOrderLine.setCmdSaleOrderLineVariable1(saleOrderLine.getVariable1());

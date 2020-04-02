@@ -122,6 +122,9 @@ public class CmdSaleOrderLine extends EmsDto implements Serializable  {
 
     @Transient
     private BigDecimal cmdSaleOrderLineRemainingQuantity;
+    @Transient
+    private BigDecimal cmdSaleOrderLineQuantityToLoad;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_cmd_saleorderline", allocationSize = 1)
@@ -590,6 +593,14 @@ public class CmdSaleOrderLine extends EmsDto implements Serializable  {
 
     public void setCmdSaleOrderLineRemainingQuantity(BigDecimal cmdSaleOrderLineRemainingQuantity) {
         this.cmdSaleOrderLineRemainingQuantity = cmdSaleOrderLineRemainingQuantity;
+    }
+
+    public BigDecimal getCmdSaleOrderLineQuantityToLoad() {
+        return cmdSaleOrderLineQuantityToLoad;
+    }
+
+    public void setCmdSaleOrderLineQuantityToLoad(BigDecimal cmdSaleOrderLineQuantityToLoad) {
+        this.cmdSaleOrderLineQuantityToLoad = cmdSaleOrderLineQuantityToLoad;
     }
 
     @PostLoad

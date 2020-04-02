@@ -44,6 +44,7 @@ public class SaleOrderLine  extends EmsDto implements Serializable {
     private BigDecimal quantityPrepare;
     private BigDecimal quantityDeliver;
     private BigDecimal remainingQuantity;
+    private BigDecimal qantityToLoad;
     private Uom uom;
 
     private String comment;
@@ -456,5 +457,13 @@ public class SaleOrderLine  extends EmsDto implements Serializable {
 
     public void setRemainingQuantity(BigDecimal remainingQuantity) {
         this.remainingQuantity = remainingQuantity;
+    }
+
+    public BigDecimal getQantityToLoad() {
+        return qantityToLoad;
+    }
+
+    public void setQantityToLoad(BigDecimal qantityToLoad) {
+        this.qantityToLoad = qantityToLoad;
     }
 }
