@@ -107,21 +107,6 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account loadWmsAccount(Account account) {
-        return null;
-    }
-
-    @Override
-    public List<Account> exportWmsAccount(List<Account> account) {
-        return null;
-    }
-
-    @Override
-    public Account login(String code, String password) {
-        return null;
-    }
-
-    @Override
     public String getNextVal() {
         return null;
     }

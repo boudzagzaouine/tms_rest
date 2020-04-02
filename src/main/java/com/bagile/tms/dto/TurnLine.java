@@ -13,7 +13,7 @@ public class TurnLine extends EmsDto implements Serializable {
     private static final long serialVersionUID = -8747248049547537558L;
 
     private long id;
-    private Owner owner;
+   // private Owner owner;
 
     private String description;
     private Product product;
@@ -26,6 +26,8 @@ public class TurnLine extends EmsDto implements Serializable {
    private ProductPack productPack;
 private SaleOrderLine saleOrderLine;
 private Turn turn;
+    private SaleOrder saleOrder;
+
     public long getId() {
         return this.id;
     }
@@ -34,12 +36,20 @@ private Turn turn;
         this.id = id;
     }
 
-    public Owner getOwner() {
+   /* public Owner getOwner() {
         return owner;
     }
 
     public void setOwner(Owner owner) {
         this.owner = owner;
+    }*/
+
+    public SaleOrder getSaleOrder() {
+        return saleOrder;
+    }
+
+    public void setSaleOrder(SaleOrder saleOrder) {
+        this.saleOrder = saleOrder;
     }
 
     public String getDescription() {

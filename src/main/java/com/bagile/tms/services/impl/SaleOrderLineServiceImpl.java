@@ -1,6 +1,7 @@
 package com.bagile.tms.services.impl;
 
 import com.bagile.tms.dto.SaleOrderLine;
+import com.bagile.tms.dto.TurnLine;
 import com.bagile.tms.entities.CmdSaleOrder;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -29,6 +31,17 @@ public class SaleOrderLineServiceImpl implements SaleOrderLineService {
     @Override
     public SaleOrderLine save(SaleOrderLine saleOrderLine) {
         return SaleOrderLineMapper.toDto(saleOrderLineRepository.saveAndFlush(SaleOrderLineMapper.toEntity(saleOrderLine, false)), false);
+    }
+
+    @Override
+    public List<SaleOrderLine> updateAll(List<SaleOrderLine> saleOrderLines) {
+        List<SaleOrderLine> saleOrderLines1= new ArrayList<>();
+        for (SaleOrderLine orderline : saleOrderLines)
+        {
+            saleOrderLines1.add(save(orderline));
+        }
+
+        return saleOrderLines1;
     }
 
     @Override

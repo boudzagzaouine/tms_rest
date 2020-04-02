@@ -23,7 +23,7 @@ public class TurnLineMapper {
         map = new HashMap<>();
 
         map.put("id", "tmsTurnLineeId");
-        map.put("owner", "ownOwner");
+       // map.put("owner", "ownOwner");
         map.put("product", "pdtProduct");
         map.put("description", "tmsTurnLineDescription");
         map.put("blockType", "pdtProduct");
@@ -36,6 +36,7 @@ public class TurnLineMapper {
         map.put("productPack", "pdtProductPack");
         map.put("turnLine", "tmsTurnLine");
         map.put("turn", "tmsTurn");
+        map.put("saleOrder", "cmdSaleOrder");
 
 
 
@@ -68,12 +69,13 @@ public class TurnLineMapper {
         if (!lazy) {
 
             turnLine.setVat(VatMapper.toDto(tmsTurnLine.getPrmVat(), true));
-            turnLine.setOwner(OwnerMapper.toDto(tmsTurnLine.getOwnOwner(), true));
+          //  turnLine.setOwner(OwnerMapper.toDto(tmsTurnLine.getOwnOwner(), true));
             turnLine.setProduct(ProductMapper.toDto(tmsTurnLine.getPdtProduct(), true));
             turnLine.setUom(UomMapper.toDto(tmsTurnLine.getPdtUom(), true));
             turnLine.setProductPack(ProductPackMapper.toDto(tmsTurnLine.getPdtProductPack(), false));
             turnLine.setSaleOrderLine(SaleOrderLineMapper.toDto(tmsTurnLine.getCmdSaleOrderLine(), false));
             turnLine.setSaleOrderLine(SaleOrderLineMapper.toDto(tmsTurnLine.getCmdSaleOrderLine(), false));
+            turnLine.setSaleOrder(SaleOrderMapper.toDto(tmsTurnLine.getCmdSaleOrder(), false));
 
         }
         return turnLine;
@@ -95,12 +97,13 @@ public class TurnLineMapper {
         tmsTurnLine.setCreatedBy(turnLine.getCreatedBy());
         if (!lazy) {
             tmsTurnLine.setPrmVat(VatMapper.toEntity(turnLine.getVat(), true));
-            tmsTurnLine.setOwnOwner(OwnerMapper.toEntity(turnLine.getOwner(), true));
+            //tmsTurnLine.setOwnOwner(OwnerMapper.toEntity(turnLine.getOwner(), true));
             tmsTurnLine.setPdtProduct(ProductMapper.toEntity(turnLine.getProduct(), true));
             tmsTurnLine.setPdtUom(UomMapper.toEntity(turnLine.getUom(), true));
             tmsTurnLine.setPdtProductPack(ProductPackMapper.toEntity(turnLine.getProductPack(), true));
             tmsTurnLine.setCmdSaleOrderLine(SaleOrderLineMapper.toEntity(turnLine.getSaleOrderLine(), true));
             tmsTurnLine.setTmsTurn(TurnMapper.toEntity(turnLine.getTurn(), true));
+            tmsTurnLine.setCmdSaleOrder(SaleOrderMapper.toEntity(turnLine.getSaleOrder(), true));
 
         }
         return tmsTurnLine;

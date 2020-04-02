@@ -11,6 +11,8 @@ import java.util.List;
 public interface TurnLineService {
     TurnLine save(TurnLine turnLine);
 
+    List<TurnLine> saveAll(List<TurnLine> turnLines);
+
 
     Long size();
 

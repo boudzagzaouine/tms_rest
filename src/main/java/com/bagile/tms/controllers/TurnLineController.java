@@ -78,22 +78,27 @@ public class TurnLineController {
     //@PreAuthorize("hasRole('BADGE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public TurnLine add(@RequestBody TurnLine saleOrder) {
-        return turnLineService.save(saleOrder);
+    public TurnLine add(@RequestBody TurnLine turnLine) {
+        return turnLineService.save(turnLine);
+    }
+    @RequestMapping(value = "/saveALL", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<TurnLine> addAll(@RequestBody List<TurnLine> turnlines) {
+        return  turnLineService.saveAll(turnlines);
     }
 
     //@PreAuthorize("hasRole('BADGE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public TurnLine set(@RequestBody TurnLine saleOrder) {
-        return turnLineService.save(saleOrder);
+    public TurnLine set(@RequestBody TurnLine turnLine) {
+        return turnLineService.save(turnLine);
     }
 
     //@PreAuthorize("hasRole('BADGE_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@RequestBody TurnLine saleOrder) {
-        turnLineService.delete(saleOrder);
+    public void delete(@RequestBody TurnLine turnLine) {
+        turnLineService.delete(turnLine);
     }
     //@PreAuthorize("hasRole('BADGE_DELETE')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)

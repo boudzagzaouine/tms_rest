@@ -6,7 +6,6 @@ package com.bagile.tms.mapper;
 
 import com.bagile.tms.dto.SaleOrder;
 import com.bagile.tms.entities.CmdSaleOrder;
-import com.bagile.tms.util.EmsDate;
 
 import java.util.*;
 
@@ -96,7 +95,7 @@ public class SaleOrderMapper {
         saleOrder.setLoadDate(cmdSaleOrder.getCmdSaleOrderLoadDate());
         saleOrder.setRemarks(cmdSaleOrder.getCmdSaleOrderRemarks());
         saleOrder.setTransportContact(cmdSaleOrder.getCmdSaleOrderTransportContact());
-        saleOrder.setUpdateDate(cmdSaleOrder.getCmdSaleOrderUpdateDate());
+        saleOrder.setUpdateDate(cmdSaleOrder.getUpdateDate());
         saleOrder.setVariable1(cmdSaleOrder.getCmdSaleOrderVariable1());
         saleOrder.setVariable2(cmdSaleOrder.getCmdSaleOrderVariable2());
         saleOrder.setVariable3(cmdSaleOrder.getCmdSaleOrderVariable3());
@@ -159,7 +158,7 @@ public class SaleOrderMapper {
         cmdSaleOrder.setCmdSaleOrderLoadDate(saleOrder.getLoadDate());
         cmdSaleOrder.setCmdSaleOrderRemarks(saleOrder.getRemarks());
         cmdSaleOrder.setCmdSaleOrderTransportContact(saleOrder.getTransportContact());
-        cmdSaleOrder.setCmdSaleOrderUpdateDate(saleOrder.getUpdateDate());
+        cmdSaleOrder.setUpdateDate(saleOrder.getUpdateDate());
         cmdSaleOrder.setCmdSaleOrderVariable1(saleOrder.getVariable1());
         cmdSaleOrder.setCmdSaleOrderVariable2(saleOrder.getVariable2());
         cmdSaleOrder.setCmdSaleOrderVariable3(saleOrder.getVariable3());

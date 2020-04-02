@@ -68,7 +68,7 @@ public class CmdSaleOrder extends EmsDto implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date cmdSaleOrderCreationDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date cmdSaleOrderUpdateDate;
+    private Date updateDate;
     @Size(max = 255)
     private String cmdSaleOrderVariable1;
     @Size(max = 255)
@@ -347,12 +347,12 @@ public class CmdSaleOrder extends EmsDto implements Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "cmd_saleorderupdatedate")
-    public Date getCmdSaleOrderUpdateDate() {
-        return this.cmdSaleOrderUpdateDate;
+    public Date getUpdateDate() {
+        return this.updateDate;
     }
 
-    public void setCmdSaleOrderUpdateDate(Date cmdSaleOrderUpdateDate) {
-        this.cmdSaleOrderUpdateDate = cmdSaleOrderUpdateDate;
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 
     @Column(name = "cmd_saleordervariable1")

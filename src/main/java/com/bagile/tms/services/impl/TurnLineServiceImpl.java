@@ -17,6 +17,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -30,8 +31,21 @@ public class TurnLineServiceImpl implements TurnLineService {
     }
 
     @Override
-    public TurnLine save(TurnLine saleOrderOrder) {
-        return TurnLineMapper.toDto(turnLineRepository.saveAndFlush(TurnLineMapper.toEntity(saleOrderOrder, false)), false);
+    public TurnLine save(TurnLine turnLine) {
+        return TurnLineMapper.toDto(turnLineRepository.saveAndFlush(TurnLineMapper.toEntity(turnLine, false)), false);
+    }
+
+    @Override
+    public List<TurnLine> saveAll(List<TurnLine> turnLines) {
+
+          List<TurnLine> turnLines1 = new ArrayList<>();
+         for (TurnLine turnLine : turnLines)
+        {
+            turnLines1.add(save(turnLine));
+        }
+
+         return turnLines1;
+
     }
 
     @Override
@@ -86,8 +100,8 @@ public class TurnLineServiceImpl implements TurnLineService {
     }
 
     @Override
-    public void delete(TurnLine saleOrderOrder) {
-        turnLineRepository.delete(TurnLineMapper.toEntity(saleOrderOrder, false));
+    public void delete(TurnLine turnLine) {
+        turnLineRepository.delete(TurnLineMapper.toEntity(turnLine, false));
     }
 
     @Override

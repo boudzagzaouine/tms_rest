@@ -15,7 +15,7 @@ public class Turn extends EmsDto implements Serializable {
     private Vehicle  vehicle;
     private Transport transport;
     private Date dateDelivery;
-    private Set<TurnLine> turnLines = new HashSet<>();
+   // private Set<TurnLine> turnLines = new HashSet<>();
 
 
     public Turn() {
@@ -62,13 +62,13 @@ public class Turn extends EmsDto implements Serializable {
         this.dateDelivery = dateDelivery;
     }
 
-    public Set<TurnLine> getTurnLines() {
+    /*public Set<TurnLine> getTurnLines() {
         return turnLines;
     }
 
     public void setTurnLines(Set<TurnLine> turnLines) {
         this.turnLines = turnLines;
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {

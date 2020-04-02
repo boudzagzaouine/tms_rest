@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface SaleOrderLineService {
     SaleOrderLine save(SaleOrderLine saleOrderLine);
+    List<SaleOrderLine> updateAll(List<SaleOrderLine> saleOrderLines);
 
 
     Long size();

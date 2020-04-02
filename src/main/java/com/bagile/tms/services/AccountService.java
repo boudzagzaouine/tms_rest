@@ -1,6 +1,7 @@
 package com.bagile.tms.services;
 
 import com.bagile.tms.dto.Account;
+import com.bagile.tms.dto.Badge;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
@@ -31,15 +32,9 @@ public interface AccountService {
 
     Account findOne(String search) throws AttributesNotFound, ErrorType;
 
-    List<Account> findAll() throws AttributesNotFound, ErrorType;
+    List<Account> findAll() ;
 
-    List<Account> findAll(int page, int size) throws AttributesNotFound, ErrorType;
-
-    Account loadWmsAccount(Account account);
-
-    List<Account> exportWmsAccount(List<Account> account);
-
-    Account login(String code, String password);
+    List<Account> findAll(int page, int size) ;
 
     String getNextVal();
 }

@@ -18,7 +18,7 @@ public class TmsTurnLine extends EmsDto implements Serializable  {
 
 
     private long tmsTurnLineeId;
-    private OwnOwner ownOwner;
+   // private OwnOwner ownOwner;
     private String tmsTurnLineDescription;
     private PdtProduct pdtProduct;
     private PdtUom pdtUom;
@@ -30,6 +30,7 @@ public class TmsTurnLine extends EmsDto implements Serializable  {
     private PdtProductPack pdtProductPack;
     private CmdSaleOrderLine cmdSaleOrderLine;
     private TmsTurn tmsTurn ;
+    private CmdSaleOrder cmdSaleOrder;
 
 
     @Id
@@ -45,7 +46,7 @@ public class TmsTurnLine extends EmsDto implements Serializable  {
     }
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+  /*  @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_turnlineownerid", nullable = false)
     public OwnOwner getOwnOwner() {
         return this.ownOwner;
@@ -54,7 +55,7 @@ public class TmsTurnLine extends EmsDto implements Serializable  {
     public void setOwnOwner(OwnOwner ownOwner) {
         this.ownOwner = ownOwner;
     }
-
+*/
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_turnlineproductid", nullable = false)
     public PdtProduct getPdtProduct() {
@@ -163,6 +164,16 @@ public class TmsTurnLine extends EmsDto implements Serializable  {
         this.tmsTurn = tmsTurn;
     }
 
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cmd_turnlinesaleorderid")
+    public CmdSaleOrder getCmdSaleOrder() {
+        return this.cmdSaleOrder;
+    }
+
+    public void setCmdSaleOrder(CmdSaleOrder cmdSaleOrder) {
+        this.cmdSaleOrder = cmdSaleOrder;
+    }
 
 }
 

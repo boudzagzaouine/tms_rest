@@ -89,6 +89,12 @@ public class SaleOrderLineController {
         return saleOrderLineService.save(saleOrderLine);
     }
 
+    @RequestMapping(value = "/saveALL", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<SaleOrderLine> setAll(@RequestBody List<SaleOrderLine> saleOrderLines) {
+        return saleOrderLineService.updateAll(saleOrderLines);
+    }
+
     //@PreAuthorize("hasRole('BADGE_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
