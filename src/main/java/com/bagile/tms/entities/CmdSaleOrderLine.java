@@ -594,11 +594,23 @@ public class CmdSaleOrderLine extends EmsDto implements Serializable  {
 
     @PostLoad
     void postLoad() {
-        if (cmdSaleOrderLineQuantity != null){
+        // 2: EnAttente
+        // 5: EnCours
+        // 9: Preparee
+        BigDecimal quantity = BigDecimal.ZERO;
+
+        if (prmOrderStatus.getPrmOrderStatusId ( ) == 5L) {
+            quantity = cmdSaleOrderLineReserved;
+        } else if (prmOrderStatus.getPrmOrderStatusId ( ) == 9L) {
+            quantity = cmdSaleOrderLinePrepare;
+        } else {
+            quantity = cmdSaleOrderLineQuantity;
+        }
+        if (quantity != null){
             if (cmdSaleOrderLineQuantityServed == null) {
                 cmdSaleOrderLineQuantityServed = BigDecimal.ZERO;
             }
-        cmdSaleOrderLineRemainingQuantity = cmdSaleOrderLineQuantity.subtract (cmdSaleOrderLineQuantityServed);
+            cmdSaleOrderLineRemainingQuantity = quantity.subtract (cmdSaleOrderLineQuantityServed);
         }
     }
 }
