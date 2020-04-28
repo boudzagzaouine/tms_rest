@@ -4,11 +4,11 @@
 package com.bagile.tms.util;
 
 
-import com.bagile.tms.exceptions.ErrorType;
-import com.querydsl.core.types.dsl.BooleanExpression;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.bagile.tms.exceptions.ErrorType;
+import com.querydsl.core.types.dsl.BooleanExpression;
 
 /**
  * @author aelguezzar
@@ -75,5 +75,5 @@ public class PredicatesBuilder {
 		}
 		return result;
 	}
-
+	
 }

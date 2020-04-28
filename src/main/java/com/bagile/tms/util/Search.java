@@ -4,6 +4,7 @@ import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.querydsl.core.types.dsl.BooleanExpression;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
@@ -17,8 +18,15 @@ import java.util.regex.Pattern;
  * Created by adadi on 12/23/2015.
  */
 public class Search {
+
     private Search() {
 
+    }
+    
+    public static Field getFieldWithType(String className, String field) throws ClassNotFoundException, NoSuchFieldException, SecurityException {
+    	Class<?> clazz = Class.forName("com.bagile.tms.dto." + className);
+    	
+    	return clazz.getDeclaredField(field);
     }
 
     public static String getField(String name, String search) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchFieldException {
@@ -112,30 +120,92 @@ public class Search {
     }
 
     public static BooleanExpression expression(String search, Class<?> entity) throws AttributesNotFound, ErrorType {
-        PredicatesBuilder builder = new PredicatesBuilder();
+		BooleanExpression booleanExpression = null;
+		Index index = (new Search()).new Index(0);
         if (null == search) {
             throw new AttributesNotFound("");
         }
-        Pattern pattern = Pattern.compile("([a-z]\\w+(\\.[a-z]\\w+)*)\\s*([:~<>^])\\s*(((?!,).)*)\\s*,\\s*");
-        Matcher matcher = pattern.matcher(search + ",");
-        boolean patternTrue = false;
-        while (matcher.find()) {
-            try {
 
-                String field = getField(entity.getSimpleName().substring(3), matcher.group(1));
-                if (field == null || field == "") {
-                    throw new Exception("Property : " + matcher.group(1) + "Not founf in Type " + entity.getSimpleName());
-                }
-                builder.with(field
-                        , matcher.group(3), matcher.group(4));
-            } catch (Exception e) {
-                throw new AttributesNotFound(search);
-            }
-            patternTrue = true;
-        }
-        if (!patternTrue) {
-            throw new AttributesNotFound(search);
-        }
-        return builder.buildAND(entity);
+        return analyzePattern(entity, search + "|", booleanExpression, index);
     }
+    
+	static BooleanExpression analyzePattern(Class<?> entityClass, String pattern, BooleanExpression exp, Index index) throws AttributesNotFound, ErrorType {
+
+		char c;
+		c = pattern.charAt(index.getValue());
+		switch (c) {
+		case ' ':
+			break;
+		case '(':
+			index.incValue(1);
+			exp = analyzePattern(entityClass, pattern, exp, index);
+			break;
+		case ')':
+			index.incValue(1);
+			return exp;
+		case ',':
+			index.incValue(1);
+			return exp.and(analyzePattern(entityClass, pattern, exp, index));
+		case '|':
+			index.incValue(1);
+			return exp.or(analyzePattern(entityClass, pattern, exp, index));
+		default:
+			
+		}
+		if(c != '(')
+			exp = new CriteriaPredicate(getCriteria(entityClass, pattern, index)).getPredicate(entityClass);
+
+		if (pattern.length() <= index.getValue() + 1)
+			return exp;
+
+		return analyzePattern(entityClass, pattern, exp, index);
+	}
+
+	private static SearchCriteria getCriteria(Class<?> entityClass, String simpleQuery, Index index) throws AttributesNotFound {
+		Pattern pattern0 = Pattern.compile("([a-z]\\w+(\\.[a-z]\\w+)*)([:~<>^])(((?!(,|\\||\\(|\\))).)*)[,|\\||\\(|\\)]");
+		Matcher matcher = pattern0.matcher(simpleQuery.substring(index.getValue()));
+		matcher.find();
+
+		if(simpleQuery.length() <= index.getValue() + 1)
+			return new SearchCriteria();
+
+		index.incValue(matcher.group(0).length() - 1);
+		String field;
+		try {
+	        field = getField(entityClass.getSimpleName().substring(3), matcher.group(1));
+	        if (field == null || field == "") {
+	            throw new Exception("Property : " + matcher.group(1) + " Not found in Type " + entityClass.getSimpleName());
+	        }
+	    } catch (Exception e) {
+	        throw new AttributesNotFound(simpleQuery);
+	    }
+
+		
+		return new SearchCriteria(field, matcher.group(3), matcher.group(4));
+	}
+
+	private class Index {
+		Integer value;
+
+		
+		
+		public Index(Integer value) {
+			super();
+			this.value = 0;
+		}
+
+		public Integer getValue() {
+			return value;
+		}
+
+		public void setValue(Integer value) {
+			this.value = value;
+		}
+		
+		public void incValue(Integer newValue) {
+			this.value = this.value + newValue;
+		}
+		
+	}
+
 }
