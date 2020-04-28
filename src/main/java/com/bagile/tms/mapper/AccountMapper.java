@@ -91,6 +91,7 @@ public class AccountMapper {
         account.setCreatedBy(cmdAccount.getUpdatedBy());
         account.setMaxCredit(cmdAccount.getCmdAccountMaxCredit());
         account.setWholesale(cmdAccount.getCmdAccountWholesale());
+
         if (!lazy) {
             account.setCompany(CompanyMapper.toDto(cmdAccount.getCmdCompany(), false));
             account.setOwner(OwnerMapper.toDto(cmdAccount.getOwnOwner(), true));

@@ -1,124 +1,107 @@
 package com.bagile.tms.controllers;
 
-import com.bagile.tms.dto.InsuranceTerm;
-import com.bagile.tms.dto.TurnLine;
+import com.bagile.tms.dto.User;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.services.TermInsuranceService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
+import com.bagile.tms.services.UserService;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/insuranceTerms/")
-public class InsuranceTermController {
+@RequestMapping(value="/users")
+public class UserController {
+    private final UserService userService;
 
-    @Autowired
-    private TermInsuranceService terminsuranceService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
-    public List<InsuranceTerm> getTermInsurances() throws AttributesNotFound, ErrorType {
-        return terminsuranceService.findAll ( );
+    public List<User> getUsers() {
+        return userService.findAll();
     }
-
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
-    public List<InsuranceTerm> getTermInsurances(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Sort sort = Sort.by (Sort.Direction.DESC, "updateDate");
-        Pageable pageable = PageRequest.of (page, size, sort);
-        return terminsuranceService.findAll (pageable);
-    }
+    public List<User> getUsers(@RequestParam int page, @RequestParam int size) {
+        return userService.findAll(page, size);
 
+    }
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
     public Long size() {
-        return terminsuranceService.size ( );
+        return userService.size();
     }
 
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
-        return terminsuranceService.size (search);
+        return userService.size(search);
     }
 
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
-        return terminsuranceService.isExist (id);
+        return userService.isExist(id);
     }
 
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
-    public InsuranceTerm getTermInsurance(@PathVariable("id") Long id) throws IdNotFound {
-        return terminsuranceService.findById (id);
+    public User getUser(@PathVariable("id") Long id) throws IdNotFound {
+        return userService.findById(id);
     }
 
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
-    public List<InsuranceTerm> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
-        return terminsuranceService.find (search);
+    public List<User> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
+        return userService.find(search);
     }
 
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
-    public List<InsuranceTerm> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        Pageable pageable = PageRequest.of (page, size);
-        return terminsuranceService.find (search, pageable);
+    public List<User> search(@RequestParam(value = "search") String search, @RequestParam Pageable pageable) throws AttributesNotFound, ErrorType {
+        return userService.find(search, pageable);
     }
 
     //@PreAuthorize("hasRole('BADGE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public InsuranceTerm add(@RequestBody InsuranceTerm insuranceTerm) {
-        return terminsuranceService.save (insuranceTerm);
+    public User add(@RequestBody User user) {
+        return userService.save(user);
     }
 
     //@PreAuthorize("hasRole('BADGE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public InsuranceTerm set(@RequestBody InsuranceTerm insuranceTerm) {
-        return terminsuranceService.save (insuranceTerm);
-    }
-
-    //@PreAuthorize("hasRole('BADGE_DELETE')")
-    @RequestMapping(value = "/deleteAll", method = RequestMethod.DELETE)
-    @ResponseBody
-    public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
-        terminsuranceService.deleteAll (Arrays.asList(ids));
+    public User set(@RequestBody User user) {
+        return userService.save(user);
     }
 
     //@PreAuthorize("hasRole('BADGE_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@RequestBody InsuranceTerm insuranceTerm) {
-        terminsuranceService.delete (insuranceTerm);
+    public void delete(@RequestBody User user) {
+        userService.delete(user);
     }
-
 
     //@PreAuthorize("hasRole('BADGE_DELETE')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@PathVariable Long id) {
-        terminsuranceService.delete (id);
+        userService.delete(id);
     }
 
 }

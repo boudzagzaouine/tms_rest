@@ -44,7 +44,7 @@ public abstract class EmsEntity implements Serializable {
         this.updatedBy = updatedBy;
     }
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Temporal(TemporalType.TIMESTAMP)
     @JoinColumn(name = "creationdate")
     @CreatedDate
@@ -56,7 +56,7 @@ public abstract class EmsEntity implements Serializable {
         this.creationDate = creationDate;
     }
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Temporal(TemporalType.TIMESTAMP)
     @JoinColumn(name = "updateddate")
     @LastModifiedDate

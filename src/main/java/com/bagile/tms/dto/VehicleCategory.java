@@ -20,7 +20,7 @@ public class VehicleCategory extends EmsDto implements Serializable {
     private  BigDecimal emptyWeight;
     private BigDecimal totalWeight;
 
-    private InsuranceType insuranceType;
+    //private InsuranceType insuranceType;
  //   private List<TransportCategoryVehicle> transportCategorieVehicules=new ArrayList<>();
 
     private Set<Vehicle> vehicles = new HashSet<>();
@@ -101,13 +101,13 @@ public class VehicleCategory extends EmsDto implements Serializable {
     }
 
 
-    public InsuranceType getInsuranceType() {
-        return insuranceType;
-    }
-
-    public void setInsuranceType(InsuranceType insuranceType) {
-        this.insuranceType = insuranceType;
-    }
+//    public InsuranceType getInsuranceType() {
+//        return insuranceType;
+//    }
+//
+//    public void setInsuranceType(InsuranceType insuranceType) {
+//        this.insuranceType = insuranceType;
+//    }
 
 
     public Set<Vehicle> getVehicles() {

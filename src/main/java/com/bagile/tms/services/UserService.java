@@ -24,13 +24,13 @@ public interface UserService {
 
     public Long size(String search) throws AttributesNotFound, ErrorType;
 
-    public void delete(Long id) throws IdNotFound;
+    public void delete(Long id) ;
 
     public void delete(User user);
 
-    public List<User> findAll() throws AttributesNotFound, ErrorType;
+    public List<User> findAll();
 
-    public List<User> findAll(Pageable pageable) throws AttributesNotFound, ErrorType;
+    public List<User> findAll(int page, int size) ;
 
     public User findByEmailAndPassowrd(String email, String password);
 }

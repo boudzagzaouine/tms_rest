@@ -6,7 +6,7 @@ import com.bagile.tms.entities.UsrUser;
 import java.util.*;
 
 public class UserMapper {
-    private UserMapper() {
+    public UserMapper() {
     }
 
     private static Map<String, String> map;
@@ -26,6 +26,7 @@ public class UserMapper {
         map.put("comment", "usrUserComment");
         map.put("active", "usrUserIsActive");
         map.put("email", "usrUserEmail");
+        map.put("columns", "userUserColumns");
         map.put("type", "usrUserType");
         map.put("agency", "usrAgency");
         map.put("createdBy", "createdBy");
@@ -57,6 +58,8 @@ public class UserMapper {
         usrUser.setUsrUserTel(user.getTel());
         usrUser.setUsrUserPassport(user.getPassport());
         usrUser.setUsrUserComment(user.getComment());
+        usrUser.setUserUserColumns(user.getColumns());
+
         usrUser.setUsrUserIsActive(user.isActive());
         usrUser.setCreatedBy(user.getCreatedBy());
         usrUser.setUpdatedBy(user.getUpdatedBy());
@@ -85,6 +88,8 @@ public class UserMapper {
         user.setTel(usrUser.getUsrUserTel());
         user.setPassport(usrUser.getUsrUserPassport());
         user.setComment(usrUser.getUsrUserComment());
+        user.setColumns(usrUser.getUserUserColumns());
+
         user.setActive(usrUser.getUsrUserIsActive());
         user.setCreatedBy(usrUser.getCreatedBy());
         user.setUpdatedBy(usrUser.getUpdatedBy());

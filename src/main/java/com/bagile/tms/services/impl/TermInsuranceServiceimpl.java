@@ -1,6 +1,7 @@
 package com.bagile.tms.services.impl;
 
 import com.bagile.tms.dto.InsuranceTerm;
+import com.bagile.tms.dto.TurnLine;
 import com.bagile.tms.entities.TmsInsuranceTerm;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
@@ -16,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -100,6 +102,14 @@ public class TermInsuranceServiceimpl implements TermInsuranceService {
         termInsuranceRepository.delete(InsuranceTermMapper.toEntity(insuranceTerm, false));
 
     }
+
+    @Override
+    public void deleteAll(List<Long> ids) {
+        LOGGER.info("delete Term Insurance");
+        for (Long id : ids) {
+            termInsuranceRepository.deleteById(id);        }
+    }
+
 
     @Override
     public List<InsuranceTerm> findAll() throws AttributesNotFound, ErrorType {

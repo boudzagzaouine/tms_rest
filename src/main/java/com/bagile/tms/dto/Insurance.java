@@ -17,7 +17,7 @@ public class Insurance extends EmsDto{
     private Supplier supplier;
     private Vehicle vehicle;
     private String vehicleCode;
-   private InsuranceType insuranceType;
+    private InsuranceType insuranceType;
    // private List<InsuranceTermLigne> insuranceTermLignes = new ArrayList<>();
 
 
