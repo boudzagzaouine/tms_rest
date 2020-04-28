@@ -14,7 +14,7 @@ public class TmsTurn extends EmsEntity {
     private TmsVehicle tmsVehicle;
     private TrpTransport trpTransport;
     private Date dateDelivery ;
-   // private Set<TmsTurnLine> tmsTurnLines = new HashSet<>();
+    private Set<TmsTurnLine> tmsTurnLines = new HashSet<>();
 
 
 
@@ -71,12 +71,12 @@ public class TmsTurn extends EmsEntity {
         this.dateDelivery = dateDelivery;
     }
 
-  /*  @OneToMany(mappedBy = "tmsTurn")
+    @OneToMany(mappedBy = "tmsTurn")
     public Set<TmsTurnLine> getTmsTurnLines() {
         return tmsTurnLines;
     }
 
     public void setTmsTurnLines(Set<TmsTurnLine> tmsTurnLines) {
         this.tmsTurnLines = tmsTurnLines;
-    }*/
+    }
 }

@@ -2,6 +2,8 @@ package com.bagile.tms.entities;
 
 // Generated 8 mars 2015 01:55:29 by Hibernate Tools 4.3.1
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -11,6 +13,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "rcp_supplier")
+// @SQLDelete(sql = "update schema_tms.rcp_supplier set rcp_supplierisactive = false")
+// @Where(clause = "rcp_supplierisactive = true")
 public class RcpSupplier extends EmsEntity implements java.io.Serializable {
 
     private long rcpSupplierId;

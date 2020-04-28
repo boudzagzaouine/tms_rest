@@ -1,6 +1,7 @@
 package com.bagile.tms.services;
 
 import com.bagile.tms.dto.InsuranceTerm;
+import com.bagile.tms.dto.TurnLine;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
@@ -29,6 +30,7 @@ public interface TermInsuranceService {
     void delete(Long id);
 
     void delete(InsuranceTerm insuranceTerm);
+    void deleteAll (List<Long> ids);
 
     List<InsuranceTerm> findAll() throws AttributesNotFound, ErrorType;
 

@@ -622,6 +622,7 @@ public class CmdSaleOrderLine extends EmsDto implements Serializable  {
                 cmdSaleOrderLineQuantityServed = BigDecimal.ZERO;
             }
             cmdSaleOrderLineRemainingQuantity = quantity.subtract (cmdSaleOrderLineQuantityServed);
+            cmdSaleOrderLineQuantityToLoad = cmdSaleOrderLineRemainingQuantity;
         }
     }
 }

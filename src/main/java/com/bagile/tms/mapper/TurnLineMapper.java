@@ -3,6 +3,7 @@
  */
 package com.bagile.tms.mapper;
 
+import com.bagile.tms.dto.Turn;
 import com.bagile.tms.dto.TurnLine;
 import com.bagile.tms.entities.TmsTurnLine;
 import com.bagile.tms.util.EmsDate;
@@ -76,6 +77,8 @@ public class TurnLineMapper {
             turnLine.setSaleOrderLine(SaleOrderLineMapper.toDto(tmsTurnLine.getCmdSaleOrderLine(), false));
             turnLine.setSaleOrderLine(SaleOrderLineMapper.toDto(tmsTurnLine.getCmdSaleOrderLine(), false));
             turnLine.setSaleOrder(SaleOrderMapper.toDto(tmsTurnLine.getCmdSaleOrder(), false));
+            turnLine.setTurn(TurnMapper.toDto(tmsTurnLine.getTmsTurn(), false));
+
 
         }
         return turnLine;
@@ -104,6 +107,7 @@ public class TurnLineMapper {
             tmsTurnLine.setCmdSaleOrderLine(SaleOrderLineMapper.toEntity(turnLine.getSaleOrderLine(), true));
             tmsTurnLine.setTmsTurn(TurnMapper.toEntity(turnLine.getTurn(), true));
             tmsTurnLine.setCmdSaleOrder(SaleOrderMapper.toEntity(turnLine.getSaleOrder(), true));
+            tmsTurnLine.setTmsTurn(TurnMapper.toEntity(turnLine.getTurn(), true));
 
         }
         return tmsTurnLine;
@@ -120,7 +124,7 @@ public class TurnLineMapper {
         return turnLines;
     }
 
-    public static List<TurnLine> toDtos(Iterable<TmsTurnLine> tmsTurnLines, boolean lazy) {
+    public static List<TurnLine> toDtos(Iterable< ? extends TmsTurnLine> tmsTurnLines, boolean lazy) {
         if (null == tmsTurnLines) {
             return null;
         }
@@ -132,7 +136,7 @@ public class TurnLineMapper {
     }
 
 
-    public static Set<TmsTurnLine> toEntities(Set<TurnLine> turnLines, boolean lazy) {
+    public static Set<TmsTurnLine> toEntities(List<TurnLine> turnLines, boolean lazy) {
         if (null == turnLines) {
             return null;
         }
@@ -143,7 +147,7 @@ public class TurnLineMapper {
         return tmsTurnLines;
     }
 
-    public static Set<TurnLine> toDtos(Set<TmsTurnLine> tmsTurnLines, boolean lazy) {
+    /*public static Set<TurnLine> toDtos(Set<TmsTurnLine> tmsTurnLines, boolean lazy) {
         if (null == tmsTurnLines) {
             return null;
         }
@@ -152,7 +156,7 @@ public class TurnLineMapper {
             turnLines.add(toDto(tmsTurnLine, lazy));
         }
         return turnLines;
-    }
+    }*/
 
 
 

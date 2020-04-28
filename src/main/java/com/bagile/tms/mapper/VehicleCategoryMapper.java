@@ -25,9 +25,9 @@ public class VehicleCategoryMapper {
         map.put("emptyWeight", "tmsVehicleCategoryEmptyWeight");
         map.put("totalWeight", "tmsVehicleCategoryTotalWeight");
 
-        map.put("insuranceType", "tmsInsuranceType");
+      //  map.put("insuranceType", "tmsInsuranceType");
 
-        map.put("vehicles", "tmsVehicles");
+        //map.put("vehicles", "tmsVehicles");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -65,7 +65,7 @@ public class VehicleCategoryMapper {
         tmsVehicleCategory.setUpdateDate(vehicle.getUpdateDate());
 
         if(!lazy) {
-            tmsVehicleCategory.setTmsInsuranceType (InsuranceTypeMapper.toEntity(vehicle.getInsuranceType(),false));
+            //tmsVehicleCategory.setTmsInsuranceType (InsuranceTypeMapper.toEntity(vehicle.getInsuranceType(),false));
            // tmsVehicleCategory.setTmsTransportCategoryVehicles (TransportCategoryVehicleMapper.toEntities(vehicle.getTransportCategorieVehicules(),true));
             // tmsVehicleCategory.setTmsVehicles (VehicleMapper.toEntities(vehicle.getVehicles(),false));
 
@@ -97,7 +97,7 @@ public class VehicleCategoryMapper {
 
         if(!lazy) {
 
-            vehicle.setInsuranceType (InsuranceTypeMapper.toDto(tmsVehicleCategory.getTmsInsuranceType (),false));
+         //   vehicle.setInsuranceType (InsuranceTypeMapper.toDto(tmsVehicleCategory.getTmsInsuranceType (),false));
          //   vehicle.setTransportCategorieVehicules (TransportCategoryVehicleMapper.toDtos(tmsVehicleCategory.getTmsTransportCategoryVehicles (),true));
 
             // vehicle.setVehicles (VehicleMapper.toDtos(tmsVehicleCategory.get (),false));

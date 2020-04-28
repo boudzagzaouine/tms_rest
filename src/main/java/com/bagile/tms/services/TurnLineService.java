@@ -32,6 +32,7 @@ public interface TurnLineService {
 
     void delete(TurnLine turnLine);
 
+
     List<TurnLine> findAll();
 
     List<TurnLine> findAll(int page, int size);

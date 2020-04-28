@@ -23,7 +23,7 @@ public class TmsVehicleCategory  extends EmsEntity {
     private  BigDecimal tmsVehicleCategoryEmptyWeight;
     private BigDecimal tmsVehicleCategoryTotalWeight;
 
-    private TmsInsuranceType tmsInsuranceType;
+    //private TmsInsuranceType tmsInsuranceType;
 
    // private Set<TmsTransportCategoryVehicle> tmsTransportCategoryVehicles=new HashSet<>();
 
@@ -119,14 +119,14 @@ public class TmsVehicleCategory  extends EmsEntity {
     }
 
 //cascade =  {CascadeType.MERGE,CascadeType.PERSIST}
-    @ManyToOne(cascade = {CascadeType.MERGE})
-    @JoinColumn(name = "tms_insurancetypeid")
-    public TmsInsuranceType getTmsInsuranceType() {
-        return tmsInsuranceType;
-    }
-    public void setTmsInsuranceType(TmsInsuranceType tmsInsuranceType) {
-        this.tmsInsuranceType = tmsInsuranceType;
-    }
+//    @ManyToOne(cascade = {CascadeType.MERGE})
+//    @JoinColumn(name = "tms_insurancetypeid")
+//    public TmsInsuranceType getTmsInsuranceType() {
+//        return tmsInsuranceType;
+//    }
+//    public void setTmsInsuranceType(TmsInsuranceType tmsInsuranceType) {
+//        this.tmsInsuranceType = tmsInsuranceType;
+//    }
 
     /*@OneToMany(mappedBy = "tmsVehicleCategory",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
     public Set<TmsTransportCategoryVehicle> getTmsTransportCategoryVehicles() {

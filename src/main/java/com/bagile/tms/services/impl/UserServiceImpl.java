@@ -5,12 +5,15 @@ import com.bagile.tms.entities.UsrUser;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.mapper.BadgeMapper;
 import com.bagile.tms.mapper.UserMapper;
 import com.bagile.tms.repositories.UserRepository;
 import com.bagile.tms.services.UserService;
 import com.bagile.tms.util.EmsDate;
 import com.bagile.tms.util.Search;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -75,6 +78,8 @@ public class UserServiceImpl implements UserService {
         return UserMapper.toDtos(userRepository.findAll(Search.expression(search, UsrUser.class)), false);
     }
 
+
+
     @Override
     public List<User> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
         if (!search.trim().contains("active:false")) {
@@ -100,10 +105,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(Long id) throws IdNotFound {
-        UsrUser usrUser = userRepository.findById(id).orElseThrow(() -> new IdNotFound(id));
-        usrUser.setUsrUserIsActive(false);
-        userRepository.saveAndFlush(usrUser);
+    public void delete(Long id)  {
+         userRepository.findById(id);
+
     }
 
     @Override
@@ -114,13 +118,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAll() throws AttributesNotFound, ErrorType {
-        return find("");
+    public List<User> findAll()  {
+        return UserMapper.toDtos(userRepository.findAll(), false);
     }
 
     @Override
-    public List<User> findAll(Pageable pageable) throws AttributesNotFound, ErrorType {
-        return find("", pageable);
+    public List<User> findAll(int page, int size) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
+        Pageable pageable = PageRequest.of(page, size, sort);
+        return UserMapper.toDtos(userRepository.findAll(pageable), false);
     }
 
     @Override

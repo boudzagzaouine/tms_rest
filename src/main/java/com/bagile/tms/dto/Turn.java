@@ -1,10 +1,7 @@
 package com.bagile.tms.dto;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class Turn extends EmsDto implements Serializable {
 
@@ -15,7 +12,7 @@ public class Turn extends EmsDto implements Serializable {
     private Vehicle  vehicle;
     private Transport transport;
     private Date dateDelivery;
-   // private Set<TurnLine> turnLines = new HashSet<>();
+   private List<TurnLine> turnLines = new ArrayList<>();
 
 
     public Turn() {
@@ -62,13 +59,13 @@ public class Turn extends EmsDto implements Serializable {
         this.dateDelivery = dateDelivery;
     }
 
-    /*public Set<TurnLine> getTurnLines() {
+    public List<TurnLine> getTurnLines() {
         return turnLines;
     }
 
-    public void setTurnLines(Set<TurnLine> turnLines) {
+    public void setTurnLines(List<TurnLine> turnLines) {
         this.turnLines = turnLines;
-    }*/
+    }
 
     @Override
     public boolean equals(Object o) {
