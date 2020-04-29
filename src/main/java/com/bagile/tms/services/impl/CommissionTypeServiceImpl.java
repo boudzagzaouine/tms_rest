@@ -90,6 +90,14 @@ public class CommissionTypeServiceImpl implements CommissionTypeService {
     }
 
     @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            commissionTypeRepository.deleteById(id);        }
+    }
+
+
+    @Override
     public List<CommissionType> findAll() {
         return CommissionTypeMapper.toDtos(commissionTypeRepository.findAll(), false);
     }

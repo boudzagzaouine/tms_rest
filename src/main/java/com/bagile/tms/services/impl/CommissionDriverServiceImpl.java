@@ -90,6 +90,14 @@ public class CommissionDriverServiceImpl implements CommissionDriverService {
     }
 
     @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            commissionRepository.deleteById(id);        }
+    }
+
+
+    @Override
     public List<CommissionDriver> findAll() {
         return CommissionDriverMapper.toDtos(commissionRepository.findAll(), false);
     }

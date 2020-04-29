@@ -16,18 +16,14 @@ public class TmsVehicleCategory  extends EmsEntity {
     private long tmsVehicleCategoryId;
     private String tmsVehicleCategoryCode;
     private  String tmsVehicleCategoryConsumption;
-    private BigDecimal tmsVehicleCategoryWeight;
+    private BigDecimal tmsVehicleCategoryLength;
     private  BigDecimal tmsVehicleCategoryWidth;
+    private BigDecimal tmsVehicleCategoriyheight;
     private BigDecimal tmsVehicleCategoryDepth;
     private BigDecimal tmsVehicleCategoryTonnage;
     private  BigDecimal tmsVehicleCategoryEmptyWeight;
     private BigDecimal tmsVehicleCategoryTotalWeight;
 
-    //private TmsInsuranceType tmsInsuranceType;
-
-   // private Set<TmsTransportCategoryVehicle> tmsTransportCategoryVehicles=new HashSet<>();
-
-    // private Set<TmsVehicle> tmsVehicles=new HashSet<>();
 
 
     public TmsVehicleCategory() {
@@ -64,14 +60,17 @@ public class TmsVehicleCategory  extends EmsEntity {
         this.tmsVehicleCategoryConsumption = tmsVehicleCategoryConsumption;
     }
 
-    @Column(name = "tms_vehiclecategoryweight")
-    public BigDecimal getTmsVehicleCategoryWeight() {
-        return tmsVehicleCategoryWeight;
+    @Column(name = "tms_vehiclecategorylength")
+    public BigDecimal getTmsVehicleCategoryLength() {
+        return tmsVehicleCategoryLength;
     }
 
-    public void setTmsVehicleCategoryWeight(BigDecimal tmsVehicleCategoryWeight) {
-        this.tmsVehicleCategoryWeight = tmsVehicleCategoryWeight;
+    public void setTmsVehicleCategoryLength(BigDecimal tmsVehicleCategoryLength) {
+        this.tmsVehicleCategoryLength = tmsVehicleCategoryLength;
     }
+
+
+
 
     @Column(name = "tms_vehiclecategorywidth")
     public BigDecimal getTmsVehicleCategoryWidth() {
@@ -80,6 +79,14 @@ public class TmsVehicleCategory  extends EmsEntity {
 
     public void setTmsVehicleCategoryWidth(BigDecimal tmsVehicleCategoryWidth) {
         this.tmsVehicleCategoryWidth = tmsVehicleCategoryWidth;
+    }
+    @Column(name = "tms_vehiclecategoryheight")
+    public BigDecimal getTmsVehicleCategoriyheight() {
+        return tmsVehicleCategoriyheight;
+    }
+
+    public void setTmsVehicleCategoriyheight(BigDecimal tmsVehicleCategoriyheight) {
+        this.tmsVehicleCategoriyheight = tmsVehicleCategoriyheight;
     }
 
     @Column(name = "tms_vehiclecategorydepth")
@@ -118,32 +125,6 @@ public class TmsVehicleCategory  extends EmsEntity {
         this.tmsVehicleCategoryTotalWeight = tmsVehicleCategoryTotalWeight;
     }
 
-//cascade =  {CascadeType.MERGE,CascadeType.PERSIST}
-//    @ManyToOne(cascade = {CascadeType.MERGE})
-//    @JoinColumn(name = "tms_insurancetypeid")
-//    public TmsInsuranceType getTmsInsuranceType() {
-//        return tmsInsuranceType;
-//    }
-//    public void setTmsInsuranceType(TmsInsuranceType tmsInsuranceType) {
-//        this.tmsInsuranceType = tmsInsuranceType;
-//    }
 
-    /*@OneToMany(mappedBy = "tmsVehicleCategory",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
-    public Set<TmsTransportCategoryVehicle> getTmsTransportCategoryVehicles() {
-        return tmsTransportCategoryVehicles;
-    }
-
-    public void setTmsTransportCategoryVehicles(Set<TmsTransportCategoryVehicle> tmsTransportCategoryVehicles) {
-        this.tmsTransportCategoryVehicles = tmsTransportCategoryVehicles;
-    }*/
-
-   /* @OneToMany(mappedBy = "tmsVehicleCategory", cascade = CascadeType.ALL)
-    public Set<TmsVehicle> getTmsVehicles() {
-        return tmsVehicles;
-    }
-
-    public void setTmsVehicles(Set<TmsVehicle> tmsVehicles) {
-        this.tmsVehicles = tmsVehicles;
-    }*/
 
 }

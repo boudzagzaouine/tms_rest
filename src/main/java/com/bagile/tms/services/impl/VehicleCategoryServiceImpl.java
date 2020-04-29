@@ -82,6 +82,14 @@ public class VehicleCategoryServiceImpl implements VehicleCategoryService {
     }
 
     @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            VehicleCategoryRepository.deleteById(id);        }
+    }
+
+
+    @Override
     public List<VehicleCategory> findAll() {
         return VehicleCategoryMapper.toDtos(VehicleCategoryRepository.findAll(), false);
     }

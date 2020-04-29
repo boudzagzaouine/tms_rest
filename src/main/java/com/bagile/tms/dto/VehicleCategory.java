@@ -13,18 +13,13 @@ public class VehicleCategory extends EmsDto implements Serializable {
     private long id;
     private String code;
     private  String consumption;
-    private BigDecimal weight;
+    private BigDecimal length;
     private  BigDecimal width;
+    private BigDecimal height;
     private BigDecimal depth;
     private BigDecimal tonnage;
     private  BigDecimal emptyWeight;
     private BigDecimal totalWeight;
-
-    //private InsuranceType insuranceType;
- //   private List<TransportCategoryVehicle> transportCategorieVehicules=new ArrayList<>();
-
-    private Set<Vehicle> vehicles = new HashSet<>();
-
     public VehicleCategory() {
     }
 
@@ -52,12 +47,20 @@ public class VehicleCategory extends EmsDto implements Serializable {
         this.consumption = consumption;
     }
 
-    public BigDecimal getWeight() {
-        return weight;
+    public BigDecimal getLength() {
+        return length;
     }
 
-    public void setWeight(BigDecimal weight) {
-        this.weight = weight;
+    public void setLength(BigDecimal length) {
+        this.length = length;
+    }
+
+    public BigDecimal getHeight() {
+        return height;
+    }
+
+    public void setHeight(BigDecimal height) {
+        this.height = height;
     }
 
     public BigDecimal getWidth() {
@@ -100,31 +103,6 @@ public class VehicleCategory extends EmsDto implements Serializable {
         this.totalWeight = totalWeight;
     }
 
-
-//    public InsuranceType getInsuranceType() {
-//        return insuranceType;
-//    }
-//
-//    public void setInsuranceType(InsuranceType insuranceType) {
-//        this.insuranceType = insuranceType;
-//    }
-
-
-    public Set<Vehicle> getVehicles() {
-        return vehicles;
-    }
-
-    public void setVehicles(Set<Vehicle> vehicles) {
-        this.vehicles = vehicles;
-    }
-
-  /*  public List<TransportCategoryVehicle> getTransportCategorieVehicules() {
-        return transportCategorieVehicules;
-    }
-
-    public void setTransportCategorieVehicules(List<TransportCategoryVehicle> transportCategorieVehicules) {
-        this.transportCategorieVehicules = transportCategorieVehicules;
-    }*/
 
     @Override
     public boolean equals(Object o) {

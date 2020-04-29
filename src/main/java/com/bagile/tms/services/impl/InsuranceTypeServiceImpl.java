@@ -21,7 +21,7 @@ import java.util.List;
 @Service
 @Transactional
 public class InsuranceTypeServiceImpl implements InsuranceTypeService {
-    
+
     private final InsuranceTypeRepository insuranceTypeRepository;
     public InsuranceTypeServiceImpl(InsuranceTypeRepository insuranceTypeRepository) {
         this.insuranceTypeRepository = insuranceTypeRepository;
@@ -87,6 +87,12 @@ public class InsuranceTypeServiceImpl implements InsuranceTypeService {
     @Override
     public void delete(InsuranceType insuranceType) {
         insuranceTypeRepository.delete(InsuranceTypeMapper.toEntity(insuranceType, false));
+    }
+    @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            insuranceTypeRepository.deleteById(id);        }
     }
 
     @Override

@@ -83,6 +83,15 @@ public class BadgeTypeServiceImpl implements BadgeTypeService {
         badgeTypeRepository.delete(BadgeTypeMapper.toEntity(badgeType, false));
     }
 
+
+    @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            badgeTypeRepository.deleteById(id);        }
+    }
+
+
     @Override
     public List<BadgeType> findAll() {
         return BadgeTypeMapper.toDtos(badgeTypeRepository.findAll(), false);

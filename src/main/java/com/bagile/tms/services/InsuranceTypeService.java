@@ -28,7 +28,7 @@ public interface InsuranceTypeService {
     void delete(Long id);
 
     void delete(InsuranceType insuranceType);
-
+    void deleteAll (List<Long> ids);
     List<InsuranceType> findAll() throws AttributesNotFound, ErrorType;
 
     List<InsuranceType> findAll(int page, int size) throws AttributesNotFound, ErrorType;

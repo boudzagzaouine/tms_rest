@@ -26,7 +26,7 @@ public interface CommissionTypeService {
     Long size(String search) throws AttributesNotFound, ErrorType;
 
     void delete(Long id);
-
+    void deleteAll (List<Long> ids);
     void delete(CommissionType commissionType);
 
     List<CommissionType> findAll() throws AttributesNotFound, ErrorType;

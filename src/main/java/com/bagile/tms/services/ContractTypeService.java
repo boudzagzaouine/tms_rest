@@ -29,6 +29,7 @@ public interface ContractTypeService {
     void delete(Long id);
 
     void delete(ContractType contractType);
+    void deleteAll (List<Long> ids);
 
     List<ContractType> findAll() throws AttributesNotFound, ErrorType;
 

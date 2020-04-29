@@ -28,7 +28,7 @@ public interface CommissionDriverService {
     void delete(Long id);
 
     void delete(CommissionDriver commission);
-
+    void deleteAll (List<Long> ids);
     List<CommissionDriver> findAll() throws AttributesNotFound, ErrorType;
 
     List<CommissionDriver> findAll(int page, int size) throws AttributesNotFound, ErrorType;

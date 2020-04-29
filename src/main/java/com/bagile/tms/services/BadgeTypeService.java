@@ -26,7 +26,7 @@ public interface BadgeTypeService {
     void delete(Long id);
 
     void delete(BadgeType badgeType);
-
+    void deleteAll (List<Long> ids);
     List<BadgeType> findAll();
 
     List<BadgeType> findAll(int page, int size);

@@ -85,6 +85,13 @@ public class CatalogTransportTypeServiceImpl implements CatalogTransportTypeServ
     }
 
     @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            catalogTransportTypeRepository.deleteById(id);        }
+    }
+
+    @Override
     public List<CatalogTransportType> findAll() {
         return CatalogTransportTypeMapper.toDtos(catalogTransportTypeRepository.findAll(), false);
     }

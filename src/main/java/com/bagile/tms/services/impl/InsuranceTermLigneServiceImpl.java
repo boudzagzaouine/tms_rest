@@ -90,6 +90,12 @@ public class InsuranceTermLigneServiceImpl implements InsuranceTermLigneService 
     public void delete(InsuranceTermLigne insuranceTermInsurance) {
         insuranceTermLigneRepository.delete(InsuranceTermLigneMapper.toEntity(insuranceTermInsurance, false));
     }
+    @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            insuranceTermLigneRepository.deleteById(id);        }
+    }
 
     @Override
     public List<InsuranceTermLigne> findAll() {
