@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.Zone;
-import com.bagile.tms.entities.TmsZone;
+import com.bagile.gmo.dto.Zone;
+import com.bagile.gmo.entities.TmsZone;
+import com.bagile.gmo.mapper.ZoneMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.ZoneMapper;
 import com.bagile.tms.repositories.ZoneRepository;
 import com.bagile.tms.services.VehicleService;
 import com.bagile.tms.services.ZoneService;

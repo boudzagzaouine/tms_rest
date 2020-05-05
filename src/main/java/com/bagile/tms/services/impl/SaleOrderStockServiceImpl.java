@@ -1,9 +1,9 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.SaleOrderStock;
-import com.bagile.tms.entities.CmdSaleOrderStock;
+import com.bagile.gmo.dto.SaleOrderStock;
+import com.bagile.gmo.entities.CmdSaleOrderStock;
+import com.bagile.gmo.mapper.SaleOrderStockMapper;
 import com.bagile.tms.exceptions.*;
-import com.bagile.tms.mapper.SaleOrderStockMapper;
 import com.bagile.tms.repositories.SaleOrderStockRepository;
 import com.bagile.tms.services.SaleOrderStockService;
 import com.bagile.tms.util.Search;

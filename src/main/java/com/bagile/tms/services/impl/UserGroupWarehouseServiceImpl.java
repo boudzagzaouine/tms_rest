@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.UserGroupWarehouse;
-import com.bagile.tms.entities.UsrUserGroupWarehouse;
+import com.bagile.gmo.dto.UserGroupWarehouse;
+import com.bagile.gmo.entities.UsrUserGroupWarehouse;
+import com.bagile.gmo.mapper.UserGroupWarehouseMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.UserGroupWarehouseMapper;
 import com.bagile.tms.repositories.UserGroupWarehouseRepository;
 import com.bagile.tms.services.UserGroupWarehouseService;
 import com.bagile.tms.util.Search;

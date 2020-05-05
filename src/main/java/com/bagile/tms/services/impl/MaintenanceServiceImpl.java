@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.MaintenancePlan;
-import com.bagile.tms.entities.TmsMaintenancePlan;
+import com.bagile.gmo.dto.MaintenancePlan;
+import com.bagile.gmo.entities.GmoMaintenancePlan;
+import com.bagile.gmo.mapper.MaintenancePlanMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.MaintenancePlanMapper;
 import com.bagile.tms.repositories.MaintenancePlanRepository;
 import com.bagile.tms.services.MaintenancePlanService;
 import com.bagile.tms.util.EmsDate;
@@ -58,7 +58,7 @@ public class MaintenanceServiceImpl implements MaintenancePlanService {
         if (search.equals("")){
             return findAll ();
         }
-        return MaintenancePlanMapper.toDtos(maintenancePlanRepository.findAll(Search.expression(search, TmsMaintenancePlan.class)), false);
+        return MaintenancePlanMapper.toDtos(maintenancePlanRepository.findAll(Search.expression(search, GmoMaintenancePlan.class)), false);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class MaintenanceServiceImpl implements MaintenancePlanService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return MaintenancePlanMapper.toDtos(maintenancePlanRepository.findAll(Search.expression(search, TmsMaintenancePlan.class), pageable), false);
+        return MaintenancePlanMapper.toDtos(maintenancePlanRepository.findAll(Search.expression(search, GmoMaintenancePlan.class), pageable), false);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class MaintenanceServiceImpl implements MaintenancePlanService {
         if (search.equals("")){
             return size ();
         }
-        return maintenancePlanRepository.count(Search.expression(search, TmsMaintenancePlan.class));
+        return maintenancePlanRepository.count(Search.expression(search, GmoMaintenancePlan.class));
     }
 
     @Override

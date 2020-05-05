@@ -1,11 +1,12 @@
 package com.bagile.tms.repositories;
 
 
-import com.bagile.tms.entities.PdtProduct;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
+
+import com.bagile.gmo.entities.PdtProduct;
 
 import java.math.BigInteger;
 import java.util.List;

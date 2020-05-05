@@ -1,21 +1,21 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.MaintenanceState;
-import com.bagile.tms.entities.TmsMaintenanceState;
-import com.bagile.tms.entities.TmsVehicle;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.MaintenanceStateMapper;
-import com.bagile.tms.repositories.MaintenanceStateRepository;
-import com.bagile.tms.services.MaintenanceStateService;
-import com.bagile.tms.util.Search;
+import java.util.List;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.bagile.gmo.dto.MaintenanceState;
+import com.bagile.gmo.entities.GmoMaintenanceState;
+import com.bagile.gmo.mapper.MaintenanceStateMapper;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.repositories.MaintenanceStateRepository;
+import com.bagile.tms.services.MaintenanceStateService;
+import com.bagile.tms.util.Search;
 
 @Service
 @Transactional
@@ -52,7 +52,7 @@ public class MaintenanceStateServiceImpl implements MaintenanceStateService {
         if (search.equals("")){
             return findAll ();
         }
-        return MaintenanceStateMapper.toDtos(maintenanceStateRepository.findAll(Search.expression(search, TmsMaintenanceState.class)), false);
+        return MaintenanceStateMapper.toDtos(maintenanceStateRepository.findAll(Search.expression(search, GmoMaintenanceState.class)), false);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class MaintenanceStateServiceImpl implements MaintenanceStateService {
             return findAll (page, size);
         }
         Pageable pageable = PageRequest.of(page, size);
-        return MaintenanceStateMapper.toDtos(maintenanceStateRepository.findAll(Search.expression(search, TmsMaintenanceState.class), pageable), false);
+        return MaintenanceStateMapper.toDtos(maintenanceStateRepository.findAll(Search.expression(search, GmoMaintenanceState.class), pageable), false);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class MaintenanceStateServiceImpl implements MaintenanceStateService {
         if (search.equals("")){
             return size ();
         }
-        return maintenanceStateRepository.count(Search.expression(search, TmsMaintenanceState.class));
+        return maintenanceStateRepository.count(Search.expression(search, GmoMaintenanceState.class));
     }
 
     @Override

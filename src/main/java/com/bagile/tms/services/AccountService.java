@@ -1,7 +1,7 @@
 package com.bagile.tms.services;
 
-import com.bagile.tms.dto.Account;
-import com.bagile.tms.dto.Badge;
+import com.bagile.gmo.dto.Account;
+import com.bagile.gmo.dto.Badge;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;

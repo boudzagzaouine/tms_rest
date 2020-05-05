@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.CommissionType;
-import com.bagile.tms.entities.TmsCommissionType;
+import com.bagile.gmo.dto.CommissionType;
+import com.bagile.gmo.entities.TmsCommissionType;
+import com.bagile.gmo.mapper.CommissionTypeMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.CommissionTypeMapper;
 import com.bagile.tms.repositories.CommissionTypeRepository;
 import com.bagile.tms.services.CommissionTypeService;
 import com.bagile.tms.util.Search;

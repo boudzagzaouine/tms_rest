@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.Insurance;
-import com.bagile.tms.entities.TmsInsurance;
+import com.bagile.gmo.dto.Insurance;
+import com.bagile.gmo.entities.GmoInsurance;
+import com.bagile.gmo.mapper.InsuranceMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.InsuranceMapper;
 import com.bagile.tms.repositories.InsuranceRepository;
 import com.bagile.tms.services.InsuranceService;
 import com.bagile.tms.util.Search;
@@ -56,7 +56,7 @@ public class InsuranceServiceImpl implements InsuranceService {
         if (search.equals("")){
             return findAll ();
         }
-        return InsuranceMapper.toDtos(insuranceRepository.findAll(Search.expression(search, TmsInsurance.class)), false);
+        return InsuranceMapper.toDtos(insuranceRepository.findAll(Search.expression(search, GmoInsurance.class)), false);
     }
 
     @Override
@@ -66,12 +66,12 @@ public class InsuranceServiceImpl implements InsuranceService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return InsuranceMapper.toDtos(insuranceRepository.findAll(Search.expression(search, TmsInsurance.class), pageable), false);
+        return InsuranceMapper.toDtos(insuranceRepository.findAll(Search.expression(search, GmoInsurance.class), pageable), false);
     }
 
     @Override
     public Insurance findOne(String search) throws AttributesNotFound, ErrorType {
-        return InsuranceMapper.toDto(insuranceRepository.findOne(Search.expression(search, TmsInsurance.class)).get(), false);
+        return InsuranceMapper.toDto(insuranceRepository.findOne(Search.expression(search, GmoInsurance.class)).get(), false);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class InsuranceServiceImpl implements InsuranceService {
         if (search.equals("")){
             return size();
         }
-        return insuranceRepository.count(Search.expression(search, TmsInsurance.class));
+        return insuranceRepository.count(Search.expression(search, GmoInsurance.class));
     }
 
     @Override

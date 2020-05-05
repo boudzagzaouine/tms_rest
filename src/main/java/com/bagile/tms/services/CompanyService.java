@@ -1,6 +1,6 @@
 package com.bagile.tms.services;
 
-import com.bagile.tms.dto.Company;
+import com.bagile.gmo.dto.Company;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;

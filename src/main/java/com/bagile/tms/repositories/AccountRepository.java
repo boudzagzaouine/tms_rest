@@ -1,9 +1,10 @@
 package com.bagile.tms.repositories;
 
-import com.bagile.tms.entities.CmdAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+
+import com.bagile.gmo.entities.CmdAccount;
 
 public interface AccountRepository extends JpaRepository<CmdAccount, Long>,
 		QuerydslPredicateExecutor<CmdAccount> {

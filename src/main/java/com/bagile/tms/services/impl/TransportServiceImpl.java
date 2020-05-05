@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.Transport;
-import com.bagile.tms.entities.TrpTransport;
+import com.bagile.gmo.dto.Transport;
+import com.bagile.gmo.entities.TrpTransport;
+import com.bagile.gmo.mapper.TransportMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.TransportMapper;
 import com.bagile.tms.repositories.TransportRepository;
 import com.bagile.tms.services.BadgeService;
 import com.bagile.tms.services.TransportService;

@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.CatalogTransportType;
-import com.bagile.tms.entities.TmsCatalogTransportType;
+import com.bagile.gmo.dto.CatalogTransportType;
+import com.bagile.gmo.entities.TmsCatalogTransportType;
+import com.bagile.gmo.mapper.CatalogTransportTypeMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.CatalogTransportTypeMapper;
 import com.bagile.tms.repositories.CatalogTransportTypeRepository;
 import com.bagile.tms.services.CatalogTransportTypeService;
 import com.bagile.tms.services.TransportService;

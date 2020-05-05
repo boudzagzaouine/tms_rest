@@ -1,14 +1,7 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.ContractType;
-import com.bagile.tms.entities.TmsContractType;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.ContractTypeMapper;
-import com.bagile.tms.repositories.ContractTypeRepository;
-import com.bagile.tms.services.ContractTypeService;
-import com.bagile.tms.util.Search;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +10,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.bagile.gmo.dto.ContractType;
+import com.bagile.gmo.entities.GmoContractType;
+import com.bagile.gmo.mapper.ContractTypeMapper;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.repositories.ContractTypeRepository;
+import com.bagile.tms.services.ContractTypeService;
+import com.bagile.tms.util.Search;
 
 @Service
 @Transactional
@@ -63,7 +64,7 @@ public class ContractTypeServiceImpl implements ContractTypeService {
         if (search.equals("")){
             return findAll ();
         }
-        return ContractTypeMapper.toDtos(contractTypeRepository.findAll(Search.expression(search, TmsContractType.class)), false);
+        return ContractTypeMapper.toDtos(contractTypeRepository.findAll(Search.expression(search, GmoContractType.class)), false);
 
     }
 
@@ -73,12 +74,12 @@ public class ContractTypeServiceImpl implements ContractTypeService {
             return findAll (page, size);
         }
         Pageable pageable= PageRequest.of(page,size);
-        return ContractTypeMapper.toDtos(contractTypeRepository.findAll(Search.expression(search, TmsContractType.class), pageable), false);
+        return ContractTypeMapper.toDtos(contractTypeRepository.findAll(Search.expression(search, GmoContractType.class), pageable), false);
     }
 
     @Override
     public ContractType findOne(String search) throws AttributesNotFound, ErrorType {
-        return ContractTypeMapper.toDto(contractTypeRepository.findOne(Search.expression(search, TmsContractType.class)).get(), false);
+        return ContractTypeMapper.toDto(contractTypeRepository.findOne(Search.expression(search, GmoContractType.class)).get(), false);
     }
 
     @Override
@@ -86,7 +87,7 @@ public class ContractTypeServiceImpl implements ContractTypeService {
         if (search.equals("")){
             return size ();
         }
-        return contractTypeRepository.count(Search.expression(search, TmsContractType.class));
+        return contractTypeRepository.count(Search.expression(search, GmoContractType.class));
 
     }
 

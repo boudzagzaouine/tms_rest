@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.ConsumptionType;
-import com.bagile.tms.entities.TmsConsumptionType;
+import com.bagile.gmo.dto.ConsumptionType;
+import com.bagile.gmo.entities.TmsConsumptionType;
+import com.bagile.gmo.mapper.ConsumptionTypeMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.ConsumptionTypeMapper;
 import com.bagile.tms.repositories.ConsumptionTypeRepository;
 import com.bagile.tms.services.ConsumptionTypeService;
 import com.bagile.tms.util.Search;

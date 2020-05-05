@@ -1,16 +1,7 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.Turn;
-import com.bagile.tms.entities.TmsTurn;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.TurnMapper;
-import com.bagile.tms.repositories.TurnRepository;
-import com.bagile.tms.services.ContactService;
-import com.bagile.tms.services.TurnService;
-import com.bagile.tms.util.EmsDate;
-import com.bagile.tms.util.Search;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
@@ -18,7 +9,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.bagile.gmo.dto.Turn;
+import com.bagile.gmo.entities.GmoTurn;
+import com.bagile.gmo.mapper.TurnMapper;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.repositories.TurnRepository;
+import com.bagile.tms.services.TurnService;
+import com.bagile.tms.util.EmsDate;
+import com.bagile.tms.util.Search;
 
 @Service
 @Transactional
@@ -63,7 +63,7 @@ public class TurnServiceImpl implements TurnService {
         if (search.equals ("")){
             return findAll ();
         }
-        return TurnMapper.toDtos(TurnRepository.findAll(Search.expression(search, TmsTurn.class)), false);
+        return TurnMapper.toDtos(TurnRepository.findAll(Search.expression(search, GmoTurn.class)), false);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class TurnServiceImpl implements TurnService {
         }
         //Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size);
-        List<Turn> Turns = TurnMapper.toDtos(TurnRepository.findAll(Search.expression(search, TmsTurn.class), pageable), false);
+        List<Turn> Turns = TurnMapper.toDtos(TurnRepository.findAll(Search.expression(search, GmoTurn.class), pageable), false);
         return Turns;
     }
 
@@ -82,7 +82,7 @@ public class TurnServiceImpl implements TurnService {
         if ("".equals(search)) {
             return size();
         }
-        return TurnRepository.count(Search.expression(search, TmsTurn.class));
+        return TurnRepository.count(Search.expression(search, GmoTurn.class));
     }
 
     @Override

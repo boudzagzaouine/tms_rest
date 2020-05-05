@@ -1,12 +1,12 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.InsuranceTerm;
-import com.bagile.tms.dto.TurnLine;
-import com.bagile.tms.entities.TmsInsuranceTerm;
+import com.bagile.gmo.dto.InsuranceTerm;
+import com.bagile.gmo.dto.TurnLine;
+import com.bagile.gmo.entities.TmsInsuranceTerm;
+import com.bagile.gmo.mapper.InsuranceTermMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.InsuranceTermMapper;
 import com.bagile.tms.repositories.TermInsuranceRepository;
 import com.bagile.tms.services.TermInsuranceService;
 import com.bagile.tms.util.Search;

@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.Vacation;
-import com.bagile.tms.entities.TmsVacation;
+import com.bagile.gmo.dto.Vacation;
+import com.bagile.gmo.entities.TmsVacation;
+import com.bagile.gmo.mapper.VacationMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.VacationMapper;
 import com.bagile.tms.repositories.VacationRepository;
 import com.bagile.tms.services.VacationService;
 import com.bagile.tms.util.Search;

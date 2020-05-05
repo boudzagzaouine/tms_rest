@@ -1,21 +1,22 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.BadgeType;
-import com.bagile.tms.entities.TmsBadgeType;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.BadgeTypeMapper;
-import com.bagile.tms.repositories.BadgeTypeRepository;
-import com.bagile.tms.services.BadgeTypeService;
-import com.bagile.tms.util.Search;
+import java.util.List;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.bagile.gmo.dto.BadgeType;
+import com.bagile.gmo.entities.GmoBadgeType;
+import com.bagile.gmo.mapper.BadgeTypeMapper;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.repositories.BadgeTypeRepository;
+import com.bagile.tms.services.BadgeTypeService;
+import com.bagile.tms.util.Search;
 
 
 @Service
@@ -52,7 +53,7 @@ public class BadgeTypeServiceImpl implements BadgeTypeService {
         if (search.equals("")){
             return findAll ();
         }
-        return BadgeTypeMapper.toDtos(badgeTypeRepository.findAll(Search.expression(search, TmsBadgeType.class)), false);
+        return BadgeTypeMapper.toDtos(badgeTypeRepository.findAll(Search.expression(search, GmoBadgeType.class)), false);
     }
 
     @Override
@@ -62,7 +63,7 @@ public class BadgeTypeServiceImpl implements BadgeTypeService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return BadgeTypeMapper.toDtos(badgeTypeRepository.findAll(Search.expression(search, TmsBadgeType.class), pageable), false);
+        return BadgeTypeMapper.toDtos(badgeTypeRepository.findAll(Search.expression(search, GmoBadgeType.class), pageable), false);
     }
 
     @Override
@@ -70,7 +71,7 @@ public class BadgeTypeServiceImpl implements BadgeTypeService {
         if (search.equals("")){
             return size ();
         }
-        return badgeTypeRepository.count(Search.expression(search, TmsBadgeType.class));
+        return badgeTypeRepository.count(Search.expression(search, GmoBadgeType.class));
     }
 
     @Override

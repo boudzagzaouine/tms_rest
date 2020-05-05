@@ -1,7 +1,7 @@
 package com.bagile.tms.services;
 
-import com.bagile.tms.dto.Delivery;
-import com.bagile.tms.dto.SaleOrder;
+import com.bagile.gmo.dto.Delivery;
+import com.bagile.gmo.dto.SaleOrder;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.CustomException;
 import com.bagile.tms.exceptions.ErrorType;

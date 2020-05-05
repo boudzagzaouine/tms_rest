@@ -3,7 +3,7 @@ package com.bagile.tms.services;
 
 import java.util.List;
 
-import com.bagile.tms.dto.CustomFilter;
+import com.bagile.gmo.dto.CustomFilter;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;

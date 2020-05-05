@@ -1,10 +1,11 @@
 package com.bagile.tms.repositories;
 
-import com.bagile.tms.entities.WrhWarehouse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
+
+import com.bagile.gmo.entities.WrhWarehouse;
 
 import java.util.List;
 

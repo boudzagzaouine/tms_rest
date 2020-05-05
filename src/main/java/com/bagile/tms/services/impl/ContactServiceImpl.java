@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.Contact;
-import com.bagile.tms.entities.PrmContact;
+import com.bagile.gmo.dto.Contact;
+import com.bagile.gmo.entities.PrmContact;
+import com.bagile.gmo.mapper.ContactMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.ContactMapper;
 import com.bagile.tms.repositories.ContactRepository;
 import com.bagile.tms.services.ContactService;
 import com.bagile.tms.util.EmsDate;

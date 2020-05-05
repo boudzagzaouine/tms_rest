@@ -1,6 +1,6 @@
 package com.bagile.tms.services;
 
-import com.bagile.tms.dto.MaintenanceType;
+import com.bagile.gmo.dto.MaintenanceType;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.IdNotFound;
 import org.junit.jupiter.api.Test;

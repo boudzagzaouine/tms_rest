@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.VehicleCategory;
-import com.bagile.tms.entities.TmsVehicleCategory;
+import com.bagile.gmo.dto.VehicleCategory;
+import com.bagile.gmo.entities.GmoVehicleCategory;
+import com.bagile.gmo.mapper.VehicleCategoryMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.VehicleCategoryMapper;
 import com.bagile.tms.repositories.VehicleCategoryRepository;
 import com.bagile.tms.services.VehicleCategoryService;
 import com.bagile.tms.util.Search;
@@ -51,7 +51,7 @@ public class VehicleCategoryServiceImpl implements VehicleCategoryService {
         if (search.equals("")){
             return findAll ();
         }
-        return VehicleCategoryMapper.toDtos(VehicleCategoryRepository.findAll(Search.expression(search, TmsVehicleCategory.class)), false);
+        return VehicleCategoryMapper.toDtos(VehicleCategoryRepository.findAll(Search.expression(search, GmoVehicleCategory.class)), false);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class VehicleCategoryServiceImpl implements VehicleCategoryService {
             return findAll (page, size);
         }
         Pageable pageable = PageRequest.of(page, size);
-        return VehicleCategoryMapper.toDtos(VehicleCategoryRepository.findAll(Search.expression(search, TmsVehicleCategory.class), pageable), false);
+        return VehicleCategoryMapper.toDtos(VehicleCategoryRepository.findAll(Search.expression(search, GmoVehicleCategory.class), pageable), false);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class VehicleCategoryServiceImpl implements VehicleCategoryService {
         if (search.equals("")){
             return size ();
         }
-        return VehicleCategoryRepository.count(Search.expression(search, TmsVehicleCategory.class));
+        return VehicleCategoryRepository.count(Search.expression(search, GmoVehicleCategory.class));
     }
 
     @Override

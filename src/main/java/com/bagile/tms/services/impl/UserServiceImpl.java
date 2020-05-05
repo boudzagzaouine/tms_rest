@@ -1,12 +1,12 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.User;
-import com.bagile.tms.entities.UsrUser;
+import com.bagile.gmo.dto.User;
+import com.bagile.gmo.entities.UsrUser;
+import com.bagile.gmo.mapper.BadgeMapper;
+import com.bagile.gmo.mapper.UserMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.BadgeMapper;
-import com.bagile.tms.mapper.UserMapper;
 import com.bagile.tms.repositories.UserRepository;
 import com.bagile.tms.services.UserService;
 import com.bagile.tms.util.EmsDate;

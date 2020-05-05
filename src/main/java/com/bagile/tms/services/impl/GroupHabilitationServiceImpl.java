@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.GroupHabilitation;
-import com.bagile.tms.entities.UsrGroupHabilitation;
+import com.bagile.gmo.dto.GroupHabilitation;
+import com.bagile.gmo.entities.UsrGroupHabilitation;
+import com.bagile.gmo.mapper.GroupHabilitationMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.GroupHabilitationMapper;
 import com.bagile.tms.repositories.GroupHabilitationRepository;
 import com.bagile.tms.services.GroupHabilitationService;
 import com.bagile.tms.util.Search;

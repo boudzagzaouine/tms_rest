@@ -1,7 +1,7 @@
 package com.bagile.tms.controllers;
 
-import com.bagile.tms.dto.CommissionDriver;
-import com.bagile.tms.dto.Driver;
+import com.bagile.gmo.dto.CommissionDriver;
+import com.bagile.gmo.dto.Driver;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;

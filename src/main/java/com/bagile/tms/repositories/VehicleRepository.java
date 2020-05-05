@@ -1,10 +1,11 @@
 package com.bagile.tms.repositories;
 
-import com.bagile.tms.entities.TmsVehicle;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
+import com.bagile.gmo.entities.GmoVehicle;
 
-public interface VehicleRepository extends JpaRepository<TmsVehicle,Long>,
-        QuerydslPredicateExecutor<TmsVehicle> {
+
+public interface VehicleRepository extends JpaRepository<GmoVehicle,Long>,
+        QuerydslPredicateExecutor<GmoVehicle> {
 }

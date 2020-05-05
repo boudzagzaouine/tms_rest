@@ -1,25 +1,22 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.Vehicle;
-import com.bagile.tms.entities.TmsVehicle;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.VehicleMapper;
-import com.bagile.tms.repositories.VehicleRepository;
-import com.bagile.tms.services.VehicleService;
-import com.bagile.tms.util.Search;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.List;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityListeners;
-import java.util.List;
+import com.bagile.gmo.dto.Vehicle;
+import com.bagile.gmo.entities.GmoVehicle;
+import com.bagile.gmo.mapper.VehicleMapper;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.repositories.VehicleRepository;
+import com.bagile.tms.services.VehicleService;
+import com.bagile.tms.util.Search;
 
 @Service
 @Transactional
@@ -57,7 +54,7 @@ public class VehicleServiceImpl implements VehicleService {
         if (search.equals("")){
             return findAll ();
         }
-        return VehicleMapper.toDtos(vehicleRepository.findAll(Search.expression(search, TmsVehicle.class)), false);
+        return VehicleMapper.toDtos(vehicleRepository.findAll(Search.expression(search, GmoVehicle.class)), false);
     }
 
     @Override
@@ -66,7 +63,7 @@ public class VehicleServiceImpl implements VehicleService {
             return findAll (page, size);
         }
         Pageable pageable = PageRequest.of(page, size);
-        return VehicleMapper.toDtos(vehicleRepository.findAll(Search.expression(search, TmsVehicle.class), pageable), false);
+        return VehicleMapper.toDtos(vehicleRepository.findAll(Search.expression(search, GmoVehicle.class), pageable), false);
     }
 
     @Override
@@ -74,7 +71,7 @@ public class VehicleServiceImpl implements VehicleService {
         if (search.equals("")){
             return size ();
         }
-        return vehicleRepository.count(Search.expression(search, TmsVehicle.class));
+        return vehicleRepository.count(Search.expression(search, GmoVehicle.class));
     }
 
     @Override

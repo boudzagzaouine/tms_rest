@@ -1,7 +1,7 @@
 package com.bagile.tms.services;
 
-import com.bagile.tms.dto.Driver;
-import com.bagile.tms.dto.DriverZone;
+import com.bagile.gmo.dto.Driver;
+import com.bagile.gmo.dto.DriverZone;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.IdNotFound;
 import org.junit.jupiter.api.Disabled;

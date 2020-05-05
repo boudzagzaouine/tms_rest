@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.InsuranceType;
-import com.bagile.tms.entities.TmsInsuranceType;
+import com.bagile.gmo.dto.InsuranceType;
+import com.bagile.gmo.entities.TmsInsuranceType;
+import com.bagile.gmo.mapper.InsuranceTypeMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.InsuranceTypeMapper;
 import com.bagile.tms.repositories.InsuranceTypeRepository;
 import com.bagile.tms.services.InsuranceTypeService;
 import com.bagile.tms.util.Search;

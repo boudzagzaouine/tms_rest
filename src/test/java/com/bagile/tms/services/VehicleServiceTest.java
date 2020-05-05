@@ -1,6 +1,6 @@
 package com.bagile.tms.services;
 
-import com.bagile.tms.dto.Vehicle;
+import com.bagile.gmo.dto.Vehicle;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.IdNotFound;
 import org.junit.jupiter.api.Test;

@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.VehicleFeature;
-import com.bagile.tms.entities.TmsVehicleFeature;
+import com.bagile.gmo.dto.VehicleFeature;
+import com.bagile.gmo.entities.TmsVehicleFeature;
+import com.bagile.gmo.mapper.VehicleFeatureMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.VehicleFeatureMapper;
 import com.bagile.tms.repositories.VehicleFeatureRepository;
 import com.bagile.tms.services.VehicleFeatureService;
 import com.bagile.tms.util.Search;

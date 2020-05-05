@@ -1,12 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.Account;
-import com.bagile.tms.dto.Account;
-import com.bagile.tms.entities.CmdAccount;
+import com.bagile.gmo.dto.Account;
+import com.bagile.gmo.entities.CmdAccount;
+import com.bagile.gmo.mapper.AccountMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.AccountMapper;
 import com.bagile.tms.repositories.AccountRepository;
 import com.bagile.tms.services.AccountService;
 import com.bagile.tms.util.Search;
@@ -66,8 +65,8 @@ public class AccountServiceImpl implements AccountService {
         if (search.equals("")){
             return findAll (page, size);
         }
-        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
-        Pageable pageable = PageRequest.of(page, size, sort);
+        Sort sort = Sort.by(Sort.Direction.DESC, "cmdAccountUpdateDate");
+        Pageable pageable = PageRequest.of(page, size);
         return AccountMapper.toDtos(accountRepository.findAll(Search.expression(search, CmdAccount.class), pageable), false);
     }
 

@@ -1,7 +1,7 @@
 package com.bagile.tms.controllers;
 
-import com.bagile.tms.dto.CommissionDriver;
-import com.bagile.tms.dto.SaleOrderStock;
+import com.bagile.gmo.dto.CommissionDriver;
+import com.bagile.gmo.dto.SaleOrderStock;
 import com.bagile.tms.exceptions.*;
 import com.bagile.tms.services.SaleOrderStockService;
 

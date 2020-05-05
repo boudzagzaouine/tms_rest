@@ -1,12 +1,12 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.DeliveryLine;
-import com.bagile.tms.entities.CmdDeliveryLine;
+import com.bagile.gmo.dto.DeliveryLine;
+import com.bagile.gmo.entities.CmdDeliveryLine;
+import com.bagile.gmo.mapper.DeliveryLineMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.CustomException;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.DeliveryLineMapper;
 import com.bagile.tms.repositories.DeliveryLineRepository;
 import com.bagile.tms.services.DeliveryLineService;
 import com.bagile.tms.util.Search;

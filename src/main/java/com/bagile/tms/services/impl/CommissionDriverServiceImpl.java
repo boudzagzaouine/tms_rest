@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.CommissionDriver;
-import com.bagile.tms.entities.TmsCommissionDriver;
+import com.bagile.gmo.dto.CommissionDriver;
+import com.bagile.gmo.entities.TmsCommissionDriver;
+import com.bagile.gmo.mapper.CommissionDriverMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.CommissionDriverMapper;
 import com.bagile.tms.repositories.CommissionDriverRepository;
 import com.bagile.tms.services.CommissionDriverService;
 import com.bagile.tms.util.Search;

@@ -1,21 +1,22 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.BadgeTypeDriver;
-import com.bagile.tms.entities.TmsBadgeTypeDriver;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.BadgeTypeDriverMapper;
-import com.bagile.tms.repositories.BadgeTypeDriverRepository;
-import com.bagile.tms.services.BadgeTypeDriverService;
-import com.bagile.tms.util.Search;
+import java.util.List;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.bagile.gmo.dto.BadgeTypeDriver;
+import com.bagile.gmo.entities.GmoBadgeTypeDriver;
+import com.bagile.gmo.mapper.BadgeTypeDriverMapper;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.repositories.BadgeTypeDriverRepository;
+import com.bagile.tms.services.BadgeTypeDriverService;
+import com.bagile.tms.util.Search;
 
 
 @Service
@@ -52,7 +53,7 @@ public class BadgeTypeDriverServiceImpl implements BadgeTypeDriverService {
         if (search.equals("")){
             return findAll ();
         }
-        return BadgeTypeDriverMapper.toDtos(badgeTypeDriverRepository.findAll(Search.expression(search, TmsBadgeTypeDriver.class)), false);
+        return BadgeTypeDriverMapper.toDtos(badgeTypeDriverRepository.findAll(Search.expression(search, GmoBadgeTypeDriver.class)), false);
     }
 
     @Override
@@ -62,12 +63,12 @@ public class BadgeTypeDriverServiceImpl implements BadgeTypeDriverService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return BadgeTypeDriverMapper.toDtos(badgeTypeDriverRepository.findAll(Search.expression(search, TmsBadgeTypeDriver.class), pageable), false);
+        return BadgeTypeDriverMapper.toDtos(badgeTypeDriverRepository.findAll(Search.expression(search, GmoBadgeTypeDriver.class), pageable), false);
     }
 
     @Override
     public BadgeTypeDriver findOne(String search) throws AttributesNotFound, ErrorType {
-        return BadgeTypeDriverMapper.toDto (badgeTypeDriverRepository.findOne (Search.expression (search, TmsBadgeTypeDriver.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
+        return BadgeTypeDriverMapper.toDto (badgeTypeDriverRepository.findOne (Search.expression (search, GmoBadgeTypeDriver.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
 
     }
 
@@ -76,7 +77,7 @@ public class BadgeTypeDriverServiceImpl implements BadgeTypeDriverService {
         if (search.equals("")){
             return size ();
         }
-        return badgeTypeDriverRepository.count(Search.expression(search, TmsBadgeTypeDriver.class));
+        return badgeTypeDriverRepository.count(Search.expression(search, GmoBadgeTypeDriver.class));
     }
 
     @Override

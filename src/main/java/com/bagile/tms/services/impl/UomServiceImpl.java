@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.Uom;
-import com.bagile.tms.entities.PdtUom;
+import com.bagile.gmo.dto.Uom;
+import com.bagile.gmo.entities.PdtUom;
+import com.bagile.gmo.mapper.UomMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.UomMapper;
 import com.bagile.tms.repositories.UomRepository;
 import com.bagile.tms.services.UomService;
 import com.bagile.tms.util.EmsDate;

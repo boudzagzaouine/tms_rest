@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.OrderStatus;
-import com.bagile.tms.entities.PrmOrderStatus;
+import com.bagile.gmo.dto.OrderStatus;
+import com.bagile.gmo.entities.PrmOrderStatus;
+import com.bagile.gmo.mapper.OrderStatusMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.OrderStatusMapper;
 import com.bagile.tms.repositories.OrderStatusRepository;
 import com.bagile.tms.services.OrderStatusService;
 import com.bagile.tms.util.Search;

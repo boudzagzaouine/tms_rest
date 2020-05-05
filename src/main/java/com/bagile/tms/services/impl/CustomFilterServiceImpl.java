@@ -10,12 +10,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bagile.tms.dto.CustomFilter;
-import com.bagile.tms.entities.FltrCustomFilter;
+import com.bagile.gmo.dto.CustomFilter;
+import com.bagile.gmo.entities.FltrCustomFilter;
+import com.bagile.gmo.mapper.CustomFilterMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.CustomFilterMapper;
 import com.bagile.tms.repositories.CustomFilterRepository;
 import com.bagile.tms.services.CustomFilterService;
 import com.bagile.tms.util.EmsDate;

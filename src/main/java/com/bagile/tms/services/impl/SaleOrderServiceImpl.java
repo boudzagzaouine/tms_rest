@@ -1,13 +1,12 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.SaleOrder;
-import com.bagile.tms.dto.SaleOrder;
-import com.bagile.tms.entities.CmdSaleOrder;
+import com.bagile.gmo.dto.SaleOrder;
+import com.bagile.gmo.entities.CmdSaleOrder;
+import com.bagile.gmo.mapper.SaleOrderMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.CustomException;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.SaleOrderMapper;
 import com.bagile.tms.repositories.SaleOrderRepository;
 import com.bagile.tms.services.SaleOrderService;
 import com.bagile.tms.util.Search;

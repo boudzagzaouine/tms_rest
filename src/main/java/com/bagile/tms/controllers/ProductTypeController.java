@@ -1,6 +1,6 @@
 package com.bagile.tms.controllers;
 
-import com.bagile.tms.dto.ProductType;
+import com.bagile.gmo.dto.ProductType;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;

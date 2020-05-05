@@ -1,26 +1,25 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.Contact;
-import com.bagile.tms.dto.Driver;
-import com.bagile.tms.entities.TmsDriver;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.DriverMapper;
-import com.bagile.tms.repositories.DriverRepository;
-import com.bagile.tms.services.ContactService;
-import com.bagile.tms.services.DriverService;
-import com.bagile.tms.util.EmsDate;
-import com.bagile.tms.util.Search;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.bagile.gmo.dto.Driver;
+import com.bagile.gmo.entities.GmoDriver;
+import com.bagile.gmo.mapper.DriverMapper;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.repositories.DriverRepository;
+import com.bagile.tms.services.ContactService;
+import com.bagile.tms.services.DriverService;
+import com.bagile.tms.util.EmsDate;
+import com.bagile.tms.util.Search;
 
 @Service
 @Transactional
@@ -67,7 +66,7 @@ public class DriverServiceImpl implements DriverService {
         if (search.equals ("")){
             return findAll ();
         }
-        return DriverMapper.toDtos(driverRepository.findAll(Search.expression(search, TmsDriver.class)), false);
+        return DriverMapper.toDtos(driverRepository.findAll(Search.expression(search, GmoDriver.class)), false);
     }
 
     @Override
@@ -77,7 +76,7 @@ public class DriverServiceImpl implements DriverService {
         }
         //Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size);
-        List<Driver> drivers = DriverMapper.toDtos(driverRepository.findAll(Search.expression(search, TmsDriver.class), pageable), false);
+        List<Driver> drivers = DriverMapper.toDtos(driverRepository.findAll(Search.expression(search, GmoDriver.class), pageable), false);
         return drivers;
     }
 
@@ -86,7 +85,7 @@ public class DriverServiceImpl implements DriverService {
         if ("".equals(search)) {
             return size();
         }
-        return driverRepository.count(Search.expression(search, TmsDriver.class));
+        return driverRepository.count(Search.expression(search, GmoDriver.class));
     }
 
     @Override

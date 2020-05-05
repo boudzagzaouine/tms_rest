@@ -1,22 +1,22 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.MaintenanceType;
-import com.bagile.tms.entities.TmsMaintenanceType;
-import com.bagile.tms.entities.TmsVehicle;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.MaintenanceTypeMapper;
-import com.bagile.tms.repositories.MaintenanceTypeRepository;
-import com.bagile.tms.services.MaintenanceTypeService;
-import com.bagile.tms.util.Search;
+import java.util.List;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.bagile.gmo.dto.MaintenanceType;
+import com.bagile.gmo.entities.GmoMaintenanceType;
+import com.bagile.gmo.mapper.MaintenanceTypeMapper;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.repositories.MaintenanceTypeRepository;
+import com.bagile.tms.services.MaintenanceTypeService;
+import com.bagile.tms.util.Search;
 
 @Service
 @Transactional
@@ -53,7 +53,7 @@ public class MaintenanceTypeServiceImpl implements MaintenanceTypeService {
         if (search.equals("")){
             return findAll ();
         }
-        return MaintenanceTypeMapper.toDtos(MaintenancetypeRepository.findAll(Search.expression(search, TmsMaintenanceType.class)));
+        return MaintenanceTypeMapper.toDtos(MaintenancetypeRepository.findAll(Search.expression(search, GmoMaintenanceType.class)));
     }
 
     @Override
@@ -63,7 +63,7 @@ public class MaintenanceTypeServiceImpl implements MaintenanceTypeService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return MaintenanceTypeMapper.toDtos(MaintenancetypeRepository.findAll(Search.expression(search, TmsMaintenanceType.class), pageable));
+        return MaintenanceTypeMapper.toDtos(MaintenancetypeRepository.findAll(Search.expression(search, GmoMaintenanceType.class), pageable));
     }
 
     @Override
@@ -71,7 +71,7 @@ public class MaintenanceTypeServiceImpl implements MaintenanceTypeService {
         if (search.equals("")){
             return size ();
         }
-        return MaintenancetypeRepository.count(Search.expression(search, TmsMaintenanceType.class));
+        return MaintenancetypeRepository.count(Search.expression(search, GmoMaintenanceType.class));
     }
 
     @Override

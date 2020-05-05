@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.ProductType;
-import com.bagile.tms.entities.PdtProductType;
+import com.bagile.gmo.dto.ProductType;
+import com.bagile.gmo.entities.PdtProductType;
+import com.bagile.gmo.mapper.ProductTypeMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.ProductTypeMapper;
 import com.bagile.tms.repositories.ProductTypeRepository;
 import com.bagile.tms.services.ProductTypeService;
 import com.bagile.tms.util.EmsDate;

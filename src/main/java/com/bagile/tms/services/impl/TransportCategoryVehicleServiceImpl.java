@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.TransportCategoryVehicle;
-import com.bagile.tms.entities.TmsTransportCategoryVehicle;
+import com.bagile.gmo.dto.TransportCategoryVehicle;
+import com.bagile.gmo.entities.TmsTransportCategoryVehicle;
+import com.bagile.gmo.mapper.TransportCategoryVehicleMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.TransportCategoryVehicleMapper;
 import com.bagile.tms.repositories.TransportCategoryVehicleRepository;
 import com.bagile.tms.services.TransportCategoryVehicleService;
 import com.bagile.tms.services.TransportService;

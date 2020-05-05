@@ -1,5 +1,5 @@
 package com.bagile.tms.services;
-import com.bagile.tms.dto.Vacation;
+import com.bagile.gmo.dto.Vacation;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.IdNotFound;
 import org.junit.jupiter.api.Disabled;

@@ -1,22 +1,22 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.InsuranceTermsVehicle;
-import com.bagile.tms.entities.TmsBadgeTypeDriver;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.InsuranceTermsVehicleMapper;
-import com.bagile.tms.repositories.InsuranceTermsVehicleRepository;
-import com.bagile.tms.services.BadgeTypeDriverService;
-import com.bagile.tms.services.InsuranceTermsVehicleService;
-import com.bagile.tms.util.Search;
+import java.util.List;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.bagile.gmo.dto.InsuranceTermsVehicle;
+import com.bagile.gmo.entities.GmoBadgeTypeDriver;
+import com.bagile.gmo.mapper.InsuranceTermsVehicleMapper;
+import com.bagile.tms.exceptions.AttributesNotFound;
+import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.tms.repositories.InsuranceTermsVehicleRepository;
+import com.bagile.tms.services.InsuranceTermsVehicleService;
+import com.bagile.tms.util.Search;
 
 
 @Service
@@ -53,7 +53,7 @@ public class InsuranceTermsVehicleServiceImpl implements InsuranceTermsVehicleSe
         if (search.equals("")){
             return findAll ();
         }
-        return InsuranceTermsVehicleMapper.toDtos(insuranceTermsVehicleRepository.findAll(Search.expression(search, TmsBadgeTypeDriver.class)), false);
+        return InsuranceTermsVehicleMapper.toDtos(insuranceTermsVehicleRepository.findAll(Search.expression(search, GmoBadgeTypeDriver.class)), false);
     }
 
     @Override
@@ -63,12 +63,12 @@ public class InsuranceTermsVehicleServiceImpl implements InsuranceTermsVehicleSe
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return InsuranceTermsVehicleMapper.toDtos(insuranceTermsVehicleRepository.findAll(Search.expression(search, TmsBadgeTypeDriver.class), pageable), false);
+        return InsuranceTermsVehicleMapper.toDtos(insuranceTermsVehicleRepository.findAll(Search.expression(search, GmoBadgeTypeDriver.class), pageable), false);
     }
 
     @Override
     public InsuranceTermsVehicle findOne(String search) throws AttributesNotFound, ErrorType {
-        return InsuranceTermsVehicleMapper.toDto (insuranceTermsVehicleRepository.findOne (Search.expression (search, TmsBadgeTypeDriver.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
+        return InsuranceTermsVehicleMapper.toDto (insuranceTermsVehicleRepository.findOne (Search.expression (search, GmoBadgeTypeDriver.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
 
     }
 
@@ -77,7 +77,7 @@ public class InsuranceTermsVehicleServiceImpl implements InsuranceTermsVehicleSe
         if (search.equals("")){
             return size ();
         }
-        return insuranceTermsVehicleRepository.count(Search.expression(search, TmsBadgeTypeDriver.class));
+        return insuranceTermsVehicleRepository.count(Search.expression(search, GmoBadgeTypeDriver.class));
     }
 
     @Override

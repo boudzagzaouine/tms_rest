@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.Supplier;
-import com.bagile.tms.entities.RcpSupplier;
+import com.bagile.gmo.dto.Supplier;
+import com.bagile.gmo.entities.RcpSupplier;
+import com.bagile.gmo.mapper.SupplierMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.SupplierMapper;
 import com.bagile.tms.repositories.SupplierRepository;
 import com.bagile.tms.services.SupplierService;
 import com.bagile.tms.util.Search;

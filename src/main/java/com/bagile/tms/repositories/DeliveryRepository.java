@@ -1,9 +1,10 @@
 package com.bagile.tms.repositories;
 
-import com.bagile.tms.entities.CmdDelivery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+
+import com.bagile.gmo.entities.CmdDelivery;
 
 import java.math.BigInteger;
 import java.util.List;

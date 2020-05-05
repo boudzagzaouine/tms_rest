@@ -1,12 +1,12 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.Warehouse;
-import com.bagile.tms.entities.WrhWarehouse;
+import com.bagile.gmo.dto.Warehouse;
+import com.bagile.gmo.entities.WrhWarehouse;
+import com.bagile.gmo.mapper.WarehouseMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
 import com.bagile.tms.exceptions.WarehouseException;
-import com.bagile.tms.mapper.WarehouseMapper;
 //import com.bagile.tms.repositories.DeliveryRepository;
 //import com.bagile.tms.repositories.SaleOrderRepository;
 //import com.bagile.tms.repositories.StockRepository;

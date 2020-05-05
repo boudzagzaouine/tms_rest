@@ -1,6 +1,7 @@
 package com.bagile.tms.services;
 
-import com.bagile.tms.dto.MaintenancePlan;
+import com.bagile.gmo.dto.MaintenancePlan;
+import com.bagile.gmo.dto.MaintenanceState;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
@@ -31,4 +32,5 @@ public interface MaintenancePlanService {
     List<MaintenancePlan> findAll();
 
     List<MaintenancePlan> findAll(int page, int size);
+
 }

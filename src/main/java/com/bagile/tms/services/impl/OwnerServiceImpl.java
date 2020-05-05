@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.Owner;
-import com.bagile.tms.entities.OwnOwner;
+import com.bagile.gmo.dto.Owner;
+import com.bagile.gmo.entities.OwnOwner;
+import com.bagile.gmo.mapper.OwnerMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.OwnerMapper;
 import com.bagile.tms.repositories.OwnerRepository;
 import com.bagile.tms.services.OwnerService;
 import com.bagile.tms.util.EmsDate;

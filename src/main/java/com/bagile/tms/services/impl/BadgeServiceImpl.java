@@ -1,11 +1,11 @@
 package com.bagile.tms.services.impl;
 
-import com.bagile.tms.dto.Badge;
-import com.bagile.tms.entities.TmsBadge;
+import com.bagile.gmo.dto.Badge;
+import com.bagile.gmo.entities.TmsBadge;
+import com.bagile.gmo.mapper.BadgeMapper;
 import com.bagile.tms.exceptions.AttributesNotFound;
 import com.bagile.tms.exceptions.ErrorType;
 import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.mapper.BadgeMapper;
 import com.bagile.tms.repositories.BadgeRepository;
 import com.bagile.tms.services.BadgeService;
 import com.bagile.tms.util.Search;
