@@ -104,6 +104,13 @@ public class ContractTypeServiceImpl implements ContractTypeService {
     }
 
     @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            contractTypeRepository.deleteById(id);        }
+    }
+
+    @Override
     public List<ContractType> findAll() throws AttributesNotFound, ErrorType {
         return ContractTypeMapper.toDtos(contractTypeRepository.findAll(), false);
     }

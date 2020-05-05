@@ -83,6 +83,12 @@ public class ConsumptionTypeServiceImpl implements ConsumptionTypeService {
     }
 
     @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            consumptionTypeRepository.deleteById(id);        }
+    }
+    @Override
     public List<ConsumptionType> findAll() {
         return ConsumptionTypeMapper.toDtos(consumptionTypeRepository.findAll(), false);
     }

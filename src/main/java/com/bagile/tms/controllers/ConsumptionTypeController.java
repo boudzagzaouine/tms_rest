@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -98,4 +99,10 @@ public class ConsumptionTypeController {
         consumptionTypeService.delete(id);
     }
 
+
+    @RequestMapping(value = "/deleteAll", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
+        consumptionTypeService.deleteAll (Arrays.asList(ids));
+    }
 }

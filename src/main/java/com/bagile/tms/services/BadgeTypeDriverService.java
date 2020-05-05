@@ -28,7 +28,7 @@ public interface BadgeTypeDriverService {
     void delete(Long id);
 
     void delete(BadgeTypeDriver badgeTypeDriver);
-
+    void deleteAll (List<Long> ids);
     List<BadgeTypeDriver> findAll() throws AttributesNotFound, ErrorType;
 
     List<BadgeTypeDriver> findAll(int page, int size) throws AttributesNotFound, ErrorType;

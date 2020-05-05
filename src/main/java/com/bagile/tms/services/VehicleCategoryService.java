@@ -27,6 +27,8 @@ public interface VehicleCategoryService {
 
     void delete(VehicleCategory vehicleCategory);
 
+    void deleteAll (List<Long> ids);
+
     List<VehicleCategory> findAll();
 
     List<VehicleCategory> findAll(int page, int size);

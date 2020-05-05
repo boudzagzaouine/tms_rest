@@ -89,6 +89,12 @@ public class BadgeTypeDriverServiceImpl implements BadgeTypeDriverService {
     public void delete(BadgeTypeDriver badgeTypeDriver) {
         badgeTypeDriverRepository.delete(BadgeTypeDriverMapper.toEntity(badgeTypeDriver, false));
     }
+    @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            badgeTypeDriverRepository.deleteById(id);        }
+    }
 
     @Override
     public List<BadgeTypeDriver> findAll() {

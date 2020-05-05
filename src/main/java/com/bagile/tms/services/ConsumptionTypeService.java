@@ -26,6 +26,7 @@ public interface ConsumptionTypeService {
     void delete(Long id);
 
     void delete(ConsumptionType consumptionType);
+    void deleteAll (List<Long> ids);
 
     List<ConsumptionType> findAll();
 

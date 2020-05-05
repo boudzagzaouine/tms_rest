@@ -26,7 +26,7 @@ public interface CatalogTransportTypeService {
     void delete(Long id);
 
     void delete(CatalogTransportType transport);
-
+    void deleteAll (List<Long> ids);
     List<CatalogTransportType> findAll();
 
     List<CatalogTransportType> findAll(int page, int size);
