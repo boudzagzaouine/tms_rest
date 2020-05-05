@@ -4,34 +4,34 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="tms_zone")
-public class TmsZone   extends EmsEntity{
+@Table(name="gmo_zone")
+public class GmoZone   extends EmsEntity{
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_zone_id", allocationSize = 1)
-    @Column(name = "tms_zoneid", unique = true, nullable = false, precision = 10, scale = 0)
-    private Long tmsZoneId;
-    @Column(name = "tms_zonename",  unique = true, nullable = false, length = 90)
-    private String tmsZoneName;
+    @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_zone_id", allocationSize = 1)
+    @Column(name = "gmo_zoneid", unique = true, nullable = false, precision = 10, scale = 0)
+    private Long gmoZoneId;
+    @Column(name = "gmo_zonename",  unique = true, nullable = false, length = 90)
+    private String gmoZoneName;
 
-    public TmsZone() {
+    public GmoZone() {
     }
 
-    public Long getTmsZoneId() {
-        return tmsZoneId;
+    public Long getGmoZoneId() {
+        return gmoZoneId;
     }
 
-    public void setTmsZoneId(Long tmsZoneId) {
-        this.tmsZoneId = tmsZoneId;
+    public void setGmoZoneId(Long gmoZoneId) {
+        this.gmoZoneId = gmoZoneId;
     }
 
-    public String getTmsZoneName() {
-        return tmsZoneName;
+    public String getGmoZoneName() {
+        return gmoZoneName;
     }
 
-    public void setTmsZoneName(String tmsZoneName) {
-        this.tmsZoneName = tmsZoneName;
+    public void setGmoZoneName(String gmoZoneName) {
+        this.gmoZoneName = gmoZoneName;
     }
 }

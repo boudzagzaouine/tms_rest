@@ -5,44 +5,44 @@ import org.hibernate.annotations.SQLDelete;
 import javax.persistence.*;
 
 @Entity
-@Table(name="tms_consumptiontype")
+@Table(name="gmo_consumptiontype")
 
-public class TmsConsumptionType extends EmsEntity{
+public class GmoConsumptionType extends EmsEntity{
 
-    private long tmsConsumptionTypeId;
-    private String tmsConsumptionTypeCode;
-    private String tmsConsumptionTypeDescription;
+    private long gmoConsumptionTypeId;
+    private String gmoConsumptionTypeCode;
+    private String gmoConsumptionTypeDescription;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_consumptiontype_id", allocationSize = 1)
-    @Column(name = "tms_consumptiontype_id", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getTmsConsumptionTypeId() {
-        return tmsConsumptionTypeId;
+    @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_consumptiontype_id", allocationSize = 1)
+    @Column(name = "gmo_consumptiontype_id", unique = true, nullable = false, precision = 10, scale = 0)
+    public long getGmoConsumptionTypeId() {
+        return gmoConsumptionTypeId;
     }
 
-    public void setTmsConsumptionTypeId(long tmsConsumptionTypeId) {
-        this.tmsConsumptionTypeId = tmsConsumptionTypeId;
+    public void setGmoConsumptionTypeId(long gmoConsumptionTypeId) {
+        this.gmoConsumptionTypeId = gmoConsumptionTypeId;
     }
 
-    @Column(name = "tms_consumptiontypecode", unique = true, nullable = false, length = 90)
-    public String getTmsConsumptionTypeCode() {
-        return tmsConsumptionTypeCode;
+    @Column(name = "gmo_consumptiontypecode", unique = true, nullable = false, length = 90)
+    public String getGmoConsumptionTypeCode() {
+        return gmoConsumptionTypeCode;
     }
 
-    public void setTmsConsumptionTypeCode(String tmsConsumptionTypeCode) {
-        this.tmsConsumptionTypeCode = tmsConsumptionTypeCode;
+    public void setGmoConsumptionTypeCode(String gmoConsumptionTypeCode) {
+        this.gmoConsumptionTypeCode = gmoConsumptionTypeCode;
     }
 
 
 
 
-    @Column(name = "tms_consumptiontypedescription")
-    public String getTmsConsumptionTypeDescription() {
-        return tmsConsumptionTypeDescription;
+    @Column(name = "gmo_consumptiontypedescription")
+    public String getGmoConsumptionTypeDescription() {
+        return gmoConsumptionTypeDescription;
     }
 
-    public void setTmsConsumptionTypeDescription(String tmsConsumptionTypeDescription) {
-        this.tmsConsumptionTypeDescription = tmsConsumptionTypeDescription;
+    public void setGmoConsumptionTypeDescription(String gmoConsumptionTypeDescription) {
+        this.gmoConsumptionTypeDescription = gmoConsumptionTypeDescription;
     }
 }

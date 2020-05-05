@@ -1,4 +1,4 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import java.util.List;
 
@@ -13,13 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bagile.gmo.dto.CustomFilter;
 import com.bagile.gmo.entities.FltrCustomFilter;
 import com.bagile.gmo.mapper.CustomFilterMapper;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.CustomFilterRepository;
-import com.bagile.tms.services.CustomFilterService;
-import com.bagile.tms.util.EmsDate;
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.CustomFilterRepository;
+import com.bagile.gmo.services.CustomFilterService;
+import com.bagile.gmo.util.EmsDate;
+import com.bagile.gmo.util.Search;
 
 @Service
 @Transactional

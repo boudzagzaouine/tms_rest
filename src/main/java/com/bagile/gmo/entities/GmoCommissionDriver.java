@@ -15,57 +15,57 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "tms_commissiondriver")
-public class TmsCommissionDriver extends EmsEntity {
+@Table(name = "gmo_commissiondriver")
+public class GmoCommissionDriver extends EmsEntity {
 
 	private static final long serialVersionUID = -8643467091485336055L;
 
-	private long tmsCommissionId;
+	private long gmoCommissionId;
     private GmoDriver gmoDriver;
-    private TmsCommissionType tmsCommissionType;
-    private Date tmsDatee;
+    private GmoCommissionType gmoCommissionType;
+    private Date gmoDatee;
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_commission_id", allocationSize = 1)
-    @Column(name = "tms_Commissionid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getTmsCommissionId() {
-        return tmsCommissionId;
+    @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_commission_id", allocationSize = 1)
+    @Column(name = "gmo_Commissionid", unique = true, nullable = false, precision = 10, scale = 0)
+    public long getGmoCommissionId() {
+        return gmoCommissionId;
     }
 
-    public void setTmsCommissionId(long tmsCommissionTypeId) {
-        this.tmsCommissionId = tmsCommissionTypeId;
+    public void setGmoCommissionId(long gmoCommissionTypeId) {
+        this.gmoCommissionId = gmoCommissionTypeId;
     }
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "tms_driverid")
-    public GmoDriver getTmsDriver() {
+    @JoinColumn(name = "gmo_driverid")
+    public GmoDriver getGmoDriver() {
         return gmoDriver;
     }
-    public void setTmsDriver(GmoDriver gmoDriver) {
+    public void setGmoDriver(GmoDriver gmoDriver) {
         this.gmoDriver = gmoDriver;
     }
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "tms_commissiontypeid")
-    public TmsCommissionType getTmsCommissionType() {
-        return tmsCommissionType;
+    @JoinColumn(name = "gmo_commissiontypeid")
+    public GmoCommissionType getGmoCommissionType() {
+        return gmoCommissionType;
     }
 
-    public void setTmsCommissionType(TmsCommissionType tmsCommissionType) {
-        this.tmsCommissionType = tmsCommissionType;
+    public void setGmoCommissionType(GmoCommissionType gmoCommissionType) {
+        this.gmoCommissionType = gmoCommissionType;
     }
 
 
 
 
-    @Column(name = "tms_commissiondate", nullable = false, precision = 10, scale = 0)
-    public Date getTmsDatee() {
-        return tmsDatee;
+    @Column(name = "gmo_commissiondate", nullable = false, precision = 10, scale = 0)
+    public Date getGmoDatee() {
+        return gmoDatee;
     }
 
-    public void setTmsDatee(Date tmsDatee) {
-        this.tmsDatee = tmsDatee;
+    public void setGmoDatee(Date gmoDatee) {
+        this.gmoDatee = gmoDatee;
     }
 }

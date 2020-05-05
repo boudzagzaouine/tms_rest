@@ -74,7 +74,7 @@ public class CmdSaleOrderStock extends EmsEntity implements Serializable  {
    // private PdtProductDimension pdtProductDimension;
     private PdtProductPack pdtProductPack;
 
-    //private TmsTurn tmsTurn;
+    //private GmoTurn gmoTurn;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -328,12 +328,12 @@ public class CmdSaleOrderStock extends EmsEntity implements Serializable  {
 
    /* @ManyToOne()
     @JoinColumn(name = "cmd_saleorderstockturnid")
-    public TmsTurn getTmsTurn() {
-        return tmsTurn;
+    public GmoTurn getGmoTurn() {
+        return gmoTurn;
     }
 
-    public void setTmsTurn(TmsTurn tmsTurn) {
-        this.tmsTurn = tmsTurn;
+    public void setGmoTurn(GmoTurn gmoTurn) {
+        this.gmoTurn = gmoTurn;
     }*/
 }
 

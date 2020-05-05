@@ -1,4 +1,4 @@
-package com.bagile.tms.exceptions;
+package com.bagile.gmo.exceptions;
 
 /**
  * Created by Enissay on 02/06/2016.

@@ -45,53 +45,53 @@ public class ContactMapper {
         if (null == contact) {
             return null;
         }
-        PrmContact tmsContact = new PrmContact();
-        tmsContact.setPrmContactId(contact.getId());
-        tmsContact.setPrmContactName(contact.getName());
-        tmsContact.setPrmContactType(contact.getContactType());
-        tmsContact.setPrmContactSurname(contact.getSurname());
-        tmsContact.setPrmContactTel1 (contact.getTel1 ());
-        tmsContact.setPrmContactTel2 (contact.getTel2 ());
-        tmsContact.setPrmContactFax(contact.getFax());
-        tmsContact.setPrmContactEmail(contact.getEmail());
-         tmsContact.setPrmContactComment(contact.getComment());
-        tmsContact.setPrmContactActive(contact.getActive());
+        PrmContact gmoContact = new PrmContact();
+        gmoContact.setPrmContactId(contact.getId());
+        gmoContact.setPrmContactName(contact.getName());
+        gmoContact.setPrmContactType(contact.getContactType());
+        gmoContact.setPrmContactSurname(contact.getSurname());
+        gmoContact.setPrmContactTel1 (contact.getTel1 ());
+        gmoContact.setPrmContactTel2 (contact.getTel2 ());
+        gmoContact.setPrmContactFax(contact.getFax());
+        gmoContact.setPrmContactEmail(contact.getEmail());
+         gmoContact.setPrmContactComment(contact.getComment());
+        gmoContact.setPrmContactActive(contact.getActive());
 
 
-        tmsContact.setCreatedBy(contact.getCreatedBy());
-        tmsContact.setUpdatedBy(contact.getUpdatedBy());
-        tmsContact.setCreationDate(contact.getCreationDate());
-        tmsContact.setUpdateDate(contact.getUpdateDate());
+        gmoContact.setCreatedBy(contact.getCreatedBy());
+        gmoContact.setUpdatedBy(contact.getUpdatedBy());
+        gmoContact.setCreationDate(contact.getCreationDate());
+        gmoContact.setUpdateDate(contact.getUpdateDate());
         /*if (!lazy) {
-            tmsContact.setOwnOwner(OwnerMapper.toEntity(contact.getOwner(), true));
+            gmoContact.setOwnOwner(OwnerMapper.toEntity(contact.getOwner(), true));
 //            prmContact.setInvInvoices(InvoiceMapper.toEntities(contact.getInvoices(), true));
 //            prmContact.setInvInvoiceArcs(InvoiceArcMapper.toEntities(contact.getInvoiceArcs(), true));
 //            prmContact.setRcpSuppliers(SupplierMapper.toEntities(contact.getSuppliers(), true));
 //            prmContact.setTrpTransports(TransportMapper.toEntities(contact.getTransports(), true));
         }*/
-        return tmsContact;
+        return gmoContact;
     }
 
-    public static Contact toDto(PrmContact tmsContact, boolean lazy) {
-        if (null == tmsContact) {
+    public static Contact toDto(PrmContact gmoContact, boolean lazy) {
+        if (null == gmoContact) {
             return null;
         }
         Contact contact = new Contact();
-        contact.setId(tmsContact.getPrmContactId());
-        contact.setName(tmsContact.getPrmContactName());
-        contact.setSurname(tmsContact.getPrmContactSurname());
-        contact.setTel1 (tmsContact.getPrmContactTel1 ());
-        contact.setTel2 (tmsContact.getPrmContactTel2 ());
-        contact.setFax(tmsContact.getPrmContactFax());
-        contact.setContactType(tmsContact.getPrmContactType());
-        contact.setEmail(tmsContact.getPrmContactEmail());
-        contact.setComment(tmsContact.getPrmContactComment());
-        contact.setActive(tmsContact.isPrmContactActive());
+        contact.setId(gmoContact.getPrmContactId());
+        contact.setName(gmoContact.getPrmContactName());
+        contact.setSurname(gmoContact.getPrmContactSurname());
+        contact.setTel1 (gmoContact.getPrmContactTel1 ());
+        contact.setTel2 (gmoContact.getPrmContactTel2 ());
+        contact.setFax(gmoContact.getPrmContactFax());
+        contact.setContactType(gmoContact.getPrmContactType());
+        contact.setEmail(gmoContact.getPrmContactEmail());
+        contact.setComment(gmoContact.getPrmContactComment());
+        contact.setActive(gmoContact.isPrmContactActive());
 
-        contact.setCreatedBy(tmsContact.getCreatedBy());
-        contact.setUpdatedBy(tmsContact.getUpdatedBy());
-        contact.setCreationDate(tmsContact.getCreationDate());
-        contact.setUpdateDate(tmsContact.getUpdateDate());
+        contact.setCreatedBy(gmoContact.getCreatedBy());
+        contact.setUpdatedBy(gmoContact.getUpdatedBy());
+        contact.setCreationDate(gmoContact.getCreationDate());
+        contact.setUpdateDate(gmoContact.getUpdateDate());
         /*if (!lazy) {
             contact.setOwner(OwnerMapper.toDto(prmContact.getOwnOwner(), true));
 //            contact.setInvoices(InvoiceMapper.toDtos(prmContact.getInvInvoices(), true));
@@ -104,12 +104,12 @@ public class ContactMapper {
 
 
 
-    public static List<Contact> toDtos(Iterable<? extends PrmContact> tmsContacts, boolean lazy) {
-        if (null == tmsContacts) {
+    public static List<Contact> toDtos(Iterable<? extends PrmContact> gmoContacts, boolean lazy) {
+        if (null == gmoContacts) {
             return null;
         }
         List<Contact> contacts = new ArrayList<>();
-        for (PrmContact trmContact : tmsContacts) {
+        for (PrmContact trmContact : gmoContacts) {
             contacts.add(toDto(trmContact, lazy));
         }
         return contacts;
@@ -126,13 +126,13 @@ public class ContactMapper {
         return prmContacts;
     }
 
-    public static Set<Contact> toDtos(Set<PrmContact> tmsContacts, boolean lazy) {
-        if (null == tmsContacts) {
+    public static Set<Contact> toDtos(Set<PrmContact> gmoContacts, boolean lazy) {
+        if (null == gmoContacts) {
             return null;
         }
         Set<Contact> contacts = new HashSet<>();
-        for (PrmContact tmsContact : tmsContacts) {
-            contacts.add(toDto(tmsContact, lazy));
+        for (PrmContact gmoContact : gmoContacts) {
+            contacts.add(toDto(gmoContact, lazy));
         }
         return contacts;
     }

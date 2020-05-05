@@ -1,7 +1,7 @@
 package com.bagile.gmo.mapper;
 
 import com.bagile.gmo.dto.Zone;
-import com.bagile.gmo.entities.TmsZone;
+import com.bagile.gmo.entities.GmoZone;
 
 import java.util.*;
 
@@ -14,8 +14,8 @@ public class ZoneMapper {
 
     static {
         map = new HashMap<>();
-        map.put("id", "tmsZoneId");
-        map.put("name", "tmsZoneName");
+        map.put("id", "gmoZoneId");
+        map.put("name", "gmoZoneName");
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdBy");
@@ -30,66 +30,66 @@ public class ZoneMapper {
         return map.get(key);
     }
 
-    public static TmsZone toEntity(Zone zone, boolean lazy) {
+    public static GmoZone toEntity(Zone zone, boolean lazy) {
         if (null == zone) {
             return null;
         }
-        TmsZone tmsZone = new TmsZone();
+        GmoZone gmoZone = new GmoZone();
 
-        tmsZone.setTmsZoneId(zone.getId());
-        tmsZone.setTmsZoneName(zone.getName());
-        tmsZone.setCreatedBy(zone.getCreatedBy());
-        tmsZone.setUpdatedBy(zone.getUpdatedBy());
-        tmsZone.setCreationDate(zone.getCreationDate());
-        tmsZone.setUpdateDate(zone.getUpdateDate());
-        return tmsZone;
+        gmoZone.setGmoZoneId(zone.getId());
+        gmoZone.setGmoZoneName(zone.getName());
+        gmoZone.setCreatedBy(zone.getCreatedBy());
+        gmoZone.setUpdatedBy(zone.getUpdatedBy());
+        gmoZone.setCreationDate(zone.getCreationDate());
+        gmoZone.setUpdateDate(zone.getUpdateDate());
+        return gmoZone;
     }
 
-    public static Zone toDto(TmsZone tmsZone, boolean lazy) {
-        if (null == tmsZone) {
+    public static Zone toDto(GmoZone gmoZone, boolean lazy) {
+        if (null == gmoZone) {
             return null;
         }
         Zone zone = new Zone();
 
-        zone.setId(tmsZone.getTmsZoneId());
-        zone.setName(tmsZone.getTmsZoneName());
-        zone.setCreatedBy(tmsZone.getCreatedBy());
-        zone.setUpdatedBy(tmsZone.getUpdatedBy());
-        zone.setCreationDate(tmsZone.getCreationDate());
-        zone.setUpdateDate(tmsZone.getUpdateDate());
+        zone.setId(gmoZone.getGmoZoneId());
+        zone.setName(gmoZone.getGmoZoneName());
+        zone.setCreatedBy(gmoZone.getCreatedBy());
+        zone.setUpdatedBy(gmoZone.getUpdatedBy());
+        zone.setCreationDate(gmoZone.getCreationDate());
+        zone.setUpdateDate(gmoZone.getUpdateDate());
 
         return zone;
     }
 
-    public static List<Zone> toDtos(Iterable<? extends TmsZone> tmsZones, boolean lazy) {
-        if (null == tmsZones) {
+    public static List<Zone> toDtos(Iterable<? extends GmoZone> gmoZones, boolean lazy) {
+        if (null == gmoZones) {
             return null;
         }
         List<Zone> zones = new ArrayList<>();
-        for (TmsZone tmsZone : tmsZones) {
-            zones.add(toDto(tmsZone, lazy));
+        for (GmoZone gmoZone : gmoZones) {
+            zones.add(toDto(gmoZone, lazy));
         }
         return zones;
     }
 
-    public static Set<TmsZone> toEntities(Set<Zone> zones, boolean lazy) {
+    public static Set<GmoZone> toEntities(Set<Zone> zones, boolean lazy) {
         if (null == zones) {
             return null;
         }
-        Set<TmsZone> tmsZones = new HashSet<>();
+        Set<GmoZone> gmoZones = new HashSet<>();
         for (Zone zone : zones) {
-            tmsZones.add(toEntity(zone, lazy));
+            gmoZones.add(toEntity(zone, lazy));
         }
-        return tmsZones;
+        return gmoZones;
     }
 
-    public static Set<Zone> toDtos(Set<TmsZone> tmsZones, boolean lazy) {
-        if (null == tmsZones) {
+    public static Set<Zone> toDtos(Set<GmoZone> gmoZones, boolean lazy) {
+        if (null == gmoZones) {
             return null;
         }
         Set<Zone> zones = new HashSet<>();
-        for (TmsZone tmsZone : tmsZones) {
-            zones.add(toDto(tmsZone, lazy));
+        for (GmoZone gmoZone : gmoZones) {
+            zones.add(toDto(gmoZone, lazy));
         }
         return zones;
     }

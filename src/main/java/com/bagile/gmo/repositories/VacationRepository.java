@@ -1,9 +1,9 @@
-package com.bagile.tms.repositories;
+package com.bagile.gmo.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
-import com.bagile.gmo.entities.TmsVacation;
-public interface VacationRepository extends JpaRepository<TmsVacation,Long>,
-        QuerydslPredicateExecutor<TmsVacation> {
+import com.bagile.gmo.entities.GmoVacation;
+public interface VacationRepository extends JpaRepository<GmoVacation,Long>,
+        QuerydslPredicateExecutor<GmoVacation> {
 }

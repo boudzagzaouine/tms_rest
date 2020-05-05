@@ -1,4 +1,4 @@
-package com.bagile.tms.util;
+package com.bagile.gmo.util;
 
 /**
  * Created by Enissay on 17/11/2017.

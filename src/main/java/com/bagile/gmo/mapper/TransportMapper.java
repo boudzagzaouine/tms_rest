@@ -15,7 +15,7 @@ public class TransportMapper {
     static {
         map = new HashMap<> ( );
 
-        map.put ("id", "tmsBadgeId");
+        map.put ("id", "gmoBadgeId");
         map.put ("comment", "trpTransportComment");
         map.put ("code", "trpTransportCode");
         map.put ("name", "trpTransportName");
@@ -54,7 +54,7 @@ public class TransportMapper {
 
         if (!lazy) {
             trpTransport.setAdrAddress (AddressMapper.toEntity (transport.getAddress ( ), true));
-            trpTransport.setTmsTransportCategoryVehicles (TransportCategoryVehicleMapper.toEntities (transport.getTransportCategorieVehicules ( ), true));
+            trpTransport.setGmoTransportCategoryVehicles (TransportCategoryVehicleMapper.toEntities (transport.getTransportCategorieVehicules ( ), true));
 
         }
 
@@ -81,7 +81,7 @@ public class TransportMapper {
 
         if (!lazy) {
             transport.setAddress (AddressMapper.toDto(trpTransport.getAdrAddress(), true));
-            transport.setTransportCategorieVehicules (TransportCategoryVehicleMapper.toDtos(trpTransport.getTmsTransportCategoryVehicles(), true));
+            transport.setTransportCategorieVehicules (TransportCategoryVehicleMapper.toDtos(trpTransport.getGmoTransportCategoryVehicles(), true));
 
         }
         return transport;
@@ -89,13 +89,13 @@ public class TransportMapper {
     }
 
 
-    public static List<Transport> toDtos(Iterable<? extends TrpTransport> tmsTransports, boolean lazy) {
-        if (null == tmsTransports) {
+    public static List<Transport> toDtos(Iterable<? extends TrpTransport> gmoTransports, boolean lazy) {
+        if (null == gmoTransports) {
             return null;
         }
         List<Transport> transports = new ArrayList<> ( );
 
-        for (TrpTransport trpTransport : tmsTransports) {
+        for (TrpTransport trpTransport : gmoTransports) {
             transports.add (toDto (trpTransport, lazy));
         }
         return transports;
@@ -105,19 +105,19 @@ public class TransportMapper {
         if (null == badges) {
             return null;
         }
-        Set<TrpTransport> tmsTransports = new HashSet<> ( );
+        Set<TrpTransport> gmoTransports = new HashSet<> ( );
         for (Transport transport : badges) {
-            tmsTransports.add (toEntity (transport, lazy));
+            gmoTransports.add (toEntity (transport, lazy));
         }
-        return tmsTransports;
+        return gmoTransports;
     }
 
-   /* public static Set<Transport> toDtos(Set<TrpTransport> tmsTransports, boolean lazy) {
-        if (null == tmsTransports) {
+   /* public static Set<Transport> toDtos(Set<TrpTransport> gmoTransports, boolean lazy) {
+        if (null == gmoTransports) {
             return null;
         }
         Set<Transport> badges = new HashSet<> ( );
-        for (TrpTransport trpTransport : tmsTransports) {
+        for (TrpTransport trpTransport : gmoTransports) {
             badges.add (toDto (trpTransport, lazy));
         }
         return badges;

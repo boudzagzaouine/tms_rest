@@ -1,14 +1,14 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.DriverZone;
-import com.bagile.gmo.entities.TmsDriverZone;
+import com.bagile.gmo.entities.GmoDriverZone;
 import com.bagile.gmo.mapper.DriverZoneMapper;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.DriverZoneRepository;
-import com.bagile.tms.services.DriverZoneService;
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.DriverZoneRepository;
+import com.bagile.gmo.services.DriverZoneService;
+import com.bagile.gmo.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -62,7 +62,7 @@ public class DriverZoneServiceImpl implements DriverZoneService {
         if (search.equals("")){
             return findAll ();
         }
-        return DriverZoneMapper.toDtos(driverzoneRepository.findAll(Search.expression(search, TmsDriverZone.class)), false);
+        return DriverZoneMapper.toDtos(driverzoneRepository.findAll(Search.expression(search, GmoDriverZone.class)), false);
 
     }
 
@@ -72,7 +72,7 @@ public class DriverZoneServiceImpl implements DriverZoneService {
             return findAll (page, size);
         }
         Pageable pageable = PageRequest.of(page, size);
-        return DriverZoneMapper.toDtos(driverzoneRepository.findAll(Search.expression(search, TmsDriverZone.class), pageable), false);
+        return DriverZoneMapper.toDtos(driverzoneRepository.findAll(Search.expression(search, GmoDriverZone.class), pageable), false);
 
     }
 
@@ -81,7 +81,7 @@ public class DriverZoneServiceImpl implements DriverZoneService {
         if ("".equals(search)) {
             size();
         }
-        return driverzoneRepository.count(Search.expression(search, TmsDriverZone.class));
+        return driverzoneRepository.count(Search.expression(search, GmoDriverZone.class));
     }
 
     @Override

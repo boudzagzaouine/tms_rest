@@ -1,4 +1,4 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import java.util.List;
 
@@ -12,13 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bagile.gmo.dto.Turn;
 import com.bagile.gmo.entities.GmoTurn;
 import com.bagile.gmo.mapper.TurnMapper;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.TurnRepository;
-import com.bagile.tms.services.TurnService;
-import com.bagile.tms.util.EmsDate;
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.TurnRepository;
+import com.bagile.gmo.services.TurnService;
+import com.bagile.gmo.util.EmsDate;
+import com.bagile.gmo.util.Search;
 
 @Service
 @Transactional

@@ -5,7 +5,7 @@ package com.bagile.gmo.mapper;
 
 import com.bagile.gmo.dto.SaleOrderLine;
 import com.bagile.gmo.entities.CmdSaleOrderLine;
-import com.bagile.tms.util.EmsDate;
+import com.bagile.gmo.util.EmsDate;
 
 
 import java.util.*;

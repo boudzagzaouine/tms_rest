@@ -1,14 +1,14 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.OrderStatus;
 import com.bagile.gmo.entities.PrmOrderStatus;
 import com.bagile.gmo.mapper.OrderStatusMapper;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.OrderStatusRepository;
-import com.bagile.tms.services.OrderStatusService;
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.OrderStatusRepository;
+import com.bagile.gmo.services.OrderStatusService;
+import com.bagile.gmo.util.Search;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

@@ -1,6 +1,6 @@
-package com.bagile.tms.util;
+package com.bagile.gmo.util;
 
-import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.ErrorType;
 import com.querydsl.core.types.dsl.*;
 import org.springframework.util.StringUtils;
 

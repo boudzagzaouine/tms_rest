@@ -1,15 +1,15 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.TransportCategoryVehicle;
-import com.bagile.gmo.entities.TmsTransportCategoryVehicle;
+import com.bagile.gmo.entities.GmoTransportCategoryVehicle;
 import com.bagile.gmo.mapper.TransportCategoryVehicleMapper;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.TransportCategoryVehicleRepository;
-import com.bagile.tms.services.TransportCategoryVehicleService;
-import com.bagile.tms.services.TransportService;
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.TransportCategoryVehicleRepository;
+import com.bagile.gmo.services.TransportCategoryVehicleService;
+import com.bagile.gmo.services.TransportService;
+import com.bagile.gmo.util.Search;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -53,7 +53,7 @@ public class TransportCategoryVehicleServiceImpl implements TransportCategoryVeh
         if (search.equals("")){
             return findAll ();
         }
-        return TransportCategoryVehicleMapper.toDtos(transportCategoryVehicleRepository.findAll(Search.expression(search, TmsTransportCategoryVehicle.class)), false);
+        return TransportCategoryVehicleMapper.toDtos(transportCategoryVehicleRepository.findAll(Search.expression(search, GmoTransportCategoryVehicle.class)), false);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class TransportCategoryVehicleServiceImpl implements TransportCategoryVeh
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return TransportCategoryVehicleMapper.toDtos(transportCategoryVehicleRepository.findAll(Search.expression(search, TmsTransportCategoryVehicle.class), pageable), false);
+        return TransportCategoryVehicleMapper.toDtos(transportCategoryVehicleRepository.findAll(Search.expression(search, GmoTransportCategoryVehicle.class), pageable), false);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class TransportCategoryVehicleServiceImpl implements TransportCategoryVeh
         if (search.equals("")){
             return size ();
         }
-        return transportCategoryVehicleRepository.count(Search.expression(search, TmsTransportCategoryVehicle.class));
+        return transportCategoryVehicleRepository.count(Search.expression(search, GmoTransportCategoryVehicle.class));
     }
 
     @Override

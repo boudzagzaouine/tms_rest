@@ -1,4 +1,4 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import java.util.List;
 
@@ -13,12 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bagile.gmo.dto.ContractType;
 import com.bagile.gmo.entities.GmoContractType;
 import com.bagile.gmo.mapper.ContractTypeMapper;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.ContractTypeRepository;
-import com.bagile.tms.services.ContractTypeService;
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.ContractTypeRepository;
+import com.bagile.gmo.services.ContractTypeService;
+import com.bagile.gmo.util.Search;
 
 @Service
 @Transactional

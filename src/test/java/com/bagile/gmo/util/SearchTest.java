@@ -1,4 +1,4 @@
-package com.bagile.tms.util;
+package com.bagile.gmo.util;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -6,8 +6,11 @@ import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
 
 import com.bagile.gmo.dto.Account;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.util.CriteriaPredicate;
+import com.bagile.gmo.util.PredicatesBuilder;
+import com.bagile.gmo.util.SearchCriteria;
 import com.querydsl.core.types.dsl.BooleanExpression;
 
 class SearchTest {

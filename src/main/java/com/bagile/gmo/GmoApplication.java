@@ -1,4 +1,4 @@
-package com.bagile.tms;
+package com.bagile.gmo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,9 +9,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
 @EnableJpaAuditing
-public class TmsApplication {
+public class GmoApplication {
 
-    public static void main(String[] args) { SpringApplication.run(TmsApplication.class, args);
+    public static void main(String[] args) { SpringApplication.run(GmoApplication.class, args);
     }
 
 

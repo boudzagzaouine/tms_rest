@@ -1,4 +1,4 @@
-package com.bagile.tms.config.aspects;
+package com.bagile.gmo.config.aspects;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

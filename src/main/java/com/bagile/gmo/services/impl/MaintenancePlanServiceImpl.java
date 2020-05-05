@@ -1,4 +1,4 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import java.util.List;
 
@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bagile.gmo.dto.MaintenancePlan;
 import com.bagile.gmo.dto.MaintenanceState;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.MaintenancePlanRepository;
-import com.bagile.tms.services.MaintenancePlanService;
-import com.bagile.tms.services.ProductService;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.MaintenancePlanRepository;
+import com.bagile.gmo.services.MaintenancePlanService;
+import com.bagile.gmo.services.ProductService;
 
 public class MaintenancePlanServiceImpl implements MaintenancePlanService {
 

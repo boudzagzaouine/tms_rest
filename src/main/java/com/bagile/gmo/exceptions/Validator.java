@@ -1,4 +1,4 @@
-package com.bagile.tms.exceptions;
+package com.bagile.gmo.exceptions;
 
 import java.io.Serializable;
 

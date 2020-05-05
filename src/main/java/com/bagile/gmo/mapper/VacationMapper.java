@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.bagile.gmo.dto.Vacation;
-import com.bagile.gmo.entities.TmsVacation;
+import com.bagile.gmo.entities.GmoVacation;
 
 public class VacationMapper {
     private VacationMapper() {
@@ -19,11 +19,11 @@ public class VacationMapper {
 
     static {
         map = new HashMap<>();
-        map.put("id", "tmsVacationId");
-        map.put("startDate", "tmsVacationStartDate");
-        map.put("endDate", "tmsVacationEndDate");
-        map.put("vacationType", "tmsVacationType");
-        map.put("driver", "tmsDriver");
+        map.put("id", "gmoVacationId");
+        map.put("startDate", "gmoVacationStartDate");
+        map.put("endDate", "gmoVacationEndDate");
+        map.put("vacationType", "gmoVacationType");
+        map.put("driver", "gmoDriver");
         map.put("createdBy", "createdBy");
         map.put("updatedBy", "updatedBy");
         map.put("creationDate", "creationDate");
@@ -38,76 +38,76 @@ public class VacationMapper {
         return map.get(key);
     }
 
-    public static TmsVacation toEntity(Vacation vacation, boolean lazy) {
+    public static GmoVacation toEntity(Vacation vacation, boolean lazy) {
         if (null == vacation) {
             return null;
         }
-        TmsVacation tmsVacation = new TmsVacation();
-        tmsVacation.setTmsVacationId(vacation.getId());
-        tmsVacation.setTmsVacationStartDate(vacation.getStartDate());
-        tmsVacation.setTmsVacationEndDate(vacation.getEndDate());
-        tmsVacation.setCreatedBy(vacation.getCreatedBy());
-        tmsVacation.setUpdatedBy(vacation.getUpdatedBy());
-        tmsVacation.setCreationDate(vacation.getCreationDate());
-        tmsVacation.setUpdateDate(vacation.getUpdateDate());
+        GmoVacation gmoVacation = new GmoVacation();
+        gmoVacation.setGmoVacationId(vacation.getId());
+        gmoVacation.setGmoVacationStartDate(vacation.getStartDate());
+        gmoVacation.setGmoVacationEndDate(vacation.getEndDate());
+        gmoVacation.setCreatedBy(vacation.getCreatedBy());
+        gmoVacation.setUpdatedBy(vacation.getUpdatedBy());
+        gmoVacation.setCreationDate(vacation.getCreationDate());
+        gmoVacation.setUpdateDate(vacation.getUpdateDate());
 
         if (!lazy) {
-            tmsVacation.setTmsVacationType(VacationTypeMapper.toEntity(vacation.getVacationtype(), true));
-            tmsVacation.setGmoDriver(DriverMapper.toEntity(vacation.getDriver(), true));
+            gmoVacation.setGmoVacationType(VacationTypeMapper.toEntity(vacation.getVacationtype(), true));
+            gmoVacation.setGmoDriver(DriverMapper.toEntity(vacation.getDriver(), true));
         }
-        return tmsVacation;
+        return gmoVacation;
     }
 
-    public static Vacation toDto(TmsVacation tmsVacation, boolean lazy) {
-        if (null == tmsVacation) {
+    public static Vacation toDto(GmoVacation gmoVacation, boolean lazy) {
+        if (null == gmoVacation) {
             return null;
         }
         Vacation vacation = new Vacation();
 
-        vacation.setId(tmsVacation.getTmsVacationId());
-        vacation.setStartDate(tmsVacation.getTmsVacationStartDate());
-        vacation.setEndDate(tmsVacation.getTmsVacationEndDate());
-        vacation.setCreatedBy(tmsVacation.getCreatedBy());
-        vacation.setUpdatedBy(tmsVacation.getUpdatedBy());
-        vacation.setCreationDate(tmsVacation.getCreationDate());
-        vacation.setUpdateDate(tmsVacation.getUpdateDate());
+        vacation.setId(gmoVacation.getGmoVacationId());
+        vacation.setStartDate(gmoVacation.getGmoVacationStartDate());
+        vacation.setEndDate(gmoVacation.getGmoVacationEndDate());
+        vacation.setCreatedBy(gmoVacation.getCreatedBy());
+        vacation.setUpdatedBy(gmoVacation.getUpdatedBy());
+        vacation.setCreationDate(gmoVacation.getCreationDate());
+        vacation.setUpdateDate(gmoVacation.getUpdateDate());
 
         if (!lazy) {
-            vacation.setDriver(DriverMapper.toDto(tmsVacation.getGmoDriver(), true));
-            vacation.setVacationtype(VacationTypeMapper.toDto(tmsVacation.getTmsVacationType(), true));
+            vacation.setDriver(DriverMapper.toDto(gmoVacation.getGmoDriver(), true));
+            vacation.setVacationtype(VacationTypeMapper.toDto(gmoVacation.getGmoVacationType(), true));
         }
         return vacation;
     }
 
-    public static List<Vacation> toDtos(Iterable<? extends TmsVacation> tmsVacations, boolean lazy) {
-        if (null == tmsVacations) {
+    public static List<Vacation> toDtos(Iterable<? extends GmoVacation> gmoVacations, boolean lazy) {
+        if (null == gmoVacations) {
             return null;
         }
         List<Vacation> vacations = new ArrayList<>();
-        for (TmsVacation tmsVacation : tmsVacations) {
-            vacations.add(toDto(tmsVacation, lazy));
+        for (GmoVacation gmoVacation : gmoVacations) {
+            vacations.add(toDto(gmoVacation, lazy));
         }
         return vacations;
     }
 
-    public static Set<TmsVacation> toEntities(Set<Vacation> vacations, boolean lazy) {
+    public static Set<GmoVacation> toEntities(Set<Vacation> vacations, boolean lazy) {
         if (null == vacations) {
             return null;
         }
-        Set<TmsVacation> tmsVacations = new HashSet<>();
+        Set<GmoVacation> gmoVacations = new HashSet<>();
         for (Vacation vacation : vacations) {
-            tmsVacations.add(toEntity(vacation, lazy));
+            gmoVacations.add(toEntity(vacation, lazy));
         }
-        return tmsVacations;
+        return gmoVacations;
     }
 
-    public static Set<Vacation> toDtos(Set<TmsVacation> tmsVacations, boolean lazy) {
-        if (null == tmsVacations) {
+    public static Set<Vacation> toDtos(Set<GmoVacation> gmoVacations, boolean lazy) {
+        if (null == gmoVacations) {
             return null;
         }
         Set<Vacation> vacations = new HashSet<>();
-        for (TmsVacation tmsVacation : tmsVacations) {
-            vacations.add(toDto(tmsVacation, lazy));
+        for (GmoVacation gmoVacation : gmoVacations) {
+            vacations.add(toDto(gmoVacation, lazy));
         }
         return vacations;
     }

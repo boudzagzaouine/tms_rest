@@ -1,4 +1,4 @@
-package com.bagile.tms.exceptions;
+package com.bagile.gmo.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.exception.ConstraintViolationException;

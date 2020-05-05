@@ -1,7 +1,7 @@
 package com.bagile.gmo.mapper;
 
 import com.bagile.gmo.dto.VehicleFeature;
-import com.bagile.gmo.entities.TmsVehicleFeature;
+import com.bagile.gmo.entities.GmoVehicleFeature;
 
 import java.util.*;
 
@@ -15,10 +15,10 @@ public class VehicleFeatureMapper {
     static {
         map = new HashMap<> ( );
 
-        map.put ("id", "tmsvehicleFeatureId");
-        map.put ("code", "tmsvehicleFeatureCode");
-        map.put ("description", "tmsvehicleFeatureDescription");
-        map.put ("value", "tmsvehicleFeatureValue");
+        map.put ("id", "gmovehicleFeatureId");
+        map.put ("code", "gmovehicleFeatureCode");
+        map.put ("description", "gmovehicleFeatureDescription");
+        map.put ("value", "gmovehicleFeatureValue");
         map.put ("unit", "pdtUomunit");
 
         map.put ("creationDate", "creationDate");
@@ -35,82 +35,82 @@ public class VehicleFeatureMapper {
         return map.get (key);
     }
 
-    public static TmsVehicleFeature toEntity(VehicleFeature vehicleFeature, boolean lazy) {
+    public static GmoVehicleFeature toEntity(VehicleFeature vehicleFeature, boolean lazy) {
         if (null == vehicleFeature) {
             return null;
         }
 
-        TmsVehicleFeature tmsvehicleFeature = new TmsVehicleFeature ( );
-        tmsvehicleFeature.setTmsVehicleFeatureId (vehicleFeature.getId ());
-        tmsvehicleFeature.setTmsVehicleFeatureCode (vehicleFeature.getCode ( ) != null ? vehicleFeature.getCode ( ).toUpperCase ( ) : null);
-        tmsvehicleFeature.setTmsVehicleFeatureDescription (vehicleFeature.getDescription ( ));
-        tmsvehicleFeature.setTmsVehicleFeatureValue (vehicleFeature.getValue());
+        GmoVehicleFeature gmovehicleFeature = new GmoVehicleFeature ( );
+        gmovehicleFeature.setGmoVehicleFeatureId (vehicleFeature.getId ());
+        gmovehicleFeature.setGmoVehicleFeatureCode (vehicleFeature.getCode ( ) != null ? vehicleFeature.getCode ( ).toUpperCase ( ) : null);
+        gmovehicleFeature.setGmoVehicleFeatureDescription (vehicleFeature.getDescription ( ));
+        gmovehicleFeature.setGmoVehicleFeatureValue (vehicleFeature.getValue());
 
         
-        tmsvehicleFeature.setCreatedBy (vehicleFeature.getCreatedBy ( ));
-        tmsvehicleFeature.setUpdatedBy (vehicleFeature.getUpdatedBy ( ));
+        gmovehicleFeature.setCreatedBy (vehicleFeature.getCreatedBy ( ));
+        gmovehicleFeature.setUpdatedBy (vehicleFeature.getUpdatedBy ( ));
 
         if (!lazy) {
-            tmsvehicleFeature.setPdtUomunit (UomMapper.toEntity (vehicleFeature.getUnit ( ), true));
+            gmovehicleFeature.setPdtUomunit (UomMapper.toEntity (vehicleFeature.getUnit ( ), true));
         }
 
-        return tmsvehicleFeature;
+        return gmovehicleFeature;
 
     }
 
-    public static VehicleFeature toDto(TmsVehicleFeature tmsvehicleFeature, boolean lazy) {
-        if (null == tmsvehicleFeature) {
+    public static VehicleFeature toDto(GmoVehicleFeature gmovehicleFeature, boolean lazy) {
+        if (null == gmovehicleFeature) {
             return null;
         }
         VehicleFeature vehicleFeature = new VehicleFeature ( );
-        vehicleFeature.setId ((int) tmsvehicleFeature.getTmsVehicleFeatureId ());
-        vehicleFeature.setCode (tmsvehicleFeature.getTmsVehicleFeatureCode ());
-        vehicleFeature.setDescription (tmsvehicleFeature.getTmsVehicleFeatureDescription ());
-        vehicleFeature.setValue (tmsvehicleFeature.getTmsVehicleFeatureValue ());
+        vehicleFeature.setId ((int) gmovehicleFeature.getGmoVehicleFeatureId ());
+        vehicleFeature.setCode (gmovehicleFeature.getGmoVehicleFeatureCode ());
+        vehicleFeature.setDescription (gmovehicleFeature.getGmoVehicleFeatureDescription ());
+        vehicleFeature.setValue (gmovehicleFeature.getGmoVehicleFeatureValue ());
 
-        vehicleFeature.setCreatedBy (tmsvehicleFeature.getCreatedBy ());
-        vehicleFeature.setUpdatedBy (tmsvehicleFeature.getUpdatedBy ());
-        vehicleFeature.setCreationDate (tmsvehicleFeature.getCreationDate ());
-        vehicleFeature.setUpdateDate (tmsvehicleFeature.getUpdateDate ());
+        vehicleFeature.setCreatedBy (gmovehicleFeature.getCreatedBy ());
+        vehicleFeature.setUpdatedBy (gmovehicleFeature.getUpdatedBy ());
+        vehicleFeature.setCreationDate (gmovehicleFeature.getCreationDate ());
+        vehicleFeature.setUpdateDate (gmovehicleFeature.getUpdateDate ());
 
         if (!lazy) {
-            vehicleFeature.setUnit (UomMapper.toDto (tmsvehicleFeature.getPdtUomunit(), true));
+            vehicleFeature.setUnit (UomMapper.toDto (gmovehicleFeature.getPdtUomunit(), true));
         }
         return vehicleFeature;
 
     }
 
 
-    public static List<VehicleFeature> toDtos(Iterable<? extends TmsVehicleFeature> tmsvehicleFeatures, boolean lazy) {
-        if (null == tmsvehicleFeatures) {
+    public static List<VehicleFeature> toDtos(Iterable<? extends GmoVehicleFeature> gmovehicleFeatures, boolean lazy) {
+        if (null == gmovehicleFeatures) {
             return null;
         }
         List<VehicleFeature> vehicleFeatures = new ArrayList<> ( );
 
-        for (TmsVehicleFeature tmsvehicleFeature : tmsvehicleFeatures) {
-            vehicleFeatures.add (toDto (tmsvehicleFeature, lazy));
+        for (GmoVehicleFeature gmovehicleFeature : gmovehicleFeatures) {
+            vehicleFeatures.add (toDto (gmovehicleFeature, lazy));
         }
         return vehicleFeatures;
     }
 
-    public static Set<TmsVehicleFeature> toEntities(Set<VehicleFeature> vehicleFeatures, boolean lazy) {
+    public static Set<GmoVehicleFeature> toEntities(Set<VehicleFeature> vehicleFeatures, boolean lazy) {
         if (null == vehicleFeatures) {
             return null;
         }
-        Set<TmsVehicleFeature> tmsvehicleFeatures = new HashSet<> ( );
+        Set<GmoVehicleFeature> gmovehicleFeatures = new HashSet<> ( );
         for (VehicleFeature vehicleFeature : vehicleFeatures) {
-            tmsvehicleFeatures.add (toEntity (vehicleFeature, lazy));
+            gmovehicleFeatures.add (toEntity (vehicleFeature, lazy));
         }
-        return tmsvehicleFeatures;
+        return gmovehicleFeatures;
     }
 
-    public static Set<VehicleFeature> toDtos(Set<TmsVehicleFeature> tmsvehicleFeatures, boolean lazy) {
-        if (null == tmsvehicleFeatures) {
+    public static Set<VehicleFeature> toDtos(Set<GmoVehicleFeature> gmovehicleFeatures, boolean lazy) {
+        if (null == gmovehicleFeatures) {
             return null;
         }
         Set<VehicleFeature> vehicleFeatures = new HashSet<> ( );
-        for (TmsVehicleFeature tmsvehicleFeature : tmsvehicleFeatures) {
-            vehicleFeatures.add (toDto (tmsvehicleFeature, lazy));
+        for (GmoVehicleFeature gmovehicleFeature : gmovehicleFeatures) {
+            vehicleFeatures.add (toDto (gmovehicleFeature, lazy));
         }
         return vehicleFeatures;
     }

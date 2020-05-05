@@ -1,11 +1,11 @@
-package com.bagile.tms.controllers;
+package com.bagile.gmo.controllers;
 
 import com.bagile.gmo.dto.ProductType;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.services.ProductTypeService;
-import com.bagile.tms.services.UserDetailsServiceWarehouse;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.services.ProductTypeService;
+import com.bagile.gmo.services.UserDetailsServiceWarehouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;

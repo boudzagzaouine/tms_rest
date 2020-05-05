@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.bagile.tms.util;
+package com.bagile.gmo.util;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.codec.Hex;

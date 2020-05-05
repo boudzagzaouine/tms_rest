@@ -1,14 +1,14 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.InsuranceTermLigne;
-import com.bagile.gmo.entities.TmsInsuranceTermLigne;
+import com.bagile.gmo.entities.GmoInsuranceTermLigne;
 import com.bagile.gmo.mapper.InsuranceTermLigneMapper;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.InsuranceTermLigneRepository;
-import com.bagile.tms.services.InsuranceTermLigneService;
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.InsuranceTermLigneRepository;
+import com.bagile.gmo.services.InsuranceTermLigneService;
+import com.bagile.gmo.util.Search;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -54,7 +54,7 @@ public class InsuranceTermLigneServiceImpl implements InsuranceTermLigneService 
         if (search.equals("")){
             return findAll ();
         }
-        return InsuranceTermLigneMapper.toDtos(insuranceTermLigneRepository.findAll(Search.expression(search, TmsInsuranceTermLigne.class)), false);
+        return InsuranceTermLigneMapper.toDtos(insuranceTermLigneRepository.findAll(Search.expression(search, GmoInsuranceTermLigne.class)), false);
     }
 
     @Override
@@ -64,12 +64,12 @@ public class InsuranceTermLigneServiceImpl implements InsuranceTermLigneService 
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return InsuranceTermLigneMapper.toDtos(insuranceTermLigneRepository.findAll(Search.expression(search, TmsInsuranceTermLigne.class), pageable), false);
+        return InsuranceTermLigneMapper.toDtos(insuranceTermLigneRepository.findAll(Search.expression(search, GmoInsuranceTermLigne.class), pageable), false);
     }
 
     @Override
     public InsuranceTermLigne findOne(String search) throws AttributesNotFound, ErrorType {
-        return InsuranceTermLigneMapper.toDto (insuranceTermLigneRepository.findOne (Search.expression (search, TmsInsuranceTermLigne.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
+        return InsuranceTermLigneMapper.toDto (insuranceTermLigneRepository.findOne (Search.expression (search, GmoInsuranceTermLigne.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
 
     }
 
@@ -78,7 +78,7 @@ public class InsuranceTermLigneServiceImpl implements InsuranceTermLigneService 
         if (search.equals("")){
             return size ();
         }
-        return insuranceTermLigneRepository.count(Search.expression(search, TmsInsuranceTermLigne.class));
+        return insuranceTermLigneRepository.count(Search.expression(search, GmoInsuranceTermLigne.class));
     }
 
     @Override

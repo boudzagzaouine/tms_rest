@@ -1,15 +1,15 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.Habilitation;
 import com.bagile.gmo.entities.UsrHabilitation;
 import com.bagile.gmo.mapper.HabilitationMapper;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.HabilitationRepository;
-import com.bagile.tms.services.HabilitationService;
-import com.bagile.tms.util.EmsDate;
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.HabilitationRepository;
+import com.bagile.gmo.services.HabilitationService;
+import com.bagile.gmo.util.EmsDate;
+import com.bagile.gmo.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

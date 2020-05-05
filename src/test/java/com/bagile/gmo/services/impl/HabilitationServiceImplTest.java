@@ -1,6 +1,6 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
-import com.bagile.tms.services.HabilitationService;
+import com.bagile.gmo.services.HabilitationService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

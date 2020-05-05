@@ -44,7 +44,7 @@ public class VatMapper {
         prmVat.setUpdatedBy (vat.getUpdatedBy ( ));
 
         if (!lazy) {
-            //prmVat.setTmsBadgeType (BadgeTypeMapper.toEntity (vat.getBadgeType ( ), true));
+            //prmVat.setGmoBadgeType (BadgeTypeMapper.toEntity (vat.getBadgeType ( ), true));
         }
 
         return prmVat;
@@ -65,7 +65,7 @@ public class VatMapper {
         vat.setUpdateDate (prmVat.getUpdateDate ());
 
         if (!lazy) {
-            //vat.setBadgeType (BadgeTypeMapper.toDto (prmVat.getTmsBadgeType(), true));
+            //vat.setBadgeType (BadgeTypeMapper.toDto (prmVat.getGmoBadgeType(), true));
         }
         return vat;
 

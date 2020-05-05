@@ -1,4 +1,4 @@
-package com.bagile.tms.config.filter;
+package com.bagile.gmo.config.filter;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

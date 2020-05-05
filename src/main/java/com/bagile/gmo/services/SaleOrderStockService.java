@@ -1,7 +1,7 @@
-package com.bagile.tms.services;
+package com.bagile.gmo.services;
 
 import com.bagile.gmo.dto.SaleOrderStock;
-import com.bagile.tms.exceptions.*;
+import com.bagile.gmo.exceptions.*;
 
 import org.springframework.data.domain.Pageable;
 

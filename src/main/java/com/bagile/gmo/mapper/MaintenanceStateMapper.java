@@ -21,9 +21,9 @@ public class MaintenanceStateMapper {
     }
     static {
         map = new HashMap<>();
-        map.put("id","tmsMaintenanceStateId");
-        map.put("code","tmsMaintenanceStateCode");
-        map.put("descriptif","tmsMaintenanceStateDescription");
+        map.put("id","gmoMaintenanceStateId");
+        map.put("code","gmoMaintenanceStateCode");
+        map.put("descriptif","gmoMaintenanceStateDescription");
 
 
 
@@ -51,11 +51,11 @@ public class MaintenanceStateMapper {
         state.setCreationDate(gmoState.getCreationDate());
         state.setUpdateDate(gmoState.getUpdateDate());
         if(!lazy) {
-           // state.setCreationDate(tmsState.getTmsMaintenanceStateCreationDate());
-          //  state.setCreationUser(UserMapper.toDto(tmsState.getTmsMaintenanceStateCreationUser(),true));
-           // state.setTypeMaintenance(TypeMaintenanceMapper.toDto(tmsState.getTmsMaintenanceStateType()));
-           // state.setMaintenancePlans(MaintenancePlanMapper.toDtos(tmsState.getTmsMaintenanceStatePlans(),true));
-           // state.setUpDateDate(tmsState.getTmsMaintenanceStateUpDateDate());
+           // state.setCreationDate(gmoState.getGmoMaintenanceStateCreationDate());
+          //  state.setCreationUser(UserMapper.toDto(gmoState.getGmoMaintenanceStateCreationUser(),true));
+           // state.setTypeMaintenance(TypeMaintenanceMapper.toDto(gmoState.getGmoMaintenanceStateType()));
+           // state.setMaintenancePlans(MaintenancePlanMapper.toDtos(gmoState.getGmoMaintenanceStatePlans(),true));
+           // state.setUpDateDate(gmoState.getGmoMaintenanceStateUpDateDate());
         }
         return state;
     }
@@ -76,11 +76,11 @@ public class MaintenanceStateMapper {
         gmoState.setUpdateDate(state.getUpdateDate());
 
         if(!lazy) {
-           // tmsState.setTmsMaintenanceStateCreationDate(state.getCreationDate());
-           // tmsState.setTmsMaintenanceStateCreationUser(UserMapper.toEntity(state.getCreationUser(),true));
-           // tmsState.setTmsMaintenanceStateType(TypeMaintenanceMapper.toEntity(state.getTypeMaintenance()));
-           // tmsState.setTmsMaintenanceStateUpDateDate(state.getUpDateDate());
-           // tmsState.setTmsMaintenanceStatePlans(MaintenancePlanMapper.toEntities(state.getMaintenancePlans(),true));
+           // gmoState.setGmoMaintenanceStateCreationDate(state.getCreationDate());
+           // gmoState.setGmoMaintenanceStateCreationUser(UserMapper.toEntity(state.getCreationUser(),true));
+           // gmoState.setGmoMaintenanceStateType(TypeMaintenanceMapper.toEntity(state.getTypeMaintenance()));
+           // gmoState.setGmoMaintenanceStateUpDateDate(state.getUpDateDate());
+           // gmoState.setGmoMaintenanceStatePlans(MaintenancePlanMapper.toEntities(state.getMaintenancePlans(),true));
         }
         return gmoState;
     }

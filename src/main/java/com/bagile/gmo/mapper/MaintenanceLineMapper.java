@@ -19,14 +19,14 @@ public class MaintenanceLineMapper {
     static {
         map = new HashMap<>();
 
-        map.put("id", "tmsMaintenanceLineId");
-        map.put("product", "tmsMaintenanceLineCode");
-        map.put("description", "tmsMaintenanceLineNumber");
-        map.put("unitPrice", "tmsMaintenanceLineDescription");
-        map.put("totalPriceHT", "tmsMaintenanceLineAmount");
-        map.put("totalPriceTTC", "tmsMaintenanceLineStartDate");
-        map.put("maintenancePlan", "tmsMaintenanceLineEndDate");
-        map.put("amountVat", "tmsAmountVat");
+        map.put("id", "gmoMaintenanceLineId");
+        map.put("product", "gmoMaintenanceLineCode");
+        map.put("description", "gmoMaintenanceLineNumber");
+        map.put("unitPrice", "gmoMaintenanceLineDescription");
+        map.put("totalPriceHT", "gmoMaintenanceLineAmount");
+        map.put("totalPriceTTC", "gmoMaintenanceLineStartDate");
+        map.put("maintenancePlan", "gmoMaintenanceLineEndDate");
+        map.put("amountVat", "gmoAmountVat");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");

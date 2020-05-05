@@ -1,4 +1,4 @@
-package com.bagile.tms.util;
+package com.bagile.gmo.util;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;

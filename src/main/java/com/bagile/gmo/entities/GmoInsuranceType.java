@@ -8,65 +8,65 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "tms_insurancetype")
-public class TmsInsuranceType extends EmsEntity {
+@Table(name = "gmo_insurancetype")
+public class GmoInsuranceType extends EmsEntity {
 
-    private long tmsInsuranceTypeId;
-    private String tmsInsuranceTypeCode;
-    private String tmsInsuranceTypeDescription;
-   // private Set<TmsInsurance> tmsInsurances= new HashSet<>();
+    private long gmoInsuranceTypeId;
+    private String gmoInsuranceTypeCode;
+    private String gmoInsuranceTypeDescription;
+   // private Set<GmoInsurance> gmoInsurances= new HashSet<>();
 
-   // private Set<TmsVehicleCategory> tmsVehicleCategories= new HashSet<>();
+   // private Set<GmoVehicleCategory> gmoVehicleCategories= new HashSet<>();
 
- private Set<TmsInsuranceTypeTerms> tmsInsuranceTypeTerms=new HashSet<>();
+ private Set<GmoInsuranceTypeTerms> gmoInsuranceTypeTerms=new HashSet<>();
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_insurancetype_id", allocationSize = 1)
-    @Column(name = "tms_insurancetypeid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getTmsInsuranceTypeId() {
-        return tmsInsuranceTypeId;
+    @Column(name = "gmo_insurancetypeid", unique = true, nullable = false, precision = 10, scale = 0)
+    public long getGmoInsuranceTypeId() {
+        return gmoInsuranceTypeId;
     }
 
-    public void setTmsInsuranceTypeId(long tmsInsuranceTypeId) {
-        this.tmsInsuranceTypeId = tmsInsuranceTypeId;
+    public void setGmoInsuranceTypeId(long gmoInsuranceTypeId) {
+        this.gmoInsuranceTypeId = gmoInsuranceTypeId;
     }
-    @Column(name = "tms_insurancetypecode")
-    public String getTmsInsuranceTypeCode() {
-        return tmsInsuranceTypeCode;
-    }
-
-    public void setTmsInsuranceTypeCode(String tmsInsuranceTypeCode) {
-        this.tmsInsuranceTypeCode = tmsInsuranceTypeCode;
-    }
-    @Column(name = "tms_insurancetypedescription")
-    public String getTmsInsuranceTypeDescription() {
-        return tmsInsuranceTypeDescription;
+    @Column(name = "gmo_insurancetypecode")
+    public String getGmoInsuranceTypeCode() {
+        return gmoInsuranceTypeCode;
     }
 
-    public void setTmsInsuranceTypeDescription(String tmsInsuranceTypeDescription) {
-        this.tmsInsuranceTypeDescription = tmsInsuranceTypeDescription;
+    public void setGmoInsuranceTypeCode(String gmoInsuranceTypeCode) {
+        this.gmoInsuranceTypeCode = gmoInsuranceTypeCode;
+    }
+    @Column(name = "gmo_insurancetypedescription")
+    public String getGmoInsuranceTypeDescription() {
+        return gmoInsuranceTypeDescription;
+    }
+
+    public void setGmoInsuranceTypeDescription(String gmoInsuranceTypeDescription) {
+        this.gmoInsuranceTypeDescription = gmoInsuranceTypeDescription;
     }
 
     /*
 
-  /* @OneToMany(mappedBy = "tmsInsuranceType",)
-    public Set<TmsVehicleCategory> getTmsVehicleCategories() {
-        return tmsVehicleCategories;
+  /* @OneToMany(mappedBy = "gmoInsuranceType",)
+    public Set<GmoVehicleCategory> getGmoVehicleCategories() {
+        return gmoVehicleCategories;
     }
 
-    public void setTmsVehicleCategories(Set<TmsVehicleCategory> tmsVehicleCategories) {
-        this.tmsVehicleCategories = tmsVehicleCategories;
+    public void setGmoVehicleCategories(Set<GmoVehicleCategory> gmoVehicleCategories) {
+        this.gmoVehicleCategories = gmoVehicleCategories;
     }*/
 
-    @OneToMany(mappedBy = "tmsInsuranceType", cascade = CascadeType.ALL,orphanRemoval = true)
-    public Set<TmsInsuranceTypeTerms> getTmsInsuranceTypeTerms() {
-        return tmsInsuranceTypeTerms;
+    @OneToMany(mappedBy = "gmoInsuranceType", cascade = CascadeType.ALL,orphanRemoval = true)
+    public Set<GmoInsuranceTypeTerms> getGmoInsuranceTypeTerms() {
+        return gmoInsuranceTypeTerms;
     }
 
-    public void setTmsInsuranceTypeTerms(Set<TmsInsuranceTypeTerms> tmsInsuranceTypeTerms) {
-        this.tmsInsuranceTypeTerms = tmsInsuranceTypeTerms;
+    public void setGmoInsuranceTypeTerms(Set<GmoInsuranceTypeTerms> gmoInsuranceTypeTerms) {
+        this.gmoInsuranceTypeTerms = gmoInsuranceTypeTerms;
     }
 
 }

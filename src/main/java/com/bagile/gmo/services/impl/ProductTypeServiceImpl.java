@@ -1,15 +1,15 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.ProductType;
 import com.bagile.gmo.entities.PdtProductType;
 import com.bagile.gmo.mapper.ProductTypeMapper;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.ProductTypeRepository;
-import com.bagile.tms.services.ProductTypeService;
-import com.bagile.tms.util.EmsDate;
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.ProductTypeRepository;
+import com.bagile.gmo.services.ProductTypeService;
+import com.bagile.gmo.util.EmsDate;
+import com.bagile.gmo.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

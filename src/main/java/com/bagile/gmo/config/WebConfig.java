@@ -1,4 +1,4 @@
-package com.bagile.tms.config;
+package com.bagile.gmo.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

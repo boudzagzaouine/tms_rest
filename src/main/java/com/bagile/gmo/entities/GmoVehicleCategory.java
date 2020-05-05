@@ -14,23 +14,20 @@ import javax.persistence.Table;
 @Table(name="gmo_vehiclecategory")
 public class GmoVehicleCategory  extends EmsEntity {
 
-	private static final long serialVersionUID = 8367002459707515086L;
+
+	private static final long serialVersionUID = 7061065493531979221L;
 
 	private long gmoVehicleCategoryId;
     private String gmoVehicleCategoryCode;
     private  String gmoVehicleCategoryConsumption;
-    private BigDecimal gmoVehicleCategoryWeight;
+    private BigDecimal gmoVehicleCategoryLength;
     private  BigDecimal gmoVehicleCategoryWidth;
+    private BigDecimal gmoVehicleCategoriyheight;
     private BigDecimal gmoVehicleCategoryDepth;
     private BigDecimal gmoVehicleCategoryTonnage;
     private  BigDecimal gmoVehicleCategoryEmptyWeight;
     private BigDecimal gmoVehicleCategoryTotalWeight;
 
-    //private TmsInsuranceType gmoInsuranceType;
-
-   // private Set<TmsTransportCategoryVehicle> gmoTransportCategoryVehicles=new HashSet<>();
-
-    // private Set<TmsVehicle> gmoVehicles=new HashSet<>();
 
 
     public GmoVehicleCategory() {
@@ -41,112 +38,97 @@ public class GmoVehicleCategory  extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_vehicle_category_id", allocationSize = 1)
     @Column(name = "gmo_vehiclecategoryid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getTmsVehicleCategoryId() {
+    public long getGmoVehicleCategoryId() {
         return gmoVehicleCategoryId;
     }
 
-    public void setTmsVehicleCategoryId(long gmoVehicleCategoryId) {
+    public void setGmoVehicleCategoryId(long gmoVehicleCategoryId) {
         this.gmoVehicleCategoryId = gmoVehicleCategoryId;
     }
 
     @Column(name = "gmo_vehiclecategorycode",  unique = true, nullable = false, length = 90)
-    public String getTmsVehicleCategoryCode() {
+    public String getGmoVehicleCategoryCode() {
         return gmoVehicleCategoryCode;
     }
 
-    public void setTmsVehicleCategoryCode(String gmoVehicleCategoryCode) {
+    public void setGmoVehicleCategoryCode(String gmoVehicleCategoryCode) {
         this.gmoVehicleCategoryCode = gmoVehicleCategoryCode;
     }
 
     @Column(name = "gmo_vehiclecategoryconsumption")
-    public String getTmsVehicleCategoryConsumption() {
+    public String getGmoVehicleCategoryConsumption() {
         return gmoVehicleCategoryConsumption;
     }
 
-    public void setTmsVehicleCategoryConsumption(String gmoVehicleCategoryConsumption) {
+    public void setGmoVehicleCategoryConsumption(String gmoVehicleCategoryConsumption) {
         this.gmoVehicleCategoryConsumption = gmoVehicleCategoryConsumption;
     }
 
-    @Column(name = "gmo_vehiclecategoryweight")
-    public BigDecimal getTmsVehicleCategoryWeight() {
-        return gmoVehicleCategoryWeight;
+    @Column(name = "gmo_vehiclecategorylength")
+    public BigDecimal getGmoVehicleCategoryLength() {
+        return gmoVehicleCategoryLength;
     }
 
-    public void setTmsVehicleCategoryWeight(BigDecimal gmoVehicleCategoryWeight) {
-        this.gmoVehicleCategoryWeight = gmoVehicleCategoryWeight;
+    public void setGmoVehicleCategoryLength(BigDecimal gmoVehicleCategoryLength) {
+        this.gmoVehicleCategoryLength = gmoVehicleCategoryLength;
     }
+
+
+
 
     @Column(name = "gmo_vehiclecategorywidth")
-    public BigDecimal getTmsVehicleCategoryWidth() {
+    public BigDecimal getGmoVehicleCategoryWidth() {
         return gmoVehicleCategoryWidth;
     }
 
-    public void setTmsVehicleCategoryWidth(BigDecimal gmoVehicleCategoryWidth) {
+    public void setGmoVehicleCategoryWidth(BigDecimal gmoVehicleCategoryWidth) {
         this.gmoVehicleCategoryWidth = gmoVehicleCategoryWidth;
+    }
+    @Column(name = "gmo_vehiclecategoryheight")
+    public BigDecimal getGmoVehicleCategoriyheight() {
+        return gmoVehicleCategoriyheight;
+    }
+
+    public void setGmoVehicleCategoriyheight(BigDecimal gmoVehicleCategoriyheight) {
+        this.gmoVehicleCategoriyheight = gmoVehicleCategoriyheight;
     }
 
     @Column(name = "gmo_vehiclecategorydepth")
-    public BigDecimal getTmsVehicleCategoryDepth() {
+    public BigDecimal getGmoVehicleCategoryDepth() {
         return gmoVehicleCategoryDepth;
     }
 
-    public void setTmsVehicleCategoryDepth(BigDecimal gmoVehicleCategoryDepth) {
+    public void setGmoVehicleCategoryDepth(BigDecimal gmoVehicleCategoryDepth) {
         this.gmoVehicleCategoryDepth = gmoVehicleCategoryDepth;
     }
 
     @Column(name = "gmo_vehiclecategorytonnage")
-    public BigDecimal getTmsVehicleCategoryTonnage() {
+    public BigDecimal getGmoVehicleCategoryTonnage() {
         return gmoVehicleCategoryTonnage;
     }
 
-    public void setTmsVehicleCategoryTonnage(BigDecimal gmoVehicleCategoryTonnage) {
+    public void setGmoVehicleCategoryTonnage(BigDecimal gmoVehicleCategoryTonnage) {
         this.gmoVehicleCategoryTonnage = gmoVehicleCategoryTonnage;
     }
 
     @Column(name = "gmo_vehiclecategoryemptyweight")
-    public BigDecimal getTmsVehicleCategoryEmptyWeight() {
+    public BigDecimal getGmoVehicleCategoryEmptyWeight() {
         return gmoVehicleCategoryEmptyWeight;
     }
 
-    public void setTmsVehicleCategoryEmptyWeight(BigDecimal gmoVehicleCategoryEmptyWeight) {
+    public void setGmoVehicleCategoryEmptyWeight(BigDecimal gmoVehicleCategoryEmptyWeight) {
         this.gmoVehicleCategoryEmptyWeight = gmoVehicleCategoryEmptyWeight;
     }
 
     @Column(name = "gmo_vehiclecategorytotalweight")
-    public BigDecimal getTmsVehicleCategoryTotalWeight() {
+    public BigDecimal getGmoVehicleCategoryTotalWeight() {
         return gmoVehicleCategoryTotalWeight;
     }
 
-    public void setTmsVehicleCategoryTotalWeight(BigDecimal gmoVehicleCategoryTotalWeight) {
+    public void setGmoVehicleCategoryTotalWeight(BigDecimal gmoVehicleCategoryTotalWeight) {
         this.gmoVehicleCategoryTotalWeight = gmoVehicleCategoryTotalWeight;
     }
 
-//cascade =  {CascadeType.MERGE,CascadeType.PERSIST}
-//    @ManyToOne(cascade = {CascadeType.MERGE})
-//    @JoinColumn(name = "gmo_insurancetypeid")
-//    public TmsInsuranceType getTmsInsuranceType() {
-//        return gmoInsuranceType;
-//    }
-//    public void setTmsInsuranceType(TmsInsuranceType gmoInsuranceType) {
-//        this.gmoInsuranceType = gmoInsuranceType;
-//    }
 
-    /*@OneToMany(mappedBy = "gmoVehicleCategory",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
-    public Set<TmsTransportCategoryVehicle> getTmsTransportCategoryVehicles() {
-        return gmoTransportCategoryVehicles;
-    }
-
-    public void setTmsTransportCategoryVehicles(Set<TmsTransportCategoryVehicle> gmoTransportCategoryVehicles) {
-        this.gmoTransportCategoryVehicles = gmoTransportCategoryVehicles;
-    }*/
-
-   /* @OneToMany(mappedBy = "gmoVehicleCategory", cascade = CascadeType.ALL)
-    public Set<TmsVehicle> getTmsVehicles() {
-        return gmoVehicles;
-    }
-
-    public void setTmsVehicles(Set<TmsVehicle> gmoVehicles) {
-        this.gmoVehicles = gmoVehicles;
-    }*/
 
 }

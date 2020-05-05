@@ -13,8 +13,8 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "tms_diverzone")
-public class TmsDriverZone extends EmsEntity {
+@Table(name = "gmo_diverzone")
+public class GmoDriverZone extends EmsEntity {
     /**
      *
      */
@@ -22,45 +22,45 @@ public class TmsDriverZone extends EmsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_diver_zone_id", allocationSize = 1)
-    @Column(name = "tms_diverzoneid", unique = true, nullable = false, precision = 10, scale = 0)
-    private long tmsDriverZoneId;
+    @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_diver_zone_id", allocationSize = 1)
+    @Column(name = "gmo_diverzoneid", unique = true, nullable = false, precision = 10, scale = 0)
+    private long gmoDriverZoneId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_driverid")
+    @JoinColumn(name = "gmo_driverid")
     private GmoDriver gmoDriverZoneDriver;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_zoneid")
-    private TmsZone tmsDriverZoneZone;
+    @JoinColumn(name = "gmo_zoneid")
+    private GmoZone gmoDriverZoneZone;
 
 
 
-    public TmsDriverZone() {
+    public GmoDriverZone() {
     }
 
-    public Long getTmsDriverZoneId() {
-        return tmsDriverZoneId;
+    public Long getGmoDriverZoneId() {
+        return gmoDriverZoneId;
     }
 
-    public void setTmsDriverZoneId(Long tmsDriverZoneId) {
-        this.tmsDriverZoneId = tmsDriverZoneId;
+    public void setGmoDriverZoneId(Long gmoDriverZoneId) {
+        this.gmoDriverZoneId = gmoDriverZoneId;
     }
 
     public GmoDriver getGmoDriverZoneDriver() {
         return gmoDriverZoneDriver;
     }
 
-    public void setTmsDriverZoneDriver(GmoDriver gmoDriverZoneDriver) {
+    public void setGmoDriverZoneDriver(GmoDriver gmoDriverZoneDriver) {
         this.gmoDriverZoneDriver = gmoDriverZoneDriver;
     }
 
-    public TmsZone getTmsDriverZoneZone() {
-        return tmsDriverZoneZone;
+    public GmoZone getGmoDriverZoneZone() {
+        return gmoDriverZoneZone;
     }
 
-    public void setTmsDriverZoneZone(TmsZone tmsDriverZoneZone) {
-        this.tmsDriverZoneZone = tmsDriverZoneZone;
+    public void setGmoDriverZoneZone(GmoZone gmoDriverZoneZone) {
+        this.gmoDriverZoneZone = gmoDriverZoneZone;
     }
 
 

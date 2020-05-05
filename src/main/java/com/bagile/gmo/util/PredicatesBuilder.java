@@ -1,13 +1,13 @@
 /**
  * 
  */
-package com.bagile.tms.util;
+package com.bagile.gmo.util;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bagile.tms.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.ErrorType;
 import com.querydsl.core.types.dsl.BooleanExpression;
 
 /**

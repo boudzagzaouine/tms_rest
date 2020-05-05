@@ -1,7 +1,7 @@
 package com.bagile.gmo.mapper;
 
 import com.bagile.gmo.dto.Badge;
-import com.bagile.gmo.entities.TmsBadge;
+import com.bagile.gmo.entities.GmoBadge;
 
 import java.util.*;
 
@@ -14,10 +14,10 @@ public class BadgeMapper {
     static {
         map = new HashMap<> ( );
 
-        map.put ("id", "tmsBadgeId");
-        map.put ("code", "tmsBadgeCode");
-        map.put ("badgeType", "tmsBadgeType");
-        map.put ("description", "tmsBadgeDescription");
+        map.put ("id", "gmoBadgeId");
+        map.put ("code", "gmoBadgeCode");
+        map.put ("badgeType", "gmoBadgeType");
+        map.put ("description", "gmoBadgeDescription");
         map.put ("creationDate", "creationDate");
         map.put ("updateDate", "updateDate");
         map.put ("createdBy", "createdBy");
@@ -32,78 +32,78 @@ public class BadgeMapper {
         return map.get (key);
     }
 
-    public static TmsBadge toEntity(Badge badge, boolean lazy) {
+    public static GmoBadge toEntity(Badge badge, boolean lazy) {
         if (null == badge) {
             return null;
         }
 
-        TmsBadge tmsBadge = new TmsBadge ( );
-        tmsBadge.setTmsBadgeId (badge.getId ( ));
-        tmsBadge.setTmsBadgeCode (badge.getCode ( ) != null ? badge.getCode ( ).toUpperCase ( ) : null);
-        tmsBadge.setTmsBadgeDescription (badge.getDescription ( ));
-        tmsBadge.setCreatedBy (badge.getCreatedBy ( ));
-        tmsBadge.setUpdatedBy (badge.getUpdatedBy ( ));
+        GmoBadge gmoBadge = new GmoBadge ( );
+        gmoBadge.setGmoBadgeId (badge.getId ( ));
+        gmoBadge.setGmoBadgeCode (badge.getCode ( ) != null ? badge.getCode ( ).toUpperCase ( ) : null);
+        gmoBadge.setGmoBadgeDescription (badge.getDescription ( ));
+        gmoBadge.setCreatedBy (badge.getCreatedBy ( ));
+        gmoBadge.setUpdatedBy (badge.getUpdatedBy ( ));
 
         if (!lazy) {
-            tmsBadge.setTmsBadgeType (BadgeTypeMapper.toEntity (badge.getBadgeType ( ), true));
+            gmoBadge.setGmoBadgeType (BadgeTypeMapper.toEntity (badge.getBadgeType ( ), true));
         }
 
-        return tmsBadge;
+        return gmoBadge;
 
     }
 
-    public static Badge toDto(TmsBadge tmsBadge, boolean lazy) {
-        if (null == tmsBadge) {
+    public static Badge toDto(GmoBadge gmoBadge, boolean lazy) {
+        if (null == gmoBadge) {
             return null;
         }
         Badge badge = new Badge ( );
-        badge.setId ((int) tmsBadge.getTmsBadgeId ());
-        badge.setCode (tmsBadge.getTmsBadgeCode ());
-        badge.setDescription (tmsBadge.getTmsBadgeDescription ());
+        badge.setId ((int) gmoBadge.getGmoBadgeId ());
+        badge.setCode (gmoBadge.getGmoBadgeCode ());
+        badge.setDescription (gmoBadge.getGmoBadgeDescription ());
 
-        badge.setCreatedBy (tmsBadge.getCreatedBy ());
-        badge.setUpdatedBy (tmsBadge.getUpdatedBy ());
-        badge.setCreationDate (tmsBadge.getCreationDate ());
-        badge.setUpdateDate (tmsBadge.getUpdateDate ());
+        badge.setCreatedBy (gmoBadge.getCreatedBy ());
+        badge.setUpdatedBy (gmoBadge.getUpdatedBy ());
+        badge.setCreationDate (gmoBadge.getCreationDate ());
+        badge.setUpdateDate (gmoBadge.getUpdateDate ());
 
         if (!lazy) {
-            badge.setBadgeType (BadgeTypeMapper.toDto (tmsBadge.getTmsBadgeType(), true));
+            badge.setBadgeType (BadgeTypeMapper.toDto (gmoBadge.getGmoBadgeType(), true));
         }
         return badge;
 
     }
 
 
-    public static List<Badge> toDtos(Iterable<? extends TmsBadge> tmsBadges, boolean lazy) {
-        if (null == tmsBadges) {
+    public static List<Badge> toDtos(Iterable<? extends GmoBadge> gmoBadges, boolean lazy) {
+        if (null == gmoBadges) {
             return null;
         }
         List<Badge> vehicules = new ArrayList<> ( );
 
-        for (TmsBadge tmsBadge : tmsBadges) {
-            vehicules.add (toDto (tmsBadge, lazy));
+        for (GmoBadge gmoBadge : gmoBadges) {
+            vehicules.add (toDto (gmoBadge, lazy));
         }
         return vehicules;
     }
 
-    public static Set<TmsBadge> toEntities(Set<Badge> badges, boolean lazy) {
+    public static Set<GmoBadge> toEntities(Set<Badge> badges, boolean lazy) {
         if (null == badges) {
             return null;
         }
-        Set<TmsBadge> tmsBadges = new HashSet<> ( );
+        Set<GmoBadge> gmoBadges = new HashSet<> ( );
         for (Badge badge : badges) {
-            tmsBadges.add (toEntity (badge, lazy));
+            gmoBadges.add (toEntity (badge, lazy));
         }
-        return tmsBadges;
+        return gmoBadges;
     }
 
-    public static Set<Badge> toDtos(Set<TmsBadge> tmsBadges, boolean lazy) {
-        if (null == tmsBadges) {
+    public static Set<Badge> toDtos(Set<GmoBadge> gmoBadges, boolean lazy) {
+        if (null == gmoBadges) {
             return null;
         }
         Set<Badge> badges = new HashSet<> ( );
-        for (TmsBadge tmsBadge : tmsBadges) {
-            badges.add (toDto (tmsBadge, lazy));
+        for (GmoBadge gmoBadge : gmoBadges) {
+            badges.add (toDto (gmoBadge, lazy));
         }
         return badges;
     }

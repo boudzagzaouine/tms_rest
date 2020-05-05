@@ -1,4 +1,4 @@
-package com.bagile.tms.util;
+package com.bagile.gmo.util;
 
 /**
  * Created by adadi on 6/7/2016.

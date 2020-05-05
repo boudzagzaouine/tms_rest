@@ -1,14 +1,14 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.VehicleFeature;
-import com.bagile.gmo.entities.TmsVehicleFeature;
+import com.bagile.gmo.entities.GmoVehicleFeature;
 import com.bagile.gmo.mapper.VehicleFeatureMapper;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.VehicleFeatureRepository;
-import com.bagile.tms.services.VehicleFeatureService;
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.VehicleFeatureRepository;
+import com.bagile.gmo.services.VehicleFeatureService;
+import com.bagile.gmo.util.Search;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -51,7 +51,7 @@ public class VehicleFeatureServiceImpl implements VehicleFeatureService {
         if (search.equals("")){
             return findAll ();
         }
-        return VehicleFeatureMapper.toDtos(vehicleFeatureRepository.findAll(Search.expression(search, TmsVehicleFeature.class)), false);
+        return VehicleFeatureMapper.toDtos(vehicleFeatureRepository.findAll(Search.expression(search, GmoVehicleFeature.class)), false);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class VehicleFeatureServiceImpl implements VehicleFeatureService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return VehicleFeatureMapper.toDtos(vehicleFeatureRepository.findAll(Search.expression(search, TmsVehicleFeature.class), pageable), false);
+        return VehicleFeatureMapper.toDtos(vehicleFeatureRepository.findAll(Search.expression(search, GmoVehicleFeature.class), pageable), false);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class VehicleFeatureServiceImpl implements VehicleFeatureService {
         if (search.equals("")){
             return size ();
         }
-        return vehicleFeatureRepository.count(Search.expression(search, TmsVehicleFeature.class));
+        return vehicleFeatureRepository.count(Search.expression(search, GmoVehicleFeature.class));
     }
 
     @Override

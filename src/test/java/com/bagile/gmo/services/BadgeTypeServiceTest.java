@@ -1,8 +1,10 @@
-package com.bagile.tms.services;
+package com.bagile.gmo.services;
 
 import com.bagile.gmo.dto.BadgeType;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.services.BadgeTypeService;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

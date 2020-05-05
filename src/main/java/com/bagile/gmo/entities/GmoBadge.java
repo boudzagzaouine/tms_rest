@@ -11,61 +11,61 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tms_badge")
-public class TmsBadge  extends EmsEntity{
+@Table(name="gmo_badge")
+public class GmoBadge  extends EmsEntity{
 
-    private long tmsBadgeId;
-    private String tmsBadgeCode;
-    private String tmsBadgeDescription;
-    private GmoBadgeType tmsBadgeType;
-   // private List<TmsDriver> tmsDrivers = new ArrayList<>();
+    private long gmoBadgeId;
+    private String gmoBadgeCode;
+    private String gmoBadgeDescription;
+    private GmoBadgeType gmoBadgeType;
+   // private List<GmoDriver> gmoDrivers = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_badge_id", allocationSize = 1)
-    @Column(name = "tms_badgeid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getTmsBadgeId() {
-        return tmsBadgeId;
+    @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_badge_id", allocationSize = 1)
+    @Column(name = "gmo_badgeid", unique = true, nullable = false, precision = 10, scale = 0)
+    public long getGmoBadgeId() {
+        return gmoBadgeId;
     }
 
-    public void setTmsBadgeId(long tmsBadgeId) {
-        this.tmsBadgeId = tmsBadgeId;
+    public void setGmoBadgeId(long gmoBadgeId) {
+        this.gmoBadgeId = gmoBadgeId;
     }
 
-    @Column(name = "tms_badgecode", unique = true, nullable = false, length = 90)
-    public String getTmsBadgeCode() {
-        return tmsBadgeCode;
+    @Column(name = "gmo_badgecode", unique = true, nullable = false, length = 90)
+    public String getGmoBadgeCode() {
+        return gmoBadgeCode;
     }
 
-    public void setTmsBadgeCode(String tmsBadgeCode) {
-        this.tmsBadgeCode = tmsBadgeCode;
+    public void setGmoBadgeCode(String gmoBadgeCode) {
+        this.gmoBadgeCode = gmoBadgeCode;
     }
 
     @ManyToOne
-    @JoinColumn(name = "tms_badgetypeid")
-    public GmoBadgeType getTmsBadgeType() {
-        return tmsBadgeType;
+    @JoinColumn(name = "gmo_badgetypeid")
+    public GmoBadgeType getGmoBadgeType() {
+        return gmoBadgeType;
     }
 
-    public void setTmsBadgeType(GmoBadgeType tmsBadgeType) {
-        this.tmsBadgeType = tmsBadgeType;
+    public void setGmoBadgeType(GmoBadgeType gmoBadgeType) {
+        this.gmoBadgeType = gmoBadgeType;
     }
 
-   /* @OneToMany(mappedBy = "tmsBadge")
-    public List<TmsDriver> getTmsDrivers() {
-        return tmsDrivers;
+   /* @OneToMany(mappedBy = "gmoBadge")
+    public List<GmoDriver> getGmoDrivers() {
+        return gmoDrivers;
     }
 
-    public void setTmsDrivers(List<TmsDriver> tmsDrivers) {
-        this.tmsDrivers = tmsDrivers;
+    public void setGmoDrivers(List<GmoDriver> gmoDrivers) {
+        this.gmoDrivers = gmoDrivers;
     }*/
 
-    @Column(name = "tms_badgedescription")
-    public String getTmsBadgeDescription() {
-        return tmsBadgeDescription;
+    @Column(name = "gmo_badgedescription")
+    public String getGmoBadgeDescription() {
+        return gmoBadgeDescription;
     }
 
-    public void setTmsBadgeDescription(String tmsBadgeDescription) {
-        this.tmsBadgeDescription = tmsBadgeDescription;
+    public void setGmoBadgeDescription(String gmoBadgeDescription) {
+        this.gmoBadgeDescription = gmoBadgeDescription;
     }
 }

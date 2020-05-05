@@ -1,7 +1,7 @@
 package com.bagile.gmo.mapper;
 
 import com.bagile.gmo.dto.ConsumptionType;
-import com.bagile.gmo.entities.TmsConsumptionType;
+import com.bagile.gmo.entities.GmoConsumptionType;
 
 import java.util.*;
 
@@ -14,9 +14,9 @@ public class ConsumptionTypeMapper {
     static {
         map = new HashMap<> ( );
 
-        map.put ("id", "tmsConsumptionId");
-        map.put ("code", "tmsConsumptionCode");
-        map.put ("description", "tmsConsumptionDescription");
+        map.put ("id", "gmoConsumptionId");
+        map.put ("code", "gmoConsumptionCode");
+        map.put ("description", "gmoConsumptionDescription");
 
         map.put ("creationDate", "creationDate");
         map.put ("updateDate", "updateDate");
@@ -32,38 +32,38 @@ public class ConsumptionTypeMapper {
         return map.get (key);
     }
 
-    public static TmsConsumptionType toEntity(ConsumptionType consumptionType, boolean lazy) {
+    public static GmoConsumptionType toEntity(ConsumptionType consumptionType, boolean lazy) {
         if (null == consumptionType) {
             return null;
         }
 
-        TmsConsumptionType tmsConsumptionType = new TmsConsumptionType ( );
-        tmsConsumptionType.setTmsConsumptionTypeId (consumptionType.getId ( ));
-        tmsConsumptionType.setTmsConsumptionTypeCode (consumptionType.getCode ( ) != null ? consumptionType.getCode ( ).toUpperCase ( ) : null);
-        tmsConsumptionType.setTmsConsumptionTypeDescription (consumptionType.getDescription ( ));
+        GmoConsumptionType gmoConsumptionType = new GmoConsumptionType ( );
+        gmoConsumptionType.setGmoConsumptionTypeId (consumptionType.getId ( ));
+        gmoConsumptionType.setGmoConsumptionTypeCode (consumptionType.getCode ( ) != null ? consumptionType.getCode ( ).toUpperCase ( ) : null);
+        gmoConsumptionType.setGmoConsumptionTypeDescription (consumptionType.getDescription ( ));
 
-        tmsConsumptionType.setCreatedBy (consumptionType.getCreatedBy ( ));
-        tmsConsumptionType.setUpdatedBy (consumptionType.getUpdatedBy ( ));
+        gmoConsumptionType.setCreatedBy (consumptionType.getCreatedBy ( ));
+        gmoConsumptionType.setUpdatedBy (consumptionType.getUpdatedBy ( ));
 
 
 
-        return tmsConsumptionType;
+        return gmoConsumptionType;
 
     }
 
-    public static ConsumptionType toDto(TmsConsumptionType tmsConsumptionType, boolean lazy) {
-        if (null == tmsConsumptionType) {
+    public static ConsumptionType toDto(GmoConsumptionType gmoConsumptionType, boolean lazy) {
+        if (null == gmoConsumptionType) {
             return null;
         }
         ConsumptionType consumptionType = new ConsumptionType ( );
-        consumptionType.setId ((int) tmsConsumptionType.getTmsConsumptionTypeId ());
-        consumptionType.setCode (tmsConsumptionType.getTmsConsumptionTypeCode ());
-        consumptionType.setDescription (tmsConsumptionType.getTmsConsumptionTypeDescription ());
+        consumptionType.setId ((int) gmoConsumptionType.getGmoConsumptionTypeId ());
+        consumptionType.setCode (gmoConsumptionType.getGmoConsumptionTypeCode ());
+        consumptionType.setDescription (gmoConsumptionType.getGmoConsumptionTypeDescription ());
 
-        consumptionType.setCreatedBy (tmsConsumptionType.getCreatedBy ());
-        consumptionType.setUpdatedBy (tmsConsumptionType.getUpdatedBy ());
-        consumptionType.setCreationDate (tmsConsumptionType.getCreationDate ());
-        consumptionType.setUpdateDate (tmsConsumptionType.getUpdateDate ());
+        consumptionType.setCreatedBy (gmoConsumptionType.getCreatedBy ());
+        consumptionType.setUpdatedBy (gmoConsumptionType.getUpdatedBy ());
+        consumptionType.setCreationDate (gmoConsumptionType.getCreationDate ());
+        consumptionType.setUpdateDate (gmoConsumptionType.getUpdateDate ());
 
 
         return consumptionType;
@@ -71,36 +71,36 @@ public class ConsumptionTypeMapper {
     }
 
 
-    public static List<ConsumptionType> toDtos(Iterable<? extends TmsConsumptionType> tmsConsumptionTypes, boolean lazy) {
-        if (null == tmsConsumptionTypes) {
+    public static List<ConsumptionType> toDtos(Iterable<? extends GmoConsumptionType> gmoConsumptionTypes, boolean lazy) {
+        if (null == gmoConsumptionTypes) {
             return null;
         }
         List<ConsumptionType> vehicules = new ArrayList<> ( );
 
-        for (TmsConsumptionType tmsConsumptionType : tmsConsumptionTypes) {
-            vehicules.add (toDto (tmsConsumptionType, lazy));
+        for (GmoConsumptionType gmoConsumptionType : gmoConsumptionTypes) {
+            vehicules.add (toDto (gmoConsumptionType, lazy));
         }
         return vehicules;
     }
 
-    public static Set<TmsConsumptionType> toEntities(Set<ConsumptionType> consumptionTypes, boolean lazy) {
+    public static Set<GmoConsumptionType> toEntities(Set<ConsumptionType> consumptionTypes, boolean lazy) {
         if (null == consumptionTypes) {
             return null;
         }
-        Set<TmsConsumptionType> tmsConsumptionTypes = new HashSet<> ( );
+        Set<GmoConsumptionType> gmoConsumptionTypes = new HashSet<> ( );
         for (ConsumptionType consumptionType : consumptionTypes) {
-            tmsConsumptionTypes.add (toEntity (consumptionType, lazy));
+            gmoConsumptionTypes.add (toEntity (consumptionType, lazy));
         }
-        return tmsConsumptionTypes;
+        return gmoConsumptionTypes;
     }
 
-    public static Set<ConsumptionType> toDtos(Set<TmsConsumptionType> tmsConsumptionTypes, boolean lazy) {
-        if (null == tmsConsumptionTypes) {
+    public static Set<ConsumptionType> toDtos(Set<GmoConsumptionType> gmoConsumptionTypes, boolean lazy) {
+        if (null == gmoConsumptionTypes) {
             return null;
         }
         Set<ConsumptionType> consumptionTypes = new HashSet<> ( );
-        for (TmsConsumptionType tmsConsumptionType : tmsConsumptionTypes) {
-            consumptionTypes.add (toDto (tmsConsumptionType, lazy));
+        for (GmoConsumptionType gmoConsumptionType : gmoConsumptionTypes) {
+            consumptionTypes.add (toDto (gmoConsumptionType, lazy));
         }
         return consumptionTypes;
     }

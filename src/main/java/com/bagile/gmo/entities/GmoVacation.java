@@ -15,8 +15,8 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="tms_vacation")
-public class TmsVacation extends EmsEntity {
+@Table(name="gmo_vacation")
+public class GmoVacation extends EmsEntity {
 
     /**
      *
@@ -24,50 +24,50 @@ public class TmsVacation extends EmsEntity {
     private static final long serialVersionUID = -8961215785900000465L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_vacation_id", allocationSize = 1)
-    @Column(name = "tms_tmsvacationid", unique = true, nullable = false, precision = 10, scale = 0)
-   private Long tmsVacationId;
-    @Column(name = "tms_vacationbegin")
-   private Date tmsVacationStartDate;
-    @Column(name = "tms_vacationend")
-   private Date tmsVacationEndDate;
+    @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_vacation_id", allocationSize = 1)
+    @Column(name = "gmo_gmovacationid", unique = true, nullable = false, precision = 10, scale = 0)
+   private Long gmoVacationId;
+    @Column(name = "gmo_vacationbegin")
+   private Date gmoVacationStartDate;
+    @Column(name = "gmo_vacationend")
+   private Date gmoVacationEndDate;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_vacationtypeid")
-   private TmsVacationType tmsVacationType;
+    @JoinColumn(name = "gmo_vacationtypeid")
+   private GmoVacationType gmoVacationType;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_driverid")
+    @JoinColumn(name = "gmo_driverid")
    private GmoDriver gmoDriver;
 
-    public Long getTmsVacationId() {
-        return tmsVacationId;
+    public Long getGmoVacationId() {
+        return gmoVacationId;
     }
 
-    public void setTmsVacationId(Long tmsVacationId) {
-        this.tmsVacationId = tmsVacationId;
+    public void setGmoVacationId(Long gmoVacationId) {
+        this.gmoVacationId = gmoVacationId;
     }
 
-    public Date getTmsVacationStartDate() {
-        return tmsVacationStartDate;
+    public Date getGmoVacationStartDate() {
+        return gmoVacationStartDate;
     }
 
-    public void setTmsVacationStartDate(Date tmsVacationStartDate) {
-        this.tmsVacationStartDate = tmsVacationStartDate;
+    public void setGmoVacationStartDate(Date gmoVacationStartDate) {
+        this.gmoVacationStartDate = gmoVacationStartDate;
     }
 
-    public Date getTmsVacationEndDate() {
-        return tmsVacationEndDate;
+    public Date getGmoVacationEndDate() {
+        return gmoVacationEndDate;
     }
 
-    public void setTmsVacationEndDate(Date tmsVacationEndDate) {
-        this.tmsVacationEndDate = tmsVacationEndDate;
+    public void setGmoVacationEndDate(Date gmoVacationEndDate) {
+        this.gmoVacationEndDate = gmoVacationEndDate;
     }
 
-    public TmsVacationType getTmsVacationType() {
-        return tmsVacationType;
+    public GmoVacationType getGmoVacationType() {
+        return gmoVacationType;
     }
 
-    public void setTmsVacationType(TmsVacationType tmsVacationType) {
-        this.tmsVacationType = tmsVacationType;
+    public void setGmoVacationType(GmoVacationType gmoVacationType) {
+        this.gmoVacationType = gmoVacationType;
     }
 
     public GmoDriver getGmoDriver() {

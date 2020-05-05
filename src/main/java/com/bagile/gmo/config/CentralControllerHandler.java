@@ -1,9 +1,9 @@
-package com.bagile.tms.config;
+package com.bagile.gmo.config;
 
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ConstraintException;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.exceptions.ValidatorException;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ConstraintException;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.exceptions.ValidatorException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.TypeMismatchException;

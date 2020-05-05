@@ -6,51 +6,51 @@ import com.bagile.gmo.dto.Uom;
 
 import java.math.BigDecimal;
 @Entity
-@Table(name="tms_vehiculefeature")
-public class TmsVehicleFeature extends EmsEntity{
+@Table(name="gmo_vehiculefeature")
+public class GmoVehicleFeature extends EmsEntity{
 
-    private long tmsVehicleFeatureId;
-    private String tmsVehicleFeatureCode;
-    private String tmsVehicleFeatureDescription;
-    private BigDecimal tmsVehicleFeatureValue;
+    private long gmoVehicleFeatureId;
+    private String gmoVehicleFeatureCode;
+    private String gmoVehicleFeatureDescription;
+    private BigDecimal gmoVehicleFeatureValue;
     private PdtUom pdtUomunit;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_vehiculefeature_id", allocationSize = 1)
-    @Column(name = "tms_vehiculefeatureid", unique = true, nullable = false, precision = 10, scale = 0)
+    @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_vehiculefeature_id", allocationSize = 1)
+    @Column(name = "gmo_vehiculefeatureid", unique = true, nullable = false, precision = 10, scale = 0)
 
-    public long getTmsVehicleFeatureId() {
-        return tmsVehicleFeatureId;
-    }
-
-    public void setTmsVehicleFeatureId(long tmsVehicleFeatureId) {
-        this.tmsVehicleFeatureId = tmsVehicleFeatureId;
-    }
-    @Column(name = "tms_vehiclefeaturecode")
-    public String getTmsVehicleFeatureCode() {
-        return tmsVehicleFeatureCode;
+    public long getGmoVehicleFeatureId() {
+        return gmoVehicleFeatureId;
     }
 
-    public void setTmsVehicleFeatureCode(String tmsVehicleFeatureCode) {
-        this.tmsVehicleFeatureCode = tmsVehicleFeatureCode;
+    public void setGmoVehicleFeatureId(long gmoVehicleFeatureId) {
+        this.gmoVehicleFeatureId = gmoVehicleFeatureId;
     }
-    @Column(name = "tms_vehiclefeaturedescription")
-    public String getTmsVehicleFeatureDescription() {
-        return tmsVehicleFeatureDescription;
-    }
-
-    public void setTmsVehicleFeatureDescription(String tmsVehicleFeatureDescription) {
-        this.tmsVehicleFeatureDescription = tmsVehicleFeatureDescription;
+    @Column(name = "gmo_vehiclefeaturecode")
+    public String getGmoVehicleFeatureCode() {
+        return gmoVehicleFeatureCode;
     }
 
-    @Column(name = "tms_vehiclefeaturevalue")
-    public BigDecimal getTmsVehicleFeatureValue() {
-        return tmsVehicleFeatureValue;
+    public void setGmoVehicleFeatureCode(String gmoVehicleFeatureCode) {
+        this.gmoVehicleFeatureCode = gmoVehicleFeatureCode;
+    }
+    @Column(name = "gmo_vehiclefeaturedescription")
+    public String getGmoVehicleFeatureDescription() {
+        return gmoVehicleFeatureDescription;
     }
 
-    public void setTmsVehicleFeatureValue(BigDecimal tmsVehicleFeatureValue) {
-        this.tmsVehicleFeatureValue = tmsVehicleFeatureValue;
+    public void setGmoVehicleFeatureDescription(String gmoVehicleFeatureDescription) {
+        this.gmoVehicleFeatureDescription = gmoVehicleFeatureDescription;
+    }
+
+    @Column(name = "gmo_vehiclefeaturevalue")
+    public BigDecimal getGmoVehicleFeatureValue() {
+        return gmoVehicleFeatureValue;
+    }
+
+    public void setGmoVehicleFeatureValue(BigDecimal gmoVehicleFeatureValue) {
+        this.gmoVehicleFeatureValue = gmoVehicleFeatureValue;
     }
     @Column(name = "prdt_uomunit")
     public PdtUom getPdtUomunit() {

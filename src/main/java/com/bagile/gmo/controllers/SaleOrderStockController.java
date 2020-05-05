@@ -1,9 +1,9 @@
-package com.bagile.tms.controllers;
+package com.bagile.gmo.controllers;
 
 import com.bagile.gmo.dto.CommissionDriver;
 import com.bagile.gmo.dto.SaleOrderStock;
-import com.bagile.tms.exceptions.*;
-import com.bagile.tms.services.SaleOrderStockService;
+import com.bagile.gmo.exceptions.*;
+import com.bagile.gmo.services.SaleOrderStockService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;

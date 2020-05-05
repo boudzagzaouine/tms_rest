@@ -1,4 +1,4 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import java.util.List;
 
@@ -11,12 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bagile.gmo.dto.Vehicle;
 import com.bagile.gmo.entities.GmoVehicle;
 import com.bagile.gmo.mapper.VehicleMapper;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.VehicleRepository;
-import com.bagile.tms.services.VehicleService;
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.VehicleRepository;
+import com.bagile.gmo.services.VehicleService;
+import com.bagile.gmo.util.Search;
 
 @Service
 @Transactional

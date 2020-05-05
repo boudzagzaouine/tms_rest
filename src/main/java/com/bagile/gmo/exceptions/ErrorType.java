@@ -1,4 +1,4 @@
-package com.bagile.tms.exceptions;
+package com.bagile.gmo.exceptions;
 
 /**
  * Created by adadi on 12/30/2015.

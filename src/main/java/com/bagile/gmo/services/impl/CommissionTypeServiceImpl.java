@@ -1,14 +1,14 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.CommissionType;
-import com.bagile.gmo.entities.TmsCommissionType;
+import com.bagile.gmo.entities.GmoCommissionType;
 import com.bagile.gmo.mapper.CommissionTypeMapper;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.CommissionTypeRepository;
-import com.bagile.tms.services.CommissionTypeService;
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.CommissionTypeRepository;
+import com.bagile.gmo.services.CommissionTypeService;
+import com.bagile.gmo.util.Search;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -52,7 +52,7 @@ public class CommissionTypeServiceImpl implements CommissionTypeService {
         if (search.equals("")){
             return findAll ();
         }
-        return CommissionTypeMapper.toDtos(commissionTypeRepository.findAll(Search.expression(search, TmsCommissionType.class)), false);
+        return CommissionTypeMapper.toDtos(commissionTypeRepository.findAll(Search.expression(search, GmoCommissionType.class)), false);
     }
 
     @Override
@@ -62,12 +62,12 @@ public class CommissionTypeServiceImpl implements CommissionTypeService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return CommissionTypeMapper.toDtos(commissionTypeRepository.findAll(Search.expression(search, TmsCommissionType.class), pageable), false);
+        return CommissionTypeMapper.toDtos(commissionTypeRepository.findAll(Search.expression(search, GmoCommissionType.class), pageable), false);
     }
 
     @Override
     public CommissionType findOne(String search) throws AttributesNotFound, ErrorType {
-        return CommissionTypeMapper.toDto (commissionTypeRepository.findOne (Search.expression (search, TmsCommissionType.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
+        return CommissionTypeMapper.toDto (commissionTypeRepository.findOne (Search.expression (search, GmoCommissionType.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
 
     }
 
@@ -76,7 +76,7 @@ public class CommissionTypeServiceImpl implements CommissionTypeService {
         if (search.equals("")){
             return size ();
         }
-        return commissionTypeRepository.count(Search.expression(search, TmsCommissionType.class));
+        return commissionTypeRepository.count(Search.expression(search, GmoCommissionType.class));
     }
 
     @Override

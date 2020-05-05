@@ -19,17 +19,17 @@ public class InsuranceMapper {
     static {
         map = new HashMap<>();
 
-        map.put("id", "tmsInsuranceId");
-        map.put("code", "tmsInsuranceCode");
-        map.put("number", "tmsInsuranceNumber");
-        map.put("description", "tmsInsuranceDescription");
-        map.put("amount", "tmsInsuranceAmount");
-        map.put("startDate", "tmsInsuranceStartDate");
-        map.put("endDate", "tmsInsuranceEndDate");
-        map.put("insurancetype", "tmsInsuranceType");
+        map.put("id", "gmoInsuranceId");
+        map.put("code", "gmoInsuranceCode");
+        map.put("number", "gmoInsuranceNumber");
+        map.put("description", "gmoInsuranceDescription");
+        map.put("amount", "gmoInsuranceAmount");
+        map.put("startDate", "gmoInsuranceStartDate");
+        map.put("endDate", "gmoInsuranceEndDate");
+        map.put("insurancetype", "gmoInsuranceType");
         map.put("supplier", "rcpSupplier");
-        map.put("vehicle", "tmsVehicle");
-        map.put("vehicleCode", "tmsInsuranceVehicleCode");
+        map.put("vehicle", "gmoVehicle");
+        map.put("vehicleCode", "gmoInsuranceVehicleCode");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -65,11 +65,11 @@ public class InsuranceMapper {
         gmoInsurance.setUpdateDate(insurance.getUpdateDate());
 
         if(!lazy) {
-         // tmsInsurance.setTmsInsuranceTermLigne (InsuranceTermLigneMapper.toEntities(insurance.getInsuranceTermLignes(),false));
+         // gmoInsurance.setGmoInsuranceTermLigne (InsuranceTermLigneMapper.toEntities(insurance.getInsuranceTermLignes(),false));
              gmoInsurance.setRcpSupplier (SupplierMapper.toEntity(insurance.getSupplier (),false));
-           //  tmsInsurance.setTmsInsuranceType (InsuranceTypeMapper.toEntity (insurance.getInsuranceType (), true));
+           //  gmoInsurance.setGmoInsuranceType (InsuranceTypeMapper.toEntity (insurance.getInsuranceType (), true));
 
-           // oneToMany(tmsInsurance);
+           // oneToMany(gmoInsurance);
         }
         return gmoInsurance;
     }
@@ -95,19 +95,19 @@ public class InsuranceMapper {
 
         if(!lazy) {
 
-         //  insurance.setInsuranceTermLignes (InsuranceTermLigneMapper.toDtos(tmsInsurance.getTmsInsuranceTermLigne (),false));
+         //  insurance.setInsuranceTermLignes (InsuranceTermLigneMapper.toDtos(gmoInsurance.getGmoInsuranceTermLigne (),false));
              insurance.setSupplier (SupplierMapper.toDto (gmoInsurance.getRcpSupplier (), false));
-            // insurance.setInsuranceType (InsuranceTypeMapper.toDto (tmsInsurance.getTmsInsuranceType (), true));
+            // insurance.setInsuranceType (InsuranceTypeMapper.toDto (gmoInsurance.getGmoInsuranceType (), true));
         }
         return insurance;
     }
 
 
-   /* private static void oneToMany(TmsInsurance insurance){
-        insurance.getTmsInsuranceTermLigne().forEach(
+   /* private static void oneToMany(GmoInsurance insurance){
+        insurance.getGmoInsuranceTermLigne().forEach(
                 e->{
                      e.setCreationDate(new Date());
-                    e.setTmsInsurance(insurance);
+                    e.setGmoInsurance(insurance);
                 }
         );
 

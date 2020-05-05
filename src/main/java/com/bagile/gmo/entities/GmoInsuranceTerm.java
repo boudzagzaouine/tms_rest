@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="gmo_terminsurance")
-public class TmsInsuranceTerm extends  EmsEntity{
+public class GmoInsuranceTerm extends  EmsEntity{
 
 
     private Long gmoInsuranceTermId;
@@ -25,9 +25,9 @@ public class TmsInsuranceTerm extends  EmsEntity{
   //  private GmoInsurance gmoInsurance;
    // private List<GmoInsuranceTermLigne> gmoInsuranceTermInsurances=new ArrayList<>();
 
-    private Set<TmsInsuranceTypeTerms> tmsInsuranceTypeTerms=new HashSet<>();
+    private Set<GmoInsuranceTypeTerms> gmoInsuranceTypeTerms=new HashSet<>();
 
-    private Set<TmsInsuranceTermsVehicule> tmsInsuranceTermsVehicules=new HashSet<>();
+    private Set<GmoInsuranceTermsVehicule> gmoInsuranceTermsVehicules=new HashSet<>();
 
 
     @Id
@@ -67,13 +67,13 @@ public class TmsInsuranceTerm extends  EmsEntity{
         this.gmoInsuranceTermInsurances = gmoInsuranceTermInsurances;
     }*/
 
-    @OneToMany(mappedBy = "tmsInsuranceTerm", cascade = CascadeType.ALL)
-    public Set<TmsInsuranceTypeTerms> getTmsInsuranceTypeTerms() {
-        return tmsInsuranceTypeTerms;
+    @OneToMany(mappedBy = "gmoInsuranceTerm", cascade = CascadeType.ALL)
+    public Set<GmoInsuranceTypeTerms> getGmoInsuranceTypeTerms() {
+        return gmoInsuranceTypeTerms;
     }
 
-    public void setTmsInsuranceTypeTerms(Set<TmsInsuranceTypeTerms> tmsInsuranceTypeTerms) {
-        this.tmsInsuranceTypeTerms = tmsInsuranceTypeTerms;
+    public void setGmoInsuranceTypeTerms(Set<GmoInsuranceTypeTerms> gmoInsuranceTypeTerms) {
+        this.gmoInsuranceTypeTerms = gmoInsuranceTypeTerms;
     }
 
     @Column(name = "gmo_terminsuranceroofed", columnDefinition = "boolean default false")
@@ -88,12 +88,12 @@ public class TmsInsuranceTerm extends  EmsEntity{
 
     }
 
-    @OneToMany(mappedBy = "tmsInsuranceTerm", cascade = CascadeType.ALL)
-    public Set<TmsInsuranceTermsVehicule> getTmsInsuranceTermsVehicules() {
-        return tmsInsuranceTermsVehicules;
+    @OneToMany(mappedBy = "gmoInsuranceTerm", cascade = CascadeType.ALL)
+    public Set<GmoInsuranceTermsVehicule> getGmoInsuranceTermsVehicules() {
+        return gmoInsuranceTermsVehicules;
     }
 
-    public void setTmsInsuranceTermsVehicules(Set<TmsInsuranceTermsVehicule> tmsInsuranceTermsVehicules) {
-        this.tmsInsuranceTermsVehicules = tmsInsuranceTermsVehicules;
+    public void setGmoInsuranceTermsVehicules(Set<GmoInsuranceTermsVehicule> gmoInsuranceTermsVehicules) {
+        this.gmoInsuranceTermsVehicules = gmoInsuranceTermsVehicules;
     }
 }

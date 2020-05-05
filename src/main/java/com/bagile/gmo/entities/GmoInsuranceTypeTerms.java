@@ -9,66 +9,66 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="tms_insurancetypeterms")
-public class TmsInsuranceTypeTerms extends  EmsEntity{
+@Table(name="gmo_insurancetypeterms")
+public class GmoInsuranceTypeTerms extends  EmsEntity{
 
 
-    private Long tmsInsuranceTypeTermId;
-    private TmsInsuranceTerm tmsInsuranceTerm;
-    private TmsInsuranceType tmsInsuranceType;
-    private BigDecimal tmsAmount;
+    private Long gmoInsuranceTypeTermId;
+    private GmoInsuranceTerm gmoInsuranceTerm;
+    private GmoInsuranceType gmoInsuranceType;
+    private BigDecimal gmoAmount;
 
 
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_insurancetypeterms_id", allocationSize = 1)
-    @Column(name = "tms_insurancetypetermsid", unique = true, nullable = false, precision = 10, scale = 0)
-    public Long getTmsInsuranceTypeTermId() {
-        return tmsInsuranceTypeTermId;
+    @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_insurancetypeterms_id", allocationSize = 1)
+    @Column(name = "gmo_insurancetypetermsid", unique = true, nullable = false, precision = 10, scale = 0)
+    public Long getGmoInsuranceTypeTermId() {
+        return gmoInsuranceTypeTermId;
     }
 
-    public void setTmsInsuranceTypeTermId(Long tmsInsuranceTypeTermId) {
-        this.tmsInsuranceTypeTermId = tmsInsuranceTypeTermId;
-    }
-
-    @ManyToOne()
-    @JoinColumn(name = "tms_insurancetermsid")
-    public TmsInsuranceTerm getTmsInsuranceTerm() {
-        return tmsInsuranceTerm;
-    }
-
-    public void setTmsInsuranceTerm(TmsInsuranceTerm tmsInsuranceTerm) {
-        this.tmsInsuranceTerm = tmsInsuranceTerm;
+    public void setGmoInsuranceTypeTermId(Long gmoInsuranceTypeTermId) {
+        this.gmoInsuranceTypeTermId = gmoInsuranceTypeTermId;
     }
 
     @ManyToOne()
-    @JoinColumn(name = "tms_insurancetypeid")
-    public TmsInsuranceType getTmsInsuranceType() {
-        return tmsInsuranceType;
+    @JoinColumn(name = "gmo_insurancetermsid")
+    public GmoInsuranceTerm getGmoInsuranceTerm() {
+        return gmoInsuranceTerm;
     }
 
-    public void setTmsInsuranceType(TmsInsuranceType tmsInsuranceType) {
-        this.tmsInsuranceType = tmsInsuranceType;
+    public void setGmoInsuranceTerm(GmoInsuranceTerm gmoInsuranceTerm) {
+        this.gmoInsuranceTerm = gmoInsuranceTerm;
     }
 
-    @Column(name = "tms_insurancetypetermsamount", precision = 10, scale = 0)
-    public BigDecimal getTmsAmount() {
-        return tmsAmount;
+    @ManyToOne()
+    @JoinColumn(name = "gmo_insurancetypeid")
+    public GmoInsuranceType getGmoInsuranceType() {
+        return gmoInsuranceType;
     }
 
-    public void setTmsAmount(BigDecimal tmsAmount) {
-        this.tmsAmount = tmsAmount;
+    public void setGmoInsuranceType(GmoInsuranceType gmoInsuranceType) {
+        this.gmoInsuranceType = gmoInsuranceType;
+    }
+
+    @Column(name = "gmo_insurancetypetermsamount", precision = 10, scale = 0)
+    public BigDecimal getGmoAmount() {
+        return gmoAmount;
+    }
+
+    public void setGmoAmount(BigDecimal gmoAmount) {
+        this.gmoAmount = gmoAmount;
     }
 
 /* @OneToOne
-    public TmsInsurance getTmsInsurance() {
-        return tmsInsurance;
+    public GmoInsurance getGmoInsurance() {
+        return gmoInsurance;
     }
 
-    public void setTmsInsurance(TmsInsurance tmsInsurance) {
-        this.tmsInsurance = tmsInsurance;
+    public void setGmoInsurance(GmoInsurance gmoInsurance) {
+        this.gmoInsurance = gmoInsurance;
     }*/
 
 }

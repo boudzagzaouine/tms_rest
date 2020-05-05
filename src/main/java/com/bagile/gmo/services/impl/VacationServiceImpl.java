@@ -1,14 +1,14 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.Vacation;
-import com.bagile.gmo.entities.TmsVacation;
+import com.bagile.gmo.entities.GmoVacation;
 import com.bagile.gmo.mapper.VacationMapper;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.VacationRepository;
-import com.bagile.tms.services.VacationService;
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.VacationRepository;
+import com.bagile.gmo.services.VacationService;
+import com.bagile.gmo.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
@@ -54,7 +54,7 @@ public class VacationServiceImpl implements VacationService {
         if (search.equals("")){
             return findAll ();
         }
-        return VacationMapper.toDtos(vacationRepository.findAll(Search.expression(search, TmsVacation.class)), false);
+        return VacationMapper.toDtos(vacationRepository.findAll(Search.expression(search, GmoVacation.class)), false);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class VacationServiceImpl implements VacationService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return VacationMapper.toDtos(vacationRepository.findAll(Search.expression(search, TmsVacation.class), pageable), false);
+        return VacationMapper.toDtos(vacationRepository.findAll(Search.expression(search, GmoVacation.class), pageable), false);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class VacationServiceImpl implements VacationService {
         if (search.equals("")){
             return size ();
         }
-        return vacationRepository.count(Search.expression(search, TmsVacation.class));
+        return vacationRepository.count(Search.expression(search, GmoVacation.class));
     }
 
     @Override

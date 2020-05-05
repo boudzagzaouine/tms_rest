@@ -1,10 +1,10 @@
-package com.bagile.tms.controllers;
+package com.bagile.gmo.controllers;
 
 import com.bagile.gmo.dto.CatalogTransportType;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.services.CatalogTransportTypeService;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.services.CatalogTransportTypeService;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

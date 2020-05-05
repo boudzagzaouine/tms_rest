@@ -1,14 +1,14 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.Badge;
-import com.bagile.gmo.entities.TmsBadge;
+import com.bagile.gmo.entities.GmoBadge;
 import com.bagile.gmo.mapper.BadgeMapper;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.BadgeRepository;
-import com.bagile.tms.services.BadgeService;
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.BadgeRepository;
+import com.bagile.gmo.services.BadgeService;
+import com.bagile.gmo.util.Search;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -51,7 +51,7 @@ public class BadgeServiceImpl implements BadgeService {
         if (search.equals("")){
             return findAll ();
         }
-        return BadgeMapper.toDtos(badgeRepository.findAll(Search.expression(search, TmsBadge.class)), false);
+        return BadgeMapper.toDtos(badgeRepository.findAll(Search.expression(search, GmoBadge.class)), false);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class BadgeServiceImpl implements BadgeService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return BadgeMapper.toDtos(badgeRepository.findAll(Search.expression(search, TmsBadge.class), pageable), false);
+        return BadgeMapper.toDtos(badgeRepository.findAll(Search.expression(search, GmoBadge.class), pageable), false);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class BadgeServiceImpl implements BadgeService {
         if (search.equals("")){
             return size ();
         }
-        return badgeRepository.count(Search.expression(search, TmsBadge.class));
+        return badgeRepository.count(Search.expression(search, GmoBadge.class));
     }
 
     @Override

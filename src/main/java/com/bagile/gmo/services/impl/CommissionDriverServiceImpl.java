@@ -1,14 +1,14 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.CommissionDriver;
-import com.bagile.gmo.entities.TmsCommissionDriver;
+import com.bagile.gmo.entities.GmoCommissionDriver;
 import com.bagile.gmo.mapper.CommissionDriverMapper;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.CommissionDriverRepository;
-import com.bagile.tms.services.CommissionDriverService;
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.CommissionDriverRepository;
+import com.bagile.gmo.services.CommissionDriverService;
+import com.bagile.gmo.util.Search;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -52,7 +52,7 @@ public class CommissionDriverServiceImpl implements CommissionDriverService {
         if (search.equals("")){
             return findAll ();
         }
-        return CommissionDriverMapper.toDtos(commissionRepository.findAll(Search.expression(search, TmsCommissionDriver.class)), false);
+        return CommissionDriverMapper.toDtos(commissionRepository.findAll(Search.expression(search, GmoCommissionDriver.class)), false);
     }
 
     @Override
@@ -62,12 +62,12 @@ public class CommissionDriverServiceImpl implements CommissionDriverService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return CommissionDriverMapper.toDtos(commissionRepository.findAll(Search.expression(search, TmsCommissionDriver.class), pageable), false);
+        return CommissionDriverMapper.toDtos(commissionRepository.findAll(Search.expression(search, GmoCommissionDriver.class), pageable), false);
     }
 
     @Override
     public CommissionDriver findOne(String search) throws AttributesNotFound, ErrorType {
-        return CommissionDriverMapper.toDto (commissionRepository.findOne (Search.expression (search, TmsCommissionDriver.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
+        return CommissionDriverMapper.toDto (commissionRepository.findOne (Search.expression (search, GmoCommissionDriver.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
 
     }
 
@@ -76,7 +76,7 @@ public class CommissionDriverServiceImpl implements CommissionDriverService {
         if (search.equals("")){
             return size ();
         }
-        return commissionRepository.count(Search.expression(search, TmsCommissionDriver.class));
+        return commissionRepository.count(Search.expression(search, GmoCommissionDriver.class));
     }
 
     @Override

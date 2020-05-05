@@ -1,12 +1,12 @@
-package com.bagile.tms.controllers;
+package com.bagile.gmo.controllers;
 
 import com.bagile.gmo.dto.DeliveryLine;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.exceptions.ProductControls;
-import com.bagile.tms.services.DeliveryLineService;
-import com.bagile.tms.services.UserDetailsServiceWarehouse;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.exceptions.ProductControls;
+import com.bagile.gmo.services.DeliveryLineService;
+import com.bagile.gmo.services.UserDetailsServiceWarehouse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

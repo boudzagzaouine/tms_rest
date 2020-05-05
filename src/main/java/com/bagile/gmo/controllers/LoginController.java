@@ -1,7 +1,7 @@
-package com.bagile.tms.controllers;
+package com.bagile.gmo.controllers;
 
 import com.bagile.gmo.dto.User;
-import com.bagile.tms.services.UserService;
+import com.bagile.gmo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

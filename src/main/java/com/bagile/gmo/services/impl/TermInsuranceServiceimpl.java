@@ -1,15 +1,15 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.InsuranceTerm;
 import com.bagile.gmo.dto.TurnLine;
-import com.bagile.gmo.entities.TmsInsuranceTerm;
+import com.bagile.gmo.entities.GmoInsuranceTerm;
 import com.bagile.gmo.mapper.InsuranceTermMapper;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.TermInsuranceRepository;
-import com.bagile.tms.services.TermInsuranceService;
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.TermInsuranceRepository;
+import com.bagile.gmo.services.TermInsuranceService;
+import com.bagile.gmo.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +66,7 @@ public class TermInsuranceServiceimpl implements TermInsuranceService {
         if (search.equals("")){
             return findAll ();
         }
-        return InsuranceTermMapper.toDtos(termInsuranceRepository.findAll(Search.expression(search, TmsInsuranceTerm.class)), false);
+        return InsuranceTermMapper.toDtos(termInsuranceRepository.findAll(Search.expression(search, GmoInsuranceTerm.class)), false);
     }
 
     @Override
@@ -74,12 +74,12 @@ public class TermInsuranceServiceimpl implements TermInsuranceService {
         if (search.equals("")){
             return findAll (pageable);
         }
-        return InsuranceTermMapper.toDtos(termInsuranceRepository.findAll(Search.expression(search, TmsInsuranceTerm.class), pageable), false);
+        return InsuranceTermMapper.toDtos(termInsuranceRepository.findAll(Search.expression(search, GmoInsuranceTerm.class), pageable), false);
     }
 
     @Override
     public InsuranceTerm findOne(String search) throws AttributesNotFound, ErrorType {
-        return InsuranceTermMapper.toDto(termInsuranceRepository.findOne(Search.expression(search, TmsInsuranceTerm.class)).get(), false);
+        return InsuranceTermMapper.toDto(termInsuranceRepository.findOne(Search.expression(search, GmoInsuranceTerm.class)).get(), false);
     }
 
     @Override
@@ -87,7 +87,7 @@ public class TermInsuranceServiceimpl implements TermInsuranceService {
         if (search.equals("")){
             return size ();
         }
-        return termInsuranceRepository.count(Search.expression(search, TmsInsuranceTerm.class));
+        return termInsuranceRepository.count(Search.expression(search, GmoInsuranceTerm.class));
     }
 
     @Override

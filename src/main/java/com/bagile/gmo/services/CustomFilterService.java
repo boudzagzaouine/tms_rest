@@ -1,12 +1,12 @@
-package com.bagile.tms.services;
+package com.bagile.gmo.services;
 
 
 import java.util.List;
 
 import com.bagile.gmo.dto.CustomFilter;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
 
 public interface CustomFilterService {
 

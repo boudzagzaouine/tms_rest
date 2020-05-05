@@ -1,15 +1,15 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.CatalogTransportType;
-import com.bagile.gmo.entities.TmsCatalogTransportType;
+import com.bagile.gmo.entities.GmoCatalogTransportType;
 import com.bagile.gmo.mapper.CatalogTransportTypeMapper;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.CatalogTransportTypeRepository;
-import com.bagile.tms.services.CatalogTransportTypeService;
-import com.bagile.tms.services.TransportService;
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.CatalogTransportTypeRepository;
+import com.bagile.gmo.services.CatalogTransportTypeService;
+import com.bagile.gmo.services.TransportService;
+import com.bagile.gmo.util.Search;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -53,7 +53,7 @@ public class CatalogTransportTypeServiceImpl implements CatalogTransportTypeServ
         if (search.equals("")){
             return findAll ();
         }
-        return CatalogTransportTypeMapper.toDtos(catalogTransportTypeRepository.findAll(Search.expression(search, TmsCatalogTransportType.class)), false);
+        return CatalogTransportTypeMapper.toDtos(catalogTransportTypeRepository.findAll(Search.expression(search, GmoCatalogTransportType.class)), false);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class CatalogTransportTypeServiceImpl implements CatalogTransportTypeServ
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return CatalogTransportTypeMapper.toDtos(catalogTransportTypeRepository.findAll(Search.expression(search, TmsCatalogTransportType.class), pageable), false);
+        return CatalogTransportTypeMapper.toDtos(catalogTransportTypeRepository.findAll(Search.expression(search, GmoCatalogTransportType.class), pageable), false);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class CatalogTransportTypeServiceImpl implements CatalogTransportTypeServ
         if (search.equals("")){
             return size ();
         }
-        return catalogTransportTypeRepository.count(Search.expression(search, TmsCatalogTransportType.class));
+        return catalogTransportTypeRepository.count(Search.expression(search, GmoCatalogTransportType.class));
     }
 
     @Override

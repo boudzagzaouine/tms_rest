@@ -1,7 +1,7 @@
 package com.bagile.gmo.mapper;
 
 import com.bagile.gmo.dto.CommissionType;
-import com.bagile.gmo.entities.TmsCommissionType;
+import com.bagile.gmo.entities.GmoCommissionType;
 
 import java.util.*;
 
@@ -14,10 +14,10 @@ public class CommissionTypeMapper {
     static {
         map = new HashMap<>();
 
-        map.put("id", "tmsCommissionTypeId");
-        map.put("code", "tmsCommissionTypeCode");
-        map.put("description", "tmsCommissionTypeDescription");
-        map.put("percentage", "tmsCommissionTypePercentage");
+        map.put("id", "gmoCommissionTypeId");
+        map.put("code", "gmoCommissionTypeCode");
+        map.put("description", "gmoCommissionTypeDescription");
+        map.put("percentage", "gmoCommissionTypePercentage");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -33,35 +33,35 @@ public class CommissionTypeMapper {
         return map.get(key);
     }
 
-    public static TmsCommissionType toEntity(CommissionType badgeType, boolean lazy) {
+    public static GmoCommissionType toEntity(CommissionType badgeType, boolean lazy) {
         if (null == badgeType) {
             return null;
         }
-        TmsCommissionType tmsCommissionType = new TmsCommissionType();
-        tmsCommissionType.setTmsCommissionTypeId(badgeType.getId());
-        tmsCommissionType.setTmsCommissionTypeCode(badgeType.getCode() != null ? badgeType.getCode().toUpperCase() : null);
-        tmsCommissionType.setTmsCommissionTypeDescription (badgeType.getDescription ());
-        tmsCommissionType.setTmsCommissionTypepercentage (badgeType.getPercentage ());
+        GmoCommissionType gmoCommissionType = new GmoCommissionType();
+        gmoCommissionType.setGmoCommissionTypeId(badgeType.getId());
+        gmoCommissionType.setGmoCommissionTypeCode(badgeType.getCode() != null ? badgeType.getCode().toUpperCase() : null);
+        gmoCommissionType.setGmoCommissionTypeDescription (badgeType.getDescription ());
+        gmoCommissionType.setGmoCommissionTypepercentage (badgeType.getPercentage ());
 
 
-        tmsCommissionType.setCreatedBy(badgeType.getCreatedBy());
-        tmsCommissionType.setUpdatedBy(badgeType.getUpdatedBy());
-        tmsCommissionType.setCreationDate(badgeType.getCreationDate());
-        tmsCommissionType.setUpdateDate(badgeType.getUpdateDate());
+        gmoCommissionType.setCreatedBy(badgeType.getCreatedBy());
+        gmoCommissionType.setUpdatedBy(badgeType.getUpdatedBy());
+        gmoCommissionType.setCreationDate(badgeType.getCreationDate());
+        gmoCommissionType.setUpdateDate(badgeType.getUpdateDate());
 
-        return tmsCommissionType;
+        return gmoCommissionType;
 
     }
 
-    public static CommissionType toDto(TmsCommissionType tmsCommissionType, boolean lazy) {
-        if (null == tmsCommissionType) {
+    public static CommissionType toDto(GmoCommissionType gmoCommissionType, boolean lazy) {
+        if (null == gmoCommissionType) {
             return null;
         }
         CommissionType badgeType = new CommissionType();
-        badgeType.setId((int) tmsCommissionType.getTmsCommissionTypeId());
-        badgeType.setCode(tmsCommissionType.getTmsCommissionTypeCode());
-        badgeType.setDescription (tmsCommissionType.getTmsCommissionTypeDescription ());
-        badgeType.setPercentage (tmsCommissionType.getTmsCommissionTypepercentage ());
+        badgeType.setId((int) gmoCommissionType.getGmoCommissionTypeId());
+        badgeType.setCode(gmoCommissionType.getGmoCommissionTypeCode());
+        badgeType.setDescription (gmoCommissionType.getGmoCommissionTypeDescription ());
+        badgeType.setPercentage (gmoCommissionType.getGmoCommissionTypepercentage ());
 
 
         return badgeType;
@@ -69,36 +69,36 @@ public class CommissionTypeMapper {
     }
 
 
-    public static List<CommissionType> toDtos(Iterable<? extends TmsCommissionType> tmsCommissionTypes, boolean lazy) {
-        if (null == tmsCommissionTypes) {
+    public static List<CommissionType> toDtos(Iterable<? extends GmoCommissionType> gmoCommissionTypes, boolean lazy) {
+        if (null == gmoCommissionTypes) {
             return null;
         }
         List<CommissionType> vehicules = new ArrayList<>();
 
-        for (TmsCommissionType tmsCommissionType : tmsCommissionTypes) {
-            vehicules.add(toDto(tmsCommissionType, lazy));
+        for (GmoCommissionType gmoCommissionType : gmoCommissionTypes) {
+            vehicules.add(toDto(gmoCommissionType, lazy));
         }
         return vehicules;
     }
 
-    public static Set<TmsCommissionType> toEntities(Set<CommissionType> commissionType, boolean lazy) {
+    public static Set<GmoCommissionType> toEntities(Set<CommissionType> commissionType, boolean lazy) {
         if (null == commissionType) {
             return null;
         }
-        Set<TmsCommissionType> tmsCommissionTypes = new HashSet<>();
+        Set<GmoCommissionType> gmoCommissionTypes = new HashSet<>();
         for (CommissionType badgeType : commissionType) {
-            tmsCommissionTypes.add(toEntity(badgeType, lazy));
+            gmoCommissionTypes.add(toEntity(badgeType, lazy));
         }
-        return tmsCommissionTypes;
+        return gmoCommissionTypes;
     }
 
-    public static Set<CommissionType> toDtos(Set<TmsCommissionType> tmsCommissionTypes, boolean lazy) {
-        if (null == tmsCommissionTypes) {
+    public static Set<CommissionType> toDtos(Set<GmoCommissionType> gmoCommissionTypes, boolean lazy) {
+        if (null == gmoCommissionTypes) {
             return null;
         }
         Set<CommissionType> commissionType = new HashSet<>();
-        for (TmsCommissionType tmsCommissionType : tmsCommissionTypes) {
-            commissionType.add(toDto(tmsCommissionType, lazy));
+        for (GmoCommissionType gmoCommissionType : gmoCommissionTypes) {
+            commissionType.add(toDto(gmoCommissionType, lazy));
         }
         return commissionType;
     }

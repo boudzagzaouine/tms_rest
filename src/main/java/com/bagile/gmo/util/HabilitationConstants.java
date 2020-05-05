@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.bagile.tms.util;
+package com.bagile.gmo.util;
 
 /**
  * @author SINNO

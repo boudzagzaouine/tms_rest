@@ -13,7 +13,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "rcp_supplier")
-// @SQLDelete(sql = "update schema_tms.rcp_supplier set rcp_supplierisactive = false")
+// @SQLDelete(sql = "update schema_gmo.rcp_supplier set rcp_supplierisactive = false")
 // @Where(clause = "rcp_supplierisactive = true")
 public class RcpSupplier extends EmsEntity implements java.io.Serializable {
 

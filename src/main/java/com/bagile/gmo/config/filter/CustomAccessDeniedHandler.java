@@ -1,4 +1,4 @@
-package com.bagile.tms.config.filter;
+package com.bagile.gmo.config.filter;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;

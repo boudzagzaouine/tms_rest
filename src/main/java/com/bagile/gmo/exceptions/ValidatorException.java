@@ -1,6 +1,6 @@
-package com.bagile.tms.exceptions;
+package com.bagile.gmo.exceptions;
 
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.util.Search;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.validation.ConstraintViolation;

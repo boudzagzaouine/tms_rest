@@ -1,4 +1,4 @@
-package com.bagile.tms.config.aspects;
+package com.bagile.gmo.config.aspects;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -15,12 +15,12 @@ public class TracingAspect {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass() );
 
-    @Before("within(com.bagile.tms.services..*)")
+    @Before("within(com.bagile.gmo.services..*)")
     public void entering(JoinPoint joinPoint){
         logger.info("Executing -- : " + joinPoint.getStaticPart().getSignature().toString());
     }
 
-    @After("within(com.bagile.tms.services..*)")
+    @After("within(com.bagile.gmo.services..*)")
     public void exiting(JoinPoint joinPoint){
         logger.info("Finished -- : " + joinPoint.getStaticPart().getSignature().toString());
     }
@@ -31,6 +31,6 @@ public class TracingAspect {
         return joinPoint.proceed();
     }
 
-    @Pointcut("@annotation(com.bagile.tms.config.aspects.TrackTime)")
+    @Pointcut("@annotation(com.bagile.gmo.config.aspects.TrackTime)")
     public void trackTime(){}
 }

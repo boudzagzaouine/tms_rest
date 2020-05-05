@@ -1,6 +1,6 @@
-package com.bagile.tms.config.filter;
+package com.bagile.gmo.config.filter;
 
-import com.bagile.tms.util.TokenUtils;
+import com.bagile.gmo.util.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

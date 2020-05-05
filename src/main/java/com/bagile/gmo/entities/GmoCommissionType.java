@@ -9,60 +9,60 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "tms_commissiontype")
-public class TmsCommissionType extends EmsEntity {
+@Table(name = "gmo_commissiontype")
+public class GmoCommissionType extends EmsEntity {
 
-    private long tmsCommissionTypeId;
-    private String tmsCommissionTypeCode;
-    private String tmsCommissionTypeDescription;
-    private BigDecimal tmsCommissionTypePercentage;
-    private Set<TmsCommissionDriver> tmsCommissions = new HashSet<>();
+    private long gmoCommissionTypeId;
+    private String gmoCommissionTypeCode;
+    private String gmoCommissionTypeDescription;
+    private BigDecimal gmoCommissionTypePercentage;
+    private Set<GmoCommissionDriver> gmoCommissions = new HashSet<>();
 
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_commission_type_id", allocationSize = 1)
-    @Column(name = "tms_CommissionTypeid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getTmsCommissionTypeId() {
-        return tmsCommissionTypeId;
+    @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_commission_type_id", allocationSize = 1)
+    @Column(name = "gmo_CommissionTypeid", unique = true, nullable = false, precision = 10, scale = 0)
+    public long getGmoCommissionTypeId() {
+        return gmoCommissionTypeId;
     }
-    public void setTmsCommissionTypeId(long tmsCommissionTypeId) {
-        this.tmsCommissionTypeId = tmsCommissionTypeId;
-    }
-
-    @Column(name = "tms_Commissiontypecode", unique = true ,length = 90)
-    public String getTmsCommissionTypeCode() {
-        return tmsCommissionTypeCode;
-    }
-    public void setTmsCommissionTypeCode(String tmsCommissionTypeCode) {
-        this.tmsCommissionTypeCode = tmsCommissionTypeCode;
+    public void setGmoCommissionTypeId(long gmoCommissionTypeId) {
+        this.gmoCommissionTypeId = gmoCommissionTypeId;
     }
 
-    @Column(name = "tms_commissiontypedescription"  )
-    public String getTmsCommissionTypeDescription() {
-        return tmsCommissionTypeDescription;
+    @Column(name = "gmo_Commissiontypecode", unique = true ,length = 90)
+    public String getGmoCommissionTypeCode() {
+        return gmoCommissionTypeCode;
+    }
+    public void setGmoCommissionTypeCode(String gmoCommissionTypeCode) {
+        this.gmoCommissionTypeCode = gmoCommissionTypeCode;
     }
 
-    public void setTmsCommissionTypeDescription(String tmsCommissionTypeDescription) {
-        this.tmsCommissionTypeDescription = tmsCommissionTypeDescription;
-    }
-    @Column(name = "tms_commissiontypepourcentage", length = 90)
-    public BigDecimal getTmsCommissionTypepercentage() {
-        return tmsCommissionTypePercentage;
+    @Column(name = "gmo_commissiontypedescription"  )
+    public String getGmoCommissionTypeDescription() {
+        return gmoCommissionTypeDescription;
     }
 
-    public void setTmsCommissionTypepercentage(BigDecimal tmsCommissionTypepercentage) {
-        this.tmsCommissionTypePercentage = tmsCommissionTypepercentage;
+    public void setGmoCommissionTypeDescription(String gmoCommissionTypeDescription) {
+        this.gmoCommissionTypeDescription = gmoCommissionTypeDescription;
+    }
+    @Column(name = "gmo_commissiontypepourcentage", length = 90)
+    public BigDecimal getGmoCommissionTypepercentage() {
+        return gmoCommissionTypePercentage;
     }
 
-    @OneToMany(mappedBy = "tmsCommissionType",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    public Set<TmsCommissionDriver> getTmsCommissions() {
-        return tmsCommissions;
+    public void setGmoCommissionTypepercentage(BigDecimal gmoCommissionTypepercentage) {
+        this.gmoCommissionTypePercentage = gmoCommissionTypepercentage;
     }
 
-    public void setTmsCommissions(Set<TmsCommissionDriver> tmsCommissions) {
-        this.tmsCommissions = tmsCommissions;
+    @OneToMany(mappedBy = "gmoCommissionType",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    public Set<GmoCommissionDriver> getGmoCommissions() {
+        return gmoCommissions;
+    }
+
+    public void setGmoCommissions(Set<GmoCommissionDriver> gmoCommissions) {
+        this.gmoCommissions = gmoCommissions;
     }
 
 }

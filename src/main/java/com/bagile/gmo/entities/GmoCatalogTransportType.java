@@ -10,29 +10,29 @@ import com.bagile.gmo.dto.Zone;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name="tms_catalogtransport")
-public class TmsCatalogTransportType extends EmsEntity{
+@Table(name="gmo_catalogtransport")
+public class GmoCatalogTransportType extends EmsEntity{
 
-    private long tmsCatalogTransportId;
+    private long gmoCatalogTransportId;
     private TrpTransport trpTransport;
-    private GmoVehicleCategory tmsVehicleCategory;
-    private TmsZone tmsZoneSource ;
-    private TmsZone tmsZoneDestination;
-    private BigDecimal tmsCatalogTransportAmountHt;
-    private BigDecimal tmsCatalogTransportAmountTtc;
-    private BigDecimal tmsCatalogTransportAmountTva;
+    private GmoVehicleCategory gmoVehicleCategory;
+    private GmoZone gmoZoneSource ;
+    private GmoZone gmoZoneDestination;
+    private BigDecimal gmoCatalogTransportAmountHt;
+    private BigDecimal gmoCatalogTransportAmountTtc;
+    private BigDecimal gmoCatalogTransportAmountTva;
     private PrmVat prmvat;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_tms_catalogtransportcategoryvehicle_id", allocationSize = 1)
-    @Column(name = "tms_catalogtransportcategoryvehicleid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getTmsCatalogTransportCategoryVehicleId() {
-        return tmsCatalogTransportId;
+    @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_catalogtransportcategoryvehicle_id", allocationSize = 1)
+    @Column(name = "gmo_catalogtransportcategoryvehicleid", unique = true, nullable = false, precision = 10, scale = 0)
+    public long getGmoCatalogTransportCategoryVehicleId() {
+        return gmoCatalogTransportId;
     }
 
-    public void setTmsCatalogTransportCategoryVehicleId(long tmsCatalogTransportCategoryVehicleId) {
-        this.tmsCatalogTransportId = tmsCatalogTransportCategoryVehicleId;
+    public void setGmoCatalogTransportCategoryVehicleId(long gmoCatalogTransportCategoryVehicleId) {
+        this.gmoCatalogTransportId = gmoCatalogTransportCategoryVehicleId;
     }
 
     @ManyToOne()
@@ -45,58 +45,58 @@ public class TmsCatalogTransportType extends EmsEntity{
         this.trpTransport = trpTransport;
     }
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "tms_vehiclecategoryid")
-    public GmoVehicleCategory getTmsVehicleCategory() {
-        return tmsVehicleCategory;
+    @JoinColumn(name = "gmo_vehiclecategoryid")
+    public GmoVehicleCategory getGmoVehicleCategory() {
+        return gmoVehicleCategory;
     }
 
-    public void setTmsVehicleCategory(GmoVehicleCategory tmsVehicleCategory) {
-        this.tmsVehicleCategory = tmsVehicleCategory;
+    public void setGmoVehicleCategory(GmoVehicleCategory gmoVehicleCategory) {
+        this.gmoVehicleCategory = gmoVehicleCategory;
     }
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "tms_zonesournceid")
-    public TmsZone getTmsZoneSource() {
-        return tmsZoneSource;
+    @JoinColumn(name = "gmo_zonesournceid")
+    public GmoZone getGmoZoneSource() {
+        return gmoZoneSource;
     }
 
-    public void setTmsZoneSource(TmsZone tmsZoneSource) {
-        this.tmsZoneSource = tmsZoneSource;
+    public void setGmoZoneSource(GmoZone gmoZoneSource) {
+        this.gmoZoneSource = gmoZoneSource;
     }
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "tms_zonedistinationid")
-    public TmsZone getTmsZoneDestination() {
-        return tmsZoneDestination;
+    @JoinColumn(name = "gmo_zonedistinationid")
+    public GmoZone getGmoZoneDestination() {
+        return gmoZoneDestination;
     }
 
-    public void setTmsZoneDestination(TmsZone tmsZoneDestination) {
-        this.tmsZoneDestination = tmsZoneDestination;
+    public void setGmoZoneDestination(GmoZone gmoZoneDestination) {
+        this.gmoZoneDestination = gmoZoneDestination;
     }
 
-    @Column(name = "tms_catalogtransportamountht")
-    public BigDecimal getTmsCatalogTransportCategoryVehicleAmountHt() {
-        return tmsCatalogTransportAmountHt;
+    @Column(name = "gmo_catalogtransportamountht")
+    public BigDecimal getGmoCatalogTransportCategoryVehicleAmountHt() {
+        return gmoCatalogTransportAmountHt;
     }
 
-    public void setTmsCatalogTransportCategoryVehicleAmountHt(BigDecimal tmsCatalogTransportCategoryVehicleAmountHt) {
-        this.tmsCatalogTransportAmountHt = tmsCatalogTransportCategoryVehicleAmountHt;
+    public void setGmoCatalogTransportCategoryVehicleAmountHt(BigDecimal gmoCatalogTransportCategoryVehicleAmountHt) {
+        this.gmoCatalogTransportAmountHt = gmoCatalogTransportCategoryVehicleAmountHt;
     }
 
-    @Column(name = "tms_catalogtransportamountttc")
-    public BigDecimal getTmsCatalogTransportCategoryVehicleAmountTtc() {
-        return tmsCatalogTransportAmountTtc;
+    @Column(name = "gmo_catalogtransportamountttc")
+    public BigDecimal getGmoCatalogTransportCategoryVehicleAmountTtc() {
+        return gmoCatalogTransportAmountTtc;
     }
 
-    public void setTmsCatalogTransportCategoryVehicleAmountTtc(BigDecimal tmsCatalogTransportCategoryVehicleAmountTtc) {
-        this.tmsCatalogTransportAmountTtc = tmsCatalogTransportCategoryVehicleAmountTtc;
+    public void setGmoCatalogTransportCategoryVehicleAmountTtc(BigDecimal gmoCatalogTransportCategoryVehicleAmountTtc) {
+        this.gmoCatalogTransportAmountTtc = gmoCatalogTransportCategoryVehicleAmountTtc;
     }
 
-    @Column(name = "tms_catalogtransportamounttva")
-    public BigDecimal getTmsCatalogTransportCategoryVehicleAmountTva() {
-        return tmsCatalogTransportAmountTva;
+    @Column(name = "gmo_catalogtransportamounttva")
+    public BigDecimal getGmoCatalogTransportCategoryVehicleAmountTva() {
+        return gmoCatalogTransportAmountTva;
     }
 
-    public void setTmsCatalogTransportCategoryVehicleAmountTva(BigDecimal tmsCatalogTransportCategoryVehicleAmountTva) {
-        this.tmsCatalogTransportAmountTva = tmsCatalogTransportCategoryVehicleAmountTva;
+    public void setGmoCatalogTransportCategoryVehicleAmountTva(BigDecimal gmoCatalogTransportCategoryVehicleAmountTva) {
+        this.gmoCatalogTransportAmountTva = gmoCatalogTransportCategoryVehicleAmountTva;
     }
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "prm_vatid")

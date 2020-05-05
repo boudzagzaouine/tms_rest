@@ -53,7 +53,7 @@ public class GmoVehicle extends EmsEntity {
     private String gmoVehicleEnergy ;
     private  Date gmoVehicleVignette;
     private BigDecimal gmoVehicleValueVignete;
-    private Set<TmsInsuranceTermsVehicule> tmsInsuranceTermsVehicules=new HashSet<>();
+    private Set<GmoInsuranceTermsVehicule> gmoInsuranceTermsVehicules=new HashSet<>();
 
     private TrpTransport trpTransport;
 
@@ -303,12 +303,12 @@ public class GmoVehicle extends EmsEntity {
     }
 
     @OneToMany(mappedBy = "gmoVehicle",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
-    public Set<TmsInsuranceTermsVehicule> getTmsInsuranceTermsVehicules() {
-        return tmsInsuranceTermsVehicules;
+    public Set<GmoInsuranceTermsVehicule> getGmoInsuranceTermsVehicules() {
+        return gmoInsuranceTermsVehicules;
     }
 
-    public void setTmsInsuranceTermsVehicules(Set<TmsInsuranceTermsVehicule> tmsInsuranceTermsVehicules) {
-        this.tmsInsuranceTermsVehicules = tmsInsuranceTermsVehicules;
+    public void setGmoInsuranceTermsVehicules(Set<GmoInsuranceTermsVehicule> gmoInsuranceTermsVehicules) {
+        this.gmoInsuranceTermsVehicules = gmoInsuranceTermsVehicules;
     }
     @ManyToOne()
     @JoinColumn(name = "trp_transportid")

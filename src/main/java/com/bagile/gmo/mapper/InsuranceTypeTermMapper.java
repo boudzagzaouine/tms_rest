@@ -4,8 +4,8 @@ import com.bagile.gmo.dto.InsuranceTerm;
 import com.bagile.gmo.dto.InsuranceTypeTerms;
 import com.bagile.gmo.dto.VehicleCategory;
 import com.bagile.gmo.entities.GmoVehicleCategory;
-import com.bagile.gmo.entities.TmsInsuranceTerm;
-import com.bagile.gmo.entities.TmsInsuranceTypeTerms;
+import com.bagile.gmo.entities.GmoInsuranceTerm;
+import com.bagile.gmo.entities.GmoInsuranceTypeTerms;
 
 import java.util.*;
 
@@ -18,10 +18,10 @@ public class InsuranceTypeTermMapper {
     static {
         map = new HashMap<>();
 
-        map.put("id", "tmsInsuranceTypeTermId");
-        map.put("insuranceTerm", "tmsInsuranceTerm");
-        map.put("insuranceType", "tmsInsuranceType");
-        map.put("amount", "tmsAmount");
+        map.put("id", "gmoInsuranceTypeTermId");
+        map.put("insuranceTerm", "gmoInsuranceTerm");
+        map.put("insuranceType", "gmoInsuranceType");
+        map.put("amount", "gmoAmount");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -37,40 +37,40 @@ public class InsuranceTypeTermMapper {
         return map.get(key);
     }
 
-    public static TmsInsuranceTypeTerms toEntity(InsuranceTypeTerms insuranceTypeTerms, boolean lazy) {
+    public static GmoInsuranceTypeTerms toEntity(InsuranceTypeTerms insuranceTypeTerms, boolean lazy) {
         if (null == insuranceTypeTerms) {
             return null;
         }
-        TmsInsuranceTypeTerms tmsinsuranceTermInsurances = new TmsInsuranceTypeTerms();
-        tmsinsuranceTermInsurances.setTmsInsuranceTypeTermId(insuranceTypeTerms.getId());
-        tmsinsuranceTermInsurances.setTmsAmount(insuranceTypeTerms.getAmount());
+        GmoInsuranceTypeTerms gmoinsuranceTermInsurances = new GmoInsuranceTypeTerms();
+        gmoinsuranceTermInsurances.setGmoInsuranceTypeTermId(insuranceTypeTerms.getId());
+        gmoinsuranceTermInsurances.setGmoAmount(insuranceTypeTerms.getAmount());
 
 
-        tmsinsuranceTermInsurances.setCreatedBy(insuranceTypeTerms.getCreatedBy());
-        tmsinsuranceTermInsurances.setUpdatedBy(insuranceTypeTerms.getUpdatedBy());
-        tmsinsuranceTermInsurances.setCreationDate(insuranceTypeTerms.getCreationDate());
-        tmsinsuranceTermInsurances.setUpdateDate(insuranceTypeTerms.getUpdateDate());
+        gmoinsuranceTermInsurances.setCreatedBy(insuranceTypeTerms.getCreatedBy());
+        gmoinsuranceTermInsurances.setUpdatedBy(insuranceTypeTerms.getUpdatedBy());
+        gmoinsuranceTermInsurances.setCreationDate(insuranceTypeTerms.getCreationDate());
+        gmoinsuranceTermInsurances.setUpdateDate(insuranceTypeTerms.getUpdateDate());
         if (!lazy) {
-            tmsinsuranceTermInsurances.setTmsInsuranceTerm(InsuranceTermMapper.toEntity(insuranceTypeTerms.getInsuranceTerm(), false));
-            tmsinsuranceTermInsurances.setTmsInsuranceType(InsuranceTypeMapper.toEntity(insuranceTypeTerms.getInsuranceType(),true));
+            gmoinsuranceTermInsurances.setGmoInsuranceTerm(InsuranceTermMapper.toEntity(insuranceTypeTerms.getInsuranceTerm(), false));
+            gmoinsuranceTermInsurances.setGmoInsuranceType(InsuranceTypeMapper.toEntity(insuranceTypeTerms.getInsuranceType(),true));
 
         }
-        return tmsinsuranceTermInsurances;
+        return gmoinsuranceTermInsurances;
 
     }
 
-    public static InsuranceTypeTerms toDto(TmsInsuranceTypeTerms tmsinsuranceTermInsurances, boolean lazy) {
-        if (null == tmsinsuranceTermInsurances) {
+    public static InsuranceTypeTerms toDto(GmoInsuranceTypeTerms gmoinsuranceTermInsurances, boolean lazy) {
+        if (null == gmoinsuranceTermInsurances) {
             return null;
         }
         InsuranceTypeTerms insuranceTypeTerms = new InsuranceTypeTerms();
-        insuranceTypeTerms.setId( tmsinsuranceTermInsurances.getTmsInsuranceTypeTermId());
-        insuranceTypeTerms.setAmount( tmsinsuranceTermInsurances.getTmsAmount());
+        insuranceTypeTerms.setId( gmoinsuranceTermInsurances.getGmoInsuranceTypeTermId());
+        insuranceTypeTerms.setAmount( gmoinsuranceTermInsurances.getGmoAmount());
 
 
         if (!lazy) {
-            insuranceTypeTerms.setInsuranceTerm(InsuranceTermMapper.toDto(tmsinsuranceTermInsurances.getTmsInsuranceTerm(), false));
-            insuranceTypeTerms.setInsuranceType(InsuranceTypeMapper.toDto(tmsinsuranceTermInsurances.getTmsInsuranceType(), true));
+            insuranceTypeTerms.setInsuranceTerm(InsuranceTermMapper.toDto(gmoinsuranceTermInsurances.getGmoInsuranceTerm(), false));
+            insuranceTypeTerms.setInsuranceType(InsuranceTypeMapper.toDto(gmoinsuranceTermInsurances.getGmoInsuranceType(), true));
         }
 
         return insuranceTypeTerms;
@@ -78,27 +78,27 @@ public class InsuranceTypeTermMapper {
     }
 
 
-    public static List<InsuranceTypeTerms> toDtos(Iterable<? extends TmsInsuranceTypeTerms> tmsInsuranceTypeTerms, boolean lazy) {
-        if (null == tmsInsuranceTypeTerms) {
+    public static List<InsuranceTypeTerms> toDtos(Iterable<? extends GmoInsuranceTypeTerms> gmoInsuranceTypeTerms, boolean lazy) {
+        if (null == gmoInsuranceTypeTerms) {
             return null;
         }
         List<InsuranceTypeTerms> insuranceTermInsurances = new ArrayList<>();
 
-        for (TmsInsuranceTypeTerms tmsinsuranceTermInsurances : tmsInsuranceTypeTerms) {
-            insuranceTermInsurances.add(toDto(tmsinsuranceTermInsurances, lazy));
+        for (GmoInsuranceTypeTerms gmoinsuranceTermInsurances : gmoInsuranceTypeTerms) {
+            insuranceTermInsurances.add(toDto(gmoinsuranceTermInsurances, lazy));
         }
         return insuranceTermInsurances;
     }
 
-    public static Set<TmsInsuranceTypeTerms> toEntities(Iterable<? extends InsuranceTypeTerms> insuranceTermInsurances, boolean lazy) {
+    public static Set<GmoInsuranceTypeTerms> toEntities(Iterable<? extends InsuranceTypeTerms> insuranceTermInsurances, boolean lazy) {
         if (null == insuranceTermInsurances) {
             return null;
         }
-        Set<TmsInsuranceTypeTerms> tmsInsuranceTypeTerms = new HashSet<>();
+        Set<GmoInsuranceTypeTerms> gmoInsuranceTypeTerms = new HashSet<>();
         for (InsuranceTypeTerms insuranceTypeTerms : insuranceTermInsurances) {
-            tmsInsuranceTypeTerms.add(toEntity(insuranceTypeTerms, lazy));
+            gmoInsuranceTypeTerms.add(toEntity(insuranceTypeTerms, lazy));
         }
-        return tmsInsuranceTypeTerms;
+        return gmoInsuranceTypeTerms;
     }
 
 

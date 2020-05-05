@@ -1,4 +1,4 @@
-package com.bagile.tms.repositories;
+package com.bagile.gmo.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,5 +11,5 @@ import java.util.List;
 public interface InsuranceRepository extends JpaRepository<GmoInsurance,Long>,
 
         QuerydslPredicateExecutor<GmoInsurance> {
-    List<GmoInsurance> findByTmsVehicleIsNull();
+    List<GmoInsurance> findByGmoVehicleIsNull();
 }

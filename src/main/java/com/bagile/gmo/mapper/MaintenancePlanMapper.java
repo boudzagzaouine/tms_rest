@@ -19,15 +19,15 @@ public class MaintenancePlanMapper {
     static {
         map = new HashMap<>();
 
-        map.put("id", "tmsMaintenancePlanId");
-        map.put("code", "tmsMaintenancePlanCode");
-        map.put("description", "tmsMaintenancePlanDescription");
-        map.put("beginDate", "tmsMaintenancePlanStartDate");
-        map.put("endDate", "tmsMaintenancePlanEndDate");
-        map.put("maintenanceType", "tmsMaintenanceType");
-        map.put("maintenanceState", "tmsMaintenanceState");
-        map.put("vehicle", "tmsVehicle");
-        map.put("totalPrice", "tmsMaintenancePlanTotalPrice");
+        map.put("id", "gmoMaintenancePlanId");
+        map.put("code", "gmoMaintenancePlanCode");
+        map.put("description", "gmoMaintenancePlanDescription");
+        map.put("beginDate", "gmoMaintenancePlanStartDate");
+        map.put("endDate", "gmoMaintenancePlanEndDate");
+        map.put("maintenanceType", "gmoMaintenanceType");
+        map.put("maintenanceState", "gmoMaintenanceState");
+        map.put("vehicle", "gmoVehicle");
+        map.put("totalPrice", "gmoMaintenancePlanTotalPrice");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -93,7 +93,7 @@ public class MaintenancePlanMapper {
         if (!lazy) {
             maintenancePlan.setMaintenanceType(MaintenanceTypeMapper.toDto(gmoMaintenancePlan.getGmoMaintenanceType(), true));
             maintenancePlan.setMaintenanceState(MaintenanceStateMapper.toDto(gmoMaintenancePlan.getGmoMaintenanceState(), true));
-            //maintenancePlan.setActes(ActeMapper.toDtos(tmsMaintenancePlan.getTmsMaintenancePlanActes(),true));
+            //maintenancePlan.setActes(ActeMapper.toDtos(gmoMaintenancePlan.getGmoMaintenancePlanActes(),true));
             maintenancePlan.setVehicle(VehicleMapper.toDto(gmoMaintenancePlan.getGmoVehicle(),false));
             maintenancePlan.setMaintenanceLineList (MaintenanceLineMapper.toDtos (gmoMaintenancePlan.getGmoMaintenanceLines (), false));
         }

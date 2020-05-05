@@ -1,15 +1,15 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.Contact;
 import com.bagile.gmo.entities.PrmContact;
 import com.bagile.gmo.mapper.ContactMapper;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.ContactRepository;
-import com.bagile.tms.services.ContactService;
-import com.bagile.tms.util.EmsDate;
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.ContactRepository;
+import com.bagile.gmo.services.ContactService;
+import com.bagile.gmo.util.EmsDate;
+import com.bagile.gmo.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
@@ -119,9 +119,9 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public void delete(long id) throws IdNotFound {
         LOGGER.info ("delete Contact");
-        PrmContact tmsContact = contactRepository.findById (id).orElseThrow (() -> new IdNotFound (id));
-        tmsContact.setPrmContactActive (false);
-        contactRepository.saveAndFlush (tmsContact);
+        PrmContact gmoContact = contactRepository.findById (id).orElseThrow (() -> new IdNotFound (id));
+        gmoContact.setPrmContactActive (false);
+        contactRepository.saveAndFlush (gmoContact);
     }
 
     @Override

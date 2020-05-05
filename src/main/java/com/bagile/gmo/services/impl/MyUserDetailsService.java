@@ -1,11 +1,11 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.entities.UsrGroupHabilitation;
 import com.bagile.gmo.entities.UsrUser;
 import com.bagile.gmo.entities.UsrUserGroupOwner;
 import com.bagile.gmo.entities.UsrUserGroupWarehouse;
-import com.bagile.tms.repositories.UserRepository;
-import com.bagile.tms.services.UserDetailsServiceWarehouse;
+import com.bagile.gmo.repositories.UserRepository;
+import com.bagile.gmo.services.UserDetailsServiceWarehouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;

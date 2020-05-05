@@ -1,14 +1,14 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.Insurance;
 import com.bagile.gmo.entities.GmoInsurance;
 import com.bagile.gmo.mapper.InsuranceMapper;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.InsuranceRepository;
-import com.bagile.tms.services.InsuranceService;
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.InsuranceRepository;
+import com.bagile.gmo.services.InsuranceService;
+import com.bagile.gmo.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,6 +109,6 @@ public class InsuranceServiceImpl implements InsuranceService {
 
     @Override
     public List<Insurance> findAvailableInsurances() {
-        return  InsuranceMapper.toDtos(insuranceRepository.findByTmsVehicleIsNull (), true);
+        return  InsuranceMapper.toDtos(insuranceRepository.findByGmoVehicleIsNull (), true);
     }
 }

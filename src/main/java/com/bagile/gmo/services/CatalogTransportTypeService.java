@@ -1,9 +1,9 @@
-package com.bagile.tms.services;
+package com.bagile.gmo.services;
 
 import com.bagile.gmo.dto.CatalogTransportType;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
 
 import java.util.List;
 

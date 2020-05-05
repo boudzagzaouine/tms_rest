@@ -99,7 +99,7 @@ public class VehicleMapper {
             gmoVehicle.setGmoBadgeType(BadgeTypeMapper.toEntity(vehicle.getBadgeType(), true));
             gmoVehicle.setGmoInsurance(InsuranceMapper.toEntity(vehicle.getInsurance(), false));
             gmoVehicle.setGmoContractType (ContractTypeMapper.toEntity (vehicle.getContractType (), true));
-            gmoVehicle.setTmsInsuranceTermsVehicules (InsuranceTermsVehicleMapper.toEntities (vehicle.getInsuranceTermVehicles (), false));
+            gmoVehicle.setGmoInsuranceTermsVehicules (InsuranceTermsVehicleMapper.toEntities (vehicle.getInsuranceTermVehicles (), false));
             gmoVehicle.setTrpTransport (TransportMapper.toEntity (vehicle.getTransport (), false));
 
             oneToMany(gmoVehicle);
@@ -150,7 +150,7 @@ public class VehicleMapper {
             vehicle.setVehicleCategory(VehicleCategoryMapper.toDto(gmoVehicle.getGmoVehicleCategory(), false));
             vehicle.setInsurance(InsuranceMapper.toDto(gmoVehicle.getGmoInsurance(), false));
             vehicle.setContractType (ContractTypeMapper.toDto (gmoVehicle.getGmoContractType (), true));
-            vehicle.setInsuranceTermVehicles (InsuranceTermsVehicleMapper.toDtos(gmoVehicle.getTmsInsuranceTermsVehicules (), false));
+            vehicle.setInsuranceTermVehicles (InsuranceTermsVehicleMapper.toDtos(gmoVehicle.getGmoInsuranceTermsVehicules (), false));
             vehicle.setTransport (TransportMapper.toDto (gmoVehicle.getTrpTransport (), false));
 
         }
@@ -158,7 +158,7 @@ public class VehicleMapper {
 
     }
     private static void oneToMany(GmoVehicle vehicle) {
-        vehicle.getTmsInsuranceTermsVehicules().forEach(
+        vehicle.getGmoInsuranceTermsVehicules().forEach(
                 e -> {
                     e.setCreationDate(new Date());
                     e.setGmoVehicle(vehicle);

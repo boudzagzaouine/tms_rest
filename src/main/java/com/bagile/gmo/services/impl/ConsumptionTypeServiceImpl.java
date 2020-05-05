@@ -1,14 +1,14 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.ConsumptionType;
-import com.bagile.gmo.entities.TmsConsumptionType;
+import com.bagile.gmo.entities.GmoConsumptionType;
 import com.bagile.gmo.mapper.ConsumptionTypeMapper;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.ConsumptionTypeRepository;
-import com.bagile.tms.services.ConsumptionTypeService;
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.ConsumptionTypeRepository;
+import com.bagile.gmo.services.ConsumptionTypeService;
+import com.bagile.gmo.util.Search;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -51,7 +51,7 @@ public class ConsumptionTypeServiceImpl implements ConsumptionTypeService {
         if (search.equals("")){
             return findAll ();
         }
-        return ConsumptionTypeMapper.toDtos(consumptionTypeRepository.findAll(Search.expression(search, TmsConsumptionType.class)), false);
+        return ConsumptionTypeMapper.toDtos(consumptionTypeRepository.findAll(Search.expression(search, GmoConsumptionType.class)), false);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class ConsumptionTypeServiceImpl implements ConsumptionTypeService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return ConsumptionTypeMapper.toDtos(consumptionTypeRepository.findAll(Search.expression(search, TmsConsumptionType.class), pageable), false);
+        return ConsumptionTypeMapper.toDtos(consumptionTypeRepository.findAll(Search.expression(search, GmoConsumptionType.class), pageable), false);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class ConsumptionTypeServiceImpl implements ConsumptionTypeService {
         if (search.equals("")){
             return size ();
         }
-        return consumptionTypeRepository.count(Search.expression(search, TmsConsumptionType.class));
+        return consumptionTypeRepository.count(Search.expression(search, GmoConsumptionType.class));
     }
 
     @Override

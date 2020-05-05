@@ -67,9 +67,9 @@ public class TrpTransport extends EmsEntity implements java.io.Serializable {
     @Size(max = 255)
     private String trpTransportVariable10;
 
-    private Set<TmsTransportCategoryVehicle> tmsTransportCategoryVehicles=new HashSet<>();
+    private Set<GmoTransportCategoryVehicle> gmoTransportCategoryVehicles=new HashSet<>();
 
-    private Set<GmoTurn> tmsTurns=new HashSet<>();
+    private Set<GmoTurn> gmoTurns=new HashSet<>();
 
 
     public TrpTransport() {
@@ -243,20 +243,20 @@ public class TrpTransport extends EmsEntity implements java.io.Serializable {
     }
 
     @OneToMany(mappedBy = "trpTransport",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
-    public Set<TmsTransportCategoryVehicle> getTmsTransportCategoryVehicles() {
-        return tmsTransportCategoryVehicles;
+    public Set<GmoTransportCategoryVehicle> getGmoTransportCategoryVehicles() {
+        return gmoTransportCategoryVehicles;
     }
 
-    public void setTmsTransportCategoryVehicles(Set<TmsTransportCategoryVehicle> tmsTransportCategoryVehicles) {
-        this.tmsTransportCategoryVehicles = tmsTransportCategoryVehicles;
+    public void setGmoTransportCategoryVehicles(Set<GmoTransportCategoryVehicle> gmoTransportCategoryVehicles) {
+        this.gmoTransportCategoryVehicles = gmoTransportCategoryVehicles;
     }
 
     @OneToMany(mappedBy = "trpTransport",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    public Set<GmoTurn> getTmsTurns() {
-        return tmsTurns;
+    public Set<GmoTurn> getGmoTurns() {
+        return gmoTurns;
     }
 
-    public void setTmsTurns(Set<GmoTurn> tmsTurns) {
-        this.tmsTurns = tmsTurns;
+    public void setGmoTurns(Set<GmoTurn> gmoTurns) {
+        this.gmoTurns = gmoTurns;
     }
 }

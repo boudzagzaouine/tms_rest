@@ -1,7 +1,7 @@
 package com.bagile.gmo.mapper;
 
 import com.bagile.gmo.dto.CatalogTransportType;
-import com.bagile.gmo.entities.TmsCatalogTransportType;
+import com.bagile.gmo.entities.GmoCatalogTransportType;
 
 import java.util.*;
 
@@ -15,14 +15,14 @@ public class CatalogTransportTypeMapper {
     static {
         map = new HashMap<> ( );
 
-        map.put ("id", "tmsCatalogTransportId");
+        map.put ("id", "gmoCatalogTransportId");
         map.put ("transport", "trpTransport");
-        map.put ("vehicleCategory", "tmsVehicleCategory");
-        map.put ("zoneSource", "tmsZoneSource");
-        map.put ("zoneDestination", "tmsZoneDestination");
-        map.put ("amountHt", "tmsCatalogTransportAmountHt");
-        map.put ("amountTtc", "tmsCatalogTransportAmountTtc");
-        map.put ("amountTva", "tmsCatalogTransportAmountTva");
+        map.put ("vehicleCategory", "gmoVehicleCategory");
+        map.put ("zoneSource", "gmoZoneSource");
+        map.put ("zoneDestination", "gmoZoneDestination");
+        map.put ("amountHt", "gmoCatalogTransportAmountHt");
+        map.put ("amountTtc", "gmoCatalogTransportAmountTtc");
+        map.put ("amountTva", "gmoCatalogTransportAmountTva");
         map.put ("vat", "prmvat");
 
 
@@ -41,17 +41,17 @@ public class CatalogTransportTypeMapper {
         return map.get (key);
     }
 
-    public static TmsCatalogTransportType toEntity(CatalogTransportType transport, boolean lazy) {
+    public static GmoCatalogTransportType toEntity(CatalogTransportType transport, boolean lazy) {
         if (null == transport) {
             return null;
         }
 
-        TmsCatalogTransportType trpTransport = new TmsCatalogTransportType( );
-        trpTransport.setTmsCatalogTransportCategoryVehicleId (transport.getId ());
+        GmoCatalogTransportType trpTransport = new GmoCatalogTransportType( );
+        trpTransport.setGmoCatalogTransportCategoryVehicleId (transport.getId ());
 
-        trpTransport.setTmsCatalogTransportCategoryVehicleAmountHt (transport.getAmountHt ());
-        trpTransport.setTmsCatalogTransportCategoryVehicleAmountTtc (transport.getAmountTtc ());
-        trpTransport.setTmsCatalogTransportCategoryVehicleAmountTva (transport.getAmountTva ());
+        trpTransport.setGmoCatalogTransportCategoryVehicleAmountHt (transport.getAmountHt ());
+        trpTransport.setGmoCatalogTransportCategoryVehicleAmountTtc (transport.getAmountTtc ());
+        trpTransport.setGmoCatalogTransportCategoryVehicleAmountTva (transport.getAmountTva ());
 
 
         trpTransport.setCreatedBy (transport.getCreatedBy ( ));
@@ -59,10 +59,10 @@ public class CatalogTransportTypeMapper {
 
         if (!lazy) {
             trpTransport.setPrmvat (VatMapper.toEntity (transport.getVat ( ), true));
-            trpTransport.setTmsVehicleCategory (VehicleCategoryMapper.toEntity (transport.getVehicleCategory ( ), true));
+            trpTransport.setGmoVehicleCategory (VehicleCategoryMapper.toEntity (transport.getVehicleCategory ( ), true));
             trpTransport.setTrpTransport (TransportMapper.toEntity (transport.getTransport ( ), true));
-            trpTransport.setTmsZoneSource (ZoneMapper.toEntity (transport.getZoneSource ( ), true));
-            trpTransport.setTmsZoneDestination (ZoneMapper.toEntity (transport.getZoneDestination ( ), true));
+            trpTransport.setGmoZoneSource (ZoneMapper.toEntity (transport.getZoneSource ( ), true));
+            trpTransport.setGmoZoneDestination (ZoneMapper.toEntity (transport.getZoneDestination ( ), true));
 
         }
 
@@ -70,15 +70,15 @@ public class CatalogTransportTypeMapper {
 
     }
 
-    public static CatalogTransportType toDto(TmsCatalogTransportType trpTransport, boolean lazy) {
+    public static CatalogTransportType toDto(GmoCatalogTransportType trpTransport, boolean lazy) {
         if (null == trpTransport) {
             return null;
         }
         CatalogTransportType transport = new CatalogTransportType ( );
-        transport.setId ((int) trpTransport.getTmsCatalogTransportCategoryVehicleId ());
-        transport.setAmountHt (trpTransport.getTmsCatalogTransportCategoryVehicleAmountHt ());
-        transport.setAmountTtc (trpTransport.getTmsCatalogTransportCategoryVehicleAmountTtc ());
-        transport.setAmountTva (trpTransport.getTmsCatalogTransportCategoryVehicleAmountTva ());
+        transport.setId ((int) trpTransport.getGmoCatalogTransportCategoryVehicleId ());
+        transport.setAmountHt (trpTransport.getGmoCatalogTransportCategoryVehicleAmountHt ());
+        transport.setAmountTtc (trpTransport.getGmoCatalogTransportCategoryVehicleAmountTtc ());
+        transport.setAmountTva (trpTransport.getGmoCatalogTransportCategoryVehicleAmountTva ());
 
         transport.setCreatedBy (trpTransport.getCreatedBy ());
         transport.setUpdatedBy (trpTransport.getUpdatedBy ());
@@ -86,10 +86,10 @@ public class CatalogTransportTypeMapper {
         transport.setUpdateDate (trpTransport.getUpdateDate ());
 
         if (!lazy) {
-            transport.setVehicleCategory (VehicleCategoryMapper.toDto(trpTransport.getTmsVehicleCategory(), true));
+            transport.setVehicleCategory (VehicleCategoryMapper.toDto(trpTransport.getGmoVehicleCategory(), true));
             transport.setTransport (TransportMapper.toDto(trpTransport.getTrpTransport(), true));
-            transport.setZoneSource (ZoneMapper.toDto(trpTransport.getTmsZoneSource(), true));
-            transport.setZoneDestination (ZoneMapper.toDto(trpTransport.getTmsZoneDestination(), true));
+            transport.setZoneSource (ZoneMapper.toDto(trpTransport.getGmoZoneSource(), true));
+            transport.setZoneDestination (ZoneMapper.toDto(trpTransport.getGmoZoneDestination(), true));
             transport.setVat (VatMapper.toDto(trpTransport.getPrmvat(), true));
 
         }
@@ -98,35 +98,35 @@ public class CatalogTransportTypeMapper {
     }
 
 
-    public static List<CatalogTransportType> toDtos(Iterable<? extends TmsCatalogTransportType> tmsTransports, boolean lazy) {
-        if (null == tmsTransports) {
+    public static List<CatalogTransportType> toDtos(Iterable<? extends GmoCatalogTransportType> gmoTransports, boolean lazy) {
+        if (null == gmoTransports) {
             return null;
         }
         List<CatalogTransportType> transports = new ArrayList<> ( );
 
-        for (TmsCatalogTransportType trpTransport : tmsTransports) {
+        for (GmoCatalogTransportType trpTransport : gmoTransports) {
             transports.add (toDto (trpTransport, lazy));
         }
         return transports;
     }
 
-    public static Set<TmsCatalogTransportType> toEntities(Iterable<? extends CatalogTransportType> badges, boolean lazy) {
+    public static Set<GmoCatalogTransportType> toEntities(Iterable<? extends CatalogTransportType> badges, boolean lazy) {
         if (null == badges) {
             return null;
         }
-        Set<TmsCatalogTransportType> tmsTransports = new HashSet<> ( );
+        Set<GmoCatalogTransportType> gmoTransports = new HashSet<> ( );
         for (CatalogTransportType transport : badges) {
-            tmsTransports.add (toEntity (transport, lazy));
+            gmoTransports.add (toEntity (transport, lazy));
         }
-        return tmsTransports;
+        return gmoTransports;
     }
 
-   /* public static Set<CatalogTransportType> toDtos(Set<TmsCatalogTransportCategoryVehicle> tmsTransports, boolean lazy) {
-        if (null == tmsTransports) {
+   /* public static Set<CatalogTransportType> toDtos(Set<GmoCatalogTransportCategoryVehicle> gmoTransports, boolean lazy) {
+        if (null == gmoTransports) {
             return null;
         }
         Set<CatalogTransportType> badges = new HashSet<> ( );
-        for (TmsCatalogTransportCategoryVehicle trpTransport : tmsTransports) {
+        for (GmoCatalogTransportCategoryVehicle trpTransport : gmoTransports) {
             badges.add (toDto (trpTransport, lazy));
         }
         return badges;

@@ -1,4 +1,4 @@
-package com.bagile.tms.services.impl;
+package com.bagile.gmo.services.impl;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -13,13 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bagile.gmo.dto.TurnLine;
 import com.bagile.gmo.entities.GmoTurnLine;
 import com.bagile.gmo.mapper.TurnLineMapper;
-import com.bagile.tms.exceptions.AttributesNotFound;
-import com.bagile.tms.exceptions.ErrorType;
-import com.bagile.tms.exceptions.IdNotFound;
-import com.bagile.tms.repositories.TurnLineRepository;
-import com.bagile.tms.services.SaleOrderLineService;
-import com.bagile.tms.services.TurnLineService;
-import com.bagile.tms.util.Search;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.repositories.TurnLineRepository;
+import com.bagile.gmo.services.SaleOrderLineService;
+import com.bagile.gmo.services.TurnLineService;
+import com.bagile.gmo.util.Search;
 
 
 @Service

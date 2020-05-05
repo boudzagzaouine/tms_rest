@@ -16,13 +16,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="gmo_insurancetermvehile")
-public class TmsInsuranceTermsVehicule extends  EmsEntity{
+public class GmoInsuranceTermsVehicule extends  EmsEntity{
 
     private static final long serialVersionUID = 2686609119214199162L;
 	
     private Long gmoInsuranceTermVehicleId;
     private GmoVehicle gmoVehicle;
-    private TmsInsuranceTerm tmsInsuranceTerm;
+    private GmoInsuranceTerm gmoInsuranceTerm;
     private BigDecimal gmoAmount;
 
 
@@ -48,13 +48,13 @@ public class TmsInsuranceTermsVehicule extends  EmsEntity{
     }
 
     @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_inserancetermid")
-    public TmsInsuranceTerm getTmsInsuranceTerm() {
-        return tmsInsuranceTerm;
+    @JoinColumn(name = "gmo_inserancetermid")
+    public GmoInsuranceTerm getGmoInsuranceTerm() {
+        return gmoInsuranceTerm;
     }
 
-    public void setTmsInsuranceTerm(TmsInsuranceTerm tmsInsuranceTerm) {
-        this.tmsInsuranceTerm = tmsInsuranceTerm;
+    public void setGmoInsuranceTerm(GmoInsuranceTerm gmoInsuranceTerm) {
+        this.gmoInsuranceTerm = gmoInsuranceTerm;
     }
 
     @Column(name = "gmo_insurancetermsvehcleamount")

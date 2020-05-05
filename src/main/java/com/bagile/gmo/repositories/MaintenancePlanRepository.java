@@ -1,4 +1,4 @@
-package com.bagile.tms.repositories;
+package com.bagile.gmo.repositories;
 
 import com.bagile.gmo.dto.MaintenanceState;
 import com.bagile.gmo.entities.GmoMaintenancePlan;

@@ -22,9 +22,9 @@ public class MaintenanceTypeMapper {
     }
     static {
         map = new HashMap<>();
-        map.put("id","tmsMaintenanceTypeId");
-        map.put("code","tmsMaintenanceTypeCode");
-        map.put("description","tmsMaintenanceTypeDescription");
+        map.put("id","gmoMaintenanceTypeId");
+        map.put("code","gmoMaintenanceTypeCode");
+        map.put("description","gmoMaintenanceTypeDescription");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
