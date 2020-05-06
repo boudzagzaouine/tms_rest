@@ -1,8 +1,8 @@
 package com.bagile.gmo.services;
-import com.bagile.gmo.dto.Badge;
-import com.bagile.gmo.exceptions.AttributesNotFound;
-import com.bagile.gmo.exceptions.IdNotFound;
-import com.bagile.gmo.services.BadgeService;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.annotation.DirtiesContext;
-import static org.junit.jupiter.api.Assertions.*;
+
+import com.bagile.gmo.dto.Badge;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.IdNotFound;
 
 @SpringBootTest
 @Disabled

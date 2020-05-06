@@ -2,10 +2,12 @@ package com.bagile.gmo.services.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.bagile.gmo.dto.MaintenancePlan;
-import com.bagile.gmo.dto.MaintenanceState;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
@@ -13,6 +15,8 @@ import com.bagile.gmo.repositories.MaintenancePlanRepository;
 import com.bagile.gmo.services.MaintenancePlanService;
 import com.bagile.gmo.services.ProductService;
 
+@Service
+@Transactional
 public class MaintenancePlanServiceImpl implements MaintenancePlanService {
 
 	@Autowired

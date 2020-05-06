@@ -1,14 +1,11 @@
 package com.bagile.gmo.services;
 
+import java.util.List;
+
 import com.bagile.gmo.dto.MaintenancePlan;
-import com.bagile.gmo.dto.MaintenanceState;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
-import org.springframework.data.domain.Pageable;
-
-import java.util.List;
-
 
 public interface MaintenancePlanService {
     MaintenancePlan save(MaintenancePlan maintenancePlan);
