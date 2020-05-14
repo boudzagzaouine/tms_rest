@@ -26,7 +26,7 @@ public class MaintenancePlanMapper {
         map.put("endDate", "gmoMaintenancePlanEndDate");
         map.put("maintenanceType", "gmoMaintenanceType");
         map.put("maintenanceState", "gmoMaintenanceState");
-        map.put("vehicle", "gmoVehicle");
+        map.put("patrimony", "gmoPatrimony");
         map.put("totalPrice", "gmoMaintenancePlanTotalPrice");
 
         map.put("creationDate", "creationDate");
@@ -66,7 +66,7 @@ public class MaintenancePlanMapper {
         if (!lazy) {
             gmoMaintenancePlan.setGmoMaintenanceType(MaintenanceTypeMapper.toEntity(maintenancePlan.getMaintenanceType(), true));
             gmoMaintenancePlan.setGmoMaintenanceState(MaintenanceStateMapper.toEntity(maintenancePlan.getMaintenanceState(), true));
-            gmoMaintenancePlan.setGmoVehicle(VehicleMapper.toEntity(maintenancePlan.getVehicle(),false));
+            gmoMaintenancePlan.setGmoPatrimony(PatrimonyMapper.toEntity(maintenancePlan.getPatrimony(),false));
             gmoMaintenancePlan.setGmoMaintenanceLines (MaintenanceLineMapper.toEntities (maintenancePlan.getMaintenanceLines(), false));
 
         }
@@ -91,11 +91,10 @@ public class MaintenancePlanMapper {
         maintenancePlan.setCreationDate(gmoMaintenancePlan.getCreationDate());
         maintenancePlan.setUpdateDate(gmoMaintenancePlan.getUpdateDate());
         if (!lazy) {
-            maintenancePlan.setMaintenanceType(MaintenanceTypeMapper.toDto(gmoMaintenancePlan.getGmoMaintenanceType(), true));
-            maintenancePlan.setMaintenanceState(MaintenanceStateMapper.toDto(gmoMaintenancePlan.getGmoMaintenanceState(), true));
-            //maintenancePlan.setActes(ActeMapper.toDtos(gmoMaintenancePlan.getGmoMaintenancePlanActes(),true));
-            maintenancePlan.setVehicle(VehicleMapper.toDto(gmoMaintenancePlan.getGmoVehicle(),false));
-            maintenancePlan.setMaintenanceLineList (MaintenanceLineMapper.toDtos (gmoMaintenancePlan.getGmoMaintenanceLines (), false));
+            maintenancePlan.setMaintenanceType(MaintenanceTypeMapper.toDto(gmoMaintenancePlan.getGmoMaintenanceType(), lazy));
+            maintenancePlan.setMaintenanceState(MaintenanceStateMapper.toDto(gmoMaintenancePlan.getGmoMaintenanceState(), lazy));
+            maintenancePlan.setPatrimony(PatrimonyMapper.toDto(gmoMaintenancePlan.getGmoPatrimony(),lazy));
+            maintenancePlan.setMaintenanceLineList (MaintenanceLineMapper.toDtos (gmoMaintenancePlan.getGmoMaintenanceLines (), lazy));
         }
 
         return maintenancePlan;

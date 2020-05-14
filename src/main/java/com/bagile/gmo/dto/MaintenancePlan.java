@@ -20,7 +20,7 @@ public class MaintenancePlan extends EmsDto implements Serializable {
     private Date endDate;
     private MaintenanceType maintenanceType;
     private MaintenanceState maintenanceState;
-    private Vehicle vehicle;
+    private Patrimony patrimony;
     private Double mileage = 0.0;
     private BigDecimal totalPrice;
     private List<MaintenanceLine> maintenanceLines;
@@ -85,12 +85,12 @@ public class MaintenancePlan extends EmsDto implements Serializable {
         this.maintenanceState = maintenanceState;
     }
 
-    public Vehicle getVehicle() {
-        return vehicle;
+    public Patrimony getPatrimony() {
+        return patrimony;
     }
 
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    public void setPatrimony(Patrimony patrimony) {
+        this.patrimony = patrimony;
     }
 
     public Double getMileage() {

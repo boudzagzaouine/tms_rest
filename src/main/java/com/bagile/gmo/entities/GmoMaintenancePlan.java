@@ -44,9 +44,8 @@ public class GmoMaintenancePlan extends EmsEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_maintenancestateid")
     private GmoMaintenanceState gmoMaintenanceState;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "gmo_vehiculeid")
-    private GmoVehicle gmoVehicle;
+
+    private GmoPatrimony gmoPatrimony;
     @OneToMany
     private Set<GmoMaintenanceLine> gmoMaintenanceLines = new HashSet<> ();
     @Column(name = "gmo_maintenanceplantotalprice")
@@ -115,12 +114,12 @@ public class GmoMaintenancePlan extends EmsEntity {
         this.gmoMaintenanceState = gmoMaintenanceState;
     }
 
-    public GmoVehicle getGmoVehicle() {
-        return gmoVehicle;
+    public GmoPatrimony getGmoPatrimony() {
+        return gmoPatrimony;
     }
 
-    public void setGmoVehicle(GmoVehicle gmoVehicle) {
-        this.gmoVehicle = gmoVehicle;
+    public void setGmoPatrimony(GmoPatrimony gmoPatrimony) {
+        this.gmoPatrimony = gmoPatrimony;
     }
 
     public Set<GmoMaintenanceLine> getGmoMaintenanceLines() {

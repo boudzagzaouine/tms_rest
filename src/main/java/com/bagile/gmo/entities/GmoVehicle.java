@@ -23,7 +23,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "gmo_vehicule")
-public class GmoVehicle extends EmsEntity {
+public class GmoVehicle extends GmoPatrimony {
 
 	private static final long serialVersionUID = 612360418697069780L;
 
