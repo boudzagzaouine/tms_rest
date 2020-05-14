@@ -2,17 +2,18 @@ package com.bagile.gmo.dto;
 
 import java.math.BigDecimal;
 import java.util.Objects;
+import java.util.Set;
 
 public class MaintenanceLine extends EmsDto {
 
-    private long id;
-    private Product product;
+	private static final long serialVersionUID = -2523885174048641991L;
+
+	private long id;
+	private MaintenanceLineRef maintenanceLineRef;
+    private Set<MaintenanceProduct> maintenanceProducts;
     private String description;
-    private BigDecimal quantity;
-    private BigDecimal unitPrice;
     private BigDecimal totalPriceHT;
     private BigDecimal totalPriceTTC;
-    private MaintenancePlan maintenancePlan;
     private BigDecimal amountVat;
 
     public long getId() {
@@ -23,36 +24,28 @@ public class MaintenanceLine extends EmsDto {
         this.id = id;
     }
 
-    public Product getProduct() {
-        return product;
+    public MaintenanceLineRef getMaintenanceLineRef() {
+		return maintenanceLineRef;
+	}
+
+	public void setMaintenanceLineRef(MaintenanceLineRef maintenanceLineRef) {
+		this.maintenanceLineRef = maintenanceLineRef;
+	}
+
+	public Set<MaintenanceProduct> getMaintenanceProducts() {
+        return maintenanceProducts;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setMaintenanceProducts(Set<MaintenanceProduct> maintenanceProducts) {
+        this.maintenanceProducts = maintenanceProducts;
     }
 
-    public String getDescription() {
+	public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public BigDecimal getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(BigDecimal quantity) {
-        this.quantity = quantity;
-    }
-
-    public BigDecimal getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(BigDecimal unitPrice) {
-        this.unitPrice = unitPrice;
     }
 
     public BigDecimal getTotalPriceHT() {
@@ -69,14 +62,6 @@ public class MaintenanceLine extends EmsDto {
 
     public void setTotalPriceTTC(BigDecimal totalPriceTTC) {
         this.totalPriceTTC = totalPriceTTC;
-    }
-
-    public MaintenancePlan getMaintenancePlan() {
-        return maintenancePlan;
-    }
-
-    public void setMaintenancePlan(MaintenancePlan maintenancePlan) {
-        this.maintenancePlan = maintenancePlan;
     }
 
     public BigDecimal getAmountVat() {
@@ -99,4 +84,5 @@ public class MaintenanceLine extends EmsDto {
     public int hashCode() {
         return Objects.hash (getId ( ));
     }
+    
 }

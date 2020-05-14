@@ -1,21 +1,22 @@
 package com.bagile.gmo.services.impl;
 
-import com.bagile.gmo.dto.InsuranceTypeTerms;
-import com.bagile.gmo.entities.GmoInsuranceTypeTerms;
-import com.bagile.gmo.mapper.InsuranceTypeTermMapper;
-import com.bagile.gmo.exceptions.AttributesNotFound;
-import com.bagile.gmo.exceptions.ErrorType;
-import com.bagile.gmo.exceptions.IdNotFound;
-import com.bagile.gmo.repositories.InsuranceTypeTermsRepository;
-import com.bagile.gmo.services.InsuranceTypeTermsService;
-import com.bagile.gmo.util.Search;
+import java.util.List;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.bagile.gmo.dto.InsuranceTypeTerms;
+import com.bagile.gmo.entities.GmoInsuranceTypeTerms;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.mapper.InsuranceTypeTermMapper;
+import com.bagile.gmo.repositories.InsuranceTypeTermsRepository;
+import com.bagile.gmo.services.InsuranceTypeTermsService;
+import com.bagile.gmo.util.Search;
 
 
 @Service

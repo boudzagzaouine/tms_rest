@@ -1,6 +1,8 @@
 package com.bagile.gmo.entities;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -19,13 +22,12 @@ public class GmoMaintenanceLine extends EmsEntity {
 	private static final long serialVersionUID = -6143066188263513604L;
 	
 	private long gmoMaintenanceLineId;
-    private PdtProduct gmoMaintenanceLineProduct;
+    private GmoMaintenanceLineRef gmoMaintenanceLineRef;
+
+    private Set<GmoMaintenanceProduct> gmoMaintenanceLineProducts = new HashSet<>();
     private String gmoMaintenanceLineDescription;
-    private BigDecimal gmoMaintenanceLineQuantity;
-    private BigDecimal gmoMaintenanceLineUnitPrice;
     private BigDecimal gmoMaintenanceLineTotalPriceHT;
     private BigDecimal gmoMaintenanceLineTotalPriceTTC;
-    private GmoMaintenancePlan gmoMaintenanceLineMaintenancePlan;
     private  BigDecimal gmoAmountVat;
     
     @Id
@@ -41,14 +43,24 @@ public class GmoMaintenanceLine extends EmsEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "gmo_maintenancelineproductid")
-    public PdtProduct getGmoMaintenanceLineProduct() {
-        return gmoMaintenanceLineProduct;
+    @JoinColumn(name = "gmo_maintenancelinerefid")
+    public GmoMaintenanceLineRef getGmoMaintenanceLineRef() {
+        return gmoMaintenanceLineRef;
     }
 
-    public void setGmoMaintenanceLineProduct(PdtProduct gmoMaintenanceLineProduct) {
-        this.gmoMaintenanceLineProduct = gmoMaintenanceLineProduct;
+    public void setGmoMaintenanceLineRef(GmoMaintenanceLineRef gmoMaintenanceLineRef) {
+        this.gmoMaintenanceLineRef = gmoMaintenanceLineRef;
     }
+
+    @OneToMany
+    public Set<GmoMaintenanceProduct> getGmoMaintenanceLineProducts() {
+        return gmoMaintenanceLineProducts;
+    }
+
+    public void setGmoMaintenanceLineProducts(Set<GmoMaintenanceProduct> gmoMaintenanceLineProducts) {
+        this.gmoMaintenanceLineProducts = gmoMaintenanceLineProducts;
+    }
+
     @Column(name = "gmo_maintenancelinedescription")
     public String getGmoMaintenanceLineDescription() {
         return gmoMaintenanceLineDescription;
@@ -67,23 +79,6 @@ public class GmoMaintenanceLine extends EmsEntity {
         this.gmoAmountVat = gmoAmountVat;
     }
 
-    @Column(name = "gmo_maintenancelinequantity")
-    public BigDecimal getGmoMaintenanceLineQuantity() {
-        return gmoMaintenanceLineQuantity;
-    }
-
-    public void setGmoMaintenanceLineQuantity(BigDecimal gmoMaintenanceLineQuantity) {
-        this.gmoMaintenanceLineQuantity = gmoMaintenanceLineQuantity;
-    }
-    @Column(name = "gmo_maintenancelineunitprice")
-    public BigDecimal getGmoMaintenanceLineUnitPrice() {
-        return gmoMaintenanceLineUnitPrice;
-    }
-
-    public void setGmoMaintenanceLineUnitPrice(BigDecimal gmoMaintenanceLineUnitPrice) {
-        this.gmoMaintenanceLineUnitPrice = gmoMaintenanceLineUnitPrice;
-    }
-
     @Column(name = "gmo_maintenancelinetotalpriceht")
     public BigDecimal getGmoMaintenanceLineTotalPriceHT() {
         return gmoMaintenanceLineTotalPriceHT;
@@ -92,22 +87,12 @@ public class GmoMaintenanceLine extends EmsEntity {
     public void setGmoMaintenanceLineTotalPriceHT(BigDecimal gmoMaintenanceLineTotalPriceHT) {
         this.gmoMaintenanceLineTotalPriceHT = gmoMaintenanceLineTotalPriceHT;
     }
-@Column(name = "gmo_maintenancelinetotalpricettc")
+    @Column(name = "gmo_maintenancelinetotalpricettc")
     public BigDecimal getGmoMaintenanceLineTotalPriceTTC() {
         return gmoMaintenanceLineTotalPriceTTC;
     }
 
     public void setGmoMaintenanceLineTotalPriceTTC(BigDecimal gmoMaintenanceLineTotalPriceTTC) {
         this.gmoMaintenanceLineTotalPriceTTC = gmoMaintenanceLineTotalPriceTTC;
-    }
-
-    @ManyToOne()
-    @JoinColumn(name = "gmo_maintenancelinemaintenanceplanid")
-    public GmoMaintenancePlan getGmoMaintenanceLineMaintenancePlan() {
-        return gmoMaintenanceLineMaintenancePlan;
-    }
-
-    public void setGmoMaintenanceLineMaintenancePlan(GmoMaintenancePlan gmoMaintenanceLineMaintenancePlan) {
-        this.gmoMaintenanceLineMaintenancePlan = gmoMaintenanceLineMaintenancePlan;
     }
 }

@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -48,7 +47,7 @@ public class GmoMaintenancePlan extends EmsEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_vehiculeid")
     private GmoVehicle gmoVehicle;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "gmoMaintenanceLineMaintenancePlan")
+    @OneToMany
     private Set<GmoMaintenanceLine> gmoMaintenanceLines = new HashSet<> ();
     @Column(name = "gmo_maintenanceplantotalprice")
     private BigDecimal gmoMaintenancePlanTotalPrice = BigDecimal.ZERO;
@@ -138,9 +137,6 @@ public class GmoMaintenancePlan extends EmsEntity {
 
     public void setGmoMaintenanceLines(Set<GmoMaintenanceLine> gmoMaintenanceLines) {
         this.gmoMaintenanceLines = gmoMaintenanceLines;
-        gmoMaintenanceLines.forEach (
-                l -> l.setGmoMaintenanceLineMaintenancePlan (this)
-        );
     }
 
     public Double getGmoMaintenancePlanMileage() {

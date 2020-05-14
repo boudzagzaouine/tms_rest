@@ -11,110 +11,88 @@ import com.bagile.gmo.dto.MaintenanceLine;
 import com.bagile.gmo.entities.GmoMaintenanceLine;
 
 public class MaintenanceLineMapper {
-    public MaintenanceLineMapper() {
-    }
+	public MaintenanceLineMapper() {
+	}
 
-    private static Map<String, String> map;
+	private static Map<String, String> map;
 
-    static {
-        map = new HashMap<>();
+	static {
+		map = new HashMap<>();
 
-        map.put("id", "gmoMaintenanceLineId");
-        map.put("product", "gmoMaintenanceLineCode");
-        map.put("description", "gmoMaintenanceLineNumber");
-        map.put("unitPrice", "gmoMaintenanceLineDescription");
-        map.put("totalPriceHT", "gmoMaintenanceLineAmount");
-        map.put("totalPriceTTC", "gmoMaintenanceLineStartDate");
-        map.put("maintenancePlan", "gmoMaintenanceLineEndDate");
-        map.put("amountVat", "gmoAmountVat");
+		map.put("id", "gmoMaintenanceLineId");
+		map.put("maintenanceLineRef", "gmoMaintenanceLineRef");
+		map.put("maintenanceLineProducts", "gmoMaintenanceLineProducts");
+		map.put("description", "gmoMaintenanceLineDescription");
+		map.put("totalPriceHT", "gmoMaintenanceLineTotalPriceHT");
+		map.put("totalPriceTTC", "gmoMaintenanceLineTotalPriceTTC");
+		map.put("updateDate", "gmoAmountVat");
+	}
 
-        map.put("creationDate", "creationDate");
-        map.put("updateDate", "updateDate");
-        map.put("createdBy", "createdBy");
-        map.put("updatedBy", "updatedBy");
-    }
+	public static Map<String, String> getMap() {
+		return map;
+	}
 
-    public static Map<String, String> getMap() {
-        return map;
-    }
+	public static String getField(String key) {
+		return map.get(key);
+	}
 
-    public static String getField(String key) {
-        return map.get(key);
-    }
+	public static GmoMaintenanceLine toEntity(MaintenanceLine maintenanceLine, boolean lazy) {
+		if (null == maintenanceLine) {
+			return null;
+		}
+		GmoMaintenanceLine gmoMaintenanceLine = new GmoMaintenanceLine();
+		gmoMaintenanceLine.setGmoMaintenanceLineId(maintenanceLine.getId());
+		gmoMaintenanceLine.setGmoMaintenanceLineDescription(maintenanceLine.getDescription());
+		gmoMaintenanceLine.setGmoAmountVat(maintenanceLine.getAmountVat());
+		if (!lazy) {
+			gmoMaintenanceLine
+			.setGmoMaintenanceLineRef(MaintenanceLineRefMapper.toEntity(maintenanceLine.getMaintenanceLineRef(), false));
+			gmoMaintenanceLine
+					.setGmoMaintenanceLineProducts(MaintenanceProductMapper.toEntities(maintenanceLine.getMaintenanceProducts(), false));
+		}
+		return gmoMaintenanceLine;
+	}
 
-    public static GmoMaintenanceLine toEntity(MaintenanceLine maintenanceLine, boolean lazy) {
-        if (null == maintenanceLine) {
-            return null;
-        }
-        GmoMaintenanceLine gmoMaintenanceLine = new GmoMaintenanceLine();
-        gmoMaintenanceLine.setGmoMaintenanceLineId(maintenanceLine.getId());
-        gmoMaintenanceLine.setGmoMaintenanceLineDescription (maintenanceLine.getDescription ());
-        gmoMaintenanceLine.setGmoMaintenanceLineQuantity (maintenanceLine.getQuantity ());
-        gmoMaintenanceLine.setGmoMaintenanceLineUnitPrice (maintenanceLine.getUnitPrice ());
-        gmoMaintenanceLine.setGmoMaintenanceLineTotalPriceHT (maintenanceLine.getTotalPriceHT ());
-        gmoMaintenanceLine.setGmoMaintenanceLineTotalPriceTTC (maintenanceLine.getTotalPriceTTC ());
-        gmoMaintenanceLine.setGmoAmountVat (maintenanceLine.getAmountVat ());
+	public static MaintenanceLine toDto(GmoMaintenanceLine gmoMaintenanceLine, boolean lazy) {
+		if (null == gmoMaintenanceLine) {
+			return null;
+		}
+		MaintenanceLine maintenanceLine = new MaintenanceLine();
+		maintenanceLine.setId((int) gmoMaintenanceLine.getGmoMaintenanceLineId());
+		maintenanceLine.setDescription(gmoMaintenanceLine.getGmoMaintenanceLineDescription());
+		maintenanceLine.setTotalPriceHT(gmoMaintenanceLine.getGmoMaintenanceLineTotalPriceHT());
+		maintenanceLine.setTotalPriceTTC(gmoMaintenanceLine.getGmoMaintenanceLineTotalPriceTTC());
+		maintenanceLine.setAmountVat(gmoMaintenanceLine.getGmoAmountVat());
 
-        gmoMaintenanceLine.setCreatedBy(maintenanceLine.getCreatedBy());
-        gmoMaintenanceLine.setUpdatedBy(maintenanceLine.getUpdatedBy());
-        gmoMaintenanceLine.setCreationDate(maintenanceLine.getCreationDate());
-        gmoMaintenanceLine.setUpdateDate(maintenanceLine.getUpdateDate());
+		if (!lazy) {
+			maintenanceLine.setMaintenanceProducts(MaintenanceProductMapper.toDtos(gmoMaintenanceLine.getGmoMaintenanceLineProducts(), lazy));
+			maintenanceLine.setMaintenanceLineRef(MaintenanceLineRefMapper.toDto(gmoMaintenanceLine.getGmoMaintenanceLineRef(), lazy));
+		}
+		return maintenanceLine;
+	}
 
-        if(!lazy) {
-             gmoMaintenanceLine.setGmoMaintenanceLineProduct (ProductMapper.toEntity(maintenanceLine.getProduct (),false));
-            gmoMaintenanceLine.setGmoMaintenanceLineMaintenancePlan (MaintenancePlanMapper.toEntity(maintenanceLine.getMaintenancePlan (),true));
+	public static List<MaintenanceLine> toDtos(Iterable<? extends GmoMaintenanceLine> gmoMaintenanceLines,
+			boolean lazy) {
+		if (null == gmoMaintenanceLines) {
+			return null;
+		}
+		List<MaintenanceLine> maintenanceLines = new ArrayList<>();
 
-        }
-        return gmoMaintenanceLine;
-    }
+		for (GmoMaintenanceLine gmoMaintenanceLine : gmoMaintenanceLines) {
+			maintenanceLines.add(toDto(gmoMaintenanceLine, lazy));
+		}
+		return maintenanceLines;
+	}
 
-    public static MaintenanceLine toDto(GmoMaintenanceLine gmoMaintenanceLine, boolean lazy) {
-        if (null == gmoMaintenanceLine) {
-            return null;
-        }
-        MaintenanceLine maintenanceLine = new MaintenanceLine();
-        maintenanceLine.setId((int) gmoMaintenanceLine.getGmoMaintenanceLineId());
-        maintenanceLine.setDescription(gmoMaintenanceLine.getGmoMaintenanceLineDescription());
-        maintenanceLine.setQuantity (gmoMaintenanceLine.getGmoMaintenanceLineQuantity ());
-        maintenanceLine.setUnitPrice (gmoMaintenanceLine.getGmoMaintenanceLineUnitPrice ());
-        maintenanceLine.setTotalPriceHT (gmoMaintenanceLine.getGmoMaintenanceLineTotalPriceHT ());
-        maintenanceLine.setTotalPriceTTC (gmoMaintenanceLine.getGmoMaintenanceLineTotalPriceTTC ());
-        maintenanceLine.setAmountVat (gmoMaintenanceLine.getGmoAmountVat ());
-
-        maintenanceLine.setCreatedBy(gmoMaintenanceLine.getCreatedBy());
-        maintenanceLine.setUpdatedBy(gmoMaintenanceLine.getUpdatedBy());
-        maintenanceLine.setCreationDate(gmoMaintenanceLine.getCreationDate());
-        maintenanceLine.setUpdateDate(gmoMaintenanceLine.getUpdateDate());
-
-        if(!lazy) {
-
-             maintenanceLine.setProduct (ProductMapper.toDto (gmoMaintenanceLine.getGmoMaintenanceLineProduct (), false));
-             maintenanceLine.setMaintenancePlan (MaintenancePlanMapper.toDto (gmoMaintenanceLine.getGmoMaintenanceLineMaintenancePlan (), true));
-        }
-        return maintenanceLine;
-    }
-
-
-    public static List<MaintenanceLine> toDtos(Iterable<? extends GmoMaintenanceLine> gmoMaintenanceLines, boolean lazy) {
-        if (null == gmoMaintenanceLines) {
-            return null;
-        }
-        List<MaintenanceLine> vehicules = new ArrayList<>();
-
-        for (GmoMaintenanceLine gmoMaintenanceLine : gmoMaintenanceLines) {
-            vehicules.add(toDto(gmoMaintenanceLine, lazy));
-        }
-        return vehicules;
-    }
-
-    public static Set<GmoMaintenanceLine> toEntities(Iterable<? extends MaintenanceLine> maintenanceLines, boolean lazy) {
-        if (null == maintenanceLines) {
-            return null;
-        }
-        Set<GmoMaintenanceLine> gmoMaintenanceLines = new HashSet<>();
-        for (MaintenanceLine maintenanceLine : maintenanceLines) {
-            gmoMaintenanceLines.add(toEntity(maintenanceLine, lazy));
-        }
-        return gmoMaintenanceLines;
-    }
+	public static Set<GmoMaintenanceLine> toEntities(Iterable<? extends MaintenanceLine> maintenanceLines,
+			boolean lazy) {
+		if (null == maintenanceLines) {
+			return null;
+		}
+		Set<GmoMaintenanceLine> gmoMaintenanceLines = new HashSet<>();
+		for (MaintenanceLine maintenanceLine : maintenanceLines) {
+			gmoMaintenanceLines.add(toEntity(maintenanceLine, lazy));
+		}
+		return gmoMaintenanceLines;
+	}
 }

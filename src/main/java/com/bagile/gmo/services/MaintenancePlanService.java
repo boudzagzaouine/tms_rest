@@ -30,4 +30,6 @@ public interface MaintenancePlanService {
 
     List<MaintenancePlan> findAll(int page, int size);
 
+	MaintenancePlan findOne(String search) throws AttributesNotFound, ErrorType;
+
 }

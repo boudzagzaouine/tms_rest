@@ -18,7 +18,6 @@ public class GmoBadge  extends EmsEntity{
     private String gmoBadgeCode;
     private String gmoBadgeDescription;
     private GmoBadgeType gmoBadgeType;
-   // private List<GmoDriver> gmoDrivers = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")

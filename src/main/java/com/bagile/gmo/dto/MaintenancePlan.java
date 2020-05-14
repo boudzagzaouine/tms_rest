@@ -23,7 +23,7 @@ public class MaintenancePlan extends EmsDto implements Serializable {
     private Vehicle vehicle;
     private Double mileage = 0.0;
     private BigDecimal totalPrice;
-    private List<MaintenanceLine> maintenanceLineList;
+    private List<MaintenanceLine> maintenanceLines;
 
 
     public MaintenancePlan() {
@@ -109,12 +109,12 @@ public class MaintenancePlan extends EmsDto implements Serializable {
         this.totalPrice = totalPrice;
     }
 
-    public List<MaintenanceLine> getMaintenanceLineList() {
-        return maintenanceLineList;
+    public List<MaintenanceLine> getMaintenanceLines() {
+        return maintenanceLines;
     }
 
-    public void setMaintenanceLineList(List<MaintenanceLine> maintenanceLineList) {
-        this.maintenanceLineList = maintenanceLineList;
+    public void setMaintenanceLineList(List<MaintenanceLine> maintenanceLines) {
+        this.maintenanceLines = maintenanceLines;
     }
 
     @Override

@@ -67,7 +67,7 @@ public class MaintenancePlanMapper {
             gmoMaintenancePlan.setGmoMaintenanceType(MaintenanceTypeMapper.toEntity(maintenancePlan.getMaintenanceType(), true));
             gmoMaintenancePlan.setGmoMaintenanceState(MaintenanceStateMapper.toEntity(maintenancePlan.getMaintenanceState(), true));
             gmoMaintenancePlan.setGmoVehicle(VehicleMapper.toEntity(maintenancePlan.getVehicle(),false));
-            gmoMaintenancePlan.setGmoMaintenanceLines (MaintenanceLineMapper.toEntities (maintenancePlan.getMaintenanceLineList (), false));
+            gmoMaintenancePlan.setGmoMaintenanceLines (MaintenanceLineMapper.toEntities (maintenancePlan.getMaintenanceLines(), false));
 
         }
         return gmoMaintenancePlan;
