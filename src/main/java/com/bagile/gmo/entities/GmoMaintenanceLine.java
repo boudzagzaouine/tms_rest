@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -42,7 +43,7 @@ public class GmoMaintenanceLine extends EmsEntity {
         this.gmoMaintenanceLineId = gmoMaintenanceLineId;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "gmo_maintenancelinerefid")
     public GmoMaintenanceLineRef getGmoMaintenanceLineRef() {
         return gmoMaintenanceLineRef;
@@ -52,7 +53,7 @@ public class GmoMaintenanceLine extends EmsEntity {
         this.gmoMaintenanceLineRef = gmoMaintenanceLineRef;
     }
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     public Set<GmoMaintenanceProduct> getGmoMaintenanceLineProducts() {
         return gmoMaintenanceLineProducts;
     }

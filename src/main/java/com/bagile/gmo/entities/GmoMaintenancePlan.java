@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -46,7 +47,7 @@ public class GmoMaintenancePlan extends EmsEntity {
     private GmoMaintenanceState gmoMaintenanceState;
 
     private GmoPatrimony gmoPatrimony;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "gmoMaintenanceLineId")
     private Set<GmoMaintenanceLine> gmoMaintenanceLines = new HashSet<> ();
     @Column(name = "gmo_maintenanceplantotalprice")
     private BigDecimal gmoMaintenancePlanTotalPrice = BigDecimal.ZERO;
