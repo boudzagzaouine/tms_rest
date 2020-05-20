@@ -83,7 +83,12 @@ public class VehicleServiceImpl implements VehicleService {
     public void delete(Vehicle vehicle) {
         vehicleRepository.delete(VehicleMapper.toEntity(vehicle, false));
     }
+    @Override
+    public void deleteAll(List<Long> ids) {
 
+        for (Long id : ids) {
+            vehicleRepository.deleteById(id);        }
+    }
     @Override
     public List<Vehicle> findAll() {
         return VehicleMapper.toDtos(vehicleRepository.findAll(), false);

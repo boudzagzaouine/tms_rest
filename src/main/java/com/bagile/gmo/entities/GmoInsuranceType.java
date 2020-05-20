@@ -18,7 +18,7 @@ public class GmoInsuranceType extends EmsEntity {
 
    // private Set<GmoVehicleCategory> gmoVehicleCategories= new HashSet<>();
 
- private Set<GmoInsuranceTypeTerms> gmoInsuranceTypeTerms=new HashSet<>();
+    private Set<GmoInsuranceTypeTerms> gmoInsuranceTypeTerms=new HashSet<>();
 
 
     @Id

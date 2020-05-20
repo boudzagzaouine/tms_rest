@@ -88,7 +88,7 @@ public class GmoInsuranceTerm extends  EmsEntity{
 
     }
 
-    @OneToMany(mappedBy = "gmoInsuranceTerm", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     public Set<GmoInsuranceTermsVehicule> getGmoInsuranceTermsVehicules() {
         return gmoInsuranceTermsVehicules;
     }

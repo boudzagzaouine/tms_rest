@@ -34,7 +34,7 @@ public interface InsuranceService {
 
     List<Insurance> findAll(int page, int size) throws AttributesNotFound, ErrorType;
 
-    List<Insurance> findAvailableInsurances();
+    //List<Insurance> findAvailableInsurances();
 
 
 }

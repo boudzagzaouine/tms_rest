@@ -22,9 +22,9 @@ public class Vehicle extends Patrimony implements Serializable {
     private Date creationDate;
     private VehicleCategory vehicleCategory;
     private BadgeType badgeType;
-    private Insurance insurance;
+   // private Insurance insurance;
     private ContractType contractType;
-
+    private ConsumptionType consumptionType;
     private BigDecimal engineOil ;
    private BigDecimal  rearDeck ;
    private BigDecimal direction ;
@@ -44,7 +44,7 @@ public class Vehicle extends Patrimony implements Serializable {
    private BigDecimal amount;
    private Transport transport;
 
-    private List<InsuranceTermsVehicle> insuranceTermVehicles=new ArrayList<>();
+//    private List<InsuranceTermsVehicle> insuranceTermVehicles=new ArrayList<>();
 
     private List<Turn> turns=new ArrayList<>();
 
@@ -132,14 +132,14 @@ public class Vehicle extends Patrimony implements Serializable {
         this.badgeType = badgeType;
     }
 
-    public Insurance getInsurance() {
+  /*  public Insurance getInsurance() {
         return insurance;
     }
 
     public void setInsurance(Insurance insurance) {
         this.insurance = insurance;
     }
-
+*/
     public ContractType getContractType() {
         return contractType;
     }
@@ -269,12 +269,20 @@ public class Vehicle extends Patrimony implements Serializable {
         this.valueVignette = valueVignette;
     }
 
-    public List<InsuranceTermsVehicle> getInsuranceTermVehicles() {
+    /*public List<InsuranceTermsVehicle> getInsuranceTermVehicles() {
         return insuranceTermVehicles;
     }
 
     public void setInsuranceTermVehicles(List<InsuranceTermsVehicle> insuranceTermVehicles) {
         this.insuranceTermVehicles = insuranceTermVehicles;
+    }*/
+
+    public ConsumptionType getConsumptionType() {
+        return consumptionType;
+    }
+
+    public void setConsumptionType(ConsumptionType consumptionType) {
+        this.consumptionType = consumptionType;
     }
 
     public List<Turn> getTurns() {

@@ -31,8 +31,9 @@ public class VehicleMapper {
         map.put("updatedBy", "updatedBy");
         map.put("vehicleCategory", "gmoVehicleCategory");
         map.put("badgeType", "gmoBadgeType");
-        map.put("insurance", "GmoInsurance");
-        map.put("contractType", "GmoContractType");
+        map.put("insurance", "gmoInsurance");
+        map.put("contractType", "gmoContractType");
+        map.put("consumptiontype", "gmoConsumptionType");
         map.put("vignette", "gmoVehicleVignette");
         map.put("valueVignette", "gmoVehicleValueVignete");
         map.put("aquisitionDate", "gmoAquisitionDate");
@@ -51,8 +52,7 @@ public class VehicleMapper {
         map.put("chassisNumber", "gmoVehicleChassisNumber");
         map.put("Energy", "gmoVehicleEnergy");
         map.put("transport", "trpTransport");
-
-        map.put("insuranceTermVehicles", "gmoInsuranceTermsVehicules");
+      //  map.put("insuranceTermVehicles", "gmoInsuranceTermsVehicules");
 
     }
 
@@ -97,12 +97,14 @@ public class VehicleMapper {
         if (!lazy) {
             gmoVehicle.setGmoVehicleCategory(VehicleCategoryMapper.toEntity(vehicle.getVehicleCategory(), true));
             gmoVehicle.setGmoBadgeType(BadgeTypeMapper.toEntity(vehicle.getBadgeType(), true));
-            gmoVehicle.setGmoInsurance(InsuranceMapper.toEntity(vehicle.getInsurance(), false));
+            ///gmoVehicle.setGmoInsurance(InsuranceMapper.toEntity(vehicle.getInsurance(), false));
             gmoVehicle.setGmoContractType (ContractTypeMapper.toEntity (vehicle.getContractType (), true));
-            gmoVehicle.setGmoInsuranceTermsVehicules (InsuranceTermsVehicleMapper.toEntities (vehicle.getInsuranceTermVehicles (), false));
+            gmoVehicle.setGmoConsumptionType (ConsumptionTypeMapper.toEntity (vehicle.getConsumptionType (), true));
+           // gmoVehicle.setGmoInsuranceTermsVehicules (InsuranceTermsVehicleMapper.toEntities (vehicle.getInsuranceTermVehicles (), false));
             gmoVehicle.setTrpTransport (TransportMapper.toEntity (vehicle.getTransport (), false));
 
-            oneToMany(gmoVehicle);
+            //oneToOne(gmoVehicle);
+           // oneToMany(gmoVehicle);
         }
         return gmoVehicle;
 
@@ -148,23 +150,28 @@ public class VehicleMapper {
         if (!lazy) {
             vehicle.setBadgeType(BadgeTypeMapper.toDto(gmoVehicle.getGmoBadgeType(), true));
             vehicle.setVehicleCategory(VehicleCategoryMapper.toDto(gmoVehicle.getGmoVehicleCategory(), false));
-            vehicle.setInsurance(InsuranceMapper.toDto(gmoVehicle.getGmoInsurance(), false));
+            //vehicle.setInsurance(InsuranceMapper.toDto(gmoVehicle.getGmoInsurance(), false));
             vehicle.setContractType (ContractTypeMapper.toDto (gmoVehicle.getGmoContractType (), true));
-            vehicle.setInsuranceTermVehicles (InsuranceTermsVehicleMapper.toDtos(gmoVehicle.getGmoInsuranceTermsVehicules (), false));
+            vehicle.setConsumptionType (ConsumptionTypeMapper.toDto (gmoVehicle.getGmoConsumptionType (), true));
+           // vehicle.setInsuranceTermVehicles (InsuranceTermsVehicleMapper.toDtos(gmoVehicle.getGmoInsuranceTermsVehicules (), false));
             vehicle.setTransport (TransportMapper.toDto (gmoVehicle.getTrpTransport (), false));
 
         }
         return vehicle;
 
     }
-    private static void oneToMany(GmoVehicle vehicle) {
+   /* private static void oneToMany(GmoVehicle vehicle) {
         vehicle.getGmoInsuranceTermsVehicules().forEach(
                 e -> {
                     e.setCreationDate(new Date());
                     e.setGmoVehicle(vehicle);
                 }
         );
-    }
+    }*/
+  /*private static void oneToOne(GmoVehicle vehicle) {
+        vehicle.getGmoInsurance().setGmoVehicle(vehicle);
+                }*/
+
 
     public static List<Vehicle> toDtos(Iterable<? extends GmoVehicle> gmoVehicles, boolean lazy) {
         if (null == gmoVehicles) {

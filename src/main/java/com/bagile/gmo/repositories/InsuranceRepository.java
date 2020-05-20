@@ -11,5 +11,5 @@ import java.util.List;
 public interface InsuranceRepository extends JpaRepository<GmoInsurance,Long>,
 
         QuerydslPredicateExecutor<GmoInsurance> {
-    List<GmoInsurance> findByGmoVehicleIsNull();
+    //List<GmoInsurance> findByGmoVehicleIsNull();
 }

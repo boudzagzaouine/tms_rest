@@ -20,7 +20,8 @@ public class InsuranceTermsVehicleMapper {
         map = new HashMap<>();
 
         map.put("id", "gmoInsuranceTermVehicleId");
-        map.put("vehicle", "gmoVehicle");
+        //map.put("vehicle", "gmoVehicle");
+        map.put("insurance", "gmoInsurance");
         map.put("insuranceTerm", "gmoInsuranceTerm");
         map.put("amount", "gmoAmount");
      
@@ -55,7 +56,8 @@ public class InsuranceTermsVehicleMapper {
         gmoInsuranceTermsVehicule.setUpdateDate(insuranceTermsVehicle.getUpdateDate());
         if (!lazy) {
             gmoInsuranceTermsVehicule.setGmoInsuranceTerm(InsuranceTermMapper.toEntity(insuranceTermsVehicle.getInsuranceTerm(), true));
-            gmoInsuranceTermsVehicule.setGmoVehicle(VehicleMapper.toEntity(insuranceTermsVehicle.getVehicle(),true));
+           // gmoInsuranceTermsVehicule.setGmoInsurance(InsuranceMapper.toEntity(insuranceTermsVehicle.getInsurance(),true));
+           // gmoInsuranceTermsVehicule.setGmoVehicle(VehicleMapper.toEntity(insuranceTermsVehicle.getVehicle(),true));
 
         }
         return gmoInsuranceTermsVehicule;
@@ -74,7 +76,9 @@ public class InsuranceTermsVehicleMapper {
 
         if (!lazy) {
             insuranceTermsVehicle.setInsuranceTerm(InsuranceTermMapper.toDto(gmoInsuranceTermsVehicule.getGmoInsuranceTerm(), true));
-            insuranceTermsVehicle.setVehicle(VehicleMapper.toDto(gmoInsuranceTermsVehicule.getGmoVehicle(),true));
+           // insuranceTermsVehicle.setInsurance(InsuranceMapper.toDto(gmoInsuranceTermsVehicule.getGmoInsurance(), true));
+
+            //insuranceTermsVehicle.setVehicle(VehicleMapper.toDto(gmoInsuranceTermsVehicule.getGmoVehicle(),true));
         }
 
         return insuranceTermsVehicle;

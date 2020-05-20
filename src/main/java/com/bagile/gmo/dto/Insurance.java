@@ -15,10 +15,13 @@ public class Insurance extends EmsDto{
     private Date endDate;
     private BigDecimal amount;
     private Supplier supplier;
-    private Vehicle vehicle;
-    private String vehicleCode;
+    //private Vehicle vehicle;
+    private Patrimony patrimony;
+   // private String vehicleCode;
     private InsuranceType insuranceType;
-   // private List<InsuranceTermLigne> insuranceTermLignes = new ArrayList<>();
+    private List<InsuranceTermsVehicle> insuranceTermLignes=new ArrayList<>();
+
+    // private List<InsuranceTermLigne> insuranceTermLignes = new ArrayList<>();
 
 
     public Insurance() {
@@ -88,23 +91,40 @@ public class Insurance extends EmsDto{
         this.supplier = supplier;
     }
 
-    public Vehicle getVehicle() {
+    /*public Vehicle getVehicle() {
         return vehicle;
     }
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
     }
+*/
 
-    public String getVehicleCode() {
+    public Patrimony getPatrimony() {
+        return patrimony;
+    }
+
+    public void setPatrimony(Patrimony patrimony) {
+        this.patrimony = patrimony;
+    }
+
+   /* public String getVehicleCode() {
         return vehicleCode;
     }
 
     public void setVehicleCode(String vehicleCode) {
         this.vehicleCode = vehicleCode;
     }
+*/
+    public List<InsuranceTermsVehicle> getInsuranceTermLignes() {
+        return insuranceTermLignes;
+    }
 
-   /* public List<InsuranceTermLigne> getInsuranceTermLignes() {
+    public void setInsuranceTermLignes(List<InsuranceTermsVehicle> insuranceTermLignes) {
+        this.insuranceTermLignes = insuranceTermLignes;
+    }
+
+    /* public List<InsuranceTermLigne> getInsuranceTermLignes() {
         return insuranceTermLignes;
     }
 

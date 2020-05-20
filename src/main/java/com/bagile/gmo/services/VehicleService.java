@@ -28,7 +28,7 @@ public interface VehicleService {
     void delete(Long id);
 
     void delete(Vehicle vehicle);
-
+    void deleteAll (List<Long> ids);
     List<Vehicle> findAll();
 
     List<Vehicle> findAll(int page, int size);

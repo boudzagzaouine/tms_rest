@@ -107,8 +107,8 @@ public class InsuranceServiceImpl implements InsuranceService {
         return InsuranceMapper.toDtos(insuranceRepository.findAll(pageable), false);
     }
 
-    @Override
+  /*  @Override
     public List<Insurance> findAvailableInsurances() {
         return  InsuranceMapper.toDtos(insuranceRepository.findByGmoVehicleIsNull (), true);
-    }
+    }*/
 }

@@ -21,10 +21,10 @@ public class GmoInsuranceTermsVehicule extends  EmsEntity{
     private static final long serialVersionUID = 2686609119214199162L;
 	
     private Long gmoInsuranceTermVehicleId;
-    private GmoVehicle gmoVehicle;
+    //private GmoVehicle gmoVehicle;
     private GmoInsuranceTerm gmoInsuranceTerm;
     private BigDecimal gmoAmount;
-
+// private GmoInsurance gmoInsurance;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -37,7 +37,22 @@ public class GmoInsuranceTermsVehicule extends  EmsEntity{
     public void setGmoInsuranceTermVehicleId(Long gmoInsuranceTermVehicleId) {
         this.gmoInsuranceTermVehicleId = gmoInsuranceTermVehicleId;
     }
-    @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
+
+  /* @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_insuranceid")
+    public GmoInsurance getGmoInsurance() {
+        return gmoInsurance;
+    }
+
+    public void setGmoInsurance(GmoInsurance gmoInsurance) {
+        this.gmoInsurance = gmoInsurance;
+    }*/
+
+
+
+
+
+  /*  @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_vehicleid")
     public GmoVehicle getGmoVehicle() {
         return gmoVehicle;
@@ -45,7 +60,7 @@ public class GmoInsuranceTermsVehicule extends  EmsEntity{
 
     public void setGmoVehicle(GmoVehicle gmoVehicle) {
         this.gmoVehicle = gmoVehicle;
-    }
+    }*/
 
     @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_inserancetermid")

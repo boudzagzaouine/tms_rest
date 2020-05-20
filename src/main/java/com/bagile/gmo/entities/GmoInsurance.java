@@ -2,26 +2,15 @@ package com.bagile.gmo.entities;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "gmo_insurance")
 public class GmoInsurance extends EmsEntity {
     private long gmoInsuranceId;
-
     private String gmoInsuranceCode;
     private String gmoInsuranceNumber;
     private String gmoInsuranceDescription;
@@ -30,9 +19,11 @@ public class GmoInsurance extends EmsEntity {
     private BigDecimal gmoInsuranceAmount;
    // private GmoInsuranceTerm gmoInsuranceTerm;
     private RcpSupplier rcpSupplier;
-    private GmoVehicle gmoVehicle;
-    private String gmoInsuranceVehicleCode;
-    //private GmoInsuranceType gmoInsuranceType;
+   // private GmoVehicle gmoVehicle;
+   private GmoPatrimony gmoPatrimony;
+    //private String gmoInsuranceVehicleCode;
+    private GmoInsuranceType gmoInsuranceType;
+    private Set<GmoInsuranceTermsVehicule> gmoInsuranceTermsLignes=new HashSet<>();
 
     //private Set<GmoInsuranceTermLigne> gmoInsuranceTermInsurances = new HashSet<>();
 
@@ -115,7 +106,7 @@ public class GmoInsurance extends EmsEntity {
         this.rcpSupplier = rcpSupplier;
     }
 
-    /*@ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "gmo_insurancetypeid")
     public GmoInsuranceType getGmoInsuranceType() {
         return gmoInsuranceType;
@@ -123,16 +114,24 @@ public class GmoInsurance extends EmsEntity {
 
     public void setGmoInsuranceType(GmoInsuranceType gmoInsuranceType) {
         this.gmoInsuranceType = gmoInsuranceType;
-    }*/
+    }
 
-    @OneToOne(mappedBy = "gmoInsurance",cascade = CascadeType.ALL)
+   /* @OneToOne(mappedBy = "gmoInsurance",cascade = CascadeType.MERGE)
     public GmoVehicle getGmoVehicle() {
         return gmoVehicle;
     }
 
     public void setGmoVehicle(GmoVehicle gmoVehicle) {
         this.gmoVehicle = gmoVehicle;
+    }*/
 
+
+    public GmoPatrimony getGmoPatrimony() {
+        return gmoPatrimony;
+    }
+
+    public void setGmoPatrimony(GmoPatrimony gmoPatrimony) {
+        this.gmoPatrimony = gmoPatrimony;
     }
 
     @Column(name = "gmo_insurancenumber")
@@ -145,15 +144,23 @@ public class GmoInsurance extends EmsEntity {
     }
 
 
-    @Column(name = "gmo_insurancevehiclecode")
+ /*  @Column(name = "gmo_insurancevehiclecode")
     public String getGmoInsuranceVehicleCode() {
         return gmoInsuranceVehicleCode;
     }
 
     public void setGmoInsuranceVehicleCode(String gmoInsuranceVehicleCode) {
         this.gmoInsuranceVehicleCode = gmoInsuranceVehicleCode;
+    }*/
+
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+    public Set<GmoInsuranceTermsVehicule> getGmoInsuranceTermsLignes() {
+        return gmoInsuranceTermsLignes;
     }
 
+    public void setGmoInsuranceTermsLignes(Set<GmoInsuranceTermsVehicule> gmoInsuranceTermsLignes) {
+        this.gmoInsuranceTermsLignes = gmoInsuranceTermsLignes;
+    }
    /* @OneToMany(mappedBy = "gmoInsurance",cascade = CascadeType.ALL)
     public Set<GmoInsuranceTermLigne> getGmoInsuranceTermLigne() {
         return gmoInsuranceTermInsurances;

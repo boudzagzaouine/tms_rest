@@ -1,11 +1,6 @@
 package com.bagile.gmo.mapper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import com.bagile.gmo.dto.Insurance;
 import com.bagile.gmo.entities.GmoInsurance;
@@ -28,8 +23,10 @@ public class InsuranceMapper {
         map.put("endDate", "gmoInsuranceEndDate");
         map.put("insurancetype", "gmoInsuranceType");
         map.put("supplier", "rcpSupplier");
-        map.put("vehicle", "gmoVehicle");
+      //  map.put("vehicle", "gmoVehicle");
+         map.put("patrimony","gmoPatrimony");
         map.put("vehicleCode", "gmoInsuranceVehicleCode");
+        map.put("insuranceTermLignes", "gmoInsuranceTermLignes");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -57,7 +54,7 @@ public class InsuranceMapper {
         gmoInsurance.setGmoInsuranceAmount (insurance.getAmount ());
         gmoInsurance.setGmoInsuranceStartDate (insurance.getStartDate ());
         gmoInsurance.setGmoInsuranceEndDate (insurance.getEndDate ());
-        gmoInsurance.setGmoInsuranceVehicleCode (insurance.getVehicleCode ());
+        //gmoInsurance.setGmoInsuranceVehicleCode (insurance.getVehicleCode ());
 
         gmoInsurance.setCreatedBy(insurance.getCreatedBy());
         gmoInsurance.setUpdatedBy(insurance.getUpdatedBy());
@@ -67,7 +64,11 @@ public class InsuranceMapper {
         if(!lazy) {
          // gmoInsurance.setGmoInsuranceTermLigne (InsuranceTermLigneMapper.toEntities(insurance.getInsuranceTermLignes(),false));
              gmoInsurance.setRcpSupplier (SupplierMapper.toEntity(insurance.getSupplier (),false));
-           //  gmoInsurance.setGmoInsuranceType (InsuranceTypeMapper.toEntity (insurance.getInsuranceType (), true));
+              gmoInsurance.setGmoInsuranceTermsLignes (InsuranceTermsVehicleMapper.toEntities (insurance.getInsuranceTermLignes (), false));
+             gmoInsurance.setGmoInsuranceType (InsuranceTypeMapper.toEntity (insurance.getInsuranceType (), false));
+            gmoInsurance.setGmoPatrimony (PatrimonyMapper.toEntity (insurance.getPatrimony (), false));
+
+            //gmoInsurance.setGmoVehicle (VehicleMapper.toEntity (insurance.getVehicle (), true));
 
            // oneToMany(gmoInsurance);
         }
@@ -86,7 +87,7 @@ public class InsuranceMapper {
         insurance.setAmount (gmoInsurance.getGmoInsuranceAmount ());
         insurance.setStartDate (gmoInsurance.getGmoInsuranceStartDate ());
         insurance.setEndDate (gmoInsurance.getGmoInsuranceEndDate ());
-        insurance.setVehicleCode (gmoInsurance.getGmoInsuranceVehicleCode ());
+        //insurance.setVehicleCode (gmoInsurance.getGmoInsuranceVehicleCode ());
 
         insurance.setCreatedBy(gmoInsurance.getCreatedBy());
         insurance.setUpdatedBy(gmoInsurance.getUpdatedBy());
@@ -95,16 +96,19 @@ public class InsuranceMapper {
 
         if(!lazy) {
 
-         //  insurance.setInsuranceTermLignes (InsuranceTermLigneMapper.toDtos(gmoInsurance.getGmoInsuranceTermLigne (),false));
              insurance.setSupplier (SupplierMapper.toDto (gmoInsurance.getRcpSupplier (), false));
-            // insurance.setInsuranceType (InsuranceTypeMapper.toDto (gmoInsurance.getGmoInsuranceType (), true));
+            insurance.setInsuranceTermLignes (InsuranceTermsVehicleMapper.toDtos (gmoInsurance.getGmoInsuranceTermsLignes (), false));
+            insurance.setInsuranceType (InsuranceTypeMapper.toDto (gmoInsurance.getGmoInsuranceType (), false));
+            //insurance.setVehicle (VehicleMapper.toDto (gmoInsurance.getGmoVehicle (), false));
+            insurance.setPatrimony(PatrimonyMapper.toDto(gmoInsurance.getGmoPatrimony(),false));
+
         }
         return insurance;
     }
 
 
-   /* private static void oneToMany(GmoInsurance insurance){
-        insurance.getGmoInsuranceTermLigne().forEach(
+    /*private static void oneToMany(GmoInsurance insurance){
+        insurance.getGmoInsuranceTermsLignes().forEach(
                 e->{
                      e.setCreationDate(new Date());
                     e.setGmoInsurance(insurance);

@@ -36,6 +36,7 @@ public class GmoVehicle extends GmoPatrimony {
     private GmoBadgeType gmoBadgeType;
     private GmoInsurance gmoInsurance;
     private GmoContractType gmoContractType;
+    private GmoConsumptionType gmoConsumptionType;
     private Date gmoAquisitionDate;
     private BigDecimal gmoAamount;
     private BigDecimal gmoVehicleEngineOil ;
@@ -53,7 +54,7 @@ public class GmoVehicle extends GmoPatrimony {
     private String gmoVehicleEnergy ;
     private  Date gmoVehicleVignette;
     private BigDecimal gmoVehicleValueVignete;
-    private Set<GmoInsuranceTermsVehicule> gmoInsuranceTermsVehicules=new HashSet<>();
+    //private Set<GmoInsuranceTermsVehicule> gmoInsuranceTermsVehicules=new HashSet<>();
 
     private TrpTransport trpTransport;
 
@@ -165,6 +166,16 @@ public class GmoVehicle extends GmoPatrimony {
 
     public void setGmoContractType(GmoContractType gmoContractType) {
         this.gmoContractType = gmoContractType;
+    }
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "gmo_conummptiontypeid")
+    public GmoConsumptionType getGmoConsumptionType() {
+        return gmoConsumptionType;
+    }
+
+    public void setGmoConsumptionType(GmoConsumptionType gmoConsumptionType) {
+        this.gmoConsumptionType = gmoConsumptionType;
     }
 
     @Column(name = "gmo_vehiculeengineoil")
@@ -302,14 +313,14 @@ public class GmoVehicle extends GmoPatrimony {
         this.gmoVehicleValueVignete = gmoVehicleValueVignete;
     }
 
-    @OneToMany(mappedBy = "gmoVehicle",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+   /* @OneToMany(mappedBy = "gmoVehicle",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
     public Set<GmoInsuranceTermsVehicule> getGmoInsuranceTermsVehicules() {
         return gmoInsuranceTermsVehicules;
     }
 
     public void setGmoInsuranceTermsVehicules(Set<GmoInsuranceTermsVehicule> gmoInsuranceTermsVehicules) {
         this.gmoInsuranceTermsVehicules = gmoInsuranceTermsVehicules;
-    }
+    }*/
     @ManyToOne()
     @JoinColumn(name = "trp_transportid")
     public TrpTransport getTrpTransport() {

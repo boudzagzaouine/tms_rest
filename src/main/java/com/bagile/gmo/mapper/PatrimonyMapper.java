@@ -9,7 +9,7 @@ public class PatrimonyMapper {
 
 	public static GmoPatrimony toEntity(Patrimony patrimony, boolean lazy) {
 		if(patrimony instanceof Vehicle) {
-			return VehicleMapper.toEntity((Vehicle)patrimony, lazy);
+			return VehicleMapper.toEntity((Vehicle) patrimony, lazy);
 		}
 		return null;
 	}
