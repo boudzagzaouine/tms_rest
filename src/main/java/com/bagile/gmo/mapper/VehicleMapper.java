@@ -20,7 +20,7 @@ public class VehicleMapper {
     static {
         map = new HashMap<>();
 
-        map.put("id", "gmoVehicleId");
+        map.put("id", "gmoPatrimonyId");
         map.put("registrationNumber", "gmoRegistrationNumber");
         map.put("code", "gmoVehicleCode");
         map.put("technicalVisit", "gmoVehicleTechnicalVisit");
@@ -69,7 +69,7 @@ public class VehicleMapper {
             return null;
         }
         GmoVehicle gmoVehicle = new GmoVehicle();
-        gmoVehicle.setGmoVehicleId(vehicle.getId());
+        gmoVehicle.setGmoPatrimonyId(vehicle.getId());
         gmoVehicle.setGmoRegistrationNumber(vehicle.getRegistrationNumber());
         gmoVehicle.setGmoVehicleCode(vehicle.getCode() != null ? vehicle.getCode().toUpperCase() : null);
         gmoVehicle.setGmoVehicleTechnicalVisit(vehicle.getTechnicalVisit());
@@ -115,7 +115,7 @@ public class VehicleMapper {
             return null;
         }
         Vehicle vehicle = new Vehicle();
-        vehicle.setId((int) gmoVehicle.getGmoVehicleId());
+        vehicle.setId(gmoVehicle.getGmoPatrimonyId());
         vehicle.setRegistrationNumber(gmoVehicle.getGmoRegistrationNumber());
         vehicle.setCode(gmoVehicle.getGmoVehicleCode());
         vehicle.setTechnicalVisit(gmoVehicle.getGmoVehicleTechnicalVisit());

@@ -126,6 +126,8 @@ public class GmoInsurance extends EmsEntity {
     }*/
 
 
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "gmo_patrimonyid")
     public GmoPatrimony getGmoPatrimony() {
         return gmoPatrimony;
     }

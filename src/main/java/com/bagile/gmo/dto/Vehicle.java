@@ -14,7 +14,7 @@ public class Vehicle extends Patrimony implements Serializable {
      *
      */
     private static final long serialVersionUID = 6072929769333595397L;
-    private long id;
+   // private long id;
     private String registrationNumber;
     private String code;
     private Date technicalVisit;
@@ -52,14 +52,14 @@ public class Vehicle extends Patrimony implements Serializable {
     public Vehicle() {
     }
 
-    public long getId() {
+  /*  public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
     }
-
+*/
     public String getRegistrationNumber() {
         return registrationNumber;
     }

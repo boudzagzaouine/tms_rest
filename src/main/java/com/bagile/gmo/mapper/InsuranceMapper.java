@@ -23,7 +23,7 @@ public class InsuranceMapper {
         map.put("endDate", "gmoInsuranceEndDate");
         map.put("insurancetype", "gmoInsuranceType");
         map.put("supplier", "rcpSupplier");
-      //  map.put("vehicle", "gmoVehicle");
+        map.put("vehicle", "gmoVehicle");
          map.put("patrimony","gmoPatrimony");
         map.put("vehicleCode", "gmoInsuranceVehicleCode");
         map.put("insuranceTermLignes", "gmoInsuranceTermLignes");

@@ -29,10 +29,13 @@ public interface InsuranceService {
     void delete(Long id);
 
     void delete(Insurance insurance);
+    void deleteAll(List<Long> ids);
 
     List<Insurance> findAll() throws AttributesNotFound, ErrorType;
 
     List<Insurance> findAll(int page, int size) throws AttributesNotFound, ErrorType;
+
+     Insurance findByPatrimony(Long idVehicle);
 
     //List<Insurance> findAvailableInsurances();
 

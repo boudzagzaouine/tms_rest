@@ -5,29 +5,16 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "gmo_vehicule")
+@DiscriminatorValue("vehicule")
 public class GmoVehicle extends GmoPatrimony {
 
 	private static final long serialVersionUID = 612360418697069780L;
 
-	private long gmoVehicleId;
+	//private long gmoVehicleId;
     private String gmoRegistrationNumber;
     private String gmoVehicleCode;
     private Date gmoVehicleTechnicalVisit;
@@ -61,7 +48,7 @@ public class GmoVehicle extends GmoPatrimony {
     private Set<GmoTurn> gmoTurns=new HashSet<>();
 
 
-    @Id
+  /*  @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_vehicule_id", allocationSize = 1)
     @Column(name = "gmo_vehiculeid", unique = true, nullable = false, precision = 10, scale = 0)
@@ -71,7 +58,7 @@ public class GmoVehicle extends GmoPatrimony {
 
     public void setGmoVehicleId(long gmoVehicleId) {
         this.gmoVehicleId = gmoVehicleId;
-    }
+    }*/
 
     @Column(name = "gmo_vehiculeregistrationnumber")
     public String getGmoRegistrationNumber() {

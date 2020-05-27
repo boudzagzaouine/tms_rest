@@ -94,7 +94,12 @@ public class InsuranceServiceImpl implements InsuranceService {
         insuranceRepository.delete(InsuranceMapper.toEntity(insurance, false));
 
     }
+    @Override
+    public void deleteAll(List<Long> ids) {
 
+        for (Long id : ids) {
+            insuranceRepository.deleteById(id);        }
+    }
     @Override
     public List<Insurance> findAll() throws AttributesNotFound, ErrorType {
         return InsuranceMapper.toDtos(insuranceRepository.findAll(), false);
@@ -106,6 +111,12 @@ public class InsuranceServiceImpl implements InsuranceService {
         Pageable pageable = PageRequest.of(page, size, sort);
         return InsuranceMapper.toDtos(insuranceRepository.findAll(pageable), false);
     }
+
+    @Override
+    public Insurance findByPatrimony(Long idVehicle) {
+        return InsuranceMapper.toDto(insuranceRepository.findByPatrimony(idVehicle),false);
+    }
+
 
   /*  @Override
     public List<Insurance> findAvailableInsurances() {

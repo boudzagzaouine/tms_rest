@@ -1,54 +1,25 @@
 package com.bagile.gmo.entities;
 
-import com.bagile.gmo.dto.ConsumptionType;
-import com.bagile.gmo.dto.ContractType;
-import com.bagile.gmo.dto.Insurance;
-import com.bagile.gmo.dto.Transport;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "gmo_machine")
+@DiscriminatorValue("machine")
 public class GmoMachine extends GmoPatrimony {
 
 	private static final long serialVersionUID = 612360418697069780L;
 
-	private long gmoMachineId;
-    private String gmoRegistrationNumber;
     private String gmoMachineCode;
-    private Insurance insurance;
-    private ContractType contractType;
-    private Date aquisitionDate;
-    private BigDecimal amount;
-    private ConsumptionType consumptionType;
-    private Transport transport;
+    private GmoContractType gmoContractType;
+    private GmoConsumptionType gmoConsumptionType;
+    private Date gmoMachineAquisitionDate;
+    private BigDecimal gmoMachineAamount;
+    private TrpTransport trpTransport;
 
-
-
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_machine_id", allocationSize = 1)
-    @Column(name = "gmo_machineid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoMachineId() {
-        return gmoMachineId;
-    }
-
-    public void setGmoMachineId(long gmoMachineId) {
-        this.gmoMachineId = gmoMachineId;
-    }
-
-    @Column(name = "gmo_machineregistrationnumber")
-    public String getGmoRegistrationNumber() {
-        return gmoRegistrationNumber;
-    }
-
-    public void setGmoRegistrationNumber(String gmoRegistrationNumber) {
-        this.gmoRegistrationNumber = gmoRegistrationNumber;
-    }
 
     @Column(name = "gmo_machinecode", unique = true, nullable = false, length = 90)
     public String getGmoMachineCode() {
@@ -59,5 +30,56 @@ public class GmoMachine extends GmoPatrimony {
         this.gmoMachineCode = gmoMachineCode;
     }
 
-  
-}
+
+
+    @Column(name = "gmo_machineaquisitiondate")
+    public Date getGmoMachineAquisitionDate() {
+        return gmoMachineAquisitionDate;
+    }
+
+    public void setGmoMachineAquisitionDate(Date gmoMachineAquisitionDate) {
+        this.gmoMachineAquisitionDate = gmoMachineAquisitionDate;
+    }
+
+    @Column(name = "gmo_machineamount")
+    public BigDecimal getGmoMachineAamount() {
+        return gmoMachineAamount;
+    }
+
+    public void setGmoMachineAamount(BigDecimal gmoMachineAamount) {
+        this.gmoMachineAamount = gmoMachineAamount;
+    }
+
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "gmo_contracttypeid")
+    public GmoContractType getGmoContractType() {
+        return gmoContractType;
+    }
+
+    public void setGmoContractType(GmoContractType gmoContractType) {
+        this.gmoContractType = gmoContractType;
+    }
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "gmo_conummptiontypeid")
+    public GmoConsumptionType getGmoConsumptionType() {
+        return gmoConsumptionType;
+    }
+
+    public void setGmoConsumptionType(GmoConsumptionType gmoConsumptionType) {
+        this.gmoConsumptionType = gmoConsumptionType;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "trp_transportid")
+    public TrpTransport getTrpTransport() {
+        return trpTransport;
+    }
+
+    public void setTrpTransport(TrpTransport trpTransport) {
+        this.trpTransport = trpTransport;
+    }
+
+
+ }

@@ -1,6 +1,7 @@
 package com.bagile.gmo.controllers;
 
 import com.bagile.gmo.dto.Insurance;
+import com.bagile.gmo.dto.Vehicle;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
@@ -9,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -18,6 +20,14 @@ public class InsuranceController {
 
     public InsuranceController(InsuranceService insuranceService) {
         this.insuranceService = insuranceService;
+    }
+
+  //  @GetMapping(value = "getVehicle/{idVehicle}")
+    @RequestMapping(method = RequestMethod.GET, value = "/getVehicle/{idVehicle}")
+    @ResponseBody
+    public Insurance getvehicule(@PathVariable Long idVehicle){
+
+        return insuranceService.findByPatrimony(idVehicle);
     }
 
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
@@ -95,6 +105,11 @@ public class InsuranceController {
         insuranceService.delete(id);
     }
 
+    @RequestMapping(value = "/deleteAll", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
+        insuranceService.deleteAll (Arrays.asList(ids));
+    }
    /* @RequestMapping(method = RequestMethod.GET, value = "/findAvailable")
     @ResponseBody
     public List<Insurance> findAvailableInsurances() throws AttributesNotFound, ErrorType {
