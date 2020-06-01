@@ -81,9 +81,9 @@ public class CommissiontypeController {
     @ResponseBody
     public List<CommissionType> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
 
-        if (!search.endsWith(",")) {
+     /*   if (!search.endsWith(",")) {
             search += ",";
-        }
+        }*/
 
         return commissionTypeService.find(search);
     }

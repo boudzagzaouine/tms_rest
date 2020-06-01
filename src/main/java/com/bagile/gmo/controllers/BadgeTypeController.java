@@ -19,6 +19,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/badgeTypes")
 public class BadgeTypeController {
+
     private final BadgeTypeService badgeTypeService;
 
     public BadgeTypeController(BadgeTypeService badgeTypeService) {

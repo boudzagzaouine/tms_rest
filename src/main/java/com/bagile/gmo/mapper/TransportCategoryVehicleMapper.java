@@ -19,7 +19,7 @@ public class TransportCategoryVehicleMapper {
         map.put ("vehicleCategory", "gmoVehicleCategory");
         map.put ("transport", "trpTransport");
         map.put ("quantity", "gmoTransportCategorieVehicleQuantity");
-       
+
 
 
         map.put ("creationDate", "creationDate");

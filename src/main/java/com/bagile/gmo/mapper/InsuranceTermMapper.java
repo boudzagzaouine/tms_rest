@@ -22,7 +22,7 @@ public class InsuranceTermMapper {
         map.put("id", "gmoInsuranceTermId");
         map.put("code", "gmoInsuranceTermCode");
         map.put("description", "gmoInsuranceTermDescription");
-        map.put("isValue", "gmoInsuranceTermIsValue");
+        map.put("roofed", "gmoInsuranceTermRoofed");
 
         map.put("insuranceTypeTermsSet", "gmoInsuranceTypeTerms");
 

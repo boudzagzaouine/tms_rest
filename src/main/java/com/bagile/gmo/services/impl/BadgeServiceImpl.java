@@ -18,9 +18,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 
+
 @Service
 @Transactional
 public class BadgeServiceImpl implements BadgeService {
+
     private final BadgeRepository badgeRepository;
     public BadgeServiceImpl(BadgeRepository badgeRepository) {
         this.badgeRepository = badgeRepository;

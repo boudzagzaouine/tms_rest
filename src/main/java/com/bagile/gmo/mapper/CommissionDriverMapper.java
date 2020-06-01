@@ -47,8 +47,8 @@ public class CommissionDriverMapper {
         gmoCommission.setCreationDate(commission.getCreationDate());
         gmoCommission.setUpdateDate(commission.getUpdateDate());
         if (!lazy) {
-            gmoCommission.setGmoDriver(DriverMapper.toEntity(commission.getDriver(), true));
-            gmoCommission.setGmoCommissionType(CommissionTypeMapper.toEntity(commission.getCommissionType(),true));
+            gmoCommission.setGmoDriver(DriverMapper.toEntity(commission.getDriver(), false));
+            gmoCommission.setGmoCommissionType(CommissionTypeMapper.toEntity(commission.getCommissionType(),false));
 
         }
         return gmoCommission;

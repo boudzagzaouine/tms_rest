@@ -21,7 +21,7 @@ public class VehicleCategoryMapper {
 
         map.put("id", "gmoVehicleCategoryId");
         map.put("code", "gmoVehicleCategoryCode");
-        map.put("consumption", "gmoVehicleCategoryConsumption");
+        map.put("description", "gmoVehicleCategoryDescription");
         map.put("length", "gmoVehicleCategoryLength");
         map.put("width", "gmoVehicleCategoryWidth");
         map.put("height", "gmoVehicleCategoriyheight");
@@ -53,12 +53,14 @@ public class VehicleCategoryMapper {
         GmoVehicleCategory gmoVehicleCategory = new GmoVehicleCategory();
         gmoVehicleCategory.setGmoVehicleCategoryId(vehicle.getId());
         gmoVehicleCategory.setGmoVehicleCategoryCode(vehicle.getCode() != null ? vehicle.getCode().toUpperCase() : null);
-        gmoVehicleCategory.setGmoVehicleCategoryConsumption (vehicle.getConsumption ());
+        gmoVehicleCategory.setGmoVehicleCategoryDescription(vehicle.getDescription());
         gmoVehicleCategory.setGmoVehicleCategoryWidth (vehicle.getWidth ());
         gmoVehicleCategory.setGmoVehicleCategoryDepth (vehicle.getDepth ());
         gmoVehicleCategory.setGmoVehicleCategoryTonnage (vehicle.getTonnage ());
         gmoVehicleCategory.setGmoVehicleCategoryEmptyWeight (vehicle.getEmptyWeight ());
         gmoVehicleCategory.setGmoVehicleCategoryTotalWeight (vehicle.getTotalWeight ());
+        gmoVehicleCategory.setGmoVehicleCategoryLength (vehicle.getLength ());
+        gmoVehicleCategory.setGmoVehicleCategoriyheight (vehicle.getHeight ());
 
 
         gmoVehicleCategory.setCreatedBy(vehicle.getCreatedBy());
@@ -77,13 +79,14 @@ public class VehicleCategoryMapper {
         VehicleCategory vehicle = new VehicleCategory();
         vehicle.setId((int) gmoVehicleCategory.getGmoVehicleCategoryId());
         vehicle.setCode(gmoVehicleCategory.getGmoVehicleCategoryCode());
-        vehicle.setConsumption (gmoVehicleCategory.getGmoVehicleCategoryConsumption ());
+        vehicle.setDescription(gmoVehicleCategory.getGmoVehicleCategoryDescription());
         vehicle.setWidth (gmoVehicleCategory.getGmoVehicleCategoryWidth ());
         vehicle.setDepth (gmoVehicleCategory.getGmoVehicleCategoryDepth ());
         vehicle.setTonnage (gmoVehicleCategory.getGmoVehicleCategoryTonnage ());
         vehicle.setEmptyWeight (gmoVehicleCategory.getGmoVehicleCategoryEmptyWeight ());
         vehicle.setTotalWeight (gmoVehicleCategory.getGmoVehicleCategoryTotalWeight ());
-
+        vehicle.setLength (gmoVehicleCategory.getGmoVehicleCategoryLength ());
+        vehicle.setHeight (gmoVehicleCategory.getGmoVehicleCategoriyheight ());
 
         vehicle.setCreatedBy(gmoVehicleCategory.getCreatedBy());
         vehicle.setUpdatedBy(gmoVehicleCategory.getUpdatedBy());

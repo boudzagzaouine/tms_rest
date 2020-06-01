@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(value="/TransportCategoieVehicles")
+@RequestMapping(value="/transportcategoievehicles")
 public class TransportCategoryVehicleController {
     private final TransportCategoryVehicleService transportCategoryVehicleService;
 

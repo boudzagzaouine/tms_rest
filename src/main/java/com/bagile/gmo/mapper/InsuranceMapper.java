@@ -21,7 +21,7 @@ public class InsuranceMapper {
         map.put("amount", "gmoInsuranceAmount");
         map.put("startDate", "gmoInsuranceStartDate");
         map.put("endDate", "gmoInsuranceEndDate");
-        map.put("insurancetype", "gmoInsuranceType");
+        map.put("insuranceType", "gmoInsuranceType");
         map.put("supplier", "rcpSupplier");
         map.put("vehicle", "gmoVehicle");
          map.put("patrimony","gmoPatrimony");
