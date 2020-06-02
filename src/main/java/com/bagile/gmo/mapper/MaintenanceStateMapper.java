@@ -23,7 +23,7 @@ public class MaintenanceStateMapper {
         map = new HashMap<>();
         map.put("id","gmoMaintenanceStateId");
         map.put("code","gmoMaintenanceStateCode");
-        map.put("descriptif","gmoMaintenanceStateDescription");
+        map.put("description","gmoMaintenanceStateDescription");
 
 
 

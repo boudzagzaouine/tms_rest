@@ -19,7 +19,7 @@ public class GmoVehicleCategory  extends EmsEntity {
 
 	private long gmoVehicleCategoryId;
     private String gmoVehicleCategoryCode;
-    private  String gmoVehicleCategoryConsumption;
+    private  String gmoVehicleCategoryDescription;
     private BigDecimal gmoVehicleCategoryLength;
     private  BigDecimal gmoVehicleCategoryWidth;
     private BigDecimal gmoVehicleCategoriyheight;
@@ -55,13 +55,13 @@ public class GmoVehicleCategory  extends EmsEntity {
         this.gmoVehicleCategoryCode = gmoVehicleCategoryCode;
     }
 
-    @Column(name = "gmo_vehiclecategoryconsumption")
-    public String getGmoVehicleCategoryConsumption() {
-        return gmoVehicleCategoryConsumption;
+    @Column(name = "gmo_vehiclecategorydescription")
+    public String getGmoVehicleCategoryDescription() {
+        return gmoVehicleCategoryDescription;
     }
 
-    public void setGmoVehicleCategoryConsumption(String gmoVehicleCategoryConsumption) {
-        this.gmoVehicleCategoryConsumption = gmoVehicleCategoryConsumption;
+    public void setGmoVehicleCategoryDescription(String gmoVehicleCategoryConsumption) {
+        this.gmoVehicleCategoryDescription = gmoVehicleCategoryConsumption;
     }
 
     @Column(name = "gmo_vehiclecategorylength")

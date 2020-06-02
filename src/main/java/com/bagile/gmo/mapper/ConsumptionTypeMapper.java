@@ -14,9 +14,9 @@ public class ConsumptionTypeMapper {
     static {
         map = new HashMap<> ( );
 
-        map.put ("id", "gmoConsumptionId");
-        map.put ("code", "gmoConsumptionCode");
-        map.put ("description", "gmoConsumptionDescription");
+        map.put ("id", "gmoConsumptionTypeId");
+        map.put ("code", "gmoConsumptionTypeCode");
+        map.put ("description", "gmoConsumptionTypeDescription");
 
         map.put ("creationDate", "creationDate");
         map.put ("updateDate", "updateDate");

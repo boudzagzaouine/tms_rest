@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -16,6 +17,7 @@ import java.util.List;
 public class InsuranceTypeController {
 
     private final InsuranceTypeService insuranceTypeService;
+
     public InsuranceTypeController(InsuranceTypeService insuranceTypeService) {
         this.insuranceTypeService = insuranceTypeService;
     }
@@ -79,9 +81,9 @@ public class InsuranceTypeController {
     @ResponseBody
     public List<InsuranceType> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
 
-        if (!search.endsWith(",")) {
+       /* if (!search.endsWith(",")) {
             search += ",";
-        }
+        }*/
 
         return insuranceTypeService.find(search);
     }
@@ -125,5 +127,9 @@ public class InsuranceTypeController {
     public void delete(@PathVariable Long id) throws IdNotFound {
         insuranceTypeService.delete(id);
     }
-
+    @RequestMapping(value = "/deleteAll", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
+        insuranceTypeService.deleteAll (Arrays.asList(ids));
+    }
 }

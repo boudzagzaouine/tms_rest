@@ -12,7 +12,7 @@ public class VehicleCategory extends EmsDto implements Serializable {
     private static final long serialVersionUID = 1545447956689771754L;
     private long id;
     private String code;
-    private  String consumption;
+    private  String description;
     private BigDecimal length;
     private  BigDecimal width;
     private BigDecimal height;
@@ -39,12 +39,12 @@ public class VehicleCategory extends EmsDto implements Serializable {
         this.code = code;
     }
 
-    public String getConsumption() {
-        return consumption;
+    public String getDescription() {
+        return description;
     }
 
-    public void setConsumption(String consumption) {
-        this.consumption = consumption;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public BigDecimal getLength() {
