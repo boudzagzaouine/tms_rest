@@ -18,7 +18,7 @@ import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.services.ActionService;
 
 @Controller
-@RequestMapping(value = "/actions")
+@RequestMapping(value = "/maintenanceActions")
 public class ActionController {
     private final ActionService actionService;
 

@@ -46,6 +46,7 @@ public class GmoMaintenancePlan extends EmsEntity {
     @JoinColumn(name = "gmo_maintenancestateid")
     private GmoMaintenanceState gmoMaintenanceState;
 
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private GmoPatrimony gmoPatrimony;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "gmoMaintenanceLineId")
     private Set<GmoMaintenanceLine> gmoMaintenanceLines = new HashSet<> ();

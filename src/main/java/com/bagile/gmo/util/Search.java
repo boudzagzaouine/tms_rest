@@ -1,9 +1,5 @@
 package com.bagile.gmo.util;
 
-import com.bagile.gmo.exceptions.AttributesNotFound;
-import com.bagile.gmo.exceptions.ErrorType;
-import com.querydsl.core.types.dsl.BooleanExpression;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -13,6 +9,10 @@ import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.querydsl.core.types.dsl.BooleanExpression;
 
 /**
  * Created by adadi on 12/23/2015.
@@ -132,6 +132,8 @@ public class Search {
 	static BooleanExpression analyzePattern(Class<?> entityClass, String pattern, BooleanExpression exp, Index index) throws AttributesNotFound, ErrorType {
 
 		char c;
+		if(pattern.length() < 3)
+			return null;
 		c = pattern.charAt(index.getValue());
 		switch (c) {
 		case ' ':
