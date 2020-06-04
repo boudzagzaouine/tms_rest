@@ -99,6 +99,8 @@ public class VehicleCategoryMapper {
     }
 
 
+
+
     public static List<VehicleCategory> toDtos(Iterable<? extends GmoVehicleCategory> gmoVehicleCategorys, boolean lazy) {
         if (null == gmoVehicleCategorys) {
             return null;

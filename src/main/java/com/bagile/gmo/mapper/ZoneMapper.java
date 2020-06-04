@@ -6,16 +6,18 @@ import com.bagile.gmo.entities.GmoZone;
 import java.util.*;
 
 public class ZoneMapper {
-    private ZoneMapper() {
-
+    public ZoneMapper() {
     }
 
     private static Map<String, String> map;
 
     static {
         map = new HashMap<>();
+
         map.put("id", "gmoZoneId");
         map.put("name", "gmoZoneName");
+
+
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdBy");
@@ -26,7 +28,7 @@ public class ZoneMapper {
         return map;
     }
 
-    public String getField(String key) {
+    public static String getField(String key) {
         return map.get(key);
     }
 
@@ -35,14 +37,17 @@ public class ZoneMapper {
             return null;
         }
         GmoZone gmoZone = new GmoZone();
-
         gmoZone.setGmoZoneId(zone.getId());
-        gmoZone.setGmoZoneName(zone.getName());
+        gmoZone.setGmoZoneName(zone.getName() != null ? zone.getName().toUpperCase() : null);
+
+
         gmoZone.setCreatedBy(zone.getCreatedBy());
         gmoZone.setUpdatedBy(zone.getUpdatedBy());
         gmoZone.setCreationDate(zone.getCreationDate());
         gmoZone.setUpdateDate(zone.getUpdateDate());
+
         return gmoZone;
+
     }
 
     public static Zone toDto(GmoZone gmoZone, boolean lazy) {
@@ -50,26 +55,25 @@ public class ZoneMapper {
             return null;
         }
         Zone zone = new Zone();
-
-        zone.setId(gmoZone.getGmoZoneId());
+        zone.setId( gmoZone.getGmoZoneId());
         zone.setName(gmoZone.getGmoZoneName());
-        zone.setCreatedBy(gmoZone.getCreatedBy());
-        zone.setUpdatedBy(gmoZone.getUpdatedBy());
-        zone.setCreationDate(gmoZone.getCreationDate());
-        zone.setUpdateDate(gmoZone.getUpdateDate());
+
 
         return zone;
+
     }
+
 
     public static List<Zone> toDtos(Iterable<? extends GmoZone> gmoZones, boolean lazy) {
         if (null == gmoZones) {
             return null;
         }
-        List<Zone> zones = new ArrayList<>();
+        List<Zone> vehicules = new ArrayList<>();
+
         for (GmoZone gmoZone : gmoZones) {
-            zones.add(toDto(gmoZone, lazy));
+            vehicules.add(toDto(gmoZone, lazy));
         }
-        return zones;
+        return vehicules;
     }
 
     public static Set<GmoZone> toEntities(Set<Zone> zones, boolean lazy) {
@@ -93,5 +97,4 @@ public class ZoneMapper {
         }
         return zones;
     }
-
 }

@@ -38,7 +38,6 @@ public class TurnServiceImpl implements TurnService {
         if (0 <= Turn.getId()) {
             Turn.setCreationDate(EmsDate.getDateNow());
         }
-
         return TurnMapper.toDto(TurnRepository.saveAndFlush(TurnMapper.toEntity(Turn, false)), false);
     }
 

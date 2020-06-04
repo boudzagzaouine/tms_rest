@@ -1,17 +1,14 @@
 package com.bagile.gmo.services.impl;
 
-import com.bagile.gmo.dto.Zone;
+import  com.bagile.gmo.dto.Zone;
 import com.bagile.gmo.entities.GmoZone;
-import com.bagile.gmo.mapper.ZoneMapper;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.mapper.ZoneMapper;
 import com.bagile.gmo.repositories.ZoneRepository;
-import com.bagile.gmo.services.VehicleService;
 import com.bagile.gmo.services.ZoneService;
 import com.bagile.gmo.util.Search;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
