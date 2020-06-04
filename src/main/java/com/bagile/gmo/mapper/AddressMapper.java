@@ -81,7 +81,7 @@ public class AddressMapper {
         address.setVariable10(adrAddress.getAdrAddressVariable10());
         address.setAddressType(adrAddress.getAddAddressType());
         if (!lazy) {
-            address.setOwner(OwnerMapper.toDto(adrAddress.getOwnOwner(), true));
+            //address.setOwner(OwnerMapper.toDto(adrAddress.getOwnOwner(), true));
 //            address.setWarehouses(WarehouseMapper.toDtos(adrAddress.getWrhWarehouses(), true));
 //            address.setAccountsForAccountDeliveryAddress(
 //                    AccountMapper.toDtos(adrAddress.getCmdAccountsForCmdAccountDeliveryAddressId(), true));
@@ -134,7 +134,7 @@ public class AddressMapper {
         adrAddress.setAdrAddressVariable10(address.getVariable10());
         adrAddress.setAddAddressType(address.getAddressType());
         if (!lazy) {
-            adrAddress.setOwnOwner(OwnerMapper.toEntity(address.getOwner(), true));
+            //adrAddress.setOwnOwner(OwnerMapper.toEntity(address.getOwner(), true));
 //            adrAddress.setCmdAccountsForCmdAccountDeliveryAddressId(
 //                    AccountMapper.toEntities(address.getAccountsForAccountDeliveryAddress(), true));
 //            adrAddress.setCmdAccountsForCmdAccountInvoicesAddressId(

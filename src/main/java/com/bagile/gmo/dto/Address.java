@@ -14,10 +14,7 @@ public class Address extends EmsDto implements Serializable {
 
     private String code;
 
-    private Owner owner;
-
     private String contactTel;
-
     private String state;
 
     private String country;
@@ -57,13 +54,7 @@ public class Address extends EmsDto implements Serializable {
         this.state = state;
     }
 
-    public Owner getOwner() {
-        return this.owner;
-    }
 
-    public void setOwner(Owner owner) {
-        this.owner = owner;
-    }
 
     public String getCountry() {
         return this.country;
