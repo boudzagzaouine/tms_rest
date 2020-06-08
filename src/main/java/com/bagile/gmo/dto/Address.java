@@ -11,12 +11,9 @@ public class Address extends EmsDto implements Serializable {
     private static final long serialVersionUID = -3114245505328260439L;
 
     private long id;
-
     private String code;
-
     private String contactTel;
     private String state;
-
     private String country;
     private String zip;
     private String city;

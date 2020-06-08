@@ -84,6 +84,12 @@ public class TransportServiceImpl implements TransportService {
     }
 
     @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            transportRepository.deleteById(id);        }
+    }
+    @Override
     public List<Transport> findAll() {
         return TransportMapper.toDtos(transportRepository.findAll(), false);
     }

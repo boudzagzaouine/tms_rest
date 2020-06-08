@@ -26,6 +26,7 @@ public interface TransportService {
     void delete(Long id);
 
     void delete(Transport transport);
+    void deleteAll (List<Long> ids);
 
     List<Transport> findAll();
 
