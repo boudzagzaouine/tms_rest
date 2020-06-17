@@ -13,6 +13,8 @@ public class CommissionType extends EmsDto implements Serializable {
     private long id;
     private String code;
     private String description;
+    private long  minDistance;
+    private long  maxDistance;
     private BigDecimal percentage ;
     private List<CommissionDriver> commissions = new ArrayList<>();
 
@@ -48,6 +50,21 @@ public class CommissionType extends EmsDto implements Serializable {
         this.description = description;
     }
 
+    public long getMinDistance() {
+        return minDistance;
+    }
+
+    public void setMinDistance(long minDistance) {
+        this.minDistance = minDistance;
+    }
+
+    public long getMaxDistance() {
+        return maxDistance;
+    }
+
+    public void setMaxDistance(long maxDistance) {
+        this.maxDistance = maxDistance;
+    }
 
     public List<CommissionDriver> getCommissions() {
         return commissions;

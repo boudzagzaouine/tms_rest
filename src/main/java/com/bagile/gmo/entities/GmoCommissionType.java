@@ -15,6 +15,8 @@ public class GmoCommissionType extends EmsEntity {
     private long gmoCommissionTypeId;
     private String gmoCommissionTypeCode;
     private String gmoCommissionTypeDescription;
+    private long gmoCommissionTypeMinDistance;
+    private long gmoCommissionTypeMaxDistance;
     private BigDecimal gmoCommissionTypePercentage;
     private Set<GmoCommissionDriver> gmoCommissions = new HashSet<>();
 
@@ -47,13 +49,31 @@ public class GmoCommissionType extends EmsEntity {
     public void setGmoCommissionTypeDescription(String gmoCommissionTypeDescription) {
         this.gmoCommissionTypeDescription = gmoCommissionTypeDescription;
     }
-    @Column(name = "gmo_commissiontypepourcentage", length = 90)
+    @Column(name = "gmo_commissiontypepourcentage")
     public BigDecimal getGmoCommissionTypepercentage() {
         return gmoCommissionTypePercentage;
     }
 
     public void setGmoCommissionTypepercentage(BigDecimal gmoCommissionTypepercentage) {
         this.gmoCommissionTypePercentage = gmoCommissionTypepercentage;
+    }
+
+    @Column(name = "gmo_commissiontypemindistance")
+    public long getGmoCommissionTypeMinDistance() {
+        return gmoCommissionTypeMinDistance;
+    }
+
+    public void setGmoCommissionTypeMinDistance(long gmoCommissionTypeMinDistance) {
+        this.gmoCommissionTypeMinDistance = gmoCommissionTypeMinDistance;
+    }
+
+    @Column(name = "gmo_commissiontypemaxdistance")
+    public long getGmoCommissionTypeMaxDistance() {
+        return gmoCommissionTypeMaxDistance;
+    }
+
+    public void setGmoCommissionTypeMaxDistance(long gmoCommissionTypeMaxDistance) {
+        this.gmoCommissionTypeMaxDistance = gmoCommissionTypeMaxDistance;
     }
 
     @OneToMany(mappedBy = "gmoCommissionType",cascade = CascadeType.ALL,fetch = FetchType.LAZY)

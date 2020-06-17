@@ -23,20 +23,20 @@ public class CentralControllerHandler {
 
     @ExceptionHandler({RuntimeException.class})
     public ResponseEntity<RuntimeException> handleNotFound(RuntimeException pe) {
-        LOGGER.error(pe.getMessage());
+        LOGGER.error(pe.getMessage(),pe);
         return new ResponseEntity<RuntimeException>(pe, HttpStatus.SEE_OTHER);
     }
 
     @ExceptionHandler({ClassNotFoundException.class})
     public ResponseEntity<ClassNotFoundException> handleNotFound(ClassNotFoundException pe) {
-        LOGGER.error(pe.getMessage());
+        LOGGER.error(pe.getMessage(),pe);
         return new ResponseEntity<ClassNotFoundException>(pe, HttpStatus.SEE_OTHER);
     }
 
 
     @ExceptionHandler({TypeMismatchException.class})
     public ResponseEntity<TypeMismatchException> handlePersonNotFound(TypeMismatchException pe) {
-        LOGGER.error(pe.getMessage());
+        LOGGER.error(pe.getMessage(),pe);
         return new ResponseEntity<TypeMismatchException>(pe,
                 HttpStatus.SEE_OTHER);
     }
@@ -50,22 +50,22 @@ public class CentralControllerHandler {
         try {
             validatorException = new ValidatorException(pe);
         } catch (NoSuchMethodException e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(),pe);
             //e.printStackTrace();
         } catch (IllegalAccessException e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(),e);
             //e.printStackTrace();
         } catch (InstantiationException e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(),e);
             //e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(),e);
             //e.printStackTrace();
         } catch (InvocationTargetException e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(),e);
             //e.printStackTrace();
         } catch (NoSuchFieldException e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(),e);
             //e.printStackTrace();
         }
         LOGGER.error(pe.getMessage());
@@ -74,17 +74,19 @@ public class CentralControllerHandler {
 
     @ExceptionHandler({ValidatorException.class})
     public ResponseEntity<ValidatorException> validator(ValidatorException pe) {
-        LOGGER.error(pe.getMessage());
+        LOGGER.error(pe.getMessage(),pe);
         return new ResponseEntity<ValidatorException>(pe, HttpStatus.SEE_OTHER);
     }
 
     @ExceptionHandler({IdNotFound.class})
     public ResponseEntity<IdNotFound> handleIdNotFound(IdNotFound pe) {
+
         return new ResponseEntity<IdNotFound>(pe, HttpStatus.SEE_OTHER);
     }
 
     @ExceptionHandler({AttributesNotFound.class})
     public ResponseEntity<AttributesNotFound> handleIdNotFound(AttributesNotFound pe) {
+        LOGGER.error(pe.getMessage(),pe);
         return new ResponseEntity<AttributesNotFound>(pe, HttpStatus.SEE_OTHER);
     }
 
@@ -100,7 +102,7 @@ public class CentralControllerHandler {
 
     @ExceptionHandler({Exception.class})
     public ResponseEntity<Exception> handleException(Exception pe) {
-        LOGGER.error(pe.getMessage());
+        LOGGER.error(pe.getMessage(),pe);
         return new ResponseEntity<>(pe, HttpStatus.SEE_OTHER);
     }
 }

@@ -1,7 +1,6 @@
 package com.bagile.gmo.mapper;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -71,7 +70,7 @@ public class VehicleMapper {
         GmoVehicle gmoVehicle = new GmoVehicle();
         gmoVehicle.setGmoPatrimonyId(vehicle.getId());
         gmoVehicle.setGmoRegistrationNumber(vehicle.getRegistrationNumber());
-        gmoVehicle.setGmoVehicleCode(vehicle.getCode() != null ? vehicle.getCode().toUpperCase() : null);
+        gmoVehicle.setGmoPatrimonyCode(vehicle.getCode() != null ? vehicle.getCode().toUpperCase() : null);
         gmoVehicle.setGmoVehicleTechnicalVisit(vehicle.getTechnicalVisit());
         gmoVehicle.setGmoVehicleValueTechnicalvisit(vehicle.getValueTechnicalVisit());
         gmoVehicle.setGmoAquisitionDate(vehicle.getAquisitionDate());
@@ -117,7 +116,7 @@ public class VehicleMapper {
         Vehicle vehicle = new Vehicle();
         vehicle.setId(gmoVehicle.getGmoPatrimonyId());
         vehicle.setRegistrationNumber(gmoVehicle.getGmoRegistrationNumber());
-        vehicle.setCode(gmoVehicle.getGmoVehicleCode());
+        vehicle.setCode(gmoVehicle.getGmoPatrimonyCode());
         vehicle.setTechnicalVisit(gmoVehicle.getGmoVehicleTechnicalVisit());
         vehicle.setValueTechnicalVisit(gmoVehicle.getGmoVehicleValueTechnicalvisit());
 

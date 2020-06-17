@@ -33,5 +33,16 @@ public abstract class GmoPatrimony extends EmsEntity {
         this.gmoPatrimonyId = gmoPatrimonyId;
     }
 
+    @Column(name = "gmo_patrimonycode", unique = true, nullable = false, length = 90)
+    public String getGmoPatrimonyCode() {
+        return gmoPatrimonyCode;
+    }
+
+    public void setGmoPatrimonyCode(String gmoMachineCode) {
+        this.gmoPatrimonyCode = gmoMachineCode;
+    }
+    private String gmoPatrimonyCode;
+
+
 
 }

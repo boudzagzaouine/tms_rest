@@ -91,6 +91,7 @@ public class VehicleServiceImpl implements VehicleService {
     }
     @Override
     public List<Vehicle> findAll() {
+
         return VehicleMapper.toDtos(vehicleRepository.findAll(), false);
     }
 

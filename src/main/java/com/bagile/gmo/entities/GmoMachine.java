@@ -3,8 +3,6 @@ package com.bagile.gmo.entities;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "gmo_machine")
@@ -13,7 +11,7 @@ public class GmoMachine extends GmoPatrimony {
 
 	private static final long serialVersionUID = 612360418697069780L;
 
-    private String gmoMachineCode;
+   // private String gmoPatrimonyCode;
     private GmoContractType gmoContractType;
     private GmoConsumptionType gmoConsumptionType;
     private Date gmoMachineAquisitionDate;
@@ -21,15 +19,15 @@ public class GmoMachine extends GmoPatrimony {
     private TrpTransport trpTransport;
 
 
-    @Column(name = "gmo_machinecode", unique = true, nullable = false, length = 90)
-    public String getGmoMachineCode() {
-        return gmoMachineCode;
+   /* @Column(name = "gmo_machinecode", unique = true, nullable = false, length = 90)
+    public String getGmoPatrimonyCode() {
+        return gmoPatrimonyCode;
     }
 
-    public void setGmoMachineCode(String gmoMachineCode) {
-        this.gmoMachineCode = gmoMachineCode;
+    public void setGmoPatrimonyCode(String gmoMachineCode) {
+        this.gmoPatrimonyCode = gmoMachineCode;
     }
-
+*/
 
 
     @Column(name = "gmo_machineaquisitiondate")

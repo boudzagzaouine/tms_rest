@@ -17,6 +17,8 @@ public class CommissionTypeMapper {
         map.put("id", "gmoCommissionTypeId");
         map.put("code", "gmoCommissionTypeCode");
         map.put("description", "gmoCommissionTypeDescription");
+        map.put("minDistance", "gmoCommissionTypeMinDistance");
+        map.put("maxDistance", "gmoCommissionTypeMaxDistance");
         map.put("percentage", "gmoCommissionTypePercentage");
 
         map.put("creationDate", "creationDate");
@@ -33,21 +35,22 @@ public class CommissionTypeMapper {
         return map.get(key);
     }
 
-    public static GmoCommissionType toEntity(CommissionType badgeType, boolean lazy) {
-        if (null == badgeType) {
+    public static GmoCommissionType toEntity(CommissionType commissionType, boolean lazy) {
+        if (null == commissionType) {
             return null;
         }
         GmoCommissionType gmoCommissionType = new GmoCommissionType();
-        gmoCommissionType.setGmoCommissionTypeId(badgeType.getId());
-        gmoCommissionType.setGmoCommissionTypeCode(badgeType.getCode() != null ? badgeType.getCode().toUpperCase() : null);
-        gmoCommissionType.setGmoCommissionTypeDescription (badgeType.getDescription ());
-        gmoCommissionType.setGmoCommissionTypepercentage (badgeType.getPercentage ());
+        gmoCommissionType.setGmoCommissionTypeId(commissionType.getId());
+        gmoCommissionType.setGmoCommissionTypeCode(commissionType.getCode() != null ? commissionType.getCode().toUpperCase() : null);
+        gmoCommissionType.setGmoCommissionTypeDescription (commissionType.getDescription ());
+        gmoCommissionType.setGmoCommissionTypepercentage (commissionType.getPercentage ());
+        gmoCommissionType.setGmoCommissionTypeMinDistance (commissionType.getMinDistance ());
+        gmoCommissionType.setGmoCommissionTypeMaxDistance (commissionType.getMaxDistance ());
 
-
-        gmoCommissionType.setCreatedBy(badgeType.getCreatedBy());
-        gmoCommissionType.setUpdatedBy(badgeType.getUpdatedBy());
-        gmoCommissionType.setCreationDate(badgeType.getCreationDate());
-        gmoCommissionType.setUpdateDate(badgeType.getUpdateDate());
+        gmoCommissionType.setCreatedBy(commissionType.getCreatedBy());
+        gmoCommissionType.setUpdatedBy(commissionType.getUpdatedBy());
+        gmoCommissionType.setCreationDate(commissionType.getCreationDate());
+        gmoCommissionType.setUpdateDate(commissionType.getUpdateDate());
 
         return gmoCommissionType;
 
@@ -57,14 +60,15 @@ public class CommissionTypeMapper {
         if (null == gmoCommissionType) {
             return null;
         }
-        CommissionType badgeType = new CommissionType();
-        badgeType.setId((int) gmoCommissionType.getGmoCommissionTypeId());
-        badgeType.setCode(gmoCommissionType.getGmoCommissionTypeCode());
-        badgeType.setDescription (gmoCommissionType.getGmoCommissionTypeDescription ());
-        badgeType.setPercentage (gmoCommissionType.getGmoCommissionTypepercentage ());
+        CommissionType commissionType = new CommissionType();
+        commissionType.setId((int) gmoCommissionType.getGmoCommissionTypeId());
+        commissionType.setCode(gmoCommissionType.getGmoCommissionTypeCode());
+        commissionType.setDescription (gmoCommissionType.getGmoCommissionTypeDescription ());
+        commissionType.setPercentage (gmoCommissionType.getGmoCommissionTypepercentage ());
+        commissionType.setMinDistance (gmoCommissionType.getGmoCommissionTypeMinDistance ());
+        commissionType.setMaxDistance (gmoCommissionType.getGmoCommissionTypeMaxDistance ());
 
-
-        return badgeType;
+        return commissionType;
 
     }
 
@@ -86,8 +90,8 @@ public class CommissionTypeMapper {
             return null;
         }
         Set<GmoCommissionType> gmoCommissionTypes = new HashSet<>();
-        for (CommissionType badgeType : commissionType) {
-            gmoCommissionTypes.add(toEntity(badgeType, lazy));
+        for (CommissionType commissionTypee : commissionType) {
+            gmoCommissionTypes.add(toEntity(commissionTypee, lazy));
         }
         return gmoCommissionTypes;
     }

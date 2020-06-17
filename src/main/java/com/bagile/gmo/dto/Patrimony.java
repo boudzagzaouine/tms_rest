@@ -1,7 +1,5 @@
 package com.bagile.gmo.dto;
 
-import javax.persistence.MappedSuperclass;
-
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
@@ -20,7 +18,7 @@ public abstract class Patrimony extends EmsDto {
 
 
 	private long id ;
-	private String Code;
+	private String code;
 
 	public Long getId() {
 		return id;
@@ -31,10 +29,10 @@ public abstract class Patrimony extends EmsDto {
 	}
 
 	public String getCode() {
-		return Code;
+		return code;
 	}
 
 	public void setCode(String code) {
-		Code = code;
+		this.code = code;
 	}
 }

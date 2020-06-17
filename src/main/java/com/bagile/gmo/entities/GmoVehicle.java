@@ -16,7 +16,6 @@ public class GmoVehicle extends GmoPatrimony {
 
 	//private long gmoVehicleId;
     private String gmoRegistrationNumber;
-    private String gmoVehicleCode;
     private Date gmoVehicleTechnicalVisit;
     private BigDecimal gmoVehicleValueTechnicalvisit;
     private GmoVehicleCategory gmoVehicleCategory;
@@ -69,15 +68,15 @@ public class GmoVehicle extends GmoPatrimony {
         this.gmoRegistrationNumber = gmoRegistrationNumber;
     }
 
-    @Column(name = "gmo_vehiculecode", unique = true, nullable = false, length = 90)
-    public String getGmoVehicleCode() {
-        return gmoVehicleCode;
+  /*  @Column(name = "gmo_vehiculecode", unique = true, nullable = false, length = 90)
+    public String getGmoPatrimonyCode() {
+        return gmoPatrimonyCode;
     }
 
-    public void setGmoVehicleCode(String gmoVehicleCode) {
-        this.gmoVehicleCode = gmoVehicleCode;
+    public void setGmoPatrimonyCode(String gmoVehicleCode) {
+        this.gmoPatrimonyCode = gmoVehicleCode;
     }
-
+*/
     @Temporal(TemporalType.DATE)
     @Column(name = "gmo_vehiculetechnicalvisit")
     public Date getGmoVehicleTechnicalVisit() {

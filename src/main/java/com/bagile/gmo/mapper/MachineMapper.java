@@ -42,7 +42,7 @@ public class MachineMapper {
         }
         GmoMachine gmoMachine = new GmoMachine();
         gmoMachine.setGmoPatrimonyId(machine.getId());
-        gmoMachine.setGmoMachineCode(machine.getCode() != null ? machine.getCode().toUpperCase() : null);
+        gmoMachine.setGmoPatrimonyCode(machine.getCode() != null ? machine.getCode().toUpperCase() : null);
         gmoMachine.setGmoMachineAquisitionDate(machine.getAquisitionDate());
         gmoMachine.setGmoMachineAamount(machine.getAmount());
 
@@ -65,7 +65,7 @@ public class MachineMapper {
         }
         Machine machine = new Machine();
         machine.setId(gmoMachine.getGmoPatrimonyId());
-        machine.setCode(gmoMachine.getGmoMachineCode());
+        machine.setCode(gmoMachine.getGmoPatrimonyCode());
         machine.setAquisitionDate(gmoMachine.getGmoMachineAquisitionDate());
         machine.setAmount(gmoMachine.getGmoMachineAamount());
 

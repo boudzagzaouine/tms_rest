@@ -2,10 +2,12 @@ package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.Patrimony;
 import com.bagile.gmo.entities.GmoPatrimony;
+import com.bagile.gmo.entities.GmoVehicle;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.PatrimonyMapper;
+import com.bagile.gmo.mapper.VehicleMapper;
 import com.bagile.gmo.repositories.PatrimonyRepository;
 import com.bagile.gmo.services.PatrimonyService;
 import com.bagile.gmo.util.Search;
@@ -50,12 +52,21 @@ public class PatrimonyServiceImpl implements PatrimonyService {
 
     @Override
     public List<Patrimony> find(String search) throws AttributesNotFound, ErrorType {
-        return null;
+        if (search.equals("")){
+            return findAll ();
+        }
+        return PatrimonyMapper.toDtos(patrimonyRepository.findAll(Search.expression(search, GmoPatrimony.class)), false);
+
     }
 
     @Override
     public List<Patrimony> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
-        return null;
+        if (search.equals("")){
+            return findAll (page, size);
+        }
+        Pageable pageable = PageRequest.of(page, size);
+        return PatrimonyMapper.toDtos(patrimonyRepository.findAll(Search.expression(search, GmoPatrimony.class), pageable), false);
+
     }
 
 
@@ -85,12 +96,16 @@ public class PatrimonyServiceImpl implements PatrimonyService {
 
     @Override
     public List<Patrimony> findAll() {
-        return null;
+
+        return PatrimonyMapper.toDtos(patrimonyRepository.findAll(), false);
+
     }
 
     @Override
     public List<Patrimony> findAll(int page, int size) {
-        return null;
-    }
+        Sort sort = Sort.by (Sort.Direction.DESC, "updateDate");
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        return PatrimonyMapper.toDtos(patrimonyRepository.findAll(pageable), false);    }
 
 }
