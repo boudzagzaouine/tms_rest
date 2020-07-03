@@ -16,6 +16,7 @@ public class Machine extends Patrimony implements Serializable {
     private static final long serialVersionUID = 6072929769333595397L;
    // private long id;
     //private String code;
+   private String ref;
     private ContractType contractType;
     private ConsumptionType consumptionType;
     private Date aquisitionDate;
@@ -46,6 +47,15 @@ public class Machine extends Patrimony implements Serializable {
     }
 
 */
+
+    public String getRef() {
+        return ref;
+    }
+
+    public void setRef(String ref) {
+        this.ref = ref;
+    }
+
     public Date getAquisitionDate() {
         return aquisitionDate;
     }

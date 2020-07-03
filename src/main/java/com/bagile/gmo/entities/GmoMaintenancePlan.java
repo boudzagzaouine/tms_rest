@@ -43,12 +43,29 @@ public class GmoMaintenancePlan extends EmsEntity {
     @JoinColumn(name = "gmo_maintenancetypeid")
     private GmoMaintenanceType gmoMaintenanceType;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_programetypeid")
+    private GmoProgramType gmoProgramType;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_operationtypeid")
+    private GmoOperationType gmoOperationType;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_serviceproviderid")
+    private GmoServiceProvider gmoServiceProvider;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_responsabilityid")
+    private GmoResponsability gmoResponsability;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_periodicitytypeid")
+    private GmoPeriodicityType gmoPeriodicityType;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_maintenancestateid")
     private GmoMaintenanceState gmoMaintenanceState;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private GmoPatrimony gmoPatrimony;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "gmoMaintenanceLineId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "gmoMaintenancePlan")
     private Set<GmoMaintenanceLine> gmoMaintenanceLines = new HashSet<> ();
     @Column(name = "gmo_maintenanceplantotalprice")
     private BigDecimal gmoMaintenancePlanTotalPrice = BigDecimal.ZERO;
@@ -98,6 +115,46 @@ public class GmoMaintenancePlan extends EmsEntity {
 
     public void setGmoMaintenancePlanEndDate(Date gmoMaintenancePlanEndDate) {
         this.gmoMaintenancePlanEndDate = gmoMaintenancePlanEndDate;
+    }
+
+    public GmoProgramType getGmoProgramType() {
+        return gmoProgramType;
+    }
+
+    public void setGmoProgramType(GmoProgramType gmoProgramType) {
+        this.gmoProgramType = gmoProgramType;
+    }
+
+    public GmoOperationType getGmoOperationType() {
+        return gmoOperationType;
+    }
+
+    public void setGmoOperationType(GmoOperationType gmoOperationType) {
+        this.gmoOperationType = gmoOperationType;
+    }
+
+    public GmoServiceProvider getGmoServiceProvider() {
+        return gmoServiceProvider;
+    }
+
+    public void setGmoServiceProvider(GmoServiceProvider gmoServiceProvider) {
+        this.gmoServiceProvider = gmoServiceProvider;
+    }
+
+    public GmoResponsability getGmoResponsability() {
+        return gmoResponsability;
+    }
+
+    public void setGmoResponsability(GmoResponsability gmoResponsability) {
+        this.gmoResponsability = gmoResponsability;
+    }
+
+    public GmoPeriodicityType getGmoPeriodicityType() {
+        return gmoPeriodicityType;
+    }
+
+    public void setGmoPeriodicityType(GmoPeriodicityType gmoPeriodicityType) {
+        this.gmoPeriodicityType = gmoPeriodicityType;
     }
 
     public GmoMaintenanceType getGmoMaintenanceType() {

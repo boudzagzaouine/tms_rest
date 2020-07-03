@@ -16,6 +16,8 @@ public class MachineMapper {
 
         map.put("id", "gmoPatrimonyId");
         map.put("code", "gmoMachineCode");
+        map.put("ref", "gmoMachineRef");
+
         map.put("contractType", "gmoContractType");
         map.put("consumptiontype", "gmoConsumptionType");
         map.put("aquisitionDate", "gmoAquisitionDate");
@@ -45,6 +47,7 @@ public class MachineMapper {
         gmoMachine.setGmoPatrimonyCode(machine.getCode() != null ? machine.getCode().toUpperCase() : null);
         gmoMachine.setGmoMachineAquisitionDate(machine.getAquisitionDate());
         gmoMachine.setGmoMachineAamount(machine.getAmount());
+        gmoMachine.setGmoMachineRef(machine.getRef());
 
 
 
@@ -68,6 +71,7 @@ public class MachineMapper {
         machine.setCode(gmoMachine.getGmoPatrimonyCode());
         machine.setAquisitionDate(gmoMachine.getGmoMachineAquisitionDate());
         machine.setAmount(gmoMachine.getGmoMachineAamount());
+        machine.setRef(gmoMachine.getGmoMachineRef());
 
         machine.setCreatedBy(gmoMachine.getCreatedBy());
         machine.setUpdatedBy(gmoMachine.getUpdatedBy());

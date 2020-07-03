@@ -43,6 +43,4 @@ public abstract class GmoPatrimony extends EmsEntity {
     }
     private String gmoPatrimonyCode;
 
-
-
 }

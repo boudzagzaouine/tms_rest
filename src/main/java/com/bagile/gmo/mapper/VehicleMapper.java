@@ -21,7 +21,7 @@ public class VehicleMapper {
 
         map.put("id", "gmoPatrimonyId");
         map.put("registrationNumber", "gmoRegistrationNumber");
-        map.put("code", "gmoVehicleCode");
+        map.put("code", "gmoPatrimonyCode");
         map.put("technicalVisit", "gmoVehicleTechnicalVisit");
         map.put("valueTechnicalVisit", "gmoVehicleValueTechnicalvisit");
         map.put("creationDate", "creationDate");

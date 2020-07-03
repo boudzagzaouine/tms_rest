@@ -1,5 +1,7 @@
 package com.bagile.gmo.entities;
 
+import com.bagile.gmo.dto.MaintenancePlan;
+
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,14 +25,15 @@ public class GmoMaintenanceLine extends EmsEntity {
 	private static final long serialVersionUID = -6143066188263513604L;
 	
 	private long gmoMaintenanceLineId;
-    private GmoMaintenanceLineRef gmoMaintenanceLineRef;
-
-    private Set<GmoMaintenanceProduct> gmoMaintenanceLineProducts = new HashSet<>();
+    private PdtProduct pdtProduct;
+    private GmoAction gmoAction;
+    private GmoMaintenanceState gmoMaintenanceState;
     private String gmoMaintenanceLineDescription;
     private BigDecimal gmoMaintenanceLineTotalPriceHT;
     private BigDecimal gmoMaintenanceLineTotalPriceTTC;
     private  BigDecimal gmoAmountVat;
-    
+    private GmoMaintenancePlan gmoMaintenancePlan ;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "seq")
     @SequenceGenerator (name = "seq", sequenceName = "seq_gmo_maintenance_line_id", allocationSize = 1)
@@ -43,23 +46,48 @@ public class GmoMaintenanceLine extends EmsEntity {
         this.gmoMaintenanceLineId = gmoMaintenanceLineId;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "gmo_maintenancelinerefid")
-    public GmoMaintenanceLineRef getGmoMaintenanceLineRef() {
-        return gmoMaintenanceLineRef;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "pdt_productid")
+    public PdtProduct getPdtProduct() {
+        return pdtProduct;
     }
 
-    public void setGmoMaintenanceLineRef(GmoMaintenanceLineRef gmoMaintenanceLineRef) {
-        this.gmoMaintenanceLineRef = gmoMaintenanceLineRef;
+    public void setPdtProduct(PdtProduct pdtProduct) {
+        this.pdtProduct = pdtProduct;
     }
 
-    @OneToMany(cascade = CascadeType.ALL)
-    public Set<GmoMaintenanceProduct> getGmoMaintenanceLineProducts() {
-        return gmoMaintenanceLineProducts;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "gmo_actionid")
+    public GmoAction getGmoAction() {
+        return gmoAction;
     }
 
-    public void setGmoMaintenanceLineProducts(Set<GmoMaintenanceProduct> gmoMaintenanceLineProducts) {
-        this.gmoMaintenanceLineProducts = gmoMaintenanceLineProducts;
+    public void setGmoAction(GmoAction gmoAction) {
+        this.gmoAction = gmoAction;
+    }
+
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "gmo_maintenanceplanid")
+    public GmoMaintenancePlan getGmoMaintenancePlan() {
+        return gmoMaintenancePlan;
+    }
+
+    public void setGmoMaintenancePlan(GmoMaintenancePlan gmoMaintenancePlan) {
+        this.gmoMaintenancePlan = gmoMaintenancePlan;
+    }
+
+
+
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "gmo_maintenancestateid")
+    public GmoMaintenanceState getGmoMaintenanceState() {
+        return gmoMaintenanceState;
+    }
+
+    public void setGmoMaintenanceState(GmoMaintenanceState gmoMaintenanceState) {
+        this.gmoMaintenanceState = gmoMaintenanceState;
     }
 
     @Column(name = "gmo_maintenancelinedescription")

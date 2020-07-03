@@ -19,6 +19,11 @@ public class MaintenancePlan extends EmsDto implements Serializable {
     private Date startDate;
     private Date endDate;
     private MaintenanceType maintenanceType;
+    private ProgramType programType;
+    private OperationType operationType;
+    private ServiceProvider serviceProvider;
+    private Responsability responsability;
+    private PeriodicityType periodicityType;
     private MaintenanceState maintenanceState;
     private Patrimony patrimony;
     private Double mileage = 0.0;
@@ -114,6 +119,50 @@ public class MaintenancePlan extends EmsDto implements Serializable {
     }
 
     public void setMaintenanceLineList(List<MaintenanceLine> maintenanceLines) {
+        this.maintenanceLines = maintenanceLines;
+    }
+
+    public ProgramType getProgramType() {
+        return programType;
+    }
+
+    public void setProgramType(ProgramType programType) {
+        this.programType = programType;
+    }
+
+    public OperationType getOperationType() {
+        return operationType;
+    }
+
+    public void setOperationType(OperationType operationType) {
+        this.operationType = operationType;
+    }
+
+    public ServiceProvider getServiceProvider() {
+        return serviceProvider;
+    }
+
+    public void setServiceProvider(ServiceProvider serviceProvider) {
+        this.serviceProvider = serviceProvider;
+    }
+
+    public Responsability getResponsability() {
+        return responsability;
+    }
+
+    public void setResponsability(Responsability responsability) {
+        this.responsability = responsability;
+    }
+
+    public PeriodicityType getPeriodicityType() {
+        return periodicityType;
+    }
+
+    public void setPeriodicityType(PeriodicityType periodicityType) {
+        this.periodicityType = periodicityType;
+    }
+
+    public void setMaintenanceLines(List<MaintenanceLine> maintenanceLines) {
         this.maintenanceLines = maintenanceLines;
     }
 

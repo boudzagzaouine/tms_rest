@@ -12,6 +12,7 @@ public class GmoMachine extends GmoPatrimony {
 	private static final long serialVersionUID = 612360418697069780L;
 
    // private String gmoPatrimonyCode;
+    private String gmoMachineRef;
     private GmoContractType gmoContractType;
     private GmoConsumptionType gmoConsumptionType;
     private Date gmoMachineAquisitionDate;
@@ -28,6 +29,16 @@ public class GmoMachine extends GmoPatrimony {
         this.gmoPatrimonyCode = gmoMachineCode;
     }
 */
+
+   @Column(name = "gmo_machineref")
+    public String getGmoMachineRef() {
+        return gmoMachineRef;
+    }
+
+    public void setGmoMachineRef(String gmoMachineRef) {
+        this.gmoMachineRef = gmoMachineRef;
+    }
+
 
 
     @Column(name = "gmo_machineaquisitiondate")

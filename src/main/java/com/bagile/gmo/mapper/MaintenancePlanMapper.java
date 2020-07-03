@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.bagile.gmo.dto.MaintenancePlan;
+import com.bagile.gmo.dto.PeriodicityType;
 import com.bagile.gmo.entities.GmoMaintenancePlan;
 
 public class MaintenancePlanMapper {
@@ -26,6 +27,12 @@ public class MaintenancePlanMapper {
         map.put("endDate", "gmoMaintenancePlanEndDate");
         map.put("maintenanceType", "gmoMaintenanceType");
         map.put("maintenanceState", "gmoMaintenanceState");
+        map.put("programType", "gmoMaintenanceType");
+        map.put("operationType", "gmoOperationType");
+        map.put("serviceProvider", "gmoServiceProvider");
+        map.put("responsability", "gmoResponsability");
+        map.put("periodicityType", "gmoPeriodicityType");
+
         map.put("patrimony", "gmoPatrimony");
         map.put("totalPrice", "gmoMaintenancePlanTotalPrice");
 
@@ -69,6 +76,12 @@ public class MaintenancePlanMapper {
             gmoMaintenancePlan.setGmoPatrimony(PatrimonyMapper.toEntity(maintenancePlan.getPatrimony(),false));
             gmoMaintenancePlan.setGmoMaintenanceLines (MaintenanceLineMapper.toEntities (maintenancePlan.getMaintenanceLines(), false));
 
+            gmoMaintenancePlan.setGmoPeriodicityType(PeriodicityTypeMapper.toEntity(maintenancePlan.getPeriodicityType(),false));
+            gmoMaintenancePlan.setGmoResponsability (ResponsabilityMapper.toEntity (maintenancePlan.getResponsability(), false));
+            gmoMaintenancePlan.setGmoServiceProvider(ServiceProviderMapper.toEntity(maintenancePlan.getServiceProvider(),false));
+            gmoMaintenancePlan.setGmoOperationType (OperationTypeMapper.toEntity (maintenancePlan.getOperationType(), false));
+            gmoMaintenancePlan.setGmoProgramType(ProgramTypeMapper.toEntity(maintenancePlan.getProgramType(),false));
+
         }
         return gmoMaintenancePlan;
     }
@@ -95,6 +108,13 @@ public class MaintenancePlanMapper {
             maintenancePlan.setMaintenanceState(MaintenanceStateMapper.toDto(gmoMaintenancePlan.getGmoMaintenanceState(), lazy));
             maintenancePlan.setPatrimony(PatrimonyMapper.toDto(gmoMaintenancePlan.getGmoPatrimony(),lazy));
             maintenancePlan.setMaintenanceLineList (MaintenanceLineMapper.toDtos (gmoMaintenancePlan.getGmoMaintenanceLines (), lazy));
+
+            maintenancePlan.setPeriodicityType(PeriodicityTypeMapper.toDto(gmoMaintenancePlan.getGmoPeriodicityType(),lazy));
+            maintenancePlan.setResponsability (ResponsabilityMapper.toDto (gmoMaintenancePlan.getGmoResponsability (), lazy));
+            maintenancePlan.setServiceProvider(ServiceProviderMapper.toDto(gmoMaintenancePlan.getGmoServiceProvider(),lazy));
+            maintenancePlan.setOperationType (OperationTypeMapper.toDto (gmoMaintenancePlan.getGmoOperationType (), lazy));
+            maintenancePlan.setProgramType(ProgramTypeMapper.toDto(gmoMaintenancePlan.getGmoProgramType(),lazy));
+
         }
 
         return maintenancePlan;

@@ -22,8 +22,7 @@ public class GmoAction extends EmsEntity implements java.io.Serializable {
 	@NotNull
 	private String gmoActionCode;
 	private String gmoActionDescription;
-	private GmoMaintenanceLineRef gmoMaintenanceLineRef;
-	
+
 	@Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_action_id", allocationSize = 1)
@@ -51,11 +50,5 @@ public class GmoAction extends EmsEntity implements java.io.Serializable {
 		this.gmoActionDescription = gmoActionDescription;
 	}
 
-	@ManyToOne
-    public GmoMaintenanceLineRef getGmoMaintenanceLineRef() {
-		return gmoMaintenanceLineRef;
-	}
-	public void setGmoMaintenanceLineRef(GmoMaintenanceLineRef gmoMaintenanceLineRef) {
-		this.gmoMaintenanceLineRef = gmoMaintenanceLineRef;
-	}
+
 }

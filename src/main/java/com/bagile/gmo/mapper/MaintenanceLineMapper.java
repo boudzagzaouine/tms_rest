@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.bagile.gmo.dto.MaintenanceLine;
+import com.bagile.gmo.dto.MaintenanceState;
 import com.bagile.gmo.entities.GmoMaintenanceLine;
 
 public class MaintenanceLineMapper {
@@ -20,8 +21,9 @@ public class MaintenanceLineMapper {
 		map = new HashMap<>();
 
 		map.put("id", "gmoMaintenanceLineId");
-		map.put("maintenanceLineRef", "gmoMaintenanceLineRef");
-		map.put("maintenanceLineProducts", "gmoMaintenanceLineProducts");
+		map.put("product", "pdtProduct");
+		map.put("action", "gmoAction");
+		map.put("maintenanceState", "gmoMaintenanceState");
 		map.put("description", "gmoMaintenanceLineDescription");
 		map.put("totalPriceHT", "gmoMaintenanceLineTotalPriceHT");
 		map.put("totalPriceTTC", "gmoMaintenanceLineTotalPriceTTC");
@@ -46,9 +48,13 @@ public class MaintenanceLineMapper {
 		gmoMaintenanceLine.setGmoAmountVat(maintenanceLine.getAmountVat());
 		if (!lazy) {
 			gmoMaintenanceLine
-			.setGmoMaintenanceLineRef(MaintenanceLineRefMapper.toEntity(maintenanceLine.getMaintenanceLineRef(), false));
+			.setGmoAction(ActionMapper.toEntity(maintenanceLine.getAction(), false));
 			gmoMaintenanceLine
-					.setGmoMaintenanceLineProducts(MaintenanceProductMapper.toEntities(maintenanceLine.getMaintenanceProducts(), false));
+					.setGmoMaintenanceState(MaintenanceStateMapper.toEntity(maintenanceLine.getMaintenanceState(), false));
+			gmoMaintenanceLine
+					.setPdtProduct(
+							ProductMapper.toEntity(maintenanceLine.getProduct(), false));
+
 		}
 		return gmoMaintenanceLine;
 	}
@@ -65,8 +71,10 @@ public class MaintenanceLineMapper {
 		maintenanceLine.setAmountVat(gmoMaintenanceLine.getGmoAmountVat());
 
 		if (!lazy) {
-			maintenanceLine.setMaintenanceProducts(MaintenanceProductMapper.toDtos(gmoMaintenanceLine.getGmoMaintenanceLineProducts(), lazy));
-			maintenanceLine.setMaintenanceLineRef(MaintenanceLineRefMapper.toDto(gmoMaintenanceLine.getGmoMaintenanceLineRef(), lazy));
+			maintenanceLine.setAction(ActionMapper.toDto(gmoMaintenanceLine.getGmoAction(), lazy));
+			maintenanceLine.setProduct(ProductMapper.toDto(gmoMaintenanceLine.getPdtProduct(), lazy));
+			maintenanceLine.setMaintenanceState(MaintenanceStateMapper.toDto(gmoMaintenanceLine.getGmoMaintenanceState(), lazy));
+
 		}
 		return maintenanceLine;
 	}
