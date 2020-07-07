@@ -1,10 +1,10 @@
 package com.bagile.gmo.controllers;
 
-import com.bagile.gmo.dto.Action;
+import com.bagile.gmo.dto.ActionLine;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
-import com.bagile.gmo.services.ActionService;
+import com.bagile.gmo.services.ActionLineService;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -12,86 +12,86 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/actions")
-public class ActionController {
+@RequestMapping(value = "/actionlines")
+public class ActionLineController {
 
-    private final ActionService actionService;
+    private final ActionLineService actionLineService;
 
-    public ActionController(ActionService actionService) {
-        this.actionService = actionService;
+    public ActionLineController(ActionLineService actionLineService) {
+        this.actionLineService = actionLineService;
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
-    public List<Action> getAll() {
-        return actionService.findAll();
+    public List<ActionLine> getAll() {
+        return actionLineService.findAll();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
-    public List<Action> getAll(@RequestParam int page, @RequestParam int size) {
-        return actionService.findAll(page, size);
+    public List<ActionLine> getAll(@RequestParam int page, @RequestParam int size) {
+        return actionLineService.findAll(page, size);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
-    public Action getOne(@PathVariable("id") Long id) throws IdNotFound {
-        return actionService.findById(id);
+    public ActionLine getOne(@PathVariable("id") Long id) throws IdNotFound {
+        return actionLineService.findById(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
     public Long size() {
-        return actionService.size();
+        return actionLineService.size();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
-        return actionService.size(search);
+        return actionLineService.size(search);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/exist")
     @ResponseBody
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
-        return actionService.isExist(id);
+        return actionLineService.isExist(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
-    public List<Action> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
-        return actionService.find(search);
+    public List<ActionLine> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
+        return actionLineService.find(search);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
-    public List<Action> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
-        return actionService.find(search, page, size);
+    public List<ActionLine> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
+        return actionLineService.find(search, page, size);
 
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Action add(@RequestBody Action action) {
-        return actionService.save(action);
+    public ActionLine add(@RequestBody ActionLine action) {
+        return actionLineService.save(action);
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Action set(@RequestBody Action action) {
-        return actionService.save(action);
+    public ActionLine set(@RequestBody ActionLine action) {
+        return actionLineService.save(action);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@RequestBody Action action) {
-        actionService.delete(action);
+    public void delete(@RequestBody ActionLine action) {
+        actionLineService.delete(action);
     }
 
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@PathVariable Long id) {
-        actionService.delete(id);
+        actionLineService.delete(id);
     }
 }

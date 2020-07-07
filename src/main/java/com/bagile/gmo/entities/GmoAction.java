@@ -1,54 +1,81 @@
 package com.bagile.gmo.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "gmo_action")
-public class GmoAction extends EmsEntity implements java.io.Serializable {
+@Table(name="gmo_action")
+public class GmoAction extends EmsEntity {
 
-	private static final long serialVersionUID = -4665243667186730037L;
+	private static final long serialVersionUID = -6143066188263513604L;
+	private long gmoActionId;
+    private GmoActionType gmoActionType;
+    private GmoMaintenancePlan gmoMaintenancePlan ;
+ private GmoMaintenanceState gmoMaintenanceState ;
+    private Set<GmoActionLine> gmoActionLines = new HashSet<>();
 
-	@NotNull
-    private long gmoActionId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "seq")
+    @SequenceGenerator (name = "seq", sequenceName = "seq_gmo_action_id", allocationSize = 1)
+    @Column(name = "gmo_actionid")
+    public long getGmoActionId() {
+        return gmoActionId;
+    }
 
-	@NotNull
-	private String gmoActionCode;
-	private String gmoActionDescription;
+    public void setGmoActionId(long gmoMaintenanceLineId) {
+        this.gmoActionId = gmoMaintenanceLineId;
+    }
 
-	@Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_action_id", allocationSize = 1)
-    @Column(name = "gmo_actionid", unique = true, nullable = false, precision = 10, scale = 0)
-	public long getGmoActionId() {
-		return gmoActionId;
-	}
-	public void setGmoActionId(long gmoActionId) {
-		this.gmoActionId = gmoActionId;
-	}
-	
-    @Column(name = "gmo_actioncode")
-	public String getGmoActionCode() {
-		return gmoActionCode;
-	}
-	public void setGmoActionCode(String gmoActionCode) {
-		this.gmoActionCode = gmoActionCode;
-	}
 
-	@Column(name = "gmo_actiondescription")
-	public String getGmoActionDescription() {
-		return gmoActionDescription;
-	}
-	public void setGmoActionDescription(String gmoActionDescription) {
-		this.gmoActionDescription = gmoActionDescription;
-	}
+
+    @OneToMany(mappedBy = "gmoAction", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    public Set<GmoActionLine> getGmoActionLines() {
+        return gmoActionLines;
+    }
+
+    public void setGmoActionLines(Set<GmoActionLine> gmoActionLine) {
+        this.gmoActionLines = gmoActionLine;
+    }
+
+
+
+
+
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "gmo_actiontypeid")
+
+    public GmoActionType getGmoActionType() {
+        return gmoActionType;
+    }
+
+    public void setGmoActionType(GmoActionType gmoActionType) {
+        this.gmoActionType = gmoActionType;
+    }
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "gmo_maintenancestateid")
+    public GmoMaintenanceState getGmoMaintenanceState() {
+        return gmoMaintenanceState;
+    }
+
+    public void setGmoMaintenanceState(GmoMaintenanceState gmoMaintenanceState) {
+        this.gmoMaintenanceState = gmoMaintenanceState;
+    }
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "gmo_maintenanceplanid")
+    public GmoMaintenancePlan getGmoMaintenancePlan() {
+        return gmoMaintenancePlan;
+    }
+
+    public void setGmoMaintenancePlan(GmoMaintenancePlan gmoMaintenancePlan) {
+        this.gmoMaintenancePlan = gmoMaintenancePlan;
+    }
+
+
+
 
 
 }

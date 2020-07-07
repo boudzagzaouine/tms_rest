@@ -42,7 +42,7 @@ public class MaintenanceLineRefMapper {
         gmoMaintenanceLineRef.setGmoMaintenanceLineRefDescription(maintenanceLineRef.getDescription());
 
         if (!lazy) {
-            gmoMaintenanceLineRef.setGmoMaintenanceLineRefActions(ActionMapper.toEntities (maintenanceLineRef.getActions(), false));
+           // gmoMaintenanceLineRef.setGmoMaintenanceLineRefActions(ActionTypeMapper.toEntities (maintenanceLineRef.getActions(), false));
 
         }
         return gmoMaintenanceLineRef;
@@ -57,7 +57,7 @@ public class MaintenanceLineRefMapper {
         maintenanceLineRef.setCode(gmoMaintenanceLineRef.getGmoMaintenanceLineRefCode());
         maintenanceLineRef.setDescription(gmoMaintenanceLineRef.getGmoMaintenanceLineRefDescription());
         if (!lazy) {
-            maintenanceLineRef.setActions(ActionMapper.toDtos(gmoMaintenanceLineRef.getGmoMaintenanceLineRefActions(), true));
+          //  maintenanceLineRef.setActions(ActionTypeMapper.toDtos(gmoMaintenanceLineRef.getGmoMaintenanceLineRefActions(), true));
         }
 
         return maintenanceLineRef;

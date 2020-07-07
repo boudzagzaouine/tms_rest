@@ -28,7 +28,7 @@ public class MaintenancePlan extends EmsDto implements Serializable {
     private Patrimony patrimony;
     private Double mileage = 0.0;
     private BigDecimal totalPrice;
-    private List<MaintenanceLine> maintenanceLines;
+    private List<Action> actions;
 
 
     public MaintenancePlan() {
@@ -114,12 +114,12 @@ public class MaintenancePlan extends EmsDto implements Serializable {
         this.totalPrice = totalPrice;
     }
 
-    public List<MaintenanceLine> getMaintenanceLines() {
-        return maintenanceLines;
+    public List<Action> getActions() {
+        return actions;
     }
 
-    public void setMaintenanceLineList(List<MaintenanceLine> maintenanceLines) {
-        this.maintenanceLines = maintenanceLines;
+    public void setMaintenanceLineList(List<Action> maintenanceLines) {
+        this.actions = maintenanceLines;
     }
 
     public ProgramType getProgramType() {
@@ -162,8 +162,8 @@ public class MaintenancePlan extends EmsDto implements Serializable {
         this.periodicityType = periodicityType;
     }
 
-    public void setMaintenanceLines(List<MaintenanceLine> maintenanceLines) {
-        this.maintenanceLines = maintenanceLines;
+    public void setActions(List<Action> actions) {
+        this.actions = actions;
     }
 
     @Override

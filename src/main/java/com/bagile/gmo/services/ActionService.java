@@ -1,11 +1,11 @@
 package com.bagile.gmo.services;
 
-import java.util.List;
-
 import com.bagile.gmo.dto.Action;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+
+import java.util.List;
 
 public interface ActionService {
     Action save(Action action);
@@ -25,6 +25,7 @@ public interface ActionService {
     void delete(Long id);
 
     void delete(Action action);
+    void deleteAll(List<Long> ids);
 
     List<Action> findAll();
 

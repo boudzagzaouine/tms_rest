@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Set;
 
 import com.bagile.gmo.dto.MaintenancePlan;
-import com.bagile.gmo.dto.PeriodicityType;
 import com.bagile.gmo.entities.GmoMaintenancePlan;
 
 public class MaintenancePlanMapper {
@@ -74,7 +73,7 @@ public class MaintenancePlanMapper {
             gmoMaintenancePlan.setGmoMaintenanceType(MaintenanceTypeMapper.toEntity(maintenancePlan.getMaintenanceType(), true));
             gmoMaintenancePlan.setGmoMaintenanceState(MaintenanceStateMapper.toEntity(maintenancePlan.getMaintenanceState(), true));
             gmoMaintenancePlan.setGmoPatrimony(PatrimonyMapper.toEntity(maintenancePlan.getPatrimony(),false));
-            gmoMaintenancePlan.setGmoMaintenanceLines (MaintenanceLineMapper.toEntities (maintenancePlan.getMaintenanceLines(), false));
+            gmoMaintenancePlan.setGmoActions(ActionMapper.toEntities (maintenancePlan.getActions(), false));
 
             gmoMaintenancePlan.setGmoPeriodicityType(PeriodicityTypeMapper.toEntity(maintenancePlan.getPeriodicityType(),false));
             gmoMaintenancePlan.setGmoResponsability (ResponsabilityMapper.toEntity (maintenancePlan.getResponsability(), false));
@@ -107,7 +106,7 @@ public class MaintenancePlanMapper {
             maintenancePlan.setMaintenanceType(MaintenanceTypeMapper.toDto(gmoMaintenancePlan.getGmoMaintenanceType(), lazy));
             maintenancePlan.setMaintenanceState(MaintenanceStateMapper.toDto(gmoMaintenancePlan.getGmoMaintenanceState(), lazy));
             maintenancePlan.setPatrimony(PatrimonyMapper.toDto(gmoMaintenancePlan.getGmoPatrimony(),lazy));
-            maintenancePlan.setMaintenanceLineList (MaintenanceLineMapper.toDtos (gmoMaintenancePlan.getGmoMaintenanceLines (), lazy));
+            maintenancePlan.setActions (ActionMapper.toDtos (gmoMaintenancePlan.getGmoActions(), lazy));
 
             maintenancePlan.setPeriodicityType(PeriodicityTypeMapper.toDto(gmoMaintenancePlan.getGmoPeriodicityType(),lazy));
             maintenancePlan.setResponsability (ResponsabilityMapper.toDto (gmoMaintenancePlan.getGmoResponsability (), lazy));

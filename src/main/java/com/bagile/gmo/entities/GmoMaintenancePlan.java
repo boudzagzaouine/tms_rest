@@ -66,7 +66,7 @@ public class GmoMaintenancePlan extends EmsEntity {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private GmoPatrimony gmoPatrimony;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "gmoMaintenancePlan")
-    private Set<GmoMaintenanceLine> gmoMaintenanceLines = new HashSet<> ();
+    private Set<GmoAction> gmoActions = new HashSet<> ();
     @Column(name = "gmo_maintenanceplantotalprice")
     private BigDecimal gmoMaintenancePlanTotalPrice = BigDecimal.ZERO;
     @Column(name = "gmo_maintenanceplanmileage")
@@ -181,8 +181,8 @@ public class GmoMaintenancePlan extends EmsEntity {
         this.gmoPatrimony = gmoPatrimony;
     }
 
-    public Set<GmoMaintenanceLine> getGmoMaintenanceLines() {
-        return gmoMaintenanceLines;
+    public Set<GmoAction> getGmoActions() {
+        return gmoActions;
     }
 
     public BigDecimal getGmoMaintenancePlanTotalPrice() {
@@ -193,8 +193,8 @@ public class GmoMaintenancePlan extends EmsEntity {
         this.gmoMaintenancePlanTotalPrice = gmoMaintenancePlanTotalPrice;
     }
 
-    public void setGmoMaintenanceLines(Set<GmoMaintenanceLine> gmoMaintenanceLines) {
-        this.gmoMaintenanceLines = gmoMaintenanceLines;
+    public void setGmoActions(Set<GmoAction> gmoMaintenanceLines) {
+        this.gmoActions = gmoMaintenanceLines;
     }
 
     public Double getGmoMaintenancePlanMileage() {

@@ -22,7 +22,7 @@ public class GmoMaintenanceLineRef extends EmsEntity {
 	private String gmoMaintenanceLineRefCode;
 	private Set<GmoAction> gmoMaintenanceLineRefActions;
 	private String gmoMaintenanceLineRefDescription;
-	private Set<GmoMaintenanceLine> gmoMaintenanceLines;
+	private Set<GmoAction> gmoMaintenanceLines;
     
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "seq")
@@ -57,11 +57,11 @@ public class GmoMaintenanceLineRef extends EmsEntity {
 
     @OneToMany
     @JoinColumn(name = "gmo_maintenancelinesid")
-	public Set<GmoMaintenanceLine> getGmoMaintenanceLines() {
+	public Set<GmoAction> getGmoMaintenanceLines() {
 		return gmoMaintenanceLines;
 	}
 
-	public void setGmoMaintenanceLines(Set<GmoMaintenanceLine> gmoMaintenanceLines) {
+	public void setGmoMaintenanceLines(Set<GmoAction> gmoMaintenanceLines) {
 		this.gmoMaintenanceLines = gmoMaintenanceLines;
 	}    
 

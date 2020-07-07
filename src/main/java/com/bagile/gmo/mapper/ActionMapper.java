@@ -1,14 +1,10 @@
 package com.bagile.gmo.mapper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.bagile.gmo.dto.Action;
+import com.bagile.gmo.dto.MaintenanceState;
 import com.bagile.gmo.entities.GmoAction;
+
+import java.util.*;
 
 public class ActionMapper {
 	public ActionMapper() {
@@ -20,8 +16,12 @@ public class ActionMapper {
 		map = new HashMap<>();
 
 		map.put("id", "gmoActionId");
-		map.put("code", "gmoActionCode");
-		map.put("description", "gmoActionDescription");
+		map.put("action", "gmoActionType");
+		map.put("maintenanceState", "gmoMaintenanceState");
+		map.put("maintenancePlan", "gmoMaintenancePlan");
+		map.put("actionLines", "gmoActionLines");
+
+
 	}
 
 	public static Map<String, String> getMap() {
@@ -38,8 +38,13 @@ public class ActionMapper {
 		}
 		GmoAction gmoAction = new GmoAction();
 		gmoAction.setGmoActionId(action.getId());
-		gmoAction.setGmoActionCode(action.getCode() != null ? action.getCode().toUpperCase() : null);
-		gmoAction.setGmoActionDescription(action.getDescription());
+		if (!lazy) {
+			gmoAction.setGmoMaintenancePlan(MaintenancePlanMapper.toEntity(action.getMaintenancePlan(), true));
+			gmoAction.setGmoMaintenanceState(MaintenanceStateMapper.toEntity(action.getMaintenanceState(),true));
+			gmoAction.setGmoActionLines(ActionLineMapper.toEntities(action.getActionLines(),true));
+			gmoAction.setGmoActionType(ActionTypeMapper.toEntity(action.getActionType(),true));
+
+		}
 
 		return gmoAction;
 	}
@@ -50,8 +55,6 @@ public class ActionMapper {
 		}
 		Action action = new Action();
 		action.setId((int) gmoAction.getGmoActionId());
-		action.setCode(gmoAction.getGmoActionCode() != null ? gmoAction.getGmoActionCode().toUpperCase() : null);
-		action.setDescription(gmoAction.getGmoActionDescription());
 
 		return action;
 

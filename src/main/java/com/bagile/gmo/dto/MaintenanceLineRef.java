@@ -9,7 +9,7 @@ public class MaintenanceLineRef extends EmsDto {
 
 	private long id;
 	private String code;
-	private List<Action> actions = new ArrayList<>();
+	private List<ActionType> actions = new ArrayList<>();
 	private String description;
 
     public long getId() {
@@ -28,11 +28,11 @@ public class MaintenanceLineRef extends EmsDto {
 		this.code = code;
 	}
 
-	public List<Action> getActions() {
+	public List<ActionType> getActions() {
 		return actions;
 	}
 
-	public void setActions(List<Action> actions) {
+	public void setActions(List<ActionType> actions) {
 		this.actions = actions;
 	}
 
