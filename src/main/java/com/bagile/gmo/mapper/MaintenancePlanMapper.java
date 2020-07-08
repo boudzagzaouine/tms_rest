@@ -32,6 +32,9 @@ public class MaintenancePlanMapper {
         map.put("responsability", "gmoResponsability");
         map.put("periodicityType", "gmoPeriodicityType");
 
+        map.put("dateTrigger", "gmoDateTrigger");
+        map.put("dayTrigger", "gmoDayTrigger");
+
         map.put("patrimony", "gmoPatrimony");
         map.put("totalPrice", "gmoMaintenancePlanTotalPrice");
 
@@ -64,6 +67,9 @@ public class MaintenancePlanMapper {
         gmoMaintenancePlan.setGmoMaintenancePlanTotalPrice (maintenancePlan.getTotalPrice ());
         gmoMaintenancePlan.setGmoMaintenancePlanMileage (maintenancePlan.getMileage ());
 
+
+        gmoMaintenancePlan.setGmoDateTrigger (maintenancePlan.getDateTrigger ());
+        gmoMaintenancePlan.setGmoDayTrigger (maintenancePlan.getDayTrigger ());
         gmoMaintenancePlan.setCreatedBy(maintenancePlan.getCreatedBy());
         gmoMaintenancePlan.setUpdatedBy(maintenancePlan.getUpdatedBy());
         gmoMaintenancePlan.setCreationDate(maintenancePlan.getCreationDate());
@@ -98,6 +104,9 @@ public class MaintenancePlanMapper {
         maintenancePlan.setTotalPrice (gmoMaintenancePlan.getGmoMaintenancePlanTotalPrice ());
         maintenancePlan.setMileage (gmoMaintenancePlan.getGmoMaintenancePlanMileage ());
 
+        maintenancePlan.setDateTrigger (gmoMaintenancePlan.getGmoDateTrigger ());
+        maintenancePlan.setDayTrigger (gmoMaintenancePlan.getGmoDayTrigger ());
+
         maintenancePlan.setCreatedBy(gmoMaintenancePlan.getCreatedBy());
         maintenancePlan.setUpdatedBy(gmoMaintenancePlan.getUpdatedBy());
         maintenancePlan.setCreationDate(gmoMaintenancePlan.getCreationDate());
@@ -106,7 +115,7 @@ public class MaintenancePlanMapper {
             maintenancePlan.setMaintenanceType(MaintenanceTypeMapper.toDto(gmoMaintenancePlan.getGmoMaintenanceType(), lazy));
             maintenancePlan.setMaintenanceState(MaintenanceStateMapper.toDto(gmoMaintenancePlan.getGmoMaintenanceState(), lazy));
             maintenancePlan.setPatrimony(PatrimonyMapper.toDto(gmoMaintenancePlan.getGmoPatrimony(),lazy));
-            maintenancePlan.setActions (ActionMapper.toDtos (gmoMaintenancePlan.getGmoActions(), lazy));
+            maintenancePlan.setActions (ActionMapper.toDtos (gmoMaintenancePlan.getGmoActions(), false));
 
             maintenancePlan.setPeriodicityType(PeriodicityTypeMapper.toDto(gmoMaintenancePlan.getGmoPeriodicityType(),lazy));
             maintenancePlan.setResponsability (ResponsabilityMapper.toDto (gmoMaintenancePlan.getGmoResponsability (), lazy));

@@ -1,5 +1,6 @@
 package com.bagile.gmo.mapper;
 
+import com.bagile.gmo.dto.OperationType;
 import com.bagile.gmo.dto.ProgramType;
 import com.bagile.gmo.entities.GmoProgramType;
 
@@ -18,6 +19,7 @@ public class ProgramTypeMapper {
         map.put ("code", "gmoProgramTypeCode");
         map.put ("description", "gmoProgramTypeDescription");
         map.put ("maintenanceType", "gmoMaintenanceType");
+        map.put ("operationType", "gmoOperationType");
 
         map.put ("creationDate", "creationDate");
         map.put ("updateDate", "updateDate");
@@ -43,11 +45,13 @@ public class ProgramTypeMapper {
         gmoProgramType.setGmoProgramTypeCode (programType.getCode ( ) != null ? programType.getCode ( ).toUpperCase ( ) : null);
         gmoProgramType.setGmoProgramTypeDescription (programType.getDescription ( ));
         
-        gmoProgramType.setCreatedBy (programType.getCreatedBy ( ));
-        gmoProgramType.setUpdatedBy (programType.getUpdatedBy ( ));
+        gmoProgramType.setCreatedBy (programType.getCreatedBy ());
+        gmoProgramType.setUpdatedBy (programType.getUpdatedBy ());
 
         if (!lazy) {
             gmoProgramType.setGmoMaintenanceType(MaintenanceTypeMapper.toEntity(programType.getMaintenanceType(), true));
+            gmoProgramType.setGmoOperationTypes(OperationTypeMapper.toEntities(programType.getOperationTypes(), true));
+
         }
 
         return gmoProgramType;

@@ -91,11 +91,11 @@ public class OperationTypeMapper {
         return operationTypes;
     }
 
-    public static Set<GmoOperationType> toEntities(Set<OperationType> operationTypes, boolean lazy) {
+    public static Set<GmoOperationType> toEntities(List<OperationType> operationTypes, boolean lazy) {
         if (null == operationTypes) {
             return null;
         }
-        Set<GmoOperationType> gmoOperationTypes = new HashSet<> ( );
+        Set<GmoOperationType> gmoOperationTypes = new HashSet<> ();
         for (OperationType operationType : operationTypes) {
             gmoOperationTypes.add (toEntity (operationType, lazy));
         }

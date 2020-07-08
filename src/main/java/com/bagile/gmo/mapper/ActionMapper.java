@@ -42,7 +42,7 @@ public class ActionMapper {
 			gmoAction.setGmoMaintenancePlan(MaintenancePlanMapper.toEntity(action.getMaintenancePlan(), true));
 			gmoAction.setGmoMaintenanceState(MaintenanceStateMapper.toEntity(action.getMaintenanceState(),true));
 			gmoAction.setGmoActionLines(ActionLineMapper.toEntities(action.getActionLines(),true));
-			gmoAction.setGmoActionType(ActionTypeMapper.toEntity(action.getActionType(),true));
+			gmoAction.setGmoActionType(ActionTypeMapper.toEntity(action.getActionType(),false));
 
 		}
 

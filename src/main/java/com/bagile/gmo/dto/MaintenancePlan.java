@@ -25,6 +25,8 @@ public class MaintenancePlan extends EmsDto implements Serializable {
     private Responsability responsability;
     private PeriodicityType periodicityType;
     private MaintenanceState maintenanceState;
+    private BigDecimal  dateTrigger;
+    private Date        dayTrigger ;
     private Patrimony patrimony;
     private Double mileage = 0.0;
     private BigDecimal totalPrice;
@@ -164,6 +166,22 @@ public class MaintenancePlan extends EmsDto implements Serializable {
 
     public void setActions(List<Action> actions) {
         this.actions = actions;
+    }
+
+    public BigDecimal getDateTrigger() {
+        return dateTrigger;
+    }
+
+    public void setDateTrigger(BigDecimal dateTrigger) {
+        this.dateTrigger = dateTrigger;
+    }
+
+    public Date getDayTrigger() {
+        return dayTrigger;
+    }
+
+    public void setDayTrigger(Date dayTrigger) {
+        this.dayTrigger = dayTrigger;
     }
 
     @Override

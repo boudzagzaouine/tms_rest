@@ -72,6 +72,10 @@ public class GmoMaintenancePlan extends EmsEntity {
     @Column(name = "gmo_maintenanceplanmileage")
     private Double gmoMaintenancePlanMileage = 0.0;
 
+    @Column(name = "gmo_maintenanceplandatetrigger")
+    private BigDecimal  gmoDateTrigger;
+    @Column(name = "gmo_maintenanceplandaytrigger")
+    private Date        gmoDayTrigger ;
 
     public GmoMaintenancePlan() {
     }
@@ -203,5 +207,22 @@ public class GmoMaintenancePlan extends EmsEntity {
 
     public void setGmoMaintenancePlanMileage(Double gmoMaintenancePlanMileage) {
         this.gmoMaintenancePlanMileage = gmoMaintenancePlanMileage;
+    }
+
+
+    public BigDecimal getGmoDateTrigger() {
+        return gmoDateTrigger;
+    }
+
+    public void setGmoDateTrigger(BigDecimal gmoDateTrigger) {
+        this.gmoDateTrigger = gmoDateTrigger;
+    }
+
+    public Date getGmoDayTrigger() {
+        return gmoDayTrigger;
+    }
+
+    public void setGmoDayTrigger(Date gmoDayTrigger) {
+        this.gmoDayTrigger = gmoDayTrigger;
     }
 }

@@ -1,6 +1,8 @@
 package com.bagile.gmo.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class ProgramType extends EmsDto implements Serializable {
@@ -12,7 +14,7 @@ public class ProgramType extends EmsDto implements Serializable {
     private String code;
     private String description;
     private MaintenanceType maintenanceType ;
-
+ private List<OperationType> operationTypes= new ArrayList<>();
 
 
     public long getId() {
@@ -45,6 +47,14 @@ public class ProgramType extends EmsDto implements Serializable {
 
     public void setMaintenanceType(MaintenanceType maintenanceType) {
         this.maintenanceType = maintenanceType;
+    }
+
+    public List<OperationType> getOperationTypes() {
+        return operationTypes;
+    }
+
+    public void setOperationTypes(List<OperationType> operationTypes) {
+        this.operationTypes = operationTypes;
     }
 
     @Override
