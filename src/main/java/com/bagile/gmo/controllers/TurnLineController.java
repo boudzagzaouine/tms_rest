@@ -81,7 +81,8 @@ public class TurnLineController {
     public TurnLine add(@RequestBody TurnLine turnLine) {
         return turnLineService.save(turnLine);
     }
-    @RequestMapping(value = "/saveALL", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+
+       @RequestMapping(value = "/saveALL", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<TurnLine> addAll(@RequestBody List<TurnLine> turnlines) {
         return  turnLineService.saveAll(turnlines);

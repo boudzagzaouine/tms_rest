@@ -1,6 +1,5 @@
 package com.bagile.gmo.mapper;
 
-import com.bagile.gmo.dto.OperationType;
 import com.bagile.gmo.dto.ProgramType;
 import com.bagile.gmo.entities.GmoProgramType;
 
@@ -50,7 +49,6 @@ public class ProgramTypeMapper {
 
         if (!lazy) {
             gmoProgramType.setGmoMaintenanceType(MaintenanceTypeMapper.toEntity(programType.getMaintenanceType(), true));
-            gmoProgramType.setGmoOperationTypes(OperationTypeMapper.toEntities(programType.getOperationTypes(), true));
 
         }
 

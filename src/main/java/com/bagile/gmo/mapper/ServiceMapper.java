@@ -1,13 +1,13 @@
 package com.bagile.gmo.mapper;
 
-import com.bagile.gmo.dto.OperationType;
-import com.bagile.gmo.entities.GmoOperationType;
+import com.bagile.gmo.dto.Service;
+import com.bagile.gmo.entities.GmoService;
 
 import java.util.*;
 
-public class OperationTypeMapper {
+public class ServiceMapper {
 
-    public OperationTypeMapper() {
+    public ServiceMapper() {
     }
 
     private static Map<String, String> map;
@@ -18,7 +18,6 @@ public class OperationTypeMapper {
         map.put ("id", "gmoOperationTypeId");
         map.put ("code", "gmoOperationTypeCode");
         map.put ("description", "gmoOperationTypeDescription");
-        map.put ("programType", "gmoProgramType");
 
         map.put ("creationDate", "creationDate");
         map.put ("updateDate", "updateDate");
@@ -34,12 +33,12 @@ public class OperationTypeMapper {
         return map.get (key);
     }
 
-    public static GmoOperationType toEntity(OperationType operationType, boolean lazy) {
+    public static GmoService toEntity(Service operationType, boolean lazy) {
         if (null == operationType) {
             return null;
         }
 
-        GmoOperationType gmoOperationType = new GmoOperationType ( );
+        GmoService gmoOperationType = new GmoService( );
         gmoOperationType.setGmoOperationTypeId (operationType.getId ( ));
         gmoOperationType.setGmoOperationTypeCode (operationType.getCode ( ) != null ? operationType.getCode ( ).toUpperCase ( ) : null);
         gmoOperationType.setGmoOperationTypeDescription (operationType.getDescription ( ));
@@ -47,20 +46,16 @@ public class OperationTypeMapper {
         gmoOperationType.setCreatedBy (operationType.getCreatedBy ( ));
         gmoOperationType.setUpdatedBy (operationType.getUpdatedBy ( ));
 
-        if (!lazy) {
-            gmoOperationType.setGmoProgramType(ProgramTypeMapper.toEntity(operationType.getProgramType(), true));
-
-        }
 
         return gmoOperationType;
 
     }
 
-    public static OperationType toDto(GmoOperationType gmoOperationType, boolean lazy) {
+    public static Service toDto(GmoService gmoOperationType, boolean lazy) {
         if (null == gmoOperationType) {
             return null;
         }
-        OperationType operationType = new OperationType ( );
+        Service operationType = new Service( );
         operationType.setId ((int) gmoOperationType.getGmoOperationTypeId ());
         operationType.setCode (gmoOperationType.getGmoOperationTypeCode ());
         operationType.setDescription (gmoOperationType.getGmoOperationTypeDescription ());
@@ -69,45 +64,41 @@ public class OperationTypeMapper {
         operationType.setUpdatedBy (gmoOperationType.getUpdatedBy ());
         operationType.setCreationDate (gmoOperationType.getCreationDate ());
         operationType.setUpdateDate (gmoOperationType.getUpdateDate ());
-        if (!lazy) {
-            operationType.setProgramType(ProgramTypeMapper.toDto(gmoOperationType.getGmoProgramType(), true));
 
-        }
-      
         return operationType;
 
     }
 
 
-    public static List<OperationType> toDtos(Iterable<? extends GmoOperationType> gmoOperationTypes, boolean lazy) {
+    public static List<Service> toDtos(Iterable<? extends GmoService> gmoOperationTypes, boolean lazy) {
         if (null == gmoOperationTypes) {
             return null;
         }
-        List<OperationType> operationTypes = new ArrayList<> ( );
+        List<Service> operationTypes = new ArrayList<> ( );
 
-        for (GmoOperationType gmoOperationType : gmoOperationTypes) {
+        for (GmoService gmoOperationType : gmoOperationTypes) {
             operationTypes.add (toDto (gmoOperationType, lazy));
         }
         return operationTypes;
     }
 
-    public static Set<GmoOperationType> toEntities(List<OperationType> operationTypes, boolean lazy) {
+    public static Set<GmoService> toEntities(List<Service> operationTypes, boolean lazy) {
         if (null == operationTypes) {
             return null;
         }
-        Set<GmoOperationType> gmoOperationTypes = new HashSet<> ();
-        for (OperationType operationType : operationTypes) {
+        Set<GmoService> gmoOperationTypes = new HashSet<> ();
+        for (Service operationType : operationTypes) {
             gmoOperationTypes.add (toEntity (operationType, lazy));
         }
         return gmoOperationTypes;
     }
 
-    public static Set<OperationType> toDtos(Set<GmoOperationType> gmoOperationTypes, boolean lazy) {
+    public static Set<Service> toDtos(Set<GmoService> gmoOperationTypes, boolean lazy) {
         if (null == gmoOperationTypes) {
             return null;
         }
-        Set<OperationType> operationTypes = new HashSet<> ( );
-        for (GmoOperationType gmoOperationType : gmoOperationTypes) {
+        Set<Service> operationTypes = new HashSet<> ( );
+        for (GmoService gmoOperationType : gmoOperationTypes) {
             operationTypes.add (toDto (gmoOperationType, lazy));
         }
         return operationTypes;

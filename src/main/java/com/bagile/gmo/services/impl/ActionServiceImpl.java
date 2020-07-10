@@ -1,6 +1,7 @@
 package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.Action;
+import com.bagile.gmo.dto.TurnLine;
 import com.bagile.gmo.entities.GmoAction;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,6 +35,17 @@ public class ActionServiceImpl implements ActionService {
         return ActionMapper.toDto(actionRepository.saveAndFlush(ActionMapper.toEntity(action, false)), false);
     }
 
+    @Override
+    public List<Action> saveAll(List<Action> Action) {
+
+        List<Action> actionList = new ArrayList<>( );
+        for (Action action : Action) {
+            actionList.add (save (action));
+        }
+
+        return actionList;
+
+    }
     @Override
     public Long size() {
         return actionRepository.count();

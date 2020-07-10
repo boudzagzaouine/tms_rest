@@ -48,13 +48,17 @@ public class GmoMaintenancePlan extends EmsEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_operationtypeid")
-    private GmoOperationType gmoOperationType;
+    private GmoService gmoOperationType;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_serviceproviderid")
     private GmoServiceProvider gmoServiceProvider;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_responsabilityid")
     private GmoResponsability gmoResponsability;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_serviceid")
+    private GmoResponsability gmoService;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_periodicitytypeid")
     private GmoPeriodicityType gmoPeriodicityType;
@@ -73,9 +77,18 @@ public class GmoMaintenancePlan extends EmsEntity {
     private Double gmoMaintenancePlanMileage = 0.0;
 
     @Column(name = "gmo_maintenanceplandatetrigger")
-    private BigDecimal  gmoDateTrigger;
+    private BigDecimal gmoAlert;
     @Column(name = "gmo_maintenanceplandaytrigger")
-    private Date        gmoDayTrigger ;
+    private Date gmoTriggerDate;
+
+    @Column(name = "gmo_maintenanceplaninterventiondate")
+    private Date gmoInterventionDate;
+
+    @Column(name = "gmo_maintenanceplanagent")
+private String gmoAgent ;
+    @Column(name = "gmo_maintenanceplanemployer")
+    private String gmoEmployer ;
+
 
     public GmoMaintenancePlan() {
     }
@@ -113,6 +126,14 @@ public class GmoMaintenancePlan extends EmsEntity {
         this.gmoMaintenancePlanStartDate = gmoMaintenancePlanStartDate;
     }
 
+    public GmoResponsability getGmoService() {
+        return gmoService;
+    }
+
+    public void setGmoService(GmoResponsability gmoService) {
+        this.gmoService = gmoService;
+    }
+
     public Date getGmoMaintenancePlanEndDate() {
         return gmoMaintenancePlanEndDate;
     }
@@ -129,11 +150,11 @@ public class GmoMaintenancePlan extends EmsEntity {
         this.gmoProgramType = gmoProgramType;
     }
 
-    public GmoOperationType getGmoOperationType() {
+    public GmoService getGmoOperationType() {
         return gmoOperationType;
     }
 
-    public void setGmoOperationType(GmoOperationType gmoOperationType) {
+    public void setGmoOperationType(GmoService gmoOperationType) {
         this.gmoOperationType = gmoOperationType;
     }
 
@@ -209,20 +230,44 @@ public class GmoMaintenancePlan extends EmsEntity {
         this.gmoMaintenancePlanMileage = gmoMaintenancePlanMileage;
     }
 
-
-    public BigDecimal getGmoDateTrigger() {
-        return gmoDateTrigger;
+    public Date getGmoInterventionDate() {
+        return gmoInterventionDate;
     }
 
-    public void setGmoDateTrigger(BigDecimal gmoDateTrigger) {
-        this.gmoDateTrigger = gmoDateTrigger;
+    public void setGmoInterventionDate(Date interventionDate) {
+        this.gmoInterventionDate = interventionDate;
     }
 
-    public Date getGmoDayTrigger() {
-        return gmoDayTrigger;
+    public BigDecimal getGmoAlert() {
+        return gmoAlert;
     }
 
-    public void setGmoDayTrigger(Date gmoDayTrigger) {
-        this.gmoDayTrigger = gmoDayTrigger;
+    public void setGmoAlert(BigDecimal gmoDateTrigger) {
+        this.gmoAlert = gmoDateTrigger;
+    }
+
+    public Date getGmoTriggerDate() {
+        return gmoTriggerDate;
+    }
+
+    public void setGmoTriggerDate(Date gmoDayTrigger) {
+        this.gmoTriggerDate = gmoDayTrigger;
+    }
+
+
+    public String getGmoAgent() {
+        return gmoAgent;
+    }
+
+    public void setGmoAgent(String gmoAgent) {
+        this.gmoAgent = gmoAgent;
+    }
+
+    public String getGmoEmployer() {
+        return gmoEmployer;
+    }
+
+    public void setGmoEmployer(String gmoEmployer) {
+        this.gmoEmployer = gmoEmployer;
     }
 }

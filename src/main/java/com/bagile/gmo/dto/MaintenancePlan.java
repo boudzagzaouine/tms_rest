@@ -20,17 +20,20 @@ public class MaintenancePlan extends EmsDto implements Serializable {
     private Date endDate;
     private MaintenanceType maintenanceType;
     private ProgramType programType;
-    private OperationType operationType;
     private ServiceProvider serviceProvider;
     private Responsability responsability;
+    private Responsability service;
     private PeriodicityType periodicityType;
     private MaintenanceState maintenanceState;
-    private BigDecimal  dateTrigger;
-    private Date        dayTrigger ;
+    private BigDecimal alert;
+    private Date triggerDate;
+    private Date interventionDate;
     private Patrimony patrimony;
     private Double mileage = 0.0;
     private BigDecimal totalPrice;
     private List<Action> actions;
+     private  String  agent ;
+    private   String  employer ;
 
 
     public MaintenancePlan() {
@@ -132,12 +135,12 @@ public class MaintenancePlan extends EmsDto implements Serializable {
         this.programType = programType;
     }
 
-    public OperationType getOperationType() {
-        return operationType;
+    public Responsability getService() {
+        return service;
     }
 
-    public void setOperationType(OperationType operationType) {
-        this.operationType = operationType;
+    public void setService(Responsability service) {
+        this.service = service;
     }
 
     public ServiceProvider getServiceProvider() {
@@ -168,20 +171,44 @@ public class MaintenancePlan extends EmsDto implements Serializable {
         this.actions = actions;
     }
 
-    public BigDecimal getDateTrigger() {
-        return dateTrigger;
+    public BigDecimal getAlert() {
+        return alert;
     }
 
-    public void setDateTrigger(BigDecimal dateTrigger) {
-        this.dateTrigger = dateTrigger;
+    public void setAlert(BigDecimal alert) {
+        this.alert = alert;
     }
 
-    public Date getDayTrigger() {
-        return dayTrigger;
+    public Date getInterventionDate() {
+        return interventionDate;
     }
 
-    public void setDayTrigger(Date dayTrigger) {
-        this.dayTrigger = dayTrigger;
+    public void setInterventionDate(Date interventionDate) {
+        this.interventionDate = interventionDate;
+    }
+
+    public Date getTriggerDate() {
+        return triggerDate;
+    }
+
+    public void setTriggerDate(Date triggerDate) {
+        this.triggerDate = triggerDate;
+    }
+
+    public String getAgent() {
+        return agent;
+    }
+
+    public void setAgent(String agent) {
+        this.agent = agent;
+    }
+
+    public String getEmployer() {
+        return employer;
+    }
+
+    public void setEmployer(String employer) {
+        this.employer = employer;
     }
 
     @Override

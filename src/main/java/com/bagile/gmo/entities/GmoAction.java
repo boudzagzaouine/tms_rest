@@ -64,7 +64,7 @@ public class GmoAction extends EmsEntity {
         this.gmoMaintenanceState = gmoMaintenanceState;
     }
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "gmo_maintenanceplanid")
     public GmoMaintenancePlan getGmoMaintenancePlan() {
         return gmoMaintenancePlan;

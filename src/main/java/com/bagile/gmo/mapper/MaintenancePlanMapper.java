@@ -1,11 +1,6 @@
 package com.bagile.gmo.mapper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import com.bagile.gmo.dto.MaintenancePlan;
 import com.bagile.gmo.entities.GmoMaintenancePlan;
@@ -30,10 +25,13 @@ public class MaintenancePlanMapper {
         map.put("operationType", "gmoOperationType");
         map.put("serviceProvider", "gmoServiceProvider");
         map.put("responsability", "gmoResponsability");
+        map.put("service", "gmoService");
+
         map.put("periodicityType", "gmoPeriodicityType");
 
-        map.put("dateTrigger", "gmoDateTrigger");
-        map.put("dayTrigger", "gmoDayTrigger");
+        map.put("alert", "gmoAlert");
+        map.put("triggerDate", "gmoTriggerDate");
+        map.put("interventionDate", "gmoInterventionDate");
 
         map.put("patrimony", "gmoPatrimony");
         map.put("totalPrice", "gmoMaintenancePlanTotalPrice");
@@ -43,6 +41,8 @@ public class MaintenancePlanMapper {
         map.put("createdBy", "createdByUser");
         map.put("updatedBy", "updatedByUser");
 
+        map.put("agent", "gmoAgent");
+        map.put("employer", "gmoEmployer");
 
     }
 
@@ -66,10 +66,11 @@ public class MaintenancePlanMapper {
         gmoMaintenancePlan.setGmoMaintenancePlanEndDate(maintenancePlan.getEndDate ());
         gmoMaintenancePlan.setGmoMaintenancePlanTotalPrice (maintenancePlan.getTotalPrice ());
         gmoMaintenancePlan.setGmoMaintenancePlanMileage (maintenancePlan.getMileage ());
-
-
-        gmoMaintenancePlan.setGmoDateTrigger (maintenancePlan.getDateTrigger ());
-        gmoMaintenancePlan.setGmoDayTrigger (maintenancePlan.getDayTrigger ());
+        gmoMaintenancePlan.setGmoInterventionDate (maintenancePlan.getInterventionDate ());
+        gmoMaintenancePlan.setGmoAgent (maintenancePlan.getAgent ());
+        gmoMaintenancePlan.setGmoEmployer (maintenancePlan.getEmployer ());
+        gmoMaintenancePlan.setGmoAlert(maintenancePlan.getAlert());
+        gmoMaintenancePlan.setGmoTriggerDate(maintenancePlan.getTriggerDate());
         gmoMaintenancePlan.setCreatedBy(maintenancePlan.getCreatedBy());
         gmoMaintenancePlan.setUpdatedBy(maintenancePlan.getUpdatedBy());
         gmoMaintenancePlan.setCreationDate(maintenancePlan.getCreationDate());
@@ -84,13 +85,20 @@ public class MaintenancePlanMapper {
             gmoMaintenancePlan.setGmoPeriodicityType(PeriodicityTypeMapper.toEntity(maintenancePlan.getPeriodicityType(),false));
             gmoMaintenancePlan.setGmoResponsability (ResponsabilityMapper.toEntity (maintenancePlan.getResponsability(), false));
             gmoMaintenancePlan.setGmoServiceProvider(ServiceProviderMapper.toEntity(maintenancePlan.getServiceProvider(),false));
-            gmoMaintenancePlan.setGmoOperationType (OperationTypeMapper.toEntity (maintenancePlan.getOperationType(), false));
+            gmoMaintenancePlan.setGmoService (ResponsabilityMapper.toEntity (maintenancePlan.getService(), false));
             gmoMaintenancePlan.setGmoProgramType(ProgramTypeMapper.toEntity(maintenancePlan.getProgramType(),false));
-
+           oneToMany(gmoMaintenancePlan);
         }
         return gmoMaintenancePlan;
     }
-
+    private static void oneToMany(GmoMaintenancePlan plan) {
+        plan.getGmoActions().forEach(
+                e -> {
+                    e.setCreationDate(new Date());
+                    e.setGmoMaintenancePlan(plan);
+                }
+        );
+    }
     public static MaintenancePlan toDto(GmoMaintenancePlan gmoMaintenancePlan, boolean lazy) {
         if (null == gmoMaintenancePlan) {
             return null;
@@ -104,8 +112,9 @@ public class MaintenancePlanMapper {
         maintenancePlan.setTotalPrice (gmoMaintenancePlan.getGmoMaintenancePlanTotalPrice ());
         maintenancePlan.setMileage (gmoMaintenancePlan.getGmoMaintenancePlanMileage ());
 
-        maintenancePlan.setDateTrigger (gmoMaintenancePlan.getGmoDateTrigger ());
-        maintenancePlan.setDayTrigger (gmoMaintenancePlan.getGmoDayTrigger ());
+        maintenancePlan.setAlert(gmoMaintenancePlan.getGmoAlert());
+        maintenancePlan.setTriggerDate(gmoMaintenancePlan.getGmoTriggerDate());
+        maintenancePlan.setInterventionDate (gmoMaintenancePlan.getGmoInterventionDate ());
 
         maintenancePlan.setCreatedBy(gmoMaintenancePlan.getCreatedBy());
         maintenancePlan.setUpdatedBy(gmoMaintenancePlan.getUpdatedBy());
@@ -115,12 +124,12 @@ public class MaintenancePlanMapper {
             maintenancePlan.setMaintenanceType(MaintenanceTypeMapper.toDto(gmoMaintenancePlan.getGmoMaintenanceType(), lazy));
             maintenancePlan.setMaintenanceState(MaintenanceStateMapper.toDto(gmoMaintenancePlan.getGmoMaintenanceState(), lazy));
             maintenancePlan.setPatrimony(PatrimonyMapper.toDto(gmoMaintenancePlan.getGmoPatrimony(),lazy));
-            maintenancePlan.setActions (ActionMapper.toDtos (gmoMaintenancePlan.getGmoActions(), false));
+           // maintenancePlan.setActions (ActionMapper.toDtos (gmoMaintenancePlan.getGmoActions(), false));
 
             maintenancePlan.setPeriodicityType(PeriodicityTypeMapper.toDto(gmoMaintenancePlan.getGmoPeriodicityType(),lazy));
             maintenancePlan.setResponsability (ResponsabilityMapper.toDto (gmoMaintenancePlan.getGmoResponsability (), lazy));
             maintenancePlan.setServiceProvider(ServiceProviderMapper.toDto(gmoMaintenancePlan.getGmoServiceProvider(),lazy));
-            maintenancePlan.setOperationType (OperationTypeMapper.toDto (gmoMaintenancePlan.getGmoOperationType (), lazy));
+            maintenancePlan.setService(ResponsabilityMapper.toDto (gmoMaintenancePlan.getGmoService (), lazy));
             maintenancePlan.setProgramType(ProgramTypeMapper.toDto(gmoMaintenancePlan.getGmoProgramType(),lazy));
 
         }

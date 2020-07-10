@@ -1,6 +1,7 @@
 package com.bagile.gmo.controllers;
 
 import com.bagile.gmo.dto.Action;
+import com.bagile.gmo.dto.TurnLine;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
@@ -81,6 +82,13 @@ public class ActionController {
     public Action set(@RequestBody Action action) {
         return actionService.save(action);
     }
+
+    @RequestMapping(value = "/saveALL", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<Action> addAll(@RequestBody List<Action> actions) {
+        return  actionService.saveAll(actions);
+    }
+
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody

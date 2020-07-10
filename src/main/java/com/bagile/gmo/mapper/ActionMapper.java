@@ -3,6 +3,7 @@ package com.bagile.gmo.mapper;
 import com.bagile.gmo.dto.Action;
 import com.bagile.gmo.dto.MaintenanceState;
 import com.bagile.gmo.entities.GmoAction;
+import com.bagile.gmo.entities.GmoMaintenancePlan;
 
 import java.util.*;
 
@@ -43,19 +44,32 @@ public class ActionMapper {
 			gmoAction.setGmoMaintenanceState(MaintenanceStateMapper.toEntity(action.getMaintenanceState(),true));
 			gmoAction.setGmoActionLines(ActionLineMapper.toEntities(action.getActionLines(),true));
 			gmoAction.setGmoActionType(ActionTypeMapper.toEntity(action.getActionType(),false));
-
+        oneToMany(gmoAction);
 		}
 
 		return gmoAction;
 	}
-
+	private static void oneToMany(GmoAction action) {
+		action.getGmoActionLines().forEach(
+				e -> {
+					e.setCreationDate(new Date());
+					e.setGmoAction(action);
+				}
+		);
+	}
 	public static Action toDto(GmoAction gmoAction, boolean lazy) {
 		if (null == gmoAction) {
 			return null;
 		}
 		Action action = new Action();
 		action.setId((int) gmoAction.getGmoActionId());
+		if (!lazy) {
+			action.setMaintenancePlan(MaintenancePlanMapper.toDto(gmoAction.getGmoMaintenancePlan(), false));
+			action.setMaintenanceState(MaintenanceStateMapper.toDto(gmoAction.getGmoMaintenanceState(), false));
+			action.setActionLines(ActionLineMapper.toDtos(gmoAction.getGmoActionLines(),false));
+			action.setActionType (ActionTypeMapper.toDto (gmoAction.getGmoActionType(), false));
 
+		}
 		return action;
 
 	}

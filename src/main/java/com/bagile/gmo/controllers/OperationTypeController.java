@@ -1,6 +1,6 @@
 package com.bagile.gmo.controllers;
 
-import com.bagile.gmo.dto.OperationType;
+import com.bagile.gmo.dto.Service;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
@@ -25,11 +25,11 @@ public class OperationTypeController {
     //@PreAuthorize("hasAnyRole('BADGETYPE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
-    public List<OperationType> getOperationTypes() {return operationTypeService.findAll();}
+    public List<Service> getOperationTypes() {return operationTypeService.findAll();}
    //@PreAuthorize("hasAnyRole('BADGETYPE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
-    public List<OperationType> getOperationType(@RequestParam int page, @RequestParam int size) {
+    public List<Service> getOperationType(@RequestParam int page, @RequestParam int size) {
         return operationTypeService.findAll(page, size);
 
     }
@@ -54,36 +54,36 @@ public class OperationTypeController {
     //@PreAuthorize("hasAnyRole('BADGETYPE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
-    public OperationType getOperationType(@PathVariable("id") Long id) throws IdNotFound {
+    public Service getOperationType(@PathVariable("id") Long id) throws IdNotFound {
         return operationTypeService.findById(id);
     }
     //@PreAuthorize("hasAnyRole('BADGETYPE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
-    public List<OperationType> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
+    public List<Service> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
         return operationTypeService.find(search);
     }
     //@PreAuthorize("hasAnyRole('BADGETYPE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
-    public List<OperationType> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
+    public List<Service> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         return operationTypeService.find(search, page, size);
 
     }
     //@PreAuthorize("hasRole('BADGETYPE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public OperationType add(@RequestBody OperationType operationType ){return operationTypeService.save(operationType);}
+    public Service add(@RequestBody Service operationType ){return operationTypeService.save(operationType);}
     //@PreAuthorize("hasRole('BADGETYPE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public OperationType set(@RequestBody OperationType operationType) {
+    public Service set(@RequestBody Service operationType) {
         return operationTypeService.save(operationType);
     }
     //@PreAuthorize("hasRole('BADGETYPE_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@RequestBody OperationType operationType) {
+    public void delete(@RequestBody Service operationType) {
 
         operationTypeService.delete(operationType);
     }

@@ -1,6 +1,7 @@
 package com.bagile.gmo.services;
 
 import com.bagile.gmo.dto.Action;
+import com.bagile.gmo.dto.TurnLine;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public interface ActionService {
     Action save(Action action);
-
+    List<Action> saveAll(List<Action> actions);
     Long size();
 
     Boolean isExist(Long id);

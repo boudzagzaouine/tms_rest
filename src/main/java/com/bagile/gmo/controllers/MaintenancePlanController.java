@@ -97,6 +97,8 @@ public class MaintenancePlanController {
         return maintenanceService.save(maintenancePlan);
     }
 
+
+
     //@PreAuthorize("hasRole('MAINTENANCE_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody

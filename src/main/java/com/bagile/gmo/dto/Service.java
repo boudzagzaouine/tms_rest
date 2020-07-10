@@ -3,7 +3,7 @@ package com.bagile.gmo.dto;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class OperationType extends EmsDto implements Serializable {
+public class Service extends EmsDto implements Serializable {
     /**
      *
      */
@@ -11,7 +11,6 @@ public class OperationType extends EmsDto implements Serializable {
     private long id;
     private String code;
     private String description;
-    private ProgramType programType;
 
 
     public long getId() {
@@ -38,19 +37,12 @@ public class OperationType extends EmsDto implements Serializable {
         this.description = description;
     }
 
-    public ProgramType getProgramType() {
-        return programType;
-    }
-
-    public void setProgramType(ProgramType programType) {
-        this.programType = programType;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        OperationType badgeType = (OperationType) o;
+        Service badgeType = (Service) o;
         return getId() == badgeType.getId();
     }
 

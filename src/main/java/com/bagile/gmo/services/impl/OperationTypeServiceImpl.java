@@ -1,24 +1,23 @@
 package com.bagile.gmo.services.impl;
 
-import com.bagile.gmo.dto.OperationType;
-import com.bagile.gmo.entities.GmoOperationType;
+import com.bagile.gmo.dto.Service;
+import com.bagile.gmo.entities.GmoService;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
-import com.bagile.gmo.mapper.OperationTypeMapper;
+import com.bagile.gmo.mapper.ServiceMapper;
 import com.bagile.gmo.repositories.OperationTypeRepository;
 import com.bagile.gmo.services.OperationTypeService;
 import com.bagile.gmo.util.Search;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 
-@Service
+@org.springframework.stereotype.Service
 @Transactional
 public class OperationTypeServiceImpl implements OperationTypeService {
     private final OperationTypeRepository operationTypeRepository;
@@ -28,8 +27,8 @@ public class OperationTypeServiceImpl implements OperationTypeService {
     }
 
     @Override
-    public OperationType save(OperationType operationType) {
-        return OperationTypeMapper.toDto(operationTypeRepository.saveAndFlush(OperationTypeMapper.toEntity(operationType, false)), false);
+    public Service save(Service operationType) {
+        return ServiceMapper.toDto(operationTypeRepository.saveAndFlush(ServiceMapper.toEntity(operationType, false)), false);
     }
 
     @Override
@@ -43,26 +42,26 @@ public class OperationTypeServiceImpl implements OperationTypeService {
     }
 
     @Override
-    public OperationType findById(Long id) throws IdNotFound {
-        return OperationTypeMapper.toDto(operationTypeRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
+    public Service findById(Long id) throws IdNotFound {
+        return ServiceMapper.toDto(operationTypeRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
     }
 
     @Override
-    public List<OperationType> find(String search) throws AttributesNotFound, ErrorType {
+    public List<Service> find(String search) throws AttributesNotFound, ErrorType {
         if (search.equals("")){
             return findAll ();
         }
-        return OperationTypeMapper.toDtos(operationTypeRepository.findAll(Search.expression(search, GmoOperationType.class)), false);
+        return ServiceMapper.toDtos(operationTypeRepository.findAll(Search.expression(search, GmoService.class)), false);
     }
 
     @Override
-    public List<OperationType> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
+    public List<Service> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
         if (search.equals("")){
             return findAll (page, size);
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return OperationTypeMapper.toDtos(operationTypeRepository.findAll(Search.expression(search, GmoOperationType.class), pageable), false);
+        return ServiceMapper.toDtos(operationTypeRepository.findAll(Search.expression(search, GmoService.class), pageable), false);
     }
 
     @Override
@@ -70,7 +69,7 @@ public class OperationTypeServiceImpl implements OperationTypeService {
         if (search.equals("")){
             return size ();
         }
-        return operationTypeRepository.count(Search.expression(search, GmoOperationType.class));
+        return operationTypeRepository.count(Search.expression(search, GmoService.class));
     }
 
     @Override
@@ -79,8 +78,8 @@ public class OperationTypeServiceImpl implements OperationTypeService {
     }
 
     @Override
-    public void delete(OperationType operationType) {
-        operationTypeRepository.delete(OperationTypeMapper.toEntity(operationType, false));
+    public void delete(Service operationType) {
+        operationTypeRepository.delete(ServiceMapper.toEntity(operationType, false));
     }
 
 
@@ -93,15 +92,15 @@ public class OperationTypeServiceImpl implements OperationTypeService {
 
 
     @Override
-    public List<OperationType> findAll() {
-        return OperationTypeMapper.toDtos(operationTypeRepository.findAll(), false);
+    public List<Service> findAll() {
+        return ServiceMapper.toDtos(operationTypeRepository.findAll(), false);
     }
 
     @Override
-    public List<OperationType> findAll(int page, int size) {
+    public List<Service> findAll(int page, int size) {
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return OperationTypeMapper.toDtos(operationTypeRepository.findAll(pageable), false);
+        return ServiceMapper.toDtos(operationTypeRepository.findAll(pageable), false);
     }
 
 }

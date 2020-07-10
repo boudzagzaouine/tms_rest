@@ -15,7 +15,6 @@ public class GmoProgramType extends EmsEntity {
     private String gmoProgramTypeCode;
     private String gmoProgramTypeDescription;
     private GmoMaintenanceType gmoMaintenanceType ;
-   private  Set<GmoOperationType> gmoOperationTypes = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -56,12 +55,6 @@ public class GmoProgramType extends EmsEntity {
     public void setGmoMaintenanceType(GmoMaintenanceType gmoMaintenanceType) {
         this.gmoMaintenanceType = gmoMaintenanceType;
     }
-    @OneToMany(mappedBy = "gmoProgramType", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    public Set<GmoOperationType> getGmoOperationTypes() {
-        return gmoOperationTypes;
-    }
 
-    public void setGmoOperationTypes(Set<GmoOperationType> gmoOperationTypes) {
-        this.gmoOperationTypes = gmoOperationTypes;
-    }
+
 }

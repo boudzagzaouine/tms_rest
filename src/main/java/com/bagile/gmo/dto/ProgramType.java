@@ -14,7 +14,7 @@ public class ProgramType extends EmsDto implements Serializable {
     private String code;
     private String description;
     private MaintenanceType maintenanceType ;
- private List<OperationType> operationTypes= new ArrayList<>();
+ private List<Service> operationTypes= new ArrayList<>();
 
 
     public long getId() {
@@ -49,11 +49,11 @@ public class ProgramType extends EmsDto implements Serializable {
         this.maintenanceType = maintenanceType;
     }
 
-    public List<OperationType> getOperationTypes() {
+    public List<Service> getOperationTypes() {
         return operationTypes;
     }
 
-    public void setOperationTypes(List<OperationType> operationTypes) {
+    public void setOperationTypes(List<Service> operationTypes) {
         this.operationTypes = operationTypes;
     }
 

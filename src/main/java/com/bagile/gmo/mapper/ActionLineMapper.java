@@ -76,8 +76,8 @@ public class ActionLineMapper {
 		actionLine.setAmountVat(gmoActionLine.getGmoAmountVat());
 
 		if (!lazy) {
-			actionLine.setAction(ActionMapper.toDto(gmoActionLine.getGmoAction(), lazy));
-			actionLine.setProduct(ProductMapper.toDto(gmoActionLine.getPdtProduct(), lazy));
+			actionLine.setAction(ActionMapper.toDto(gmoActionLine.getGmoAction(), false));
+			actionLine.setProduct(ProductMapper.toDto(gmoActionLine.getPdtProduct(), false));
 
 		}
 		return actionLine;

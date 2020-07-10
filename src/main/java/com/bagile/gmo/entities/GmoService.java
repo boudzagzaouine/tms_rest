@@ -5,14 +5,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "gmo_operationtypee")
-public class GmoOperationType extends EmsEntity {
+public class GmoService extends EmsEntity {
 
 	private static final long serialVersionUID = 2773120607426017439L;
 
 	private long gmoOperationTypeId;
     private String gmoOperationTypeCode;
     private String gmoOperationTypeDescription;
-    private GmoProgramType gmoProgramType ;
 
 
     @Id
@@ -45,13 +44,5 @@ public class GmoOperationType extends EmsEntity {
         this.gmoOperationTypeDescription = gmoOperationTypeDescription;
     }
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "gmo_programtype")
-    public GmoProgramType getGmoProgramType() {
-        return gmoProgramType;
-    }
 
-    public void setGmoProgramType(GmoProgramType gmoProgramType) {
-        this.gmoProgramType = gmoProgramType;
-    }
 }
