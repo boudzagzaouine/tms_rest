@@ -93,6 +93,12 @@ public class MaintenancePlanServiceImpl implements MaintenancePlanService {
     }
 
     @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            maintenancePlanRepository.deleteById(id);        }
+    }
+    @Override
     public List<MaintenancePlan> findAll() {
         return MaintenancePlanMapper.toDtos(maintenancePlanRepository.findAll(), false);
     }

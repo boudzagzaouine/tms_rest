@@ -42,9 +42,9 @@ public class ActionMapper {
 		if (!lazy) {
 			gmoAction.setGmoMaintenancePlan(MaintenancePlanMapper.toEntity(action.getMaintenancePlan(), true));
 			gmoAction.setGmoMaintenanceState(MaintenanceStateMapper.toEntity(action.getMaintenanceState(),true));
-			gmoAction.setGmoActionLines(ActionLineMapper.toEntities(action.getActionLines(),true));
+			gmoAction.setGmoActionLines(ActionLineMapper.toEntities(action.getActionLines(),false));
 			gmoAction.setGmoActionType(ActionTypeMapper.toEntity(action.getActionType(),false));
-        oneToMany(gmoAction);
+            oneToMany(gmoAction);
 		}
 
 		return gmoAction;
@@ -64,10 +64,10 @@ public class ActionMapper {
 		Action action = new Action();
 		action.setId((int) gmoAction.getGmoActionId());
 		if (!lazy) {
-			action.setMaintenancePlan(MaintenancePlanMapper.toDto(gmoAction.getGmoMaintenancePlan(), false));
-			action.setMaintenanceState(MaintenanceStateMapper.toDto(gmoAction.getGmoMaintenanceState(), false));
+			action.setMaintenancePlan(MaintenancePlanMapper.toDto(gmoAction.getGmoMaintenancePlan(), true));
+			action.setMaintenanceState(MaintenanceStateMapper.toDto(gmoAction.getGmoMaintenanceState(), true));
 			action.setActionLines(ActionLineMapper.toDtos(gmoAction.getGmoActionLines(),false));
-			action.setActionType (ActionTypeMapper.toDto (gmoAction.getGmoActionType(), false));
+			action.setActionType (ActionTypeMapper.toDto (gmoAction.getGmoActionType(), true));
 
 		}
 		return action;

@@ -12,6 +12,7 @@ public class ActionLine extends EmsDto {
     private String description;
     private BigDecimal quantity;
     private BigDecimal totalPriceHT;
+    private BigDecimal unitPrice;
     private BigDecimal totalPriceTTC;
     private BigDecimal amountVat;
     private Action action;
@@ -80,6 +81,14 @@ public class ActionLine extends EmsDto {
 
     public void setAction(Action action) {
         this.action = action;
+    }
+
+    public BigDecimal getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(BigDecimal unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
     @Override

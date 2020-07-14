@@ -1,5 +1,7 @@
 package com.bagile.gmo.dto;
 
+import org.elasticsearch.search.DocValueFormat;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -32,9 +34,11 @@ public class MaintenancePlan extends EmsDto implements Serializable {
     private Double mileage = 0.0;
     private BigDecimal totalPrice;
     private List<Action> actions;
-     private  String  agent ;
+    private  String  agent ;
     private   String  employer ;
-
+    private   String  observation;
+    private Date declaredDate;
+    private BigDecimal duration;
 
     public MaintenancePlan() {
     }
@@ -209,6 +213,30 @@ public class MaintenancePlan extends EmsDto implements Serializable {
 
     public void setEmployer(String employer) {
         this.employer = employer;
+    }
+
+    public String getObservation() {
+        return observation;
+    }
+
+    public void setObservation(String observation) {
+        this.observation = observation;
+    }
+
+    public Date getDeclaredDate() {
+        return declaredDate;
+    }
+
+    public void setDeclaredDate(Date declaredDate) {
+        this.declaredDate = declaredDate;
+    }
+
+    public BigDecimal getDuration() {
+        return duration;
+    }
+
+    public void setDuration(BigDecimal duration) {
+        this.duration = duration;
     }
 
     @Override

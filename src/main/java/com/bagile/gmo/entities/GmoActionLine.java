@@ -16,6 +16,7 @@ public class GmoActionLine extends EmsEntity {
     private BigDecimal gmoActionLineTotalPriceTTC;
     private  BigDecimal gmoAmountVat;
     private BigDecimal gmoActionLineQuantity;
+    private BigDecimal gmoActionLineunitPrice;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "seq")
@@ -59,6 +60,15 @@ public class GmoActionLine extends EmsEntity {
 
     public void setGmoActionLineDescription(String gmoActionLineDescription) {
         this.gmoActionLineDescription = gmoActionLineDescription;
+    }
+
+    @Column(name = "gmo_actionlineunitprice")
+    public BigDecimal getGmoActionLineunitPrice() {
+        return gmoActionLineunitPrice;
+    }
+
+    public void setGmoActionLineunitPrice(BigDecimal gmoActionLineunitPrice) {
+        this.gmoActionLineunitPrice = gmoActionLineunitPrice;
     }
 
     @Column(name = "gmo_amountvatid")

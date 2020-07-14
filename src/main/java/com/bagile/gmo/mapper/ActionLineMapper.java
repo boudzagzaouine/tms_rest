@@ -26,7 +26,8 @@ public class ActionLineMapper {
 		map.put("totalPriceHT", "gmoMaintenanceLineTotalPriceHT");
 		map.put("totalPriceTTC", "gmoMaintenanceLineTotalPriceTTC");
 		map.put("amountVat", "gmoAmountVat");
-		map.put("quantity", "gmoQuantity");
+		map.put("quantity", "gmoActionLineQuantity");
+		map.put("unitPrice", "gmoActionLineunitPrice");
 
 	}
 
@@ -50,15 +51,14 @@ public class ActionLineMapper {
 		gmoActionLine.setGmoActionLineTotalPriceTTC(actionLine.getTotalPriceTTC());
 		gmoActionLine.setGmoAmountVat(actionLine.getAmountVat());
 		gmoActionLine.setGmoActionLineQuantity(actionLine.getQuantity());
+		gmoActionLine.setGmoActionLineunitPrice(actionLine.getUnitPrice());
 
 		if (!lazy) {
 			gmoActionLine
-			.setGmoAction(ActionMapper.toEntity(actionLine.getAction(), false));
+			.setGmoAction(ActionMapper.toEntity(actionLine.getAction(), true));
 				gmoActionLine
 					.setPdtProduct(
 							ProductMapper.toEntity(actionLine.getProduct(), false));
-
-
 
 		}
 		return gmoActionLine;
@@ -74,9 +74,11 @@ public class ActionLineMapper {
 		actionLine.setTotalPriceHT(gmoActionLine.getGmoActionLineTotalPriceHT());
 		actionLine.setTotalPriceTTC(gmoActionLine.getGmoActionLineTotalPriceTTC());
 		actionLine.setAmountVat(gmoActionLine.getGmoAmountVat());
+		actionLine.setQuantity(gmoActionLine.getGmoActionLineQuantity());
+		actionLine.setUnitPrice(gmoActionLine.getGmoActionLineunitPrice());
 
 		if (!lazy) {
-			actionLine.setAction(ActionMapper.toDto(gmoActionLine.getGmoAction(), false));
+			actionLine.setAction(ActionMapper.toDto(gmoActionLine.getGmoAction(), true));
 			actionLine.setProduct(ProductMapper.toDto(gmoActionLine.getPdtProduct(), false));
 
 		}

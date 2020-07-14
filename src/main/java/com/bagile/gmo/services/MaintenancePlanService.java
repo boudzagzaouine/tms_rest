@@ -26,6 +26,8 @@ public interface MaintenancePlanService {
 
     void delete(MaintenancePlan maintenancePlan);
 
+    void deleteAll (List<Long> ids);
+
     List<MaintenancePlan> findAll();
 
     List<MaintenancePlan> findAll(int page, int size);

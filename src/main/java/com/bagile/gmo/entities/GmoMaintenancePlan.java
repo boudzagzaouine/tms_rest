@@ -69,7 +69,7 @@ public class GmoMaintenancePlan extends EmsEntity {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private GmoPatrimony gmoPatrimony;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "gmoMaintenancePlan")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "gmoMaintenancePlan", orphanRemoval=true)
     private Set<GmoAction> gmoActions = new HashSet<> ();
     @Column(name = "gmo_maintenanceplantotalprice")
     private BigDecimal gmoMaintenancePlanTotalPrice = BigDecimal.ZERO;
@@ -88,8 +88,14 @@ public class GmoMaintenancePlan extends EmsEntity {
 private String gmoAgent ;
     @Column(name = "gmo_maintenanceplanemployer")
     private String gmoEmployer ;
+    @Column(name = "gmo_maintenanceplanobservation")
+    private String gmoObservation ;
 
+    @Column(name = "gmo_maintenanceplandeclaredate")
+    private Date gmoDeclaredDate;
 
+    @Column(name = "gmo_maintenanceplandduration")
+    private BigDecimal gmoDuration;
     public GmoMaintenancePlan() {
     }
 
@@ -269,5 +275,29 @@ private String gmoAgent ;
 
     public void setGmoEmployer(String gmoEmployer) {
         this.gmoEmployer = gmoEmployer;
+    }
+
+    public String getGmoObservation() {
+        return gmoObservation;
+    }
+
+    public void setGmoObservation(String gmoObservation) {
+        this.gmoObservation = gmoObservation;
+    }
+
+    public Date getGmoDeclaredDate() {
+        return gmoDeclaredDate;
+    }
+
+    public void setGmoDeclaredDate(Date gmoDeclaredDate) {
+        this.gmoDeclaredDate = gmoDeclaredDate;
+    }
+
+    public BigDecimal getGmoDuration() {
+        return gmoDuration;
+    }
+
+    public void setGmoDuration(BigDecimal gmoDuration) {
+        this.gmoDuration = gmoDuration;
     }
 }

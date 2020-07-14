@@ -29,7 +29,7 @@ public class GmoAction extends EmsEntity {
 
 
 
-    @OneToMany(mappedBy = "gmoAction", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "gmoAction", cascade = CascadeType.ALL,fetch = FetchType.LAZY , orphanRemoval=true)
     public Set<GmoActionLine> getGmoActionLines() {
         return gmoActionLines;
     }
