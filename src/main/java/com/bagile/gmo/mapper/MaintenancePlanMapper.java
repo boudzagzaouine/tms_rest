@@ -27,7 +27,7 @@ public class MaintenancePlanMapper {
         map.put("responsability", "gmoResponsability");
         map.put("service", "gmoService");
         map.put("periodicityType", "gmoPeriodicityType");
-        map.put("alert", "gmoAlert");
+        map.put("triggerDay", "gmoTriggerDay");
         map.put("triggerDate", "gmoTriggerDate");
         map.put("interventionDate", "gmoInterventionDate");
         map.put("patrimony", "gmoPatrimony");
@@ -35,12 +35,10 @@ public class MaintenancePlanMapper {
         map.put("declaredDate", "gmoDeclaredDate");
         map.put("observation", "gmoObservation");
         map.put("duration", "gmoDuration");
-
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdByUser");
         map.put("updatedBy", "updatedByUser");
-
         map.put("agent", "gmoAgent");
         map.put("employer", "gmoEmployer");
 
@@ -69,12 +67,11 @@ public class MaintenancePlanMapper {
         gmoMaintenancePlan.setGmoInterventionDate (maintenancePlan.getInterventionDate ());
         gmoMaintenancePlan.setGmoAgent (maintenancePlan.getAgent ());
         gmoMaintenancePlan.setGmoEmployer (maintenancePlan.getEmployer ());
-        gmoMaintenancePlan.setGmoAlert(maintenancePlan.getAlert());
+        gmoMaintenancePlan.setGmoTriggerDay(maintenancePlan.getTriggerDay());
         gmoMaintenancePlan.setGmoTriggerDate(maintenancePlan.getTriggerDate());
         gmoMaintenancePlan.setGmoDeclaredDate(maintenancePlan.getDeclaredDate());
         gmoMaintenancePlan.setGmoObservation(maintenancePlan.getObservation());
         gmoMaintenancePlan.setGmoDuration(maintenancePlan.getDuration());
-
         gmoMaintenancePlan.setCreatedBy(maintenancePlan.getCreatedBy());
         gmoMaintenancePlan.setUpdatedBy(maintenancePlan.getUpdatedBy());
         gmoMaintenancePlan.setCreationDate(maintenancePlan.getCreationDate());
@@ -116,7 +113,7 @@ public class MaintenancePlanMapper {
         maintenancePlan.setTotalPrice (gmoMaintenancePlan.getGmoMaintenancePlanTotalPrice ());
         maintenancePlan.setMileage (gmoMaintenancePlan.getGmoMaintenancePlanMileage ());
 
-        maintenancePlan.setAlert(gmoMaintenancePlan.getGmoAlert());
+        maintenancePlan.setTriggerDay(gmoMaintenancePlan.getGmoTriggerDay());
         maintenancePlan.setTriggerDate(gmoMaintenancePlan.getGmoTriggerDate());
         maintenancePlan.setInterventionDate (gmoMaintenancePlan.getGmoInterventionDate ());
         maintenancePlan.setAgent (gmoMaintenancePlan.getGmoAgent ());

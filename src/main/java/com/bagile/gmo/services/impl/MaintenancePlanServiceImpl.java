@@ -1,7 +1,9 @@
 package com.bagile.gmo.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.bagile.gmo.dto.Action;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -31,6 +33,18 @@ public class MaintenancePlanServiceImpl implements MaintenancePlanService {
     @Override
     public MaintenancePlan save(MaintenancePlan maintenancePlan) {
         return MaintenancePlanMapper.toDto(maintenancePlanRepository.save(MaintenancePlanMapper.toEntity(maintenancePlan, false)), false);
+    }
+
+    @Override
+    public List<MaintenancePlan> saveAll(List<MaintenancePlan> maintenancePlans) {
+
+        List<MaintenancePlan> MaintenancePlanList = new ArrayList<>( );
+        for (MaintenancePlan action : maintenancePlans) {
+            MaintenancePlanList.add (save (action));
+        }
+
+        return MaintenancePlanList;
+
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.bagile.gmo.controllers;
 import java.util.Arrays;
 import java.util.List;
 
+import com.bagile.gmo.dto.Action;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -98,6 +99,11 @@ public class MaintenancePlanController {
         return maintenanceService.save(maintenancePlan);
     }
 
+    @RequestMapping(value = "/saveALL", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<MaintenancePlan> addAll(@RequestBody List<MaintenancePlan> maintenancePlans) {
+        return  maintenanceService.saveAll(maintenancePlans);
+    }
 
 
     //@PreAuthorize("hasRole('MAINTENANCE_DELETE')")

@@ -1,7 +1,5 @@
 package com.bagile.gmo.dto;
 
-import org.elasticsearch.search.DocValueFormat;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -9,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-public class MaintenancePlan extends EmsDto implements Serializable {
+public class MaintenancePreventive extends EmsDto implements Serializable {
 
 
     /**
@@ -40,10 +38,11 @@ public class MaintenancePlan extends EmsDto implements Serializable {
     private   String  observation;
     private Date declaredDate;
     private BigDecimal duration;
-    private List<Month> months = new ArrayList<>();
-    private List<Day> days = new ArrayList<>();
 
-    public MaintenancePlan() {
+    private List<Month>months = new ArrayList<>();
+    private List<Day> days    = new ArrayList<>();
+
+    public MaintenancePreventive() {
     }
 
     public long getId() {
@@ -242,6 +241,7 @@ public class MaintenancePlan extends EmsDto implements Serializable {
         this.duration = duration;
     }
 
+
     public List<Month> getMonths() {
         return months;
     }
@@ -262,7 +262,7 @@ public class MaintenancePlan extends EmsDto implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass ( ) != o.getClass ( )) return false;
-        MaintenancePlan that = (MaintenancePlan) o;
+        MaintenancePreventive that = (MaintenancePreventive) o;
         return getId ( ) == that.getId ( );
     }
 

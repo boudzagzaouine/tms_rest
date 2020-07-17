@@ -12,7 +12,9 @@ public class GmoAction extends EmsEntity {
 	private long gmoActionId;
     private GmoActionType gmoActionType;
     private GmoMaintenancePlan gmoMaintenancePlan ;
- private GmoMaintenanceState gmoMaintenanceState ;
+    private GmoMaintenancePreventive gmoMaintenancePreventive ;
+
+    private GmoMaintenanceState gmoMaintenanceState ;
     private Set<GmoActionLine> gmoActionLines = new HashSet<>();
 
     @Id
@@ -74,8 +76,13 @@ public class GmoAction extends EmsEntity {
         this.gmoMaintenancePlan = gmoMaintenancePlan;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "gmo_maintenancepreventiveid")
+    public GmoMaintenancePreventive getGmoMaintenancePreventive() {
+        return gmoMaintenancePreventive;
+    }
 
-
-
-
+    public void setGmoMaintenancePreventive(GmoMaintenancePreventive gmoMaintenancePreventive) {
+        this.gmoMaintenancePreventive = gmoMaintenancePreventive;
+    }
 }
