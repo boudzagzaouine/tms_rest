@@ -11,7 +11,7 @@ public class Action extends EmsDto {
 	private long id;
 	private ActionType actionType;
 	private MaintenanceState maintenanceState;
-    private MaintenancePlan maintenancePlan ;
+    private Maintenance maintenancePlan ;
     private List<ActionLine> actionLines = new ArrayList <>() ;
 
 
@@ -44,10 +44,10 @@ public class Action extends EmsDto {
     public void setMaintenanceState(MaintenanceState maintenanceState) {
         this.maintenanceState = maintenanceState;
     }
-    public MaintenancePlan getMaintenancePlan() {
+    public Maintenance getMaintenancePlan() {
         return maintenancePlan;
     }
-    public void setMaintenancePlan(MaintenancePlan maintenancePlan) {
+    public void setMaintenancePlan(Maintenance maintenancePlan) {
         this.maintenancePlan = maintenancePlan;
     }
 

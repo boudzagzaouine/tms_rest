@@ -11,8 +11,8 @@ public class GmoAction extends EmsEntity {
 	private static final long serialVersionUID = -6143066188263513604L;
 	private long gmoActionId;
     private GmoActionType gmoActionType;
-    private GmoMaintenancePlan gmoMaintenancePlan ;
-    private GmoMaintenancePreventive gmoMaintenancePreventive ;
+    private GmoMaintenance gmoMaintenance;
+    private GmoMaintenancePlan gmoMaintenancePlan;
 
     private GmoMaintenanceState gmoMaintenanceState ;
     private Set<GmoActionLine> gmoActionLines = new HashSet<>();
@@ -67,22 +67,22 @@ public class GmoAction extends EmsEntity {
     }
 
     @ManyToOne
+    @JoinColumn(name = "gmo_maintenanceid")
+    public GmoMaintenance getGmoMaintenance() {
+        return gmoMaintenance;
+    }
+
+    public void setGmoMaintenance(GmoMaintenance gmoMaintenancePlan) {
+        this.gmoMaintenance = gmoMaintenancePlan;
+    }
+
+    @ManyToOne
     @JoinColumn(name = "gmo_maintenanceplanid")
     public GmoMaintenancePlan getGmoMaintenancePlan() {
         return gmoMaintenancePlan;
     }
 
-    public void setGmoMaintenancePlan(GmoMaintenancePlan gmoMaintenancePlan) {
-        this.gmoMaintenancePlan = gmoMaintenancePlan;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "gmo_maintenancepreventiveid")
-    public GmoMaintenancePreventive getGmoMaintenancePreventive() {
-        return gmoMaintenancePreventive;
-    }
-
-    public void setGmoMaintenancePreventive(GmoMaintenancePreventive gmoMaintenancePreventive) {
-        this.gmoMaintenancePreventive = gmoMaintenancePreventive;
+    public void setGmoMaintenancePlan(GmoMaintenancePlan gmoMaintenancePreventive) {
+        this.gmoMaintenancePlan = gmoMaintenancePreventive;
     }
 }

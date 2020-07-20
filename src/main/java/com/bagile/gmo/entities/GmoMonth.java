@@ -11,7 +11,6 @@ public class GmoMonth extends EmsEntity{
     private String gmoMonthCode;
     private String gmoMonthDescription;
     private long gmoValue;
- private GmoMaintenancePlan gmoMaintenancePlan;
 
 
     @Id
@@ -53,6 +52,7 @@ public class GmoMonth extends EmsEntity{
     public void setGmoMonthDescription(String gmoMonthDescription) {
         this.gmoMonthDescription = gmoMonthDescription;
     }
+
 
 
 }

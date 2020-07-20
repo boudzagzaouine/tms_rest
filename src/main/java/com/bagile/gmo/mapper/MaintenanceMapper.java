@@ -1,12 +1,12 @@
 package com.bagile.gmo.mapper;
 
-import com.bagile.gmo.dto.MaintenancePlan;
-import com.bagile.gmo.entities.GmoMaintenancePlan;
-
 import java.util.*;
 
-public class MaintenancePlanMapper {
-    public MaintenancePlanMapper() {
+import com.bagile.gmo.dto.Maintenance;
+import com.bagile.gmo.entities.GmoMaintenance;
+
+public class MaintenanceMapper {
+    public MaintenanceMapper() {
     }
 
     private static Map<String, String> map;
@@ -36,8 +36,6 @@ public class MaintenancePlanMapper {
         map.put("observation", "gmoObservation");
         map.put("duration", "gmoDuration");
         map.put("creationDate", "creationDate");
-        map.put("months", "gmoMonths");
-        map.put("days", "gmoDays");
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdByUser");
         map.put("updatedBy", "updatedByUser");
@@ -54,18 +52,18 @@ public class MaintenancePlanMapper {
         return map.get(key);
     }
 
-    public static GmoMaintenancePlan toEntity(MaintenancePlan maintenance, boolean lazy) {
+    public static GmoMaintenance toEntity(Maintenance maintenance, boolean lazy) {
         if (null == maintenance) {
             return null;
         }
-        GmoMaintenancePlan gmoMaintenance = new GmoMaintenancePlan();
-        gmoMaintenance.setGmoMaintenancePlanId(maintenance.getId());
-        gmoMaintenance.setGmoMaintenancePlanCode(maintenance.getCode() != null ? maintenance.getCode().toUpperCase() : null);
-        gmoMaintenance.setGmoMaintenancePlanDescription(maintenance.getDescription());
-        gmoMaintenance.setGmoMaintenancePlanStartDate(maintenance.getStartDate ());
-        gmoMaintenance.setGmoMaintenancePlanEndDate(maintenance.getEndDate ());
-        gmoMaintenance.setGmoMaintenancePlanTotalPrice (maintenance.getTotalPrice ());
-        gmoMaintenance.setGmoMaintenancePlanMileage (maintenance.getMileage ());
+        GmoMaintenance gmoMaintenance = new GmoMaintenance();
+        gmoMaintenance.setGmoMaintenanceId(maintenance.getId());
+        gmoMaintenance.setGmoMaintenanceCode(maintenance.getCode() != null ? maintenance.getCode().toUpperCase() : null);
+        gmoMaintenance.setGmoMaintenanceDescription(maintenance.getDescription());
+        gmoMaintenance.setGmoMaintenanceStartDate(maintenance.getStartDate ());
+        gmoMaintenance.setGmoMaintenanceEndDate(maintenance.getEndDate ());
+        gmoMaintenance.setGmoMaintenanceTotalPrice (maintenance.getTotalPrice ());
+        gmoMaintenance.setGmoMaintenanceMileage (maintenance.getMileage ());
         gmoMaintenance.setGmoInterventionDate (maintenance.getInterventionDate ());
         gmoMaintenance.setGmoAgent (maintenance.getAgent ());
         gmoMaintenance.setGmoEmployer (maintenance.getEmployer ());
@@ -90,25 +88,30 @@ public class MaintenancePlanMapper {
             gmoMaintenance.setGmoServiceProvider(ServiceProviderMapper.toEntity(maintenance.getServiceProvider(),false));
             gmoMaintenance.setGmoService (ResponsabilityMapper.toEntity (maintenance.getService(), false));
             gmoMaintenance.setGmoProgramType(ProgramTypeMapper.toEntity(maintenance.getProgramType(),false));
-            gmoMaintenance.setGmoMonths(MonthMapper.toEntities (maintenance.getMonths(), false));
-            gmoMaintenance.setGmoDays(DayMapper.toEntities (maintenance.getDays(), false));
-
+            oneToMany(gmoMaintenance);
         }
         return gmoMaintenance;
     }
-
-    public static MaintenancePlan toDto(GmoMaintenancePlan gmoMaintenance, boolean lazy) {
+    private static void oneToMany(GmoMaintenance plan) {
+        plan.getGmoActions().forEach(
+                e -> {
+                    e.setCreationDate(new Date());
+                    e.setGmoMaintenance(plan);
+                }
+        );
+    }
+    public static Maintenance toDto(GmoMaintenance gmoMaintenance, boolean lazy) {
         if (null == gmoMaintenance) {
             return null;
         }
-        MaintenancePlan maintenance = new MaintenancePlan();
-        maintenance.setId(gmoMaintenance.getGmoMaintenancePlanId());
-        maintenance.setCode(gmoMaintenance.getGmoMaintenancePlanCode());
-        maintenance.setDescription(gmoMaintenance.getGmoMaintenancePlanDescription());
-        maintenance.setStartDate (gmoMaintenance.getGmoMaintenancePlanStartDate());
-        maintenance.setEndDate (gmoMaintenance.getGmoMaintenancePlanEndDate());
-        maintenance.setTotalPrice (gmoMaintenance.getGmoMaintenancePlanTotalPrice ());
-        maintenance.setMileage (gmoMaintenance.getGmoMaintenancePlanMileage ());
+        Maintenance maintenance = new Maintenance();
+        maintenance.setId(gmoMaintenance.getGmoMaintenanceId());
+        maintenance.setCode(gmoMaintenance.getGmoMaintenanceCode());
+        maintenance.setDescription(gmoMaintenance.getGmoMaintenanceDescription());
+        maintenance.setStartDate (gmoMaintenance.getGmoMaintenanceStartDate());
+        maintenance.setEndDate (gmoMaintenance.getGmoMaintenanceEndDate());
+        maintenance.setTotalPrice (gmoMaintenance.getGmoMaintenanceTotalPrice ());
+        maintenance.setMileage (gmoMaintenance.getGmoMaintenanceMileage ());
 
         maintenance.setTriggerDay(gmoMaintenance.getGmoTriggerDay());
         maintenance.setTriggerDate(gmoMaintenance.getGmoTriggerDate());
@@ -136,43 +139,41 @@ public class MaintenancePlanMapper {
             maintenance.setServiceProvider(ServiceProviderMapper.toDto(gmoMaintenance.getGmoServiceProvider(),true));
             maintenance.setService(ResponsabilityMapper.toDto (gmoMaintenance.getGmoService (), true));
             maintenance.setProgramType(ProgramTypeMapper.toDto(gmoMaintenance.getGmoProgramType(),true));
-            maintenance.setDays(DayMapper.toDtos(gmoMaintenance.getGmoDays(),true));
-            maintenance.setMonths(MonthMapper.toDtos(gmoMaintenance.getGmoMonths(),false));
 
         }
 
         return maintenance;
     }
 
-    public static List<MaintenancePlan> toDtos(Iterable<? extends GmoMaintenancePlan> mntMaintenances, boolean lazy) {
+    public static List<Maintenance> toDtos(Iterable<? extends GmoMaintenance> mntMaintenances, boolean lazy) {
         if (null == mntMaintenances) {
             return null;
         }
-        List<MaintenancePlan> maintenances = new ArrayList<>();
-        for (GmoMaintenancePlan gmoMaintenance : mntMaintenances) {
+        List<Maintenance> maintenances = new ArrayList<>();
+        for (GmoMaintenance gmoMaintenance : mntMaintenances) {
             maintenances.add(toDto(gmoMaintenance, lazy));
         }
         return maintenances;
     }
 
-    public static Set<GmoMaintenancePlan> toEntities(Set<? extends MaintenancePlan> maintenances, boolean lazy) {
+    public static Set<GmoMaintenance> toEntities(Set<? extends Maintenance> maintenances, boolean lazy) {
         if (null == maintenances) {
             return null;
         }
-        Set<GmoMaintenancePlan> gmoMaintenances = new HashSet<>();
+        Set<GmoMaintenance> gmoMaintenances = new HashSet<>();
 
-        for (MaintenancePlan maintenance : maintenances) {
+        for (Maintenance maintenance : maintenances) {
             gmoMaintenances.add(toEntity(maintenance, lazy));
         }
         return gmoMaintenances;
     }
 
-    public static Set<MaintenancePlan> toDtos(Set<? extends GmoMaintenancePlan> gmoMaintenances, boolean lazy) {
+    public static Set<Maintenance> toDtos(Set<? extends GmoMaintenance> gmoMaintenances, boolean lazy) {
         if (null == gmoMaintenances) {
             return null;
         }
-        Set<MaintenancePlan> maintenances = new HashSet<>();
-        for (GmoMaintenancePlan gmoMaintenance : gmoMaintenances) {
+        Set<Maintenance> maintenances = new HashSet<>();
+        for (GmoMaintenance gmoMaintenance : gmoMaintenances) {
             maintenances.add(toDto(gmoMaintenance, lazy));
         }
         return maintenances;

@@ -1,10 +1,9 @@
 package com.bagile.gmo.services;
 
-import com.bagile.gmo.dto.MaintenancePlan;
+import com.bagile.gmo.dto.Maintenance;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
-import com.bagile.gmo.services.MaintenancePlanService;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class MaintenancePlanServiceTest {
     @Autowired
-    private MaintenancePlanService maintenancePlanService;
+    private MaintenanceService maintenancePlanService;
 
     @Test
     void saveEmptyMaintenancePlanShouldThrowError() {
@@ -28,9 +27,9 @@ class MaintenancePlanServiceTest {
 
     @Test
     void saveValidMaintenancePlanShouldReturnTrue() {
-        MaintenancePlan maintenancePlan = new MaintenancePlan();
+        Maintenance maintenancePlan = new Maintenance();
         assertEquals(0,maintenancePlan.getId());
-        MaintenancePlan save = maintenancePlanService.save(maintenancePlan);
+        Maintenance save = maintenancePlanService.save(maintenancePlan);
         assertNotNull(save);
     }
 
@@ -51,11 +50,11 @@ class MaintenancePlanServiceTest {
     @ValueSource(strings = {"qs123", "ze5478"})
     void saveNewValid(String code) {
 
-        MaintenancePlan maintenancePlan = new MaintenancePlan();
+        Maintenance maintenancePlan = new Maintenance();
         maintenancePlan.setCode(code);
         assertEquals(0,maintenancePlan.getId());
 
-        MaintenancePlan save = maintenancePlanService.save(maintenancePlan);
+        Maintenance save = maintenancePlanService.save(maintenancePlan);
         assertEquals(code.toUpperCase(), save.getCode().toUpperCase());
         assertNotNull(save);
 
@@ -76,7 +75,7 @@ class MaintenancePlanServiceTest {
     }
     @Test
     void findById_Id_exist_in_db_return_Object() throws IdNotFound {
-        MaintenancePlan maintenancePlan = maintenancePlanService.findById(1L);
+        Maintenance maintenancePlan = maintenancePlanService.findById(1L);
         assertNotNull(maintenancePlan);
         assertEquals(1,maintenancePlan.getId());
     }
@@ -135,7 +134,7 @@ class MaintenancePlanServiceTest {
 
     @Test
     void testDeleteOfNewMaintenancePlanWithIDZeroShouldEmptyResultDataAccessException() {
-        MaintenancePlan maintenancePlan = new MaintenancePlan();
+        Maintenance maintenancePlan = new Maintenance();
         assertNotNull(maintenancePlan);
         assertEquals(0, maintenancePlan.getId());
         assertThrows(EmptyResultDataAccessException.class, () -> maintenancePlanService.delete(maintenancePlan.getId()));
@@ -143,13 +142,13 @@ class MaintenancePlanServiceTest {
 
     @Test
     void findAllWhenDbEmptyShouldReturnEmptyList() {
-        List<MaintenancePlan> all = maintenancePlanService.findAll();
+        List<Maintenance> all = maintenancePlanService.findAll();
         assertEquals(0, all.size());
     }
 
     @Test
     void testFindAllOfEmptyTableShouldReturnEmptyList() {
-        List<MaintenancePlan> all = maintenancePlanService.findAll();
+        List<Maintenance> all = maintenancePlanService.findAll();
         assertNotNull(all);
         assertEquals(0, all.size());
     }

@@ -1,15 +1,16 @@
 package com.bagile.gmo.services;
 
-import java.util.List;
-
-import com.bagile.gmo.dto.Action;
 import com.bagile.gmo.dto.MaintenancePlan;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 
+import java.util.List;
+
 public interface MaintenancePlanService {
-    MaintenancePlan save(MaintenancePlan maintenancePlan);
+
+    MaintenancePlan save(MaintenancePlan maintenancePreventive);
+
     List<MaintenancePlan> saveAll(List<MaintenancePlan> maintenancePlans);
 
     Long size();
@@ -26,9 +27,9 @@ public interface MaintenancePlanService {
 
     void delete(Long id);
 
-    void delete(MaintenancePlan maintenancePlan);
+    void delete(MaintenancePlan maintenancePreventive);
 
-    void deleteAll (List<Long> ids);
+    void deleteAll(List<Long> ids);
 
     List<MaintenancePlan> findAll();
 

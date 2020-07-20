@@ -8,4 +8,7 @@ import com.bagile.gmo.entities.GmoCommissionType;
 
 public interface CommissionTypeRepository extends JpaRepository<GmoCommissionType, Long>,
         QuerydslPredicateExecutor<GmoCommissionType> {
+
+
+
 }

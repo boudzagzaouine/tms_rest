@@ -1,14 +1,26 @@
 package com.bagile.gmo.entities;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 @Entity
-@Table(name = "gmo_maintenancepreventive")
-public class GmoMaintenancePreventive extends EmsEntity {
+@Table(name = "gmo_maintenance")
+public class GmoMaintenance extends EmsEntity {
 
     /**
      *
@@ -16,17 +28,17 @@ public class GmoMaintenancePreventive extends EmsEntity {
     private static final long serialVersionUID = -1640304759359470684L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_maintenance_preventive_id", allocationSize = 1)
-    @Column(name = "gmo_maintenancepreventiveid", unique = true, nullable = false, precision = 10, scale = 0)
-    private Long gmoMaintenancePreventiveId;
-    @Column(name = "gmo_maintenancepreventivecode", nullable = false, length = 90)
-    private String gmoMaintenancePreventiveCode;
-    @Column(name = "gmo_maintenancepreventivedescription")
-    private String gmoMaintenancePreventiveDescription;
-    @Column(name = "gmo_maintenancepreventivestartdate")
-    private Date gmoMaintenancePreventiveStartDate;
-    @Column(name = "Gmo_Maintenancepreventiveenddate")
-    private Date gmoMaintenancePreventiveEndDate;
+    @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_maintenance__id", allocationSize = 1)
+    @Column(name = "gmo_maintenanceid", unique = true, nullable = false, precision = 10, scale = 0)
+    private Long gmoMaintenanceId;
+    @Column(name = "gmo_maintenancecode", nullable = false, length = 90)
+    private String gmoMaintenanceCode;
+    @Column(name = "gmo_maintenancedescription")
+    private String gmoMaintenanceDescription;
+    @Column(name = "gmo_maintenancestartdate")
+    private Date gmoMaintenanceStartDate;
+    @Column(name = "Gmo_Maintenanceenddate")
+    private Date gmoMaintenanceEndDate;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_maintenancetypeid")
     private GmoMaintenanceType gmoMaintenanceType;
@@ -58,107 +70,83 @@ public class GmoMaintenancePreventive extends EmsEntity {
     @ManyToOne(cascade = CascadeType.MERGE)
     private GmoPatrimony gmoPatrimony;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "gmoMaintenancePreventive", orphanRemoval=true)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "gmoMaintenance", orphanRemoval=true)
     private Set<GmoAction> gmoActions = new HashSet<> ();
-    @Column(name = "gmo_maintenancepreventivetotalprice")
-    private BigDecimal gmoMaintenancePreventiveTotalPrice = BigDecimal.ZERO;
-    @Column(name = "gmo_maintenancepreventivemileage")
-    private Double gmoMaintenancePreventiveMileage = 0.0;
+    @Column(name = "gmo_maintenancetotalprice")
+    private BigDecimal gmoMaintenanceTotalPrice = BigDecimal.ZERO;
+    @Column(name = "gmo_maintenancemileage")
+    private Double gmoMaintenanceMileage = 0.0;
 
-    @Column(name = "gmo_maintenancepreventivetriggerday")
+    @Column(name = "gmo_maintenancetriggerday")
     private BigDecimal gmoTriggerDay;
-    @Column(name = "gmo_maintenancepreventivetriggerdate")
+    @Column(name = "gmo_maintenancetriggerdate")
     private Date gmoTriggerDate;
 
-    @Column(name = "gmo_maintenancepreventiveinterventiondate")
+    @Column(name = "gmo_maintenanceinterventiondate")
     private Date gmoInterventionDate;
 
-    @Column(name = "gmo_maintenancepreventiveagent")
+    @Column(name = "gmo_maintenanceagent")
 private String gmoAgent ;
-    @Column(name = "gmo_maintenancepreventiveemployer")
+    @Column(name = "gmo_maintenanceemployer")
     private String gmoEmployer ;
-    @Column(name = "gmo_maintenancepreventiveobservation")
+    @Column(name = "gmo_maintenanceobservation")
     private String gmoObservation ;
 
-    @Column(name = "gmo_maintenancepreventivedeclaredate")
+    @Column(name = "gmo_maintenancedeclaredate")
     private Date gmoDeclaredDate;
 
-    @Column(name = "gmo_maintenancepreventivedduration")
+    @Column(name = "gmo_maintenancedduration")
     private BigDecimal gmoDuration;
-
-    @OneToMany( cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private Set<GmoDay> gmoDays = new HashSet<>();
-
-    @OneToMany( cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private Set<GmoMonth> gmoMonths = new HashSet<>();
-
-
-    public GmoMaintenancePreventive() {
+    public GmoMaintenance() {
     }
 
-    public Long getGmoMaintenancePreventiveId() {
-        return gmoMaintenancePreventiveId;
+    public Long getGmoMaintenanceId() {
+        return gmoMaintenanceId;
     }
 
-    public void setGmoMaintenancePreventiveId(Long gmoMaintenancePreventiveId) {
-        this.gmoMaintenancePreventiveId = gmoMaintenancePreventiveId;
+    public void setGmoMaintenanceId(Long gmoMaintenanceId) {
+        this.gmoMaintenanceId = gmoMaintenanceId;
     }
 
-    public String getGmoMaintenancePreventiveCode() {
-        return gmoMaintenancePreventiveCode;
+    public String getGmoMaintenanceCode() {
+        return gmoMaintenanceCode;
     }
 
-    public void setGmoMaintenancePreventiveCode(String gmoMaintenancePreventiveCode) {
-        this.gmoMaintenancePreventiveCode = gmoMaintenancePreventiveCode;
+    public void setGmoMaintenanceCode(String gmoMaintenanceCode) {
+        this.gmoMaintenanceCode = gmoMaintenanceCode;
     }
 
-    public String getGmoMaintenancePreventiveDescription() {
-        return gmoMaintenancePreventiveDescription;
+    public String getGmoMaintenanceDescription() {
+        return gmoMaintenanceDescription;
     }
 
-    public void setGmoMaintenancePreventiveDescription(String gmoMaintenancePreventiveDescription) {
-        this.gmoMaintenancePreventiveDescription = gmoMaintenancePreventiveDescription;
+    public void setGmoMaintenanceDescription(String gmoMaintenanceDescription) {
+        this.gmoMaintenanceDescription = gmoMaintenanceDescription;
     }
 
 
-    public Date getGmoMaintenancePreventiveStartDate() {
-        return gmoMaintenancePreventiveStartDate;
+    public Date getGmoMaintenanceStartDate() {
+        return gmoMaintenanceStartDate;
     }
 
-    public void setGmoMaintenancePreventiveStartDate(Date gmoMaintenancePreventiveStartDate) {
-        this.gmoMaintenancePreventiveStartDate = gmoMaintenancePreventiveStartDate;
+    public void setGmoMaintenanceStartDate(Date gmoMaintenanceStartDate) {
+        this.gmoMaintenanceStartDate = gmoMaintenanceStartDate;
     }
 
     public GmoResponsability getGmoService() {
         return gmoService;
     }
 
-    public Set<GmoDay> getGmoDays() {
-        return gmoDays;
-    }
-
-    public void setGmoDays(Set<GmoDay> gmoDays) {
-        this.gmoDays = gmoDays;
-    }
-
-    public Set<GmoMonth> getGmoMonths() {
-        return gmoMonths;
-    }
-
-    public void setGmoMonths(Set<GmoMonth> gmoMonths) {
-        this.gmoMonths = gmoMonths;
-    }
-
     public void setGmoService(GmoResponsability gmoService) {
         this.gmoService = gmoService;
     }
 
-    public Date getGmoMaintenancePreventiveEndDate() {
-        return gmoMaintenancePreventiveEndDate;
+    public Date getGmoMaintenanceEndDate() {
+        return gmoMaintenanceEndDate;
     }
 
-    public void setGmoMaintenancePreventiveEndDate(Date gmoMaintenancePreventiveEndDate) {
-        this.gmoMaintenancePreventiveEndDate = gmoMaintenancePreventiveEndDate;
+    public void setGmoMaintenanceEndDate(Date gmoMaintenanceEndDate) {
+        this.gmoMaintenanceEndDate = gmoMaintenanceEndDate;
     }
 
     public GmoProgramType getGmoProgramType() {
@@ -229,24 +217,24 @@ private String gmoAgent ;
         return gmoActions;
     }
 
-    public BigDecimal getGmoMaintenancePreventiveTotalPrice() {
-        return gmoMaintenancePreventiveTotalPrice;
+    public BigDecimal getGmoMaintenanceTotalPrice() {
+        return gmoMaintenanceTotalPrice;
     }
 
-    public void setGmoMaintenancePreventiveTotalPrice(BigDecimal gmoMaintenancePreventiveTotalPrice) {
-        this.gmoMaintenancePreventiveTotalPrice = gmoMaintenancePreventiveTotalPrice;
+    public void setGmoMaintenanceTotalPrice(BigDecimal gmoMaintenanceTotalPrice) {
+        this.gmoMaintenanceTotalPrice = gmoMaintenanceTotalPrice;
     }
 
     public void setGmoActions(Set<GmoAction> gmoMaintenanceLines) {
         this.gmoActions = gmoMaintenanceLines;
     }
 
-    public Double getGmoMaintenancePreventiveMileage() {
-        return gmoMaintenancePreventiveMileage;
+    public Double getGmoMaintenanceMileage() {
+        return gmoMaintenanceMileage;
     }
 
-    public void setGmoMaintenancePreventiveMileage(Double gmoMaintenancePreventiveMileage) {
-        this.gmoMaintenancePreventiveMileage = gmoMaintenancePreventiveMileage;
+    public void setGmoMaintenanceMileage(Double gmoMaintenanceMileage) {
+        this.gmoMaintenanceMileage = gmoMaintenanceMileage;
     }
 
     public Date getGmoInterventionDate() {
@@ -313,6 +301,4 @@ private String gmoAgent ;
     public void setGmoDuration(BigDecimal gmoDuration) {
         this.gmoDuration = gmoDuration;
     }
-
-
 }

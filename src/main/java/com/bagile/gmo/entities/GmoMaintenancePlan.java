@@ -1,22 +1,10 @@
 package com.bagile.gmo.entities;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "gmo_maintenanceplan")
@@ -28,7 +16,7 @@ public class GmoMaintenancePlan extends EmsEntity {
     private static final long serialVersionUID = -1640304759359470684L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_maintenance_plan_id", allocationSize = 1)
+    @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_maintenanceplan__id", allocationSize = 1)
     @Column(name = "gmo_maintenanceplanid", unique = true, nullable = false, precision = 10, scale = 0)
     private Long gmoMaintenancePlanId;
     @Column(name = "gmo_maintenanceplancode", nullable = false, length = 90)
@@ -37,10 +25,10 @@ public class GmoMaintenancePlan extends EmsEntity {
     private String gmoMaintenancePlanDescription;
     @Column(name = "gmo_maintenanceplanstartdate")
     private Date gmoMaintenancePlanStartDate;
-    @Column(name = "Gmo_Maintenanceplanenddate")
+    @Column(name = "Gmo_MaintenancePlanenddate")
     private Date gmoMaintenancePlanEndDate;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "gmo_maintenancetypeid")
+    @JoinColumn(name = "gmo_maintenanceplantypeid")
     private GmoMaintenanceType gmoMaintenanceType;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_programetypeid")
@@ -64,7 +52,7 @@ public class GmoMaintenancePlan extends EmsEntity {
     private GmoPeriodicityType gmoPeriodicityType;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "gmo_maintenancestateid")
+    @JoinColumn(name = "gmo_maintenanceplanstateid")
     private GmoMaintenanceState gmoMaintenanceState;
 
     @ManyToOne(cascade = CascadeType.MERGE)
@@ -97,6 +85,18 @@ private String gmoAgent ;
 
     @Column(name = "gmo_maintenanceplandduration")
     private BigDecimal gmoDuration;
+
+    @ManyToMany(cascade=CascadeType.MERGE)
+    @JoinTable(name="gmo_day_plan", joinColumns=@JoinColumn(name="gmo_maintenanceplanid"),
+            inverseJoinColumns=@JoinColumn(name="gmo_dayid"))
+    private Set<GmoDay> gmoDays = new HashSet<>();
+
+    @ManyToMany(cascade=CascadeType.MERGE)
+    @JoinTable(name="gmo_month_plan", joinColumns=@JoinColumn(name="gmo_maintenanceplanid"),
+            inverseJoinColumns=@JoinColumn(name="gmo_monthid"))
+    private Set<GmoMonth> gmoMonths = new HashSet<>();
+
+
     public GmoMaintenancePlan() {
     }
 
@@ -135,6 +135,22 @@ private String gmoAgent ;
 
     public GmoResponsability getGmoService() {
         return gmoService;
+    }
+
+    public Set<GmoDay> getGmoDays() {
+        return gmoDays;
+    }
+
+    public void setGmoDays(Set<GmoDay> gmoDays) {
+        this.gmoDays = gmoDays;
+    }
+
+    public Set<GmoMonth> getGmoMonths() {
+        return gmoMonths;
+    }
+
+    public void setGmoMonths(Set<GmoMonth> gmoMonths) {
+        this.gmoMonths = gmoMonths;
     }
 
     public void setGmoService(GmoResponsability gmoService) {
@@ -225,8 +241,8 @@ private String gmoAgent ;
         this.gmoMaintenancePlanTotalPrice = gmoMaintenancePlanTotalPrice;
     }
 
-    public void setGmoActions(Set<GmoAction> gmoMaintenanceLines) {
-        this.gmoActions = gmoMaintenanceLines;
+    public void setGmoActions(Set<GmoAction> gmoMaintenancePlanLines) {
+        this.gmoActions = gmoMaintenancePlanLines;
     }
 
     public Double getGmoMaintenancePlanMileage() {
@@ -301,4 +317,6 @@ private String gmoAgent ;
     public void setGmoDuration(BigDecimal gmoDuration) {
         this.gmoDuration = gmoDuration;
     }
+
+
 }
