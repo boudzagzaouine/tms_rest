@@ -10,8 +10,11 @@ import com.bagile.gmo.mapper.MaintenanceMapper;
 import com.bagile.gmo.mapper.MaintenancePlanMapper;
 import com.bagile.gmo.repositories.MaintenanceRepository;
 import com.bagile.gmo.repositories.MaintenancePlanRepository;
+import com.bagile.gmo.services.BadgeTypeService;
 import com.bagile.gmo.services.MaintenancePlanService;
+import com.bagile.gmo.services.MaintenanceService;
 import com.bagile.gmo.util.Search;
+import org.joda.time.DateTime;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -19,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -27,42 +31,28 @@ import java.util.List;
 public class MaintenancePlanServiceImpl implements MaintenancePlanService {
 
     private final MaintenancePlanRepository maintenancePlanRepository;
-    private final MaintenanceRepository maintenanceRepository;
+
+    private final MaintenanceService maintenanceService;
 
     public MaintenancePlanServiceImpl(MaintenancePlanRepository maintenancePreventiveRepository,
-                                      MaintenanceRepository maintenancePlanRepository) {
+                                      MaintenanceService maintenanceService) {
         this.maintenancePlanRepository = maintenancePreventiveRepository;
-        this.maintenanceRepository = maintenancePlanRepository;
+ this.maintenanceService=maintenanceService;
     }
+
+
 
     @Override
     public MaintenancePlan save(MaintenancePlan maintenancePlan) {
 
-           /* Maintenance maintenance = new Maintenance() ;
-        if(maintenancePlan.getPeriodicityType().getId() == 3 &&
-                maintenancePlan.getMaintenanceType().getId()==1)
-        {
-            maintenance.setTriggerDate(maintenancePlan.getTriggerDate());
-            maintenance.setDuration(maintenancePlan.getDuration());
-            maintenance.setAgent(maintenancePlan.getAgent());
-            maintenance.setDeclaredDate(maintenancePlan.getDeclaredDate());
-            maintenance.setActions(maintenancePlan.getActions());
-            maintenance.setProgramType(maintenancePlan.getProgramType());
-            maintenance.setMaintenanceType(maintenancePlan.getMaintenanceType());
-            maintenance.setMaintenanceState(maintenancePlan.getMaintenanceState());
-            maintenance.setServiceProvider(maintenancePlan.getServiceProvider());
-            maintenance.setResponsability(maintenancePlan.getResponsability());
-            maintenance.setCode(maintenancePlan.getCode());
-            maintenance.setTriggerDay(maintenancePlan.getTriggerDay());
-            maintenance.setTotalPrice(maintenancePlan.getTotalPrice());
-            maintenance.setPatrimony(maintenancePlan.getPatrimony());
+        maintenancePlan = MaintenancePlanMapper.toDto(maintenancePlanRepository.save(MaintenancePlanMapper.toEntity(maintenancePlan, false)), false);
 
-            MaintenanceMapper.toDto(maintenanceRepository.save(MaintenanceMapper.toEntity(maintenance, false)), false);
+            this.maintenanceService.generateMaintenance(maintenancePlan);
 
-
-        }*/
-        return MaintenancePlanMapper.toDto(maintenancePlanRepository.save(MaintenancePlanMapper.toEntity(maintenancePlan, false)), false);
+        return maintenancePlan;
     }
+
+
 
     @Override
     public List<MaintenancePlan> saveAll(List<MaintenancePlan> maintenancePreventives) {

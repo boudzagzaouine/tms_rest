@@ -38,8 +38,7 @@ public class Maintenance extends EmsDto implements Serializable {
     private   String  observation;
     private Date declaredDate;
     private BigDecimal duration;
-    private List<Month> months = new ArrayList<>();
-    private List<Day> days = new ArrayList<>();
+    private MaintenancePlan maintenancePlan ;
 
     public Maintenance() {
     }
@@ -240,20 +239,12 @@ public class Maintenance extends EmsDto implements Serializable {
         this.duration = duration;
     }
 
-    public List<Month> getMonths() {
-        return months;
+    public MaintenancePlan getMaintenancePlan() {
+        return maintenancePlan;
     }
 
-    public void setMonths(List<Month> months) {
-        this.months = months;
-    }
-
-    public List<Day> getDays() {
-        return days;
-    }
-
-    public void setDays(List<Day> days) {
-        this.days = days;
+    public void setMaintenancePlan(MaintenancePlan maintenancePlan) {
+        this.maintenancePlan = maintenancePlan;
     }
 
     @Override

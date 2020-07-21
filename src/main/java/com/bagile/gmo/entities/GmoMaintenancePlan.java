@@ -96,6 +96,8 @@ private String gmoAgent ;
             inverseJoinColumns=@JoinColumn(name="gmo_monthid"))
     private Set<GmoMonth> gmoMonths = new HashSet<>();
 
+    @Column(name = "gmo_maintenancedayofmonth")
+    private long gmoDayOfMonth ;
 
     public GmoMaintenancePlan() {
     }
@@ -318,5 +320,11 @@ private String gmoAgent ;
         this.gmoDuration = gmoDuration;
     }
 
+    public long getGmoDayOfMonth() {
+        return gmoDayOfMonth;
+    }
 
+    public void setGmoDayOfMonth(long gmoDayOfMonth) {
+        this.gmoDayOfMonth = gmoDayOfMonth;
+    }
 }

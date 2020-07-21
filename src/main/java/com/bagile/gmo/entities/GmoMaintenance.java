@@ -97,6 +97,12 @@ private String gmoAgent ;
 
     @Column(name = "gmo_maintenancedduration")
     private BigDecimal gmoDuration;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_maintenanceplanid")
+    private GmoMaintenancePlan gmoMaintenancePlan;
+
     public GmoMaintenance() {
     }
 
@@ -300,5 +306,14 @@ private String gmoAgent ;
 
     public void setGmoDuration(BigDecimal gmoDuration) {
         this.gmoDuration = gmoDuration;
+    }
+
+
+    public GmoMaintenancePlan getGmoMaintenancePlan() {
+        return gmoMaintenancePlan;
+    }
+
+    public void setGmoMaintenancePlan(GmoMaintenancePlan gmoMaintenancePlan) {
+        this.gmoMaintenancePlan = gmoMaintenancePlan;
     }
 }

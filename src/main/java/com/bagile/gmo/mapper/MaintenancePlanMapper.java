@@ -43,6 +43,7 @@ public class MaintenancePlanMapper {
         map.put("updatedBy", "updatedByUser");
         map.put("agent", "gmoAgent");
         map.put("employer", "gmoEmployer");
+        map.put("dayOfMonth", "gmoDayOfMonth");
 
     }
 
@@ -73,6 +74,8 @@ public class MaintenancePlanMapper {
         gmoMaintenance.setGmoTriggerDate(maintenance.getTriggerDate());
         gmoMaintenance.setGmoDeclaredDate(maintenance.getDeclaredDate());
         gmoMaintenance.setGmoObservation(maintenance.getObservation());
+        gmoMaintenance.setGmoDayOfMonth(maintenance.getDayOfMonth());
+
         gmoMaintenance.setGmoDuration(maintenance.getDuration());
         gmoMaintenance.setCreatedBy(maintenance.getCreatedBy());
         gmoMaintenance.setUpdatedBy(maintenance.getUpdatedBy());
@@ -115,16 +118,18 @@ public class MaintenancePlanMapper {
         maintenance.setInterventionDate (gmoMaintenance.getGmoInterventionDate ());
         maintenance.setAgent (gmoMaintenance.getGmoAgent ());
         maintenance.setEmployer (gmoMaintenance.getGmoEmployer ());
-
         maintenance.setDuration (gmoMaintenance.getGmoDuration ()  );
-
         maintenance.setDeclaredDate (gmoMaintenance.getGmoDeclaredDate ());
         maintenance.setObservation (gmoMaintenance.getGmoObservation ());
+        maintenance.setDayOfMonth (gmoMaintenance.getGmoDayOfMonth ());
+
 
         maintenance.setCreatedBy(gmoMaintenance.getCreatedBy());
         maintenance.setUpdatedBy(gmoMaintenance.getUpdatedBy());
         maintenance.setCreationDate(gmoMaintenance.getCreationDate());
         maintenance.setUpdateDate(gmoMaintenance.getUpdateDate());
+
+
         if (!lazy) {
             maintenance.setMaintenanceType(MaintenanceTypeMapper.toDto(gmoMaintenance.getGmoMaintenanceType(), true));
             maintenance.setMaintenanceState(MaintenanceStateMapper.toDto(gmoMaintenance.getGmoMaintenanceState(), true));

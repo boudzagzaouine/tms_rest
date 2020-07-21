@@ -12,7 +12,6 @@ public class Month extends EmsDto implements Serializable {
     private String code;
     private String description;
     private long value;
-  private Maintenance maintenancePlan;
 
 
     public long getId() {
@@ -47,13 +46,6 @@ public class Month extends EmsDto implements Serializable {
         this.value = value;
     }
 
-    public Maintenance getMaintenancePlan() {
-        return maintenancePlan;
-    }
-
-    public void setMaintenancePlan(Maintenance maintenancePlan) {
-        this.maintenancePlan = maintenancePlan;
-    }
 
     @Override
     public boolean equals(Object o) {

@@ -3,6 +3,7 @@ package com.bagile.gmo.mapper;
 import java.util.*;
 
 import com.bagile.gmo.dto.Maintenance;
+import com.bagile.gmo.dto.MaintenancePlan;
 import com.bagile.gmo.entities.GmoMaintenance;
 
 public class MaintenanceMapper {
@@ -41,6 +42,9 @@ public class MaintenanceMapper {
         map.put("updatedBy", "updatedByUser");
         map.put("agent", "gmoAgent");
         map.put("employer", "gmoEmployer");
+
+        map.put("maintenancePlan", "gmoMaintenancePlan");
+
 
     }
 
@@ -88,6 +92,9 @@ public class MaintenanceMapper {
             gmoMaintenance.setGmoServiceProvider(ServiceProviderMapper.toEntity(maintenance.getServiceProvider(),false));
             gmoMaintenance.setGmoService (ResponsabilityMapper.toEntity (maintenance.getService(), false));
             gmoMaintenance.setGmoProgramType(ProgramTypeMapper.toEntity(maintenance.getProgramType(),false));
+
+            gmoMaintenance.setGmoMaintenancePlan(MaintenancePlanMapper.toEntity(maintenance.getMaintenancePlan(),false));
+
             oneToMany(gmoMaintenance);
         }
         return gmoMaintenance;
@@ -139,6 +146,8 @@ public class MaintenanceMapper {
             maintenance.setServiceProvider(ServiceProviderMapper.toDto(gmoMaintenance.getGmoServiceProvider(),true));
             maintenance.setService(ResponsabilityMapper.toDto (gmoMaintenance.getGmoService (), true));
             maintenance.setProgramType(ProgramTypeMapper.toDto(gmoMaintenance.getGmoProgramType(),true));
+
+            maintenance.setMaintenancePlan(MaintenancePlanMapper.toDto(gmoMaintenance.getGmoMaintenancePlan(),true));
 
         }
 

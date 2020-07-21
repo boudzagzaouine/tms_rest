@@ -3,6 +3,7 @@ package com.bagile.gmo.services;
 import java.util.List;
 
 import com.bagile.gmo.dto.Maintenance;
+import com.bagile.gmo.dto.MaintenancePlan;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
@@ -14,6 +15,8 @@ public interface MaintenanceService {
     Long size();
 
     Boolean isExist(Long id);
+
+    List<Maintenance> generateMaintenance(MaintenancePlan maintenancePlan);
 
     Maintenance findById(Long id) throws IdNotFound;
 

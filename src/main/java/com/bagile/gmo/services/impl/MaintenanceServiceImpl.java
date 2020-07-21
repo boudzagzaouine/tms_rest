@@ -1,9 +1,14 @@
 package com.bagile.gmo.services.impl;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import com.bagile.gmo.dto.MaintenancePlan;
+import com.bagile.gmo.dto.Month;
 import com.bagile.gmo.entities.GmoMaintenance;
+import org.joda.time.DateTime;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -38,12 +43,81 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     public List<Maintenance> saveAll(List<Maintenance> maintenances) {
 
         List<Maintenance> maintenanceList = new ArrayList<>( );
+
         for (Maintenance action : maintenances) {
             maintenanceList.add (save (action));
         }
 
         return maintenanceList;
 
+    }
+
+    @Override
+    public List<Maintenance> generateMaintenance(MaintenancePlan maintenancePlan) {
+        Maintenance maintenance =new Maintenance();
+        List<Maintenance> maintenanceList = new ArrayList<>( );
+
+        if(maintenancePlan.getPeriodicityType().getId() == 3) {
+                 maintenance= loadMaintenance(maintenancePlan);
+        }else if(maintenancePlan.getPeriodicityType().getId() == 2) {
+
+              Date dtS = maintenancePlan.getStartDate();
+              Date dtE = maintenancePlan.getEndDate();
+              int nbr =  dtE.getYear()-dtS.getYear();
+              for(int i=0;i<=nbr ;i++){
+                  for(int j=0;j<maintenancePlan.getMonths().size() ;j++) {
+                      Date dat = new Date();
+                      int day = (int) maintenancePlan.getDayOfMonth();
+                      int month =(int)  maintenancePlan.getMonths().get(j).getValue();
+                      //TODO TEST NULL POINTER EXCEPTION
+                       dat.setDate(day);
+                       dat.setMonth(month);
+                       if(i==0){
+                            dat.setYear(dtS.getYear());
+                       }else{
+                           dat.setYear(dtS.getYear()+1);
+                       }
+                       if(dat.compareTo(dtS)<0 || dat.compareTo(dtE)>0) {
+                           maintenancePlan.setInterventionDate(dat);
+                           maintenance = loadMaintenance(maintenancePlan);
+                           maintenanceList.add(maintenance);
+                       }
+                  }
+              }
+
+        }
+
+     return saveAll(maintenanceList);
+
+    }
+
+    public Maintenance loadMaintenance(MaintenancePlan maintenancePlan){
+        Maintenance maintenance = new Maintenance() ;
+
+        DateTime dt = new DateTime(maintenancePlan.getInterventionDate());
+        int day = maintenancePlan.getTriggerDay().intValue();
+
+        maintenance.setTriggerDate(dt.minusDays(day).toDate());
+
+        maintenance.setMaintenancePlan(maintenancePlan);
+
+        maintenance.setInterventionDate(maintenancePlan.getInterventionDate());
+        maintenance.setDuration(maintenancePlan.getDuration());
+        maintenance.setAgent(maintenancePlan.getAgent());
+        maintenance.setDeclaredDate(maintenancePlan.getDeclaredDate());
+        maintenance.setActions(maintenancePlan.getActions());
+        maintenance.setProgramType(maintenancePlan.getProgramType());
+        maintenance.setMaintenanceType(maintenancePlan.getMaintenanceType());
+        maintenance.setMaintenanceState(maintenancePlan.getMaintenanceState());
+        maintenance.setServiceProvider(maintenancePlan.getServiceProvider());
+        maintenance.setResponsability(maintenancePlan.getResponsability());
+        maintenance.setCode(maintenancePlan.getCode());
+        maintenance.setTriggerDay(maintenancePlan.getTriggerDay());
+        maintenance.setTotalPrice(maintenancePlan.getTotalPrice());
+        maintenance.setPatrimony(maintenancePlan.getPatrimony());
+
+
+        return maintenance;
     }
 
     @Override
