@@ -18,6 +18,7 @@ public class ActionMapper {
 		map.put("action", "gmoActionType");
 		map.put("maintenanceState", "gmoMaintenanceState");
 		map.put("maintenancePlan", "gmoMaintenancePlan");
+		map.put("maintenance", "gmoMaintenance");
 		map.put("actionLines", "gmoActionLines");
 	}
 
@@ -36,7 +37,8 @@ public class ActionMapper {
 		GmoAction gmoAction = new GmoAction();
 		gmoAction.setGmoActionId(action.getId());
 		if (!lazy) {
-			gmoAction.setGmoMaintenance(MaintenanceMapper.toEntity(action.getMaintenancePlan(), true));
+			gmoAction.setGmoMaintenance(MaintenanceMapper.toEntity(action.getMaintenance(), true));
+			gmoAction.setGmoMaintenancePlan(MaintenancePlanMapper.toEntity(action.getMaintenancePlan(), true));
 			gmoAction.setGmoMaintenanceState(MaintenanceStateMapper.toEntity(action.getMaintenanceState(),true));
 			gmoAction.setGmoActionLines(ActionLineMapper.toEntities(action.getActionLines(),false));
 			gmoAction.setGmoActionType(ActionTypeMapper.toEntity(action.getActionType(),false));
@@ -48,8 +50,11 @@ public class ActionMapper {
 	private static void oneToMany(GmoAction action) {
 		action.getGmoActionLines().forEach(
 				e -> {
-					e.setCreationDate(new Date());
-					e.setGmoAction(action);
+					if(0>=action.getGmoActionId()) {
+						e.setGmoActionLineId(0);
+						e.setCreationDate(new Date());
+						e.setGmoAction(action);
+					}
 				}
 		);
 	}
@@ -60,7 +65,8 @@ public class ActionMapper {
 		Action action = new Action();
 		action.setId((int) gmoAction.getGmoActionId());
 		if (!lazy) {
-			action.setMaintenancePlan(MaintenanceMapper.toDto(gmoAction.getGmoMaintenance(), true));
+			action.setMaintenance(MaintenanceMapper.toDto(gmoAction.getGmoMaintenance(), true));
+			action.setMaintenancePlan(MaintenancePlanMapper.toDto(gmoAction.getGmoMaintenancePlan(), true));
 			action.setMaintenanceState(MaintenanceStateMapper.toDto(gmoAction.getGmoMaintenanceState(), true));
 			action.setActionLines(ActionLineMapper.toDtos(gmoAction.getGmoActionLines(),false));
 			action.setActionType (ActionTypeMapper.toDto (gmoAction.getGmoActionType(), true));

@@ -1,5 +1,7 @@
 package com.bagile.gmo.dto;
 
+import com.bagile.gmo.entities.GmoMaintenancePlan;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -11,7 +13,8 @@ public class Action extends EmsDto {
 	private long id;
 	private ActionType actionType;
 	private MaintenanceState maintenanceState;
-    private Maintenance maintenancePlan ;
+    private MaintenancePlan maintenancePlan;
+    private Maintenance maintenance ;
     private List<ActionLine> actionLines = new ArrayList <>() ;
 
 
@@ -44,11 +47,21 @@ public class Action extends EmsDto {
     public void setMaintenanceState(MaintenanceState maintenanceState) {
         this.maintenanceState = maintenanceState;
     }
-    public Maintenance getMaintenancePlan() {
+
+    public MaintenancePlan getMaintenancePlan() {
         return maintenancePlan;
     }
-    public void setMaintenancePlan(Maintenance maintenancePlan) {
+
+    public void setMaintenancePlan(MaintenancePlan maintenancePlan) {
         this.maintenancePlan = maintenancePlan;
+    }
+
+    public Maintenance getMaintenance() {
+        return maintenance;
+    }
+
+    public void setMaintenance(Maintenance maintenance) {
+        this.maintenance = maintenance;
     }
 
     @Override

@@ -14,94 +14,70 @@ public class GmoMaintenancePlan extends EmsEntity {
      *
      */
     private static final long serialVersionUID = -1640304759359470684L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_maintenanceplan__id", allocationSize = 1)
-    @Column(name = "gmo_maintenanceplanid", unique = true, nullable = false, precision = 10, scale = 0)
+
     private Long gmoMaintenancePlanId;
-    @Column(name = "gmo_maintenanceplancode", nullable = false, length = 90)
+
     private String gmoMaintenancePlanCode;
-    @Column(name = "gmo_maintenanceplandescription")
     private String gmoMaintenancePlanDescription;
-    @Column(name = "gmo_maintenanceplanstartdate")
     private Date gmoMaintenancePlanStartDate;
-    @Column(name = "Gmo_MaintenancePlanenddate")
     private Date gmoMaintenancePlanEndDate;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "gmo_maintenanceplantypeid")
+
     private GmoMaintenanceType gmoMaintenanceType;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "gmo_programetypeid")
+
     private GmoProgramType gmoProgramType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "gmo_operationtypeid")
+
     private GmoService gmoOperationType;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "gmo_serviceproviderid")
+
     private GmoServiceProvider gmoServiceProvider;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "gmo_responsabilityid")
+
     private GmoResponsability gmoResponsability;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "gmo_serviceid")
+
     private GmoResponsability gmoService;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "gmo_periodicitytypeid")
+
     private GmoPeriodicityType gmoPeriodicityType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "gmo_maintenanceplanstateid")
+
     private GmoMaintenanceState gmoMaintenanceState;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+
     private GmoPatrimony gmoPatrimony;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "gmoMaintenancePlan", orphanRemoval=true)
+
     private Set<GmoAction> gmoActions = new HashSet<> ();
-    @Column(name = "gmo_maintenanceplantotalprice")
     private BigDecimal gmoMaintenancePlanTotalPrice = BigDecimal.ZERO;
-    @Column(name = "gmo_maintenanceplanmileage")
     private Double gmoMaintenancePlanMileage = 0.0;
 
-    @Column(name = "gmo_maintenanceplantriggerday")
+
     private BigDecimal gmoTriggerDay;
-    @Column(name = "gmo_maintenanceplantriggerdate")
     private Date gmoTriggerDate;
 
-    @Column(name = "gmo_maintenanceplaninterventiondate")
     private Date gmoInterventionDate;
 
-    @Column(name = "gmo_maintenanceplanagent")
+
 private String gmoAgent ;
-    @Column(name = "gmo_maintenanceplanemployer")
     private String gmoEmployer ;
-    @Column(name = "gmo_maintenanceplanobservation")
     private String gmoObservation ;
 
-    @Column(name = "gmo_maintenanceplandeclaredate")
     private Date gmoDeclaredDate;
 
-    @Column(name = "gmo_maintenanceplandduration")
     private BigDecimal gmoDuration;
 
-    @ManyToMany(cascade=CascadeType.MERGE)
-    @JoinTable(name="gmo_day_plan", joinColumns=@JoinColumn(name="gmo_maintenanceplanid"),
-            inverseJoinColumns=@JoinColumn(name="gmo_dayid"))
+
     private Set<GmoDay> gmoDays = new HashSet<>();
 
-    @ManyToMany(cascade=CascadeType.MERGE)
-    @JoinTable(name="gmo_month_plan", joinColumns=@JoinColumn(name="gmo_maintenanceplanid"),
-            inverseJoinColumns=@JoinColumn(name="gmo_monthid"))
+
     private Set<GmoMonth> gmoMonths = new HashSet<>();
 
-    @Column(name = "gmo_maintenancedayofmonth")
     private long gmoDayOfMonth ;
 
     public GmoMaintenancePlan() {
     }
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_maintenanceplan__id", allocationSize = 1)
+    @Column(name = "gmo_maintenanceplanid", unique = true, nullable = false, precision = 10, scale = 0)
     public Long getGmoMaintenancePlanId() {
         return gmoMaintenancePlanId;
     }
@@ -110,6 +86,8 @@ private String gmoAgent ;
         this.gmoMaintenancePlanId = gmoMaintenancePlanId;
     }
 
+
+    @Column(name = "gmo_maintenanceplancode", nullable = false, length = 90)
     public String getGmoMaintenancePlanCode() {
         return gmoMaintenancePlanCode;
     }
@@ -118,6 +96,7 @@ private String gmoAgent ;
         this.gmoMaintenancePlanCode = gmoMaintenancePlanCode;
     }
 
+    @Column(name = "gmo_maintenanceplandescription")
     public String getGmoMaintenancePlanDescription() {
         return gmoMaintenancePlanDescription;
     }
@@ -127,6 +106,7 @@ private String gmoAgent ;
     }
 
 
+    @Column(name = "gmo_maintenanceplanstartdate")
     public Date getGmoMaintenancePlanStartDate() {
         return gmoMaintenancePlanStartDate;
     }
@@ -135,10 +115,14 @@ private String gmoAgent ;
         this.gmoMaintenancePlanStartDate = gmoMaintenancePlanStartDate;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_serviceid")
     public GmoResponsability getGmoService() {
         return gmoService;
     }
-
+    @ManyToMany(cascade=CascadeType.MERGE)
+    @JoinTable(name="gmo_day_plan", joinColumns=@JoinColumn(name="gmo_maintenanceplanid"),
+            inverseJoinColumns=@JoinColumn(name="gmo_dayid"))
     public Set<GmoDay> getGmoDays() {
         return gmoDays;
     }
@@ -147,6 +131,9 @@ private String gmoAgent ;
         this.gmoDays = gmoDays;
     }
 
+    @ManyToMany(cascade=CascadeType.MERGE)
+    @JoinTable(name="gmo_month_plan", joinColumns=@JoinColumn(name="gmo_maintenanceplanid"),
+            inverseJoinColumns=@JoinColumn(name="gmo_monthid"))
     public Set<GmoMonth> getGmoMonths() {
         return gmoMonths;
     }
@@ -159,6 +146,7 @@ private String gmoAgent ;
         this.gmoService = gmoService;
     }
 
+    @Column(name = "Gmo_MaintenancePlanenddate")
     public Date getGmoMaintenancePlanEndDate() {
         return gmoMaintenancePlanEndDate;
     }
@@ -166,7 +154,8 @@ private String gmoAgent ;
     public void setGmoMaintenancePlanEndDate(Date gmoMaintenancePlanEndDate) {
         this.gmoMaintenancePlanEndDate = gmoMaintenancePlanEndDate;
     }
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_programetypeid")
     public GmoProgramType getGmoProgramType() {
         return gmoProgramType;
     }
@@ -175,6 +164,8 @@ private String gmoAgent ;
         this.gmoProgramType = gmoProgramType;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_operationtypeid")
     public GmoService getGmoOperationType() {
         return gmoOperationType;
     }
@@ -183,6 +174,8 @@ private String gmoAgent ;
         this.gmoOperationType = gmoOperationType;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_serviceproviderid")
     public GmoServiceProvider getGmoServiceProvider() {
         return gmoServiceProvider;
     }
@@ -191,6 +184,8 @@ private String gmoAgent ;
         this.gmoServiceProvider = gmoServiceProvider;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_responsabilityid")
     public GmoResponsability getGmoResponsability() {
         return gmoResponsability;
     }
@@ -199,6 +194,8 @@ private String gmoAgent ;
         this.gmoResponsability = gmoResponsability;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_periodicitytypeid")
     public GmoPeriodicityType getGmoPeriodicityType() {
         return gmoPeriodicityType;
     }
@@ -206,7 +203,8 @@ private String gmoAgent ;
     public void setGmoPeriodicityType(GmoPeriodicityType gmoPeriodicityType) {
         this.gmoPeriodicityType = gmoPeriodicityType;
     }
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_maintenanceplantypeid")
     public GmoMaintenanceType getGmoMaintenanceType() {
         return gmoMaintenanceType;
     }
@@ -215,6 +213,8 @@ private String gmoAgent ;
         this.gmoMaintenanceType = gmoMaintenanceType;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_maintenanceplanstateid")
     public GmoMaintenanceState getGmoMaintenanceState() {
         return gmoMaintenanceState;
     }
@@ -223,6 +223,7 @@ private String gmoAgent ;
         this.gmoMaintenanceState = gmoMaintenanceState;
     }
 
+    @ManyToOne()
     public GmoPatrimony getGmoPatrimony() {
         return gmoPatrimony;
     }
@@ -231,10 +232,12 @@ private String gmoAgent ;
         this.gmoPatrimony = gmoPatrimony;
     }
 
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "gmoMaintenancePlan", orphanRemoval=true)
     public Set<GmoAction> getGmoActions() {
         return gmoActions;
     }
 
+    @Column(name = "gmo_maintenanceplantotalprice")
     public BigDecimal getGmoMaintenancePlanTotalPrice() {
         return gmoMaintenancePlanTotalPrice;
     }
@@ -247,6 +250,8 @@ private String gmoAgent ;
         this.gmoActions = gmoMaintenancePlanLines;
     }
 
+
+    @Column(name = "gmo_maintenanceplanmileage")
     public Double getGmoMaintenancePlanMileage() {
         return gmoMaintenancePlanMileage;
     }
@@ -255,6 +260,7 @@ private String gmoAgent ;
         this.gmoMaintenancePlanMileage = gmoMaintenancePlanMileage;
     }
 
+    @Column(name = "gmo_maintenanceplaninterventiondate")
     public Date getGmoInterventionDate() {
         return gmoInterventionDate;
     }
@@ -263,6 +269,7 @@ private String gmoAgent ;
         this.gmoInterventionDate = interventionDate;
     }
 
+    @Column(name = "gmo_maintenanceplantriggerday")
     public BigDecimal getGmoTriggerDay() {
         return gmoTriggerDay;
     }
@@ -271,6 +278,7 @@ private String gmoAgent ;
         this.gmoTriggerDay = gmoDateTrigger;
     }
 
+    @Column(name = "gmo_maintenanceplantriggerdate")
     public Date getGmoTriggerDate() {
         return gmoTriggerDate;
     }
@@ -280,6 +288,7 @@ private String gmoAgent ;
     }
 
 
+    @Column(name = "gmo_maintenanceplanagent")
     public String getGmoAgent() {
         return gmoAgent;
     }
@@ -288,6 +297,7 @@ private String gmoAgent ;
         this.gmoAgent = gmoAgent;
     }
 
+    @Column(name = "gmo_maintenanceplanemployer")
     public String getGmoEmployer() {
         return gmoEmployer;
     }
@@ -296,6 +306,7 @@ private String gmoAgent ;
         this.gmoEmployer = gmoEmployer;
     }
 
+    @Column(name = "gmo_maintenanceplanobservation")
     public String getGmoObservation() {
         return gmoObservation;
     }
@@ -304,6 +315,7 @@ private String gmoAgent ;
         this.gmoObservation = gmoObservation;
     }
 
+    @Column(name = "gmo_maintenanceplandeclaredate")
     public Date getGmoDeclaredDate() {
         return gmoDeclaredDate;
     }
@@ -312,6 +324,7 @@ private String gmoAgent ;
         this.gmoDeclaredDate = gmoDeclaredDate;
     }
 
+    @Column(name = "gmo_maintenanceplandduration")
     public BigDecimal getGmoDuration() {
         return gmoDuration;
     }
@@ -320,6 +333,7 @@ private String gmoAgent ;
         this.gmoDuration = gmoDuration;
     }
 
+    @Column(name = "gmo_maintenancedayofmonth")
     public long getGmoDayOfMonth() {
         return gmoDayOfMonth;
     }

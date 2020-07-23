@@ -2,6 +2,7 @@ package com.bagile.gmo.entities;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -13,7 +14,6 @@ public class GmoAction extends EmsEntity {
     private GmoActionType gmoActionType;
     private GmoMaintenance gmoMaintenance;
     private GmoMaintenancePlan gmoMaintenancePlan;
-
     private GmoMaintenanceState gmoMaintenanceState ;
     private Set<GmoActionLine> gmoActionLines = new HashSet<>();
 
@@ -29,8 +29,6 @@ public class GmoAction extends EmsEntity {
         this.gmoActionId = gmoMaintenanceLineId;
     }
 
-
-
     @OneToMany(mappedBy = "gmoAction", cascade = CascadeType.ALL,fetch = FetchType.LAZY , orphanRemoval=true)
     public Set<GmoActionLine> getGmoActionLines() {
         return gmoActionLines;
@@ -40,14 +38,8 @@ public class GmoAction extends EmsEntity {
         this.gmoActionLines = gmoActionLine;
     }
 
-
-
-
-
-
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "gmo_actiontypeid")
-
     public GmoActionType getGmoActionType() {
         return gmoActionType;
     }
@@ -56,7 +48,7 @@ public class GmoAction extends EmsEntity {
         this.gmoActionType = gmoActionType;
     }
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_maintenancestateid")
     public GmoMaintenanceState getGmoMaintenanceState() {
         return gmoMaintenanceState;
@@ -66,7 +58,7 @@ public class GmoAction extends EmsEntity {
         this.gmoMaintenanceState = gmoMaintenanceState;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_maintenanceid")
     public GmoMaintenance getGmoMaintenance() {
         return gmoMaintenance;
@@ -76,7 +68,7 @@ public class GmoAction extends EmsEntity {
         this.gmoMaintenance = gmoMaintenancePlan;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_maintenanceplanid")
     public GmoMaintenancePlan getGmoMaintenancePlan() {
         return gmoMaintenancePlan;
@@ -84,5 +76,18 @@ public class GmoAction extends EmsEntity {
 
     public void setGmoMaintenancePlan(GmoMaintenancePlan gmoMaintenancePreventive) {
         this.gmoMaintenancePlan = gmoMaintenancePreventive;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GmoAction gmoAction = (GmoAction) o;
+        return gmoActionId == gmoAction.gmoActionId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(gmoActionId);
     }
 }

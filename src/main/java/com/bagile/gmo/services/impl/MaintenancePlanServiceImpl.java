@@ -21,6 +21,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,11 +44,29 @@ public class MaintenancePlanServiceImpl implements MaintenancePlanService {
 
 
     @Override
-    public MaintenancePlan save(MaintenancePlan maintenancePlan) {
+    public MaintenancePlan save(MaintenancePlan maintenancePlan) throws AttributesNotFound, ErrorType, IOException {
 
         maintenancePlan = MaintenancePlanMapper.toDto(maintenancePlanRepository.save(MaintenancePlanMapper.toEntity(maintenancePlan, false)), false);
 
-            this.maintenanceService.generateMaintenance(maintenancePlan);
+          if (maintenancePlan.getId() != 0) {
+              List<Maintenance> maintenanceList = new ArrayList<>( );
+              maintenanceList=  maintenanceService.find("maintenancePlan.id:"+maintenancePlan.getId());
+              if( maintenanceList == null || maintenanceList.size() <= 0) {
+                  this.maintenanceService.generateMaintenance(maintenancePlan);
+              }else{
+                  for(Maintenance m : maintenanceList){
+                      if(m.getMaintenanceState().getId()!=4){
+                          maintenanceService.delete(m);
+                      }
+                      else{
+                          this.maintenanceService.generateMaintenance(maintenancePlan);
+                      }
+                  }
+              }
+          } else {
+              this.maintenanceService.generateMaintenance(maintenancePlan);
+          }
+       // maintenancePlan = MaintenancePlanMapper.toDto(maintenancePlanRepository.save(MaintenancePlanMapper.toEntity(maintenancePlan, false)), false);
 
         return maintenancePlan;
     }
@@ -55,7 +74,7 @@ public class MaintenancePlanServiceImpl implements MaintenancePlanService {
 
 
     @Override
-    public List<MaintenancePlan> saveAll(List<MaintenancePlan> maintenancePreventives) {
+    public List<MaintenancePlan> saveAll(List<MaintenancePlan> maintenancePreventives) throws AttributesNotFound, ErrorType, IOException {
 
         List<MaintenancePlan> MaintenancePreventiveList = new ArrayList<>( );
         for (MaintenancePlan action : maintenancePreventives) {
@@ -124,10 +143,22 @@ public class MaintenancePlanServiceImpl implements MaintenancePlanService {
     }
 
     @Override
-    public void deleteAll(List<Long> ids) {
+          public void deleteAll(List<Long> ids) throws AttributesNotFound, ErrorType {
+            List<Maintenance> maintenanceList = new ArrayList<>( );
 
-        for (Long id : ids) {
-            maintenancePlanRepository.deleteById(id);        }
+            for (Long id : ids) {
+                maintenanceList = maintenanceService.find("maintenancePlan.id:"+id);
+                if( maintenanceList != null || maintenanceList.size() >= 0) {
+                    for (Maintenance m : maintenanceList) {
+                        if (m.getMaintenanceState().getId() != 4) {
+                            maintenanceService.delete(m.getId());
+                        }
+
+                    }
+                }
+                maintenancePlanRepository.deleteById(id);
+            }
+
     }
     @Override
     public List<MaintenancePlan> findAll() {

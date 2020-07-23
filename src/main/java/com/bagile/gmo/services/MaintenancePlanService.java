@@ -5,13 +5,14 @@ import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface MaintenancePlanService {
 
-    MaintenancePlan save(MaintenancePlan maintenancePreventive);
+    MaintenancePlan save(MaintenancePlan maintenancePreventive) throws AttributesNotFound, ErrorType, IOException;
 
-    List<MaintenancePlan> saveAll(List<MaintenancePlan> maintenancePlans);
+    List<MaintenancePlan> saveAll(List<MaintenancePlan> maintenancePlans) throws AttributesNotFound, ErrorType, IOException;
 
     Long size();
 
@@ -29,7 +30,7 @@ public interface MaintenancePlanService {
 
     void delete(MaintenancePlan maintenancePreventive);
 
-    void deleteAll(List<Long> ids);
+    void deleteAll(List<Long> ids) throws AttributesNotFound, ErrorType;
 
     List<MaintenancePlan> findAll();
 

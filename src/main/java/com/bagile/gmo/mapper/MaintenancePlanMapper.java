@@ -1,7 +1,9 @@
 package com.bagile.gmo.mapper;
 
 import com.bagile.gmo.dto.MaintenancePlan;
+import com.bagile.gmo.entities.GmoMaintenance;
 import com.bagile.gmo.entities.GmoMaintenancePlan;
+import com.bagile.gmo.util.EmsDate;
 
 import java.util.*;
 
@@ -14,36 +16,41 @@ public class MaintenancePlanMapper {
     static {
         map = new HashMap<>();
 
-        map.put("id", "gmoMaintenanceId");
-        map.put("code", "gmoMaintenanceCode");
-        map.put("description", "gmoMaintenanceDescription");
-        map.put("beginDate", "gmoMaintenanceStartDate");
-        map.put("endDate", "gmoMaintenanceEndDate");
+        map.put("id", "gmoMaintenancePlanId");
+        map.put("code", "gmoMaintenancePlanCode");
+        map.put("description", "gmoMaintenancePlanDescription");
+        map.put("startDate", "gmoMaintenancePlanStartDate");
+        map.put("endDate", "gmoMaintenancePlanEndDate");
         map.put("maintenanceType", "gmoMaintenanceType");
-        map.put("maintenanceState", "gmoMaintenanceState");
-        map.put("programType", "gmoMaintenanceType");
-        map.put("operationType", "gmoOperationType");
+        map.put("programType", "gmoProgramType");
+
         map.put("serviceProvider", "gmoServiceProvider");
         map.put("responsability", "gmoResponsability");
         map.put("service", "gmoService");
         map.put("periodicityType", "gmoPeriodicityType");
+        map.put("maintenanceState", "gmoMaintenanceState");
         map.put("triggerDay", "gmoTriggerDay");
         map.put("triggerDate", "gmoTriggerDate");
         map.put("interventionDate", "gmoInterventionDate");
         map.put("patrimony", "gmoPatrimony");
-        map.put("totalPrice", "gmoMaintenanceTotalPrice");
-        map.put("declaredDate", "gmoDeclaredDate");
+        map.put("mileage", "gmoMaintenancePlanMileage");
+        map.put("totalPrice", "gmoMaintenancePlanTotalPrice");
+
+        map.put("actions", "gmoActions");
+        map.put("agent", "gmoAgent");
+        map.put("employer", "gmoEmployer");
         map.put("observation", "gmoObservation");
+        map.put("declaredDate", "gmoDeclaredDate");
         map.put("duration", "gmoDuration");
-        map.put("creationDate", "creationDate");
+        map.put("dayOfMonth", "gmoDayOfMonth");
         map.put("months", "gmoMonths");
         map.put("days", "gmoDays");
+
+        map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdByUser");
         map.put("updatedBy", "updatedByUser");
-        map.put("agent", "gmoAgent");
-        map.put("employer", "gmoEmployer");
-        map.put("dayOfMonth", "gmoDayOfMonth");
+
 
     }
 
@@ -95,11 +102,23 @@ public class MaintenancePlanMapper {
             gmoMaintenance.setGmoProgramType(ProgramTypeMapper.toEntity(maintenance.getProgramType(),false));
             gmoMaintenance.setGmoMonths(MonthMapper.toEntities (maintenance.getMonths(), false));
             gmoMaintenance.setGmoDays(DayMapper.toEntities (maintenance.getDays(), false));
+            oneToMany(gmoMaintenance);
 
         }
         return gmoMaintenance;
     }
-
+    private static void oneToMany(GmoMaintenancePlan gmoMaintenancePlan) {
+      // if(null !=gmoMaintenancePlan.getGmoActions()){
+        gmoMaintenancePlan.getGmoActions().forEach(
+                e -> {
+                    if(0 >= gmoMaintenancePlan.getGmoMaintenancePlanId()) {
+                        e.setGmoActionId(0);
+                        e.setCreationDate(EmsDate.getDateNow());
+                        e.setGmoMaintenancePlan(gmoMaintenancePlan);
+                    }
+                }
+        );}
+    //}
     public static MaintenancePlan toDto(GmoMaintenancePlan gmoMaintenance, boolean lazy) {
         if (null == gmoMaintenance) {
             return null;
@@ -131,6 +150,7 @@ public class MaintenancePlanMapper {
 
 
         if (!lazy) {
+
             maintenance.setMaintenanceType(MaintenanceTypeMapper.toDto(gmoMaintenance.getGmoMaintenanceType(), true));
             maintenance.setMaintenanceState(MaintenanceStateMapper.toDto(gmoMaintenance.getGmoMaintenanceState(), true));
             maintenance.setPatrimony(PatrimonyMapper.toDto(gmoMaintenance.getGmoPatrimony(),true));

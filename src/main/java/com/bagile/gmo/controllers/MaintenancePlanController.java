@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -81,20 +82,20 @@ public class MaintenancePlanController {
     //@PreAuthorize("hasRole('MAINTENANCE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public MaintenancePlan add(@RequestBody MaintenancePlan maintenancePreventive) {
+    public MaintenancePlan add(@RequestBody MaintenancePlan maintenancePreventive) throws AttributesNotFound, ErrorType, IOException {
         return maintenancePlanService.save(maintenancePreventive);
     }
 
     //@PreAuthorize("hasRole('MAINTENANCE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public MaintenancePlan set(@RequestBody MaintenancePlan maintenancePreventive) {
+    public MaintenancePlan set(@RequestBody MaintenancePlan maintenancePreventive) throws AttributesNotFound, ErrorType, IOException {
         return maintenancePlanService.save(maintenancePreventive);
     }
 
     @RequestMapping(value = "/saveALL", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<MaintenancePlan> addAll(@RequestBody List<MaintenancePlan> maintenancePreventives) {
+    public List<MaintenancePlan> addAll(@RequestBody List<MaintenancePlan> maintenancePreventives) throws AttributesNotFound, ErrorType, IOException {
         return  maintenancePlanService.saveAll(maintenancePreventives);
     }
 
@@ -116,7 +117,7 @@ public class MaintenancePlanController {
 
     @RequestMapping(value = "/deleteAll", method = RequestMethod.DELETE)
     @ResponseBody
-    public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
+    public void deleteAll(@RequestParam(value = "ids") Long[] ids) throws AttributesNotFound, ErrorType {
         maintenancePlanService.deleteAll (Arrays.asList(ids));
     }
 

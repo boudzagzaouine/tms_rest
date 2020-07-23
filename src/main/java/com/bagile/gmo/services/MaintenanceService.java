@@ -1,5 +1,6 @@
 package com.bagile.gmo.services;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.bagile.gmo.dto.Maintenance;
@@ -16,7 +17,7 @@ public interface MaintenanceService {
 
     Boolean isExist(Long id);
 
-    List<Maintenance> generateMaintenance(MaintenancePlan maintenancePlan);
+    List<Maintenance> generateMaintenance(MaintenancePlan maintenancePlan) throws IOException;
 
     Maintenance findById(Long id) throws IdNotFound;
 

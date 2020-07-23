@@ -1,5 +1,7 @@
 package com.bagile.gmo.entities;
 
+import org.hibernate.annotations.Cascade;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
@@ -67,10 +69,10 @@ public class GmoMaintenance extends EmsEntity {
     @JoinColumn(name = "gmo_maintenancestateid")
     private GmoMaintenanceState gmoMaintenanceState;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne()
     private GmoPatrimony gmoPatrimony;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "gmoMaintenance", orphanRemoval=true)
+    @OneToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL,mappedBy = "gmoMaintenance", orphanRemoval=true)
     private Set<GmoAction> gmoActions = new HashSet<> ();
     @Column(name = "gmo_maintenancetotalprice")
     private BigDecimal gmoMaintenanceTotalPrice = BigDecimal.ZERO;

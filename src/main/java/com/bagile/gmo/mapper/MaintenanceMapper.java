@@ -4,7 +4,10 @@ import java.util.*;
 
 import com.bagile.gmo.dto.Maintenance;
 import com.bagile.gmo.dto.MaintenancePlan;
+import com.bagile.gmo.entities.GmoActionLine;
 import com.bagile.gmo.entities.GmoMaintenance;
+import com.bagile.gmo.util.EmsClone;
+import com.bagile.gmo.util.EmsDate;
 
 public class MaintenanceMapper {
     public MaintenanceMapper() {
@@ -18,32 +21,42 @@ public class MaintenanceMapper {
         map.put("id", "gmoMaintenanceId");
         map.put("code", "gmoMaintenanceCode");
         map.put("description", "gmoMaintenanceDescription");
-        map.put("beginDate", "gmoMaintenanceStartDate");
+        map.put("startDate", "gmoMaintenanceStartDate");
         map.put("endDate", "gmoMaintenanceEndDate");
         map.put("maintenanceType", "gmoMaintenanceType");
-        map.put("maintenanceState", "gmoMaintenanceState");
-        map.put("programType", "gmoMaintenanceType");
+        map.put("programType", "gmoProgramType");
+        map.put("serviceProvider", "gmoMaintenanceType");
         map.put("operationType", "gmoOperationType");
         map.put("serviceProvider", "gmoServiceProvider");
         map.put("responsability", "gmoResponsability");
         map.put("service", "gmoService");
         map.put("periodicityType", "gmoPeriodicityType");
+        map.put("maintenanceState", "gmoMaintenanceState");
+        map.put("patrimony", "gmoPatrimony");
+        map.put("actions", "gmoActions");
+        map.put("totalPrice", "gmoMaintenanceTotalPrice");
+        map.put("mileage", "gmoMaintenanceMileage");
         map.put("triggerDay", "gmoTriggerDay");
         map.put("triggerDate", "gmoTriggerDate");
         map.put("interventionDate", "gmoInterventionDate");
-        map.put("patrimony", "gmoPatrimony");
-        map.put("totalPrice", "gmoMaintenanceTotalPrice");
-        map.put("declaredDate", "gmoDeclaredDate");
+
+
+
+        map.put("agent", "gmoAgent");
+        map.put("employer", "gmoEmployer");
         map.put("observation", "gmoObservation");
+        map.put("declaredDate", "gmoDeclaredDate");
         map.put("duration", "gmoDuration");
+        map.put("maintenancePlan", "gmoMaintenancePlan");
+
+
+
+
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdByUser");
         map.put("updatedBy", "updatedByUser");
-        map.put("agent", "gmoAgent");
-        map.put("employer", "gmoEmployer");
 
-        map.put("maintenancePlan", "gmoMaintenancePlan");
 
 
     }
@@ -85,28 +98,36 @@ public class MaintenanceMapper {
             gmoMaintenance.setGmoMaintenanceType(MaintenanceTypeMapper.toEntity(maintenance.getMaintenanceType(), true));
             gmoMaintenance.setGmoMaintenanceState(MaintenanceStateMapper.toEntity(maintenance.getMaintenanceState(), true));
             gmoMaintenance.setGmoPatrimony(PatrimonyMapper.toEntity(maintenance.getPatrimony(),true));
-            gmoMaintenance.setGmoActions(ActionMapper.toEntities (maintenance.getActions(), false));
 
             gmoMaintenance.setGmoPeriodicityType(PeriodicityTypeMapper.toEntity(maintenance.getPeriodicityType(),false));
             gmoMaintenance.setGmoResponsability (ResponsabilityMapper.toEntity (maintenance.getResponsability(), false));
             gmoMaintenance.setGmoServiceProvider(ServiceProviderMapper.toEntity(maintenance.getServiceProvider(),false));
             gmoMaintenance.setGmoService (ResponsabilityMapper.toEntity (maintenance.getService(), false));
             gmoMaintenance.setGmoProgramType(ProgramTypeMapper.toEntity(maintenance.getProgramType(),false));
-
-            gmoMaintenance.setGmoMaintenancePlan(MaintenancePlanMapper.toEntity(maintenance.getMaintenancePlan(),false));
-
+            gmoMaintenance.setGmoMaintenancePlan(MaintenancePlanMapper.toEntity(maintenance.getMaintenancePlan(),true));
+            gmoMaintenance.setGmoActions(ActionMapper.toEntities (maintenance.getActions(), false));
             oneToMany(gmoMaintenance);
+
         }
         return gmoMaintenance;
     }
-    private static void oneToMany(GmoMaintenance plan) {
-        plan.getGmoActions().forEach(
-                e -> {
-                    e.setCreationDate(new Date());
-                    e.setGmoMaintenance(plan);
-                }
-        );
-    }
+    private static void oneToMany(GmoMaintenance gmoMaintenance) {
+       // if(null !=gmoMaintenance.getGmoActions()){
+            gmoMaintenance.getGmoActions().forEach(
+                gmoAction -> {
+                  if(0>=gmoMaintenance.getGmoMaintenanceId()) {
+                        gmoAction.setGmoActionId(0);
+                        gmoAction.getGmoActionLines().forEach(
+                                gmoActionLine->{
+                                    gmoActionLine.setGmoActionLineId(0);
+                                }
+                        );
+                        gmoAction.setCreationDate(EmsDate.getDateNow());
+                        gmoAction.setGmoMaintenance(gmoMaintenance);
+                    }
+              }
+        );}
+    //}
     public static Maintenance toDto(GmoMaintenance gmoMaintenance, boolean lazy) {
         if (null == gmoMaintenance) {
             return null;

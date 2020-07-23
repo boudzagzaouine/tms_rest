@@ -2,6 +2,7 @@ package com.bagile.gmo.entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Entity
 @Table(name="gmo_actionline")
@@ -30,7 +31,7 @@ public class GmoActionLine extends EmsEntity {
         this.gmoActionLineId = gmoActionLineId;
     }
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "pdt_productid")
     public PdtProduct getPdtProduct() {
         return pdtProduct;
@@ -40,7 +41,7 @@ public class GmoActionLine extends EmsEntity {
         this.pdtProduct = pdtProduct;
     }
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "gmo_actionid")
     public GmoAction getGmoAction() {
         return gmoAction;
@@ -106,4 +107,16 @@ public class GmoActionLine extends EmsEntity {
         this.gmoActionLineQuantity = gmoQuantity;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GmoActionLine that = (GmoActionLine) o;
+        return gmoActionLineId == that.gmoActionLineId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(gmoActionLineId);
+    }
 }

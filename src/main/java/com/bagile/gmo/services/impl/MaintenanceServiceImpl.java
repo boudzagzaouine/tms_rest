@@ -1,13 +1,13 @@
 package com.bagile.gmo.services.impl;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
-import com.bagile.gmo.dto.MaintenancePlan;
-import com.bagile.gmo.dto.Month;
+import ch.qos.logback.core.net.SyslogOutputStream;
+import com.bagile.gmo.dto.*;
 import com.bagile.gmo.entities.GmoMaintenance;
+import com.bagile.gmo.util.EmsClone;
 import org.joda.time.DateTime;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +15,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bagile.gmo.dto.Maintenance;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
@@ -30,6 +29,7 @@ import com.bagile.gmo.util.Search;
 public class MaintenanceServiceImpl implements MaintenanceService {
 
     private final MaintenanceRepository maintenanceRepository;
+
     public MaintenanceServiceImpl(MaintenanceRepository maintenanceRepository) {
         this.maintenanceRepository = maintenanceRepository;
     }
@@ -42,10 +42,10 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     @Override
     public List<Maintenance> saveAll(List<Maintenance> maintenances) {
 
-        List<Maintenance> maintenanceList = new ArrayList<>( );
+        List<Maintenance> maintenanceList = new ArrayList<>();
 
         for (Maintenance action : maintenances) {
-            maintenanceList.add (save (action));
+            maintenanceList.add(save(action));
         }
 
         return maintenanceList;
@@ -53,46 +53,52 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     }
 
     @Override
-    public List<Maintenance> generateMaintenance(MaintenancePlan maintenancePlan) {
-        Maintenance maintenance =new Maintenance();
-        List<Maintenance> maintenanceList = new ArrayList<>( );
+    public List<Maintenance> generateMaintenance(MaintenancePlan maintenancePlan) throws IOException {
+        List<Maintenance> maintenanceList = new ArrayList<>();
+        if (maintenancePlan.getPeriodicityType().getId() == 3) {
+            loadMaintenance(maintenancePlan);
+        } else if (maintenancePlan.getPeriodicityType().getId() == 2) {
 
-        if(maintenancePlan.getPeriodicityType().getId() == 3) {
-                 maintenance= loadMaintenance(maintenancePlan);
-        }else if(maintenancePlan.getPeriodicityType().getId() == 2) {
+            Date dtS = maintenancePlan.getStartDate();
+            Date dtE = maintenancePlan.getEndDate();
+            int nbr = dtE.getYear() - dtS.getYear();
+            List<Integer> years = new ArrayList<>();
+            Collections.sort(maintenancePlan.getMonths(), (o1, o2) ->
+                    ((Long) o1.getValue()).compareTo(o2.getValue()));
 
-              Date dtS = maintenancePlan.getStartDate();
-              Date dtE = maintenancePlan.getEndDate();
-              int nbr =  dtE.getYear()-dtS.getYear();
-              for(int i=0;i<=nbr ;i++){
-                  for(int j=0;j<maintenancePlan.getMonths().size() ;j++) {
-                      Date dat = new Date();
-                      int day = (int) maintenancePlan.getDayOfMonth();
-                      int month =(int)  maintenancePlan.getMonths().get(j).getValue();
-                      //TODO TEST NULL POINTER EXCEPTION
-                       dat.setDate(day);
-                       dat.setMonth(month);
-                       if(i==0){
-                            dat.setYear(dtS.getYear());
-                       }else{
-                           dat.setYear(dtS.getYear()+1);
-                       }
-                       if(dat.compareTo(dtS)<0 || dat.compareTo(dtE)>0) {
-                           maintenancePlan.setInterventionDate(dat);
-                           maintenance = loadMaintenance(maintenancePlan);
-                           maintenanceList.add(maintenance);
-                       }
-                  }
-              }
+            for (int i = 0; i <= nbr; i++) {
+                years.add(dtS.getYear() + i);
+            }
+            for (int i = 0; i <= nbr; i++) {
+                for (int j = 0; j < maintenancePlan.getMonths().size(); j++) {
+                    Date dat = new Date();
+                    int day = (int) maintenancePlan.getDayOfMonth();
+                    int month = (int) maintenancePlan.getMonths().get(j).getValue();
+                    //TODO TEST NULL POINTER EXCEPTION
+                    dat.setDate(day);
+                    dat.setMonth(month);
+                    dat.setYear(dtS.getYear() + i);
+                    //after
+                    if (dat.after(dtS) && dat.before(dtE)) {
+                        maintenancePlan.setInterventionDate(dat);
+
+                        maintenanceList.add(loadMaintenance(maintenancePlan));
+                        //before
+                    } else if (dat.before(dtE) && dat.after(dtS)) {
+                        maintenancePlan.setInterventionDate(dat);
+                        maintenanceList.add(loadMaintenance(maintenancePlan));
+                    }
+                }
+            }
 
         }
 
-     return saveAll(maintenanceList);
+        return saveAll(maintenanceList);
 
     }
 
-    public Maintenance loadMaintenance(MaintenancePlan maintenancePlan){
-        Maintenance maintenance = new Maintenance() ;
+    public Maintenance loadMaintenance(MaintenancePlan maintenancePlan) throws IOException {
+        Maintenance maintenance = new Maintenance();
 
         DateTime dt = new DateTime(maintenancePlan.getInterventionDate());
         int day = maintenancePlan.getTriggerDay().intValue();
@@ -115,9 +121,33 @@ public class MaintenanceServiceImpl implements MaintenanceService {
         maintenance.setTriggerDay(maintenancePlan.getTriggerDay());
         maintenance.setTotalPrice(maintenancePlan.getTotalPrice());
         maintenance.setPatrimony(maintenancePlan.getPatrimony());
+        List<Action> actions = new ArrayList<>();
+
+        for (Action action : maintenancePlan.getActions()) {
+            Action newAction = EmsClone.clone(action, Action.class);
+            newAction.setId(0 - actions.size());
+            newAction.setMaintenancePlan(null);
+            newAction.setActionLines(generateActionLines(newAction.getActionLines()));
+            actions.add(newAction);
+        }
+        maintenance.setActions(actions);
 
 
         return maintenance;
+    }
+
+    private List<ActionLine> generateActionLines(List<ActionLine> actionLines) throws IOException {
+        List<ActionLine> newActionLines = new ArrayList<>();
+        actionLines.forEach(actionLine -> {
+            try {
+                ActionLine newActionLine = EmsClone.clone(actionLine, ActionLine.class);
+                newActionLine.setId(0 - newActionLines.size());
+                newActionLines.add(newActionLine);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        return newActionLines;
     }
 
     @Override
@@ -139,16 +169,16 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 
     @Override
     public List<Maintenance> find(String search) throws AttributesNotFound, ErrorType {
-        if (search.equals("")){
-            return findAll ();
+        if (search.equals("")) {
+            return findAll();
         }
         return MaintenanceMapper.toDtos(maintenanceRepository.findAll(Search.expression(search, GmoMaintenance.class)), false);
     }
 
     @Override
     public List<Maintenance> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
-        if (search.equals("")){
-            return findAll (page, size);
+        if (search.equals("")) {
+            return findAll(page, size);
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
@@ -157,14 +187,14 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 
     @Override
     public Maintenance findOne(String search) throws AttributesNotFound, ErrorType {
-        return MaintenanceMapper.toDto (maintenanceRepository.findOne (Search.expression (search, GmoMaintenance.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
+        return MaintenanceMapper.toDto(maintenanceRepository.findOne(Search.expression(search, GmoMaintenance.class)).orElseThrow(() -> new AttributesNotFound(search)), false);
 
     }
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        if (search.equals("")){
-            return size ();
+        if (search.equals("")) {
+            return size();
         }
         return maintenanceRepository.count(Search.expression(search, GmoMaintenance.class));
     }
@@ -183,8 +213,10 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     public void deleteAll(List<Long> ids) {
 
         for (Long id : ids) {
-            maintenanceRepository.deleteById(id);        }
+            maintenanceRepository.deleteById(id);
+        }
     }
+
     @Override
     public List<Maintenance> findAll() {
         return MaintenanceMapper.toDtos(maintenanceRepository.findAll(), false);
@@ -196,7 +228,6 @@ public class MaintenanceServiceImpl implements MaintenanceService {
         Pageable pageable = PageRequest.of(page, size, sort);
         return MaintenanceMapper.toDtos(maintenanceRepository.findAll(pageable), false);
     }
-
 
 
 }
