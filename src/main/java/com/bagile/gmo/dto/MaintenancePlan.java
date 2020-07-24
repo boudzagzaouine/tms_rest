@@ -39,7 +39,6 @@ public class MaintenancePlan extends EmsDto implements Serializable {
     private Date declaredDate;
     private BigDecimal duration;
     private long dayOfMonth;
-
     private List<Month>months = new ArrayList<>();
     private List<Day> days    = new ArrayList<>();
 

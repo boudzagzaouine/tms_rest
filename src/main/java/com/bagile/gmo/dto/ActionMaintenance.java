@@ -1,20 +1,18 @@
 package com.bagile.gmo.dto;
 
-import com.bagile.gmo.entities.GmoMaintenancePlan;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Action extends EmsDto {
+public class ActionMaintenance extends EmsDto {
 
 	private static final long serialVersionUID = -2523885174048641991L;
 
 	private long id;
 	private ActionType actionType;
 	private MaintenanceState maintenanceState;
-    private MaintenancePlan maintenancePlan;
-    private List<ActionLine> actionLines = new ArrayList <>() ;
+    private Maintenance maintenance ;
+    private List<ActionLineMaintenance> actionLineMaintenances = new ArrayList <>() ;
 
 
 
@@ -32,12 +30,12 @@ public class Action extends EmsDto {
         this.actionType = actionType;
     }
 
-    public List<ActionLine> getActionLines() {
-        return actionLines;
+    public List<ActionLineMaintenance> getActionLineMaintenances() {
+        return actionLineMaintenances;
     }
 
-    public void setActionLines(List<ActionLine> actionLines) {
-        this.actionLines = actionLines;
+    public void setActionLineMaintenances(List<ActionLineMaintenance> actionLineMaintenances) {
+        this.actionLineMaintenances = actionLineMaintenances;
     }
 
     public MaintenanceState getMaintenanceState() {
@@ -47,21 +45,20 @@ public class Action extends EmsDto {
         this.maintenanceState = maintenanceState;
     }
 
-    public MaintenancePlan getMaintenancePlan() {
-        return maintenancePlan;
+
+    public Maintenance getMaintenance() {
+        return maintenance;
     }
 
-    public void setMaintenancePlan(MaintenancePlan maintenancePlan) {
-        this.maintenancePlan = maintenancePlan;
+    public void setMaintenance(Maintenance maintenance) {
+        this.maintenance = maintenance;
     }
-
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass ( ) != o.getClass ( )) return false;
-        Action that = (Action) o;
+        ActionMaintenance that = (ActionMaintenance) o;
         return getId ( ) == that.getId ( );
     }
 

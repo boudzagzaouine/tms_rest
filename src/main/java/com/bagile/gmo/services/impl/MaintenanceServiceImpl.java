@@ -56,7 +56,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     public List<Maintenance> generateMaintenance(MaintenancePlan maintenancePlan) throws IOException {
         List<Maintenance> maintenanceList = new ArrayList<>();
         if (maintenancePlan.getPeriodicityType().getId() == 3) {
-            loadMaintenance(maintenancePlan);
+            maintenanceList.add(loadMaintenance(maintenancePlan));
         } else if (maintenancePlan.getPeriodicityType().getId() == 2) {
 
             Date dtS = maintenancePlan.getStartDate();
@@ -99,19 +99,14 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 
     public Maintenance loadMaintenance(MaintenancePlan maintenancePlan) throws IOException {
         Maintenance maintenance = new Maintenance();
-
         DateTime dt = new DateTime(maintenancePlan.getInterventionDate());
         int day = maintenancePlan.getTriggerDay().intValue();
-
         maintenance.setTriggerDate(dt.minusDays(day).toDate());
-
         maintenance.setMaintenancePlan(maintenancePlan);
-
         maintenance.setInterventionDate(maintenancePlan.getInterventionDate());
         maintenance.setDuration(maintenancePlan.getDuration());
         maintenance.setAgent(maintenancePlan.getAgent());
         maintenance.setDeclaredDate(maintenancePlan.getDeclaredDate());
-        maintenance.setActions(maintenancePlan.getActions());
         maintenance.setProgramType(maintenancePlan.getProgramType());
         maintenance.setMaintenanceType(maintenancePlan.getMaintenanceType());
         maintenance.setMaintenanceState(maintenancePlan.getMaintenanceState());
@@ -121,7 +116,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
         maintenance.setTriggerDay(maintenancePlan.getTriggerDay());
         maintenance.setTotalPrice(maintenancePlan.getTotalPrice());
         maintenance.setPatrimony(maintenancePlan.getPatrimony());
-        List<Action> actions = new ArrayList<>();
+      /*  List<Action> actions = new ArrayList<>();
 
         for (Action action : maintenancePlan.getActions()) {
             Action newAction = EmsClone.clone(action, Action.class);
@@ -130,15 +125,49 @@ public class MaintenanceServiceImpl implements MaintenanceService {
             newAction.setActionLines(generateActionLines(newAction.getActionLines()));
             actions.add(newAction);
         }
-        maintenance.setActions(actions);
+        maintenance.setActions(actions);*/
+        List<ActionMaintenance> actionMaintenanaces = new ArrayList<>();
+        List<ActionLineMaintenance> actionLineMaintenanaces = new ArrayList<>();
+
+        for (Action action : maintenancePlan.getActions()) {
+               ActionMaintenance newActionMaintenance =new ActionMaintenance() ;
+               newActionMaintenance.setId(0);
+               newActionMaintenance.setActionType(action.getActionType());
+               newActionMaintenance.setMaintenanceState(action.getMaintenanceState());
+
+               maintenancePlan.getActions().forEach(
+                    e->{
+                        ActionLineMaintenance newActionLineMaintenance=new ActionLineMaintenance();
+                        e.getActionLines().forEach(
+                                a->{
+                                    newActionLineMaintenance.setId(0);
+                                    newActionLineMaintenance.setProduct(a.getProduct());
+                                    newActionLineMaintenance.setAmountVat(a.getAmountVat());
+                                    newActionLineMaintenance.setDescription(a.getDescription());
+                                    newActionLineMaintenance.setQuantity(a.getQuantity());
+                                    newActionLineMaintenance.setTotalPriceTTC(a.getTotalPriceTTC());
+                                    newActionLineMaintenance.setTotalPriceHT(a.getTotalPriceHT());
+                                    actionLineMaintenanaces.add(newActionLineMaintenance);
+                                }
+                        );
+
+                        newActionMaintenance.setActionLineMaintenances(actionLineMaintenanaces);
+
+                    }
 
 
-        return maintenance;
+            );
+                actionMaintenanaces.add(newActionMaintenance);
+
+        }
+        maintenance.setActionMaintenances(actionMaintenanaces);
+
+            return maintenance;
     }
 
     private List<ActionLine> generateActionLines(List<ActionLine> actionLines) throws IOException {
         List<ActionLine> newActionLines = new ArrayList<>();
-        actionLines.forEach(actionLine -> {
+      /*  actionLines.forEach(actionLine -> {
             try {
                 ActionLine newActionLine = EmsClone.clone(actionLine, ActionLine.class);
                 newActionLine.setId(0 - newActionLines.size());
@@ -146,7 +175,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        });
+        });*/
         return newActionLines;
     }
 

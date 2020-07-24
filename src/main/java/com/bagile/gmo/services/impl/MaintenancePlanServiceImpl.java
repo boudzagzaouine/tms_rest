@@ -66,7 +66,6 @@ public class MaintenancePlanServiceImpl implements MaintenancePlanService {
           } else {
               this.maintenanceService.generateMaintenance(maintenancePlan);
           }
-       // maintenancePlan = MaintenancePlanMapper.toDto(maintenancePlanRepository.save(MaintenancePlanMapper.toEntity(maintenancePlan, false)), false);
 
         return maintenancePlan;
     }

@@ -72,8 +72,8 @@ public class GmoMaintenance extends EmsEntity {
     @ManyToOne()
     private GmoPatrimony gmoPatrimony;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade=CascadeType.ALL,mappedBy = "gmoMaintenance", orphanRemoval=true)
-    private Set<GmoAction> gmoActions = new HashSet<> ();
+    @OneToMany(fetch = FetchType.LAZY,cascade={CascadeType.ALL,CascadeType.MERGE},mappedBy = "gmoMaintenance", orphanRemoval=true)
+    private Set<GmoActionMaintenance> gmoActionMaintenances = new HashSet<> ();
     @Column(name = "gmo_maintenancetotalprice")
     private BigDecimal gmoMaintenanceTotalPrice = BigDecimal.ZERO;
     @Column(name = "gmo_maintenancemileage")
@@ -221,8 +221,12 @@ private String gmoAgent ;
         this.gmoPatrimony = gmoPatrimony;
     }
 
-    public Set<GmoAction> getGmoActions() {
-        return gmoActions;
+    public Set<GmoActionMaintenance> getGmoActionMaintenances() {
+        return gmoActionMaintenances;
+    }
+
+    public void setGmoActionMaintenances(Set<GmoActionMaintenance> gmoActionMaintenances) {
+        this.gmoActionMaintenances = gmoActionMaintenances;
     }
 
     public BigDecimal getGmoMaintenanceTotalPrice() {
@@ -233,9 +237,6 @@ private String gmoAgent ;
         this.gmoMaintenanceTotalPrice = gmoMaintenanceTotalPrice;
     }
 
-    public void setGmoActions(Set<GmoAction> gmoMaintenanceLines) {
-        this.gmoActions = gmoMaintenanceLines;
-    }
 
     public Double getGmoMaintenanceMileage() {
         return gmoMaintenanceMileage;

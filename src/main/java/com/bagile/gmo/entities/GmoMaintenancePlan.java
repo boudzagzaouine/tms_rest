@@ -21,57 +21,29 @@ public class GmoMaintenancePlan extends EmsEntity {
     private String gmoMaintenancePlanDescription;
     private Date gmoMaintenancePlanStartDate;
     private Date gmoMaintenancePlanEndDate;
-
     private GmoMaintenanceType gmoMaintenanceType;
-
     private GmoProgramType gmoProgramType;
-
-
     private GmoService gmoOperationType;
-
     private GmoServiceProvider gmoServiceProvider;
-
     private GmoResponsability gmoResponsability;
-
     private GmoResponsability gmoService;
-
-
     private GmoPeriodicityType gmoPeriodicityType;
-
-
     private GmoMaintenanceState gmoMaintenanceState;
-
-
     private GmoPatrimony gmoPatrimony;
-
-
     private Set<GmoAction> gmoActions = new HashSet<> ();
     private BigDecimal gmoMaintenancePlanTotalPrice = BigDecimal.ZERO;
     private Double gmoMaintenancePlanMileage = 0.0;
-
-
     private BigDecimal gmoTriggerDay;
     private Date gmoTriggerDate;
-
     private Date gmoInterventionDate;
-
-
-private String gmoAgent ;
+    private String gmoAgent ;
     private String gmoEmployer ;
     private String gmoObservation ;
-
     private Date gmoDeclaredDate;
-
     private BigDecimal gmoDuration;
-
-
     private Set<GmoDay> gmoDays = new HashSet<>();
-
-
     private Set<GmoMonth> gmoMonths = new HashSet<>();
-
     private long gmoDayOfMonth ;
-
     public GmoMaintenancePlan() {
     }
     @Id
@@ -232,7 +204,7 @@ private String gmoAgent ;
         this.gmoPatrimony = gmoPatrimony;
     }
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "gmoMaintenancePlan", orphanRemoval=true)
+    @OneToMany(fetch = FetchType.LAZY,cascade = {CascadeType.ALL,CascadeType.MERGE}, mappedBy = "gmoMaintenancePlan", orphanRemoval=true)
     public Set<GmoAction> getGmoActions() {
         return gmoActions;
     }

@@ -12,7 +12,6 @@ public class GmoAction extends EmsEntity {
 	private static final long serialVersionUID = -6143066188263513604L;
 	private long gmoActionId;
     private GmoActionType gmoActionType;
-    private GmoMaintenance gmoMaintenance;
     private GmoMaintenancePlan gmoMaintenancePlan;
     private GmoMaintenanceState gmoMaintenanceState ;
     private Set<GmoActionLine> gmoActionLines = new HashSet<>();
@@ -29,7 +28,7 @@ public class GmoAction extends EmsEntity {
         this.gmoActionId = gmoMaintenanceLineId;
     }
 
-    @OneToMany(mappedBy = "gmoAction", cascade = CascadeType.ALL,fetch = FetchType.LAZY , orphanRemoval=true)
+    @OneToMany(mappedBy = "gmoAction", cascade = {CascadeType.ALL,CascadeType.PERSIST,CascadeType.MERGE} , orphanRemoval=true)
     public Set<GmoActionLine> getGmoActionLines() {
         return gmoActionLines;
     }
@@ -58,15 +57,6 @@ public class GmoAction extends EmsEntity {
         this.gmoMaintenanceState = gmoMaintenanceState;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "gmo_maintenanceid")
-    public GmoMaintenance getGmoMaintenance() {
-        return gmoMaintenance;
-    }
-
-    public void setGmoMaintenance(GmoMaintenance gmoMaintenancePlan) {
-        this.gmoMaintenance = gmoMaintenancePlan;
-    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_maintenanceplanid")

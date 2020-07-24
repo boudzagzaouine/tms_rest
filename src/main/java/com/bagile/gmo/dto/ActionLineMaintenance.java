@@ -3,7 +3,7 @@ package com.bagile.gmo.dto;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class ActionLine extends EmsDto {
+public class ActionLineMaintenance extends EmsDto {
 
 	private static final long serialVersionUID = -2523885174048641991L;
 
@@ -15,7 +15,7 @@ public class ActionLine extends EmsDto {
     private BigDecimal unitPrice;
     private BigDecimal totalPriceTTC;
     private BigDecimal amountVat;
-    private Action action;
+    private ActionMaintenance actionMaintenance;
 
     public long getId() {
         return id;
@@ -75,13 +75,7 @@ public class ActionLine extends EmsDto {
     }
 
 
-    public Action getAction() {
-        return action;
-    }
 
-    public void setAction(Action action) {
-        this.action = action;
-    }
 
     public BigDecimal getUnitPrice() {
         return unitPrice;
@@ -92,13 +86,19 @@ public class ActionLine extends EmsDto {
     }
 
 
+    public ActionMaintenance getActionMaintenance() {
+        return actionMaintenance;
+    }
 
+    public void setActionMaintenance(ActionMaintenance actionMaintenance) {
+        this.actionMaintenance = actionMaintenance;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass ( ) != o.getClass ( )) return false;
-        ActionLine that = (ActionLine) o;
+        ActionLineMaintenance that = (ActionLineMaintenance) o;
         return getId ( ) == that.getId ( );
     }
 

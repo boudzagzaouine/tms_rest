@@ -32,7 +32,7 @@ public class Maintenance extends EmsDto implements Serializable {
     private Patrimony patrimony;
     private Double mileage = 0.0;
     private BigDecimal totalPrice;
-    private List<Action> actions;
+    private List<ActionMaintenance> actionMaintenances;
     private  String  agent ;
     private   String  employer ;
     private   String  observation;
@@ -123,12 +123,12 @@ public class Maintenance extends EmsDto implements Serializable {
         this.totalPrice = totalPrice;
     }
 
-    public List<Action> getActions() {
-        return actions;
+    public List<ActionMaintenance> getActionMaintenances() {
+        return actionMaintenances;
     }
 
-    public void setMaintenanceLineList(List<Action> maintenanceLines) {
-        this.actions = maintenanceLines;
+    public void setActionMaintenances(List<ActionMaintenance> actionMaintenances) {
+        this.actionMaintenances = actionMaintenances;
     }
 
     public ProgramType getProgramType() {
@@ -171,9 +171,7 @@ public class Maintenance extends EmsDto implements Serializable {
         this.periodicityType = periodicityType;
     }
 
-    public void setActions(List<Action> actions) {
-        this.actions = actions;
-    }
+
 
     public BigDecimal getTriggerDay() {
         return triggerDay;

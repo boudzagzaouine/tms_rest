@@ -94,7 +94,6 @@ public class MaintenancePlanMapper {
             gmoMaintenance.setGmoMaintenanceState(MaintenanceStateMapper.toEntity(maintenance.getMaintenanceState(), true));
             gmoMaintenance.setGmoPatrimony(PatrimonyMapper.toEntity(maintenance.getPatrimony(),true));
             gmoMaintenance.setGmoActions(ActionMapper.toEntities (maintenance.getActions(), false));
-
             gmoMaintenance.setGmoPeriodicityType(PeriodicityTypeMapper.toEntity(maintenance.getPeriodicityType(),false));
             gmoMaintenance.setGmoResponsability (ResponsabilityMapper.toEntity (maintenance.getResponsability(), false));
             gmoMaintenance.setGmoServiceProvider(ServiceProviderMapper.toEntity(maintenance.getServiceProvider(),false));
@@ -108,17 +107,17 @@ public class MaintenancePlanMapper {
         return gmoMaintenance;
     }
     private static void oneToMany(GmoMaintenancePlan gmoMaintenancePlan) {
-      // if(null !=gmoMaintenancePlan.getGmoActions()){
+     //  if(null !=gmoMaintenancePlan.getGmoActions()){
         gmoMaintenancePlan.getGmoActions().forEach(
                 e -> {
-                    if(0 >= gmoMaintenancePlan.getGmoMaintenancePlanId()) {
-                        e.setGmoActionId(0);
+                   // if(0 >= gmoMaintenancePlan.getGmoMaintenancePlanId()) {
+                    //   e.setGmoActionId(0);
                         e.setCreationDate(EmsDate.getDateNow());
                         e.setGmoMaintenancePlan(gmoMaintenancePlan);
-                    }
+                   // }
                 }
         );}
-    //}
+   // }
     public static MaintenancePlan toDto(GmoMaintenancePlan gmoMaintenance, boolean lazy) {
         if (null == gmoMaintenance) {
             return null;

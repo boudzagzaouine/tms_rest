@@ -25,7 +25,6 @@ public class MaintenanceMapper {
         map.put("endDate", "gmoMaintenanceEndDate");
         map.put("maintenanceType", "gmoMaintenanceType");
         map.put("programType", "gmoProgramType");
-        map.put("serviceProvider", "gmoMaintenanceType");
         map.put("operationType", "gmoOperationType");
         map.put("serviceProvider", "gmoServiceProvider");
         map.put("responsability", "gmoResponsability");
@@ -33,7 +32,7 @@ public class MaintenanceMapper {
         map.put("periodicityType", "gmoPeriodicityType");
         map.put("maintenanceState", "gmoMaintenanceState");
         map.put("patrimony", "gmoPatrimony");
-        map.put("actions", "gmoActions");
+        map.put("actionMaintenances", "gmoActionMaintenances");
         map.put("totalPrice", "gmoMaintenanceTotalPrice");
         map.put("mileage", "gmoMaintenanceMileage");
         map.put("triggerDay", "gmoTriggerDay");
@@ -105,29 +104,29 @@ public class MaintenanceMapper {
             gmoMaintenance.setGmoService (ResponsabilityMapper.toEntity (maintenance.getService(), false));
             gmoMaintenance.setGmoProgramType(ProgramTypeMapper.toEntity(maintenance.getProgramType(),false));
             gmoMaintenance.setGmoMaintenancePlan(MaintenancePlanMapper.toEntity(maintenance.getMaintenancePlan(),true));
-            gmoMaintenance.setGmoActions(ActionMapper.toEntities (maintenance.getActions(), false));
+            gmoMaintenance.setGmoActionMaintenances(ActionMaintenanceMapper.toEntities (maintenance.getActionMaintenances(), false));
             oneToMany(gmoMaintenance);
 
         }
         return gmoMaintenance;
     }
     private static void oneToMany(GmoMaintenance gmoMaintenance) {
-       // if(null !=gmoMaintenance.getGmoActions()){
-            gmoMaintenance.getGmoActions().forEach(
+       // if(null !=gmoMaintenance.getGmoActionMaintenances()){
+            gmoMaintenance.getGmoActionMaintenances().forEach(
                 gmoAction -> {
-                  if(0>=gmoMaintenance.getGmoMaintenanceId()) {
-                        gmoAction.setGmoActionId(0);
-                        gmoAction.getGmoActionLines().forEach(
-                                gmoActionLine->{
-                                    gmoActionLine.setGmoActionLineId(0);
-                                }
-                        );
+                //  if(0>=gmoMaintenance.getGmoMaintenanceId()) {
+                      //  gmoAction.setGmoActionMaintenanceId(0);
+                       // gmoAction.getGmoActionLineMaintenances().forEach(
+                     //           gmoActionLine->{
+                      //              gmoActionLine.setGmoActionLineId(0);
+                       //         }
+                      //  );
                         gmoAction.setCreationDate(EmsDate.getDateNow());
                         gmoAction.setGmoMaintenance(gmoMaintenance);
-                    }
+                    //}
               }
         );}
-    //}
+   // }
     public static Maintenance toDto(GmoMaintenance gmoMaintenance, boolean lazy) {
         if (null == gmoMaintenance) {
             return null;
@@ -160,7 +159,7 @@ public class MaintenanceMapper {
             maintenance.setMaintenanceType(MaintenanceTypeMapper.toDto(gmoMaintenance.getGmoMaintenanceType(), true));
             maintenance.setMaintenanceState(MaintenanceStateMapper.toDto(gmoMaintenance.getGmoMaintenanceState(), true));
             maintenance.setPatrimony(PatrimonyMapper.toDto(gmoMaintenance.getGmoPatrimony(),true));
-            maintenance.setActions (ActionMapper.toDtos (gmoMaintenance.getGmoActions(), false));
+            maintenance.setActionMaintenances (ActionMaintenanceMapper.toDtos (gmoMaintenance.getGmoActionMaintenances(), false));
 
             maintenance.setPeriodicityType(PeriodicityTypeMapper.toDto(gmoMaintenance.getGmoPeriodicityType(),true));
             maintenance.setResponsability (ResponsabilityMapper.toDto (gmoMaintenance.getGmoResponsability (), true));

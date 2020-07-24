@@ -5,13 +5,13 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
-@Table(name="gmo_actionline")
-public class GmoActionLine extends EmsEntity {
+@Table(name="gmo_actionlinemaintenance")
+public class GmoActionLineMaintenance extends EmsEntity {
 
 	private static final long serialVersionUID = -6143066188263513604L;
 	private long gmoActionLineId;
     private PdtProduct pdtProduct;
-    private GmoAction gmoAction;
+    private GmoActionMaintenance gmoActionMaintenance;
     private String gmoActionLineDescription;
     private BigDecimal gmoActionLineTotalPriceHT;
     private BigDecimal gmoActionLineTotalPriceTTC;
@@ -43,13 +43,15 @@ public class GmoActionLine extends EmsEntity {
 
     @ManyToOne
     @JoinColumn(name = "gmo_actionid")
-    public GmoAction getGmoAction() {
-        return gmoAction;
+    public GmoActionMaintenance getGmoActionMaintenance() {
+        return gmoActionMaintenance;
     }
 
-    public void setGmoAction(GmoAction gmoAction) {
-        this.gmoAction = gmoAction;
+    public void setGmoActionMaintenance(GmoActionMaintenance gmoActionMaintenance) {
+        this.gmoActionMaintenance = gmoActionMaintenance;
     }
+
+
 
 
 
@@ -112,7 +114,7 @@ public class GmoActionLine extends EmsEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        GmoActionLine that = (GmoActionLine) o;
+        GmoActionLineMaintenance that = (GmoActionLineMaintenance) o;
         return gmoActionLineId == that.gmoActionLineId;
     }
 
