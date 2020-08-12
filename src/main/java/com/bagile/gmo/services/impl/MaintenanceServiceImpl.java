@@ -2,6 +2,7 @@ package com.bagile.gmo.services.impl;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.time.ZoneId;
 import java.util.*;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
@@ -9,6 +10,8 @@ import com.bagile.gmo.dto.*;
 import com.bagile.gmo.entities.GmoMaintenance;
 import com.bagile.gmo.util.EmsClone;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeConstants;
+import org.joda.time.LocalDate;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -90,6 +93,29 @@ public class MaintenanceServiceImpl implements MaintenanceService {
                     }
                 }
             }
+
+        }
+        else if (maintenancePlan.getPeriodicityType().getId() == 1){
+            DateTime startDate =new DateTime(maintenancePlan.getStartDate());
+            DateTime endDate = new DateTime(maintenancePlan.getEndDate());
+
+            DateTime thisMonday = startDate.withDayOfWeek(DateTimeConstants.MONDAY);
+            DateTime T = thisMonday;
+
+            if (startDate.isAfter(thisMonday)) {
+                startDate = thisMonday.plusWeeks(1); // start on next monday
+            } else {
+                startDate = thisMonday; // start on this monday
+            }
+            while (startDate.isBefore(endDate)) {
+                System.out.println(startDate);
+                startDate = startDate.plusWeeks(1);
+            }
+           /* org.joda.time.LocalDate startDatee = new org.joda.time.LocalDate(2020, 11, 8);
+            org.joda.time.LocalDate endDatee = new org.joda.time.LocalDate(2012, 5, 1);
+
+            LocalDate thisMonday = startDatee.withDayOfWeek(3);
+            LocalDate thisMondayy= thisMonday;*/
 
         }
 
