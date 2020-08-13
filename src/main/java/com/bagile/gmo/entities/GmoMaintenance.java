@@ -32,7 +32,7 @@ public class GmoMaintenance extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_maintenance__id", allocationSize = 1)
     @Column(name = "gmo_maintenanceid", unique = true, nullable = false, precision = 10, scale = 0)
-    private Long gmoMaintenanceId;
+    private long gmoMaintenanceId;
     @Column(name = "gmo_maintenancecode", nullable = false, length = 90)
     private String gmoMaintenanceCode;
     @Column(name = "gmo_maintenancedescription")
