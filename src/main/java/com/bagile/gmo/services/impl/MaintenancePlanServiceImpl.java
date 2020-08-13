@@ -28,7 +28,7 @@ import java.util.List;
 
 
 @Service
-@Transactional
+
 public class MaintenancePlanServiceImpl implements MaintenancePlanService {
 
     private final MaintenancePlanRepository maintenancePlanRepository;

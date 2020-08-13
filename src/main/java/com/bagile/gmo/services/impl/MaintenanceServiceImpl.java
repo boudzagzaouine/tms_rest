@@ -28,7 +28,6 @@ import com.bagile.gmo.util.Search;
 
 
 @Service
-@Transactional
 public class MaintenanceServiceImpl implements MaintenanceService {
 
     private final MaintenanceRepository maintenanceRepository;
@@ -58,21 +57,22 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     @Override
     public List<Maintenance> generateMaintenance(MaintenancePlan maintenancePlan) throws IOException {
         List<Maintenance> maintenanceList = new ArrayList<>();
+
         if (maintenancePlan.getPeriodicityType().getId() == 3) {
             maintenanceList.add(loadMaintenance(maintenancePlan));
         } else if (maintenancePlan.getPeriodicityType().getId() == 2) {
 
-            Date dtS = maintenancePlan.getStartDate();
-            Date dtE = maintenancePlan.getEndDate();
-            int nbr = dtE.getYear() - dtS.getYear();
-            List<Integer> years = new ArrayList<>();
-            Collections.sort(maintenancePlan.getMonths(), (o1, o2) ->
-                    ((Long) o1.getValue()).compareTo(o2.getValue()));
+                Date dtS = maintenancePlan.getStartDate();
+                Date dtE = maintenancePlan.getEndDate();
+                int nbr = dtE.getYear() - dtS.getYear();
+                List<Integer> years = new ArrayList<>();
+                Collections.sort(maintenancePlan.getMonths(), (o1, o2) ->
+                        ((Long) o1.getValue()).compareTo(o2.getValue()));
 
-            for (int i = 0; i <= nbr; i++) {
-                years.add(dtS.getYear() + i);
-            }
-            for (int i = 0; i <= nbr; i++) {
+                for (int i = 0; i <= nbr; i++) {
+                    years.add(dtS.getYear() + i);
+                }
+                for (int i = 0; i <= nbr; i++) {
                 for (int j = 0; j < maintenancePlan.getMonths().size(); j++) {
                     Date dat = new Date();
                     int day = (int) maintenancePlan.getDayOfMonth();
@@ -96,26 +96,28 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 
         }
         else if (maintenancePlan.getPeriodicityType().getId() == 1){
-            DateTime startDate =new DateTime(maintenancePlan.getStartDate());
-            DateTime endDate = new DateTime(maintenancePlan.getEndDate());
 
-            DateTime thisMonday = startDate.withDayOfWeek(DateTimeConstants.MONDAY);
-            DateTime T = thisMonday;
 
-            if (startDate.isAfter(thisMonday)) {
-                startDate = thisMonday.plusWeeks(1); // start on next monday
-            } else {
-                startDate = thisMonday; // start on this monday
+            for(int i=0;i<maintenancePlan.getDays().size();i++) {
+                DateTime startDate =new DateTime(maintenancePlan.getStartDate());
+                DateTime endDate = new DateTime(maintenancePlan.getEndDate());
+                int day = (int) maintenancePlan.getDays().get(i).getValue();
+
+                DateTime thisDay = startDate.withDayOfWeek(day).toDateTime();
+
+                if (startDate.isAfter(thisDay)) {
+                    startDate = thisDay.plusWeeks(1);
+                } else {
+                    startDate = thisDay;
+                }
+                while (startDate.isBefore(endDate)) {
+                    startDate = startDate.plusWeeks(1);
+                    maintenancePlan.setInterventionDate(startDate.toDate());
+                    maintenanceList.add(loadMaintenance(maintenancePlan));
+
+                }
             }
-            while (startDate.isBefore(endDate)) {
-                System.out.println(startDate);
-                startDate = startDate.plusWeeks(1);
-            }
-           /* org.joda.time.LocalDate startDatee = new org.joda.time.LocalDate(2020, 11, 8);
-            org.joda.time.LocalDate endDatee = new org.joda.time.LocalDate(2012, 5, 1);
 
-            LocalDate thisMonday = startDatee.withDayOfWeek(3);
-            LocalDate thisMondayy= thisMonday;*/
 
         }
 
@@ -142,16 +144,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
         maintenance.setTriggerDay(maintenancePlan.getTriggerDay());
         maintenance.setTotalPrice(maintenancePlan.getTotalPrice());
         maintenance.setPatrimony(maintenancePlan.getPatrimony());
-      /*  List<Action> actions = new ArrayList<>();
 
-        for (Action action : maintenancePlan.getActions()) {
-            Action newAction = EmsClone.clone(action, Action.class);
-            newAction.setId(0 - actions.size());
-            newAction.setMaintenancePlan(null);
-            newAction.setActionLines(generateActionLines(newAction.getActionLines()));
-            actions.add(newAction);
-        }
-        maintenance.setActions(actions);*/
         List<ActionMaintenance> actionMaintenanaces = new ArrayList<>();
         List<ActionLineMaintenance> actionLineMaintenanaces = new ArrayList<>();
 

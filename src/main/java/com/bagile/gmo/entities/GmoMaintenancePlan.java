@@ -79,6 +79,7 @@ public class GmoMaintenancePlan extends EmsEntity {
 
 
     @Column(name = "gmo_maintenanceplanstartdate")
+    @Temporal(TemporalType.DATE)
     public Date getGmoMaintenancePlanStartDate() {
         return gmoMaintenancePlanStartDate;
     }
@@ -92,6 +93,7 @@ public class GmoMaintenancePlan extends EmsEntity {
     public GmoResponsability getGmoService() {
         return gmoService;
     }
+
     @ManyToMany(cascade=CascadeType.MERGE)
     @JoinTable(name="gmo_day_plan", joinColumns=@JoinColumn(name="gmo_maintenanceplanid"),
             inverseJoinColumns=@JoinColumn(name="gmo_dayid"))
@@ -119,6 +121,7 @@ public class GmoMaintenancePlan extends EmsEntity {
     }
 
     @Column(name = "Gmo_MaintenancePlanenddate")
+    @Temporal(TemporalType.DATE)
     public Date getGmoMaintenancePlanEndDate() {
         return gmoMaintenancePlanEndDate;
     }

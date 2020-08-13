@@ -130,7 +130,6 @@ public class MaintenancePlanMapper {
         maintenance.setEndDate (gmoMaintenance.getGmoMaintenancePlanEndDate());
         maintenance.setTotalPrice (gmoMaintenance.getGmoMaintenancePlanTotalPrice ());
         maintenance.setMileage (gmoMaintenance.getGmoMaintenancePlanMileage ());
-
         maintenance.setTriggerDay(gmoMaintenance.getGmoTriggerDay());
         maintenance.setTriggerDate(gmoMaintenance.getGmoTriggerDate());
         maintenance.setInterventionDate (gmoMaintenance.getGmoInterventionDate ());
@@ -140,8 +139,6 @@ public class MaintenancePlanMapper {
         maintenance.setDeclaredDate (gmoMaintenance.getGmoDeclaredDate ());
         maintenance.setObservation (gmoMaintenance.getGmoObservation ());
         maintenance.setDayOfMonth (gmoMaintenance.getGmoDayOfMonth ());
-
-
         maintenance.setCreatedBy(gmoMaintenance.getCreatedBy());
         maintenance.setUpdatedBy(gmoMaintenance.getUpdatedBy());
         maintenance.setCreationDate(gmoMaintenance.getCreationDate());
@@ -154,7 +151,6 @@ public class MaintenancePlanMapper {
             maintenance.setMaintenanceState(MaintenanceStateMapper.toDto(gmoMaintenance.getGmoMaintenanceState(), true));
             maintenance.setPatrimony(PatrimonyMapper.toDto(gmoMaintenance.getGmoPatrimony(),true));
             maintenance.setActions (ActionMapper.toDtos (gmoMaintenance.getGmoActions(), false));
-
             maintenance.setPeriodicityType(PeriodicityTypeMapper.toDto(gmoMaintenance.getGmoPeriodicityType(),true));
             maintenance.setResponsability (ResponsabilityMapper.toDto (gmoMaintenance.getGmoResponsability (), true));
             maintenance.setServiceProvider(ServiceProviderMapper.toDto(gmoMaintenance.getGmoServiceProvider(),true));
