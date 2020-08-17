@@ -2,7 +2,9 @@ package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.Product;
 import com.bagile.gmo.dto.ProductPack;
+import com.bagile.gmo.entities.GmoBadgeType;
 import com.bagile.gmo.entities.PdtProduct;
+import com.bagile.gmo.mapper.BadgeTypeMapper;
 import com.bagile.gmo.mapper.ProductMapper;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
@@ -95,7 +97,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product findOne(String search) throws AttributesNotFound, ErrorType {
         try {
-            search = addActiveConditionToSearch(search);
+            //search = addActiveConditionToSearch(search);
             return ProductMapper.toDto(productRepository.findOne(Search.expression(search, PdtProduct.class)).orElse (null), false);
         } catch (Exception e) {
             LOGGER.error("could not findOne Product");
@@ -106,7 +108,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> find(String search) throws AttributesNotFound,
             ErrorType {
-        search = addActiveConditionToSearch(search);
+       // search = addActiveConditionToSearch(search);
         return ProductMapper.toDtos(productRepository.findAll(Search
                 .expression(search, PdtProduct.class)), false);
     }
@@ -124,31 +126,54 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> find(String search, int page, int size)
             throws AttributesNotFound, ErrorType {
-        search = addActiveConditionToSearch(search);
-        Sort sort = Sort.by (Sort.Direction.DESC, "pdtProductUpdateDate", "pdtProductId");
-        Pageable pageable = PageRequest.of (page, size, sort);
-        return ProductMapper.toDtos(
-                productRepository.findAll(
-                        Search.expression(search, PdtProduct.class), pageable),
-                false);
+      //  search = addActiveConditionToSearch(search);
+       // Sort sort = Sort.by (Sort.Direction.DESC, "pdtProductUpdateDate", "pdtProductId");
+      //  Pageable pageable = PageRequest.of (page, size, sort);
+        if (search.equals("")){
+            return findAll (page, size);
+        }
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
+        Pageable pageable = PageRequest.of(page, size, sort);
+        return ProductMapper.toDtos(productRepository.findAll(Search.expression(search, PdtProduct.class), pageable), false);
+
     }
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        search = addActiveConditionToSearch(search);
+      //  search = addActiveConditionToSearch(search);
         return productRepository.count(Search.expression(search,
                 PdtProduct.class));
     }
 
     @Override
     public List<Product> findAll() throws AttributesNotFound, ErrorType {
-        return find("");
+        return ProductMapper.toDtos(productRepository.findAll(), false);
+
     }
 
     @Override
     public List<Product> findAll(int page, int size) throws AttributesNotFound,
             ErrorType {
-        return find("", page, size);
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
+        Pageable pageable = PageRequest.of(page, size, sort);
+        return ProductMapper.toDtos(productRepository.findAll(pageable), false);
+    }
+
+    @Override
+    public void delete(Long id) {
+        productRepository.deleteById(id);
+    }
+
+    @Override
+    public void delete(Product product) {
+        productRepository.delete(ProductMapper.toEntity(product, false));
+
+    }
+
+    @Override
+    public void deleteAll(List<Long> ids) {
+        for (Long id : ids) {
+            productRepository.deleteById(id);        }
     }
 
 }

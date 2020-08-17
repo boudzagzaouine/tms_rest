@@ -204,6 +204,7 @@ public class ProductMapper {
             pdtProduct.setPdtProductPacks(ProductPackMapper.toEntities(product.getProductPacks(), false));
 
             pdtProduct.setPrmVat(VatMapper.toEntity(product.getVat(), true));
+            pdtProduct.setPrmVatPurchase(VatMapper.toEntity(product.getPurchaseVat(), true));
 
         }
         return pdtProduct;
@@ -286,6 +287,7 @@ public class ProductMapper {
         product.setPurshasePriceTTCUB(pdtProduct.getPdtProductTTCPurshasePriceUB());
         product.setProfessionalTTCSalePrice(pdtProduct.getPdtProductProfessionalTTCSalePrice());
 
+
         if (!lazy) {
             product.setProductPack(ProductPackMapper.toDto(pdtProduct.getPdtProductPack(), true));
             product.setPickingUom(UomMapper.toDto(pdtProduct.getPickingPdtUom(), true));
@@ -300,6 +302,7 @@ public class ProductMapper {
           //  product.setProductDimensions(ProductDimensionMapper.toDtos(pdtProduct.getPdtProductDimensions(), false));
 
             product.setVat(VatMapper.toDto(pdtProduct.getPrmVat(), false));
+            product.setPurchaseVat(VatMapper.toDto(pdtProduct.getPrmVatPurchase(), false));
 
         }
         return product;

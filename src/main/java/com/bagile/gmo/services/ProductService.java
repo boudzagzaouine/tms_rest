@@ -1,6 +1,7 @@
 package com.bagile.gmo.services;
 
 
+import com.bagile.gmo.dto.BadgeType;
 import com.bagile.gmo.dto.Product;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
@@ -29,4 +30,8 @@ public interface ProductService {
     List<Product> findAll() throws AttributesNotFound, ErrorType;
 
     List<Product> findAll(int page, int size) throws AttributesNotFound, ErrorType;
+    void delete(Long id);
+
+    void delete(Product product);
+    void deleteAll (List<Long> ids);
 }

@@ -63,12 +63,10 @@ public class Product extends EmsEntity {
     private BigDecimal minStock;
     private Boolean kit;
     private Boolean qualityOfControl=false;
-
     private Boolean dimension;
     private String technicalSheet;
     private Date lastInventoryDate;
     private Set<ProductPack> productPacks;
-
     private Uom pickingUom;
     private BigDecimal minimalThreshold;
     private BigDecimal capacity;
@@ -102,8 +100,8 @@ public class Product extends EmsEntity {
     private BigDecimal availableQuantity;
     private BigDecimal professionalTTCSalePrice;
 
- private Vat vat;
-
+       private Vat vat;
+       private Vat purchaseVat;
 
     public Vat getVat() {
         return vat;
@@ -151,6 +149,14 @@ public class Product extends EmsEntity {
 
     public void setUomByProductUomPurshase(Uom uomByProductUomPurshase) {
         this.uomByProductUomPurshase = uomByProductUomPurshase;
+    }
+
+    public Vat getPurchaseVat() {
+        return purchaseVat;
+    }
+
+    public void setPurchaseVat(Vat purchaseVat) {
+        this.purchaseVat = purchaseVat;
     }
 
     public String getCode() {

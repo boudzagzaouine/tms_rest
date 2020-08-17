@@ -19,12 +19,12 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "pdt_product", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"pdt_productcode", "pdt_productownerid"})})
+        @UniqueConstraint(columnNames = {"pdt_productcode"})})
 public class PdtProduct extends EmsEntity implements java.io.Serializable {
 
     private long pdtProductId;
 
-    @NotNull
+
     private OwnOwner ownOwner;
     private PdtProduct pdtProductParent;
     private PdtProductType pdtProductTypeByPdtProductTypeId;
@@ -156,7 +156,7 @@ public class PdtProduct extends EmsEntity implements java.io.Serializable {
     private BigDecimal pdtProductCustomsPercentage;
     private BigDecimal pdtProductAvailableQuantity;
     private PrmVat prmVat;
-
+    private PrmVat prmVatPurchase;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -172,7 +172,7 @@ public class PdtProduct extends EmsEntity implements java.io.Serializable {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pdt_productownerid", nullable = false)
+    @JoinColumn(name = "pdt_productownerid")
     public OwnOwner getOwnOwner() {
         return this.ownOwner;
     }
@@ -939,5 +939,15 @@ public class PdtProduct extends EmsEntity implements java.io.Serializable {
 
     public void setPrmVat(PrmVat prmVat) {
         this.prmVat = prmVat;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pdt_productpurchaseVatid")
+    public PrmVat getPrmVatPurchase() {
+        return prmVatPurchase;
+    }
+
+    public void setPrmVatPurchase(PrmVat purchaseVat) {
+        this.prmVatPurchase = purchaseVat;
     }
 }
