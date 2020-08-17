@@ -111,10 +111,10 @@ public class MaintenanceServiceImpl implements MaintenanceService {
                     startDate = thisDay;
                 }
                 while (startDate.isBefore(endDate)) {
-                    startDate = startDate.plusWeeks(1);
+
                     maintenancePlan.setInterventionDate(startDate.toDate());
                     maintenanceList.add(loadMaintenance(maintenancePlan));
-
+                    startDate = startDate.plusWeeks(1);
                 }
             }
 
