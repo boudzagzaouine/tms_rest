@@ -60,8 +60,8 @@ public class StockServiceImpl implements StockService {
         if (search.equals("")){
             return findAll (page, size);
         }
-        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
-        Pageable pageable = PageRequest.of(page, size, sort);
+       // Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
+        Pageable pageable = PageRequest.of(page, size);
         return StockMapper.toDtos(stockRepository.findAll(Search.expression(search, StkStock.class), pageable), false);
     }
 
@@ -99,8 +99,8 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public List<Stock> findAll(int page, int size) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
-        Pageable pageable = PageRequest.of(page, size, sort);
+       // Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
+        Pageable pageable = PageRequest.of(page, size);
         return StockMapper.toDtos(stockRepository.findAll(pageable), false);
     }
 

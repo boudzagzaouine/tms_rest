@@ -179,7 +179,7 @@ public class StkStock extends EmsDto implements java.io.Serializable {
     }*/
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "stk_stockownerid", nullable = false)
+    @JoinColumn(name = "stk_stockownerid")
     public OwnOwner getOwnOwner() {
         return this.ownOwner;
     }

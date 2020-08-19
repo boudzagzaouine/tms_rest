@@ -22,7 +22,7 @@ public class StockController {
         this.stockService = stockService;
     }
 
-    //@PreAuthorize("hasAnyRole('BADGETYPE_VIEW')")
+
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
     public List<Stock> getStocks() {return stockService.findAll();}
