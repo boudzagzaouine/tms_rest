@@ -1,16 +1,13 @@
 package com.bagile.gmo.services;
 
-
 import com.bagile.gmo.dto.ProductType;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface ProductTypeService {
-
     ProductType save(ProductType productType);
 
     Long size();
@@ -18,8 +15,6 @@ public interface ProductTypeService {
     Boolean isExist(Long id);
 
     ProductType findById(Long id) throws IdNotFound;
-
-    ProductType findOne(String search) throws AttributesNotFound, ErrorType;
 
     List<ProductType> find(String search) throws AttributesNotFound, ErrorType;
 
@@ -30,12 +25,8 @@ public interface ProductTypeService {
     void delete(Long id);
 
     void delete(ProductType productType);
-
+    void deleteAll(List<Long> ids);
     List<ProductType> findAll();
 
-    List<ProductType> findAll(Pageable pageable);
-
-    ProductType findByCode(String code);
-
-    List<ProductType> getProductTypeChildrens(Long productType, List<ProductType> productTypes) throws AttributesNotFound, ErrorType;
+    List<ProductType> findAll(int page, int size);
 }
