@@ -18,7 +18,7 @@ import java.util.Date;
 public class RcpSupplier extends EmsEntity implements java.io.Serializable {
 
     private long rcpSupplierId;
-    @NotNull
+   // @NotNull
     private OwnOwner ownOwner;
     private PrmContact prmContact;
     private AdrAddress adrAddress;

@@ -92,6 +92,8 @@ public class CentralControllerHandler {
 
     @ExceptionHandler({DataIntegrityViolationException.class})
     public ResponseEntity<ConstraintException> dataIntegrityViolationException(DataIntegrityViolationException pe) {
+        LOGGER.error(pe.getMessage(),pe);
+
         if (pe.getCause() instanceof org.hibernate.exception.ConstraintViolationException) {
             ConstraintException constraintException = new ConstraintException((org.hibernate.exception.ConstraintViolationException) pe.getCause());
             LOGGER.error(constraintException.getMessage(),constraintException);
