@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface ReceptionService {
 
-    Reception save(Reception reception);
+    Reception save(Reception reception) throws ContainerException, ProductControls, AttributesNotFound, ErrorType, IdNotFound, CustomException;
 
     Long size();
 
@@ -32,6 +32,10 @@ public interface ReceptionService {
     void delete(Reception badgeTypeDriver);
     void deleteAll (List<Long> ids);
     List<Reception> findAll() throws AttributesNotFound, ErrorType;
+    void updateReception(Reception purshaseOrder);
 
     List<Reception> findAll(int page, int size) throws AttributesNotFound, ErrorType;
+     void changeStatusToOnProgress(Reception reception) throws IdNotFound;
+
+    void calculateAllLines(Reception selectedReception);
 }

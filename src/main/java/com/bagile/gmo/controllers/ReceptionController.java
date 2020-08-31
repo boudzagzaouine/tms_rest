@@ -2,13 +2,10 @@ package com.bagile.gmo.controllers;
 
 
 import com.bagile.gmo.dto.Reception;
-import com.bagile.gmo.dto.Reception;
-import com.bagile.gmo.dto.Reception;
+
 import com.bagile.gmo.exceptions.*;
 import com.bagile.gmo.services.ReceptionService;
-import com.bagile.gmo.services.ReceptionService;
-import com.bagile.gmo.services.ReceptionService;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -78,11 +75,11 @@ public class ReceptionController {
     //@PreAuthorize("hasRole('BADGETYPE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Reception add(@RequestBody Reception reception ){return receptionService.save(reception);}
+    public Reception add(@RequestBody Reception reception ) throws ContainerException, ProductControls, AttributesNotFound, ErrorType, IdNotFound, CustomException {return receptionService.save(reception);}
     //@PreAuthorize("hasRole('BADGETYPE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Reception set(@RequestBody Reception reception) {
+    public Reception set(@RequestBody Reception reception) throws ContainerException, ProductControls, AttributesNotFound, ErrorType, IdNotFound, CustomException {
         return receptionService.save(reception);
     }
     //@PreAuthorize("hasRole('BADGETYPE_DELETE')")

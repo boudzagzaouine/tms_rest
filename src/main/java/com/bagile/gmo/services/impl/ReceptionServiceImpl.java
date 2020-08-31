@@ -1,38 +1,99 @@
 package com.bagile.gmo.services.impl;
 
-import com.bagile.gmo.dto.Reception;
+import com.bagile.gmo.dto.*;
 import com.bagile.gmo.entities.RcpReception;
-import com.bagile.gmo.exceptions.AttributesNotFound;
-import com.bagile.gmo.exceptions.ErrorType;
-import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.exceptions.*;
 import com.bagile.gmo.mapper.ReceptionMapper;
 import com.bagile.gmo.repositories.ReceptionRepository;
-import com.bagile.gmo.services.ReceptionService;
+import com.bagile.gmo.services.*;
+import com.bagile.gmo.util.EmsDate;
 import com.bagile.gmo.util.Search;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.List;
 
 
 @Service
 @Transactional
 public class ReceptionServiceImpl implements ReceptionService {
-    
-    private final ReceptionRepository receptionRepository;
+    @Autowired
 
-    public ReceptionServiceImpl(ReceptionRepository receptionRepository) {
-        this.receptionRepository = receptionRepository;
-    }
+    private  ReceptionRepository receptionRepository;
+    @Autowired
+    private ReceptionStockService receptionStockService;
+    @Autowired
+    private PurshaseOrderService purshaseOrderService;
+    @Autowired
+    private OrderStatusService orderStatusService;
+
+    @Autowired
+     private ReceptionLineService receptionLineService;
+
+
+    public ReceptionServiceImpl() {}
+
 
     @Override
-    public Reception save(Reception Reception) {
-        return ReceptionMapper.toDto(receptionRepository.saveAndFlush(ReceptionMapper.toEntity(Reception, false)), false);
-    }
+    public Reception save(Reception reception) throws ContainerException, ProductControls, AttributesNotFound, ErrorType, IdNotFound, CustomException {
+       // LOGGER.info("save Reception");
+        reception.setUpdateDate(EmsDate.getDateNow());
+        String operation = "F";
+        if (0 >= reception.getId()) {
+            reception.setCreationDate(EmsDate.getDateNow());
+            changeStatusToOnProgress(reception);
+            operation = "A";
+            reception.setActive(true);
+            calculateAllLines(reception);
+            if (reception.getAccounted() == null) {
+                reception.setAccounted(true);
+            }
+        } else {
+            for (ReceptionLine receptionLine : reception.getReceptionLines()) {
 
+                if (receptionLine.getQuantityReceived() != null && receptionLine.getQuantity().compareTo(receptionLine.getQuantityReceived()) < 0) {
+                    receptionStockService.updateReceptionStock(receptionLine);
+                }
+            }
+        }
+
+        return ReceptionMapper.toDto(receptionRepository.saveAndFlush(ReceptionMapper.toEntity(reception, false)), false);
+    }
+    @Override
+    public void calculateAllLines(Reception selectedReception) {
+        BigDecimal priceTTC = BigDecimal.ZERO;
+        BigDecimal priceHt = BigDecimal.ZERO;
+
+        for (ReceptionLine receptionLine : selectedReception.getReceptionLines()) {
+            if (null != receptionLine.getTotalPriceHT() && null != receptionLine.getTotalPriceTTC()) {
+                priceHt = priceHt.add(receptionLine.getTotalPriceHT());
+                priceTTC = priceTTC.add(receptionLine.getTotalPriceTTC());
+            }
+        }
+
+        selectedReception.setTotalPriceHT(priceHt);
+        selectedReception.setTotalPriceTTC(priceTTC);
+        selectedReception.setVat(priceTTC.subtract(priceHt));
+    }
+    @Override
+    public void changeStatusToOnProgress(Reception reception) throws IdNotFound {
+
+        if (null != reception.getPurshaseOrder()) {
+            PurshaseOrder order = purshaseOrderService.findById(reception.getPurshaseOrder().getId());
+            OrderStatus orderStatus = orderStatusService.onProgressStatus();
+            order.setOrderStatus(orderStatus);
+            for (PurshaseOrderLine orderLine : order.getPurshaseOrderLines())
+                orderLine.setOrderStatus(orderStatus);
+           // LOGGER.info("calling save PurchaseOrder from receptionService");
+            purshaseOrderService.save(order);
+        }
+    }
     @Override
     public Long size() {
         return receptionRepository.count();
@@ -102,13 +163,34 @@ public class ReceptionServiceImpl implements ReceptionService {
     }
 
     @Override
+    public void updateReception(Reception reception) {
+        try {
+            reception = findById(reception.getId());
+
+            List<ReceptionLine> receptionLines = receptionLineService.find("reception.id:" + reception.getId());
+            reception.setReceptionLines(new HashSet<>(receptionLines));
+            long countClosedLines = receptionLines.stream().filter(receptionLine -> receptionLine.getOrderStatus().getId() == 4).count();
+
+            if (countClosedLines == receptionLines.size()) {
+                reception.setOrderStatus(orderStatusService.completedStatus());
+                //   reception.setActive(false);
+            } else if (countClosedLines >= 1 || reception.getReceptionLines().stream().anyMatch(receptionLine -> receptionLine.getOrderStatus().getId() == 7)) {
+                reception.setOrderStatus(orderStatusService.partialStatus());
+            } else return;
+            save(reception);
+
+        } catch (IdNotFound | AttributesNotFound | ErrorType | CustomException | ContainerException | ProductControls e) {
+           // LOGGER.error(e.getMessage(), e);
+        }
+    }
+
+    @Override
     public List<Reception> findAll(int page, int size) {
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
         return ReceptionMapper.toDtos(receptionRepository.findAll(pageable), false);
+
     }
-
-
 
 }
 

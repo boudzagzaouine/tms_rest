@@ -138,16 +138,17 @@ public class ReceptionMapper {
     }
 
     public static void oneToMany(RcpReception reception) {
-        if (null != reception.getRcpReceptionLines()) {
-            reception.getRcpReceptionLines().stream().forEach(rl -> {
+      //  if (null != reception.getRcpReceptionLines()) {
+            reception.getRcpReceptionLines().forEach(rl -> {
                 rl.setRcpReception(reception);
                 rl.setRcpReceptionLineUpdateDate(EmsDate.getDateNow());
-                if (0 >= rl.getRcpReceptionLineId()) {
+              if (0 >= rl.getRcpReceptionLineId()) {
                     rl.setRcpReceptionLineId(0);
                     rl.setRcpReceptionLineCreationDate(EmsDate.getDateNow());
+                    rl.setPrmOrderStatus(reception.getPrmOrderStatus());
                 }
             });
-        }
+       // }
     }
 
     public static Reception toDto(RcpReception rcpReception, boolean lazy) {
@@ -206,7 +207,9 @@ public class ReceptionMapper {
             reception.setPurshaseOrder(PurshaseOrderMapper.toDto(rcpReception.getRcpPurshaseOrder(), true));
             reception.setDelivery(DeliveryMapper.toDto(rcpReception.getCmdDelivery(), true));
             reception.setTransport(TransportMapper.toDto(rcpReception.getTrpTransport(), true));
-         //   reception.setCurrency(CurrencyMapper.toDto(rcpReception.getPrmCurrency(), true));
+            reception.setReceptionLines(ReceptionLineMapper.toDtos(rcpReception.getRcpReceptionLines(), false));
+
+            //   reception.setCurrency(CurrencyMapper.toDto(rcpReception.getPrmCurrency(), true));
           //  reception.setBox(BoxMapper.toDto(rcpReception.getUsrBox(), true));
         }
         return reception;
