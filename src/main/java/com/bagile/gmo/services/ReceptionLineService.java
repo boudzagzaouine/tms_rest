@@ -36,6 +36,8 @@ public interface ReceptionLineService {
     void deleteAll (List<Long> ids);
     List<ReceptionLine> findAll() throws AttributesNotFound, ErrorType;
 
+    void updateReceptionLine(ReceptionLine receptionLine);
+
     List<ReceptionLine> findAll(int page, int size) throws AttributesNotFound, ErrorType;
 
 }

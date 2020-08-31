@@ -21,7 +21,7 @@ import java.util.Set;
 public class RcpReceptionLine extends EmsEntity implements java.io.Serializable {
 
     private long rcpReceptionLineId;
-    @NotNull
+   // @NotNull
     private OwnOwner ownOwner;
     @NotNull
     private PdtProduct pdtProduct;
@@ -37,7 +37,7 @@ public class RcpReceptionLine extends EmsEntity implements java.io.Serializable 
     private BigDecimal rcpReceptionLineProvisionalCost;
 
     @Max(999999999)
-    @NotNull
+  //  @NotNull
     private Long rcpReceptionLineLineNumber;
 
     @Max(999999999)

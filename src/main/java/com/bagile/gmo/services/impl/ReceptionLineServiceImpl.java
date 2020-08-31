@@ -1,5 +1,6 @@
 package com.bagile.gmo.services.impl;
 
+import com.bagile.gmo.dto.Reception;
 import com.bagile.gmo.dto.ReceptionLine;
 import com.bagile.gmo.entities.RcpReceptionLine;
 import com.bagile.gmo.exceptions.AttributesNotFound;
@@ -7,24 +8,33 @@ import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.ReceptionLineMapper;
 import com.bagile.gmo.repositories.ReceptionLineRepository;
+import com.bagile.gmo.services.OrderStatusService;
+import com.bagile.gmo.services.ProductService;
 import com.bagile.gmo.services.ReceptionLineService;
+import com.bagile.gmo.services.ReceptionService;
 import com.bagile.gmo.util.Search;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
 @Service
 @Transactional
 public class ReceptionLineServiceImpl implements ReceptionLineService {
-    
-    private final ReceptionLineRepository receptionLineRepository;
-    public ReceptionLineServiceImpl(ReceptionLineRepository receptionLineRepository) {
-        this.receptionLineRepository = receptionLineRepository;
+    @Autowired
+    private  ReceptionLineRepository receptionLineRepository;
+    @Autowired
+    private ReceptionService receptionService;
+    @Autowired
+    private OrderStatusService orderStatusService;
+
+    public ReceptionLineServiceImpl(){
     }
 
     @Override
@@ -98,6 +108,22 @@ public class ReceptionLineServiceImpl implements ReceptionLineService {
     @Override
     public List<ReceptionLine> findAll() {
         return ReceptionLineMapper.toDtos(receptionLineRepository.findAll(), false);
+    }
+
+    @Override
+    public void updateReceptionLine(ReceptionLine receptionLine) {
+        try {
+            if (receptionLine.getQuantityReceived().compareTo(receptionLine.getQuantity()) > -1) {
+                receptionLine.setOrderStatus(orderStatusService.completedStatus());
+            } else if (receptionLine.getQuantityReceived().compareTo(BigDecimal.ZERO) > 0) {
+                receptionLine.setOrderStatus(orderStatusService.findById(7L));
+            } else return;
+            Reception reception = receptionService.findById(receptionLine.getReception().getId());
+           // productService.updatePurchasePrice(receptionLine.getProduct().getId(), receptionLine.getPurshasePrice(), receptionLine.getProductPack(), reception.getSupplier(), reception.getCurrency());
+            save(receptionLine);
+        } catch (IdNotFound idNotFound) {
+           // LOGGER.error(idNotFound.getMessage(), idNotFound);
+        }
     }
 
     @Override

@@ -30,8 +30,8 @@ public class ReceptionLine extends EmsDto implements Serializable {
     private Date receptionDate;
     private Warehouse warehouse;
     private Product product;
-   // private BlockType blockType;
-  //  private Color color;
+   private BlockType blockType;
+   private Color color;
     private Date dlc;
     private Date dluo;
     private String serialNo;
@@ -219,21 +219,21 @@ public class ReceptionLine extends EmsDto implements Serializable {
         this.product = product;
     }
 
- /*   public BlockType getBlockType() {
+   public BlockType getBlockType() {
         return blockType;
     }
 
     public void setBlockType(BlockType blockType) {
         this.blockType = blockType;
     }
-*/
-   /* public Color getColor() {
+
+   public Color getColor() {
         return color;
     }
 
     public void setColor(Color color) {
         this.color = color;
-    }*/
+    }
 
     public Date getDlc() {
         return dlc;
