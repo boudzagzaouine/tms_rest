@@ -29,7 +29,7 @@ public class PurshaseOrderLine  extends EmsDto implements Serializable {
     private Date receptionDate;
     private Warehouse warehouse;
     private Product product;
-   // private BlockType blockType;
+    private BlockType blockType;
     private BigDecimal blockedQuantity= BigDecimal.ZERO;
     private Color color;
     private Date dlc;
@@ -217,13 +217,13 @@ public class PurshaseOrderLine  extends EmsDto implements Serializable {
         this.product = product;
     }
 
-  /*  public BlockType getBlockType() {
+    public BlockType getBlockType() {
         return blockType;
     }
 
     public void setBlockType(BlockType blockType) {
         this.blockType = blockType;
-    }*/
+    }
 
     public Color getColor() {
         return color;

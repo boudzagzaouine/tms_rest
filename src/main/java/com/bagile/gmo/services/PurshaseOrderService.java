@@ -38,4 +38,6 @@ public interface PurshaseOrderService {
 
     List<PurshaseOrder> findAll(int page, int size) throws AttributesNotFound, ErrorType;
 
+    void updatePurshaseOrder(PurshaseOrder purshaseOrder);
+
 }

@@ -7,6 +7,7 @@ import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.PurshaseOrderLineMapper;
 import com.bagile.gmo.repositories.PurshaseOrderLineRepository;
+import com.bagile.gmo.services.OrderStatusService;
 import com.bagile.gmo.services.PurshaseOrderLineService;
 import com.bagile.gmo.util.Search;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -23,8 +25,11 @@ import java.util.List;
 public class PurshaseOrderLineServiceImpl implements PurshaseOrderLineService {
     
     private final PurshaseOrderLineRepository purshaseOrderLineRepository;
-    public PurshaseOrderLineServiceImpl(PurshaseOrderLineRepository purshaseOrderLineRepository) {
+    private OrderStatusService orderStatusService;
+    public PurshaseOrderLineServiceImpl(PurshaseOrderLineRepository purshaseOrderLineRepository,
+                                        OrderStatusService orderStatusService) {
         this.purshaseOrderLineRepository = purshaseOrderLineRepository;
+        this.orderStatusService = orderStatusService;
     }
 
     @Override
@@ -107,6 +112,19 @@ public class PurshaseOrderLineServiceImpl implements PurshaseOrderLineService {
         return PurshaseOrderLineMapper.toDtos(purshaseOrderLineRepository.findAll(pageable), false);
     }
 
+    @Override
+    public void updatePurshaseOrderLine(PurshaseOrderLine purshaseOrderLine) {
+        try {
+            if (purshaseOrderLine.getQuantityReceived().compareTo(purshaseOrderLine.getQuantity()) > -1) {
+                purshaseOrderLine.setOrderStatus(orderStatusService.findById(1L));
+            } else if (purshaseOrderLine.getQuantityReceived().compareTo(BigDecimal.ZERO) > 0) {
+                purshaseOrderLine.setOrderStatus(orderStatusService.findById(7L));
+            } else return;
+            save(purshaseOrderLine);
+        } catch (IdNotFound idNotFound) {
+            idNotFound.printStackTrace();
+        }
+    }
 
 
 }

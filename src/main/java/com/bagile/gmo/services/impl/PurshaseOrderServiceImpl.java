@@ -1,20 +1,28 @@
 package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.PurshaseOrder;
+import com.bagile.gmo.dto.PurshaseOrderLine;
 import com.bagile.gmo.entities.RcpPurshaseOrder;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.PurshaseOrderMapper;
 import com.bagile.gmo.repositories.PurshaseOrderRepository;
+import com.bagile.gmo.services.OrderStatusService;
+import com.bagile.gmo.services.PurshaseOrderLineService;
 import com.bagile.gmo.services.PurshaseOrderService;
 import com.bagile.gmo.util.Search;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Nonnull;
+import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.List;
 
 
@@ -23,6 +31,12 @@ import java.util.List;
 public class PurshaseOrderServiceImpl implements PurshaseOrderService {
     
     private final PurshaseOrderRepository purshaseOrderRepository;
+    @Autowired
+    private PurshaseOrderLineService purshaseOrderLineService;
+
+    @Autowired
+    private OrderStatusService orderStatusService;
+
     public PurshaseOrderServiceImpl(PurshaseOrderRepository purshaseOrderRepository) {
         this.purshaseOrderRepository = purshaseOrderRepository;
     }
@@ -106,7 +120,32 @@ public class PurshaseOrderServiceImpl implements PurshaseOrderService {
         Pageable pageable = PageRequest.of(page, size, sort);
         return PurshaseOrderMapper.toDtos(purshaseOrderRepository.findAll(pageable), false);
     }
+    private void archivePurshaseOrder(PurshaseOrder purshaseOrder) throws IdNotFound {
+        if (purshaseOrder.getOrderStatus().equals(orderStatusService.closedStatus())){
+                //&& purshaseOrder.getPaymentStatus().equals(paymentStatusService.equals(paymentStatusService.payedStatus()))) {
+            purshaseOrder.setActive(false);
+        }
+    }
 
+    @Override
+    public void updatePurshaseOrder(PurshaseOrder purshaseOrder) {
+
+        try {
+            purshaseOrder = findById(purshaseOrder.getId());
+            List<PurshaseOrderLine> purshaseOrderLines = purshaseOrderLineService.find("purshaseOrder.id:" + purshaseOrder.getId());
+            purshaseOrder.setPurshaseOrderLines(new HashSet<>(purshaseOrderLines));
+            if (purshaseOrderLines.stream().allMatch(purshaseOrderLine -> purshaseOrderLine.getOrderStatus().getId() == 1)) {
+                archivePurshaseOrder(purshaseOrder);
+                purshaseOrder.setOrderStatus(orderStatusService.closedStatus());
+            } else if (purshaseOrderLines.stream().anyMatch(purshaseOrderLine -> purshaseOrderLine.getOrderStatus().getId() == 1 ||purshaseOrderLine.getOrderStatus().getId() == 7)) {
+                purshaseOrder.setOrderStatus(orderStatusService.partialStatus());
+            }
+            purshaseOrder.setPurshaseOrderLines(new HashSet<>(purshaseOrderLines));
+            save(purshaseOrder);
+        } catch (IdNotFound | AttributesNotFound | ErrorType idNotFound) {
+            idNotFound.printStackTrace();
+        }
+    }
 
 
 }
