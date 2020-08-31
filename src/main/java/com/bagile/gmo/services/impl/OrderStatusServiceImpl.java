@@ -105,39 +105,39 @@ public class OrderStatusServiceImpl implements OrderStatusService {
     }
 
     @Override
-    public OrderStatus cancelledStatus() {
-        return null;
+    public OrderStatus cancelledStatus() throws IdNotFound {
+        return findById(3L);
     }
 
     @Override
     public OrderStatus completedStatus() throws IdNotFound {
-        return null;
+        return findById(4L);
     }
 
     @Override
     public OrderStatus onProgressStatus() throws IdNotFound {
-        return null;
+        return findById(5L);
     }
 
     @Override
     public OrderStatus partialStatus() throws IdNotFound {
-        return null;
+        return findById(7L);
     }
 
     @Override
     public OrderStatus validStatus() throws IdNotFound {
-        return null;
+        return findById(8L);
     }
 
     @Override
     public OrderStatus toPrepareStatus() throws IdNotFound {
-        return null;
-    }
+        return findById(9L);    }
 
     @Override
     public OrderStatus onProductionStatus() throws IdNotFound {
         return null;
     }
+
 
     @Override
     public OrderStatus finishedStatus() throws IdNotFound {

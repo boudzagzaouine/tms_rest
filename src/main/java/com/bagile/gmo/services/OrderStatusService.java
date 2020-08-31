@@ -39,7 +39,7 @@ public interface OrderStatusService {
 
     OrderStatus waitingStatus() throws IdNotFound;
 
-    OrderStatus cancelledStatus();
+    OrderStatus cancelledStatus() throws IdNotFound;
 
     OrderStatus completedStatus() throws IdNotFound;
 
