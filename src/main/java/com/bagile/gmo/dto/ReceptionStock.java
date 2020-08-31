@@ -19,9 +19,9 @@ public class ReceptionStock  extends EmsDto implements Serializable {
     private Date receptionDate;
     private Warehouse warehouse;
     private Product product;
-   // private BlockType blockType;
+    private BlockType blockType;
     private Supplier supplier;
-   // private Color color;
+   private Color color;
     private Date dlc;
     private Date dluo;
     private String serialNo;
@@ -29,9 +29,9 @@ public class ReceptionStock  extends EmsDto implements Serializable {
     private Reception reception;
     private BigDecimal quantityReceived;
     private ReceptionLine receptionLine;
-   // private Container container;
+   private Container container;
     private Uom uom;
-  //  private Location location;
+   private Location location;
     private Uom uomReceived;
     private String quality;
     private BigDecimal weight;
@@ -95,14 +95,14 @@ public class ReceptionStock  extends EmsDto implements Serializable {
         this.product = product;
     }
 
-   /* public BlockType getBlockType() {
+    public BlockType getBlockType() {
         return this.blockType;
     }
 
     public void setBlockType(BlockType blockType) {
         this.blockType = blockType;
     }
-*/
+
     public Supplier getSupplier() {
         return this.supplier;
     }
@@ -111,13 +111,13 @@ public class ReceptionStock  extends EmsDto implements Serializable {
         this.supplier = supplier;
     }
 
-   /* public Color getColor() {
+   public Color getColor() {
         return this.color;
     }
 
     public void setColor(Color color) {
         this.color = color;
-    }*/
+    }
 
     public Date getDlc() {
         return this.dlc;
@@ -184,14 +184,13 @@ public class ReceptionStock  extends EmsDto implements Serializable {
         this.stocks = stocks;
     }
 
-   /* public Container getContainer() {
+    public Container getContainer() {
         return container;
     }
 
     public void setContainer(Container container) {
         this.container = container;
     }
-*/
     public Uom getUom() {
         return uom;
     }
@@ -200,14 +199,14 @@ public class ReceptionStock  extends EmsDto implements Serializable {
         this.uom = uom;
     }
 
-    /*public Location getLocation() {
+    public Location getLocation() {
         return location;
     }
 
     public void setLocation(Location location) {
         this.location = location;
     }
-*/
+
     public Uom getUomReceived() {
         return uomReceived;
     }

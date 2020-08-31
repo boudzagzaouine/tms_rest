@@ -50,6 +50,11 @@ public class ReceptionStockController {
     public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
         return receptionStockService.isExist(id);
     }
+    @RequestMapping(value = "/saveALL", method = RequestMethod.POST)
+    @ResponseBody
+    public List<ReceptionStock> saveAll(@RequestBody List<ReceptionStock> receptionStockList) {
+        return receptionStockService.saveAll(receptionStockList, true);
+    }
     //@PreAuthorize("hasAnyRole('BADGETYPE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
@@ -72,11 +77,11 @@ public class ReceptionStockController {
     //@PreAuthorize("hasRole('BADGETYPE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ReceptionStock add(@RequestBody ReceptionStock receptionStock ){return receptionStockService.save(receptionStock);}
+    public ReceptionStock add(@RequestBody ReceptionStock receptionStock ) throws ContainerException, ProductControls, AttributesNotFound, ErrorType, IdNotFound, CustomException {return receptionStockService.save(receptionStock);}
     //@PreAuthorize("hasRole('BADGETYPE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ReceptionStock set(@RequestBody ReceptionStock receptionStock) {
+    public ReceptionStock set(@RequestBody ReceptionStock receptionStock) throws ContainerException, ProductControls, AttributesNotFound, ErrorType, IdNotFound, CustomException {
         return receptionStockService.save(receptionStock);
     }
     //@PreAuthorize("hasRole('BADGETYPE_DELETE')")
@@ -98,7 +103,7 @@ public class ReceptionStockController {
     @RequestMapping(value = "/deleteAll", method = RequestMethod.DELETE)
     @ResponseBody
     public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
-        receptionStockService.deleteAll (Arrays.asList(ids));
+        receptionStockService.deleteAll(Arrays.asList(ids));
     }
 
 

@@ -19,7 +19,7 @@ import java.util.Date;
 public class RcpReceptionStock extends EmsEntity implements java.io.Serializable {
 
     private long rcpReceptionStockId;
-    @NotNull
+   // @NotNull
     private OwnOwner ownOwner;
     @NotNull
     private PdtProduct pdtProduct;
@@ -30,7 +30,7 @@ public class RcpReceptionStock extends EmsEntity implements java.io.Serializable
     @NotNull
     private RcpReceptionLine rcpReceptionLine;
     private RcpSupplier rcpSupplier;
-    @NotNull
+   // @NotNull
     private WrhWarehouse wrhWarehouse;
 
 

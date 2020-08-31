@@ -22,7 +22,7 @@ import java.util.Set;
 public class RcpReception extends EmsEntity implements java.io.Serializable {
 
     private long rcpReceptionId;
-    @NotNull
+   // @NotNull
     private OwnOwner ownOwner;
     private AdrAddressInfo adrAddress;
     private CmdDelivery cmdDelivery;
@@ -31,7 +31,7 @@ public class RcpReception extends EmsEntity implements java.io.Serializable {
     private RcpPurshaseOrder rcpPurshaseOrder;
     private RcpSupplier rcpSupplier;
     private TrpTransport trpTransport;
-    @NotNull
+   // @NotNull
     private WrhWarehouse wrhWarehouse;
     @Max(999999999)
     private Long rcpReceptionNumberOfContainers;
