@@ -35,7 +35,7 @@ public class CmdSaleOrderStock extends EmsEntity implements Serializable  {
     @NotNull
     private PdtProduct pdtProduct;
    // private PrmBlockType prmBlockType;
-   // private StkContainer stkContainer;
+    private StkContainer stkContainer;
     @NotNull
     private WrhWarehouse wrhWarehouse;
    // private PrmColor prmColor;
@@ -148,7 +148,7 @@ public class CmdSaleOrderStock extends EmsEntity implements Serializable  {
     public void setPrmBlockType(PrmBlockType prmBlockType) {
         this.prmBlockType = prmBlockType;
     }
-
+*/
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cmd_saleorderstockcontainerid")
     public StkContainer getStkContainer() {
@@ -158,7 +158,7 @@ public class CmdSaleOrderStock extends EmsEntity implements Serializable  {
     public void setStkContainer(StkContainer stkContainer) {
         this.stkContainer = stkContainer;
     }
-*/
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cmd_saleorderstockwarehouseid")
     public WrhWarehouse getWrhWarehouse() {

@@ -18,7 +18,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "cmd_saleorderline")
-public class CmdSaleOrderLine extends EmsDto implements Serializable  {
+public class CmdSaleOrderLine extends EmsEntity implements Serializable  {
 
     /**
      *

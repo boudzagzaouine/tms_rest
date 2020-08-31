@@ -11,7 +11,7 @@ public class SaleOrderStock  extends EmsDto implements Serializable {
      */
     private static final long serialVersionUID = -2739578864662727893L;
 
-    //private Location location;
+    private Location location;
     private long id;
     private Long lineNumber;
     private Owner owner;
@@ -19,18 +19,18 @@ public class SaleOrderStock  extends EmsDto implements Serializable {
     private Date creationDate;
     private Warehouse warehouse;
     private Product product;
-  //  private BlockType blockType;
+    private BlockType blockType;
     private Date dlc;
     private Date dluo;
     private String serialNo;
     private String lot;
     //TODO DATATABLE
     private Delivery delivery;
-    //private Container container;
+    private Container container;
     private Date orderDate;
     private BigDecimal quantityServed;
     private DeliveryLine deliveryLine;
-   // private Color color;
+    private Color color;
     private Uom uom;
   //  private Stock stock;
     private String quality;
@@ -41,14 +41,14 @@ public class SaleOrderStock  extends EmsDto implements Serializable {
 
 
 
-   /* public Location getLocation() {
+    public Location getLocation() {
         return this.location;
     }
 
     public void setLocation(Location location) {
         this.location = location;
     }
-*/
+
     public Long getId() {
         return this.id;
     }
@@ -105,14 +105,14 @@ public class SaleOrderStock  extends EmsDto implements Serializable {
         this.product = product;
     }
 
-   /* public BlockType getBlockType() {
+   public BlockType getBlockType() {
         return this.blockType;
     }
 
     public void setBlockType(BlockType blockType) {
         this.blockType = blockType;
     }
-*/
+
     public Date getDlc() {
         return this.dlc;
     }
@@ -153,14 +153,14 @@ public class SaleOrderStock  extends EmsDto implements Serializable {
         this.delivery = delivery;
     }
 
-  /*  public Container getContainer() {
+    public Container getContainer() {
         return this.container;
     }
 
     public void setContainer(Container container) {
         this.container = container;
     }
-*/
+
     public Date getOrderDate() {
         return this.orderDate;
     }
@@ -199,7 +199,7 @@ public class SaleOrderStock  extends EmsDto implements Serializable {
     public void setStock(Stock stock) {
         this.stock = stock;
     }
-
+*/
     public Color getColor() {
         return color;
     }
@@ -207,7 +207,7 @@ public class SaleOrderStock  extends EmsDto implements Serializable {
     public void setColor(Color color) {
         this.color = color;
     }
-*/
+
     public String getQuality() {
         return quality;
     }
