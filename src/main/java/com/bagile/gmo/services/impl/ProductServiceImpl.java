@@ -1,9 +1,9 @@
 package com.bagile.gmo.services.impl;
 
-import com.bagile.gmo.dto.Product;
-import com.bagile.gmo.dto.ProductPack;
+import com.bagile.gmo.dto.*;
 import com.bagile.gmo.entities.GmoBadgeType;
 import com.bagile.gmo.entities.PdtProduct;
+import com.bagile.gmo.entities.PdtProductPack;
 import com.bagile.gmo.mapper.BadgeTypeMapper;
 import com.bagile.gmo.mapper.ProductMapper;
 import com.bagile.gmo.exceptions.AttributesNotFound;
@@ -14,6 +14,7 @@ import com.bagile.gmo.services.ProductPackService;
 import com.bagile.gmo.services.ProductService;
 import com.bagile.gmo.util.EmsDate;
 import com.bagile.gmo.util.Search;
+import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -174,6 +178,76 @@ public class ProductServiceImpl implements ProductService {
     public void deleteAll(List<Long> ids) {
         for (Long id : ids) {
             productRepository.deleteById(id);        }
+    }
+
+    @Override
+    public BigDecimal convertQuantityByUom(BigDecimal qte, Uom uom, Uom uomServed, Product product) {
+        try {
+            product = findById (product.getId ( ));
+        } catch (IdNotFound idNotFound) {
+            idNotFound.printStackTrace ( );
+        }
+
+        List<ProductPack> productPacks = Lists.newArrayList (product.getProductPacks ( ));
+        ProductPack served = new ProductPack ( );
+        ProductPack expected = new ProductPack ( );
+
+
+        for (ProductPack productPack : productPacks) {
+            if (productPack.getUom ( ).equals (uomServed)) {
+                served = productPack;
+            }
+            if (productPack.getUom ( ).equals (uom)) {
+                expected = productPack;
+            }
+        }
+        BigDecimal newQte = qte.multiply (served.getQuantity ( ).divide (expected.getQuantity ( ), 2, RoundingMode.HALF_DOWN));
+
+        return newQte;
+    }
+
+    @Override
+    public BigDecimal convertQuantityByUom(BigDecimal qte, ProductPack packExpected, ProductPack packServed) {
+        BigDecimal newQte = qte.multiply (packServed.getQuantity ( ).divide (packExpected.getQuantity ( ), 2, RoundingMode.HALF_DOWN));
+
+        return newQte;
+    }
+
+    @Override
+    public void updatePurchasePrice(Long id, BigDecimal purchasePrice, ProductPack productPack, Supplier supplier, Currency currency) {
+        try {
+
+           /* PdtProduct product = productRepository.findOne(id);
+            Optional<PdtProductPack> optionalPdtProductPack = product.getPdtProductPacks ( ).stream ( ).filter (pdtProductPack -> pdtProductPack.getPdtProductPackId ( ) == productPack.getId ( )).findAny ( );
+
+            if (optionalPdtProductPack.isPresent ( ) && product.getPrmCurrencyPurshase ( ) != null && product.getPrmCurrencyPurshase ( ).getPrmCurrencyId ( ) == currency.getId ( )) {
+                PdtProductPack pdtProductPack = optionalPdtProductPack.get ( );
+
+                if (pdtProductPack.getPdtProductSuppliers ( ) != null && !pdtProductPack.getPdtProductSuppliers ( ).isEmpty ( )) {
+                    Optional<PdtProductSupplier> optionalPdtProductSupplier = pdtProductPack.getPdtProductSuppliers ( ).stream ( ).filter (pdtProductSupplier -> pdtProductSupplier.getPdtProductSupplierId ( ) == supplier.getId ( ) && product.getPrmCurrencyPurshase ( ).getPrmCurrencyId ( ) == currency.getId ( )).findAny ( );
+                    if (optionalPdtProductSupplier.isPresent ( )) {
+                        PdtProductSupplier pdtProductSupplier = optionalPdtProductSupplier.get ( );
+                        pdtProductSupplier.setPdtProductSupplierPrice (purchasePrice);
+                        productSupplierService.save (ProductSupplierMapper.toDto (pdtProductSupplier, false));
+                    }
+                } else {
+                    pdtProductPack.setPdtProductPurshasePrice (purchasePrice);
+                    product.getPdtProductPacks ( ).add (pdtProductPack);
+                    if (product.getPdtProductPack ( ).getPdtProductPackId ( ) == pdtProductPack.getPdtProductPackId ( )) {
+                        product.setPdtProductPurshasePriceUB (purchasePrice);
+                        product.setPdtProductTTCPurshasePriceUB (product.getPdtProductPurshasePriceUB ( ).multiply ((BigDecimal.ONE.add ((product.getPrmVatPurchase ( ).getPrmVatValue ( )).divide (BigDecimal.valueOf (100), 2, BigDecimal.ROUND_HALF_UP)))));
+                        if (product.getPdtProductMarginOfPurchase ( ) != null) {
+                            product.setPdtProductSalePriceUB (product.getPdtProductPurshasePriceUB ( ).multiply ((BigDecimal.ONE.add ((product.getPdtProductMarginOfPurchase ( ).divide (BigDecimal.valueOf (100), 2, BigDecimal.ROUND_HALF_UP))))));
+                            product.setPdtProductTTCSalePriceUB (product.getPdtProductSalePriceUB ( ).multiply ((BigDecimal.ONE.add ((product.getPrmVat ( ).getPrmVatValue ( )).divide (BigDecimal.valueOf (100), 2, BigDecimal.ROUND_HALF_UP)))));
+                        }
+                    }
+                    productRepository.saveAndFlush (product);
+                }
+            }*/
+        }catch (Exception e)
+        {
+            LOGGER.error(e.getMessage(),e);
+        }
     }
 
 }

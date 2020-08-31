@@ -1,12 +1,12 @@
 package com.bagile.gmo.services;
 
 
-import com.bagile.gmo.dto.BadgeType;
-import com.bagile.gmo.dto.Product;
+import com.bagile.gmo.dto.*;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface ProductService {
@@ -34,4 +34,9 @@ public interface ProductService {
 
     void delete(Product product);
     void deleteAll (List<Long> ids);
+
+    BigDecimal convertQuantityByUom(BigDecimal qte, Uom uom, Uom uomServed, Product product);
+    BigDecimal convertQuantityByUom(BigDecimal qte, ProductPack packExpected, ProductPack packServed);
+    void updatePurchasePrice(Long id, BigDecimal purchasePrice, ProductPack productPack, Supplier supplier, Currency currency);
+
 }
