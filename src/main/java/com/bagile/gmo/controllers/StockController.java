@@ -2,6 +2,7 @@ package com.bagile.gmo.controllers;
 
 import com.bagile.gmo.dto.Stock;
 import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.CustomException;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.services.StockService;
@@ -25,11 +26,11 @@ public class StockController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
-    public List<Stock> getStocks() {return stockService.findAll();}
+    public List<Stock> getStocks() throws AttributesNotFound, ErrorType {return stockService.findAll();}
    //@PreAuthorize("hasAnyRole('BADGETYPE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
-    public List<Stock> getStock(@RequestParam int page, @RequestParam int size) {
+    public List<Stock> getStock(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         return stockService.findAll(page, size);
 
     }
@@ -68,16 +69,15 @@ public class StockController {
     @ResponseBody
     public List<Stock> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         return stockService.find(search, page, size);
-
     }
     //@PreAuthorize("hasRole('BADGETYPE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Stock add(@RequestBody Stock badgeType ){return stockService.save(badgeType);}
+    public Stock add(@RequestBody Stock badgeType ) throws IdNotFound, AttributesNotFound, ErrorType, CustomException {return stockService.save(badgeType);}
     //@PreAuthorize("hasRole('BADGETYPE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Stock set(@RequestBody Stock badgeType) {
+    public Stock set(@RequestBody Stock badgeType) throws IdNotFound, AttributesNotFound, ErrorType, CustomException {
         return stockService.save(badgeType);
     }
     //@PreAuthorize("hasRole('BADGETYPE_DELETE')")
@@ -91,7 +91,7 @@ public class StockController {
     //@PreAuthorize("hasRole('BADGETYPE_DELETE')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) throws IdNotFound {
         stockService.delete(id);
     }
 
@@ -99,6 +99,6 @@ public class StockController {
     @RequestMapping(value = "/deleteAll", method = RequestMethod.DELETE)
     @ResponseBody
     public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
-        stockService.deleteAll (Arrays.asList(ids));
+        stockService.deleteAll(Arrays.asList(ids));
     }
 }

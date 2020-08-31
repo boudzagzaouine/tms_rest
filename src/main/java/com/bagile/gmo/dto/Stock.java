@@ -8,7 +8,7 @@ public class Stock extends EmsDto implements Serializable {
 
     private static final long serialVersionUID = -1872267403174822706L;
 
-   // private Location location;
+    private Location location;
     private long id;
     private Owner owner;
     private Date updateDate;
@@ -25,23 +25,23 @@ public class Stock extends EmsDto implements Serializable {
     private Date creationDate;
     private Date receptionDate;
     private Product product;
-   // private BlockType blockType;
+   private BlockType blockType;
     private Supplier supplier;
-    //private Color color;
+    private Color color;
     private Date dlc;
     private Date dluo;
     private String serialNo;
     private String lot;
-   //private Container container;
+   private Container container;
     private BigDecimal quantity;
     private Uom uom;
     private Boolean kit;
-   // private ReceptionLine receptionLine;
-   // private ReceptionStock receptionStock;
+    private ReceptionLine receptionLine;
+    private ReceptionStock receptionStock;
     private String quality;
     private BigDecimal weight;
     private String comment;
-   // private ProductDimension productDimension;
+   //private ProductDimension productDimension;
     private Warehouse warehouse;
     private ProductPack productPack;
     private BigDecimal quantityUomBase;
@@ -54,14 +54,14 @@ public class Stock extends EmsDto implements Serializable {
   //  private ProductionLine productionLine;
  //   private Production production;
 
-  /*  public Location getLocation() {
+   public Location getLocation() {
         return this.location;
     }
 
     public void setLocation(Location location) {
         this.location = location;
     }
-*/
+
     public long getId() {
         return this.id;
     }
@@ -197,14 +197,13 @@ public class Stock extends EmsDto implements Serializable {
         this.product = product;
     }
 
-  /*  public BlockType getBlockType() {
+   public BlockType getBlockType() {
         return this.blockType;
     }
 
     public void setBlockType(BlockType blockType) {
         this.blockType = blockType;
     }
-*/
     public Supplier getSupplier() {
         return this.supplier;
     }
@@ -213,13 +212,13 @@ public class Stock extends EmsDto implements Serializable {
         this.supplier = supplier;
     }
 
-    /*public Color getColor() {
+    public Color getColor() {
         return this.color;
     }
 
     public void setColor(Color color) {
         this.color = color;
-    }*/
+    }
 
     public Date getDlc() {
         return this.dlc;
@@ -253,13 +252,13 @@ public class Stock extends EmsDto implements Serializable {
         this.lot = lot;
     }
 
-   /* public Container getContainer() {
+   public Container getContainer() {
         return this.container;
     }
 
     public void setContainer(Container container) {
-        this.container = container;
-    }*/
+       this.container = container;
+    }
 
     public BigDecimal getQuantity() {
         return this.quantity;
@@ -301,13 +300,13 @@ public class Stock extends EmsDto implements Serializable {
         this.weight = weight;
     }
 
-   /* public ReceptionLine getReceptionLine() {
+    public ReceptionLine getReceptionLine() {
         return receptionLine;
     }
 
     public void setReceptionLine(ReceptionLine receptionLine) {
         this.receptionLine = receptionLine;
-    }*/
+    }
 
     public String getComment() {
         return comment;
@@ -317,13 +316,13 @@ public class Stock extends EmsDto implements Serializable {
         this.comment = comment;
     }
 
-    /*public ReceptionStock getReceptionStock() {
+    public ReceptionStock getReceptionStock() {
         return receptionStock;
     }
 
     public void setReceptionStock(ReceptionStock receptionStock) {
         this.receptionStock = receptionStock;
-    }*/
+    }
 
     /*public ProductDimension getProductDimension() {
         return productDimension;
