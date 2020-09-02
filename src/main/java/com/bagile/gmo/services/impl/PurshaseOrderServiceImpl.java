@@ -11,6 +11,7 @@ import com.bagile.gmo.repositories.PurshaseOrderRepository;
 import com.bagile.gmo.services.OrderStatusService;
 import com.bagile.gmo.services.PurshaseOrderLineService;
 import com.bagile.gmo.services.PurshaseOrderService;
+import com.bagile.gmo.services.SettingService;
 import com.bagile.gmo.util.Search;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -37,6 +38,8 @@ public class PurshaseOrderServiceImpl implements PurshaseOrderService {
     @Autowired
     private OrderStatusService orderStatusService;
 
+    @Autowired
+    private SettingService settingService;
     public PurshaseOrderServiceImpl(PurshaseOrderRepository purshaseOrderRepository) {
         this.purshaseOrderRepository = purshaseOrderRepository;
     }
@@ -145,6 +148,16 @@ public class PurshaseOrderServiceImpl implements PurshaseOrderService {
         } catch (IdNotFound | AttributesNotFound | ErrorType idNotFound) {
             idNotFound.printStackTrace();
         }
+    }
+
+    @Override
+    public String getNextVal() {
+
+        String codePurshaseOrder = settingService.generateCodePurshaseOrder();
+        if (null != codePurshaseOrder && !"".equals(codePurshaseOrder))
+            return codePurshaseOrder + purshaseOrderRepository.getNextVal().get(0);
+        return "";
+
     }
 
 

@@ -40,4 +40,6 @@ public interface PurshaseOrderService {
 
     void updatePurshaseOrder(PurshaseOrder purshaseOrder);
 
+    String getNextVal();
+
 }
