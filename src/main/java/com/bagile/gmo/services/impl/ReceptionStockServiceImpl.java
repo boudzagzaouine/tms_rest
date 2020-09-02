@@ -198,7 +198,8 @@ public class ReceptionStockServiceImpl implements ReceptionStockService {
 
     @Override
     public ReceptionStock findOne(String search) throws AttributesNotFound, ErrorType {
-        return ReceptionStockMapper.toDto(receptionStockRepository.findOne(Search.expression (search, RcpReceptionStock.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
+        return ReceptionStockMapper.toDto(receptionStockRepository.findOne(Search.expression
+                (search, RcpReceptionStock.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
 
     }
 

@@ -39,6 +39,8 @@ public class ReceptionStock  extends EmsDto implements Serializable {
    // private ProductDimension productDimension;
     private ProductPack productPack;
 
+
+
     public long getId() {
         return this.id;
     }

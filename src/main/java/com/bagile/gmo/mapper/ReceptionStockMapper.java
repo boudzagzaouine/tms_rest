@@ -80,7 +80,7 @@ public class ReceptionStockMapper {
          //   rcpReceptionStock.setPrmBlockType(BlockTypeMapper.toEntity(receptionStock.getBlockType(), true));
           //  rcpReceptionStock.setPrmColor(ColorMapper.toEntity(receptionStock.getColor(), true));
             rcpReceptionStock.setWrhWarehouse(WarehouseMapper.toEntity(receptionStock.getWarehouse(), true));
-          //  rcpReceptionStock.setLocLocation(LocationMapper.toEntity(receptionStock.getLocation(),true));
+            rcpReceptionStock.setLocLocation(LocationMapper.toEntity(receptionStock.getLocation(),true));
             rcpReceptionStock.setPdtUom(UomMapper.toEntity(receptionStock.getUom(),true));
             rcpReceptionStock.setPdtUomRecieved(UomMapper.toEntity(receptionStock.getUomReceived(),true));
             rcpReceptionStock.setPdtProductPack(ProductPackMapper.toEntity(receptionStock.getProductPack(), true));
@@ -118,7 +118,7 @@ public class ReceptionStockMapper {
             receptionStock.setWarehouse(WarehouseMapper.toDto(rcpReceptionStock.getWrhWarehouse(), true));
             receptionStock.setUom(UomMapper.toDto(rcpReceptionStock.getPdtUom(), true));
             receptionStock.setUomReceived(UomMapper.toDto(rcpReceptionStock.getPdtUomRecieved(), true));
-          //  receptionStock.setLocation(LocationMapper.toDto(rcpReceptionStock.getLocLocation(),true));
+            receptionStock.setLocation(LocationMapper.toDto(rcpReceptionStock.getLocLocation(),true));
             receptionStock.setProductPack(ProductPackMapper.toDto(rcpReceptionStock.getPdtProductPack(),true));
         }
         return receptionStock;

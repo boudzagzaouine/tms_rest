@@ -59,7 +59,7 @@ public class RcpReceptionStock extends EmsEntity implements java.io.Serializable
 
   //  private StkContainer stkContainer;
     private PdtUom pdtUom;
-    //private LocLocation locLocation;
+    private LocLocation locLocation;
     private PdtUom pdtUomRecieved;
     @Size(max=50)
     private String rcpReceptionStockQuality;
@@ -261,7 +261,7 @@ public class RcpReceptionStock extends EmsEntity implements java.io.Serializable
         this.pdtUom = pdtUom;
     }
 
-  /*  @ManyToOne(fetch = FetchType.LAZY)
+   @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="rcp_receptionstocklocationid")
     public LocLocation getLocLocation() {
         return locLocation;
@@ -270,7 +270,7 @@ public class RcpReceptionStock extends EmsEntity implements java.io.Serializable
     public void setLocLocation(LocLocation locLocation) {
         this.locLocation = locLocation;
     }
-    */
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="rcp_receptionstockuomrecievedid")
     public PdtUom getPdtUomRecieved() {
