@@ -20,7 +20,7 @@ import java.util.Date;
 public class StkStock extends EmsDto implements java.io.Serializable {
 
     private long stkStockId;
-   // private LocLocation locLocation;
+   private LocLocation locLocation;
    // @NotNull
     private OwnOwner ownOwner;
     @NotNull
@@ -29,7 +29,7 @@ public class StkStock extends EmsDto implements java.io.Serializable {
    // private PrmBlockType prmBlockType;
    // private PrmColor prmColor;
     private RcpSupplier rcpSupplier;
-  //  private StkContainer stkContainer;
+    private StkContainer stkContainer;
 
     @Max(999999999)
     @NotNull
@@ -79,11 +79,11 @@ public class StkStock extends EmsDto implements java.io.Serializable {
     private String stkStockQuality;
     @Max(999999999)
     private BigDecimal stkStockWeight;
-  //  private RcpReceptionLine rcpReceptionLine;
-  //  private RcpReceptionStock rcpReceptionStock;
+  private RcpReceptionLine rcpReceptionLine;
+  private RcpReceptionStock rcpReceptionStock;
     @Size(max = 255)
     private String stkStockComment;
-//    private WrhWarehouse wrhWarehouse;
+   private WrhWarehouse wrhWarehouse;
     private PdtProductPack pdtProductPack;
     private Boolean stkStockAccountedSale;
     private Boolean stkStockAccountedPurchase;
@@ -92,7 +92,7 @@ public class StkStock extends EmsDto implements java.io.Serializable {
     private BigDecimal stkStockSalePrice;
     private Boolean stkStockActive;
     private Boolean stkStockAppliedBruteToNet;
-   // private PrcProductionLine prcProductionLine;
+
 
     public StkStock() {
     }
@@ -114,7 +114,7 @@ public class StkStock extends EmsDto implements java.io.Serializable {
         this.stkStockQuantity = stkStockQuantity;
     }
 
-    public StkStock(long stkStockId,// LocLocation locLocation,
+    public StkStock(long stkStockId, LocLocation locLocation,
                     OwnOwner ownOwner, PdtProduct pdtProduct, PdtUom pdtUom,
                   //  PrmBlockType prmBlockType, PrmColor prmColor,
                     RcpSupplier rcpSupplier, //StkContainer stkContainer,
@@ -128,7 +128,7 @@ public class StkStock extends EmsDto implements java.io.Serializable {
                     String stkStockVariable7, String stkStockVariable8,
                     String stkStockVariable9, String stkStockVariable10) {
         this.stkStockId = stkStockId;
-       // this.locLocation = locLocation;
+        this.locLocation = locLocation;
         this.ownOwner = ownOwner;
         this.pdtProduct = pdtProduct;
         this.pdtUom = pdtUom;
@@ -168,7 +168,7 @@ public class StkStock extends EmsDto implements java.io.Serializable {
         this.stkStockId = stkStockId;
     }
 
-   /* @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "stk_stocklocationid")
     public LocLocation getLocLocation() {
         return this.locLocation;
@@ -176,7 +176,7 @@ public class StkStock extends EmsDto implements java.io.Serializable {
 
     public void setLocLocation(LocLocation locLocation) {
         this.locLocation = locLocation;
-    }*/
+    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "stk_stockownerid")
@@ -238,7 +238,7 @@ public class StkStock extends EmsDto implements java.io.Serializable {
         this.rcpSupplier = rcpSupplier;
     }
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "stk_stockcontainerid")
     public StkContainer getStkContainer() {
         return this.stkContainer;
@@ -246,7 +246,7 @@ public class StkStock extends EmsDto implements java.io.Serializable {
 
     public void setStkContainer(StkContainer stkContainer) {
         this.stkContainer = stkContainer;
-    }*/
+    }
 
     @Column(name = "stk_stockquantity", nullable = false, precision = 17, scale = 5)
     public BigDecimal getStkStockQuantity() {
@@ -435,7 +435,7 @@ public class StkStock extends EmsDto implements java.io.Serializable {
         this.stkStockWeight = stkStockWeight;
     }
 
-   /* @ManyToOne(fetch = FetchType.LAZY)
+ @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "stk_stockreceptionlineid")
     public RcpReceptionLine getRcpReceptionLine() {
         return rcpReceptionLine;
@@ -444,9 +444,9 @@ public class StkStock extends EmsDto implements java.io.Serializable {
     public void setRcpReceptionLine(RcpReceptionLine rcpReceptionLine) {
         this.rcpReceptionLine = rcpReceptionLine;
     }
-*/
 
-  /*  @ManyToOne(fetch = FetchType.LAZY)
+
+  @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "stk_stockreceptionstockid")
     public RcpReceptionStock getRcpReceptionStock() {
         return rcpReceptionStock;
@@ -454,7 +454,7 @@ public class StkStock extends EmsDto implements java.io.Serializable {
 
     public void setRcpReceptionStock(RcpReceptionStock rcpReceptionStock) {
         this.rcpReceptionStock = rcpReceptionStock;
-    }*/
+    }
 
 
     @Column(name = "stk_stockcomment", length = 255)
@@ -478,7 +478,7 @@ public class StkStock extends EmsDto implements java.io.Serializable {
         this.pdtProductDimension = pdtProductDimension;
     }*/
 
-  /*  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "stk_stockwarehouseid")
     public WrhWarehouse getWrhWarehouse() {
         return wrhWarehouse;
@@ -487,7 +487,7 @@ public class StkStock extends EmsDto implements java.io.Serializable {
     public void setWrhWarehouse(WrhWarehouse wrhWarehouse) {
         this.wrhWarehouse = wrhWarehouse;
     }
-*/
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "stk_stockpackid")
     public PdtProductPack getPdtProductPack() {
@@ -562,13 +562,5 @@ public class StkStock extends EmsDto implements java.io.Serializable {
         this.stkStockAppliedBruteToNet = stkStockAppliedBruteToNet;
     }
 
-   /* @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "stk_stockproductionlineid")
-    public PrcProductionLine getPrcProductionLine() {
-        return prcProductionLine;
-    }
 
-    public void setPrcProductionLine(PrcProductionLine prcProductionLine) {
-        this.prcProductionLine = prcProductionLine;
-    }*/
 }

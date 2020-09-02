@@ -115,8 +115,8 @@ public class StockMapper {
            // stkStock.setPrmBlockType(BlockTypeMapper.toEntity(stock.getBlockType(), true));
            // stkStock.setPrmColor(ColorMapper.toEntity(stock.getColor(), true));
             stkStock.setPdtUom(UomMapper.toEntity(stock.getUom(), true));
-         //   stkStock.setLocLocation(LocationMapper.toEntity(stock.getLocation(), true));
-          //  stkStock.setStkContainer(ContainerMapper.toEntity(stock.getContainer(), true));
+            stkStock.setLocLocation(LocationMapper.toEntity(stock.getLocation(), true));
+            stkStock.setStkContainer(ContainerMapper.toEntity(stock.getContainer(), true));
           //  stkStock.setRcpReceptionLine(ReceptionLineMapper.toEntity(stock.getReceptionLine(), true));
          //   stkStock.setRcpReceptionStock(ReceptionStockMapper.toEntity(stock.getReceptionStock(), true));
             stkStock.setPdtProductPack(ProductPackMapper.toEntity(stock.getProductPack(), true));
@@ -172,8 +172,8 @@ public class StockMapper {
          //   stock.setBlockType(BlockTypeMapper.toDto(stkStock.getPrmBlockType(), true));
           //  stock.setColor(ColorMapper.toDto(stkStock.getPrmColor(), true));
             stock.setUom(UomMapper.toDto(stkStock.getPdtUom(), true));
-          //  stock.setLocation(LocationMapper.toDto(stkStock.getLocLocation(), true));
-          //  stock.setContainer(ContainerMapper.toDto(stkStock.getStkContainer(), true));
+            stock.setLocation(LocationMapper.toDto(stkStock.getLocLocation(), true));
+           stock.setContainer(ContainerMapper.toDto(stkStock.getStkContainer(), true));
           //  stock.setReceptionLine(ReceptionLineMapper.toDto(stkStock.getRcpReceptionLine(), true));
           //  stock.setReceptionStock(ReceptionStockMapper.toDto(stkStock.getRcpReceptionStock(), true));
         //    stock.setProductionLine(ProductionLineMapper.toDto(stkStock.getPrcProductionLine(), true));

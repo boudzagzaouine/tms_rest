@@ -9,6 +9,7 @@ import com.bagile.gmo.exceptions.CustomException;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.BadgeTypeMapper;
+import com.bagile.gmo.mapper.ProductPackMapper;
 import com.bagile.gmo.mapper.StockMapper;
 import com.bagile.gmo.repositories.StockRepository;
 import com.bagile.gmo.services.*;
@@ -116,12 +117,8 @@ public class StockServiceImpl implements StockService, AddActive {
      */
     @Override
     public Stock findById(Long id) throws IdNotFound {
-        Stock stock = StockMapper.toDto(stockRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
-        if (null != stock) {
-            return stock;
-        } else {
-            throw new IdNotFound(id);
-        }
+        return StockMapper.toDto(stockRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
+
     }
 
     /**
