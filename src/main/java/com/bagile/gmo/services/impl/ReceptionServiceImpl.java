@@ -36,6 +36,8 @@ public class ReceptionServiceImpl implements ReceptionService {
     @Autowired
      private ReceptionLineService receptionLineService;
 
+    @Autowired
+    private SettingService settingService;
 
     public ReceptionServiceImpl() {}
 
@@ -129,7 +131,9 @@ public class ReceptionServiceImpl implements ReceptionService {
 
     @Override
     public Reception findOne(String search) throws AttributesNotFound, ErrorType {
-        return ReceptionMapper.toDto (receptionRepository.findOne (Search.expression (search, RcpReception.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
+        return ReceptionMapper.toDto (receptionRepository.findOne
+                (Search.expression (search, RcpReception.class)).orElseThrow
+                (() -> new AttributesNotFound (search)), false);
 
     }
 
@@ -189,6 +193,14 @@ public class ReceptionServiceImpl implements ReceptionService {
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
         return ReceptionMapper.toDtos(receptionRepository.findAll(pageable), false);
+
+    }
+
+    @Override
+    public String getNextVal() {
+     String value=settingService.generateCodeReception() + receptionRepository.getNextVal().get(0);
+        return value;
+
 
     }
 

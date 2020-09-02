@@ -30,48 +30,53 @@ public class Search {
     }
 
     public static String getField(String name, String search) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchFieldException {
-        String field = "";
-        if ("StockView".equals(name)) {
-            name = "Stock";
-        }
-        if ("ContainerView".equals(name)) {
-            name = "Container";
-        }
-        if (search.indexOf('.') == -1) {
-            Class<?> cls = Class.forName("com.bagile.gmo.mapper." + name + "Mapper");
-            //Object mapper = cls.newInstance();
-            Method method = cls.getDeclaredMethod("getField", String.class);
-            field = (String) method.invoke(null, search);
-        } else {
-
-            StringTokenizer stringTokenizer = new StringTokenizer(search, ".");
-            String str = (String) stringTokenizer.nextElement();
-            Class<?> cls = Class.forName("com.bagile.gmo.mapper." + name + "Mapper");
-            //Object mapper = cls.newInstance();
-            Method method = cls.getDeclaredMethod("getField", String.class);
-            field = (String) method.invoke(null, str);
-            cls = Class.forName("com.bagile.gmo.dto." + name);
-            Class<?> type = cls.getDeclaredField(str).getType();
-            if (type.getTypeName().toString().equals("java.util.Set")) {
-                ParameterizedType parameterizedType = (ParameterizedType) cls.getDeclaredField(str).getGenericType();
-                type = (Class<?>) parameterizedType.getActualTypeArguments()[0];
+        try {
+            String field = "";
+            if ("StockView".equals(name)) {
+                name = "Stock";
             }
-            while (stringTokenizer.hasMoreElements()) {
-                str = (String) stringTokenizer.nextElement();
-                name = type.getSimpleName();
-                cls = Class.forName("com.bagile.gmo.mapper." + name + "Mapper");
-                //mapper = cls.newInstance();
-                method = cls.getDeclaredMethod("getField", String.class);
-                field += "." + (String) method.invoke(null, str);
+            if ("ContainerView".equals(name)) {
+                name = "Container";
+            }
+            if (search.indexOf('.') == -1) {
+                Class<?> cls = Class.forName("com.bagile.gmo.mapper." + name + "Mapper");
+                //Object mapper = cls.newInstance();
+                Method method = cls.getDeclaredMethod("getField", String.class);
+                field = (String) method.invoke(null, search);
+            } else {
+
+                StringTokenizer stringTokenizer = new StringTokenizer(search, ".");
+                String str = (String) stringTokenizer.nextElement();
+                Class<?> cls = Class.forName("com.bagile.gmo.mapper." + name + "Mapper");
+                //Object mapper = cls.newInstance();
+                Method method = cls.getDeclaredMethod("getField", String.class);
+                field = (String) method.invoke(null, str);
                 cls = Class.forName("com.bagile.gmo.dto." + name);
-                type = cls.getDeclaredField(str).getType();
+                Class<?> type = cls.getDeclaredField(str).getType();
                 if (type.getTypeName().toString().equals("java.util.Set")) {
                     ParameterizedType parameterizedType = (ParameterizedType) cls.getDeclaredField(str).getGenericType();
                     type = (Class<?>) parameterizedType.getActualTypeArguments()[0];
                 }
+                while (stringTokenizer.hasMoreElements()) {
+                    str = (String) stringTokenizer.nextElement();
+                    name = type.getSimpleName();
+                    cls = Class.forName("com.bagile.gmo.mapper." + name + "Mapper");
+                    //mapper = cls.newInstance();
+                    method = cls.getDeclaredMethod("getField", String.class);
+                    field += "." + (String) method.invoke(null, str);
+                    cls = Class.forName("com.bagile.gmo.dto." + name);
+                    type = cls.getDeclaredField(str).getType();
+                    if (type.getTypeName().toString().equals("java.util.Set")) {
+                        ParameterizedType parameterizedType = (ParameterizedType) cls.getDeclaredField(str).getGenericType();
+                        type = (Class<?>) parameterizedType.getActualTypeArguments()[0];
+                    }
+                }
             }
+            return field;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-        return field;
+  return null;
     }
 
     private static String search(Map<String, String> map, String value) {
@@ -179,6 +184,7 @@ public class Search {
 	            throw new Exception("Property : " + matcher.group(1) + " Not found in Type " + entityClass.getSimpleName());
 	        }
 	    } catch (Exception e) {
+		    e.printStackTrace();
 	        throw new AttributesNotFound(simpleQuery);
 	    }
 

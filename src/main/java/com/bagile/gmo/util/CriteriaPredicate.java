@@ -77,6 +77,9 @@ public class CriteriaPredicate {
         } catch (ClassNotFoundException e) {
             //e.printStackTrace();
         }
+        //System.out.println(criteria.getKey() + type.getTypeName() +criteria.getValue().toString() + " searching");
+
+
 
         if (Boolean.TYPE == type || Boolean.class == type) {
             BooleanPath booleanPath = entityPath.getBoolean(criteria.getKey());
@@ -150,6 +153,7 @@ public class CriteriaPredicate {
                 return path.loe(valueLong);
             }
         }
+        System.out.println(criteria.getKey() + type.getTypeName() +criteria.getValue().toString() + " Not found");
         throw new ErrorType(criteria.getKey(), type.getTypeName(), criteria.getValue().toString());
     }
 }

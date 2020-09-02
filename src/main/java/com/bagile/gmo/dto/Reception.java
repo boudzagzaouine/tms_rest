@@ -37,7 +37,7 @@ public class Reception  extends EmsDto implements Serializable {
     private OrderStatus orderStatus;
     private Warehouse warehouse;
     private Long numberOfContainers;
-   // private Location location;
+    private Location location;
     private Delivery delivery;
     private String transportTel;
     private Set<ReceptionLine> receptionLines;
@@ -321,14 +321,14 @@ public class Reception  extends EmsDto implements Serializable {
         this.delivery = delivery;
     }
 
-   /* public Location getLocation() {
+    public Location getLocation() {
         return location;
     }
 
     public void setLocation(Location location) {
         this.location = location;
     }
-*/
+
     public String getTransportTel() {
         return transportTel;
     }

@@ -3,6 +3,7 @@ package com.bagile.gmo.services.impl;
 import com.bagile.gmo.dto.Product;
 import com.bagile.gmo.dto.ProductPack;
 import com.bagile.gmo.entities.PdtProductPack;
+import com.bagile.gmo.mapper.BadgeTypeMapper;
 import com.bagile.gmo.mapper.ProductMapper;
 import com.bagile.gmo.mapper.ProductPackMapper;
 import com.bagile.gmo.mapper.UomMapper;
@@ -87,12 +88,10 @@ public class ProductPackServiceImpl implements ProductPackService {
 
     @Override
     public ProductPack findById(Long id) throws IdNotFound {
-        ProductPack productPack = ProductPackMapper.toDto(productPackRepository.findById (id).orElse (null), false);
-        if (null != productPack) {
-            return productPack;
-        } else {
-            throw new IdNotFound(id);
-        }
+
+        return ProductPackMapper.toDto(productPackRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
+
+
     }
 
     @Override

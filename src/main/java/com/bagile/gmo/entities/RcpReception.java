@@ -83,7 +83,7 @@ public class RcpReception extends EmsEntity implements java.io.Serializable {
     private String rcpReceptionTransportContact;
     private CmdAccount cmdAccount;
     private PrmOrderStatus prmOrderStatus;
-  //  private LocLocation locLocation;
+    private LocLocation locLocation;
     private String rcpReceptionTransportTel;
     @Size(max = 50)
     private String rcpReceptionTransfertCode;
@@ -408,7 +408,7 @@ public class RcpReception extends EmsEntity implements java.io.Serializable {
         this.prmOrderStatus = prmOrderStatus;
     }
 
-  /*  @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rcp_receptionlocationid")
     public LocLocation getLocLocation() {
         return locLocation;
@@ -417,7 +417,7 @@ public class RcpReception extends EmsEntity implements java.io.Serializable {
     public void setLocLocation(LocLocation locLocation) {
         this.locLocation = locLocation;
     }
-*/
+
     @Column(name = "rcp_receptiontransporttel")
     public String getRcpReceptionTransportTel() {
         return rcpReceptionTransportTel;

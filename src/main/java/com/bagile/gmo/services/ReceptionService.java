@@ -38,4 +38,6 @@ public interface ReceptionService {
      void changeStatusToOnProgress(Reception reception) throws IdNotFound;
 
     void calculateAllLines(Reception selectedReception);
+
+    String getNextVal();
 }
