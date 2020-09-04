@@ -117,11 +117,10 @@ public class StockMapper {
             stkStock.setPdtUom(UomMapper.toEntity(stock.getUom(), true));
             stkStock.setLocLocation(LocationMapper.toEntity(stock.getLocation(), true));
             stkStock.setStkContainer(ContainerMapper.toEntity(stock.getContainer(), true));
-          //  stkStock.setRcpReceptionLine(ReceptionLineMapper.toEntity(stock.getReceptionLine(), true));
-         //   stkStock.setRcpReceptionStock(ReceptionStockMapper.toEntity(stock.getReceptionStock(), true));
+            stkStock.setRcpReceptionLine(ReceptionLineMapper.toEntity(stock.getReceptionLine(), true));
+            stkStock.setRcpReceptionStock(ReceptionStockMapper.toEntity(stock.getReceptionStock(), true));
             stkStock.setPdtProductPack(ProductPackMapper.toEntity(stock.getProductPack(), true));
-         //   stkStock.setPrcProductionLine(ProductionLineMapper.toEntity(stock.getProductionLine(), true));
-
+         // stkStock.setPrcProductionLine(ProductionLineMapper.toEntity(stock.getProductionLine(), true));
             //stkStock.setWrhWarehouse(WarehouseMapper.toEntity(stock.getWarehouse(), true));
         }
         return stkStock;
@@ -174,10 +173,9 @@ public class StockMapper {
             stock.setUom(UomMapper.toDto(stkStock.getPdtUom(), true));
             stock.setLocation(LocationMapper.toDto(stkStock.getLocLocation(), true));
            stock.setContainer(ContainerMapper.toDto(stkStock.getStkContainer(), true));
-          //  stock.setReceptionLine(ReceptionLineMapper.toDto(stkStock.getRcpReceptionLine(), true));
-          //  stock.setReceptionStock(ReceptionStockMapper.toDto(stkStock.getRcpReceptionStock(), true));
-        //    stock.setProductionLine(ProductionLineMapper.toDto(stkStock.getPrcProductionLine(), true));
-
+           stock.setReceptionLine(ReceptionLineMapper.toDto(stkStock.getRcpReceptionLine(), true));
+           stock.setReceptionStock(ReceptionStockMapper.toDto(stkStock.getRcpReceptionStock(), true));
+        //  stock.setProductionLine(ProductionLineMapper.toDto(stkStock.getPrcProductionLine(), true));
             // stock.setWarehouse(WarehouseMapper.toDto(stkStock.getWrhWarehouse(), true));
         }
         return stock;

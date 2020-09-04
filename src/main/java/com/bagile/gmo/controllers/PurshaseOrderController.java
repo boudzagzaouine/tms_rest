@@ -88,6 +88,7 @@ public class PurshaseOrderController {
     public PurshaseOrder set(@RequestBody PurshaseOrder purshaseOrder) {
         return purshaseOrderService.save(purshaseOrder);
     }
+
     //@PreAuthorize("hasRole('BADGETYPE_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody

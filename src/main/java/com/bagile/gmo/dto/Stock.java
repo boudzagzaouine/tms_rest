@@ -25,14 +25,14 @@ public class Stock extends EmsDto implements Serializable {
     private Date creationDate;
     private Date receptionDate;
     private Product product;
-   private BlockType blockType;
+    private BlockType blockType;
     private Supplier supplier;
     private Color color;
     private Date dlc;
     private Date dluo;
     private String serialNo;
     private String lot;
-   private Container container;
+    private Container container;
     private BigDecimal quantity;
     private Uom uom;
     private Boolean kit;
@@ -51,8 +51,8 @@ public class Stock extends EmsDto implements Serializable {
     private BigDecimal purchasePrice;
     private BigDecimal salePrice;
     private Boolean appliedBruteToNet = false;
-  //  private ProductionLine productionLine;
- //   private Production production;
+  //private ProductionLine productionLine;
+ // private Production production;
 
    public Location getLocation() {
         return this.location;

@@ -96,12 +96,17 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 
     @Override
     public OrderStatus closedStatus() {
-        return null;
+        try {
+            return findById(1L);
+        } catch (IdNotFound idNotFound) {
+            return null;
+        }
     }
 
     @Override
     public OrderStatus waitingStatus() throws IdNotFound {
-        return null;
+        return findById(2L);
+
     }
 
     @Override
@@ -135,13 +140,14 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 
     @Override
     public OrderStatus onProductionStatus() throws IdNotFound {
-        return null;
+        return findById(10L);
     }
 
 
     @Override
     public OrderStatus finishedStatus() throws IdNotFound {
-        return null;
+        return findById(11L);
+
     }
 
     @Override
