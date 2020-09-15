@@ -2,10 +2,10 @@ package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.Supplier;
 import com.bagile.gmo.entities.RcpSupplier;
-import com.bagile.gmo.mapper.SupplierMapper;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.mapper.SupplierMapper;
 import com.bagile.gmo.repositories.SupplierRepository;
 import com.bagile.gmo.services.SupplierService;
 import com.bagile.gmo.util.Search;
@@ -101,6 +101,13 @@ public class SupplierServiceImpl implements SupplierService {
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
         return SupplierMapper.toDtos(supplierRepository.findAll(pageable), false);
+    }
+
+    @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            supplierRepository.deleteById(id);        }
     }
 
 }

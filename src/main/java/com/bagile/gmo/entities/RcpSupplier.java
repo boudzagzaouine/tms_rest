@@ -2,8 +2,6 @@ package com.bagile.gmo.entities;
 
 // Generated 8 mars 2015 01:55:29 by Hibernate Tools 4.3.1
 
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -35,7 +33,7 @@ public class RcpSupplier extends EmsEntity implements java.io.Serializable {
     private Date rcpSupplierCreationDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date rcpSupplierUpdateDate;
-    @NotNull
+   // @NotNull
     private Boolean rcpSupplierIsActive;
 
     @Id
@@ -51,7 +49,7 @@ public class RcpSupplier extends EmsEntity implements java.io.Serializable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rcp_supplierownerid", nullable = false)
+    @JoinColumn(name = "rcp_supplierownerid")
     public OwnOwner getOwnOwner() {
         return this.ownOwner;
     }
@@ -60,7 +58,7 @@ public class RcpSupplier extends EmsEntity implements java.io.Serializable {
         this.ownOwner = ownOwner;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade =  {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "rcp_suppliercontactid")
     public PrmContact getPrmContact() {
         return this.prmContact;
@@ -70,7 +68,7 @@ public class RcpSupplier extends EmsEntity implements java.io.Serializable {
         this.prmContact = prmContact;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade =  {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "rcp_supplieraddressid")
     public AdrAddress getAdrAddress() {
         return adrAddress;
@@ -80,7 +78,7 @@ public class RcpSupplier extends EmsEntity implements java.io.Serializable {
         this.adrAddress = adrAddress;
     }
 
-    @Column(name = "rcp_supplierisactive", nullable = false)
+    @Column(name = "rcp_supplierisactive")
     public Boolean getRcpSupplierIsActive() {
         return rcpSupplierIsActive;
     }

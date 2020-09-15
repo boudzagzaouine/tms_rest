@@ -4,7 +4,6 @@ import com.bagile.gmo.dto.Supplier;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -31,4 +30,6 @@ public interface SupplierService {
     List<Supplier> findAll();
 
     List<Supplier> findAll(int page, int size);
+    void deleteAll (List<Long> ids);
+
 }
