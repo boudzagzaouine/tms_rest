@@ -38,4 +38,7 @@ public interface MaintenancePlanService {
 
 	MaintenancePlan findOne(String search) throws AttributesNotFound, ErrorType;
 
+    String getNextVal();
+
+
 }

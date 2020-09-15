@@ -122,4 +122,11 @@ public class MaintenancePlanController {
     }
 
 
+    @RequestMapping(method = RequestMethod.GET, value = "/nextval")
+    @ResponseBody
+    public String nextVal()
+    {
+        return  maintenancePlanService.getNextVal();
+    }
+
 }

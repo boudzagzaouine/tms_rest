@@ -6,24 +6,20 @@ import com.bagile.gmo.entities.GmoMaintenancePlan;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
-import com.bagile.gmo.mapper.MaintenanceMapper;
 import com.bagile.gmo.mapper.MaintenancePlanMapper;
-import com.bagile.gmo.repositories.MaintenanceRepository;
 import com.bagile.gmo.repositories.MaintenancePlanRepository;
-import com.bagile.gmo.services.BadgeTypeService;
 import com.bagile.gmo.services.MaintenancePlanService;
 import com.bagile.gmo.services.MaintenanceService;
+import com.bagile.gmo.services.SettingService;
 import com.bagile.gmo.util.Search;
-import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -35,6 +31,8 @@ public class MaintenancePlanServiceImpl implements MaintenancePlanService {
 
     private final MaintenanceService maintenanceService;
 
+    @Autowired
+    private SettingService settingService;
     public MaintenancePlanServiceImpl(MaintenancePlanRepository maintenancePreventiveRepository,
                                       MaintenanceService maintenanceService) {
         this.maintenancePlanRepository = maintenancePreventiveRepository;
@@ -171,6 +169,14 @@ public class MaintenancePlanServiceImpl implements MaintenancePlanService {
         return MaintenancePlanMapper.toDtos(maintenancePlanRepository.findAll(pageable), false);
     }
 
+
+    @Override
+    public String getNextVal() {
+        String value=settingService.generateCodeMaintenancePlan() + maintenancePlanRepository.getNextVal().get(0);
+        return value;
+
+
+    }
 
 
 }
