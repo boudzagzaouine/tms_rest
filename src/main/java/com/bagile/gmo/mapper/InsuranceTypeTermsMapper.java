@@ -1,16 +1,12 @@
 package com.bagile.gmo.mapper;
 
-import com.bagile.gmo.dto.InsuranceTerm;
 import com.bagile.gmo.dto.InsuranceTypeTerms;
-import com.bagile.gmo.dto.VehicleCategory;
-import com.bagile.gmo.entities.GmoVehicleCategory;
-import com.bagile.gmo.entities.GmoInsuranceTerm;
 import com.bagile.gmo.entities.GmoInsuranceTypeTerms;
 
 import java.util.*;
 
-public class InsuranceTypeTermMapper {
-    public InsuranceTypeTermMapper() {
+public class InsuranceTypeTermsMapper {
+    public InsuranceTypeTermsMapper() {
     }
 
     private static Map<String, String> map;
@@ -51,7 +47,7 @@ public class InsuranceTypeTermMapper {
         gmoinsuranceTermInsurances.setCreationDate(insuranceTypeTerms.getCreationDate());
         gmoinsuranceTermInsurances.setUpdateDate(insuranceTypeTerms.getUpdateDate());
         if (!lazy) {
-            gmoinsuranceTermInsurances.setGmoInsuranceTerm(InsuranceTermMapper.toEntity(insuranceTypeTerms.getInsuranceTerm(), false));
+            gmoinsuranceTermInsurances.setGmoInsuranceTerm(InsuranceTermMapper.toEntity(insuranceTypeTerms.getInsuranceTerm(), true));
             gmoinsuranceTermInsurances.setGmoInsuranceType(InsuranceTypeMapper.toEntity(insuranceTypeTerms.getInsuranceType(),true));
 
         }
@@ -69,7 +65,7 @@ public class InsuranceTypeTermMapper {
 
 
         if (!lazy) {
-            insuranceTypeTerms.setInsuranceTerm(InsuranceTermMapper.toDto(gmoinsuranceTermInsurances.getGmoInsuranceTerm(), false));
+            insuranceTypeTerms.setInsuranceTerm(InsuranceTermMapper.toDto(gmoinsuranceTermInsurances.getGmoInsuranceTerm(), true));
             insuranceTypeTerms.setInsuranceType(InsuranceTypeMapper.toDto(gmoinsuranceTermInsurances.getGmoInsuranceType(), true));
         }
 
