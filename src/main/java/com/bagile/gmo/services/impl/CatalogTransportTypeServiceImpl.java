@@ -2,13 +2,12 @@ package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.CatalogTransportType;
 import com.bagile.gmo.entities.GmoCatalogTransportType;
-import com.bagile.gmo.mapper.CatalogTransportTypeMapper;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.mapper.CatalogTransportTypeMapper;
 import com.bagile.gmo.repositories.CatalogTransportTypeRepository;
 import com.bagile.gmo.services.CatalogTransportTypeService;
-import com.bagile.gmo.services.TransportService;
 import com.bagile.gmo.util.Search;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
