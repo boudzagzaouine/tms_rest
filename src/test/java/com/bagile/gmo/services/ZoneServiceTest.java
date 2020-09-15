@@ -3,9 +3,6 @@ package com.bagile.gmo.services;
 import com.bagile.gmo.dto.Zone;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.IdNotFound;
-import com.bagile.gmo.services.ZoneService;
-
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,10 +22,10 @@ class ZoneServiceTest {
 
         Zone zoneFindByid=zoneService.findById(1L);
         assertNotNull(zoneFindByid);
-        zoneFindByid.setName("ddd");
+        zoneFindByid.setCode("ddd");
         Zone save = zoneService.save(zoneFindByid);
         assertNotNull(save);
-        assertEquals("ddd",save.getName());
+        assertEquals("ddd",save.getCode());
 
     }
 

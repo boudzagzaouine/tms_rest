@@ -15,7 +15,8 @@ public class ZoneMapper {
         map = new HashMap<>();
 
         map.put("id", "gmoZoneId");
-        map.put("name", "gmoZoneName");
+        map.put("code", "gmoZoneCode");
+        map.put("description", "gmoZoneDescription");
 
 
         map.put("creationDate", "creationDate");
@@ -38,7 +39,8 @@ public class ZoneMapper {
         }
         GmoZone gmoZone = new GmoZone();
         gmoZone.setGmoZoneId(zone.getId());
-        gmoZone.setGmoZoneName(zone.getName() != null ? zone.getName().toUpperCase() : null);
+        gmoZone.setGmoZoneCode(zone.getCode() != null ? zone.getCode().toUpperCase() : null);
+        gmoZone.setGmoZoneDescription(zone.getDescription() );
 
 
         gmoZone.setCreatedBy(zone.getCreatedBy());
@@ -56,7 +58,8 @@ public class ZoneMapper {
         }
         Zone zone = new Zone();
         zone.setId( gmoZone.getGmoZoneId());
-        zone.setName(gmoZone.getGmoZoneName());
+        zone.setCode(gmoZone.getGmoZoneCode());
+        zone.setDescription(gmoZone.getGmoZoneDescription());
 
 
         return zone;
