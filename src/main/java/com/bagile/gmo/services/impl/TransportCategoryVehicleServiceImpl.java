@@ -2,13 +2,12 @@ package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.TransportCategoryVehicle;
 import com.bagile.gmo.entities.GmoTransportCategoryVehicle;
-import com.bagile.gmo.mapper.TransportCategoryVehicleMapper;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.mapper.TransportCategoryVehicleMapper;
 import com.bagile.gmo.repositories.TransportCategoryVehicleRepository;
 import com.bagile.gmo.services.TransportCategoryVehicleService;
-import com.bagile.gmo.services.TransportService;
 import com.bagile.gmo.util.Search;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -94,6 +93,13 @@ public class TransportCategoryVehicleServiceImpl implements TransportCategoryVeh
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
         return TransportCategoryVehicleMapper.toDtos(transportCategoryVehicleRepository.findAll(pageable), false);
+    }
+
+    @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            transportCategoryVehicleRepository.deleteById(id);        }
     }
 
 }

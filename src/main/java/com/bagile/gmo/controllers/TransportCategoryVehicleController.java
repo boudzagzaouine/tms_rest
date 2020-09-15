@@ -5,11 +5,11 @@ import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.services.TransportCategoryVehicleService;
-import com.bagile.gmo.services.TransportCategoryVehicleService;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -101,6 +101,13 @@ public class TransportCategoryVehicleController {
     @ResponseBody
     public void delete(@PathVariable Long id) {
         transportCategoryVehicleService.delete(id);
+    }
+
+
+    @RequestMapping(value = "/deleteAll", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
+        transportCategoryVehicleService.deleteAll(Arrays.asList(ids));
     }
 
 }
