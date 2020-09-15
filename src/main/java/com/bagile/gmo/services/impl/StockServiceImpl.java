@@ -1,20 +1,15 @@
 package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.*;
-import com.bagile.gmo.entities.GmoBadgeType;
-import com.bagile.gmo.entities.GmoInsuranceTypeTerms;
 import com.bagile.gmo.entities.StkStock;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.CustomException;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
-import com.bagile.gmo.mapper.BadgeTypeMapper;
-import com.bagile.gmo.mapper.ProductPackMapper;
 import com.bagile.gmo.mapper.StockMapper;
 import com.bagile.gmo.repositories.StockRepository;
 import com.bagile.gmo.services.*;
 import com.bagile.gmo.util.*;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +20,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
-import java.lang.Exception;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -229,7 +223,7 @@ public class StockServiceImpl implements StockService, AddActive {
 
     @Override
     public List<Stock> findAll(int page, int size) throws AttributesNotFound, ErrorType {
-        Sort sort = Sort.by(Sort.Direction.DESC, "stkStockCreationDate");
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
         return StockMapper.toDtos(stockRepository.findAll(pageable), false);
     }
@@ -277,7 +271,7 @@ public class StockServiceImpl implements StockService, AddActive {
         stk.setUom(uom);
         stk.setProductPack(productPack);
         stk.setLocation(location);
-        stk.setWarehouse(location.getWarehouse());
+//        stk.setWarehouse(location.getWarehouse());
         stk.setQuantity(quantity);
         stk.setAccountedSale(accounted);
         stk.setActive(false);
@@ -324,73 +318,73 @@ public class StockServiceImpl implements StockService, AddActive {
     /**
      * search stock based on saleOrderStock properties
      *
-     * @param saleOrderStock
+     * @param maintenanceStock
      * @return the list of stocks founded
      */
     @Override
-    public List<Stock> searchStock(SaleOrderStock saleOrderStock) {
+    public List<Stock> searchStock(MaintenanceStock maintenanceStock) {
         try {
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
             StringBuffer search = new StringBuffer();
-            if (null != saleOrderStock.getProduct()) {
+            if (null != maintenanceStock.getProduct()) {
                 search.append("product.id:");
-                search.append(saleOrderStock.getProduct().getId());
+                search.append(maintenanceStock.getProduct().getId());
             }
-            if (null != saleOrderStock.getOwner()) {
+            if (null != maintenanceStock.getOwner()) {
                 search.append(",owner.id:");
-                search.append(saleOrderStock.getOwner().getId());
+                search.append(maintenanceStock.getOwner().getId());
             }
-            if (saleOrderStock.getBlockType() != null) {
+            if (maintenanceStock.getBlockType() != null) {
                 search.append(",blockType.id:");
-                search.append(saleOrderStock.getBlockType().getId());
+                search.append(maintenanceStock.getBlockType().getId());
             }
-            if (saleOrderStock.getContainerSource() != null && settingService.containerManagement()) {
+            if (maintenanceStock.getContainerSource() != null && settingService.containerManagement()) {
                 search.append(",container.code:");
-                search.append(saleOrderStock.getContainerSource());
+                search.append(maintenanceStock.getContainerSource());
             }
-            if (saleOrderStock.getDlc() != null) {
+            if (maintenanceStock.getDlc() != null) {
                 Calendar calendar1 = Calendar.getInstance();
-                calendar1.setTime(saleOrderStock.getDlc());
+                calendar1.setTime(maintenanceStock.getDlc());
                 search.append(",dlc:");
                 search.append(dateFormat.format(calendar1.getTime()));
             }
 
-            if (saleOrderStock.getColor() != null) {
+            if (maintenanceStock.getColor() != null) {
                 search.append(",color.id:");
-                search.append(saleOrderStock.getColor().getId());
+                search.append(maintenanceStock.getColor().getId());
             }
-            if (saleOrderStock.getDluo() != null) {
+            if (maintenanceStock.getDluo() != null) {
                 Calendar calendar2 = Calendar.getInstance();
-                calendar2.setTime(saleOrderStock.getDluo());
+                calendar2.setTime(maintenanceStock.getDluo());
                 search.append(",dluo:");
                 search.append(dateFormat.format(calendar2.getTime()));
             }
-            if (saleOrderStock.getLot() != null && !saleOrderStock.getLot().trim().equals("")) {
+            if (maintenanceStock.getLot() != null && !maintenanceStock.getLot().trim().equals("")) {
                 search.append(",lot:");
-                search.append(saleOrderStock.getLot());
+                search.append(maintenanceStock.getLot());
             }
-            if (saleOrderStock.getWeight() != null) {
+            if (maintenanceStock.getWeight() != null) {
                 search.append(",weight:");
-                search.append(saleOrderStock.getWeight());
+                search.append(maintenanceStock.getWeight());
             }
-            if (saleOrderStock.getQuality() != null) {
+            if (maintenanceStock.getQuality() != null) {
                 search.append(",quality:");
-                search.append(saleOrderStock.getQuality());
+                search.append(maintenanceStock.getQuality());
             }
            /* if (saleOrderStock.getProductDimension() != null) {
                 search.append(",productDimension.id:");
                 search.append(saleOrderStock.getProductDimension().getId());
             }*/
-            if (saleOrderStock.getWarehouse() != null) {
+            if (maintenanceStock.getWarehouse() != null) {
                 search.append(",warehouse.id:");
-                search.append(saleOrderStock.getWarehouse().getId());
+                search.append(maintenanceStock.getWarehouse().getId());
             }
-            if (saleOrderStock.getDelivery().getAccounted() != null && saleOrderStock.getDelivery().getAccounted()) {
-                search.append(",accountedPurchase:true");
+         //   if (maintenanceStock.getMaintenance().geta() != null && maintenanceStock.getDelivery().getAccounted()) {
+          //      search.append(",accountedPurchase:true");
 
-            }
+          //  }
             return find(search.toString());
         } catch (AttributesNotFound | ErrorType e) {
             LOGGER.error(e.getMessage(), e);
@@ -503,12 +497,12 @@ public class StockServiceImpl implements StockService, AddActive {
 
 
     @Override
-    public Stock createStock(SaleOrderStock saleOrderStock) {
+    public Stock createStock(MaintenanceStock maintenanceStock) {
 
 
         List<Container> containers = null;
         try {
-            containers = containerService.find("code:" + saleOrderStock.getContainerSource());
+            containers = containerService.find("code:" + maintenanceStock.getContainerSource());
         } catch (AttributesNotFound | ErrorType e) {
             LOGGER.error(e.getMessage(), e);
         }
@@ -519,34 +513,34 @@ public class StockServiceImpl implements StockService, AddActive {
         if (containers != null && containers.size() > 0) {
             container = containers.get(0);
         } else {
-            container = containerService.createContainer(saleOrderStock);
+            container = containerService.createContainer(maintenanceStock);
             container.setOutBoundDate(null);
             container = containerService.save(container);
         }
 
 
         Stock stock = new Stock();
-        stock.setBlockType(saleOrderStock.getBlockType());
-        stock.setProduct(saleOrderStock.getProduct());
-        stock.setUom(saleOrderStock.getUom());
+        stock.setBlockType(maintenanceStock.getBlockType());
+        stock.setProduct(maintenanceStock.getProduct());
+        stock.setUom(maintenanceStock.getUom());
         stock.setContainer(container);
         stock.setLocation(container.getLocation());
-        stock.setProductPack(saleOrderStock.getProductPack());
-        stock.setDlc(saleOrderStock.getDlc());
-        stock.setDluo(saleOrderStock.getDluo());
-        stock.setSerialNo(saleOrderStock.getSerialNo());
-        stock.setLot(saleOrderStock.getLot());
-        stock.setWeight(saleOrderStock.getWeight());
-        stock.setQuality(saleOrderStock.getQuality());
+        stock.setProductPack(maintenanceStock.getProductPack());
+        stock.setDlc(maintenanceStock.getDlc());
+        stock.setDluo(maintenanceStock.getDluo());
+        stock.setSerialNo(maintenanceStock.getSerialNo());
+        stock.setLot(maintenanceStock.getLot());
+        stock.setWeight(maintenanceStock.getWeight());
+        stock.setQuality(maintenanceStock.getQuality());
        // stock.setProductDimension(saleOrderStock.getProductDimension());
-        stock.setQuantity(saleOrderStock.getQuantityServed());
-        stock.setOwner(saleOrderStock.getOwner());
-        stock.setWarehouse(saleOrderStock.getWarehouse());
-        stock.setProductPack(saleOrderStock.getProductPack());
+        stock.setQuantity(maintenanceStock.getQuantityServed());
+        stock.setOwner(maintenanceStock.getOwner());
+        stock.setWarehouse(maintenanceStock.getWarehouse());
+        stock.setProductPack(maintenanceStock.getProductPack());
         stock.setCreationDate(EmsDate.getDateNow());
         stock.setUpdateDate(EmsDate.getDateNow());
-        stock.setSalePrice(saleOrderStock.getDeliveryLine().getSalePrice());
-        stock.setAccountedPurchase(saleOrderStock.getDelivery().getAccounted());
+        stock.setSalePrice(maintenanceStock.getActionLineMaintenance().getUnitPrice());
+       // stock.setAccountedPurchase(maintenanceStock.getMaintenance().geta());
         try {
             save(stock);
         } catch (IdNotFound e) {

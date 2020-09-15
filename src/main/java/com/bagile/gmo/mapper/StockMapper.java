@@ -31,8 +31,8 @@ public class StockMapper {
         map.put("serialNo", "stkStockSerialNo");
         map.put("lot", "stkStockLot");
         map.put("receptionDate", "stkStockReceptionDate");
-        map.put("creationDate", "stkStockCreationDate");
-        map.put("updateDate", "stkStockUpdateDate");
+        map.put("creationDate", "creationDate");
+        map.put("updateDate", "updateDate");
         map.put("variable1", "stkStockVariable1");
         map.put("variable2", "stkStockVariable2");
         map.put("variable3", "stkStockVariable3");
@@ -82,8 +82,8 @@ public class StockMapper {
         stkStock.setStkStockSerialNo(stock.getSerialNo());
         stkStock.setStkStockLot(stock.getLot());
         stkStock.setStkStockReceptionDate(stock.getReceptionDate());
-        stkStock.setStkStockCreationDate(stock.getCreationDate());
-        stkStock.setStkStockUpdateDate(stock.getUpdateDate());
+        stkStock.setCreationDate(stock.getCreationDate());
+        stkStock.setUpdateDate(stock.getUpdateDate());
         stkStock.setStkStockVariable1(stock.getVariable1());
         stkStock.setStkStockVariable2(stock.getVariable2());
         stkStock.setStkStockVariable3(stock.getVariable3());
@@ -139,8 +139,8 @@ public class StockMapper {
         stock.setSerialNo(stkStock.getStkStockSerialNo());
         stock.setLot(stkStock.getStkStockLot());
         stock.setReceptionDate(stkStock.getStkStockReceptionDate());
-        stock.setCreationDate(stkStock.getStkStockCreationDate());
-        stock.setUpdateDate(stkStock.getStkStockUpdateDate());
+        stock.setCreationDate(stkStock.getCreationDate());
+        stock.setUpdateDate(stkStock.getUpdateDate());
         stock.setVariable1(stkStock.getStkStockVariable1());
         stock.setVariable2(stkStock.getStkStockVariable2());
         stock.setVariable3(stkStock.getStkStockVariable3());

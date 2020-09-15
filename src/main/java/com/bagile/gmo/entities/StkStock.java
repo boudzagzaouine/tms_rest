@@ -2,7 +2,6 @@ package com.bagile.gmo.entities;
 
 // Generated 8 mars 2015 01:55:29 by Hibernate Tools 4.3.1
 
-import com.bagile.gmo.dto.EmsDto;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -17,7 +16,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "stk_stock")
-public class StkStock extends EmsDto implements java.io.Serializable {
+public class StkStock extends EmsEntity implements java.io.Serializable {
 
     private long stkStockId;
    private LocLocation locLocation;
@@ -101,60 +100,11 @@ public class StkStock extends EmsDto implements java.io.Serializable {
     public Boolean getStkStockKit() {
         return stkStockKit;
     }
-
     public void setStkStockKit(Boolean stkStockKit) {
         this.stkStockKit = stkStockKit;
     }
 
-    public StkStock(long stkStockId, OwnOwner ownOwner, PdtProduct pdtProduct,
-                    BigDecimal stkStockQuantity) {
-        this.stkStockId = stkStockId;
-        this.ownOwner = ownOwner;
-        this.pdtProduct = pdtProduct;
-        this.stkStockQuantity = stkStockQuantity;
-    }
 
-    public StkStock(long stkStockId, LocLocation locLocation,
-                    OwnOwner ownOwner, PdtProduct pdtProduct, PdtUom pdtUom,
-                  //  PrmBlockType prmBlockType, PrmColor prmColor,
-                    RcpSupplier rcpSupplier, //StkContainer stkContainer,
-                    BigDecimal stkStockQuantity,
-                    Date stkStockDlc, Date stkStockDluo, String stkStockSerialNo,
-                    String stkStockLot, Date stkStockReceptionDate,
-                    Date stkStockCreationDate, Date stkStockUpdateDate,
-                    String stkStockVariable1, String stkStockVariable2,
-                    String stkStockVariable3, String stkStockVariable4,
-                    String stkStockVariable5, String stkStockVariable6,
-                    String stkStockVariable7, String stkStockVariable8,
-                    String stkStockVariable9, String stkStockVariable10) {
-        this.stkStockId = stkStockId;
-        this.locLocation = locLocation;
-        this.ownOwner = ownOwner;
-        this.pdtProduct = pdtProduct;
-        this.pdtUom = pdtUom;
-       // this.prmBlockType = prmBlockType;
-       // this.prmColor = prmColor;
-        this.rcpSupplier = rcpSupplier;
-      //  this.stkContainer = stkContainer;
-        this.stkStockQuantity = stkStockQuantity;
-        this.stkStockDlc = stkStockDlc;
-        this.stkStockDluo = stkStockDluo;
-        this.stkStockSerialNo = stkStockSerialNo;
-        this.stkStockLot = stkStockLot;
-        this.stkStockReceptionDate = stkStockReceptionDate;
-        this.stkStockCreationDate = stkStockCreationDate;
-        this.stkStockUpdateDate = stkStockUpdateDate;
-        this.stkStockVariable1 = stkStockVariable1;
-        this.stkStockVariable2 = stkStockVariable2;
-        this.stkStockVariable3 = stkStockVariable3;
-        this.stkStockVariable4 = stkStockVariable4;
-        this.stkStockVariable5 = stkStockVariable5;
-        this.stkStockVariable6 = stkStockVariable6;
-        this.stkStockVariable7 = stkStockVariable7;
-        this.stkStockVariable8 = stkStockVariable8;
-        this.stkStockVariable9 = stkStockVariable9;
-        this.stkStockVariable10 = stkStockVariable10;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -305,21 +255,6 @@ public class StkStock extends EmsDto implements java.io.Serializable {
         this.stkStockReceptionDate = stkStockReceptionDate;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "stk_stockcreationdate")
-    public Date getStkStockCreationDate() {
-        return this.stkStockCreationDate;
-    }
-
-    public void setStkStockCreationDate(Date stkStockCreationDate) {
-        this.stkStockCreationDate = stkStockCreationDate;
-    }
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "stk_stockupdatedate")
-    public Date getStkStockUpdateDate() {
-        return this.stkStockUpdateDate;
-    }
 
     public void setStkStockUpdateDate(Date stkStockUpdateDate) {
         this.stkStockUpdateDate = stkStockUpdateDate;

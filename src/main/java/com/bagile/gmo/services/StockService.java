@@ -2,7 +2,6 @@ package com.bagile.gmo.services;
 
 import com.bagile.gmo.dto.*;
 import com.bagile.gmo.exceptions.*;
-import org.springframework.data.domain.Pageable;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -37,9 +36,9 @@ public interface StockService {
     Stock createStock(Stock stock, Uom uom, BigDecimal quantity, Location location, Container container, ProductPack productPack, Boolean accounted, BigDecimal salePrice) throws
             ProductControls, IdNotFound, CustomException, AttributesNotFound, ErrorType;
     Stock createStock(ReceptionStock receptionStock, Boolean accounted);
-    List<Stock> searchStock(SaleOrderStock saleOrderStock);
+    List<Stock> searchStock(MaintenanceStock maintenanceStock);
    // List<Stock> searchStock(Task task);
-    Stock createStock(SaleOrderStock saleOrderStock);
+    Stock createStock(MaintenanceStock maintenanceStock);
     //Stock createStock(Task task);
 
     List<Object[]> getProductQuantity(long warehouseId, long productId);

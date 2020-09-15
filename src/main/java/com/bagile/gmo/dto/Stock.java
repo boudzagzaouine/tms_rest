@@ -11,7 +11,6 @@ public class Stock extends EmsDto implements Serializable {
     private Location location;
     private long id;
     private Owner owner;
-    private Date updateDate;
     private String variable1;
     private String variable2;
     private String variable3;
@@ -22,7 +21,6 @@ public class Stock extends EmsDto implements Serializable {
     private String variable8;
     private String variable9;
     private String variable10;
-    private Date creationDate;
     private Date receptionDate;
     private Product product;
     private BlockType blockType;
@@ -78,13 +76,6 @@ public class Stock extends EmsDto implements Serializable {
         this.owner = owner;
     }
 
-    public Date getUpdateDate() {
-        return this.updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
 
     public String getVariable1() {
         return this.variable1;
