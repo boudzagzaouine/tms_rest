@@ -1,12 +1,11 @@
 package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.InsuranceTerm;
-import com.bagile.gmo.dto.TurnLine;
 import com.bagile.gmo.entities.GmoInsuranceTerm;
-import com.bagile.gmo.mapper.InsuranceTermMapper;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.mapper.InsuranceTermMapper;
 import com.bagile.gmo.repositories.TermInsuranceRepository;
 import com.bagile.gmo.services.TermInsuranceService;
 import com.bagile.gmo.util.Search;
@@ -17,7 +16,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -66,7 +64,8 @@ public class TermInsuranceServiceimpl implements TermInsuranceService {
         if (search.equals("")){
             return findAll ();
         }
-        return InsuranceTermMapper.toDtos(termInsuranceRepository.findAll(Search.expression(search, GmoInsuranceTerm.class)), false);
+        return InsuranceTermMapper.toDtos(termInsuranceRepository.findAll
+                (Search.expression(search, GmoInsuranceTerm.class)), false);
     }
 
     @Override
