@@ -1,6 +1,9 @@
 package com.bagile.gmo.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 
 public class ActionLineMaintenance extends EmsDto {
@@ -11,11 +14,32 @@ public class ActionLineMaintenance extends EmsDto {
 	private Product product;
     private String description;
     private BigDecimal quantity;
+    private BigDecimal quantityServed;
     private BigDecimal totalPriceHT;
     private BigDecimal unitPrice;
     private BigDecimal totalPriceTTC;
     private BigDecimal amountVat;
     private ActionMaintenance actionMaintenance;
+    private MaintenanceState maintenanceState;
+
+    @JsonIgnore
+    private List<MaintenanceStock> maintenanceStocks;
+
+    public List<MaintenanceStock> getMaintenanceStocks() {
+        return maintenanceStocks;
+    }
+
+    public void setMaintenanceStocks(List<MaintenanceStock> maintenanceStocks) {
+        this.maintenanceStocks = maintenanceStocks;
+    }
+
+    public MaintenanceState getMaintenanceState() {
+        return maintenanceState;
+    }
+
+    public void setMaintenanceState(MaintenanceState maintenanceState) {
+        this.maintenanceState = maintenanceState;
+    }
 
     public long getId() {
         return id;
@@ -33,6 +57,13 @@ public class ActionLineMaintenance extends EmsDto {
         this.product = product;
     }
 
+    public BigDecimal getQuantityServed() {
+        return quantityServed;
+    }
+
+    public void setQuantityServed(BigDecimal quantityServed) {
+        this.quantityServed = quantityServed;
+    }
 
     public BigDecimal getQuantity() {
         return quantity;

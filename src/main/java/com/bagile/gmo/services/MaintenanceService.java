@@ -1,13 +1,13 @@
 package com.bagile.gmo.services;
 
-import java.io.IOException;
-import java.util.List;
-
 import com.bagile.gmo.dto.Maintenance;
 import com.bagile.gmo.dto.MaintenancePlan;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+
+import java.io.IOException;
+import java.util.List;
 
 public interface MaintenanceService {
     Maintenance save(Maintenance maintenance);
@@ -39,4 +39,9 @@ public interface MaintenanceService {
 
 	Maintenance findOne(String search) throws AttributesNotFound, ErrorType;
 
-}
+
+    String getNextVal();
+
+     void updateMaintenance(Maintenance maintenance);
+
+    }

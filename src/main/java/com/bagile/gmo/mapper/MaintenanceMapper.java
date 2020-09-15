@@ -1,13 +1,10 @@
 package com.bagile.gmo.mapper;
 
-import java.util.*;
-
 import com.bagile.gmo.dto.Maintenance;
-import com.bagile.gmo.dto.MaintenancePlan;
-import com.bagile.gmo.entities.GmoActionLine;
 import com.bagile.gmo.entities.GmoMaintenance;
-import com.bagile.gmo.util.EmsClone;
 import com.bagile.gmo.util.EmsDate;
+
+import java.util.*;
 
 public class MaintenanceMapper {
     public MaintenanceMapper() {
@@ -139,18 +136,14 @@ public class MaintenanceMapper {
         maintenance.setEndDate (gmoMaintenance.getGmoMaintenanceEndDate());
         maintenance.setTotalPrice (gmoMaintenance.getGmoMaintenanceTotalPrice ());
         maintenance.setMileage (gmoMaintenance.getGmoMaintenanceMileage ());
-
         maintenance.setTriggerDay(gmoMaintenance.getGmoTriggerDay());
         maintenance.setTriggerDate(gmoMaintenance.getGmoTriggerDate());
         maintenance.setInterventionDate (gmoMaintenance.getGmoInterventionDate ());
         maintenance.setAgent (gmoMaintenance.getGmoAgent ());
         maintenance.setEmployer (gmoMaintenance.getGmoEmployer ());
-
         maintenance.setDuration (gmoMaintenance.getGmoDuration ()  );
-
         maintenance.setDeclaredDate (gmoMaintenance.getGmoDeclaredDate ());
         maintenance.setObservation (gmoMaintenance.getGmoObservation ());
-
         maintenance.setCreatedBy(gmoMaintenance.getCreatedBy());
         maintenance.setUpdatedBy(gmoMaintenance.getUpdatedBy());
         maintenance.setCreationDate(gmoMaintenance.getCreationDate());
@@ -160,13 +153,11 @@ public class MaintenanceMapper {
             maintenance.setMaintenanceState(MaintenanceStateMapper.toDto(gmoMaintenance.getGmoMaintenanceState(), true));
             maintenance.setPatrimony(PatrimonyMapper.toDto(gmoMaintenance.getGmoPatrimony(),true));
             maintenance.setActionMaintenances (ActionMaintenanceMapper.toDtos (gmoMaintenance.getGmoActionMaintenances(), false));
-
             maintenance.setPeriodicityType(PeriodicityTypeMapper.toDto(gmoMaintenance.getGmoPeriodicityType(),true));
             maintenance.setResponsability (ResponsabilityMapper.toDto (gmoMaintenance.getGmoResponsability (), true));
             maintenance.setServiceProvider(ServiceProviderMapper.toDto(gmoMaintenance.getGmoServiceProvider(),true));
             maintenance.setService(ResponsabilityMapper.toDto (gmoMaintenance.getGmoService (), true));
             maintenance.setProgramType(ProgramTypeMapper.toDto(gmoMaintenance.getGmoProgramType(),true));
-
             maintenance.setMaintenancePlan(MaintenancePlanMapper.toDto(gmoMaintenance.getGmoMaintenancePlan(),true));
 
         }

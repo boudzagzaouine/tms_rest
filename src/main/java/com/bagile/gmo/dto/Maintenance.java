@@ -2,7 +2,6 @@ package com.bagile.gmo.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -39,8 +38,16 @@ public class Maintenance extends EmsDto implements Serializable {
     private Date declaredDate;
     private BigDecimal duration;
     private MaintenancePlan maintenancePlan ;
-
+    private OrderStatus orderStatus;
     public Maintenance() {
+    }
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     public long getId() {

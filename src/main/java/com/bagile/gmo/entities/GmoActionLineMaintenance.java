@@ -2,7 +2,9 @@ package com.bagile.gmo.entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name="gmo_actionlinemaintenance")
@@ -18,6 +20,10 @@ public class GmoActionLineMaintenance extends EmsEntity {
     private  BigDecimal gmoAmountVat;
     private BigDecimal gmoActionLineQuantity;
     private BigDecimal gmoActionLineunitPrice;
+    private BigDecimal gmoActionLineOrderQuantity;
+    private GmoMaintenanceState gmoMaintenanceState ;
+    private BigDecimal gmoActionLineMaintenanceOrderQuantity;
+    private Set<GmoMaintenanceStock> gmoMaintenanceStocks=new HashSet<GmoMaintenanceStock>(0);
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "seq")
@@ -41,6 +47,24 @@ public class GmoActionLineMaintenance extends EmsEntity {
         this.pdtProduct = pdtProduct;
     }
 
+
+    public BigDecimal getGmoActionLineMaintenanceOrderQuantity() {
+        return gmoActionLineMaintenanceOrderQuantity;
+    }
+
+    public void setGmoActionLineMaintenanceOrderQuantity(BigDecimal gmoActionLineMaintenanceOrderQuantity) {
+        this.gmoActionLineMaintenanceOrderQuantity = gmoActionLineMaintenanceOrderQuantity;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "gmoActionLineMaintenance",cascade = CascadeType.ALL)
+    public Set<GmoMaintenanceStock> getGmoMaintenanceStocks() {
+        return gmoMaintenanceStocks;
+    }
+
+    public void setGmoMaintenanceStocks(Set<GmoMaintenanceStock> gmoMaintenanceStocks) {
+        this.gmoMaintenanceStocks = gmoMaintenanceStocks;
+    }
+
     @ManyToOne
     @JoinColumn(name = "gmo_actionid")
     public GmoActionMaintenance getGmoActionMaintenance() {
@@ -51,10 +75,24 @@ public class GmoActionLineMaintenance extends EmsEntity {
         this.gmoActionMaintenance = gmoActionMaintenance;
     }
 
+    @Column(name = "gmo_actionlinemaintenancequantity", precision = 12, scale = 5)
+    public BigDecimal getGmoActionLineOrderQuantity() {
+        return gmoActionLineOrderQuantity;
+    }
 
+    public void setGmoActionLineOrderQuantity(BigDecimal gmoActionLineOrderQuantity) {
+        this.gmoActionLineOrderQuantity = gmoActionLineOrderQuantity;
+    }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_maintenancestateid")
+    public GmoMaintenanceState getGmoMaintenanceState() {
+        return gmoMaintenanceState;
+    }
 
-
+    public void setGmoMaintenanceState(GmoMaintenanceState gmoMaintenanceState) {
+        this.gmoMaintenanceState = gmoMaintenanceState;
+    }
 
 
     @Column(name = "gmo_actionlinedescription")
@@ -109,6 +147,7 @@ public class GmoActionLineMaintenance extends EmsEntity {
     public void setGmoActionLineQuantity(BigDecimal gmoQuantity) {
         this.gmoActionLineQuantity = gmoQuantity;
     }
+
 
     @Override
     public boolean equals(Object o) {

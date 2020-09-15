@@ -1,7 +1,6 @@
 package com.bagile.gmo.mapper;
 
 import com.bagile.gmo.dto.ActionLineMaintenance;
-import com.bagile.gmo.dto.ActionMaintenance;
 import com.bagile.gmo.entities.GmoActionLineMaintenance;
 
 import java.util.*;
@@ -24,6 +23,8 @@ public class ActionLineMaintenanceMapper {
 		map.put("amountVat", "gmoAmountVat");
 		map.put("quantity", "gmoActionLineQuantity");
 		map.put("unitPrice", "gmoActionLineunitPrice");
+		map.put("maintenanceState", "gmoMaintenanceState");
+
 
 	}
 
@@ -55,6 +56,7 @@ public class ActionLineMaintenanceMapper {
 				gmoActionLineMaintenance
 					.setPdtProduct(
 							ProductMapper.toEntity(actionLineMaintenance.getProduct(), false));
+			gmoActionLineMaintenance.setGmoMaintenanceState(MaintenanceStateMapper.toEntity(actionLineMaintenance.getMaintenanceState(),true));
 
 		}
 		return gmoActionLineMaintenance;
@@ -76,6 +78,7 @@ public class ActionLineMaintenanceMapper {
 		if (!lazy) {
 			actionLineMaintenance.setActionMaintenance(ActionMaintenanceMapper.toDto(gmoActionLineMaintenance.getGmoActionMaintenance(), true));
 			actionLineMaintenance.setProduct(ProductMapper.toDto(gmoActionLineMaintenance.getPdtProduct(), false));
+			actionLineMaintenance.setMaintenanceState(MaintenanceStateMapper.toDto(gmoActionLineMaintenance.getGmoMaintenanceState(), true));
 
 		}
 		return actionLineMaintenance;

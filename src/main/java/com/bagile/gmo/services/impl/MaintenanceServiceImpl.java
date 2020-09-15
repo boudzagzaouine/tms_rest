@@ -1,36 +1,52 @@
 package com.bagile.gmo.services.impl;
 
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.time.ZoneId;
-import java.util.*;
-
-import ch.qos.logback.core.net.SyslogOutputStream;
 import com.bagile.gmo.dto.*;
 import com.bagile.gmo.entities.GmoMaintenance;
-import com.bagile.gmo.util.EmsClone;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeConstants;
-import org.joda.time.LocalDate;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.CustomException;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.MaintenanceMapper;
 import com.bagile.gmo.repositories.MaintenanceRepository;
-import com.bagile.gmo.services.MaintenanceService;
+import com.bagile.gmo.services.*;
 import com.bagile.gmo.util.Search;
+import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 
 @Service
 public class MaintenanceServiceImpl implements MaintenanceService {
 
     private final MaintenanceRepository maintenanceRepository;
+    @Autowired
+    private SettingService settingService;
+
+    @Autowired
+    private ActionMaintenanceService actionMaintenanceService;
+
+    @Autowired
+    private MaintenanceStockService maintenanceStockService;
+
+    @Autowired
+    private StockService stockService;
+
+    @Autowired
+    private OrderStatusService orderStatusService;
+
+    private final static Logger LOGGER = LoggerFactory
+            .getLogger(MaintenanceService.class);
 
     public MaintenanceServiceImpl(MaintenanceRepository maintenanceRepository) {
         this.maintenanceRepository = maintenanceRepository;
@@ -277,6 +293,31 @@ public class MaintenanceServiceImpl implements MaintenanceService {
         return MaintenanceMapper.toDtos(maintenanceRepository.findAll(pageable), false);
     }
 
+    @Override
+    public String getNextVal() {
+        String value=settingService.generateCodeMaintenance() + maintenanceRepository.getNextVal().get(0);
+        return value;
+    }
+
+    @Override
+    public void updateMaintenance(Maintenance maintenance) {
+        try {
+            maintenance = findById(maintenance.getId());
+            maintenance.setActionMaintenances(new ArrayList<>(actionMaintenanceService.find("maintenance.id:"+ maintenance.getId())));
+            List<MaintenanceStock> maintenanceStocks = maintenanceStockService.find("maintenance.id:" + maintenance.getId());
+            for (MaintenanceStock maintenanceStock : maintenanceStocks) {
+                if (null != maintenanceStock.getStock()) {
+                    Stock stock = stockService.findById(maintenanceStock.getStock().getId());
+                    stock.setActive(false);
+                    stockService.save(stock);
+                }
+            }
+            save(maintenance);
+
+        } catch (AttributesNotFound | ErrorType | IdNotFound | CustomException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+    }
 
 }
 

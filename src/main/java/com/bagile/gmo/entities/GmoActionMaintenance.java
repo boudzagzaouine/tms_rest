@@ -15,7 +15,6 @@ public class GmoActionMaintenance extends EmsEntity {
     private GmoMaintenance gmoMaintenance;
     private GmoMaintenanceState gmoMaintenanceState ;
     private Set<GmoActionLineMaintenance> gmoActionLineMaintenances = new HashSet<>();
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "seq")
     @SequenceGenerator (name = "seq", sequenceName = "seq_gmo_action_maintenance_id", allocationSize = 1)
@@ -36,6 +35,7 @@ public class GmoActionMaintenance extends EmsEntity {
     public void setGmoActionLineMaintenances(Set<GmoActionLineMaintenance> gmoActionLineMaintenances) {
         this.gmoActionLineMaintenances = gmoActionLineMaintenances;
     }
+
 
 
 

@@ -23,6 +23,8 @@ public class ActionMaintenance extends EmsDto {
         this.id = id;
     }
 
+
+
     public ActionType getActionType() {
         return actionType;
     }
