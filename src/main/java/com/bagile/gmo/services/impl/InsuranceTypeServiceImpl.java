@@ -2,10 +2,10 @@ package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.InsuranceType;
 import com.bagile.gmo.entities.GmoInsuranceType;
-import com.bagile.gmo.mapper.InsuranceTypeMapper;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.mapper.InsuranceTypeMapper;
 import com.bagile.gmo.repositories.InsuranceTypeRepository;
 import com.bagile.gmo.services.InsuranceTypeService;
 import com.bagile.gmo.util.Search;
@@ -49,9 +49,9 @@ public class InsuranceTypeServiceImpl implements InsuranceTypeService {
 
     @Override
     public List<InsuranceType> find(String search) throws AttributesNotFound, ErrorType {
-        if (search.equals("")){
+       /* if (search.equals("")){
             return findAll ();
-        }
+        }*/
         return InsuranceTypeMapper.toDtos(insuranceTypeRepository.findAll(Search.expression(search, GmoInsuranceType.class)), false);
     }
 

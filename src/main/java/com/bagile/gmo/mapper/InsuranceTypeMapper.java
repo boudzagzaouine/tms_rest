@@ -1,7 +1,6 @@
 package com.bagile.gmo.mapper;
 
 import com.bagile.gmo.dto.InsuranceType;
-import com.bagile.gmo.entities.GmoInsurance;
 import com.bagile.gmo.entities.GmoInsuranceType;
 
 import java.util.*;
@@ -54,7 +53,7 @@ public class InsuranceTypeMapper {
         gmoInsuranceType.setUpdateDate(insuranceType.getUpdateDate());
 
         if(!lazy) {
-       gmoInsuranceType.setGmoInsuranceTypeTerms (InsuranceTypeTermMapper.toEntities(insuranceType.getInsuranceTypeTermsSet(),false));
+       gmoInsuranceType.setGmoInsuranceTypeTerms (InsuranceTypeTermsMapper.toEntities(insuranceType.getInsuranceTypeTermsSet(),false));
        //     oneToMany(gmoInsuranceType);
         }
         return gmoInsuranceType;
@@ -78,7 +77,7 @@ public class InsuranceTypeMapper {
         if(!lazy) {
 
        //   insuranceType.setInsurances (InsuranceMapper.toDtos(gmoInsuranceType.getGmoInsurances (),false));
-        insuranceType.setInsuranceTypeTermsSet (InsuranceTypeTermMapper.toDtos(gmoInsuranceType.getGmoInsuranceTypeTerms (),false));
+        insuranceType.setInsuranceTypeTermsSet (InsuranceTypeTermsMapper.toDtos(gmoInsuranceType.getGmoInsuranceTypeTerms (),false));
 
         }
         return insuranceType;
