@@ -2,16 +2,15 @@ package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.UserGroupWarehouse;
 import com.bagile.gmo.entities.UsrUserGroupWarehouse;
-import com.bagile.gmo.mapper.UserGroupWarehouseMapper;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.mapper.UserGroupWarehouseMapper;
 import com.bagile.gmo.repositories.UserGroupWarehouseRepository;
 import com.bagile.gmo.services.UserGroupWarehouseService;
 import com.bagile.gmo.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

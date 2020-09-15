@@ -2,11 +2,10 @@ package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.User;
 import com.bagile.gmo.entities.UsrUser;
-import com.bagile.gmo.mapper.BadgeMapper;
-import com.bagile.gmo.mapper.UserMapper;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.mapper.UserMapper;
 import com.bagile.gmo.repositories.UserRepository;
 import com.bagile.gmo.services.UserService;
 import com.bagile.gmo.util.EmsDate;

@@ -286,6 +286,58 @@ public interface SettingService {
         return (setting != null) ? setting.getValue() : "";
     }
 
+    default String generateCodeVehicle()              // id = 23
+    {
+        Setting setting = null;
+        try {
+            setting = findById(102L);
+        } catch (IdNotFound idNotFound) {
+            return null;
+        }
+        return (setting != null) ? setting.getValue() : "";
+    }
+
+    default String generateCodeMachinee()              // id = 23
+    {
+        Setting setting = null;
+        try {
+            setting = findById(103L);
+        } catch (IdNotFound idNotFound) {
+            return null;
+        }
+        return (setting != null) ? setting.getValue() : "";
+    }
+
+    default String generateCodeChauffeur()              // id = 23
+    {
+        Setting setting = null;
+        try {
+            setting = findById(104L);
+        } catch (IdNotFound idNotFound) {
+            return null;
+        }
+        return (setting != null) ? setting.getValue() : "";
+    }
+    default String generateCodeMaintenancePlan()              // id = 23
+    {
+        Setting setting = null;
+        try {
+            setting = findById(100L);
+        } catch (IdNotFound idNotFound) {
+            return null;
+        }
+        return (setting != null) ? setting.getValue() : "";
+    }
+    default String generateCodeMaintenance()              // id = 23
+    {
+        Setting setting = null;
+        try {
+            setting = findById(101L);
+        } catch (IdNotFound idNotFound) {
+            return null;
+        }
+        return (setting != null) ? setting.getValue() : "";
+    }
     default String generateCodeDelivery()              // id = 24
     {
         Setting setting = null;

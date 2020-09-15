@@ -2,7 +2,6 @@ package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.Location;
 import com.bagile.gmo.dto.Stock;
-import com.bagile.gmo.entities.GmoInsuranceTypeTerms;
 import com.bagile.gmo.entities.LocLocation;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
@@ -13,7 +12,6 @@ import com.bagile.gmo.services.LocationService;
 import com.bagile.gmo.services.StockService;
 import com.bagile.gmo.util.EmsDate;
 import com.bagile.gmo.util.Search;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

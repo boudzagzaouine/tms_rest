@@ -41,14 +41,14 @@ public interface ContainerService {
     String getNextVal();
 
     //Create container for SaleOrderStock
-    Container createContainer(SaleOrderStock saleOrderStock);
+    Container createContainer(MaintenanceStock maintenanceStock);
 
     //Create Container for DeliveryLine
     Container createContainer(DeliveryLine deliveryLine);
 
     Container createContainer(Stock stock) throws IdNotFound, AttributesNotFound, ErrorType;
 
-    Container setOutBoundDate(SaleOrderStock saleOrderStock) throws IdNotFound;
+    Container setOutBoundDate(MaintenanceStock maintenanceStock) throws IdNotFound;
 
     Container createContainer(ReceptionStock receptionStock) throws AttributesNotFound, ErrorType, ContainerException;
 

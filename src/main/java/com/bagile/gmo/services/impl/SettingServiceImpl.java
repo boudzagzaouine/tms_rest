@@ -1,7 +1,6 @@
 package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.Setting;
-import com.bagile.gmo.entities.GmoInsuranceType;
 import com.bagile.gmo.entities.PrmSetting;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
@@ -10,7 +9,6 @@ import com.bagile.gmo.mapper.SettingMapper;
 import com.bagile.gmo.repositories.SettingRepository;
 import com.bagile.gmo.services.SettingService;
 import com.bagile.gmo.util.Search;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

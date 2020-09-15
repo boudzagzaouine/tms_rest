@@ -17,12 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Nonnull;
-import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.List;
 

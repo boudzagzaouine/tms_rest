@@ -2,17 +2,14 @@ package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.Owner;
 import com.bagile.gmo.entities.OwnOwner;
-import com.bagile.gmo.mapper.OwnerMapper;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.mapper.OwnerMapper;
 import com.bagile.gmo.repositories.OwnerRepository;
 import com.bagile.gmo.services.OwnerService;
 import com.bagile.gmo.util.EmsDate;
 import com.bagile.gmo.util.Search;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

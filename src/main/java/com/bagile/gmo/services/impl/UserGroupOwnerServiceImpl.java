@@ -2,16 +2,15 @@ package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.UserGroupOwner;
 import com.bagile.gmo.entities.UsrUserGroupOwner;
-import com.bagile.gmo.mapper.UserGroupOwnerMapper;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.mapper.UserGroupOwnerMapper;
 import com.bagile.gmo.repositories.UserGroupOwnerRepository;
 import com.bagile.gmo.services.UserGroupOwnerService;
 import com.bagile.gmo.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

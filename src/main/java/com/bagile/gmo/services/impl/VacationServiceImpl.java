@@ -2,15 +2,13 @@ package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.Vacation;
 import com.bagile.gmo.entities.GmoVacation;
-import com.bagile.gmo.mapper.VacationMapper;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.mapper.VacationMapper;
 import com.bagile.gmo.repositories.VacationRepository;
 import com.bagile.gmo.services.VacationService;
 import com.bagile.gmo.util.Search;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

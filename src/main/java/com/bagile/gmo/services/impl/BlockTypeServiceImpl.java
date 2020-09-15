@@ -11,7 +11,6 @@ import com.bagile.gmo.repositories.BlockTypeRepository;
 import com.bagile.gmo.services.BlockTypeService;
 import com.bagile.gmo.util.EmsDate;
 import com.bagile.gmo.util.Search;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

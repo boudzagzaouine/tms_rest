@@ -15,14 +15,12 @@ import com.bagile.gmo.services.SettingService;
 import com.bagile.gmo.util.AddActive;
 import com.bagile.gmo.util.EmsDate;
 import com.bagile.gmo.util.Search;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.lang.Exception;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
@@ -144,35 +142,35 @@ public class ContainerServiceImpl implements ContainerService, AddActive {
 
     /**
      * create container from SaleOrderStock
-     * @param saleOrderStock
+     * @param maintenanceStock
      * @return
      */
 
     @Override
-    public Container createContainer(SaleOrderStock saleOrderStock) {
+    public Container createContainer(MaintenanceStock maintenanceStock) {
         Container container;
         boolean containerManagement = settingService.containerManagement();
-        if (containerManagement || (saleOrderStock.getContainer() != null && saleOrderStock.getContainer().getId() > 0)) {
-            container = saleOrderStock.getContainer();
+        if (containerManagement || (maintenanceStock.getContainer() != null && maintenanceStock.getContainer().getId() > 0)) {
+            container = maintenanceStock.getContainer();
         } else {
             container = new Container();
             container.setCode(getNextVal());
         }
 
         try {
-            container.setLocation(saleOrderStock.getLocation()!=null?saleOrderStock.getLocation():locationService.getDefaultLocationForDelivery());
+            container.setLocation(maintenanceStock.getLocation()!=null?maintenanceStock.getLocation():locationService.getDefaultLocationForDelivery());
         } catch (AttributesNotFound attributesNotFound) {
             attributesNotFound.printStackTrace();
         } catch (ErrorType errorType) {
             errorType.printStackTrace();
         }
 
-        container.setOwner(saleOrderStock.getOwner());
-        container.setWarehouse(saleOrderStock.getWarehouse());
+        container.setOwner(maintenanceStock.getOwner());
+        container.setWarehouse(maintenanceStock.getWarehouse());
         container.setCreationDate(EmsDate.getDateNow());
         container.setUpdateDate(EmsDate.getDateNow());
-        container.setReceptionDate(saleOrderStock.getOrderDate() != null ? saleOrderStock.getOrderDate() : new Date());
-        container.setOutBoundDate(saleOrderStock.getOrderDate());
+        container.setReceptionDate(maintenanceStock.getOrderDate() != null ? maintenanceStock.getOrderDate() : new Date());
+        container.setOutBoundDate(maintenanceStock.getOrderDate());
         return save(container);
     }
 
@@ -217,16 +215,18 @@ public class ContainerServiceImpl implements ContainerService, AddActive {
         return save(container);
     }
 
+
+
     /**
      * setOutBoundDate for container
-     * @param saleOrderStock
+     * @param maintenanceStock
      * @return container
      * @throws IdNotFound
      */
     @Override
-    public Container setOutBoundDate(SaleOrderStock saleOrderStock) throws IdNotFound {
-        if (null == saleOrderStock.getContainer().getOutBoundDate()) {
-            Container container = findById(saleOrderStock.getContainer().getId());
+    public Container setOutBoundDate(MaintenanceStock maintenanceStock) throws IdNotFound {
+        if (null == maintenanceStock.getContainer().getOutBoundDate()) {
+            Container container = findById(maintenanceStock.getContainer().getId());
 
             Location quaiExp = null;
             try {
@@ -239,10 +239,10 @@ public class ContainerServiceImpl implements ContainerService, AddActive {
             if (null != quaiExp) {
                 container.setLocation(quaiExp);
             }
-            container.setOutBoundDate(null != saleOrderStock.getOrderDate() ? saleOrderStock.getOrderDate() : EmsDate.getDateNow());
+            container.setOutBoundDate(null != maintenanceStock.getOrderDate() ? maintenanceStock.getOrderDate() : EmsDate.getDateNow());
             return save(container);
         }
-        return saleOrderStock.getContainer();
+        return maintenanceStock.getContainer();
     }
 
     /**

@@ -1,7 +1,6 @@
 package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.Action;
-import com.bagile.gmo.dto.TurnLine;
 import com.bagile.gmo.entities.GmoAction;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
