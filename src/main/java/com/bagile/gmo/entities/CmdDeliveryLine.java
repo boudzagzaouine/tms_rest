@@ -1,8 +1,7 @@
 package com.bagile.gmo.entities;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import com.bagile.gmo.dto.EmsDto;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -10,8 +9,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by Enissay on 21/04/2016.
@@ -210,6 +207,7 @@ public class CmdDeliveryLine extends EmsDto {
     public void setPrmOrderStatus(PrmOrderStatus prmOrderStatus) {
         this.prmOrderStatus = prmOrderStatus;
     }
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cmd_deliverylineownerid", nullable = false)
     public OwnOwner getOwnOwner() {
