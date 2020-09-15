@@ -4,7 +4,6 @@ import com.bagile.gmo.dto.Driver;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -28,11 +27,12 @@ public interface DriverService {
     void delete(Long id);
 
     void delete(Driver driver);
+    void deleteAll (List<Long> ids);
 
     List<Driver> findAll();
 
     List<Driver> findAll(int page, int size);
 
-
+    String getNextVal();
     void archive(Long id) throws IdNotFound;
 }

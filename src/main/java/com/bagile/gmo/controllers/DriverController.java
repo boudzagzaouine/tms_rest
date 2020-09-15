@@ -5,14 +5,11 @@ import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.services.DriverService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -104,10 +101,24 @@ public class DriverController {
     }
 
 
+    @RequestMapping(value = "/deleteAll", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
+        driverService.deleteAll (Arrays.asList(ids));
+    }
+
+
     //@PreAuthorize("hasRole('DRIVER_DELETE')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@PathVariable Long id) {
         driverService.delete(id);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/nextval")
+    @ResponseBody
+    public String nextVal()
+    {
+        return  driverService.getNextVal();
     }
 }

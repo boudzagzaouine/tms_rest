@@ -1,25 +1,26 @@
 package com.bagile.gmo.services.impl;
 
-import java.util.List;
-
+import com.bagile.gmo.dto.Driver;
+import com.bagile.gmo.entities.GmoDriver;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.mapper.DriverMapper;
+import com.bagile.gmo.repositories.DriverRepository;
+import com.bagile.gmo.services.ContactService;
+import com.bagile.gmo.services.DriverService;
+import com.bagile.gmo.services.SettingService;
+import com.bagile.gmo.util.EmsDate;
+import com.bagile.gmo.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bagile.gmo.dto.Driver;
-import com.bagile.gmo.entities.GmoDriver;
-import com.bagile.gmo.mapper.DriverMapper;
-import com.bagile.gmo.exceptions.AttributesNotFound;
-import com.bagile.gmo.exceptions.ErrorType;
-import com.bagile.gmo.exceptions.IdNotFound;
-import com.bagile.gmo.repositories.DriverRepository;
-import com.bagile.gmo.services.ContactService;
-import com.bagile.gmo.services.DriverService;
-import com.bagile.gmo.util.EmsDate;
-import com.bagile.gmo.util.Search;
+import java.util.List;
 
 @Service
 @Transactional
@@ -28,6 +29,8 @@ public class DriverServiceImpl implements DriverService {
     private final ContactService contactService;
     private final static Logger LOGGER = LoggerFactory
             .getLogger(DriverService.class);
+    @Autowired
+    private SettingService settingService;
 
     public DriverServiceImpl(DriverRepository driverRepository, ContactService contactService) {
         this.driverRepository = driverRepository;
@@ -100,6 +103,15 @@ public class DriverServiceImpl implements DriverService {
         driverRepository.delete(DriverMapper.toEntity(driver, false));
     }
 
+
+    @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            driverRepository.deleteById(id);        }
+    }
+
+
     @Override
     public List<Driver> findAll() {
         return DriverMapper.toDtos(driverRepository.findAll(), false);
@@ -120,4 +132,12 @@ public class DriverServiceImpl implements DriverService {
         DriverMapper.toDto(driverRepository.saveAndFlush(DriverMapper.toEntity(driver, false)), false);
 
     }
+    @Override
+    public String getNextVal() {
+        String value=settingService.generateCodeChauffeur() + driverRepository.getNextVal().get(0);
+        return value;
+
+
+    }
+
 }
