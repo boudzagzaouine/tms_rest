@@ -1,13 +1,5 @@
 package com.bagile.gmo.services.impl;
 
-import java.util.List;
-
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.bagile.gmo.dto.MaintenanceProduct;
 import com.bagile.gmo.entities.GmoMaintenanceProduct;
 import com.bagile.gmo.exceptions.AttributesNotFound;
@@ -17,6 +9,13 @@ import com.bagile.gmo.mapper.MaintenanceProductMapper;
 import com.bagile.gmo.repositories.MaintenanceProductRepository;
 import com.bagile.gmo.services.MaintenanceProductService;
 import com.bagile.gmo.util.Search;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 @Service

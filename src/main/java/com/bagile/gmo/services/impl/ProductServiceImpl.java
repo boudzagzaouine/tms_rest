@@ -1,14 +1,11 @@
 package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.*;
-import com.bagile.gmo.entities.GmoBadgeType;
 import com.bagile.gmo.entities.PdtProduct;
-import com.bagile.gmo.entities.PdtProductPack;
-import com.bagile.gmo.mapper.BadgeTypeMapper;
-import com.bagile.gmo.mapper.ProductMapper;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.mapper.ProductMapper;
 import com.bagile.gmo.repositories.ProductRepository;
 import com.bagile.gmo.services.ProductPackService;
 import com.bagile.gmo.services.ProductService;
@@ -18,9 +15,7 @@ import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,7 +23,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -72,14 +66,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Long size() {
-        try {
-            return size("");
-        } catch (AttributesNotFound attributesNotFound) {
-            // attributesNotFound.printStackTrace();
-        } catch (ErrorType errorType) {
-            // e.printStackTrace();
-        }
-        return 0L;
+        return productRepository.count();
+
     }
 
     @Override
@@ -112,9 +100,15 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> find(String search) throws AttributesNotFound,
             ErrorType {
-       // search = addActiveConditionToSearch(search);
+        /*search = addActiveConditionToSearch(search);
         return ProductMapper.toDtos(productRepository.findAll(Search
-                .expression(search, PdtProduct.class)), false);
+                .expression(search, PdtProduct.class)), false);*/
+
+        if (search.equals("")){
+            return findAll ();
+        }
+        return ProductMapper.toDtos(productRepository.findAll
+                (Search.expression(search, PdtProduct.class)), false);
     }
 
     private String addActiveConditionToSearch(String search) {
@@ -128,16 +122,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> find(String search, int page, int size)
+    public List<Product> find(String search, Pageable pageable)
             throws AttributesNotFound, ErrorType {
-      //  search = addActiveConditionToSearch(search);
+        search = addActiveConditionToSearch(search);
        // Sort sort = Sort.by (Sort.Direction.DESC, "pdtProductUpdateDate", "pdtProductId");
       //  Pageable pageable = PageRequest.of (page, size, sort);
-        if (search.equals("")){
+       /* if (search.equals("")){
             return findAll (page, size);
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
+        return ProductMapper.toDtos(productRepository.findAll(Search.expression(search, PdtProduct.class), pageable), false);
+*/
+
+        if (search.equals("")){
+            return findAll (pageable);
+        }
         return ProductMapper.toDtos(productRepository.findAll(Search.expression(search, PdtProduct.class), pageable), false);
 
     }
@@ -145,8 +145,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
       //  search = addActiveConditionToSearch(search);
-        return productRepository.count(Search.expression(search,
-                PdtProduct.class));
+        if (search.equals("")){
+            return size ();
+        }
+        return productRepository.count(Search.expression(search, PdtProduct.class));
+
     }
 
     @Override
@@ -156,11 +159,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findAll(int page, int size) throws AttributesNotFound,
+    public List<Product> findAll(Pageable pageable) throws AttributesNotFound,
             ErrorType {
-        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
+     /*   Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
+        return ProductMapper.toDtos(productRepository.findAll(pageable), false);*/
+
         return ProductMapper.toDtos(productRepository.findAll(pageable), false);
+
     }
 
     @Override
