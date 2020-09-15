@@ -113,4 +113,11 @@ public class MachineController {
     public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
         machineService.deleteAll (Arrays.asList(ids));
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/nextval")
+    @ResponseBody
+    public String nextVal()
+    {
+        return  machineService.getNextVal();
+    }
 }

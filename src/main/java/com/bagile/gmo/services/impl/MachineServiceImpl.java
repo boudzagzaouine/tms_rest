@@ -8,7 +8,9 @@ import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.MachineMapper;
 import com.bagile.gmo.repositories.MachineRepository;
 import com.bagile.gmo.services.MachineService;
+import com.bagile.gmo.services.SettingService;
 import com.bagile.gmo.util.Search;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -22,7 +24,8 @@ import java.util.List;
 public class MachineServiceImpl implements MachineService {
 
     private final MachineRepository machineRepository;
-
+    @Autowired
+    private SettingService settingService;
     public MachineServiceImpl(MachineRepository machineRepository) {
         this.machineRepository = machineRepository;
     }
@@ -99,5 +102,12 @@ public class MachineServiceImpl implements MachineService {
         Pageable pageable = PageRequest.of(page, size, sort);
 
         return MachineMapper.toDtos(machineRepository.findAll(pageable), false);
+    }
+    @Override
+    public String getNextVal() {
+        String value=settingService.generateCodeMachinee() + machineRepository.getNextVal().get(0);
+        return value;
+
+
     }
 }

@@ -31,4 +31,5 @@ public interface MachineService {
     List<Machine> findAll();
 
     List<Machine> findAll(int page, int size);
+    String getNextVal();
 }
