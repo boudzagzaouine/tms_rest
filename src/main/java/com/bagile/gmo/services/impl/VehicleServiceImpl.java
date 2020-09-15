@@ -1,29 +1,31 @@
 package com.bagile.gmo.services.impl;
 
-import java.util.List;
-
+import com.bagile.gmo.dto.Vehicle;
+import com.bagile.gmo.entities.GmoVehicle;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.mapper.VehicleMapper;
+import com.bagile.gmo.repositories.VehicleRepository;
+import com.bagile.gmo.services.SettingService;
+import com.bagile.gmo.services.VehicleService;
+import com.bagile.gmo.util.Search;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bagile.gmo.dto.Vehicle;
-import com.bagile.gmo.entities.GmoVehicle;
-import com.bagile.gmo.mapper.VehicleMapper;
-import com.bagile.gmo.exceptions.AttributesNotFound;
-import com.bagile.gmo.exceptions.ErrorType;
-import com.bagile.gmo.exceptions.IdNotFound;
-import com.bagile.gmo.repositories.VehicleRepository;
-import com.bagile.gmo.services.VehicleService;
-import com.bagile.gmo.util.Search;
+import java.util.List;
 
 @Service
 @Transactional
 public class VehicleServiceImpl implements VehicleService {
 
     private final VehicleRepository vehicleRepository;
-
+    @Autowired
+    private SettingService settingService;
     public VehicleServiceImpl(VehicleRepository vehicleRepository) {
         this.vehicleRepository = vehicleRepository;
     }
@@ -101,5 +103,12 @@ public class VehicleServiceImpl implements VehicleService {
         Pageable pageable = PageRequest.of(page, size, sort);
 
         return VehicleMapper.toDtos(vehicleRepository.findAll(pageable), false);
+    }
+    @Override
+    public String getNextVal() {
+        String value=settingService.generateCodeVehicle() + vehicleRepository.getNextVal().get(0);
+        return value;
+
+
     }
 }

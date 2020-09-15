@@ -5,9 +5,6 @@ import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.services.VehicleService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -117,5 +114,12 @@ public class VehicleController {
     @ResponseBody
     public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
         vehicleService.deleteAll (Arrays.asList(ids));
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/nextval")
+    @ResponseBody
+    public String nextVal()
+    {
+        return  vehicleService.getNextVal();
     }
 }

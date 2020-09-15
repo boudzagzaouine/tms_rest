@@ -4,7 +4,6 @@ import com.bagile.gmo.dto.Vehicle;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -32,4 +31,5 @@ public interface VehicleService {
     List<Vehicle> findAll();
 
     List<Vehicle> findAll(int page, int size);
+    String getNextVal();
 }
