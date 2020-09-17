@@ -2,11 +2,13 @@ package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.*;
 import com.bagile.gmo.entities.PdtProduct;
+import com.bagile.gmo.entities.PdtProductView;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.ProductMapper;
 import com.bagile.gmo.repositories.ProductRepository;
+import com.bagile.gmo.repositories.ProductViewRepository;
 import com.bagile.gmo.services.ProductPackService;
 import com.bagile.gmo.services.ProductService;
 import com.bagile.gmo.util.EmsDate;
@@ -16,9 +18,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
@@ -32,7 +34,8 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
     @Autowired
     private ProductPackService productPackService;
-
+    @Autowired
+    private ProductViewRepository productViewRepository;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmssSS");
     private final static Logger LOGGER = LoggerFactory
@@ -77,24 +80,41 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findById(Long id) throws IdNotFound {
-        Product product = ProductMapper.toDto(productRepository.findById (id).orElse (null),
+     /*   Product product = ProductMapper.toDto(productRepository.findById (id).orElse (null),
                 false);
         if (null != product) {
             return product;
         } else {
             throw new IdNotFound(id);
+        }*/
+
+        Product product = ProductMapper.toViewDto (productViewRepository.findById (id).orElse (null),
+                false);
+        if (null != product) {
+            return product;
+        } else {
+            throw new IdNotFound (id);
         }
     }
 
     @Override
     public Product findOne(String search) throws AttributesNotFound, ErrorType {
-        try {
+     /*   try {
             //search = addActiveConditionToSearch(search);
             return ProductMapper.toDto(productRepository.findOne(Search.expression(search, PdtProduct.class)).orElse (null), false);
         } catch (Exception e) {
             LOGGER.error("could not findOne Product");
             return null;
+        }*/
+        try {
+            search = addActiveConditionToSearch (search);
+            return ProductMapper.toViewDto (productViewRepository.findOne (Search
+                    .expression (search, PdtProductView.class)).orElse (null), false);
+        } catch (Exception e) {
+            LOGGER.error ("could not findOne Product");
+            return null;
         }
+
     }
 
     @Override
@@ -104,11 +124,14 @@ public class ProductServiceImpl implements ProductService {
         return ProductMapper.toDtos(productRepository.findAll(Search
                 .expression(search, PdtProduct.class)), false);*/
 
-        if (search.equals("")){
+       /* if (search.equals("")){
             return findAll ();
         }
         return ProductMapper.toDtos(productRepository.findAll
-                (Search.expression(search, PdtProduct.class)), false);
+                (Search.expression(search, PdtProduct.class)), false);*/
+        search = addActiveConditionToSearch (search);
+        return ProductMapper.toViewDtos (productViewRepository.findAll (Search
+                .expression (search, PdtProductView.class)), false);
     }
 
     private String addActiveConditionToSearch(String search) {
@@ -135,11 +158,18 @@ public class ProductServiceImpl implements ProductService {
         return ProductMapper.toDtos(productRepository.findAll(Search.expression(search, PdtProduct.class), pageable), false);
 */
 
-        if (search.equals("")){
+       /* if (search.equals("")){
             return findAll (pageable);
         }
         return ProductMapper.toDtos(productRepository.findAll(Search.expression(search, PdtProduct.class), pageable), false);
+*/
 
+        search = addActiveConditionToSearch (search);
+        Sort sort =  Sort.by (Sort.Direction.ASC, "pdtProductCode");
+        return ProductMapper.toViewDtos (
+                productViewRepository.findAll (
+                        Search.expression (search, PdtProductView.class), pageable),
+                false);
     }
 
     @Override
@@ -157,6 +187,21 @@ public class ProductServiceImpl implements ProductService {
         return ProductMapper.toDtos(productRepository.findAll(), false);
 
     }
+
+   /* public List<Product> findAll(List<Long> ids) {
+        return ProductMapper.toViewDtos (productViewRepository.findAll(ids), false);
+    }*/
+
+    @Override
+    public List<Long> getIds() {
+        return productRepository.getIds ( );
+    }
+    @Override
+    public BigDecimal stockQuantity(Long id) {
+        return productRepository.stockQuantity (id);
+    }
+
+
 
     @Override
     public List<Product> findAll(Pageable pageable) throws AttributesNotFound,

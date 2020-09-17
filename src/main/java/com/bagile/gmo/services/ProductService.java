@@ -38,6 +38,11 @@ public interface ProductService {
 
     BigDecimal convertQuantityByUom(BigDecimal qte, Uom uom, Uom uomServed, Product product);
     BigDecimal convertQuantityByUom(BigDecimal qte, ProductPack packExpected, ProductPack packServed);
-    void updatePurchasePrice(Long id, BigDecimal purchasePrice, ProductPack productPack, Supplier supplier, Currency currency);
 
+    void updatePurchasePrice(Long id, BigDecimal purchasePrice, ProductPack productPack, Supplier supplier, Currency currency);
+    BigDecimal stockQuantity(Long id);
+
+
+
+    List<Long> getIds();
 }

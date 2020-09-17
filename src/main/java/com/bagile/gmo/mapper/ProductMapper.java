@@ -2,6 +2,7 @@ package com.bagile.gmo.mapper;
 
 import com.bagile.gmo.dto.Product;
 import com.bagile.gmo.entities.PdtProduct;
+import com.bagile.gmo.entities.PdtProductView;
 
 import java.util.*;
 
@@ -308,6 +309,123 @@ public class ProductMapper {
         return product;
     }
 
+
+    public static Product toViewDto(PdtProductView pdtProductView, boolean lazy) {
+        if (null == pdtProductView) {
+            return null;
+        }
+        Product product = new Product();
+        product.setId(pdtProductView.getPdtProductId());
+        product.setCode(pdtProductView.getPdtProductCode());
+        product.setMaterialABCCode(pdtProductView.getPdtProductMaterialABCCode());
+        product.setSupplier(SupplierMapper.toDto(pdtProductView.getRcpSupplier(), true));
+      //  product.setBlockType(BlockTypeMapper.toDto(pdtProductView.getPrmBlockType(), true));
+        product.setDlcControl(pdtProductView.getPdtProductDlcControl());
+        product.setDluoControl(pdtProductView.getPdtProductDluoControl());
+        product.setSerialNoControl(pdtProductView.getPdtProductSerialNoControl());
+        product.setLotControl(pdtProductView.getPdtProductLotControl());
+        product.setColorControl(pdtProductView.getPdtProductColorControl());
+        product.setDesc(pdtProductView.getPdtProductDesc());
+        product.setShortDesc(pdtProductView.getPdtProductShortDesc());
+        product.setDaysOfLife(pdtProductView.getPdtProductDaysOfLife());
+        product.setContainerStack(pdtProductView.getPdtProductContainerStack());
+        product.setManipulationDesc(pdtProductView.getPdtProductManipulationDesc());
+        product.setMinTemp(pdtProductView.getPdtProductMinTemp());
+        product.setMaxTemp(pdtProductView.getPdtProductMaxTemp());
+        product.setPickMessage(pdtProductView.getPdtProductPickMessage());
+        product.setMaxStock(pdtProductView.getPdtProductMaxStock());
+        product.setMinStock(pdtProductView.getPdtProductMinStock());
+        product.setPaletConditionning(pdtProductView.getPdtProductPaletConditionning());
+        product.setManipulationPrice(pdtProductView.getPdtProductManipulationPrice());
+        product.setPickingPrice(pdtProductView.getPdtProductPickingPrice());
+        product.setExpeditionPrice(pdtProductView.getPdtProductExpeditionPrice());
+        product.setConditionningPrice(pdtProductView.getPdtProductConditionningPrice());
+        product.setActive(pdtProductView.getPdtProductIsActive());
+        product.setCreationDate(pdtProductView.getPdtProductCreationDate());
+        product.setUpdateDate(pdtProductView.getPdtProductUpdateDate());
+        product.setVariable1(pdtProductView.getPdtProductVariable1());
+        product.setVariable2(pdtProductView.getPdtProductVariable2());
+        product.setVariable3(pdtProductView.getPdtProductVariable3());
+        product.setVariable4(pdtProductView.getPdtProductVariable4());
+        product.setVariable5(pdtProductView.getPdtProductVariable5());
+        product.setVariable6(pdtProductView.getPdtProductVariable6());
+        product.setVariable7(pdtProductView.getPdtProductVariable7());
+        product.setVariable8(pdtProductView.getPdtProductVariable8());
+        product.setVariable9(pdtProductView.getPdtProductVariable9());
+        product.setVariable10(pdtProductView.getPdtProductVariable10());
+        product.setKit(pdtProductView.getPdtProductIsKit());
+        product.setSalePriceUB(pdtProductView.getPdtProductSalePriceUB());
+        product.setPurshasePriceUB(pdtProductView.getPdtProductPurshasePriceUB());
+        product.setRaisonToOut(pdtProductView.getPdtProductRaisonToOut());
+        product.setQualityOfControl(pdtProductView.getPdtProductQualityOfControl());
+        product.setCapacity(pdtProductView.getPdtCapacity());
+        product.setReception(pdtProductView.getPdtIsReception());
+        product.setMinimalThreshold(pdtProductView.getPdtMinimalThreshold());
+        product.setWeightControl(pdtProductView.getPdtProductControlWeight());
+        product.setWarrantyManagement(pdtProductView.getPdtProductWarrantyManagement());
+        product.setDiscount(pdtProductView.getPdtProductDiscount());
+        product.setDimension(pdtProductView.getPdtProductDimension());
+        product.setVersion(pdtProductView.getPdtProductVersion());
+        product.setStocked(pdtProductView.getPdtProductStocked());
+        product.setForBuying(pdtProductView.getPdtProductForBuying());
+        product.setStockManaged(pdtProductView.getPdtProductStockManaged());
+        product.setOutOfStock(pdtProductView.getPdtProductOutOfStock());
+        product.setMarginOfCostsOfReturn(pdtProductView.getPdtProductMarginOfCostsOfReturn());
+        product.setMarginOfPurchase(pdtProductView.getPdtProductMarginOfPurchase());
+       // product.setProMarginOfPurchase(pdtProductView.getPdtProductProMarginOfPurchase());
+        product.setCoefficient(pdtProductView.getPdtProductCoefficient());
+        product.setProductionCost(pdtProductView.getPdtProductProductionCost());
+        product.setCostsOfReturn(pdtProductView.getPdtProductCostsOfReturn());
+        product.setTechnicalSheet(pdtProductView.getPdtProductTechnicalSheet());
+        product.setBlockedQuantity(pdtProductView.getPdtProductBlockedQuantity());
+        product.setReservedQuantity(pdtProductView.getPdtProductReservedQuantity());
+        product.setStockQuantity(pdtProductView.getPdtProductStockedQuantity());
+        product.setOrderedQuantity(pdtProductView.getPdtProductOrderedQuantity());
+        product.setQuantityToReceive(pdtProductView.getPdtProductQuantityToReceive());
+        product.setPackaging(pdtProductView.getPdtProductPackaging());
+        product.setCharge(pdtProductView.getPdtProductCharge());
+        product.setAverageCost(pdtProductView.getPdtProductAveragePurchaseCost());
+        product.setLastInventoryDate(pdtProductView.getPdtProductLastInventoryDate());
+        product.setSupplierDelay(pdtProductView.getPdtProductSupplierDelay());
+        product.setUpdatedBy(pdtProductView.getUpdatedBy());
+        product.setCreatedBy(pdtProductView.getCreatedBy());
+        product.setProfessionalSalePrice(pdtProductView.getPdtProductProfessionalSalePrice());
+        product.setVariableWeight(pdtProductView.getPdtProductVariableWeight());
+        product.setCustomsPercentage(pdtProductView.getPdtProductCustomsPercentage());
+        product.setSalePriceTTCUB(pdtProductView.getPdtProductTTCSalePriceUB());
+        product.setPurshasePriceTTCUB(pdtProductView.getPdtProductTTCPurshasePriceUB());
+        product.setProfessionalTTCSalePrice(pdtProductView.getPdtProductProfessionalTTCSalePrice());
+        if (!lazy) {
+          //  product.setProductCategory(ProductCategoryMapper.toDto(pdtProductView.getPdtProductCategory(), true));
+            product.setVat(VatMapper.toDto(pdtProductView.getPrmVat(), false));
+            product.setPurchaseVat(VatMapper.toDto(pdtProductView.getPrmVatPurchase(), false));
+          //  product.setProcess(ProcessMapper.toDto(pdtProductView.getPdtProcess(), false));
+          //  product.setCurrencyPurshase(CurrencyMapper.toDto(pdtProductView.getPrmCurrencyPurshase(), false));
+          //  product.setProductForm(ProductFormMapper.toDto(pdtProductView.getPdtProductForm(), true));
+         //   product.setCurrency(CurrencyMapper.toDto(pdtProductView.getPrmCurrencySale(), true));
+         //   product.setWarrantyPeriod(WarrantyPeriodMapper.toDto(pdtProductView.getPrmWarrantyPeriod(), true));
+            product.setProductPack(ProductPackMapper.toDto(pdtProductView.getPdtProductPack(), false));
+         //   product.setPickingLocation(LocationMapper.toDto(pdtProductView.getPickingLocLocation(), true));
+            product.setPickingUom(UomMapper.toDto(pdtProductView.getPickingPdtUom(), true));
+         //   product.setAlias(AliasMapper.toDto(pdtProductView.getPdtAlias(), true));
+            product.setOwner(OwnerMapper.toDto(pdtProductView.getOwnOwner(), true));
+            product.setProductType(ProductTypeMapper.toDto(pdtProductView.getPdtProductTypeByPdtProductTypeId(), true));
+            product.setProductSubType(ProductTypeMapper.toDto(pdtProductView.getPdtProductTypeByPdtProductSubTypeId(), true));
+            product.setUomByProductUomBase(UomMapper.toDto(pdtProductView.getPdtUomByPdtProductUomBaseId(), true));
+            product.setUomByProductUomPurshase(UomMapper.toDto(pdtProductView.getPdtUomByPdtProductUomPurshaseId(), true));
+            product.setUomByProductUomSale(UomMapper.toDto(pdtProductView.getPdtUomByPdtProductUomSaleId(), true));
+            product.setProduct(toViewDto(pdtProductView.getPdtProductParent(), true));
+          //  product.setLocation(LocationMapper.toDto(pdtProductView.getLocLocation(), true));
+            product.setWarehouse(WarehouseMapper.toDto(pdtProductView.getWrhWarehouse(), true));
+          //  product.setImages(ImageMapper.toDtos(pdtProductView.getPrmImages(), false));
+            product.setProductPacks(ProductPackMapper.toDtos(pdtProductView.getPdtProductPacks(), false));
+            //product.setProductDimensions(ProductDimensionMapper.toDtos(pdtProductView.getPdtProductDimensions(), false));
+        }
+        return product;
+    }
+
+
+
     public static List<Product> toDtos(Iterable<? extends PdtProduct> pdtProducts, boolean lazy) {
         if (null == pdtProducts) {
             return null;
@@ -340,4 +458,28 @@ public class ProductMapper {
         }
         return products;
     }
+
+    public static List<Product> toViewDtos(List<PdtProductView> pdtProducts, boolean lazy) {
+        if (null == pdtProducts) {
+            return null;
+        }
+        List<Product> products = new ArrayList<>();
+        for (PdtProductView pdtProduct : pdtProducts) {
+            products.add(toViewDto(pdtProduct, lazy));
+        }
+        return products;
+    }
+
+    public static List<Product> toViewDtos(Iterable<PdtProductView> pdtProducts, boolean lazy) {
+        if (null == pdtProducts) {
+            return null;
+        }
+        List<Product> products = new ArrayList<>();
+        for (PdtProductView pdtProduct : pdtProducts) {
+            products.add(toViewDto(pdtProduct, lazy));
+        }
+        return products;
+    }
+
+
 }

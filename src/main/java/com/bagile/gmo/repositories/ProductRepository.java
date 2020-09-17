@@ -1,13 +1,13 @@
 package com.bagile.gmo.repositories;
 
 
+import com.bagile.gmo.entities.PdtProduct;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 
-import com.bagile.gmo.entities.PdtProduct;
-
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -23,4 +23,10 @@ public interface ProductRepository extends JpaRepository<PdtProduct, Long>,
 
 	@Query(value = "select p.pdtProductCode from PdtProduct p where  p.pdtProductCode LIKE %:code%")
 	List<String> getProductsCodes(@Param("code") String code);
+
+	@Query(value = "select COALESCE(sum(stk_stockquantity),0) from schema_emsgc.stk_stock where stk_stockproductid=:id  and stk_stockactive=true", nativeQuery = true)
+	BigDecimal stockQuantity(@Param("id") Long id);
+
+
+
 }
