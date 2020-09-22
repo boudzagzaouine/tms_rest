@@ -2,8 +2,6 @@ package com.bagile.gmo.entities;
 
 // Generated 8 mars 2015 01:55:29 by Hibernate Tools 4.3.1
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -13,12 +11,8 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "own_owner", uniqueConstraints = @UniqueConstraint(columnNames = "own_ownercode"))
-public class OwnOwner extends EmsEntity implements java.io.Serializable {
+public class OwnOwner extends EmsEntity {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1484351263626605420L;
     private long ownOwnerId;
     @Size(max = 30)
     @NotNull

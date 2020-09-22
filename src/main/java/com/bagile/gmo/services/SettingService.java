@@ -286,6 +286,8 @@ public interface SettingService {
         return (setting != null) ? setting.getValue() : "";
     }
 
+
+
     default String generateCodeVehicle()              // id = 23
     {
         Setting setting = null;

@@ -23,3 +23,15 @@ spring:
 
 server:
   port: 8087
+
+
+#logging:
+#  pattern:
+#    console: "%d %-5level %logger : %msg%n"
+#    file: "%d %-5level [%thread] %logger : %msg%n"
+#  level:
+#    com.howtodoinjava: DEBUG
+#    org.springframework.transaction: DEBUG
+#    org.hibernat: DEBUG
+#    org.hibernate.SQL: debug
+#    org.hibernate.type.descriptor.sql: trace

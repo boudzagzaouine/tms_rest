@@ -8,7 +8,7 @@ public class PrmContact extends EmsEntity {
 
     private static final long serialVersionUID = -2556249835469329497L;
 
-    private Long prmContactId;
+    private long prmContactId;
     private String prmContactName;
     private String prmContactSurname;
     private String prmContactTel1;
@@ -23,10 +23,10 @@ public class PrmContact extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_prm_contact_id", allocationSize = 1)
     @Column(name = "prm_contactid", unique = true, nullable = false, precision = 10, scale = 0)
-    public Long getPrmContactId() {
+    public long getPrmContactId() {
         return prmContactId;
     }
-    public void setPrmContactId(Long prmContactId) {
+    public void setPrmContactId(long prmContactId) {
         this.prmContactId = prmContactId;
     }
 

@@ -297,7 +297,7 @@ public class StockServiceImpl implements StockService, AddActive {
         stock.setProduct(receptionStock.getProduct());
         stock.setUom(receptionStock.getUom());
         stock.setDluo(receptionStock.getDluo());
-        stock.setSupplier(receptionStock.getSupplier());
+        stock.setSupplier(receptionStock.getReception().getSupplier());
         stock.setReceptionDate(receptionStock.getReceptionDate());
         stock.setUpdateDate(EmsDate.getDateNow());
         stock.setDlc(receptionStock.getDlc());

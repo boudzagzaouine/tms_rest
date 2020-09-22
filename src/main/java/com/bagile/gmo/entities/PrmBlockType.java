@@ -15,7 +15,7 @@ import java.util.Date;
 @Entity
 @Table(name = "prm_blocktype", uniqueConstraints = {
         @UniqueConstraint(columnNames = "prm_blocktypecode")})
-public class PrmBlockType extends EmsEntity implements java.io.Serializable {
+public class PrmBlockType extends EmsEntity {
 
     private long prmBlockTypeId;
     @NotNull
