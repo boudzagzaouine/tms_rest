@@ -31,5 +31,6 @@ public interface SupplierService {
 
     List<Supplier> findAll(int page, int size);
     void deleteAll (List<Long> ids);
+    String getNextVal();
 
 }

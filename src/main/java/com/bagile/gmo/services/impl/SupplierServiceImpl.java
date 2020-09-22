@@ -7,10 +7,12 @@ import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.SupplierMapper;
 import com.bagile.gmo.repositories.SupplierRepository;
+import com.bagile.gmo.services.SettingService;
 import com.bagile.gmo.services.SupplierService;
 import com.bagile.gmo.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -24,6 +26,10 @@ import java.util.List;
 @Transactional
 public class SupplierServiceImpl implements SupplierService {
     private final SupplierRepository supplierRepository;
+
+    @Autowired
+    private SettingService settingService;
+
     private final static Logger LOGGER = LoggerFactory
             .getLogger(SupplierService.class);
 
@@ -109,6 +115,15 @@ public class SupplierServiceImpl implements SupplierService {
         for (Long id : ids) {
             supplierRepository.deleteById(id);        }
     }
+
+    @Override
+    public String getNextVal() {
+        String value=settingService.generateCodeSupplier() + supplierRepository.getNextVal().get(0);
+        return value;
+
+
+    }
+
 
 }
 

@@ -58,7 +58,7 @@ public class RcpSupplier extends EmsEntity implements java.io.Serializable {
         this.ownOwner = ownOwner;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade =  {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.LAZY,cascade={CascadeType.ALL})
     @JoinColumn(name = "rcp_suppliercontactid")
     public PrmContact getPrmContact() {
         return this.prmContact;
@@ -68,7 +68,7 @@ public class RcpSupplier extends EmsEntity implements java.io.Serializable {
         this.prmContact = prmContact;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade =  {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
     @JoinColumn(name = "rcp_supplieraddressid")
     public AdrAddress getAdrAddress() {
         return adrAddress;
