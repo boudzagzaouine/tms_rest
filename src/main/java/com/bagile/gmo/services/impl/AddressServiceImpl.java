@@ -8,7 +8,9 @@ import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.AddressMapper;
 import com.bagile.gmo.repositories.AddressRepository;
 import com.bagile.gmo.services.AddressService;
+import com.bagile.gmo.services.SettingService;
 import com.bagile.gmo.util.Search;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -23,6 +25,10 @@ import java.util.List;
 public class AddressServiceImpl implements AddressService {
 
     private final AddressRepository addressRepository;
+
+    @Autowired
+    private SettingService settingService;
+
     public AddressServiceImpl(AddressRepository addressRepository) {
         this.addressRepository = addressRepository;
     }
@@ -107,7 +113,9 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public String getNextVal() {
-        return null;
+        String value=settingService.generateCodeSupplier() + addressRepository.getNextVal().get(0);
+        return value;
+
     }
 
 }

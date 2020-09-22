@@ -105,7 +105,7 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "adr_addressownerid", nullable = false)
+    @JoinColumn(name = "adr_addressownerid")
     public OwnOwner getOwnOwner() {
         return this.ownOwner;
     }

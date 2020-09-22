@@ -13,7 +13,7 @@ import java.util.*;
  * @author aelguezzar
  */
 public class AddressMapper {
-        private AddressMapper(){
+        public AddressMapper(){
 
         }
     private static Map<String, String> map;

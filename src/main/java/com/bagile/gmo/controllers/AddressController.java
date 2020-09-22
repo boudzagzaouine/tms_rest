@@ -90,4 +90,10 @@ public class AddressController {
         addressService.delete(id);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/nextval")
+    @ResponseBody
+    public String nextVal()
+    {
+        return  addressService.getNextVal();
+    }
 }
