@@ -7,8 +7,10 @@ import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.TransportMapper;
 import com.bagile.gmo.repositories.TransportRepository;
+import com.bagile.gmo.services.SettingService;
 import com.bagile.gmo.services.TransportService;
 import com.bagile.gmo.util.Search;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -22,6 +24,9 @@ import java.util.List;
 @Transactional
 public class TransportServiceImpl implements TransportService {
     private final TransportRepository transportRepository;
+    @Autowired
+    private SettingService settingService;
+
     public TransportServiceImpl(TransportRepository transportRepository) {
         this.transportRepository = transportRepository;
     }
@@ -99,6 +104,14 @@ public class TransportServiceImpl implements TransportService {
         Pageable pageable = PageRequest.of(page, size, sort);
         return TransportMapper.toDtos(transportRepository.findAll(pageable), false);
     }
+    @Override
+    public String getNextVal() {
+        String value=settingService.generateCodeReception() + transportRepository.getNextVal().get(0);
+        return value;
+
+
+    }
+
 
 }
 

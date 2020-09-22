@@ -1,16 +1,10 @@
 package com.bagile.gmo.entities;
 
 import javax.persistence.*;
-
-import com.bagile.gmo.dto.Transport;
-import com.bagile.gmo.dto.Vat;
-import com.bagile.gmo.dto.VehicleCategory;
-import com.bagile.gmo.dto.Zone;
-
 import java.math.BigDecimal;
 
 @Entity
-@Table(name="gmo_catalogtransport")
+@Table(name="gmo_catalogtransport",uniqueConstraints ={@UniqueConstraint(columnNames ={"gmo_vehiclecategoryid","trp_transportid","gmo_zonesournceid","gmo_zonedistinationid"})})
 public class GmoCatalogTransportType extends EmsEntity{
 
     private long gmoCatalogTransportId;

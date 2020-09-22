@@ -31,4 +31,5 @@ public interface TransportService {
     List<Transport> findAll();
 
     List<Transport> findAll(int page, int size);
+    String getNextVal();
 }

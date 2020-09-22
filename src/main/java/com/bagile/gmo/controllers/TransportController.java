@@ -109,4 +109,12 @@ public class TransportController {
     public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
         transportService.deleteAll (Arrays.asList(ids));
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/nextval")
+    @ResponseBody
+    public String nextVal()
+    {
+        return  transportService.getNextVal();
+    }
+
 }
