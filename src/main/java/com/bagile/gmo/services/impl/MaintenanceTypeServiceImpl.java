@@ -82,6 +82,12 @@ public class MaintenanceTypeServiceImpl implements MaintenanceTypeService {
     public void delete(MaintenanceType maintenancetype) {
         MaintenancetypeRepository.delete(MaintenanceTypeMapper.toEntity(maintenancetype, true));
     }
+    @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            MaintenancetypeRepository.deleteById(id);        }
+    }
 
     @Override
     public List<MaintenanceType> findAll() {

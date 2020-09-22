@@ -82,6 +82,13 @@ public class MaintenanceStateServiceImpl implements MaintenanceStateService {
     }
 
     @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            maintenanceStateRepository.deleteById(id);        }
+    }
+
+    @Override
     public List<MaintenanceState> findAll() {
         return MaintenanceStateMapper.toDtos(maintenanceStateRepository.findAll(), false);
     }

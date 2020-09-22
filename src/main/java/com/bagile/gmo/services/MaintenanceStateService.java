@@ -4,7 +4,6 @@ import com.bagile.gmo.dto.MaintenanceState;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -24,6 +23,7 @@ public interface MaintenanceStateService {
     Long size(String search) throws AttributesNotFound, ErrorType;
 
     void delete(long id);
+    void deleteAll(List<Long> ids);
 
     void delete(MaintenanceState maintenanceState);
 
