@@ -21,6 +21,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
@@ -75,7 +76,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Boolean isExist(Long id) {
-        return productRepository.existsById (id);
+        return productRepository.existsById(id);
     }
 
     @Override
@@ -88,12 +89,12 @@ public class ProductServiceImpl implements ProductService {
             throw new IdNotFound(id);
         }*/
 
-        Product product = ProductMapper.toViewDto (productViewRepository.findById (id).orElse (null),
+        Product product = ProductMapper.toViewDto(productViewRepository.findById(id).orElse(null),
                 false);
         if (null != product) {
             return product;
         } else {
-            throw new IdNotFound (id);
+            throw new IdNotFound(id);
         }
     }
 
@@ -107,11 +108,11 @@ public class ProductServiceImpl implements ProductService {
             return null;
         }*/
         try {
-            search = addActiveConditionToSearch (search);
-            return ProductMapper.toViewDto (productViewRepository.findOne (Search
-                    .expression (search, PdtProductView.class)).orElse (null), false);
+            search = addActiveConditionToSearch(search);
+            return ProductMapper.toViewDto(productViewRepository.findOne(Search
+                    .expression(search, PdtProductView.class)).orElse(null), false);
         } catch (Exception e) {
-            LOGGER.error ("could not findOne Product");
+            LOGGER.error("could not findOne Product");
             return null;
         }
 
@@ -129,14 +130,14 @@ public class ProductServiceImpl implements ProductService {
         }
         return ProductMapper.toDtos(productRepository.findAll
                 (Search.expression(search, PdtProduct.class)), false);*/
-        search = addActiveConditionToSearch (search);
-        return ProductMapper.toViewDtos (productViewRepository.findAll (Search
-                .expression (search, PdtProductView.class)), false);
+        search = addActiveConditionToSearch(search);
+        return ProductMapper.toViewDtos(productViewRepository.findAll(Search
+                .expression(search, PdtProductView.class)), false);
     }
 
     private String addActiveConditionToSearch(String search) {
         if (!search.trim().contains("active:false")) {
-            if (!search.endsWith(",")) {
+            if (!search.endsWith(",") && !search.isEmpty()) {
                 search += ",";
             }
             search += "active:true";
@@ -147,9 +148,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> find(String search, Pageable pageable)
             throws AttributesNotFound, ErrorType {
-        search = addActiveConditionToSearch(search);
-       // Sort sort = Sort.by (Sort.Direction.DESC, "pdtProductUpdateDate", "pdtProductId");
-      //  Pageable pageable = PageRequest.of (page, size, sort);
+        //search = addActiveConditionToSearch(search);
+        // Sort sort = Sort.by (Sort.Direction.DESC, "pdtProductUpdateDate", "pdtProductId");
+        //  Pageable pageable = PageRequest.of (page, size, sort);
        /* if (search.equals("")){
             return findAll (page, size);
         }
@@ -163,23 +164,23 @@ public class ProductServiceImpl implements ProductService {
         }
         return ProductMapper.toDtos(productRepository.findAll(Search.expression(search, PdtProduct.class), pageable), false);
 */
+//return findAll();
 
-        search = addActiveConditionToSearch (search);
-        Sort sort =  Sort.by (Sort.Direction.ASC, "pdtProductCode");
-        return ProductMapper.toViewDtos (
-                productViewRepository.findAll (
-                        Search.expression (search, PdtProductView.class), pageable),
+        search = addActiveConditionToSearch(search);
+        Sort sort = Sort.by(Sort.Direction.ASC, "pdtProductCode");
+        return ProductMapper.toViewDtos(
+                productViewRepository.findAll(
+                        Search.expression(search, PdtProductView.class), pageable),
                 false);
     }
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-      //  search = addActiveConditionToSearch(search);
-        if (search.equals("")){
-            return size ();
+        //  search = addActiveConditionToSearch(search);
+        if (search.equals("")) {
+            return size();
         }
         return productRepository.count(Search.expression(search, PdtProduct.class));
-
     }
 
     @Override
@@ -194,13 +195,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Long> getIds() {
-        return productRepository.getIds ( );
-    }
-    @Override
-    public BigDecimal stockQuantity(Long id) {
-        return productRepository.stockQuantity (id);
+        return productRepository.getIds();
     }
 
+    @Override
+    public BigDecimal stockQuantity(Long id) {
+        return productRepository.stockQuantity(id);
+    }
 
 
     @Override
@@ -228,38 +229,39 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void deleteAll(List<Long> ids) {
         for (Long id : ids) {
-            productRepository.deleteById(id);        }
+            productRepository.deleteById(id);
+        }
     }
 
     @Override
     public BigDecimal convertQuantityByUom(BigDecimal qte, Uom uom, Uom uomServed, Product product) {
         try {
-            product = findById (product.getId ( ));
+            product = findById(product.getId());
         } catch (IdNotFound idNotFound) {
-            idNotFound.printStackTrace ( );
+            idNotFound.printStackTrace();
         }
 
-        List<ProductPack> productPacks = Lists.newArrayList (product.getProductPacks ( ));
-        ProductPack served = new ProductPack ( );
-        ProductPack expected = new ProductPack ( );
+        List<ProductPack> productPacks = Lists.newArrayList(product.getProductPacks());
+        ProductPack served = new ProductPack();
+        ProductPack expected = new ProductPack();
 
 
         for (ProductPack productPack : productPacks) {
-            if (productPack.getUom ( ).equals (uomServed)) {
+            if (productPack.getUom().equals(uomServed)) {
                 served = productPack;
             }
-            if (productPack.getUom ( ).equals (uom)) {
+            if (productPack.getUom().equals(uom)) {
                 expected = productPack;
             }
         }
-        BigDecimal newQte = qte.multiply (served.getQuantity ( ).divide (expected.getQuantity ( ), 2, RoundingMode.HALF_DOWN));
+        BigDecimal newQte = qte.multiply(served.getQuantity().divide(expected.getQuantity(), 2, RoundingMode.HALF_DOWN));
 
         return newQte;
     }
 
     @Override
     public BigDecimal convertQuantityByUom(BigDecimal qte, ProductPack packExpected, ProductPack packServed) {
-        BigDecimal newQte = qte.multiply (packServed.getQuantity ( ).divide (packExpected.getQuantity ( ), 2, RoundingMode.HALF_DOWN));
+        BigDecimal newQte = qte.multiply(packServed.getQuantity().divide(packExpected.getQuantity(), 2, RoundingMode.HALF_DOWN));
 
         return newQte;
     }
@@ -295,9 +297,8 @@ public class ProductServiceImpl implements ProductService {
                     productRepository.saveAndFlush (product);
                 }
             }*/
-        }catch (Exception e)
-        {
-            LOGGER.error(e.getMessage(),e);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
         }
     }
 

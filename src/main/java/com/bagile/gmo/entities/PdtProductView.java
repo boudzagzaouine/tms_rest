@@ -2,9 +2,9 @@ package com.bagile.gmo.entities;
 
 // Generated 8 mars 2015 01:55:29 by Hibernate Tools 4.3.1
 
+import org.hibernate.annotations.Immutable;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.annotation.concurrent.Immutable;
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.Max;
@@ -162,7 +162,7 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
    // private Set<PdtAlias> pdtAliases = new HashSet<PdtAlias>(0);
     private Set<PdtProductPack> pdtProductPacks = new HashSet<PdtProductPack>(0);
     private Date pdtProductLastInventoryDate;
-   // private Set<PdtProductDimension> pdtProductDimensions = new HashSet<PdtProductDimension>(0);
+  //  private Set<PdtProductDimension> pdtProductDimensions = new HashSet<PdtProductDimension>(0);
     private Long pdtProductVersion;
     private Boolean pdtProductForBuying;
     private String pdtProductTechnicalSheet;
@@ -174,7 +174,7 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
     private Boolean pdtProductCharge;
     private Boolean pdtProductPackaging;
     private BigDecimal pdtProductAveragePurchaseCost;
-  //  private PdtProductCategory pdtProductCategory;
+   // private PdtProductCategory pdtProductCategory;
     private BigDecimal pdtProductProfessionalSalePrice;
     private Boolean pdtProductVariableWeight;
     private PrmVat prmVatPurchase;
@@ -212,8 +212,8 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
 
     public void setPdtAlias(PdtAlias pdtAlias) {
         this.pdtAlias = pdtAlias;
-    }*/
-
+    }
+*/
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pdt_productownerid", nullable = false)
     public OwnOwner getOwnOwner() {
@@ -299,7 +299,7 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
         this.prmBlockType = prmBlockType;
     }
 
-   /* @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct", cascade = CascadeType.ALL, orphanRemoval = true)
+  /*  @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct", cascade = CascadeType.ALL, orphanRemoval = true)
     public Set<PrmImage> getPrmImages() {
         return prmImages;
     }
@@ -809,10 +809,10 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
         this.pdtProductDiscount = pdtProductDiscount;
     }
 
-    /* @ManyToOne(fetch = FetchType.LAZY)
+  /*  @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pdt_productwarrantyperiodid")
 
-   public PrmWarrantyPeriod getPrmWarrantyPeriod() {
+    public PrmWarrantyPeriod getPrmWarrantyPeriod() {
         return prmWarrantyPeriod;
     }
 
@@ -821,6 +821,7 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
     }*/
 
     @Column(name = "pdt_productpurshasepriceub")
+
     public BigDecimal getPdtProductPurshasePriceUB() {
         return pdtProductPurshasePriceUB;
     }
@@ -829,7 +830,7 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
         this.pdtProductPurshasePriceUB = pdtProductPurshasePriceUB;
     }
 
- /*   @JoinColumn(name = "pdt_productcurrencyid")
+  /*  @JoinColumn(name = "pdt_productcurrencyid")
     @ManyToOne(fetch = FetchType.LAZY)
     public PrmCurrency getPrmCurrencySale() {
         return prmCurrencySale;
@@ -837,8 +838,8 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
 
     public void setPrmCurrencySale(PrmCurrency prmCurrencySale) {
         this.prmCurrencySale = prmCurrencySale;
-    }
-*/
+    }*/
+
   /*  @JoinColumn(name = "pdt_productformid")
     @ManyToOne(fetch = FetchType.LAZY)
     public PdtProductForm getPdtProductForm() {
@@ -849,7 +850,7 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
         this.pdtProductForm = pdtProductForm;
     }
 */
- /*   @JoinColumn(name = "pdt_productcurrencypurshaseid")
+  /*  @JoinColumn(name = "pdt_productcurrencypurshaseid")
     @ManyToOne(fetch = FetchType.LAZY)
     public PrmCurrency getPrmCurrencyPurshase() {
         return prmCurrencyPurshase;
@@ -857,8 +858,8 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
 
     public void setPrmCurrencyPurshase(PrmCurrency prmCurrencyPurshase) {
         this.prmCurrencyPurshase = prmCurrencyPurshase;
-    }
-*/
+    }*/
+
     @Column(name = "pdt_productdimension")
     public Boolean getPdtProductDimension() {
         return pdtProductDimension;
@@ -904,7 +905,7 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
         this.pdtProductVersion = pdtProductVersion;
     }
 
- /*   @ManyToOne(fetch = FetchType.LAZY)
+   /* @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pdt_productprocessid")
     public PdtProcess getPdtProcess() {
         return pdtProcess;
@@ -1072,7 +1073,7 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
         this.pdtProductAveragePurchaseCost = pdtProductAveragePurchaseCost;
     }
 
-   /* @ManyToOne(fetch = FetchType.LAZY)
+  /*  @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pdt_productcategoryid")
     public PdtProductCategory getPdtProductCategory() {
         return pdtProductCategory;
