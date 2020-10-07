@@ -47,6 +47,8 @@ public class ReceptionStockServiceImpl implements ReceptionStockService {
     private PurshaseOrderService purshaseOrderService;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private NotificationService notificationService;
 
     @Autowired
     private ProductPackService productPackService;
@@ -67,9 +69,6 @@ public class ReceptionStockServiceImpl implements ReceptionStockService {
     @Override
     @Transactional(rollbackFor = {ContainerException.class, CustomException.class})
     public synchronized ReceptionStock save(ReceptionStock receptionStock) throws AttributesNotFound, ErrorType, ContainerException, ProductControls, IdNotFound, CustomException {
-       /* if (taskService.checkProductIfIsInInventoring(receptionStock.getProduct())) {
-            throw new CustomException("Le produit ne peut être receptionné une tàche d'inventaire est activé ");
-        }*/
 
         if (0 == receptionStock.getId()) {
             LOGGER.info(">Create a new ReceptionStock ");
@@ -161,6 +160,11 @@ public class ReceptionStockServiceImpl implements ReceptionStockService {
             }
 
             receptionStock = ReceptionStockMapper.toDto(receptionStockRepository.saveAndFlush(ReceptionStockMapper.toEntity(receptionStock, false)), false);
+            Notification notificationSearch = new Notification();
+            notificationSearch= notificationService.findOne("productId:"+ receptionStock.getProduct().getId());
+            if(notificationSearch != null) {
+                 notificationService.delete(notificationSearch.getId());
+            }
             if (stock != null) {
                 stock.setReceptionStock(receptionStock);
                 stockService.save(stock);

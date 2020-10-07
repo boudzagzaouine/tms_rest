@@ -185,7 +185,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> findAll() throws AttributesNotFound, ErrorType {
-        return ProductMapper.toDtos(productRepository.findAll(), false);
+        return ProductMapper.toViewDtos(
+                productViewRepository.findAll( ),
+                false);
+
+
+        //return ProductMapper.toDtos(productRepository.findAll(), false);
 
     }
 

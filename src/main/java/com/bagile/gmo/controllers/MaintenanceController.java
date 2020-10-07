@@ -82,20 +82,20 @@ public class MaintenanceController {
     //@PreAuthorize("hasRole('MAINTENANCE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Maintenance add(@RequestBody Maintenance maintenancePlan) {
+    public Maintenance add(@RequestBody Maintenance maintenancePlan) throws AttributesNotFound, ErrorType {
         return maintenanceService.save(maintenancePlan);
     }
 
     //@PreAuthorize("hasRole('MAINTENANCE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Maintenance set(@RequestBody Maintenance maintenance) {
+    public Maintenance set(@RequestBody Maintenance maintenance) throws AttributesNotFound, ErrorType {
         return maintenanceService.save(maintenance);
     }
 
     @RequestMapping(value = "/saveALL", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<Maintenance> addAll(@RequestBody List<Maintenance> maintenance) {
+    public List<Maintenance> addAll(@RequestBody List<Maintenance> maintenance) throws AttributesNotFound, ErrorType {
         return  maintenanceService.saveAll(maintenance);
     }
 

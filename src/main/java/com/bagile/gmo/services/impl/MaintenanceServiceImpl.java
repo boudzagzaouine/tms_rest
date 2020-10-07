@@ -43,6 +43,10 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     private StockService stockService;
 
     @Autowired
+    private NotificationService notificationService;
+
+
+    @Autowired
     private OrderStatusService orderStatusService;
 
     private final static Logger LOGGER = LoggerFactory
@@ -53,12 +57,27 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     }
 
     @Override
-    public Maintenance save(Maintenance maintenance) {
+    public Maintenance save(Maintenance maintenance) throws AttributesNotFound, ErrorType {
+        if(maintenance.getId()>0){
+            if (maintenance.getMaintenanceState().getId() == 4)//fermer
+            {
+                Notification notification = notificationService.findOne("maintenanceId:" + maintenance.getId());
+                if (notification != null) {
+
+                    notificationService.delete(notification.getId());
+                }
+            }
+          }
+
+
+
+
         return MaintenanceMapper.toDto(maintenanceRepository.save(MaintenanceMapper.toEntity(maintenance, false)), false);
+
     }
 
     @Override
-    public List<Maintenance> saveAll(List<Maintenance> maintenances) {
+    public List<Maintenance> saveAll(List<Maintenance> maintenances) throws AttributesNotFound, ErrorType {
 
         List<Maintenance> maintenanceList = new ArrayList<>();
 
@@ -71,7 +90,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     }
 
     @Override
-    public List<Maintenance> generateMaintenance(MaintenancePlan maintenancePlan) throws IOException {
+    public List<Maintenance> generateMaintenance(MaintenancePlan maintenancePlan) throws IOException, AttributesNotFound, ErrorType {
         List<Maintenance> maintenanceList = new ArrayList<>();
 
         if (maintenancePlan.getPeriodicityType().getId() == 3) {

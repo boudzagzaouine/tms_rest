@@ -26,7 +26,7 @@ class MaintenancePlanServiceTest {
     }
 
     @Test
-    void saveValidMaintenancePlanShouldReturnTrue() {
+    void saveValidMaintenancePlanShouldReturnTrue() throws AttributesNotFound, ErrorType {
         Maintenance maintenancePlan = new Maintenance();
         assertEquals(0,maintenancePlan.getId());
         Maintenance save = maintenancePlanService.save(maintenancePlan);
@@ -48,7 +48,7 @@ class MaintenancePlanServiceTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"qs123", "ze5478"})
-    void saveNewValid(String code) {
+    void saveNewValid(String code) throws AttributesNotFound, ErrorType {
 
         Maintenance maintenancePlan = new Maintenance();
         maintenancePlan.setCode(code);

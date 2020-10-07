@@ -10,14 +10,14 @@ import java.io.IOException;
 import java.util.List;
 
 public interface MaintenanceService {
-    Maintenance save(Maintenance maintenance);
-    List<Maintenance> saveAll(List<Maintenance> maintenances);
+    Maintenance save(Maintenance maintenance) throws AttributesNotFound, ErrorType;
+    List<Maintenance> saveAll(List<Maintenance> maintenances) throws AttributesNotFound, ErrorType;
 
     Long size();
 
     Boolean isExist(Long id);
 
-    List<Maintenance> generateMaintenance(MaintenancePlan maintenancePlan) throws IOException;
+    List<Maintenance> generateMaintenance(MaintenancePlan maintenancePlan) throws IOException, AttributesNotFound, ErrorType;
 
     Maintenance findById(Long id) throws IdNotFound;
 
