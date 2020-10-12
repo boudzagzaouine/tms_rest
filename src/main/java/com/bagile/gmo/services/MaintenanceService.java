@@ -1,7 +1,7 @@
 package com.bagile.gmo.services;
 
 import com.bagile.gmo.dto.Maintenance;
-import com.bagile.gmo.dto.MaintenancePlan;
+import com.bagile.gmo.dto.Patrimony;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
@@ -17,7 +17,7 @@ public interface MaintenanceService {
 
     Boolean isExist(Long id);
 
-    List<Maintenance> generateMaintenance(MaintenancePlan maintenancePlan) throws IOException, AttributesNotFound, ErrorType;
+    List<Maintenance> generateMaintenance(Patrimony patrimony) throws IOException, AttributesNotFound, ErrorType, IdNotFound;
 
     Maintenance findById(Long id) throws IdNotFound;
 

@@ -2,11 +2,12 @@ package com.bagile.gmo.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-public class Maintenance extends EmsDto implements Serializable {
+public class ActionPlan extends EmsDto implements Serializable {
 
 
     /**
@@ -14,8 +15,6 @@ public class Maintenance extends EmsDto implements Serializable {
      */
     private static final long serialVersionUID = 6036580510935986433L;
     private long id;
-    private String code;
-    private String description;
     private Date startDate;
     private Date endDate;
     private MaintenanceType maintenanceType;
@@ -24,31 +23,24 @@ public class Maintenance extends EmsDto implements Serializable {
     private Responsability responsability;
     private Responsability service;
     private PeriodicityType periodicityType;
-    private MaintenanceState maintenanceState;
     private BigDecimal triggerDay;
     private Date triggerDate;
     private Date interventionDate;
-    private Patrimony patrimony;
     private Double mileage = 0.0;
     private BigDecimal totalPrice;
-    private List<ActionMaintenance> actionMaintenances;
     private  String  agent ;
     private   String  employer ;
     private   String  observation;
     private Date declaredDate;
     private BigDecimal duration;
-    private MaintenancePlan maintenancePlan ;
-    private OrderStatus orderStatus;
+    private long dayOfMonth;
+    private List<Month>months = new ArrayList<>();
+    private List<Day> days    = new ArrayList<>();
+    private MaintenancePlan maintenancePlan;
+    private ActionType actionType ;
 
-    public Maintenance() {
-    }
 
-    public OrderStatus getOrderStatus() {
-        return orderStatus;
-    }
-
-    public void setOrderStatus(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
+    public ActionPlan() {
     }
 
     public long getId() {
@@ -59,21 +51,6 @@ public class Maintenance extends EmsDto implements Serializable {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public Date getStartDate() {
         return startDate;
@@ -99,20 +76,12 @@ public class Maintenance extends EmsDto implements Serializable {
         this.maintenanceType = maintenanceType;
     }
 
-    public MaintenanceState getMaintenanceState() {
-        return maintenanceState;
+    public ActionType getActionType() {
+        return actionType;
     }
 
-    public void setMaintenanceState(MaintenanceState maintenanceState) {
-        this.maintenanceState = maintenanceState;
-    }
-
-    public Patrimony getPatrimony() {
-        return patrimony;
-    }
-
-    public void setPatrimony(Patrimony patrimony) {
-        this.patrimony = patrimony;
+    public void setActionType(ActionType actionType) {
+        this.actionType = actionType;
     }
 
     public Double getMileage() {
@@ -129,14 +98,6 @@ public class Maintenance extends EmsDto implements Serializable {
 
     public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
-    }
-
-    public List<ActionMaintenance> getActionMaintenances() {
-        return actionMaintenances;
-    }
-
-    public void setActionMaintenances(List<ActionMaintenance> actionMaintenances) {
-        this.actionMaintenances = actionMaintenances;
     }
 
     public ProgramType getProgramType() {
@@ -245,6 +206,31 @@ public class Maintenance extends EmsDto implements Serializable {
         this.duration = duration;
     }
 
+
+    public List<Month> getMonths() {
+        return months;
+    }
+
+    public void setMonths(List<Month> months) {
+        this.months = months;
+    }
+
+    public List<Day> getDays() {
+        return days;
+    }
+
+    public void setDays(List<Day> days) {
+        this.days = days;
+    }
+
+    public long getDayOfMonth() {
+        return dayOfMonth;
+    }
+
+    public void setDayOfMonth(long dayOfMonth) {
+        this.dayOfMonth = dayOfMonth;
+    }
+
     public MaintenancePlan getMaintenancePlan() {
         return maintenancePlan;
     }
@@ -257,7 +243,7 @@ public class Maintenance extends EmsDto implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass ( ) != o.getClass ( )) return false;
-        Maintenance that = (Maintenance) o;
+        ActionPlan that = (ActionPlan) o;
         return getId ( ) == that.getId ( );
     }
 

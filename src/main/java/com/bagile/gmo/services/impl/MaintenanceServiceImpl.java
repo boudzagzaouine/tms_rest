@@ -44,7 +44,8 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 
     @Autowired
     private NotificationService notificationService;
-
+    @Autowired
+    private MaintenancePlanService maintenancePlanService;
 
     @Autowired
     private OrderStatusService orderStatusService;
@@ -90,147 +91,114 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     }
 
     @Override
-    public List<Maintenance> generateMaintenance(MaintenancePlan maintenancePlan) throws IOException, AttributesNotFound, ErrorType {
+    public List<Maintenance> generateMaintenance(Patrimony patrimony) throws IOException, AttributesNotFound, ErrorType, IdNotFound {
         List<Maintenance> maintenanceList = new ArrayList<>();
+        MaintenancePlan maintenancePlan = maintenancePlanService.findById(patrimony.getMaintenancePlan().getId());
 
-        if (maintenancePlan.getPeriodicityType().getId() == 3) {
-            maintenanceList.add(loadMaintenance(maintenancePlan));
-        } else if (maintenancePlan.getPeriodicityType().getId() == 2) {
+        for (ActionPlan itemActionPlan: maintenancePlan.getActionPlans()) {
 
-                Date dtS = maintenancePlan.getStartDate();
-                Date dtE = maintenancePlan.getEndDate();
+            if (itemActionPlan.getPeriodicityType().getId() == 3) { //Fixer une date
+                maintenanceList.add(loadMaintenance(maintenancePlan,patrimony));
+            } else if (itemActionPlan.getPeriodicityType().getId() == 2) {//Mensuel
+
+                Date dtS = itemActionPlan.getStartDate();
+                Date dtE = itemActionPlan.getEndDate();
                 int nbr = dtE.getYear() - dtS.getYear();
                 List<Integer> years = new ArrayList<>();
-                Collections.sort(maintenancePlan.getMonths(), (o1, o2) ->
+                Collections.sort(itemActionPlan.getMonths(), (o1, o2) ->
                         ((Long) o1.getValue()).compareTo(o2.getValue()));
 
                 for (int i = 0; i <= nbr; i++) {
                     years.add(dtS.getYear() + i);
                 }
                 for (int i = 0; i <= nbr; i++) {
-                for (int j = 0; j < maintenancePlan.getMonths().size(); j++) {
-                    Date dat = new Date();
-                    int day = (int) maintenancePlan.getDayOfMonth();
-                    int month = (int) maintenancePlan.getMonths().get(j).getValue();
-                    //TODO TEST NULL POINTER EXCEPTION
-                    dat.setDate(day);
-                    dat.setMonth(month);
-                    dat.setYear(dtS.getYear() + i);
-                    //after
-                    if (dat.after(dtS) && dat.before(dtE)) {
-                        maintenancePlan.setInterventionDate(dat);
+                    for (int j = 0; j < itemActionPlan.getMonths().size(); j++) {
+                        Date dat = new Date();
+                        int day = (int) itemActionPlan.getDayOfMonth();
+                        int month = (int) itemActionPlan.getMonths().get(j).getValue();
+                        //TODO TEST NULL POINTER EXCEPTION
+                        dat.setDate(day);
+                        dat.setMonth(month);
+                        dat.setYear(dtS.getYear() + i);
+                        //after
+                        if (dat.after(dtS) && dat.before(dtE)) {
+                            itemActionPlan.setInterventionDate(dat);
 
-                        maintenanceList.add(loadMaintenance(maintenancePlan));
-                        //before
-                    } else if (dat.before(dtE) && dat.after(dtS)) {
-                        maintenancePlan.setInterventionDate(dat);
-                        maintenanceList.add(loadMaintenance(maintenancePlan));
+                            maintenanceList.add(loadMaintenance(maintenancePlan,patrimony));
+                            //before
+                        } else if (dat.before(dtE) && dat.after(dtS)) {
+                            itemActionPlan.setInterventionDate(dat);
+                            maintenanceList.add(loadMaintenance(maintenancePlan,patrimony));
+                        }
                     }
                 }
+
+            }
+            else if (itemActionPlan.getPeriodicityType().getId() == 1){ //Hebdomadaire
+
+
+                for(int i=0;i<itemActionPlan.getDays().size();i++) {
+                    DateTime startDate =new DateTime(itemActionPlan.getStartDate());
+                    DateTime endDate = new DateTime(itemActionPlan.getEndDate());
+                    int day = (int) itemActionPlan.getDays().get(i).getValue();
+
+                    DateTime thisDay = startDate.withDayOfWeek(day).toDateTime();
+
+                    if (startDate.isAfter(thisDay)) {
+                        startDate = thisDay.plusWeeks(1);
+                    } else {
+                        startDate = thisDay;
+                    }
+                    while (startDate.isBefore(endDate)) {
+
+                        itemActionPlan.setInterventionDate(startDate.toDate());
+                        maintenanceList.add(loadMaintenance(maintenancePlan,patrimony));
+                        startDate = startDate.plusWeeks(1);
+                    }
+                }
+
+
             }
 
-        }
-        else if (maintenancePlan.getPeriodicityType().getId() == 1){
-
-
-            for(int i=0;i<maintenancePlan.getDays().size();i++) {
-                DateTime startDate =new DateTime(maintenancePlan.getStartDate());
-                DateTime endDate = new DateTime(maintenancePlan.getEndDate());
-                int day = (int) maintenancePlan.getDays().get(i).getValue();
-
-                DateTime thisDay = startDate.withDayOfWeek(day).toDateTime();
-
-                if (startDate.isAfter(thisDay)) {
-                    startDate = thisDay.plusWeeks(1);
-                } else {
-                    startDate = thisDay;
-                }
-                while (startDate.isBefore(endDate)) {
-
-                    maintenancePlan.setInterventionDate(startDate.toDate());
-                    maintenanceList.add(loadMaintenance(maintenancePlan));
-                    startDate = startDate.plusWeeks(1);
-                }
-            }
 
 
         }
+
 
         return saveAll(maintenanceList);
 
     }
 
-    public Maintenance loadMaintenance(MaintenancePlan maintenancePlan) throws IOException {
+    public Maintenance loadMaintenance(MaintenancePlan maintenancePlan,Patrimony patrimony) throws IOException {
         Maintenance maintenance = new Maintenance();
-        DateTime dt = new DateTime(maintenancePlan.getInterventionDate());
-        int day = maintenancePlan.getTriggerDay().intValue();
-        maintenance.setTriggerDate(dt.minusDays(day).toDate());
-        maintenance.setMaintenancePlan(maintenancePlan);
-        maintenance.setInterventionDate(maintenancePlan.getInterventionDate());
-        maintenance.setDuration(maintenancePlan.getDuration());
-        maintenance.setAgent(maintenancePlan.getAgent());
-        maintenance.setDeclaredDate(maintenancePlan.getDeclaredDate());
-        maintenance.setProgramType(maintenancePlan.getProgramType());
-        maintenance.setMaintenanceType(maintenancePlan.getMaintenanceType());
-        maintenance.setMaintenanceState(maintenancePlan.getMaintenanceState());
-        maintenance.setServiceProvider(maintenancePlan.getServiceProvider());
-        maintenance.setResponsability(maintenancePlan.getResponsability());
-        maintenance.setCode(maintenancePlan.getCode());
-        maintenance.setTriggerDay(maintenancePlan.getTriggerDay());
-        maintenance.setTotalPrice(maintenancePlan.getTotalPrice());
-        maintenance.setPatrimony(maintenancePlan.getPatrimony());
-
-        List<ActionMaintenance> actionMaintenanaces = new ArrayList<>();
-        List<ActionLineMaintenance> actionLineMaintenanaces = new ArrayList<>();
-
-        for (Action action : maintenancePlan.getActions()) {
-               ActionMaintenance newActionMaintenance =new ActionMaintenance() ;
-               newActionMaintenance.setId(0);
-               newActionMaintenance.setActionType(action.getActionType());
-               newActionMaintenance.setMaintenanceState(action.getMaintenanceState());
-
-               maintenancePlan.getActions().forEach(
-                    e->{
-                        ActionLineMaintenance newActionLineMaintenance=new ActionLineMaintenance();
-                        e.getActionLines().forEach(
-                                a->{
-                                    newActionLineMaintenance.setId(0);
-                                    newActionLineMaintenance.setProduct(a.getProduct());
-                                    newActionLineMaintenance.setAmountVat(a.getAmountVat());
-                                    newActionLineMaintenance.setDescription(a.getDescription());
-                                    newActionLineMaintenance.setQuantity(a.getQuantity());
-                                    newActionLineMaintenance.setTotalPriceTTC(a.getTotalPriceTTC());
-                                    newActionLineMaintenance.setTotalPriceHT(a.getTotalPriceHT());
-                                    actionLineMaintenanaces.add(newActionLineMaintenance);
-                                }
-                        );
-
-                        newActionMaintenance.setActionLineMaintenances(actionLineMaintenanaces);
-
-                    }
+        for (ActionPlan itemActionPlan : maintenancePlan.getActionPlans()) {
+            {
 
 
-            );
-                actionMaintenanaces.add(newActionMaintenance);
+
+            DateTime dt = new DateTime(itemActionPlan.getInterventionDate());
+            int day = itemActionPlan.getTriggerDay().intValue();
+            maintenance.setTriggerDate(dt.minusDays(day).toDate());
+            maintenance.setMaintenancePlan(maintenancePlan);
+            maintenance.setInterventionDate(itemActionPlan.getInterventionDate());
+            maintenance.setDuration(itemActionPlan.getDuration());
+            maintenance.setAgent(itemActionPlan.getAgent());
+            maintenance.setDeclaredDate(itemActionPlan.getDeclaredDate());
+            maintenance.setProgramType(itemActionPlan.getProgramType());
+            maintenance.setMaintenanceType(itemActionPlan.getMaintenanceType());
+            maintenance.setServiceProvider(itemActionPlan.getServiceProvider());
+            maintenance.setResponsability(itemActionPlan.getResponsability());
+            maintenance.setCode(maintenancePlan.getCode());
+            maintenance.setTriggerDay(itemActionPlan.getTriggerDay());
+            maintenance.setTotalPrice(itemActionPlan.getTotalPrice());
+            maintenance.setPatrimony(patrimony);
+            List<ActionMaintenance> actionMaintenanaces = new ArrayList<>();
+
+            maintenance.setActionMaintenances(actionMaintenanaces);
+        }
 
         }
-        maintenance.setActionMaintenances(actionMaintenanaces);
-
-            return maintenance;
-    }
-
-    private List<ActionLine> generateActionLines(List<ActionLine> actionLines) throws IOException {
-        List<ActionLine> newActionLines = new ArrayList<>();
-      /*  actionLines.forEach(actionLine -> {
-            try {
-                ActionLine newActionLine = EmsClone.clone(actionLine, ActionLine.class);
-                newActionLine.setId(0 - newActionLines.size());
-                newActionLines.add(newActionLine);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });*/
-        return newActionLines;
+        return maintenance;
     }
 
     @Override
