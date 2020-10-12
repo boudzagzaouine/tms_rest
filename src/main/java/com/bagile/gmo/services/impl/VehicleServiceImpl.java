@@ -1,5 +1,6 @@
 package com.bagile.gmo.services.impl;
 
+import com.bagile.gmo.dto.Maintenance;
 import com.bagile.gmo.dto.Vehicle;
 import com.bagile.gmo.entities.GmoVehicle;
 import com.bagile.gmo.exceptions.AttributesNotFound;
@@ -7,6 +8,8 @@ import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.VehicleMapper;
 import com.bagile.gmo.repositories.VehicleRepository;
+import com.bagile.gmo.services.MaintenancePlanService;
+import com.bagile.gmo.services.MaintenanceService;
 import com.bagile.gmo.services.SettingService;
 import com.bagile.gmo.services.VehicleService;
 import com.bagile.gmo.util.Search;
@@ -17,6 +20,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -26,14 +30,29 @@ public class VehicleServiceImpl implements VehicleService {
     private final VehicleRepository vehicleRepository;
     @Autowired
     private SettingService settingService;
+    @Autowired
+    private MaintenanceService maintenanceService;
+
+    @Autowired
+    private MaintenancePlanService maintenancePlanService;
+
     public VehicleServiceImpl(VehicleRepository vehicleRepository) {
         this.vehicleRepository = vehicleRepository;
     }
 
     @Override
-    public Vehicle save(Vehicle vehicle) {
-        return VehicleMapper.toDto
+    public Vehicle save(Vehicle vehicle) throws AttributesNotFound, ErrorType, IdNotFound, IOException {
+       Vehicle vehicle1=  VehicleMapper.toDto
                 (vehicleRepository.saveAndFlush(VehicleMapper.toEntity(vehicle, false)), false);
+
+
+    if (vehicle1.getMaintenancePlan() != null) {
+        List<Maintenance> maintenance =maintenanceService.find("patrimony.id:"+vehicle1.getId());
+        if(maintenance.size()==0) {
+        this.maintenanceService.generateMaintenance(vehicle1);
+    }
+}
+        return vehicle1;
     }
 
     @Override

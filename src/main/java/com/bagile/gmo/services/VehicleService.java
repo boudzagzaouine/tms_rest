@@ -5,12 +5,13 @@ import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 
+import java.io.IOException;
 import java.util.List;
 
 
 public interface VehicleService {
 
-    Vehicle save(Vehicle vehicle);
+    Vehicle save(Vehicle vehicle) throws AttributesNotFound, ErrorType, IdNotFound, IOException;
 
     Long size();
 

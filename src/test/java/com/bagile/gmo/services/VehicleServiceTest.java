@@ -2,15 +2,16 @@ package com.bagile.gmo.services;
 
 import com.bagile.gmo.dto.Vehicle;
 import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
-import com.bagile.gmo.services.VehicleService;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.EmptyResultDataAccessException;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,14 +23,14 @@ class VehicleServiceTest {
 
 
     @Test
-    void save() {
+    void save() throws AttributesNotFound, ErrorType, IdNotFound, IOException {
         Vehicle vehicle = new Vehicle();
         assertEquals(0,vehicle.getId());
         Vehicle save = vehicleService.save(vehicle);
         assertNotNull(save);
     }
     @Test
-    void update() throws IdNotFound {
+    void update() throws IdNotFound, IOException, AttributesNotFound, ErrorType {
 
         Vehicle vehicleFindByid=vehicleService.findById(1L);
         assertNotNull(vehicleFindByid);
@@ -42,7 +43,7 @@ class VehicleServiceTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"Mercedes", "Audi", "golf"})
-    void saveNewValid(String code) {
+    void saveNewValid(String code) throws AttributesNotFound, ErrorType, IdNotFound, IOException {
 
         Vehicle vehicle = new Vehicle();
         vehicle.setCode(code);

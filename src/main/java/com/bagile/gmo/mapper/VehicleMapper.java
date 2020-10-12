@@ -1,14 +1,9 @@
 package com.bagile.gmo.mapper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.bagile.gmo.dto.Vehicle;
 import com.bagile.gmo.entities.GmoVehicle;
+
+import java.util.*;
 
 public class VehicleMapper {
     public VehicleMapper() {
@@ -51,7 +46,9 @@ public class VehicleMapper {
         map.put("chassisNumber", "gmoVehicleChassisNumber");
         map.put("Energy", "gmoVehicleEnergy");
         map.put("transport", "trpTransport");
-      //  map.put("insuranceTermVehicles", "gmoInsuranceTermsVehicules");
+        map.put("maintenancePlan", "gmoMaintenancePlan");
+
+        //  map.put("insuranceTermVehicles", "gmoInsuranceTermsVehicules");
 
     }
 
@@ -101,6 +98,7 @@ public class VehicleMapper {
             gmoVehicle.setGmoConsumptionType (ConsumptionTypeMapper.toEntity (vehicle.getConsumptionType (), true));
            // gmoVehicle.setGmoInsuranceTermsVehicules (InsuranceTermsVehicleMapper.toEntities (vehicle.getInsuranceTermVehicles (), false));
             gmoVehicle.setTrpTransport (TransportMapper.toEntity (vehicle.getTransport (), false));
+            gmoVehicle.setGmoMaintenancePlan (MaintenancePlanMapper.toEntity (vehicle.getMaintenancePlan (), false));
 
             //oneToOne(gmoVehicle);
            // oneToMany(gmoVehicle);
@@ -154,6 +152,7 @@ public class VehicleMapper {
             vehicle.setConsumptionType (ConsumptionTypeMapper.toDto (gmoVehicle.getGmoConsumptionType (), true));
            // vehicle.setInsuranceTermVehicles (InsuranceTermsVehicleMapper.toDtos(gmoVehicle.getGmoInsuranceTermsVehicules (), false));
             vehicle.setTransport (TransportMapper.toDto (gmoVehicle.getTrpTransport (), false));
+            vehicle.setMaintenancePlan (MaintenancePlanMapper.toDto (gmoVehicle.getGmoMaintenancePlan (), false));
 
         }
         return vehicle;

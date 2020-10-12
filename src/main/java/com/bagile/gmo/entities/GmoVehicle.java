@@ -1,11 +1,10 @@
 package com.bagile.gmo.entities;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.*;
 
 @Entity
 @Table(name = "gmo_vehicule")
@@ -163,6 +162,8 @@ public class GmoVehicle extends GmoPatrimony {
     public void setGmoConsumptionType(GmoConsumptionType gmoConsumptionType) {
         this.gmoConsumptionType = gmoConsumptionType;
     }
+
+
 
     @Column(name = "gmo_vehiculeengineoil")
 

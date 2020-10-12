@@ -45,8 +45,8 @@ public class Vehicle extends Patrimony implements Serializable {
    private Transport transport;
 
 //    private List<InsuranceTermsVehicle> insuranceTermVehicles=new ArrayList<>();
-
     private List<Turn> turns=new ArrayList<>();
+
 
 
     public Vehicle() {
@@ -300,6 +300,8 @@ public class Vehicle extends Patrimony implements Serializable {
     public void setTransport(Transport transport) {
         this.transport = transport;
     }
+
+
 
     @Override
     public boolean equals(Object o) {
