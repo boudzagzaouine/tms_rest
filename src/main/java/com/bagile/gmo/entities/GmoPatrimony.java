@@ -1,16 +1,8 @@
 package com.bagile.gmo.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "gmo_patrimony")
@@ -20,6 +12,8 @@ public abstract class GmoPatrimony extends EmsEntity {
 
 
     private Long gmoPatrimonyId;
+    private GmoMaintenancePlan gmoMaintenancePlan;
+    private String gmoPatrimonyCode;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -41,6 +35,14 @@ public abstract class GmoPatrimony extends EmsEntity {
     public void setGmoPatrimonyCode(String gmoMachineCode) {
         this.gmoPatrimonyCode = gmoMachineCode;
     }
-    private String gmoPatrimonyCode;
 
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "gmo_maintenanceplan")
+    public GmoMaintenancePlan getGmoMaintenancePlan() {
+        return gmoMaintenancePlan;
+    }
+
+    public void setGmoMaintenancePlan(GmoMaintenancePlan gmoMaintenancePlan) {
+        this.gmoMaintenancePlan = gmoMaintenancePlan;
+    }
 }

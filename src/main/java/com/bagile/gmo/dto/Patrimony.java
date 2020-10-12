@@ -20,6 +20,9 @@ public abstract class Patrimony extends EmsDto {
 	private long id ;
 	private String code;
 
+	private MaintenancePlan maintenancePlan;
+
+
 	public Long getId() {
 		return id;
 	}
@@ -34,5 +37,13 @@ public abstract class Patrimony extends EmsDto {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public MaintenancePlan getMaintenancePlan() {
+		return maintenancePlan;
+	}
+
+	public void setMaintenancePlan(MaintenancePlan maintenancePlan) {
+		this.maintenancePlan = maintenancePlan;
 	}
 }
