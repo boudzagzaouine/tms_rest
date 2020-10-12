@@ -36,7 +36,7 @@ public class MaintenancePlanServiceImpl implements MaintenancePlanService {
     public MaintenancePlanServiceImpl(MaintenancePlanRepository maintenancePreventiveRepository,
                                       MaintenanceService maintenanceService) {
         this.maintenancePlanRepository = maintenancePreventiveRepository;
- this.maintenanceService=maintenanceService;
+        this.maintenanceService=maintenanceService;
     }
 
 
@@ -46,7 +46,7 @@ public class MaintenancePlanServiceImpl implements MaintenancePlanService {
 
         maintenancePlan = MaintenancePlanMapper.toDto(maintenancePlanRepository.save(MaintenancePlanMapper.toEntity(maintenancePlan, false)), false);
 
-          if (maintenancePlan.getId() != 0) {
+        /*  if (maintenancePlan.getId() != 0) {
               List<Maintenance> maintenanceList = new ArrayList<>( );
               maintenanceList=  maintenanceService.find("maintenancePlan.id:"+maintenancePlan.getId());
               if( maintenanceList == null || maintenanceList.size() <= 0) {
@@ -64,7 +64,7 @@ public class MaintenancePlanServiceImpl implements MaintenancePlanService {
           } else {
               this.maintenanceService.generateMaintenance(maintenancePlan);
           }
-
+*/
         return maintenancePlan;
     }
 
