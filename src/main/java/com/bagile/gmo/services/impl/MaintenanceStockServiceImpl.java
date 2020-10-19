@@ -37,8 +37,7 @@ public class MaintenanceStockServiceImpl implements MaintenanceStockService {
     private MaintenanceStateService maintenanceStateService;
     @Autowired
     private ActionLineMaintenanceService actionLineMaintenanceService;
-    @Autowired
-    private ActionMaintenanceService actionMaintenanceService;
+
     @Autowired
     private SettingService settingService;
     @Autowired
@@ -196,7 +195,7 @@ public class MaintenanceStockServiceImpl implements MaintenanceStockService {
             maintenanceStock.setCreationDate(EmsDate.getDateNow());
         }
         try {
-            if(actionLineMaintenance.getMaintenanceState().getId() != 4 ) {
+           // if(actionLineMaintenance.getMaintenanceState().getId() != 4 ) {
                 //search stock with the same informations of maintenanceStock
                 List<Stock> stocks = stockService.searchStock(maintenanceStock);
                 if (stocks == null || stocks.isEmpty()) {
@@ -276,15 +275,15 @@ public class MaintenanceStockServiceImpl implements MaintenanceStockService {
                 // modifier status action line et save
                 long id =4;
                 MaintenanceState maintenanceState= maintenanceStateService.findById(id);
-                actionLineMaintenance.setMaintenanceState(maintenanceState);
+                //actionLineMaintenance.setMaintenanceState(maintenanceState);
                 actionLineMaintenanceService.save(actionLineMaintenance);
-                ActionMaintenance actionMaintenance = null;
+                ActionLineMaintenance actionLineMaintenancee = null;
                 if (found) {
                     BigDecimal subtract = allReadyServerd.subtract(quantityServed);
-                    actionMaintenance = actionMaintenanceService.findById(actionLineMaintenance.getActionMaintenance().getId());
-                    maintenanceService.updateMaintenance(actionMaintenance.getMaintenance());
+                    actionLineMaintenancee = actionLineMaintenanceService.findById(actionLineMaintenance.getId());
+                    maintenanceService.updateMaintenance(actionLineMaintenancee.getMaintenance());
                 }
-            }
+           // }
         } catch (ProductControls | IdNotFound | AttributesNotFound | ErrorType | CustomException  e) {
             LOGGER.error(e.getMessage(), e);
         }

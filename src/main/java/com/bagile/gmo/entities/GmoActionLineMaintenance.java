@@ -13,7 +13,6 @@ public class GmoActionLineMaintenance extends EmsEntity {
 	private static final long serialVersionUID = -6143066188263513604L;
 	private long gmoActionLineId;
     private PdtProduct pdtProduct;
-    private GmoActionMaintenance gmoActionMaintenance;
     private String gmoActionLineDescription;
     private BigDecimal gmoActionLineTotalPriceHT;
     private BigDecimal gmoActionLineTotalPriceTTC;
@@ -21,9 +20,10 @@ public class GmoActionLineMaintenance extends EmsEntity {
     private BigDecimal gmoActionLineQuantity;
     private BigDecimal gmoActionLineunitPrice;
     private BigDecimal gmoActionLineOrderQuantity;
-    private GmoMaintenanceState gmoMaintenanceState ;
     private BigDecimal gmoActionLineMaintenanceOrderQuantity;
     private Set<GmoMaintenanceStock> gmoMaintenanceStocks=new HashSet<GmoMaintenanceStock>(0);
+    private GmoMaintenance gmoMaintenance;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "seq")
@@ -65,15 +65,6 @@ public class GmoActionLineMaintenance extends EmsEntity {
         this.gmoMaintenanceStocks = gmoMaintenanceStocks;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "gmo_actionid")
-    public GmoActionMaintenance getGmoActionMaintenance() {
-        return gmoActionMaintenance;
-    }
-
-    public void setGmoActionMaintenance(GmoActionMaintenance gmoActionMaintenance) {
-        this.gmoActionMaintenance = gmoActionMaintenance;
-    }
 
     @Column(name = "gmo_actionlinemaintenancequantity", precision = 12, scale = 5)
     public BigDecimal getGmoActionLineOrderQuantity() {
@@ -84,15 +75,7 @@ public class GmoActionLineMaintenance extends EmsEntity {
         this.gmoActionLineOrderQuantity = gmoActionLineOrderQuantity;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "gmo_maintenancestateid")
-    public GmoMaintenanceState getGmoMaintenanceState() {
-        return gmoMaintenanceState;
-    }
 
-    public void setGmoMaintenanceState(GmoMaintenanceState gmoMaintenanceState) {
-        this.gmoMaintenanceState = gmoMaintenanceState;
-    }
 
 
     @Column(name = "gmo_actionlinedescription")
@@ -148,6 +131,16 @@ public class GmoActionLineMaintenance extends EmsEntity {
         this.gmoActionLineQuantity = gmoQuantity;
     }
 
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_maintenanceid")
+    public GmoMaintenance getGmoMaintenance() {
+        return gmoMaintenance;
+    }
+
+    public void setGmoMaintenance(GmoMaintenance gmoMaintenance) {
+        this.gmoMaintenance = gmoMaintenance;
+    }
 
     @Override
     public boolean equals(Object o) {

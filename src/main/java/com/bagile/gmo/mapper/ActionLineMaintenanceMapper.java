@@ -16,7 +16,6 @@ public class ActionLineMaintenanceMapper {
 
 		map.put("id", "gmoMaintenanceLineId");
 		map.put("product", "pdtProduct");
-		map.put("action", "gmoAction");
 		map.put("description", "gmoMaintenanceLineDescription");
 		map.put("totalPriceHT", "gmoMaintenanceLineTotalPriceHT");
 		map.put("totalPriceTTC", "gmoMaintenanceLineTotalPriceTTC");
@@ -24,6 +23,7 @@ public class ActionLineMaintenanceMapper {
 		map.put("quantity", "gmoActionLineQuantity");
 		map.put("unitPrice", "gmoActionLineunitPrice");
 		map.put("maintenanceState", "gmoMaintenanceState");
+		map.put("maintenance", "gmoMaintenance");
 
 
 	}
@@ -51,12 +51,11 @@ public class ActionLineMaintenanceMapper {
 		gmoActionLineMaintenance.setGmoActionLineunitPrice(actionLineMaintenance.getUnitPrice());
 
 		if (!lazy) {
+					gmoActionLineMaintenance
+					.setGmoMaintenance(MaintenanceMapper.toEntity(actionLineMaintenance.getMaintenance(), true));
+
 			gmoActionLineMaintenance
-			.setGmoActionMaintenance(ActionMaintenanceMapper.toEntity(actionLineMaintenance.getActionMaintenance(), true));
-				gmoActionLineMaintenance
-					.setPdtProduct(
-							ProductMapper.toEntity(actionLineMaintenance.getProduct(), false));
-			gmoActionLineMaintenance.setGmoMaintenanceState(MaintenanceStateMapper.toEntity(actionLineMaintenance.getMaintenanceState(),true));
+					.setPdtProduct(ProductMapper.toEntity(actionLineMaintenance.getProduct(), true));
 
 		}
 		return gmoActionLineMaintenance;
@@ -76,9 +75,8 @@ public class ActionLineMaintenanceMapper {
 		actionLineMaintenance.setUnitPrice(gmoActionLineMaintenance.getGmoActionLineunitPrice());
 
 		if (!lazy) {
-			actionLineMaintenance.setActionMaintenance(ActionMaintenanceMapper.toDto(gmoActionLineMaintenance.getGmoActionMaintenance(), true));
+			actionLineMaintenance.setMaintenance(MaintenanceMapper.toDto(gmoActionLineMaintenance.getGmoMaintenance(), true));
 			actionLineMaintenance.setProduct(ProductMapper.toDto(gmoActionLineMaintenance.getPdtProduct(), false));
-			actionLineMaintenance.setMaintenanceState(MaintenanceStateMapper.toDto(gmoActionLineMaintenance.getGmoMaintenanceState(), true));
 
 		}
 		return actionLineMaintenance;

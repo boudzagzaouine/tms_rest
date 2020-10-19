@@ -34,7 +34,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     private SettingService settingService;
 
     @Autowired
-    private ActionMaintenanceService actionMaintenanceService;
+    private ActionLineMaintenanceService actionLineMaintenanceService;
 
     @Autowired
     private MaintenanceStockService maintenanceStockService;
@@ -98,7 +98,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
         for (ActionPlan itemActionPlan: maintenancePlan.getActionPlans()) {
 
             if (itemActionPlan.getPeriodicityType().getId() == 3) { //Fixer une date
-                maintenanceList.add(loadMaintenance(maintenancePlan,patrimony));
+                maintenanceList.add(loadMaintenance(itemActionPlan,patrimony));
             } else if (itemActionPlan.getPeriodicityType().getId() == 2) {//Mensuel
 
                 Date dtS = itemActionPlan.getStartDate();
@@ -124,11 +124,11 @@ public class MaintenanceServiceImpl implements MaintenanceService {
                         if (dat.after(dtS) && dat.before(dtE)) {
                             itemActionPlan.setInterventionDate(dat);
 
-                            maintenanceList.add(loadMaintenance(maintenancePlan,patrimony));
+                            maintenanceList.add(loadMaintenance(itemActionPlan,patrimony));
                             //before
                         } else if (dat.before(dtE) && dat.after(dtS)) {
                             itemActionPlan.setInterventionDate(dat);
-                            maintenanceList.add(loadMaintenance(maintenancePlan,patrimony));
+                            maintenanceList.add(loadMaintenance(itemActionPlan,patrimony));
                         }
                     }
                 }
@@ -152,7 +152,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
                     while (startDate.isBefore(endDate)) {
 
                         itemActionPlan.setInterventionDate(startDate.toDate());
-                        maintenanceList.add(loadMaintenance(maintenancePlan,patrimony));
+                        maintenanceList.add(loadMaintenance(itemActionPlan,patrimony));
                         startDate = startDate.plusWeeks(1);
                     }
                 }
@@ -169,35 +169,34 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 
     }
 
-    public Maintenance loadMaintenance(MaintenancePlan maintenancePlan,Patrimony patrimony) throws IOException {
+    public Maintenance loadMaintenance(ActionPlan actionPlan,Patrimony patrimony) throws IOException {
         Maintenance maintenance = new Maintenance();
-        for (ActionPlan itemActionPlan : maintenancePlan.getActionPlans()) {
-            {
 
 
-
-            DateTime dt = new DateTime(itemActionPlan.getInterventionDate());
-            int day = itemActionPlan.getTriggerDay().intValue();
+            DateTime dt = new DateTime(actionPlan.getInterventionDate());
+            int day = actionPlan.getTriggerDay().intValue();
             maintenance.setTriggerDate(dt.minusDays(day).toDate());
-            maintenance.setMaintenancePlan(maintenancePlan);
-            maintenance.setInterventionDate(itemActionPlan.getInterventionDate());
-            maintenance.setDuration(itemActionPlan.getDuration());
-            maintenance.setAgent(itemActionPlan.getAgent());
-            maintenance.setDeclaredDate(itemActionPlan.getDeclaredDate());
-            maintenance.setProgramType(itemActionPlan.getProgramType());
-            maintenance.setMaintenanceType(itemActionPlan.getMaintenanceType());
-            maintenance.setServiceProvider(itemActionPlan.getServiceProvider());
-            maintenance.setResponsability(itemActionPlan.getResponsability());
-            maintenance.setCode(maintenancePlan.getCode());
-            maintenance.setTriggerDay(itemActionPlan.getTriggerDay());
-            maintenance.setTotalPrice(itemActionPlan.getTotalPrice());
+            maintenance.setMaintenancePlan(actionPlan.getMaintenancePlan());
+            maintenance.setInterventionDate(actionPlan.getInterventionDate());
+            maintenance.setDuration(actionPlan.getDuration());
+            maintenance.setAgent(actionPlan.getAgent());
+            maintenance.setDeclaredDate(actionPlan.getDeclaredDate());
+            maintenance.setProgramType(actionPlan.getProgramType());
+            maintenance.setMaintenanceType(actionPlan.getMaintenanceType());
+            maintenance.setServiceProvider(actionPlan.getServiceProvider());
+            maintenance.setResponsability(actionPlan.getResponsability());
+            maintenance.setCode(actionPlan.getMaintenancePlan().getCode());
+            maintenance.setTriggerDay(actionPlan.getTriggerDay());
+            maintenance.setTotalPrice(actionPlan.getTotalPrice());
             maintenance.setPatrimony(patrimony);
-            List<ActionMaintenance> actionMaintenanaces = new ArrayList<>();
+                maintenance.setActionType(actionPlan.getActionType());
 
-            maintenance.setActionMaintenances(actionMaintenanaces);
-        }
+           /* List<ActionLineMaintenance> actionLineMaintenanaces = new ArrayList<>();
 
-        }
+            maintenance.setActionLineMaintenances(actionLineMaintenanaces);*/
+
+
+
         return maintenance;
     }
 
@@ -290,7 +289,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     public void updateMaintenance(Maintenance maintenance) {
         try {
             maintenance = findById(maintenance.getId());
-            maintenance.setActionMaintenances(new ArrayList<>(actionMaintenanceService.find("maintenance.id:"+ maintenance.getId())));
+            maintenance.setActionLineMaintenances(new ArrayList<>(actionLineMaintenanceService.find("maintenance.id:"+ maintenance.getId())));
             List<MaintenanceStock> maintenanceStocks = maintenanceStockService.find("maintenance.id:" + maintenance.getId());
             for (MaintenanceStock maintenanceStock : maintenanceStocks) {
                 if (null != maintenanceStock.getStock()) {

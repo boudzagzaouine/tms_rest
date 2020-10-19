@@ -19,9 +19,8 @@ public class ActionLineMaintenance extends EmsDto {
     private BigDecimal unitPrice;
     private BigDecimal totalPriceTTC;
     private BigDecimal amountVat;
-    private ActionMaintenance actionMaintenance;
-    private MaintenanceState maintenanceState;
-
+    private Maintenance maintenance;
+//private MaintenanceState maintenanceState;
     @JsonIgnore
     private List<MaintenanceStock> maintenanceStocks;
 
@@ -33,13 +32,21 @@ public class ActionLineMaintenance extends EmsDto {
         this.maintenanceStocks = maintenanceStocks;
     }
 
-    public MaintenanceState getMaintenanceState() {
+    public Maintenance getMaintenance() {
+        return maintenance;
+    }
+
+    public void setMaintenance(Maintenance maintenance) {
+        this.maintenance = maintenance;
+    }
+
+   /* public MaintenanceState getMaintenanceState() {
         return maintenanceState;
     }
 
     public void setMaintenanceState(MaintenanceState maintenanceState) {
         this.maintenanceState = maintenanceState;
-    }
+    }*/
 
     public long getId() {
         return id;
@@ -117,13 +124,6 @@ public class ActionLineMaintenance extends EmsDto {
     }
 
 
-    public ActionMaintenance getActionMaintenance() {
-        return actionMaintenance;
-    }
-
-    public void setActionMaintenance(ActionMaintenance actionMaintenance) {
-        this.actionMaintenance = actionMaintenance;
-    }
 
     @Override
     public boolean equals(Object o) {

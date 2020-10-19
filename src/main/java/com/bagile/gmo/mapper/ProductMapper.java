@@ -7,7 +7,7 @@ import com.bagile.gmo.entities.PdtProductView;
 import java.util.*;
 
 public class ProductMapper {
-    private ProductMapper() {
+    public ProductMapper() {
     }
 
     private static Map<String, String> map;
@@ -197,7 +197,7 @@ public class ProductMapper {
             pdtProduct.setPdtProductTypeByPdtProductTypeId(ProductTypeMapper.toEntity(product.getProductType(), true));
             pdtProduct.setPdtProductTypeByPdtProductSubTypeId(ProductTypeMapper.toEntity(product.getProductSubType(), true));
             pdtProduct.setRcpSupplier(SupplierMapper.toEntity(product.getSupplier(), true));
-            pdtProduct.setPdtUomByPdtProductUomBaseId(UomMapper.toEntity(product.getUomByProductUomBase(), true));
+            pdtProduct.setPdtUomByPdtProductUomBaseId(UomMapper.toEntity(product.getUomByProductUomBase(), false));
             pdtProduct.setPdtUomByPdtProductUomPurshaseId(UomMapper.toEntity(product.getUomByProductUomPurshase(), true));
             pdtProduct.setPdtUomByPdtProductUomSaleId(UomMapper.toEntity(product.getUomByProductUomSale(), true));
             pdtProduct.setPdtProductParent(toEntity(product.getProduct(), true));
@@ -295,7 +295,7 @@ public class ProductMapper {
             product.setOwner(OwnerMapper.toDto(pdtProduct.getOwnOwner(), true));
             product.setProductType(ProductTypeMapper.toDto(pdtProduct.getPdtProductTypeByPdtProductTypeId(), true));
            product.setProductSubType(ProductTypeMapper.toDto(pdtProduct.getPdtProductTypeByPdtProductSubTypeId(), true));
-            product.setUomByProductUomBase(UomMapper.toDto(pdtProduct.getPdtUomByPdtProductUomBaseId(), true));
+            product.setUomByProductUomBase(UomMapper.toDto(pdtProduct.getPdtUomByPdtProductUomBaseId(), false));
             product.setUomByProductUomPurshase(UomMapper.toDto(pdtProduct.getPdtUomByPdtProductUomPurshaseId(), true));
             product.setUomByProductUomSale(UomMapper.toDto(pdtProduct.getPdtUomByPdtProductUomSaleId(), true));
             product.setWarehouse(WarehouseMapper.toDto(pdtProduct.getWrhWarehouse(), true));
@@ -420,6 +420,9 @@ public class ProductMapper {
           //  product.setImages(ImageMapper.toDtos(pdtProductView.getPrmImages(), false));
             product.setProductPacks(ProductPackMapper.toDtos(pdtProductView.getPdtProductPacks(), false));
             //product.setProductDimensions(ProductDimensionMapper.toDtos(pdtProductView.getPdtProductDimensions(), false));
+            product.setPurchaseVat(VatMapper.toDto(pdtProductView.getPrmVatPurchase(), false));
+
+
         }
         return product;
     }

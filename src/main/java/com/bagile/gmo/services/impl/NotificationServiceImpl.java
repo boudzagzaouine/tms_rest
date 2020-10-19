@@ -133,13 +133,10 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     public Notification findOne(String search) throws AttributesNotFound, ErrorType {
 
-        try {
-            return NotificationMapper.toDto(notificationRepository.findOne(Search
-                    .expression(search, GmoNotification.class)).orElse(null), false);
-        } catch (Exception e) {
-            LOGGER.error("could not findOne Product");
-            return null;
-        }
+               Notification notif =NotificationMapper.toDto(notificationRepository.findOne(Search
+                       .expression(search, GmoNotification.class)).orElse(null), false);
+            return notif;
+
 
 
 
@@ -163,33 +160,37 @@ public class NotificationServiceImpl implements NotificationService {
     private void verifyTriggerDateMaintenance() throws IdNotFound, AttributesNotFound, ErrorType {
 
         ////// retard
-        List<Maintenance> maintenanceList = maintenanceService.find("interventionDate<" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + ",maintenanceState.id:" + 2);
-        addMaintenanceToNotification(maintenanceList, 1L, 1L); // RETARD
+        List<Maintenance> maintenanceList = maintenanceService.find("interventionDate<" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) );//+ ",maintenanceState.id:" + 1
+        addMaintenanceToNotification(maintenanceList, 1L, 2L); // 2=retard
 
         //
-        List<Maintenance> maintenanceDeclareList = maintenanceService.find("triggerDate<" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + ",maintenanceState.id:" + 2);
-        addMaintenanceToNotification(maintenanceDeclareList, 2L, 2L); // CREE
+        List<Maintenance> maintenanceDeclareList = maintenanceService.find("triggerDate<" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) );//+ ",maintenanceState.id:" + 1
+        addMaintenanceToNotification(maintenanceDeclareList, 2L, 3L); //3= en attente
 
     }
 
     private void addMaintenanceToNotification(List<Maintenance> maintenanceList, long notificationStateID, long maintenanceStateID ) throws IdNotFound, AttributesNotFound, ErrorType {
-        Notification notification = new Notification();
-        Notification notificationSearch = new Notification();
+
+        Notification notificationSearchMaintenance = new Notification();
 
         List<Notification> notifications = new ArrayList<>();
         MaintenanceState maintenanceState = maintenanceStateService.findById(maintenanceStateID);
         NotificationState notificationState = notificationStateService.findById(notificationStateID); // RETARD
         if (maintenanceList.size() > 0) {
             for (Maintenance maintenanace : maintenanceList) {
-                notificationSearch= findOne("maintenanceId:"+maintenanace.getId());
-                if(notificationSearch == null) {
+                Notification notification = new Notification();
+                 notificationSearchMaintenance= findOne("maintenanceId:"+maintenanace.getId());
+                if(notificationSearchMaintenance == null) {
                     maintenanace.setMaintenanceState(maintenanceState);
                     maintenanceService.save(maintenanace);
                     notification.setCode(maintenanace.getCode());
                     notification.setType("Maintenance");
                     notification.setNotificationState(notificationState);
                     notification.setMaintenanceId(maintenanace.getId());
+                    notification.setPatimonyCode(maintenanace.getPatrimony().getCode());
+                    notification.setAction(maintenanace.getActionType().getCode());
                     notifications.add(notification);
+
                 }
             }
 
@@ -201,22 +202,21 @@ public class NotificationServiceImpl implements NotificationService {
 
     private void verifyStockProduct() throws AttributesNotFound, ErrorType, IdNotFound {
 
-
+        Notification notificationSearchProduct = new Notification();
+        List<Notification> notifications = new ArrayList<>();
+        NotificationState notificationStatee = notificationStateService.findById(3L);//epuise
         List<Product> productList = productService.findAll();
-        if (!productList.isEmpty()) {
-            Notification notification = new Notification();
-            Notification notificationSearch = new Notification();
-            List<Notification> notifications = new ArrayList<>();
-            NotificationState notificationStatee = notificationStateService.findById(3L);
-            NotificationState notificationStateee = notificationStateService.findById(5L);
+        if (productList.size()>0) {
 
             for (Product product : productList) {
+                Notification notification = new Notification();
                 if (product.getMinStock() !=null){
                     if (product.getStockQuantity() == null) {
                         product.setStockQuantity(BigDecimal.ZERO);
                     }
-                    notificationSearch= findOne("productId:"+product.getId());
-                    if(notificationSearch == null) {
+                      notificationSearchProduct= findOne("productId:"+product.getId());
+
+                    if(notificationSearchProduct== null) {
                         if (product.getStockQuantity().compareTo(product.getMinStock()) <= 0) {
                             notification.setCode(product.getCode());
                             notification.setType("Produit");

@@ -13,6 +13,9 @@ public class GmoNotification extends EmsEntity{
     private GmoNotificationState gmoNotificationState ;
     private long gmoNotificationProductId;
     private long gmoNotificationMaintenanceId;
+    private String gmoNotificationPatrimonyCode ;
+    private  String gmoNotificationTypePatrimony;
+    private String gmoNotificationAction;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -70,5 +73,34 @@ public class GmoNotification extends EmsEntity{
 
     public void setGmoNotificationMaintenanceId(long gmoNotificationMaintenanceId) {
         this.gmoNotificationMaintenanceId = gmoNotificationMaintenanceId;
+    }
+
+
+    @Column(name = "gmo_notifiationPatrimonyCode")
+    public String getGmoNotificationPatrimonyCode() {
+        return gmoNotificationPatrimonyCode;
+    }
+
+    public void setGmoNotificationPatrimonyCode(String gmoNotificationPatrimonyCode) {
+        this.gmoNotificationPatrimonyCode = gmoNotificationPatrimonyCode;
+    }
+
+    @Column(name = "gmo_notifiationTypePatrimony")
+    public String getGmoNotificationTypePatrimony() {
+        return gmoNotificationTypePatrimony;
+    }
+
+    public void setGmoNotificationTypePatrimony(String gmoNotificationTypePatrimony) {
+        this.gmoNotificationTypePatrimony = gmoNotificationTypePatrimony;
+    }
+
+
+    @Column(name = "gmo_notifiationaction")
+    public String getGmoNotificationAction() {
+        return gmoNotificationAction;
+    }
+
+    public void setGmoNotificationAction(String gmoNotificationAction) {
+        this.gmoNotificationAction = gmoNotificationAction;
     }
 }

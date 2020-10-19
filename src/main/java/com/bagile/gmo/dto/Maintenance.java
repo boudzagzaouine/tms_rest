@@ -31,25 +31,21 @@ public class Maintenance extends EmsDto implements Serializable {
     private Patrimony patrimony;
     private Double mileage = 0.0;
     private BigDecimal totalPrice;
-    private List<ActionMaintenance> actionMaintenances;
+   // private List<ActionMaintenance> actionMaintenances;
     private  String  agent ;
     private   String  employer ;
     private   String  observation;
     private Date declaredDate;
     private BigDecimal duration;
     private MaintenancePlan maintenancePlan ;
-    private OrderStatus orderStatus;
+    private ActionType actionType ;
+     private List<ActionLineMaintenance> actionLineMaintenances;
+
 
     public Maintenance() {
     }
 
-    public OrderStatus getOrderStatus() {
-        return orderStatus;
-    }
 
-    public void setOrderStatus(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
-    }
 
     public long getId() {
         return id;
@@ -131,13 +127,29 @@ public class Maintenance extends EmsDto implements Serializable {
         this.totalPrice = totalPrice;
     }
 
-    public List<ActionMaintenance> getActionMaintenances() {
+    public ActionType getActionType() {
+        return actionType;
+    }
+
+    public void setActionType(ActionType actionType) {
+        this.actionType = actionType;
+    }
+
+    public List<ActionLineMaintenance> getActionLineMaintenances() {
+        return actionLineMaintenances;
+    }
+
+    public void setActionLineMaintenances(List<ActionLineMaintenance> actionLineMaintenances) {
+        this.actionLineMaintenances = actionLineMaintenances;
+    }
+
+    /*public List<ActionMaintenance> getActionMaintenances() {
         return actionMaintenances;
     }
 
     public void setActionMaintenances(List<ActionMaintenance> actionMaintenances) {
         this.actionMaintenances = actionMaintenances;
-    }
+    }*/
 
     public ProgramType getProgramType() {
         return programType;

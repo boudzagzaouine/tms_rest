@@ -20,6 +20,9 @@ public class NotificationMapper {
         map.put ("type", "gmoNotificationType");
         map.put ("productId", "gmoNotificationProductId");
         map.put ("maintenanceId", "gmoNotificationMaintenanceId");
+        map.put ("patimonyCode", "gmoNotificationPatrimonyCode");
+        map.put ("typePatrimony", "gmoNotificationTypePatrimony");
+        map.put ("action", "gmoNotificationAction");
 
         map.put ("creationDate", "creationDate");
         map.put ("updateDate", "updateDate");
@@ -46,6 +49,9 @@ public class NotificationMapper {
         gmoNotification.setGmoNotificationType (notification.getType ( ));
         gmoNotification.setGmoNotificationProductId(notification.getProductId ( ));
         gmoNotification.setGmoNotificationMaintenanceId(notification.getMaintenanceId ( ));
+        gmoNotification.setGmoNotificationPatrimonyCode(notification.getPatimonyCode ( ));
+        gmoNotification.setGmoNotificationTypePatrimony(notification.getTypePatrimony ( ));
+        gmoNotification.setGmoNotificationAction(notification.getAction ( ));
 
         gmoNotification.setCreatedBy (notification.getCreatedBy ( ));
         gmoNotification.setUpdatedBy (notification.getUpdatedBy ( ));
@@ -69,6 +75,8 @@ public class NotificationMapper {
         notification.setType (gmoNotification.getGmoNotificationType ());
         notification.setProductId (gmoNotification.getGmoNotificationProductId());
         notification.setMaintenanceId (gmoNotification.getGmoNotificationMaintenanceId());
+        notification.setAction (gmoNotification.getGmoNotificationAction());
+        notification.setPatimonyCode (gmoNotification.getGmoNotificationPatrimonyCode());
 
         notification.setCreatedBy (gmoNotification.getCreatedBy ());
         notification.setUpdatedBy (gmoNotification.getUpdatedBy ());

@@ -1,24 +1,10 @@
 package com.bagile.gmo.entities;
 
-import org.hibernate.annotations.Cascade;
-
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "gmo_maintenance")
@@ -72,8 +58,7 @@ public class GmoMaintenance extends EmsEntity {
     @ManyToOne()
     private GmoPatrimony gmoPatrimony;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade={CascadeType.ALL,CascadeType.MERGE},mappedBy = "gmoMaintenance", orphanRemoval=true)
-    private Set<GmoActionMaintenance> gmoActionMaintenances = new HashSet<> ();
+
     @Column(name = "gmo_maintenancetotalprice")
     private BigDecimal gmoMaintenanceTotalPrice = BigDecimal.ZERO;
     @Column(name = "gmo_maintenancemileage")
@@ -105,6 +90,13 @@ private String gmoAgent ;
     @JoinColumn(name = "gmo_maintenanceplanid")
     private GmoMaintenancePlan gmoMaintenancePlan;
 
+    @OneToMany(fetch = FetchType.LAZY,cascade={CascadeType.ALL,CascadeType.MERGE},mappedBy = "gmoMaintenance", orphanRemoval=true)
+    private Set<GmoActionLineMaintenance> gmoActionLineMaintenances = new HashSet<> ();
+    //private Set<GmoActionMaintenance> gmoActionMaintenances = new HashSet<> ();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_actiontypeid")
+    private GmoActionType gmoActionType;
     public GmoMaintenance() {
     }
 
@@ -132,6 +124,25 @@ private String gmoAgent ;
         this.gmoMaintenanceDescription = gmoMaintenanceDescription;
     }
 
+    public GmoActionType getGmoActionType() {
+        return gmoActionType;
+    }
+
+    public void setGmoActionType(GmoActionType gmoActionType) {
+        this.gmoActionType = gmoActionType;
+    }
+
+    public void setGmoMaintenanceId(long gmoMaintenanceId) {
+        this.gmoMaintenanceId = gmoMaintenanceId;
+    }
+
+    public Set<GmoActionLineMaintenance> getGmoActionLineMaintenances() {
+        return gmoActionLineMaintenances;
+    }
+
+    public void setGmoActionLineMaintenances(Set<GmoActionLineMaintenance> gmoActionLineMaintenances) {
+        this.gmoActionLineMaintenances = gmoActionLineMaintenances;
+    }
 
     public Date getGmoMaintenanceStartDate() {
         return gmoMaintenanceStartDate;
@@ -221,13 +232,13 @@ private String gmoAgent ;
         this.gmoPatrimony = gmoPatrimony;
     }
 
-    public Set<GmoActionMaintenance> getGmoActionMaintenances() {
+   /* public Set<GmoActionMaintenance> getGmoActionMaintenances() {
         return gmoActionMaintenances;
     }
 
     public void setGmoActionMaintenances(Set<GmoActionMaintenance> gmoActionMaintenances) {
         this.gmoActionMaintenances = gmoActionMaintenances;
-    }
+    }*/
 
     public BigDecimal getGmoMaintenanceTotalPrice() {
         return gmoMaintenanceTotalPrice;

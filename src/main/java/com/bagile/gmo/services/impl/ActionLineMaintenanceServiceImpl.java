@@ -1,14 +1,13 @@
 package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.ActionLineMaintenance;
-import com.bagile.gmo.entities.GmoActionLine;
+import com.bagile.gmo.entities.GmoActionLineMaintenance;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.ActionLineMaintenanceMapper;
 import com.bagile.gmo.repositories.ActionLineMaintenanceRepository;
 import com.bagile.gmo.services.ActionLineMaintenanceService;
-import com.bagile.gmo.services.OrderStatusService;
 import com.bagile.gmo.util.Search;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -24,12 +23,12 @@ import java.util.List;
 public class ActionLineMaintenanceServiceImpl implements ActionLineMaintenanceService {
 
     private final ActionLineMaintenanceRepository actionLineRepository;
-private final OrderStatusService orderStatusService;
 
-    public ActionLineMaintenanceServiceImpl(ActionLineMaintenanceRepository actionLineRepository,
-                                            OrderStatusService orderStatusService) {
+
+    public ActionLineMaintenanceServiceImpl(ActionLineMaintenanceRepository actionLineRepository
+                                          ) {
         this.actionLineRepository = actionLineRepository;
-        this.orderStatusService= orderStatusService;
+
     }
 
     @Override
@@ -57,7 +56,7 @@ private final OrderStatusService orderStatusService;
         if (search.equals("")){
             return findAll ();
         }
-        return ActionLineMaintenanceMapper.toDtos(actionLineRepository.findAll(Search.expression(search, GmoActionLine.class)), false);
+        return ActionLineMaintenanceMapper.toDtos(actionLineRepository.findAll(Search.expression(search, GmoActionLineMaintenance.class)), false);
     }
 
     @Override
@@ -67,7 +66,7 @@ private final OrderStatusService orderStatusService;
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return ActionLineMaintenanceMapper.toDtos(actionLineRepository.findAll(Search.expression(search, GmoActionLine.class), pageable), false);
+        return ActionLineMaintenanceMapper.toDtos(actionLineRepository.findAll(Search.expression(search, GmoActionLineMaintenance.class), pageable), false);
     }
 
     @Override
@@ -75,7 +74,7 @@ private final OrderStatusService orderStatusService;
         if (search.equals("")){
             return size ();
         }
-        return actionLineRepository.count(Search.expression(search, GmoActionLine.class));
+        return actionLineRepository.count(Search.expression(search, GmoActionLineMaintenance.class));
     }
 
     @Override
