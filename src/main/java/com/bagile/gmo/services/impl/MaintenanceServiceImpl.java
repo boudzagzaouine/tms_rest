@@ -20,10 +20,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 @Service
@@ -48,7 +45,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     private MaintenancePlanService maintenancePlanService;
 
     @Autowired
-    private OrderStatusService orderStatusService;
+    private MaintenanceStateService maintenanceStateService;
 
     private final static Logger LOGGER = LoggerFactory
             .getLogger(MaintenanceService.class);
@@ -59,7 +56,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 
     @Override
     public Maintenance save(Maintenance maintenance) throws AttributesNotFound, ErrorType {
-        if(maintenance.getId()>0){
+     /*   if(maintenance.getId()>0){
             if (maintenance.getMaintenanceState().getId() == 4)//fermer
             {
                 Notification notification = notificationService.findOne("maintenanceId:" + maintenance.getId());
@@ -68,7 +65,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
                     notificationService.delete(notification.getId());
                 }
             }
-          }
+          }*/
 
 
 
@@ -90,6 +87,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 
     }
 
+
     @Override
     public List<Maintenance> generateMaintenance(Patrimony patrimony) throws IOException, AttributesNotFound, ErrorType, IdNotFound {
         List<Maintenance> maintenanceList = new ArrayList<>();
@@ -97,6 +95,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 
         for (ActionPlan itemActionPlan: maintenancePlan.getActionPlans()) {
 
+            if(itemActionPlan.getProgramType().getId()==1L){ //systematique
             if (itemActionPlan.getPeriodicityType().getId() == 3) { //Fixer une date
                 maintenanceList.add(loadMaintenance(itemActionPlan,patrimony));
             } else if (itemActionPlan.getPeriodicityType().getId() == 2) {//Mensuel
@@ -134,11 +133,11 @@ public class MaintenanceServiceImpl implements MaintenanceService {
                 }
 
             }
-            else if (itemActionPlan.getPeriodicityType().getId() == 1){ //Hebdomadaire
+            else if (itemActionPlan.getPeriodicityType().getId() == 1) { //Hebdomadaire
 
 
-                for(int i=0;i<itemActionPlan.getDays().size();i++) {
-                    DateTime startDate =new DateTime(itemActionPlan.getStartDate());
+                for (int i = 0; i < itemActionPlan.getDays().size(); i++) {
+                    DateTime startDate = new DateTime(itemActionPlan.getStartDate());
                     DateTime endDate = new DateTime(itemActionPlan.getEndDate());
                     int day = (int) itemActionPlan.getDays().get(i).getValue();
 
@@ -152,42 +151,81 @@ public class MaintenanceServiceImpl implements MaintenanceService {
                     while (startDate.isBefore(endDate)) {
 
                         itemActionPlan.setInterventionDate(startDate.toDate());
-                        maintenanceList.add(loadMaintenance(itemActionPlan,patrimony));
+                        maintenanceList.add(loadMaintenance(itemActionPlan, patrimony));
                         startDate = startDate.plusWeeks(1);
                     }
                 }
 
+            }
+            }
+
+
+
+            if(itemActionPlan.getProgramType().getId()==2L) { //conditionnel
+
+                Maintenance maintenance =getMaintenanceByActionType(itemActionPlan.getActionType().getId(),patrimony.getId()) ;
+                double kmlastMaintenance;
+                double Kmcondition;
+                double kmNext;
+                 if(maintenance !=null) {
+                      kmlastMaintenance=maintenance.getMileage();
+                      Kmcondition =itemActionPlan.getValueconditionalType().doubleValue();
+                      kmNext=kmlastMaintenance+Kmcondition ;
+
+                           itemActionPlan.setMileage(kmNext);
+                     maintenanceList.add(loadMaintenance(itemActionPlan, patrimony));
+                 }
+                 else if(patrimony instanceof  Vehicle)  {
+                     kmlastMaintenance=   ((Vehicle) patrimony).getInitialMileage().doubleValue();
+                     Kmcondition =itemActionPlan.getValueconditionalType().doubleValue();
+                     kmNext=kmlastMaintenance+Kmcondition ;
+                     itemActionPlan.setMileage(kmNext);
+                     maintenanceList.add(loadMaintenance(itemActionPlan, patrimony));
+
+                 }
 
             }
 
 
 
-        }
+            }
 
 
         return saveAll(maintenanceList);
 
     }
 
-    public Maintenance loadMaintenance(ActionPlan actionPlan,Patrimony patrimony) throws IOException {
+    public Maintenance loadMaintenance(ActionPlan actionPlan,Patrimony patrimony) throws IOException, IdNotFound {
         Maintenance maintenance = new Maintenance();
 
+         MaintenanceState maintenanceState =maintenanceStateService.findById(1L);
 
-            DateTime dt = new DateTime(actionPlan.getInterventionDate());
-            int day = actionPlan.getTriggerDay().intValue();
-            maintenance.setTriggerDate(dt.minusDays(day).toDate());
+             if(actionPlan.getProgramType().getId()==1){//systematique
+                 DateTime dt = new DateTime(actionPlan.getInterventionDate());
+                 int day = actionPlan.getTriggerDay().intValue();
+                 maintenance.setTriggerDate(dt.minusDays(day).toDate());
+                 maintenance.setInterventionDate(actionPlan.getInterventionDate());
+                 maintenance.setTriggerDay(actionPlan.getTriggerDay());
+             }
+
+        if(actionPlan.getProgramType().getId()==2){//conditionnelle
+            maintenance.setConditionalType(actionPlan.getConditionalType());
+            maintenance.setValueconditionalType(actionPlan.getValueconditionalType());
+            maintenance.setMileageNext(actionPlan.getMileage());
+        }
+
+            maintenance.setCode(getNextVal());
+
+            maintenance.setProgramType(actionPlan.getProgramType());
+            maintenance.setMaintenanceState(maintenanceState);
             maintenance.setMaintenancePlan(actionPlan.getMaintenancePlan());
-            maintenance.setInterventionDate(actionPlan.getInterventionDate());
-            maintenance.setDuration(actionPlan.getDuration());
             maintenance.setAgent(actionPlan.getAgent());
             maintenance.setDeclaredDate(actionPlan.getDeclaredDate());
-            maintenance.setProgramType(actionPlan.getProgramType());
             maintenance.setMaintenanceType(actionPlan.getMaintenanceType());
             maintenance.setServiceProvider(actionPlan.getServiceProvider());
             maintenance.setResponsability(actionPlan.getResponsability());
-            maintenance.setCode(actionPlan.getMaintenancePlan().getCode());
-            maintenance.setTriggerDay(actionPlan.getTriggerDay());
-            maintenance.setTotalPrice(actionPlan.getTotalPrice());
+            //maintenance.setCode(actionPlan.getMaintenancePlan().getCode());
+
             maintenance.setPatrimony(patrimony);
                 maintenance.setActionType(actionPlan.getActionType());
 
@@ -250,20 +288,37 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Long id) throws AttributesNotFound, ErrorType {
+
         maintenanceRepository.deleteById(id);
+        Notification notification = notificationService.findOne("maintenanceId:" + id);
+        if (notification != null) {
+
+            notificationService.delete(notification.getId());
+        }
     }
 
     @Override
-    public void delete(Maintenance maintenancePlan) {
+    public void delete(Maintenance maintenancePlan) throws AttributesNotFound, ErrorType {
         maintenanceRepository.delete(MaintenanceMapper.toEntity(maintenancePlan, false));
+
+        Notification notification = notificationService.findOne("maintenanceId:" + maintenancePlan.getId());
+        if (notification != null) {
+
+            notificationService.delete(notification.getId());
+        }
     }
 
     @Override
-    public void deleteAll(List<Long> ids) {
+    public void deleteAll(List<Long> ids) throws AttributesNotFound, ErrorType {
 
         for (Long id : ids) {
             maintenanceRepository.deleteById(id);
+            Notification notification = notificationService.findOne("maintenanceId:" + id);
+            if (notification != null) {
+
+                notificationService.delete(notification.getId());
+            }
         }
     }
 
@@ -303,6 +358,70 @@ public class MaintenanceServiceImpl implements MaintenanceService {
         } catch (AttributesNotFound | ErrorType | IdNotFound | CustomException e) {
             LOGGER.error(e.getMessage(), e);
         }
+    }
+
+    @Override
+    public Maintenance getMaintenanceByActionType(long actionTypeId, long patrimonyId) {
+        return maintenanceRepository.getMaintenanceByActionType(actionTypeId, patrimonyId);
+    }
+
+
+    @Override
+    public Maintenance closeMaintenance(Maintenance maintenance) throws IdNotFound, AttributesNotFound, ErrorType {
+        MaintenanceState stateF = maintenanceStateService.findById(4L);
+
+         maintenance.setMaintenanceState(stateF);
+         Maintenance maintenance1= save(maintenance);
+
+
+       if(maintenance.getProgramType().getId()==2L) {
+            loadMaintenanceByM(maintenance);
+
+        }
+
+        Notification notification = notificationService.findOne("maintenanceId:" + maintenance.getId());
+        if (notification != null) {
+
+            notificationService.delete(notification.getId());
+        }
+
+            return maintenance1;
+    }
+
+
+    private void loadMaintenanceByM (Maintenance maintenance) throws IdNotFound, AttributesNotFound, ErrorType {
+        Maintenance maintenance2 = new Maintenance();
+        MaintenanceState stateE = maintenanceStateService.findById(1L);//En Attente
+
+        double kmlastMaintenance;
+        double Kmcondition;
+        double kmNext;
+
+        kmlastMaintenance=maintenance.getMileage();
+        Kmcondition =maintenance.getValueconditionalType().doubleValue();
+        kmNext=kmlastMaintenance+Kmcondition ;
+        maintenance2.setMileageNext(kmNext);
+
+        maintenance.setCode(getNextVal());
+
+        maintenance2.setConditionalType(maintenance.getConditionalType());
+        maintenance2.setValueconditionalType(maintenance.getValueconditionalType());
+        maintenance2.setConditionalType(maintenance.getConditionalType());
+        maintenance2.setValueconditionalType(maintenance.getValueconditionalType());
+        maintenance2.setProgramType(maintenance.getProgramType());
+        maintenance2.setMaintenanceState(stateE);
+        maintenance2.setMaintenancePlan(maintenance.getMaintenancePlan());
+        maintenance2.setAgent(maintenance.getAgent());
+        maintenance2.setDeclaredDate(maintenance.getDeclaredDate());
+        maintenance2.setMaintenanceType(maintenance.getMaintenanceType());
+        maintenance2.setServiceProvider(maintenance.getServiceProvider());
+        maintenance2.setResponsability(maintenance.getResponsability());
+        maintenance2.setCode(maintenance.getMaintenancePlan().getCode());
+        maintenance2.setPatrimony(maintenance.getPatrimony());
+        maintenance2.setActionType(maintenance.getActionType());
+
+        save(maintenance2);
+
     }
 
 }

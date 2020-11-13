@@ -236,7 +236,7 @@ public class MaintenanceStockServiceImpl implements MaintenanceStockService {
                             allReadyServerd = allReadyServerd.add(convertedStockQuantity);
                             MaintenanceStock maintenanceStock1 = copyMaintenanceStock(maintenanceStock, convertedStockQuantity, stock);
                             if (i == stocks.size() - 1)
-                                // maintenanceStock.setQuantityServed(quantityServed);
+                                //maintenanceStock.setQuantityServed(quantityServed);
 
                                 maintenanceStock = maintenanceStock1;
 

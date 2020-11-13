@@ -103,7 +103,7 @@ public class MaintenanceController {
     //@PreAuthorize("hasRole('MAINTENANCE_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@RequestBody Maintenance maintenancePlan) {
+    public void delete(@RequestBody Maintenance maintenancePlan) throws AttributesNotFound, ErrorType {
         maintenanceService.delete(maintenancePlan);
     }
 
@@ -111,13 +111,13 @@ public class MaintenanceController {
     //@PreAuthorize("hasRole('MAINTENANCEPLAN_DELETE')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) throws AttributesNotFound, ErrorType {
         maintenanceService.delete(id);
     }
 
     @RequestMapping(value = "/deleteAll", method = RequestMethod.DELETE)
     @ResponseBody
-    public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
+    public void deleteAll(@RequestParam(value = "ids") Long[] ids) throws AttributesNotFound, ErrorType {
         maintenanceService.deleteAll (Arrays.asList(ids));
     }
 
@@ -126,6 +126,12 @@ public class MaintenanceController {
     public String nextVal()
     {
         return  maintenanceService.getNextVal();
+    }
+
+    @RequestMapping(value = "/close", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Maintenance close(@RequestBody Maintenance maintenance) throws AttributesNotFound, ErrorType, IdNotFound {
+        return maintenanceService.closeMaintenance(maintenance);
     }
 
 }

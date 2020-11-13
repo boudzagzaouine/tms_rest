@@ -27,11 +27,11 @@ public interface MaintenanceService {
 
     Long size(String search) throws AttributesNotFound, ErrorType;
 
-    void delete(Long id);
+    void delete(Long id) throws AttributesNotFound, ErrorType;
 
-    void delete(Maintenance maintenancePlan);
+    void delete(Maintenance maintenancePlan) throws AttributesNotFound, ErrorType;
 
-    void deleteAll (List<Long> ids);
+    void deleteAll (List<Long> ids) throws AttributesNotFound, ErrorType;
 
     List<Maintenance> findAll();
 
@@ -44,4 +44,7 @@ public interface MaintenanceService {
 
      void updateMaintenance(Maintenance maintenance);
 
+     Maintenance getMaintenanceByActionType(long actionTypeId, long patrimonyId);
+
+     Maintenance closeMaintenance(Maintenance maintenance) throws IdNotFound, AttributesNotFound, ErrorType;
     }

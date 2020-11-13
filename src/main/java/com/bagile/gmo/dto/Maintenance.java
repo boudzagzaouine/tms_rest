@@ -30,6 +30,7 @@ public class Maintenance extends EmsDto implements Serializable {
     private Date interventionDate;
     private Patrimony patrimony;
     private Double mileage = 0.0;
+    private Double mileageNext = 0.0;
     private BigDecimal totalPrice;
    // private List<ActionMaintenance> actionMaintenances;
     private  String  agent ;
@@ -40,7 +41,11 @@ public class Maintenance extends EmsDto implements Serializable {
     private MaintenancePlan maintenancePlan ;
     private ActionType actionType ;
      private List<ActionLineMaintenance> actionLineMaintenances;
+    private ConditionalType conditionalType;
+    private BigDecimal valueconditionalType;
 
+    private Supplier supplier;
+    private PurshaseOrder purshaseOrder;
 
     public Maintenance() {
     }
@@ -103,6 +108,22 @@ public class Maintenance extends EmsDto implements Serializable {
         this.maintenanceState = maintenanceState;
     }
 
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
+
+    public PurshaseOrder getPurshaseOrder() {
+        return purshaseOrder;
+    }
+
+    public void setPurshaseOrder(PurshaseOrder purshaseOrder) {
+        this.purshaseOrder = purshaseOrder;
+    }
+
     public Patrimony getPatrimony() {
         return patrimony;
     }
@@ -117,6 +138,14 @@ public class Maintenance extends EmsDto implements Serializable {
 
     public void setMileage(Double mileage) {
         this.mileage = mileage;
+    }
+
+    public Double getMileageNext() {
+        return mileageNext;
+    }
+
+    public void setMileageNext(Double mileageNext) {
+        this.mileageNext = mileageNext;
     }
 
     public BigDecimal getTotalPrice() {
@@ -143,7 +172,22 @@ public class Maintenance extends EmsDto implements Serializable {
         this.actionLineMaintenances = actionLineMaintenances;
     }
 
-    /*public List<ActionMaintenance> getActionMaintenances() {
+    public ConditionalType getConditionalType() {
+        return conditionalType;
+    }
+
+    public void setConditionalType(ConditionalType conditionalType) {
+        this.conditionalType = conditionalType;
+    }
+
+    public BigDecimal getValueconditionalType() {
+        return valueconditionalType;
+    }
+
+    public void setValueconditionalType(BigDecimal valueconditionalType) {
+        this.valueconditionalType = valueconditionalType;
+    }
+/*public List<ActionMaintenance> getActionMaintenances() {
         return actionMaintenances;
     }
 

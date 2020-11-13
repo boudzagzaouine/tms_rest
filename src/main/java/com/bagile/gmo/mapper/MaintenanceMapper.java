@@ -32,6 +32,7 @@ public class MaintenanceMapper {
         map.put("actionLineMaintenances", "gmoActionLineMaintenances");
         map.put("totalPrice", "gmoMaintenanceTotalPrice");
         map.put("mileage", "gmoMaintenanceMileage");
+        map.put("mileageNext", "gmoMaintenanceMileageNext");
         map.put("triggerDay", "gmoTriggerDay");
         map.put("triggerDate", "gmoTriggerDate");
         map.put("interventionDate", "gmoInterventionDate");
@@ -48,7 +49,8 @@ public class MaintenanceMapper {
         map.put("maintenancePlan", "gmoMaintenancePlan");
         map.put("actionType", "gmoActionType");
 
-
+        map.put("supplier", "rcpSupplier");
+        map.put("purshaseOrder", "rcpPurshaseOrder");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -91,6 +93,8 @@ public class MaintenanceMapper {
         gmoMaintenance.setUpdatedBy(maintenance.getUpdatedBy());
         gmoMaintenance.setCreationDate(maintenance.getCreationDate());
         gmoMaintenance.setUpdateDate(maintenance.getUpdateDate());
+        gmoMaintenance.setGmoMaintenanceValueconditionalType(maintenance.getValueconditionalType());
+        gmoMaintenance.setGmoMaintenanceMileageNext(maintenance.getMileageNext());
 
         if (!lazy) {
             gmoMaintenance.setGmoMaintenanceType(MaintenanceTypeMapper.toEntity(maintenance.getMaintenanceType(), true));
@@ -105,6 +109,10 @@ public class MaintenanceMapper {
             gmoMaintenance.setGmoMaintenancePlan(MaintenancePlanMapper.toEntity(maintenance.getMaintenancePlan(),true));
             gmoMaintenance.setGmoActionLineMaintenances(ActionLineMaintenanceMapper.toEntities (maintenance.getActionLineMaintenances(), false));
             gmoMaintenance.setGmoActionType(ActionTypeMapper.toEntity (maintenance.getActionType(), false));
+            gmoMaintenance.setGmoConditionalType(ConditionalTypeMapper.toEntity (maintenance.getConditionalType(), false));
+
+            gmoMaintenance.setRcpSupplier(SupplierMapper.toEntity (maintenance.getSupplier(), false));
+            gmoMaintenance.setRcpPurshaseOrder(PurshaseOrderMapper.toEntity (maintenance.getPurshaseOrder(), false));
 
 
             oneToMany(gmoMaintenance);
@@ -153,6 +161,9 @@ public class MaintenanceMapper {
         maintenance.setUpdatedBy(gmoMaintenance.getUpdatedBy());
         maintenance.setCreationDate(gmoMaintenance.getCreationDate());
         maintenance.setUpdateDate(gmoMaintenance.getUpdateDate());
+        maintenance.setValueconditionalType(gmoMaintenance.getGmoMaintenanceValueconditionalType());
+        maintenance.setMileageNext(gmoMaintenance.getGmoMaintenanceMileageNext());
+
         if (!lazy) {
             maintenance.setMaintenanceType(MaintenanceTypeMapper.toDto(gmoMaintenance.getGmoMaintenanceType(), true));
             maintenance.setMaintenanceState(MaintenanceStateMapper.toDto(gmoMaintenance.getGmoMaintenanceState(), true));
@@ -165,6 +176,10 @@ public class MaintenanceMapper {
             maintenance.setProgramType(ProgramTypeMapper.toDto(gmoMaintenance.getGmoProgramType(),true));
             maintenance.setMaintenancePlan(MaintenancePlanMapper.toDto(gmoMaintenance.getGmoMaintenancePlan(),true));
             maintenance.setActionType(ActionTypeMapper.toDto(gmoMaintenance.getGmoActionType(),true));
+            maintenance.setConditionalType(ConditionalTypeMapper.toDto(gmoMaintenance.getGmoConditionalType(),true));
+
+            maintenance.setSupplier(SupplierMapper.toDto(gmoMaintenance.getRcpSupplier(),true));
+            maintenance.setPurshaseOrder(PurshaseOrderMapper.toDto(gmoMaintenance.getRcpPurshaseOrder(),true));
 
         }
 

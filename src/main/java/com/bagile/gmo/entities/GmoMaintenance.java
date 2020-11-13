@@ -63,6 +63,8 @@ public class GmoMaintenance extends EmsEntity {
     private BigDecimal gmoMaintenanceTotalPrice = BigDecimal.ZERO;
     @Column(name = "gmo_maintenancemileage")
     private Double gmoMaintenanceMileage = 0.0;
+    @Column(name = "gmo_maintenancemileagenext")
+    private Double gmoMaintenanceMileageNext = 0.0;
 
     @Column(name = "gmo_maintenancetriggerday")
     private BigDecimal gmoTriggerDay;
@@ -97,6 +99,22 @@ private String gmoAgent ;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_actiontypeid")
     private GmoActionType gmoActionType;
+
+    @ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.MERGE)
+    @JoinColumn(name = "gmo_conditionaltypeid")
+    private GmoConditionalType gmoConditionalType;
+
+    @Column(name = "gmo_maintenancevalueconditionaltype")
+    private BigDecimal gmoMaintenanceValueconditionalType;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_supplierid")
+    private RcpSupplier rcpSupplier;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_purchaseorderid")
+    private RcpPurshaseOrder rcpPurshaseOrder;
+
+
     public GmoMaintenance() {
     }
 
@@ -122,6 +140,38 @@ private String gmoAgent ;
 
     public void setGmoMaintenanceDescription(String gmoMaintenanceDescription) {
         this.gmoMaintenanceDescription = gmoMaintenanceDescription;
+    }
+
+    public GmoConditionalType getGmoConditionalType() {
+        return gmoConditionalType;
+    }
+
+    public void setGmoConditionalType(GmoConditionalType gmoConditionalType) {
+        this.gmoConditionalType = gmoConditionalType;
+    }
+
+    public BigDecimal getGmoMaintenanceValueconditionalType() {
+        return gmoMaintenanceValueconditionalType;
+    }
+
+    public void setGmoMaintenanceValueconditionalType(BigDecimal gmoActionPlanValueconditionalType) {
+        this.gmoMaintenanceValueconditionalType = gmoActionPlanValueconditionalType;
+    }
+
+    public RcpSupplier getRcpSupplier() {
+        return rcpSupplier;
+    }
+
+    public void setRcpSupplier(RcpSupplier rcpSupplier) {
+        this.rcpSupplier = rcpSupplier;
+    }
+
+    public RcpPurshaseOrder getRcpPurshaseOrder() {
+        return rcpPurshaseOrder;
+    }
+
+    public void setRcpPurshaseOrder(RcpPurshaseOrder rcpPurshaseOrder) {
+        this.rcpPurshaseOrder = rcpPurshaseOrder;
     }
 
     public GmoActionType getGmoActionType() {
@@ -190,6 +240,14 @@ private String gmoAgent ;
 
     public void setGmoServiceProvider(GmoServiceProvider gmoServiceProvider) {
         this.gmoServiceProvider = gmoServiceProvider;
+    }
+
+    public Double getGmoMaintenanceMileageNext() {
+        return gmoMaintenanceMileageNext;
+    }
+
+    public void setGmoMaintenanceMileageNext(Double gmoMaintenanceMileageNext) {
+        this.gmoMaintenanceMileageNext = gmoMaintenanceMileageNext;
     }
 
     public GmoResponsability getGmoResponsability() {
