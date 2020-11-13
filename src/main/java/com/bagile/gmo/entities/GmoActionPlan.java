@@ -40,6 +40,9 @@ public class GmoActionPlan extends EmsEntity {
     private GmoMaintenancePlan gmoMaintenancePlan;
     private  GmoActionType gmoActionType;
 
+    private GmoConditionalType gmoConditionalType;
+    private BigDecimal gmoActionPlanValueconditionalType;
+
     public GmoActionPlan() {
     }
     @Id
@@ -125,6 +128,25 @@ public class GmoActionPlan extends EmsEntity {
 
     public void setGmoServiceProvider(GmoServiceProvider gmoServiceProvider) {
         this.gmoServiceProvider = gmoServiceProvider;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.MERGE)
+    @JoinColumn(name = "gmo_conditionaltypeid")
+    public GmoConditionalType getGmoConditionalType() {
+        return gmoConditionalType;
+    }
+
+    public void setGmoConditionalType(GmoConditionalType gmoConditionalType) {
+        this.gmoConditionalType = gmoConditionalType;
+    }
+
+    @Column(name = "gmo_actionplanvalueconditionaltype")
+    public BigDecimal getGmoActionPlanValueconditionalType() {
+        return gmoActionPlanValueconditionalType;
+    }
+
+    public void setGmoActionPlanValueconditionalType(BigDecimal gmoActionPlanValueconditionalType) {
+        this.gmoActionPlanValueconditionalType = gmoActionPlanValueconditionalType;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)

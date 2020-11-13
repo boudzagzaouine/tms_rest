@@ -47,7 +47,8 @@ public class VehicleMapper {
         map.put("Energy", "gmoVehicleEnergy");
         map.put("transport", "trpTransport");
         map.put("maintenancePlan", "gmoMaintenancePlan");
-
+        map.put("initialMileage", "gmoVehicleInitialMileage");
+        map.put("currentMileage", "gmoVehicleCurrentMileage");
         //  map.put("insuranceTermVehicles", "gmoInsuranceTermsVehicules");
 
     }
@@ -72,6 +73,8 @@ public class VehicleMapper {
         gmoVehicle.setGmoVehicleValueTechnicalvisit(vehicle.getValueTechnicalVisit());
         gmoVehicle.setGmoAquisitionDate(vehicle.getAquisitionDate());
         gmoVehicle.setGmoAamount(vehicle.getAmount());
+        gmoVehicle.setGmoVehicleInitialMileage(vehicle.getInitialMileage());
+        gmoVehicle.setGmoVehicleCurrentMileage(vehicle.getCurrentMileage());
 
         gmoVehicle.setGmoVehicleEngineOil(vehicle.getEngineOil());
         gmoVehicle.setGmoVehicleRearDeck(vehicle.getRearDeck());
@@ -126,6 +129,8 @@ public class VehicleMapper {
         vehicle.setCreationDate(gmoVehicle.getCreationDate());
         vehicle.setUpdateDate(gmoVehicle.getUpdateDate());
 
+        vehicle.setInitialMileage(gmoVehicle.getGmoVehicleInitialMileage());
+        vehicle.setCurrentMileage(gmoVehicle.getGmoVehicleCurrentMileage());
 
         vehicle.setEngineOil(gmoVehicle.getGmoVehicleEngineOil());
         vehicle.setRearDeck(gmoVehicle.getGmoVehicleRearDeck());

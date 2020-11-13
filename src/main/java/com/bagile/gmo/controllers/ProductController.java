@@ -94,7 +94,7 @@ public class ProductController {
 
     @RequestMapping(value = "/deleteAll", method = RequestMethod.DELETE)
     @ResponseBody
-    public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
+    public void deleteAll(@RequestParam(value = "ids") Long[] ids) throws AttributesNotFound, ErrorType {
         productService.deleteAll (Arrays.asList(ids));
     }
 }

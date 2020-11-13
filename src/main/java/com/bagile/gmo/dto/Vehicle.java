@@ -43,7 +43,8 @@ public class Vehicle extends Patrimony implements Serializable {
    private Date aquisitionDate;
    private BigDecimal amount;
    private Transport transport;
-
+    private BigDecimal initialMileage;
+    private BigDecimal currentMileage;
 //    private List<InsuranceTermsVehicle> insuranceTermVehicles=new ArrayList<>();
     private List<Turn> turns=new ArrayList<>();
 
@@ -76,6 +77,23 @@ public class Vehicle extends Patrimony implements Serializable {
         this.code = code;
     }
 */
+
+    public BigDecimal getInitialMileage() {
+        return initialMileage;
+    }
+
+    public void setInitialMileage(BigDecimal initialMileage) {
+        this.initialMileage = initialMileage;
+    }
+
+    public BigDecimal getCurrentMileage() {
+        return currentMileage;
+    }
+
+    public void setCurrentMileage(BigDecimal currentMileage) {
+        this.currentMileage = currentMileage;
+    }
+
     public Date getTechnicalVisit() {
         return technicalVisit;
     }

@@ -39,6 +39,9 @@ public class ActionPlanMapper {
         map.put("ActionPlan", "GmoActionPlan");
         map.put("actionType", "gmoActionType");
 
+        map.put("conditionalType", "gmoConditionalType");
+        map.put("valueconditionalType", "gmoActionPlanValueconditionalType");
+
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdByUser");
@@ -74,6 +77,7 @@ public class ActionPlanMapper {
         gmoActionPlan.setGmoActionPlanObservation(actionPlan.getObservation());
         gmoActionPlan.setGmoActionPlanDayOfMonth(actionPlan.getDayOfMonth());
         gmoActionPlan.setGmoActionPlanInterventionDate(actionPlan.getInterventionDate());
+        gmoActionPlan.setGmoActionPlanValueconditionalType(actionPlan.getValueconditionalType());
 
         gmoActionPlan.setGmoActionPlanDuration(actionPlan.getDuration());
         gmoActionPlan.setCreatedBy(actionPlan.getCreatedBy());
@@ -94,6 +98,7 @@ public class ActionPlanMapper {
             gmoActionPlan.setGmoMaintenanceType(MaintenanceTypeMapper.toEntity (actionPlan.getMaintenanceType(), false));
 
             gmoActionPlan.setGmoActionType(ActionTypeMapper.toEntity (actionPlan.getActionType(), false));
+            gmoActionPlan.setGmoConditionalType(ConditionalTypeMapper.toEntity (actionPlan.getConditionalType(), false));
 
             // oneToMany(gmoActionPlan);
 
@@ -136,6 +141,7 @@ public class ActionPlanMapper {
         actionPlan.setUpdatedBy(gmoActionPlan.getUpdatedBy());
         actionPlan.setCreationDate(gmoActionPlan.getCreationDate());
         actionPlan.setUpdateDate(gmoActionPlan.getUpdateDate());
+        actionPlan.setValueconditionalType(gmoActionPlan.getGmoActionPlanValueconditionalType());
 
 
         if (!lazy) {
@@ -152,6 +158,7 @@ public class ActionPlanMapper {
             actionPlan.setMonths(MonthMapper.toDtos(gmoActionPlan.getGmoMonths(),false));
             actionPlan.setMaintenancePlan(MaintenancePlanMapper.toDto(gmoActionPlan.getGmoMaintenancePlan(),true));
             actionPlan.setActionType(ActionTypeMapper.toDto(gmoActionPlan.getGmoActionType(),false));
+            actionPlan.setConditionalType(ConditionalTypeMapper.toDto(gmoActionPlan.getGmoConditionalType(),false));
 
         }
 

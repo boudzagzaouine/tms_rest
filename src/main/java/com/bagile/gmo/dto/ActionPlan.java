@@ -38,7 +38,8 @@ public class ActionPlan extends EmsDto implements Serializable {
     private List<Day> days    = new ArrayList<>();
     private MaintenancePlan maintenancePlan;
     private ActionType actionType ;
-
+ private ConditionalType conditionalType;
+ private BigDecimal valueconditionalType;
 
     public ActionPlan() {
     }
@@ -237,6 +238,23 @@ public class ActionPlan extends EmsDto implements Serializable {
 
     public void setMaintenancePlan(MaintenancePlan maintenancePlan) {
         this.maintenancePlan = maintenancePlan;
+    }
+
+
+    public ConditionalType getConditionalType() {
+        return conditionalType;
+    }
+
+    public void setConditionalType(ConditionalType conditionalType) {
+        this.conditionalType = conditionalType;
+    }
+
+    public BigDecimal getValueconditionalType() {
+        return valueconditionalType;
+    }
+
+    public void setValueconditionalType(BigDecimal valueconditionalType) {
+        this.valueconditionalType = valueconditionalType;
     }
 
     @Override

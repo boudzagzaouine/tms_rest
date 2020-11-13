@@ -743,6 +743,18 @@ public class ReceptionStockServiceImpl implements ReceptionStockService {
             }
             save(receptionStock);
         }
+
+        if (receptionLine.getProduct().getStockQuantity() == null) {
+            receptionLine.getProduct().setStockQuantity(BigDecimal.ZERO);
+        }
+        Notification notification = notificationService.findOne("productId:" + receptionLine.getProduct().getId());
+        if (notification != null) {
+            if (receptionLine.getProduct().getStockQuantity().compareTo(receptionLine.getProduct().getMinStock()) <= 0) {
+                notificationService.delete(notification.getId());
+
+            }
+        }
+
         receptionLine.setQuantityReceived(receptionLine.getQuantity());
         return receptionLine;
     }

@@ -39,6 +39,9 @@ public class GmoVehicle extends GmoPatrimony {
     private String gmoVehicleEnergy ;
     private  Date gmoVehicleVignette;
     private BigDecimal gmoVehicleValueVignete;
+    private BigDecimal gmoVehicleInitialMileage;
+    private BigDecimal gmoVehicleCurrentMileage;
+
     //private Set<GmoInsuranceTermsVehicule> gmoInsuranceTermsVehicules=new HashSet<>();
 
     private TrpTransport trpTransport;
@@ -102,6 +105,24 @@ public class GmoVehicle extends GmoPatrimony {
 
     public void setGmoAquisitionDate(Date gmoAquisitionDate) {
         this.gmoAquisitionDate = gmoAquisitionDate;
+    }
+
+    @Column(name = "gmo_gmovehicleinitialmileage")
+    public BigDecimal getGmoVehicleInitialMileage() {
+        return gmoVehicleInitialMileage;
+    }
+
+    public void setGmoVehicleInitialMileage(BigDecimal gmoVehicleMileage) {
+        this.gmoVehicleInitialMileage = gmoVehicleMileage;
+    }
+
+    @Column(name = "gmo_gmovehiclecurrentmileage")
+    public BigDecimal getGmoVehicleCurrentMileage() {
+        return gmoVehicleCurrentMileage;
+    }
+
+    public void setGmoVehicleCurrentMileage(BigDecimal gmoVehicleCurrentMileage) {
+        this.gmoVehicleCurrentMileage = gmoVehicleCurrentMileage;
     }
 
     @Column(name = "gmo_vehiculeamount")

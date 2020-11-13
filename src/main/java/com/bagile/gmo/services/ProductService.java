@@ -34,7 +34,7 @@ public interface ProductService {
     void delete(Long id);
 
     void delete(Product product);
-    void deleteAll (List<Long> ids);
+    void deleteAll (List<Long> ids) throws AttributesNotFound, ErrorType;
 
     BigDecimal convertQuantityByUom(BigDecimal qte, Uom uom, Uom uomServed, Product product);
     BigDecimal convertQuantityByUom(BigDecimal qte, ProductPack packExpected, ProductPack packServed);

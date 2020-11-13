@@ -39,6 +39,10 @@ public class ReceptionServiceImpl implements ReceptionService {
     @Autowired
     private SettingService settingService;
 
+    @Autowired
+    private NotificationService notificationService;
+
+
     public ReceptionServiceImpl() {}
 
 
@@ -62,7 +66,16 @@ public class ReceptionServiceImpl implements ReceptionService {
                 if (receptionLine.getQuantityReceived() != null && receptionLine.getQuantity().compareTo(receptionLine.getQuantityReceived()) < 0) {
                     receptionStockService.updateReceptionStock(receptionLine);
                 }
+
+
+
+
             }
+
+
+
+
+
         }
 
         return ReceptionMapper.toDto(receptionRepository.saveAndFlush(ReceptionMapper.toEntity(reception, false)), false);

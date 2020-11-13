@@ -151,6 +151,8 @@ public class CriteriaPredicate {
                 return path.goe(valueLong);
             } else if (criteria.getOperation().equalsIgnoreCase("<")) {
                 return path.loe(valueLong);
+            } else if (criteria.getOperation().equalsIgnoreCase("!")) {
+                return path.ne(valueLong);
             }
         }
         System.out.println(criteria.getKey() + type.getTypeName() +criteria.getValue().toString() + " Not found");

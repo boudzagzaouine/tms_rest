@@ -9,6 +9,7 @@ import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.ProductMapper;
 import com.bagile.gmo.repositories.ProductRepository;
 import com.bagile.gmo.repositories.ProductViewRepository;
+import com.bagile.gmo.services.NotificationService;
 import com.bagile.gmo.services.ProductPackService;
 import com.bagile.gmo.services.ProductService;
 import com.bagile.gmo.util.EmsDate;
@@ -37,6 +38,8 @@ public class ProductServiceImpl implements ProductService {
     private ProductPackService productPackService;
     @Autowired
     private ProductViewRepository productViewRepository;
+    @Autowired
+    private NotificationService notificationService;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmssSS");
     private final static Logger LOGGER = LoggerFactory
@@ -232,9 +235,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteAll(List<Long> ids) {
+    public void deleteAll(List<Long> ids) throws AttributesNotFound, ErrorType {
         for (Long id : ids) {
             productRepository.deleteById(id);
+            Notification notification = notificationService. findOne("maintenanceId:" + id);
+            if (notification != null) {
+
+                notificationService.delete(notification.getId());
+            }
         }
     }
 

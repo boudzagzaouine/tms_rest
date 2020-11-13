@@ -1,7 +1,6 @@
 package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.*;
-import com.bagile.gmo.entities.GmoInsuranceType;
 import com.bagile.gmo.entities.StkContainer;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ContainerException;
@@ -75,7 +74,7 @@ public class ContainerServiceImpl implements ContainerService, AddActive {
 
     @Override
     public Container findOne(String search) throws AttributesNotFound, ErrorType {
-        return ContainerMapper.toDto(containerRepository.findOne (Search.expression (search, GmoInsuranceType.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
+        return ContainerMapper.toDto(containerRepository.findOne (Search.expression (search, StkContainer.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
     }
 
     @Override

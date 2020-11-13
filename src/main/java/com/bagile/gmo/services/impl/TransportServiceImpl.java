@@ -106,7 +106,7 @@ public class TransportServiceImpl implements TransportService {
     }
     @Override
     public String getNextVal() {
-        String value=settingService.generateCodeReception() + transportRepository.getNextVal().get(0);
+        String value=settingService.generateCodeTransport() + transportRepository.getNextVal().get(0);
         return value;
 
 

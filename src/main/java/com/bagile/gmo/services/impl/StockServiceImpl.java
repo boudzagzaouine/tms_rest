@@ -44,6 +44,8 @@ public class StockServiceImpl implements StockService, AddActive {
     @Autowired
     private ProductPackService productPackService;
 
+    @Autowired
+    private NotificationService notificationService;
 
     /**
      * create or updated stock
@@ -77,6 +79,19 @@ public class StockServiceImpl implements StockService, AddActive {
         if (null == stock.getPurchasePrice())
             stock.setPurchasePrice(stock.getProduct().getPurshasePriceUB());
         updateQuantity(stock);
+
+        if (stock.getProduct().getStockQuantity() == null) {
+            stock.getProduct().setStockQuantity(BigDecimal.ZERO);
+        }
+        Notification notification = notificationService.findOne("productId:" + stock.getProduct().getId());
+        if (notification != null) {
+            if (stock.getProduct().getStockQuantity().compareTo(stock.getProduct().getMinStock()) <= 0) {
+                notificationService.delete(notification.getId());
+
+            }
+        }
+
+
         return StockMapper.toDto(stockRepository.saveAndFlush(StockMapper.toEntity(stock, false)), false);
     }
 

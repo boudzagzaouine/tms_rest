@@ -47,10 +47,10 @@ public class VehicleServiceImpl implements VehicleService {
 
 
     if (vehicle1.getMaintenancePlan() != null) {
-        List<Maintenance> maintenance =maintenanceService.find("patrimony.id:"+vehicle1.getId());
-        if(maintenance.size()==0) {
+        List<Maintenance> maintenance =maintenanceService.find("patrimony.id:"+vehicle1.getId()+",maintenancePlan.id:"+vehicle1.getMaintenancePlan().getId());
+       if(maintenance.size()==0) {
         this.maintenanceService.generateMaintenance(vehicle1);
-    }
+               }
 }
         return vehicle1;
     }
