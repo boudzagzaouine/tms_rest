@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -81,14 +82,14 @@ public class MachineController {
     //@PreAuthorize("hasRole('VEHICLE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Machine add(@RequestBody Machine machine) {
+    public Machine add(@RequestBody Machine machine) throws AttributesNotFound, ErrorType, IdNotFound, IOException {
         return machineService.save(machine);
     }
 
     //@PreAuthorize("hasRole('VEHICLE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Machine set(@RequestBody Machine machine) {
+    public Machine set(@RequestBody Machine machine) throws AttributesNotFound, ErrorType, IdNotFound, IOException {
         return machineService.save(machine);
     }
 

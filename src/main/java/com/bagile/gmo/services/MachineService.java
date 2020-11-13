@@ -5,12 +5,13 @@ import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 
+import java.io.IOException;
 import java.util.List;
 
 
 public interface MachineService {
 
-    Machine save(Machine machine);
+    Machine save(Machine machine) throws AttributesNotFound, ErrorType, IOException, IdNotFound;
 
     Long size();
 

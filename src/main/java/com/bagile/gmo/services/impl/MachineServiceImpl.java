@@ -1,6 +1,7 @@
 package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.Machine;
+import com.bagile.gmo.dto.Maintenance;
 import com.bagile.gmo.entities.GmoMachine;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
@@ -8,6 +9,7 @@ import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.MachineMapper;
 import com.bagile.gmo.repositories.MachineRepository;
 import com.bagile.gmo.services.MachineService;
+import com.bagile.gmo.services.MaintenanceService;
 import com.bagile.gmo.services.SettingService;
 import com.bagile.gmo.util.Search;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -26,14 +29,27 @@ public class MachineServiceImpl implements MachineService {
     private final MachineRepository machineRepository;
     @Autowired
     private SettingService settingService;
+
+    @Autowired
+    private MaintenanceService maintenanceService;
+
     public MachineServiceImpl(MachineRepository machineRepository) {
         this.machineRepository = machineRepository;
     }
 
     @Override
-    public Machine save(Machine machine) {
-        return MachineMapper.toDto
+    public Machine save(Machine machine) throws AttributesNotFound, ErrorType, IOException, IdNotFound {
+        Machine machine1 = MachineMapper.toDto
                 (machineRepository.saveAndFlush(MachineMapper.toEntity(machine, false)), false);
+
+
+        if (machine1.getMaintenancePlan() != null) {
+            List<Maintenance> maintenance = maintenanceService.find("patrimony.id:" + machine1.getId());
+            if (maintenance.size() == 0) {
+                this.maintenanceService.generateMaintenance(machine1);
+            }
+        }
+        return machine1;
     }
 
     @Override

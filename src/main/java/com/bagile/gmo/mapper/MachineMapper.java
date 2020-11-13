@@ -28,6 +28,7 @@ public class MachineMapper {
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdBy");
         map.put("updatedBy", "updatedBy");
+        map.put("maintenancePlan", "gmoMaintenancePlan");
     }
 
     public static Map<String, String> getMap() {
@@ -56,6 +57,7 @@ public class MachineMapper {
             gmoMachine.setGmoContractType (ContractTypeMapper.toEntity (machine.getContractType (), true));
             gmoMachine.setGmoConsumptionType (ConsumptionTypeMapper.toEntity (machine.getConsumptionType (), true));
             gmoMachine.setTrpTransport (TransportMapper.toEntity (machine.getTransport (), false));
+            gmoMachine.setGmoMaintenancePlan (MaintenancePlanMapper.toEntity (machine.getMaintenancePlan (), false));
 
         }
         return gmoMachine;
@@ -86,6 +88,7 @@ public class MachineMapper {
             machine.setContractType (ContractTypeMapper.toDto (gmoMachine.getGmoContractType (), true));
             machine.setConsumptionType (ConsumptionTypeMapper.toDto (gmoMachine.getGmoConsumptionType (), true));
             machine.setTransport (TransportMapper.toDto (gmoMachine.getTrpTransport (), false));
+            machine.setMaintenancePlan (MaintenancePlanMapper.toDto (gmoMachine.getGmoMaintenancePlan (), false));
 
         }
         return machine;
