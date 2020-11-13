@@ -1,7 +1,10 @@
 package com.bagile.gmo.services.impl;
 
+import com.bagile.gmo.config.mail.EmailService;
+import com.bagile.gmo.config.mail.MailConfig;
 import com.bagile.gmo.dto.*;
 import com.bagile.gmo.entities.GmoNotification;
+import com.bagile.gmo.entities.Template;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
@@ -42,6 +45,20 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Autowired
     private NotificationStateService notificationStateService;
+
+    @Autowired
+    private NotificationTypeService notificationTypeService;
+
+    @Autowired
+    private  EmailService emailService;
+
+    @Autowired
+    private  TemplateService templateService;
+    @Autowired
+    private  MailConfigService mailConfigService;
+
+
+
     private final static Logger LOGGER = LoggerFactory
             .getLogger(ProductService.class);
 
@@ -142,6 +159,8 @@ public class NotificationServiceImpl implements NotificationService {
 
 
     }
+
+
     @Override
     @Scheduled(fixedDelay = 60000L)
     public void verify() throws AttributesNotFound, ErrorType, IdNotFound {
@@ -160,12 +179,30 @@ public class NotificationServiceImpl implements NotificationService {
     private void verifyTriggerDateMaintenance() throws IdNotFound, AttributesNotFound, ErrorType {
 
         ////// retard
-        List<Maintenance> maintenanceList = maintenanceService.find("interventionDate<" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) );//+ ",maintenanceState.id:" + 1
+        List<Maintenance> maintenanceList = maintenanceService.find("interventionDate<" + new SimpleDateFormat("yyyy-MM-dd").format(new Date())+",programType.id:"+1+",maintenanceState.id !"+4+",maintenanceState.id !"+3 );
         addMaintenanceToNotification(maintenanceList, 1L, 2L); // 2=retard
 
         //
-        List<Maintenance> maintenanceDeclareList = maintenanceService.find("triggerDate<" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) );//+ ",maintenanceState.id:" + 1
+        List<Maintenance> maintenanceDeclareList = maintenanceService.find("triggerDate<" + new SimpleDateFormat("yyyy-MM-dd").format(new Date())+",programType.id:"+1+",maintenanceState.id !"+4+",maintenanceState.id !"+3 );
         addMaintenanceToNotification(maintenanceDeclareList, 2L, 3L); //3= en attente
+
+        //
+        List<Maintenance> maintenanceConditionelList = maintenanceService.find("programType.id:"+2+",maintenanceState.id:"+ 1L); //3 en attente
+
+        for(Maintenance m: maintenanceConditionelList){
+            if((((Vehicle) (m.getPatrimony())).getCurrentMileage()) != null) {
+                if (m.getMileageNext().compareTo(((Vehicle) (m.getPatrimony())).getCurrentMileage().doubleValue()) <= 0) {
+
+                    addMaintenanceToNotification(maintenanceConditionelList, 1L, 2L); //2= en retard
+
+                }
+            }
+        }
+
+
+
+
+
 
     }
 
@@ -176,6 +213,9 @@ public class NotificationServiceImpl implements NotificationService {
         List<Notification> notifications = new ArrayList<>();
         MaintenanceState maintenanceState = maintenanceStateService.findById(maintenanceStateID);
         NotificationState notificationState = notificationStateService.findById(notificationStateID); // RETARD
+
+        NotificationType notificationTypeM = notificationTypeService.findById(1L); // Maintenance
+
         if (maintenanceList.size() > 0) {
             for (Maintenance maintenanace : maintenanceList) {
                 Notification notification = new Notification();
@@ -184,13 +224,15 @@ public class NotificationServiceImpl implements NotificationService {
                     maintenanace.setMaintenanceState(maintenanceState);
                     maintenanceService.save(maintenanace);
                     notification.setCode(maintenanace.getCode());
-                    notification.setType("Maintenance");
+                    notification.setNotificationType(notificationTypeM);
                     notification.setNotificationState(notificationState);
                     notification.setMaintenanceId(maintenanace.getId());
                     notification.setPatimonyCode(maintenanace.getPatrimony().getCode());
                     notification.setAction(maintenanace.getActionType().getCode());
                     notifications.add(notification);
-
+                    MailConfig mail=mailConfigService.findById(1L);
+                    Template template=templateService.findById(1L);
+                    emailService.sendEmail(notification,mail,template);
                 }
             }
 
@@ -206,6 +248,8 @@ public class NotificationServiceImpl implements NotificationService {
         List<Notification> notifications = new ArrayList<>();
         NotificationState notificationStatee = notificationStateService.findById(3L);//epuise
         List<Product> productList = productService.findAll();
+        NotificationType notificationTypeP = notificationTypeService.findById(2L); // Maintenance
+
         if (productList.size()>0) {
 
             for (Product product : productList) {
@@ -219,10 +263,14 @@ public class NotificationServiceImpl implements NotificationService {
                     if(notificationSearchProduct== null) {
                         if (product.getStockQuantity().compareTo(product.getMinStock()) <= 0) {
                             notification.setCode(product.getCode());
-                            notification.setType("Produit");
+                            notification.setNotificationType(notificationTypeP);
                             notification.setNotificationState(notificationStatee);
                             notification.setProductId(product.getId());
                             notifications.add(notification);
+
+                            MailConfig mail=mailConfigService.findById(1L);
+                            Template template=templateService.findById(2L);
+                            emailService.sendEmail(notification,mail,template);
                         }
                     }
                 }
@@ -231,6 +279,51 @@ public class NotificationServiceImpl implements NotificationService {
         }
 
     }
+
+
+   /* private void verifyCOnditional() throws AttributesNotFound, ErrorType, IdNotFound {
+
+        double latestKmMaintenance =0;
+        double initialKm =0;
+        double  actuelKm=0;
+        BigDecimal conditionalKm;
+        List<Maintenance> maintenanceList = maintenanceService.find("programType.id:" +2L+"maintenanceState.id:"+3L); //2L =corrective * /4L statut En Attante
+
+
+
+
+        for(Maintenance maintenance :maintenanceList){
+            List<Maintenance> maintenanceActionList = maintenanceService.find
+                    ("actionType.id:"+maintenance.getActionType().getId()+
+                            "patrimony.id:"+maintenance.getPatrimony().getId()) ;
+
+
+
+
+
+
+
+            conditionalKm=maintenance.getValueconditionalType();
+            conditionalKm =maintenance
+
+            latestKmMaintenance=
+
+           if(maintenance.getPatrimony() instanceof Vehicle) {
+                latestKmMaintenance=  maintenance.getPatrimony().getm
+            }
+         double km = (maintenance.getPatrimony())
+             if( maintenance.getPatrimony()){
+
+
+             }
+        }
+
+       // addMaintenanceToNotification(maintenanceList, 1L, 2L); 2=retard
+
+
+
+
+    }*/
 
 
 }

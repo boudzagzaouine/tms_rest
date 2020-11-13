@@ -9,12 +9,11 @@ public class GmoNotification extends EmsEntity{
 
     private long gmoNotificationId;
     private String gmoNotificationCode;
-    private String gmoNotificationType;
     private GmoNotificationState gmoNotificationState ;
     private long gmoNotificationProductId;
     private long gmoNotificationMaintenanceId;
     private String gmoNotificationPatrimonyCode ;
-    private  String gmoNotificationTypePatrimony;
+    private  GmoNotificationType gmoNotificationType;
     private String gmoNotificationAction;
 
     @Id
@@ -48,14 +47,17 @@ public class GmoNotification extends EmsEntity{
         this.gmoNotificationState = gmoNotificationState;
     }
 
-    @Column(name = "gmo_Notificationtype")
-    public String getGmoNotificationType() {
+    @ManyToOne
+    @JoinColumn(name = "gmo_notificationtypeid")
+    public GmoNotificationType getGmoNotificationType() {
         return gmoNotificationType;
     }
 
-    public void setGmoNotificationType(String gmoNotificationDescription) {
-        this.gmoNotificationType = gmoNotificationDescription;
+    public void setGmoNotificationType(GmoNotificationType gmoNotificationTypePatrimony) {
+        this.gmoNotificationType = gmoNotificationTypePatrimony;
     }
+
+
 
     @Column(name = "gmo_productid")
     public long getGmoNotificationProductId() {
@@ -85,14 +87,6 @@ public class GmoNotification extends EmsEntity{
         this.gmoNotificationPatrimonyCode = gmoNotificationPatrimonyCode;
     }
 
-    @Column(name = "gmo_notifiationTypePatrimony")
-    public String getGmoNotificationTypePatrimony() {
-        return gmoNotificationTypePatrimony;
-    }
-
-    public void setGmoNotificationTypePatrimony(String gmoNotificationTypePatrimony) {
-        this.gmoNotificationTypePatrimony = gmoNotificationTypePatrimony;
-    }
 
 
     @Column(name = "gmo_notifiationaction")

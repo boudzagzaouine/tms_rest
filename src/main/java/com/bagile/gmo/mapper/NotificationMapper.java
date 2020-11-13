@@ -46,11 +46,9 @@ public class NotificationMapper {
         GmoNotification gmoNotification = new GmoNotification ( );
         gmoNotification.setGmoNotificationId (notification.getId ( ));
         gmoNotification.setGmoNotificationCode (notification.getCode ( ) != null ? notification.getCode ( ).toUpperCase ( ) : null);
-        gmoNotification.setGmoNotificationType (notification.getType ( ));
         gmoNotification.setGmoNotificationProductId(notification.getProductId ( ));
         gmoNotification.setGmoNotificationMaintenanceId(notification.getMaintenanceId ( ));
         gmoNotification.setGmoNotificationPatrimonyCode(notification.getPatimonyCode ( ));
-        gmoNotification.setGmoNotificationTypePatrimony(notification.getTypePatrimony ( ));
         gmoNotification.setGmoNotificationAction(notification.getAction ( ));
 
         gmoNotification.setCreatedBy (notification.getCreatedBy ( ));
@@ -58,6 +56,7 @@ public class NotificationMapper {
 
         if (!lazy) {
             gmoNotification.setGmoNotificationState (NotificationStateMapper.toEntity (notification.getNotificationState ( ), true));
+            gmoNotification.setGmoNotificationType (NotificationTypeMapper.toEntity (notification.getNotificationType ( ), true));
 
         }
 
@@ -72,7 +71,6 @@ public class NotificationMapper {
         Notification notification = new Notification ( );
         notification.setId ((int) gmoNotification.getGmoNotificationId ());
         notification.setCode (gmoNotification.getGmoNotificationCode ());
-        notification.setType (gmoNotification.getGmoNotificationType ());
         notification.setProductId (gmoNotification.getGmoNotificationProductId());
         notification.setMaintenanceId (gmoNotification.getGmoNotificationMaintenanceId());
         notification.setAction (gmoNotification.getGmoNotificationAction());
@@ -85,6 +83,7 @@ public class NotificationMapper {
 
         if (!lazy) {
             notification.setNotificationState (NotificationStateMapper.toDto (gmoNotification.getGmoNotificationState(), true));
+            notification.setNotificationType (NotificationTypeMapper.toDto (gmoNotification.getGmoNotificationType(), true));
 
 
         }
