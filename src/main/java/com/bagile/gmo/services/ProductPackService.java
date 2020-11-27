@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface ProductPackService {
 
-    ProductPack save(ProductPack productPack) throws IdNotFound;
+    ProductPack save(ProductPack productPack) throws IdNotFound, AttributesNotFound, ErrorType;
 
     Long size();
 

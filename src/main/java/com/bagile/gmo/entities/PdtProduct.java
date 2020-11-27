@@ -942,7 +942,7 @@ public class PdtProduct extends EmsEntity implements java.io.Serializable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pdt_productpurchaseVatid")
+    @JoinColumn(name = "pdt_productvatpurchaseid")//pdt_productpurchaseVatid
     public PrmVat getPrmVatPurchase() {
         return prmVatPurchase;
     }

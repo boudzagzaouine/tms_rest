@@ -18,7 +18,7 @@ import java.util.Date;
 public class PdtProductPack extends EmsEntity {
 
     private long pdtProductPackId;
-    @NotNull
+   // @NotNull
     private OwnOwner ownOwner;
     @NotNull
     private PdtProduct pdtProduct;

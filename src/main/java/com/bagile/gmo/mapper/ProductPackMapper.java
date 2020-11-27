@@ -6,7 +6,7 @@ import com.bagile.gmo.entities.PdtProductPack;
 import java.util.*;
 
 public class ProductPackMapper {
-    private ProductPackMapper() {
+    public ProductPackMapper() {
     }
 
     private static Map<String, String> map;

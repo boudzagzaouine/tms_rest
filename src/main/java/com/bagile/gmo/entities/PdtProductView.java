@@ -193,7 +193,7 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
         this.pdtProductId = pdtProductId;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+   /* @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pdt_productlocationid")
     public LocLocation getLocLocation() {
         return this.locLocation;
@@ -201,7 +201,7 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
 
     public void setLocLocation(LocLocation locLocation) {
         this.locLocation = locLocation;
-    }
+    }*/
 
    /* @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pdt_productaliasid")
@@ -288,7 +288,7 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
         this.pdtUomByPdtProductUomPurshaseId = pdtUomByPdtProductUomPurshaseId;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    /*@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pdt_productdefaultblocktypeid")
     public PrmBlockType getPrmBlockType() {
         return this.prmBlockType;
@@ -297,7 +297,7 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
     public void setPrmBlockType(PrmBlockType prmBlockType) {
         this.prmBlockType = prmBlockType;
     }
-
+*/
   /*  @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct", cascade = CascadeType.ALL, orphanRemoval = true)
     public Set<PrmImage> getPrmImages() {
         return prmImages;
@@ -712,7 +712,7 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
         this.pdtProductPack = pdtProductPack;
     }
 
-    @ManyToOne
+  /*  @ManyToOne
     @JoinColumn(name = "pdt_productpickinglocationid")
     public LocLocation getPickingLocLocation() {
         return pickingLocLocation;
@@ -721,7 +721,7 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
     public void setPickingLocLocation(LocLocation pickingLocLocation) {
         this.pickingLocLocation = pickingLocLocation;
     }
-
+*/
     @ManyToOne
     @JoinColumn(name = "pdt_productpickinguomid")
     public PdtUom getPickingPdtUom() {
@@ -760,7 +760,7 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
 
     }
 
-    @Column(name = "pdt_productreqexp")
+   /* @Column(name = "pdt_productreqexp")
 
     public Boolean getPdtProductReqExp() {
         return pdtProductReqExp;
@@ -769,8 +769,8 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
     public void setPdtProductReqExp(Boolean pdtProductReqExp) {
         this.pdtProductReqExp = pdtProductReqExp;
     }
-
-    @Column(name = "pdt_productreqrec")
+*/
+    /*@Column(name = "pdt_productreqrec")
 
     public Boolean getPdtProductReqRec() {
         return pdtProductReqRec;
@@ -779,7 +779,7 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
     public void setPdtProductReqRec(Boolean pdtProductReqRec) {
         this.pdtProductReqRec = pdtProductReqRec;
     }
-
+*/
     @Column(name = "pdt_productcontrolweight")
     public Boolean getPdtProductControlWeight() {
         return pdtProductControlWeight;
@@ -1158,13 +1158,13 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
     public void setPdtProductProfessionalTTCSalePrice(BigDecimal pdtProductProfessionalTTCSalePrice) {
         this.pdtProductProfessionalTTCSalePrice = pdtProductProfessionalTTCSalePrice;
     }
-    @Column(name = "pdt_productpromarginofpurchase")
+  /*  @Column(name = "pdt_productpromarginofpurchase")
     public BigDecimal getPdtProductProMarginOfPurchase() {
         return pdtProductProMarginOfPurchase;
     }
 
     public void setPdtProductProMarginOfPurchase(BigDecimal pdtProductProMarginOfPurchase) {
         this.pdtProductProMarginOfPurchase = pdtProductProMarginOfPurchase;
-    }
+    }*/
 
 }

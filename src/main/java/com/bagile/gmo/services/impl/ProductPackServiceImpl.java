@@ -37,44 +37,60 @@ public class ProductPackServiceImpl implements ProductPackService {
 
     @Override
     @Transactional
-    public ProductPack save(ProductPack productPack) throws IdNotFound {
-        LOGGER.info("save ProductPack");
-        productPack.setUpdateDate(EmsDate.getDateNow());
-        if (0 >= productPack.getId()) {
-            productPack.setCreationDate(EmsDate.getDateNow());
+    public ProductPack save(ProductPack productPack) throws IdNotFound, AttributesNotFound, ErrorType {
+       ProductPack productPackExistProduct = findOne("product.id :"+productPack.getProduct().getId())  ;
+
+        if( productPackExistProduct == null) {
+          savee(productPack);
+         }
+        else if ((productPackExistProduct.getUom().equals(productPack.getUom()))== false){
+            productPackExistProduct.setUom(productPack.getUom());
+            savee(productPackExistProduct);
         }
-        // UPDATE ALL PRODUCT PACK WITH SAME UOM
-        List<ProductPack> packs = ProductPackMapper.toDtos(productPackRepository.
-                findByPdtUomAndPdtProduct(UomMapper.toEntity(productPack.getUom(), false),
-                        ProductMapper.toEntity(productPack.getProduct(), false)), false);
-        for (ProductPack pdtPack : packs) {
-            if (null != pdtPack && pdtPack.getId() != productPack.getId()) {
-                pdtPack = ProductPackMapper.toDto(productPackRepository.findById (pdtPack.getId()).orElse (null), false);
+        return null ;
+        }
 
-                pdtPack.setDepth(productPack.getDepth());
-                pdtPack.setHeight(productPack.getHeight());
-                pdtPack.setLenght(productPack.getLenght());
-                pdtPack.setQuantity(productPack.getQuantity());
-                pdtPack.setSize(productPack.getSize());
-                pdtPack.setTypePck(productPack.getTypePck());
-                pdtPack.setWeight(productPack.getWeight());
-                pdtPack.setWeightControl(productPack.getWeightControl());
-                pdtPack.setWidth(productPack.getWidth());
-                pdtPack.setUpdateDate(EmsDate.getDateNow());
+        private ProductPack savee(ProductPack productPack){
 
-                LOGGER.info("save ProductPack");
-                PdtProductPack pdtTmp = productPackRepository.saveAndFlush(ProductPackMapper.toEntity(pdtPack, false));
+            LOGGER.info("save ProductPack");
+            productPack.setUpdateDate(EmsDate.getDateNow());
+            if (0 >= productPack.getId()) {
+                productPack.setCreationDate(EmsDate.getDateNow());
             }
-        }
-        // UPDATE PRODUCT UOM
-        Product pdt = productPack.getProduct();
-        if (null != pdt && null != pdt.getUomByProductUomBase() && null != productPack.getUom()
-                && pdt.getUomByProductUomBase().getId() == productPack.getUom().getId()) {
-            productRepository.saveAndFlush(ProductMapper.toEntity(pdt, false));
-        }
-        return ProductPackMapper.toDto(productPackRepository.saveAndFlush(ProductPackMapper.toEntity(productPack, false)), false);
-    }
+            // UPDATE ALL PRODUCT PACK WITH SAME UOM
+            List<ProductPack> packs = ProductPackMapper.toDtos(productPackRepository.
+                    findByPdtUomAndPdtProduct(UomMapper.toEntity(productPack.getUom(), false),
+                            ProductMapper.toEntity(productPack.getProduct(), false)), false);
+            for (ProductPack pdtPack : packs) {
+                if (null != pdtPack && pdtPack.getId() != productPack.getId()) {
+                    pdtPack = ProductPackMapper.toDto(productPackRepository.findById(pdtPack.getId()).orElse(null), false);
 
+                    pdtPack.setDepth(productPack.getDepth());
+                    pdtPack.setHeight(productPack.getHeight());
+                    pdtPack.setLenght(productPack.getLenght());
+                    pdtPack.setQuantity(productPack.getQuantity());
+                    pdtPack.setSize(productPack.getSize());
+                    pdtPack.setTypePck(productPack.getTypePck());
+                    pdtPack.setWeight(productPack.getWeight());
+                    pdtPack.setWeightControl(productPack.getWeightControl());
+                    pdtPack.setWidth(productPack.getWidth());
+                    pdtPack.setUpdateDate(EmsDate.getDateNow());
+
+                    LOGGER.info("save ProductPack");
+                    PdtProductPack pdtTmp = productPackRepository.saveAndFlush(ProductPackMapper.toEntity(pdtPack, false));
+                }
+            }
+            // UPDATE PRODUCT UOM
+            Product pdt = productPack.getProduct();
+            if (null != pdt && null != pdt.getUomByProductUomBase() && null != productPack.getUom()
+                    && pdt.getUomByProductUomBase().getId() == productPack.getUom().getId()) {
+                productRepository.saveAndFlush(ProductMapper.toEntity(pdt, false));
+            }
+
+
+            return ProductPackMapper.toDto(productPackRepository.saveAndFlush(ProductPackMapper.toEntity(productPack, false)), false);
+
+        }
     @Override
     public Long size() {
         return productPackRepository.count();

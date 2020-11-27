@@ -107,14 +107,14 @@ public class ProductPackController {
    //  @PreAuthorize("hasRole('PRODUCT_PACK_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ProductPack add(@RequestBody ProductPack productPack) throws IdNotFound {
+    public ProductPack add(@RequestBody ProductPack productPack) throws IdNotFound, AttributesNotFound, ErrorType {
         return productPackService.save(productPack);
     }
 
    //  @PreAuthorize("hasRole('PRODUCT_PACK_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ProductPack set(@RequestBody ProductPack productPack) throws IdNotFound {
+    public ProductPack set(@RequestBody ProductPack productPack) throws IdNotFound, AttributesNotFound, ErrorType {
         return productPackService.save(productPack);
     }
 
