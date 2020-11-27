@@ -244,7 +244,7 @@ public class NotificationServiceImpl implements NotificationService {
 
     private void verifyStockProduct() throws AttributesNotFound, ErrorType, IdNotFound {
 
-        Notification notificationSearchProduct = new Notification();
+        Notification notificationSearchProduct ;
         List<Notification> notifications = new ArrayList<>();
         NotificationState notificationStatee = notificationStateService.findById(3L);//epuise
         List<Product> productList = productService.findAll();
@@ -260,17 +260,18 @@ public class NotificationServiceImpl implements NotificationService {
                     }
                       notificationSearchProduct= findOne("productId:"+product.getId());
 
-                    if(notificationSearchProduct== null) {
-                        if (product.getStockQuantity().compareTo(product.getMinStock()) <= 0) {
-                            notification.setCode(product.getCode());
-                            notification.setNotificationType(notificationTypeP);
-                            notification.setNotificationState(notificationStatee);
-                            notification.setProductId(product.getId());
-                            notifications.add(notification);
 
-                            MailConfig mail=mailConfigService.findById(1L);
-                            Template template=templateService.findById(2L);
-                            emailService.sendEmail(notification,mail,template);
+                        if (product.getStockQuantity().compareTo(product.getMinStock()) <= 0) {
+                            if(notificationSearchProduct == null) {
+                                notification.setCode(product.getCode());
+                                notification.setNotificationType(notificationTypeP);
+                                notification.setNotificationState(notificationStatee);
+                                notification.setProductId(product.getId());
+                                notifications.add(notification);
+
+                                MailConfig mail=mailConfigService.findById(1L);
+                                Template template=templateService.findById(2L);
+                                emailService.sendEmail(notification,mail,template);
                         }
                     }
                 }

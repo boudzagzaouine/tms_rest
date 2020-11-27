@@ -49,6 +49,7 @@ public class VehicleMapper {
         map.put("maintenancePlan", "gmoMaintenancePlan");
         map.put("initialMileage", "gmoVehicleInitialMileage");
         map.put("currentMileage", "gmoVehicleCurrentMileage");
+
         //  map.put("insuranceTermVehicles", "gmoInsuranceTermsVehicules");
 
     }
