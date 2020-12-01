@@ -178,16 +178,20 @@ public class NotificationServiceImpl implements NotificationService {
 
     private void verifyTriggerDateMaintenance() throws IdNotFound, AttributesNotFound, ErrorType {
 
-        ////// retard
-        List<Maintenance> maintenanceList = maintenanceService.find("interventionDate<" + new SimpleDateFormat("yyyy-MM-dd").format(new Date())+",programType.id:"+1+",maintenanceState.id !"+4+",maintenanceState.id !"+3 );
-        addMaintenanceToNotification(maintenanceList, 1L, 2L); // 2=retard
+        //////if statut == cree et date intevention < dateNow
+        List<Maintenance> maintenanceListStateCree = maintenanceService.find("interventionDate<" + new SimpleDateFormat("yyyy-MM-dd").format(new Date())+",programType.id:"+1L+",maintenanceState.id :"+1L);//1=cree
+        addMaintenanceToNotification(maintenanceListStateCree, 1L, 2L); // maintenanceState =>2=>retard
+
+        //////if statut == en attente et date intevention < dateNow
+        List<Maintenance> maintenanceListStateEnAttente = maintenanceService.find("interventionDate<" + new SimpleDateFormat("yyyy-MM-dd").format(new Date())+",programType.id:"+1L+",maintenanceState.id :"+3L);// 3=en attente
+        addMaintenanceToNotification(maintenanceListStateEnAttente, 1L, 2L); // maintenanceState =>2=>retard
+
+        ////////if statut == cree et date declanchement < dateNow
+        List<Maintenance> maintenanceDeclareList = maintenanceService.find("triggerDate<" + new SimpleDateFormat("yyyy-MM-dd").format(new Date())+",programType.id:"+1L+",maintenanceState.id :"+1L );// 3=cree
+        addMaintenanceToNotification(maintenanceDeclareList, 2L, 3L); //maintenanceState =>3= en attente
 
         //
-        List<Maintenance> maintenanceDeclareList = maintenanceService.find("triggerDate<" + new SimpleDateFormat("yyyy-MM-dd").format(new Date())+",programType.id:"+1+",maintenanceState.id !"+4+",maintenanceState.id !"+3 );
-        addMaintenanceToNotification(maintenanceDeclareList, 2L, 3L); //3= en attente
-
-        //
-        List<Maintenance> maintenanceConditionelList = maintenanceService.find("programType.id:"+2+",maintenanceState.id:"+ 1L); //3 en attente
+        List<Maintenance> maintenanceConditionelList = maintenanceService.find("programType.id:"+2+",maintenanceState.id:"+ 1L); //1 =cree
 
         for(Maintenance m: maintenanceConditionelList){
             if((((Vehicle) (m.getPatrimony())).getCurrentMileage()) != null) {
@@ -208,38 +212,49 @@ public class NotificationServiceImpl implements NotificationService {
 
     private void addMaintenanceToNotification(List<Maintenance> maintenanceList, long notificationStateID, long maintenanceStateID ) throws IdNotFound, AttributesNotFound, ErrorType {
 
-        Notification notificationSearchMaintenance = new Notification();
+       // Notification notificationSearchMaintenance ;
 
-        List<Notification> notifications = new ArrayList<>();
-        MaintenanceState maintenanceState = maintenanceStateService.findById(maintenanceStateID);
-        NotificationState notificationState = notificationStateService.findById(notificationStateID); // RETARD
-
+        //List<Notification> notifications = new ArrayList<>();
+        MaintenanceState maintenanceStateRetard = maintenanceStateService.findById(maintenanceStateID);//retard
+        NotificationState notificationStateRetard = notificationStateService.findById(notificationStateID); // RETARD
         NotificationType notificationTypeM = notificationTypeService.findById(1L); // Maintenance
 
         if (maintenanceList.size() > 0) {
             for (Maintenance maintenanace : maintenanceList) {
                 Notification notification = new Notification();
-                 notificationSearchMaintenance= findOne("maintenanceId:"+maintenanace.getId());
+                Notification notificationSearchMaintenance= findOne("maintenanceId:"+maintenanace.getId());
+
                 if(notificationSearchMaintenance == null) {
-                    maintenanace.setMaintenanceState(maintenanceState);
+                    maintenanace.setMaintenanceState(maintenanceStateRetard);
                     maintenanceService.save(maintenanace);
                     notification.setCode(maintenanace.getCode());
                     notification.setNotificationType(notificationTypeM);
-                    notification.setNotificationState(notificationState);
+                    notification.setNotificationState(notificationStateRetard);
                     notification.setMaintenanceId(maintenanace.getId());
                     notification.setPatimonyCode(maintenanace.getPatrimony().getCode());
                     notification.setAction(maintenanace.getActionType().getCode());
-                    notifications.add(notification);
+                    //notifications.add(notification);
+                    save(notification);
                     MailConfig mail=mailConfigService.findById(1L);
                     Template template=templateService.findById(1L);
                     emailService.sendEmail(notification,mail,template);
                 }
+                else if (notificationSearchMaintenance.getNotificationState().getId()==2)//notificationStat =>2 => en attente
+                {
+                    notificationSearchMaintenance.setNotificationState(notificationStateRetard);
+                    save(notificationSearchMaintenance);
+                    MailConfig mail=mailConfigService.findById(1L);
+                    Template template=templateService.findById(1L);
+                    emailService.sendEmail(notification,mail,template);
+                }
+
             }
 
 
-            saveAll(notifications);
+           // saveAll(notifications);
         }
     }
+
 
 
     private void verifyStockProduct() throws AttributesNotFound, ErrorType, IdNotFound {

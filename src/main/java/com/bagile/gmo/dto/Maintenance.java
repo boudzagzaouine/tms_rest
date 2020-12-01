@@ -28,6 +28,7 @@ public class Maintenance extends EmsDto implements Serializable {
     private BigDecimal triggerDay;
     private Date triggerDate;
     private Date interventionDate;
+    private Date maintenanceDate;
     private Patrimony patrimony;
     private Double mileage = 0.0;
     private Double mileageNext = 0.0;
@@ -187,7 +188,16 @@ public class Maintenance extends EmsDto implements Serializable {
     public void setValueconditionalType(BigDecimal valueconditionalType) {
         this.valueconditionalType = valueconditionalType;
     }
-/*public List<ActionMaintenance> getActionMaintenances() {
+
+    public Date getMaintenanceDate() {
+        return maintenanceDate;
+    }
+
+    public void setMaintenanceDate(Date maintenanceDate) {
+        this.maintenanceDate = maintenanceDate;
+    }
+
+    /*public List<ActionMaintenance> getActionMaintenances() {
         return actionMaintenances;
     }
 

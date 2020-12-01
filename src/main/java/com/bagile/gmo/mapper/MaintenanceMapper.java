@@ -36,6 +36,7 @@ public class MaintenanceMapper {
         map.put("triggerDay", "gmoTriggerDay");
         map.put("triggerDate", "gmoTriggerDate");
         map.put("interventionDate", "gmoInterventionDate");
+        map.put("maintenanceDate", "gmoMaintenanceDate");
 
 
 
@@ -95,6 +96,7 @@ public class MaintenanceMapper {
         gmoMaintenance.setUpdateDate(maintenance.getUpdateDate());
         gmoMaintenance.setGmoMaintenanceValueconditionalType(maintenance.getValueconditionalType());
         gmoMaintenance.setGmoMaintenanceMileageNext(maintenance.getMileageNext());
+        gmoMaintenance.setGmoMaintenanceDate(maintenance.getMaintenanceDate());
 
         if (!lazy) {
             gmoMaintenance.setGmoMaintenanceType(MaintenanceTypeMapper.toEntity(maintenance.getMaintenanceType(), true));
@@ -163,6 +165,7 @@ public class MaintenanceMapper {
         maintenance.setUpdateDate(gmoMaintenance.getUpdateDate());
         maintenance.setValueconditionalType(gmoMaintenance.getGmoMaintenanceValueconditionalType());
         maintenance.setMileageNext(gmoMaintenance.getGmoMaintenanceMileageNext());
+        maintenance.setMaintenanceDate(gmoMaintenance.getGmoMaintenanceDate());
 
         if (!lazy) {
             maintenance.setMaintenanceType(MaintenanceTypeMapper.toDto(gmoMaintenance.getGmoMaintenanceType(), true));

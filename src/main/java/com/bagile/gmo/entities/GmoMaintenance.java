@@ -74,6 +74,10 @@ public class GmoMaintenance extends EmsEntity {
     @Column(name = "gmo_maintenanceinterventiondate")
     private Date gmoInterventionDate;
 
+    @Column(name = "gmo_maintenancemaintenancedate")
+    private Date gmoMaintenanceDate;
+
+
     @Column(name = "gmo_maintenanceagent")
 private String gmoAgent ;
     @Column(name = "gmo_maintenanceemployer")
@@ -156,6 +160,14 @@ private String gmoAgent ;
 
     public void setGmoMaintenanceValueconditionalType(BigDecimal gmoActionPlanValueconditionalType) {
         this.gmoMaintenanceValueconditionalType = gmoActionPlanValueconditionalType;
+    }
+
+    public Date getGmoMaintenanceDate() {
+        return gmoMaintenanceDate;
+    }
+
+    public void setGmoMaintenanceDate(Date gmoMaintenanceDate) {
+        this.gmoMaintenanceDate = gmoMaintenanceDate;
     }
 
     public RcpSupplier getRcpSupplier() {

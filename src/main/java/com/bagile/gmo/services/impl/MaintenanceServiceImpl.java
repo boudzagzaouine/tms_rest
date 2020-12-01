@@ -416,7 +416,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
         maintenance2.setMaintenanceType(maintenance.getMaintenanceType());
         maintenance2.setServiceProvider(maintenance.getServiceProvider());
         maintenance2.setResponsability(maintenance.getResponsability());
-        maintenance2.setCode(maintenance.getMaintenancePlan().getCode());
+        maintenance2.setCode(getNextVal());
         maintenance2.setPatrimony(maintenance.getPatrimony());
         maintenance2.setActionType(maintenance.getActionType());
 
