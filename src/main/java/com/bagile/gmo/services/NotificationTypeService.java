@@ -25,6 +25,8 @@ public interface NotificationTypeService {
 
     void delete(Long id);
 
+    void deleteAll(List<Long> ids);
+
     void delete(NotificationType NotificationType);
 
     List<NotificationType> findAll();

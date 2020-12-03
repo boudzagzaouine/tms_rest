@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -94,5 +95,12 @@ public class NotificationTypeController {
     public void delete(@PathVariable Long id) {
         notificationTypeService.delete(id);
     }
+
+    @RequestMapping(value = "/deleteAll", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
+        notificationTypeService.deleteAll (Arrays.asList(ids));
+    }
+
 
 }

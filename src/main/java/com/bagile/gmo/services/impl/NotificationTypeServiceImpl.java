@@ -84,6 +84,13 @@ public class NotificationTypeServiceImpl implements NotificationTypeService {
     }
 
     @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            notificationTypeRepository.deleteById(id);        }
+    }
+
+    @Override
     public List<NotificationType> findAll() {
         return NotificationTypeMapper.toDtos(notificationTypeRepository.findAll(), false);
     }
