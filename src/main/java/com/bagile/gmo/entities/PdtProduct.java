@@ -132,6 +132,7 @@ public class PdtProduct extends EmsEntity implements java.io.Serializable {
     private BigDecimal pdtMinimalThreshold;
     private BigDecimal pdtCapacity;
     private Boolean pdtIsReception;
+    private PdtAlias pdtAlias;
     private PdtProductPack pdtProductPack;
     private Boolean pdtProductWarrantyManagement;
     private BigDecimal pdtProductDiscount;
@@ -200,6 +201,15 @@ public class PdtProduct extends EmsEntity implements java.io.Serializable {
     public void setPdtProductTypeByPdtProductTypeId(
             PdtProductType pdtProductTypeByPdtProductTypeId) {
         this.pdtProductTypeByPdtProductTypeId = pdtProductTypeByPdtProductTypeId;
+    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pdt_productaliasid")
+    public PdtAlias getPdtAlias() {
+        return pdtAlias;
+    }
+
+    public void setPdtAlias(PdtAlias pdtAlias) {
+        this.pdtAlias = pdtAlias;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface ProductService {
 
-    Product save(Product product) throws IdNotFound;
+    Product save(Product product) throws IdNotFound, AttributesNotFound, ErrorType;
 
     Long size();
 

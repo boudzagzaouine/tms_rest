@@ -20,6 +20,9 @@ public class PdtProductPack extends EmsEntity {
     private long pdtProductPackId;
    // @NotNull
     private OwnOwner ownOwner;
+    private PdtAlias pdtAlias;
+
+
     @NotNull
     private PdtProduct pdtProduct;
     private PdtUom pdtUom;
@@ -116,6 +119,15 @@ public class PdtProductPack extends EmsEntity {
 
     public void setPdtProductPackWeight(BigDecimal pdtProductPackWeight) {
         this.pdtProductPackWeight = pdtProductPackWeight;
+    }
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "pdt_productpackaliasid")
+    public PdtAlias getPdtAlias() {
+        return this.pdtAlias;
+    }
+
+    public void setPdtAlias(PdtAlias pdtAlias) {
+        this.pdtAlias = pdtAlias;
     }
 
     @Column(name = "pdt_productpacktypepck")

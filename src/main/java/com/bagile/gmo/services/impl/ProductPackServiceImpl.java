@@ -41,11 +41,11 @@ public class ProductPackServiceImpl implements ProductPackService {
        ProductPack productPackExistProduct = findOne("product.id :"+productPack.getProduct().getId())  ;
 
         if( productPackExistProduct == null) {
-          savee(productPack);
+         return savee(productPack);
          }
         else if ((productPackExistProduct.getUom().equals(productPack.getUom()))== false){
             productPackExistProduct.setUom(productPack.getUom());
-            savee(productPackExistProduct);
+          return   savee(productPackExistProduct);
         }
         return null ;
         }

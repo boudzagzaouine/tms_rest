@@ -1,10 +1,10 @@
 package com.bagile.gmo.dto;
 
+import com.bagile.gmo.entities.EmsEntity;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
-
-import com.bagile.gmo.entities.EmsEntity;
 
 public class Product extends EmsEntity {
 
@@ -16,6 +16,8 @@ public class Product extends EmsEntity {
     private Uom uomByProductUomBase;
     private Uom uomByProductUomPurshase;
     private String code;
+    private Alias alias;
+
     private BigDecimal salePriceUB;
     private BigDecimal salePriceTTCUB;
     private BigDecimal purshasePriceUB;
@@ -99,7 +101,6 @@ public class Product extends EmsEntity {
     private BigDecimal customsPercentage;
     private BigDecimal availableQuantity;
     private BigDecimal professionalTTCSalePrice;
-
        private Vat vat;
        private Vat purchaseVat;
 
@@ -149,6 +150,14 @@ public class Product extends EmsEntity {
 
     public void setUomByProductUomPurshase(Uom uomByProductUomPurshase) {
         this.uomByProductUomPurshase = uomByProductUomPurshase;
+    }
+
+    public Alias getAlias() {
+        return alias;
+    }
+
+    public void setAlias(Alias alias) {
+        this.alias = alias;
     }
 
     public Vat getPurchaseVat() {

@@ -72,10 +72,10 @@ public class ProductController {
     }
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Product add(@RequestBody Product product ) throws IdNotFound {return productService.save(product);}
+    public Product add(@RequestBody Product product ) throws IdNotFound, AttributesNotFound, ErrorType {return productService.save(product);}
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Product set(@RequestBody Product product) throws IdNotFound {
+    public Product set(@RequestBody Product product) throws IdNotFound, AttributesNotFound, ErrorType {
         return productService.save(product);
     }
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -3,7 +3,6 @@ package com.bagile.gmo.dto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Set;
 
 public class ProductPack  extends EmsDto implements Serializable {
 
@@ -15,7 +14,7 @@ public class ProductPack  extends EmsDto implements Serializable {
     private Date updateDate;
     private Date creationDate;
     private Product product;
-  //  private Alias alias;
+    private Alias alias;
     private Uom uom;
     private BigDecimal weight;
     private BigDecimal height;
@@ -79,7 +78,13 @@ public class ProductPack  extends EmsDto implements Serializable {
         this.product = product;
     }
 
+    public Alias getAlias() {
+        return alias;
+    }
 
+    public void setAlias(Alias alias) {
+        this.alias = alias;
+    }
 
     public Uom getUom() {
         return this.uom;

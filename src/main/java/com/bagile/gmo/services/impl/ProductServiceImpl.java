@@ -9,6 +9,7 @@ import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.ProductMapper;
 import com.bagile.gmo.repositories.ProductRepository;
 import com.bagile.gmo.repositories.ProductViewRepository;
+import com.bagile.gmo.services.AliasService;
 import com.bagile.gmo.services.NotificationService;
 import com.bagile.gmo.services.ProductPackService;
 import com.bagile.gmo.services.ProductService;
@@ -26,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -41,6 +43,11 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private NotificationService notificationService;
 
+
+    @Autowired
+    private AliasService aliasService;
+
+
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmssSS");
     private final static Logger LOGGER = LoggerFactory
             .getLogger(ProductService.class);
@@ -48,8 +55,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public Product save(Product product) throws IdNotFound {
-        LOGGER.info("save Product");
+    public Product save(Product product) throws IdNotFound, AttributesNotFound, ErrorType {
+       /* LOGGER.info("save Product");
         Set<ProductPack> listProdctPacks = product.getProductPacks();
         product.setProductPacks(null);
         String mode = "U";//the mode is U for update and I for insert
@@ -67,10 +74,182 @@ public class ProductServiceImpl implements ProductService {
         pdtProduct = productRepository.saveAndFlush(pdtProduct);
         product = ProductMapper.toDto(pdtProduct, false);
 
-        return ProductMapper.toDto(productRepository.saveAndFlush(ProductMapper.toEntity(product, false)), false);
+        return ProductMapper.toDto(productRepository.saveAndFlush(ProductMapper.toEntity(product, false)), false);*/
+
+
+        LOGGER.info ("save Product");
+        Set<ProductPack> listProdctPacks = product.getProductPacks ( );
+        product.setProductPacks (null);
+        String mode = "U";//the mode is U for update and I for insert
+        product.setUpdateDate (EmsDate.getDateNow ( ));
+        String codeProduct = product.getCode ( );
+        String operation = "F"; //this property is used to set the mode of operation in txt file that will be exported to easywms
+        if (0 >= product.getId ( )) {
+            mode = "I";
+            product.setCreationDate (EmsDate.getDateNow ( ));
+            operation = "A";
+        }
+
+        Alias aliasTmp = product.getAlias ( );
+        product.setAlias (null);
+        // SAVE PRODUCT
+
+        PdtProduct pdtProduct = ProductMapper.toEntity (product, false);
+        pdtProduct = productRepository.saveAndFlush (pdtProduct);
+        product = ProductMapper.toDto (pdtProduct, false);
+        if ("I".equals (mode)) {
+            // SAVE DEFAULT ALIAS
+            Alias defaultAlias = aliasFromProduct (product, mode);
+            LOGGER.info ("save Alias");
+            defaultAlias = aliasService.save (defaultAlias);
+
+            // SAVE DEFAULT PACK
+            ProductPack defaultProductPack = packFromProduct (product,
+                    defaultAlias, mode);
+            LOGGER.info ("save ProductPack");
+            defaultProductPack = productPackService
+                    .save(defaultProductPack);
+            product.setProductPack (defaultProductPack);
+
+            // SAVE ALIAS IF EXIST
+            if (null != aliasTmp && !aliasTmp.getEanCode ( ).isEmpty ( )) {
+                String eanCode = aliasTmp.getEanCode ( );
+                aliasTmp = aliasFromProduct (product, mode);
+                aliasTmp.setEanCode (eanCode);
+                LOGGER.info ("save Alias");
+                aliasTmp = aliasService.save (aliasTmp);
+                product.setAlias (aliasTmp);
+                LOGGER.info ("save Product");
+                pdtProduct = productRepository.saveAndFlush (ProductMapper
+                        .toEntity (product, false));
+              /*  product = ProductMapper.toDto(pdtProduct, false);
+
+                // SAVE PRODUCT PACK ALIAS
+                ProductPack aliasProductPack = packFromProduct(product,
+                        aliasTmp, mode);
+                LOGGER.info("save ProductPack");
+                aliasProductPack = productPackService.save(aliasProductPack);*/
+            }
+        } else {
+            // UPDATE ALIAS
+            if (null != aliasTmp && !aliasTmp.getEanCode ( ).isEmpty ( )) {
+                long id = aliasTmp.getId ( );
+                String eanCode = aliasTmp.getEanCode ( );
+                aliasTmp = aliasFromProduct (product, mode);
+                aliasTmp.setId (id);
+                aliasTmp.setEanCode (eanCode);
+              /*  List<ProductPack> productPacks = null;
+                try {
+                    productPacks = productPackService.find("alias.id:" + aliasTmp.getId() + ",product.id:" + product.getId());
+                } catch (AttributesNotFound attributesNotFound) {
+                    attributesNotFound.printStackTrace();
+                } catch (ErrorType errorType) {
+                    errorType.printStackTrace();
+                }
+                if (productPacks != null && productPacks.isEmpty()) {
+                    ProductPack productPack = packFromProduct(product, aliasTmp, mode);
+                    productPackService.save(productPack);
+
+                }*/
+                LOGGER.info ("save Alias");
+                aliasTmp = aliasService.save (aliasTmp);
+                product.setAlias (aliasTmp);
+                LOGGER.info ("save Product");
+                pdtProduct = productRepository.saveAndFlush (ProductMapper
+                        .toEntity (product, false));
+                product = ProductMapper.toDto (pdtProduct, false);
+            }
+            // UPDATE PACK
+
+        }
+        Set<ProductPack> productPacks = new HashSet<> ( );
+        if (null != listProdctPacks)
+            for (ProductPack pdtPack : listProdctPacks) {
+              //  Set<ProductSupplier> productSuppliers = pdtPack.getProductSuppliers ( );
+                if (null != pdtPack
+                        && null != pdtPack.getUom ( )
+                        && null != product.getUomByProductUomBase ( )
+                        && pdtPack.getUom ( ).getId ( ) == product
+                        .getUomByProductUomBase ( ).getId ( )) {
+                    long id = pdtPack.getId ( );
+                    pdtPack = productPackService.findById (id);
+                    pdtPack = packFromProduct (product, pdtPack.getAlias ( ), mode);
+                    pdtPack.setId (id);
+                    LOGGER.info ("save ProductPack");
+                } else if (pdtPack.getAlias ( ) != null) {
+                    pdtPack.getAlias ( ).setUom (pdtPack.getUom ( ));
+                    pdtPack.getAlias ( ).setProduct (pdtPack.getProduct ( ));
+                    pdtPack.getAlias ( ).setOwner (pdtPack.getOwner ( ));
+                    pdtPack.setAlias (aliasService.save (pdtPack.getAlias ( )));
+
+                }
+                pdtPack.setProduct (product);
+                //pdtPack.setProductSuppliers (productSuppliers);
+                pdtPack = productPackService.save (pdtPack);
+                productPacks.add (pdtPack);
+            }
+        if (productPacks.size ( ) > 0) {
+            product.setProductPacks (productPacks);
+        } else {
+            product.setProductPacks (null);
+        }
+       /* if (syncWms) {
+            if (null != msgSend && msgSend.getActive ( )) {
+
+                if ("xls".equals (msgSend.getFormat ( ).trim ( ))) {
+
+                    writeFileProduct (msgSend.getPath ( ), product);
+                    writeFileProduct (msgSend.getArcPath ( ), product);
+                }
+            }
+            if ("txt".equals (msgSend.getFormat ( ).trim ( ))) {
+                ProductExport.export (msgSend.getPath ( ), pdtProduct,
+                        codeProduct, operation, servletContext);
+            }
+        }*/
+
+
+        return ProductMapper.toDto (productRepository.saveAndFlush (ProductMapper.toEntity (product, false)), false);
+
     }
 
+    private Alias aliasFromProduct(Product product, String mode) {
+        Alias alias = new Alias ( );
+        alias.setEanCode (product.getCode ( ));
+        alias.setProduct (product);
+        alias.setOwner (product.getOwner ( ));
+        alias.setUom (product.getUomByProductUomBase ( ));
+        alias.setUpdateDate (EmsDate.getDateNow ( ));
+        if ("I".equals (mode)) {
+            alias.setCreationDate (EmsDate.getDateNow ( ));
+        }
+        return alias;
+    }
 
+    private ProductPack packFromProduct(Product product, Alias alias,
+                                        String mode) {
+        ProductPack pack = new ProductPack ( );
+        pack.setQuantity (BigDecimal.ONE);
+        pack.setSalePrice (product.getSalePriceUB ( ));
+        pack.setPurshasePrice (product.getPurshasePriceUB ( ));
+        pack.setOwner (product.getOwner ( ));
+        pack.setUom (product.getUomByProductUomBase ( ));
+        pack.setProduct (product);
+        if (null != alias) {
+            try {
+                if ("I".equals (mode)) {
+                    alias.setCreationDate (EmsDate.getDateNow ( ));
+                }
+                pack.setAlias (aliasService.findById (alias.getId ( )));
+            } catch (IdNotFound idNotFound) {
+                LOGGER.error (idNotFound.getMessage ( ), idNotFound);
+            }
+        }
+        pack.setUpdateDate (EmsDate.getDateNow ( ));
+
+
+        return pack;
+    }
     @Override
     public Long size() {
         return productRepository.count();
