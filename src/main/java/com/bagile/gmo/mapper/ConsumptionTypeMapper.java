@@ -45,7 +45,10 @@ public class ConsumptionTypeMapper {
         gmoConsumptionType.setCreatedBy (consumptionType.getCreatedBy ( ));
         gmoConsumptionType.setUpdatedBy (consumptionType.getUpdatedBy ( ));
 
+ if(!lazy){
 
+     gmoConsumptionType.setOwnOwner(OwnerMapper.toEntity(consumptionType.getOwner(),true));
+ }
 
         return gmoConsumptionType;
 
@@ -65,7 +68,11 @@ public class ConsumptionTypeMapper {
         consumptionType.setCreationDate (gmoConsumptionType.getCreationDate ());
         consumptionType.setUpdateDate (gmoConsumptionType.getUpdateDate ());
 
+if(!lazy){
 
+      consumptionType.setOwner(OwnerMapper.toDto(gmoConsumptionType.getOwnOwner(),true));
+
+}
         return consumptionType;
 
     }

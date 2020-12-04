@@ -18,6 +18,7 @@ public class PrmContact extends EmsEntity {
     private String prmContactEmail;
     private String prmContactComment;
     private Boolean prmContactActive;
+    private OwnOwner ownOwner;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -109,5 +110,17 @@ public class PrmContact extends EmsEntity {
         }
         this.prmContactActive = prmContactActive;
     }
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "adr_addressownerid")
+    public OwnOwner getOwnOwner() {
+        return this.ownOwner;
+    }
+
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
+    }
+
 
 }

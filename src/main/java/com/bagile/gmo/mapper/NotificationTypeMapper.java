@@ -32,22 +32,24 @@ public class NotificationTypeMapper {
         return map.get (key);
     }
 
-    public static GmoNotificationType toEntity(NotificationType notificationState, boolean lazy) {
-        if (null == notificationState) {
+    public static GmoNotificationType toEntity(NotificationType notificationType, boolean lazy) {
+        if (null == notificationType) {
             return null;
         }
 
         GmoNotificationType gmoNotificationType = new GmoNotificationType ( );
-        gmoNotificationType.setGmoNotificationId (notificationState.getId ( ));
-        gmoNotificationType.setGmoNotificationCode (notificationState.getCode ( ) != null ? notificationState.getCode ( ).toUpperCase ( ) : null);
-        gmoNotificationType.setGmoNotificationEmail (notificationState.getEmail ( ));
+        gmoNotificationType.setGmoNotificationId (notificationType.getId ( ));
+        gmoNotificationType.setGmoNotificationCode (notificationType.getCode ( ) != null ? notificationType.getCode ( ).toUpperCase ( ) : null);
+        gmoNotificationType.setGmoNotificationEmail (notificationType.getEmail ( ));
 
-        gmoNotificationType.setCreatedBy (notificationState.getCreatedBy ( ));
-        gmoNotificationType.setUpdatedBy (notificationState.getUpdatedBy ( ));
+        gmoNotificationType.setCreatedBy (notificationType.getCreatedBy ( ));
+        gmoNotificationType.setUpdatedBy (notificationType.getUpdatedBy ( ));
 
-
-
-        return gmoNotificationType;
+        if (!lazy) {
+            gmoNotificationType.setOwnOwner(OwnerMapper.toEntity(notificationType.getOwner(), true));
+        }
+       
+            return gmoNotificationType;
 
     }
 
@@ -55,18 +57,21 @@ public class NotificationTypeMapper {
         if (null == gmoNotificationType) {
             return null;
         }
-        NotificationType notificationState = new NotificationType ( );
-        notificationState.setId ((int) gmoNotificationType.getGmoNotificationId ());
-        notificationState.setCode (gmoNotificationType.getGmoNotificationCode ());
-        notificationState.setEmail (gmoNotificationType.getGmoNotificationEmail ());
+        NotificationType notificationType = new NotificationType ( );
+        notificationType.setId ((int) gmoNotificationType.getGmoNotificationId ());
+        notificationType.setCode (gmoNotificationType.getGmoNotificationCode ());
+        notificationType.setEmail (gmoNotificationType.getGmoNotificationEmail ());
 
-        notificationState.setCreatedBy (gmoNotificationType.getCreatedBy ());
-        notificationState.setUpdatedBy (gmoNotificationType.getUpdatedBy ());
-        notificationState.setCreationDate (gmoNotificationType.getCreationDate ());
-        notificationState.setUpdateDate (gmoNotificationType.getUpdateDate ());
+        notificationType.setCreatedBy (gmoNotificationType.getCreatedBy ());
+        notificationType.setUpdatedBy (gmoNotificationType.getUpdatedBy ());
+        notificationType.setCreationDate (gmoNotificationType.getCreationDate ());
+        notificationType.setUpdateDate (gmoNotificationType.getUpdateDate ());
 
 
-        return notificationState;
+        if (!lazy) {
+            notificationType.setOwner(OwnerMapper.toDto(gmoNotificationType.getOwnOwner(), true));
+        }
+        return notificationType;
 
     }
 
@@ -83,13 +88,13 @@ public class NotificationTypeMapper {
         return vehicules;
     }
 
-    public static Set<GmoNotificationType> toEntities(Set<NotificationType> notificationStates, boolean lazy) {
-        if (null == notificationStates) {
+    public static Set<GmoNotificationType> toEntities(Set<NotificationType> notificationTypes, boolean lazy) {
+        if (null == notificationTypes) {
             return null;
         }
         Set<GmoNotificationType> gmoNotificationTypes = new HashSet<> ( );
-        for (NotificationType notificationState : notificationStates) {
-            gmoNotificationTypes.add (toEntity (notificationState, lazy));
+        for (NotificationType notificationType : notificationTypes) {
+            gmoNotificationTypes.add (toEntity (notificationType, lazy));
         }
         return gmoNotificationTypes;
     }
@@ -98,10 +103,10 @@ public class NotificationTypeMapper {
         if (null == gmoNotificationTypes) {
             return null;
         }
-        Set<NotificationType> notificationStates = new HashSet<> ( );
+        Set<NotificationType> notificationTypes = new HashSet<> ( );
         for (GmoNotificationType gmoNotificationType : gmoNotificationTypes) {
-            notificationStates.add (toDto (gmoNotificationType, lazy));
+            notificationTypes.add (toDto (gmoNotificationType, lazy));
         }
-        return notificationStates;
+        return notificationTypes;
     }
 }

@@ -33,7 +33,7 @@ public class Address extends EmsDto implements Serializable {
     private String variable9;
     private String variable10;
     private Long addressType;
-
+ private Owner owner;
 
     public long getId() {
         return this.id;
@@ -51,7 +51,13 @@ public class Address extends EmsDto implements Serializable {
         this.state = state;
     }
 
+    public Owner getOwner() {
+        return owner;
+    }
 
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
 
     public String getCountry() {
         return this.country;

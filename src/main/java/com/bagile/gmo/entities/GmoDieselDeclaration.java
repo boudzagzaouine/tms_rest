@@ -14,7 +14,7 @@ public class GmoDieselDeclaration extends EmsEntity{
     private BigDecimal gmoDieselDeclarationAmount;
     private BigDecimal gmoDieselDeclarationMileage;
     private Date gmoDieselDeclarationDate;
-
+ private OwnOwner ownOwner;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_diesel_declaration_id", allocationSize = 1)
@@ -76,5 +76,13 @@ public class GmoDieselDeclaration extends EmsEntity{
         this.gmoDieselDeclarationDate = gmoDieselDeclarationDate;
     }
 
+    @ManyToOne()
+    @JoinColumn(name="gmo_ownowner")
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
 
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
+    }
 }

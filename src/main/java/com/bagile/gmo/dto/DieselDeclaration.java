@@ -16,7 +16,7 @@ public class DieselDeclaration extends EmsDto implements Serializable {
     private BigDecimal amount;
     private BigDecimal mileage;
     private Date dieselDeclarationDate;
-
+ private Owner owner;
 
     public long getId() {
         return id;
@@ -64,6 +64,14 @@ public class DieselDeclaration extends EmsDto implements Serializable {
 
     public void setDieselDeclarationDate(Date dieselDeclarationDate) {
         this.dieselDeclarationDate = dieselDeclarationDate;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     @Override

@@ -63,6 +63,7 @@ public class CatalogTransportTypeMapper {
             trpTransport.setTrpTransport (TransportMapper.toEntity (transport.getTransport ( ), true));
             trpTransport.setGmoZoneSource (ZoneMapper.toEntity (transport.getZoneSource ( ), true));
             trpTransport.setGmoZoneDestination (ZoneMapper.toEntity (transport.getZoneDestination ( ), true));
+            trpTransport.setOwnOwner (OwnerMapper.toEntity (transport.getOwner(), true));
 
         }
 
@@ -91,6 +92,7 @@ public class CatalogTransportTypeMapper {
             transport.setZoneSource (ZoneMapper.toDto(trpTransport.getGmoZoneSource(), true));
             transport.setZoneDestination (ZoneMapper.toDto(trpTransport.getGmoZoneDestination(), true));
             transport.setVat (VatMapper.toDto(trpTransport.getPrmvat(), true));
+            transport.setOwner (OwnerMapper.toDto(trpTransport.getOwnOwner(), true));
 
         }
         return transport;

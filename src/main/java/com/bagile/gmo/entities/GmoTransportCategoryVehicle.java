@@ -14,6 +14,7 @@ public class GmoTransportCategoryVehicle extends EmsEntity {
     private TrpTransport trpTransport;
     private int gmoTransportCategorieVehicleQuantity;
 
+    private OwnOwner ownOwner;
 
 
     @Id
@@ -56,5 +57,15 @@ public class GmoTransportCategoryVehicle extends EmsEntity {
 
     public void setGmoTransportCategorieVehicleQuantity(int gmoTransportCategorieVehicleQuantit) {
         this.gmoTransportCategorieVehicleQuantity = gmoTransportCategorieVehicleQuantit;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name="gmo_ownownerid")
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
+
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
     }
 }

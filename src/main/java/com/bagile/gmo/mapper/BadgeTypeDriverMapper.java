@@ -1,14 +1,9 @@
 package com.bagile.gmo.mapper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.bagile.gmo.dto.BadgeTypeDriver;
 import com.bagile.gmo.entities.GmoBadgeTypeDriver;
+
+import java.util.*;
 
 public class BadgeTypeDriverMapper {
     public BadgeTypeDriverMapper() {
@@ -58,6 +53,7 @@ public class BadgeTypeDriverMapper {
         if (!lazy) {
             gmoBadgeTypeDriver.setGmoDriver(DriverMapper.toEntity(badgeTypeDriver.getDriver(), true));
             gmoBadgeTypeDriver.setGmoBadgeType(BadgeTypeMapper.toEntity(badgeTypeDriver.getBadgeType(),true));
+            gmoBadgeTypeDriver.setOwnOwner(OwnerMapper.toEntity(badgeTypeDriver.getOwner(),true));
 
         }
         return gmoBadgeTypeDriver;
@@ -78,6 +74,8 @@ public class BadgeTypeDriverMapper {
         if (!lazy) {
             badgeTypeDriver.setDriver(DriverMapper.toDto(gmoBadgeTypeDriver.getGmoDriver(), true));
             badgeTypeDriver.setBadgeType(BadgeTypeMapper.toDto(gmoBadgeTypeDriver.getGmoBadgeType(),true));
+            badgeTypeDriver.setOwner(OwnerMapper.toDto(gmoBadgeTypeDriver.getOwnOwner(),true));
+
         }
 
         return badgeTypeDriver;

@@ -52,7 +52,7 @@ public class TransportCategoryVehicleMapper {
         if (!lazy) {
             trpTransport.setGmoVehicleCategory (VehicleCategoryMapper.toEntity (transport.getVehicleCategory ( ), false));
             trpTransport.setTrpTransport (TransportMapper.toEntity (transport.getTransport ( ), false));
-
+ trpTransport.setOwnOwner(OwnerMapper.toEntity(transport.getOwner(),true));
         }
 
         return trpTransport;
@@ -76,7 +76,7 @@ public class TransportCategoryVehicleMapper {
         if (!lazy) {
             transport.setVehicleCategory (VehicleCategoryMapper.toDto(trpTransport.getGmoVehicleCategory(), false));
             transport.setTransport (TransportMapper.toDto(trpTransport.getTrpTransport(), false));
-
+            transport.setOwner(OwnerMapper.toDto(trpTransport.getOwnOwner(),true));
         }
         return transport;
 

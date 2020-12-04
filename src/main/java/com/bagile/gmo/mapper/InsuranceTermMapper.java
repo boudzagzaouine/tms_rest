@@ -1,14 +1,9 @@
 package com.bagile.gmo.mapper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.bagile.gmo.dto.InsuranceTerm;
 import com.bagile.gmo.entities.GmoInsuranceTerm;
+
+import java.util.*;
 
 public class InsuranceTermMapper {
     public InsuranceTermMapper() {
@@ -62,7 +57,7 @@ public class InsuranceTermMapper {
         if(!lazy) {
             // gmoInsurance.setGmoInsuranceTermLigne (InsuranceTermLigneMapper.toEntities(insurance.getInsuranceTermLignes(),false));
             gmoInsuranceTerm.setGmoInsuranceTermsVehicules (InsuranceTermsVehicleMapper.toEntities(insuranceTerm.getInsuranceTermVehicles (),false));
-
+   gmoInsuranceTerm.setOwnOwner(OwnerMapper.toEntity(insuranceTerm.getOwner(),true));
             // oneToMany(gmoInsurance);
         }
         return gmoInsuranceTerm;
@@ -85,7 +80,7 @@ public class InsuranceTermMapper {
         insuranceTerm.setUpdateDate(gmoInsuranceTerm.getUpdateDate());
 
         if(!lazy) {
-
+        insuranceTerm.setOwner(OwnerMapper.toDto(gmoInsuranceTerm.getOwnOwner(),true));
           //  insuranceTerm..setInsuranceTermLignes (InsuranceTermLigneMapper.toDtos(gmoInsurance.getGmoInsuranceTermLigne (),false));
             insuranceTerm.setInsuranceTermVehicles (InsuranceTermsVehicleMapper.toDtos(gmoInsuranceTerm.getGmoInsuranceTermsVehicules (), true));
         }

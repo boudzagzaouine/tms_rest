@@ -20,6 +20,8 @@ public class VehicleCategory extends EmsDto implements Serializable {
     private BigDecimal tonnage;
     private  BigDecimal emptyWeight;
     private BigDecimal totalWeight;
+    private Owner owner;
+
     public VehicleCategory() {
     }
 
@@ -103,6 +105,13 @@ public class VehicleCategory extends EmsDto implements Serializable {
         this.totalWeight = totalWeight;
     }
 
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
 
     @Override
     public boolean equals(Object o) {

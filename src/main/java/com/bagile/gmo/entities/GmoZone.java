@@ -19,6 +19,9 @@ public class GmoZone   extends EmsEntity{
     @Column(name = "gmo_zonedescription", length = 90)
     private String gmoZoneDescription;
 
+    @ManyToOne()
+    @JoinColumn(name="gmo_ownowner")
+    private OwnOwner ownOwner;
 
     public GmoZone() {
     }
@@ -45,5 +48,13 @@ public class GmoZone   extends EmsEntity{
 
     public void setGmoZoneDescription(String gmoZoneDescription) {
         this.gmoZoneDescription = gmoZoneDescription;
+    }
+
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
+
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
     }
 }

@@ -1,9 +1,7 @@
 package com.bagile.gmo.entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -18,6 +16,7 @@ public class GmoBadgeType extends EmsEntity {
     private String gmoBadgeTypeDescription;
 
     private Set<GmoBadgeTypeDriver> gmoBadgeTypeDrivers=new HashSet<>();
+private OwnOwner ownOwner;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -56,5 +55,15 @@ public class GmoBadgeType extends EmsEntity {
 
     public void setGmoBadgeTypeDrivers(Set<GmoBadgeTypeDriver> gmoBadgeTypeDrivers) {
         this.gmoBadgeTypeDrivers = gmoBadgeTypeDrivers;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name="gmo_ownownerid")
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
+
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
     }
 }

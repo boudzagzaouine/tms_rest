@@ -1,14 +1,9 @@
 package com.bagile.gmo.mapper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.bagile.gmo.dto.ActionType;
 import com.bagile.gmo.entities.GmoActionType;
+
+import java.util.*;
 
 public class ActionTypeMapper {
 	public ActionTypeMapper() {
@@ -41,6 +36,9 @@ public class ActionTypeMapper {
 		gmoActionType.setGmoActionTypeCode(actionType.getCode() != null ? actionType.getCode().toUpperCase() : null);
 		gmoActionType.setGmoActionTypeDescription(actionType.getDescription());
 
+		if(!lazy){
+			gmoActionType.setOwnOwner(OwnerMapper.toEntity(actionType.getOwner(),true));
+		}
 		return gmoActionType;
 	}
 
@@ -53,6 +51,11 @@ public class ActionTypeMapper {
 		actionType.setCode(gmoActionType.getGmoActionTypeCode() != null ? gmoActionType.getGmoActionTypeCode().toUpperCase() : null);
 		actionType.setDescription(gmoActionType.getGmoActionTypeDescription());
 
+		if(!lazy){
+
+			actionType.setOwner(OwnerMapper.toDto(gmoActionType.getOwnOwner(),true));
+
+		}
 		return actionType;
 
 	}

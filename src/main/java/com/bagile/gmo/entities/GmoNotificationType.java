@@ -10,6 +10,9 @@ public class GmoNotificationType extends EmsEntity{
     private String gmoNotificationCode;
     private String gmoNotificationEmail;
 
+   // @NotNull
+    private OwnOwner ownOwner;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_notificationtype_id", allocationSize = 1)
@@ -29,6 +32,16 @@ public class GmoNotificationType extends EmsEntity{
 
     public void setGmoNotificationCode(String gmoNotificationCode) {
         this.gmoNotificationCode = gmoNotificationCode;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_notificationtypeownerid")
+    public OwnOwner getOwnOwner() {
+        return this.ownOwner;
+    }
+
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
     }
 
 

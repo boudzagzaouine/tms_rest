@@ -19,6 +19,7 @@ public class Contact extends EmsDto implements Serializable {
     private  String email;
     private String comment;
     private boolean  active ;
+    private Owner owner;
 
     public Contact() {
     }
@@ -101,6 +102,14 @@ public class Contact extends EmsDto implements Serializable {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     @Override

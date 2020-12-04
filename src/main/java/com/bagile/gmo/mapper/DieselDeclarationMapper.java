@@ -53,6 +53,7 @@ public class DieselDeclarationMapper {
 
         if (!lazy) {
             gmoDieselDeclaration.setGmoVehicle (VehicleMapper.toEntity (dieselDeclaration.getVehicle ( ), true));
+            gmoDieselDeclaration.setOwnOwner (OwnerMapper.toEntity (dieselDeclaration.getOwner ( ), true));
 
         }
 
@@ -78,6 +79,7 @@ public class DieselDeclarationMapper {
 
         if (!lazy) {
             dieselDeclaration.setVehicle (VehicleMapper.toDto (gmoDieselDeclaration.getGmoVehicle(), true));
+            dieselDeclaration.setOwner (OwnerMapper.toDto (gmoDieselDeclaration.getOwnOwner(), true));
 
 
         }

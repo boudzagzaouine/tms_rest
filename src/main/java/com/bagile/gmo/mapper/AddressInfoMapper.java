@@ -31,6 +31,7 @@ public class AddressInfoMapper {
         addressInfo.setLine2(adrAddress.getAdrAddressLine2());
 
 
+
         return addressInfo;
     }
     public static AddressInfo toAddressInfoDto(Address address, boolean lazy) {

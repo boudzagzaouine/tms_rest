@@ -14,7 +14,7 @@ public class BadgeType extends EmsDto implements Serializable {
     private String code;
     private String description;
     private List<BadgeTypeDriver> badgeTypeDrivers = new ArrayList<>();
-
+private Owner owner;
     public long getId() {
         return id;
     }
@@ -45,6 +45,14 @@ public class BadgeType extends EmsDto implements Serializable {
 
     public void setBadgeTypeDrivers(List<BadgeTypeDriver> badgeTypeDrivers) {
         this.badgeTypeDrivers = badgeTypeDrivers;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     @Override

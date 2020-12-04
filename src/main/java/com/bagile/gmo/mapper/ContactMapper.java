@@ -62,13 +62,13 @@ public class ContactMapper {
         gmoContact.setUpdatedBy(contact.getUpdatedBy());
         gmoContact.setCreationDate(contact.getCreationDate());
         gmoContact.setUpdateDate(contact.getUpdateDate());
-        /*if (!lazy) {
+        if (!lazy) {
             gmoContact.setOwnOwner(OwnerMapper.toEntity(contact.getOwner(), true));
 //            prmContact.setInvInvoices(InvoiceMapper.toEntities(contact.getInvoices(), true));
 //            prmContact.setInvInvoiceArcs(InvoiceArcMapper.toEntities(contact.getInvoiceArcs(), true));
 //            prmContact.setRcpSuppliers(SupplierMapper.toEntities(contact.getSuppliers(), true));
 //            prmContact.setTrpTransports(TransportMapper.toEntities(contact.getTransports(), true));
-        }*/
+        }
         return gmoContact;
     }
 
@@ -92,13 +92,14 @@ public class ContactMapper {
         contact.setUpdatedBy(gmoContact.getUpdatedBy());
         contact.setCreationDate(gmoContact.getCreationDate());
         contact.setUpdateDate(gmoContact.getUpdateDate());
-        /*if (!lazy) {
-            contact.setOwner(OwnerMapper.toDto(prmContact.getOwnOwner(), true));
+        if (!lazy) {
+
+            contact.setOwner(OwnerMapper.toDto(gmoContact.getOwnOwner(), true));
 //            contact.setInvoices(InvoiceMapper.toDtos(prmContact.getInvInvoices(), true));
 //            contact.setInvoiceArcs(InvoiceArcMapper.toDtos(prmContact.getInvInvoiceArcs(), true));
 //            contact.setSuppliers(SupplierMapper.toDtos(prmContact.getRcpSuppliers(), true));
 //            contact.setTransports(TransportMapper.toDtos(prmContact.getTrpTransports(), true));
-        }*/
+        }
         return contact;
     }
 

@@ -1,9 +1,7 @@
 package com.bagile.gmo.entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -20,6 +18,7 @@ public class GmoInsuranceType extends EmsEntity {
 
     private Set<GmoInsuranceTypeTerms> gmoInsuranceTypeTerms=new HashSet<>();
 
+    private OwnOwner ownOwner;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -47,6 +46,16 @@ public class GmoInsuranceType extends EmsEntity {
 
     public void setGmoInsuranceTypeDescription(String gmoInsuranceTypeDescription) {
         this.gmoInsuranceTypeDescription = gmoInsuranceTypeDescription;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name="gmo_ownerid")
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
+
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
     }
 
     /*

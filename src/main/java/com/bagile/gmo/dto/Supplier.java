@@ -12,6 +12,7 @@ public class Supplier extends EmsDto {
     private Address address;
     private Boolean active;
 
+
     public long getId() {
         return id;
     }
@@ -83,6 +84,8 @@ public class Supplier extends EmsDto {
     public void setActive(Boolean active) {
         this.active = active;
     }
+
+
 
     @Override
     public boolean equals(Object object) {

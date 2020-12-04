@@ -2,9 +2,7 @@ package com.bagile.gmo.entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -20,6 +18,7 @@ public class GmoCommissionType extends EmsEntity {
     private BigDecimal gmoCommissionTypePercentage;
     private Set<GmoCommissionDriver> gmoCommissions = new HashSet<>();
 
+    private OwnOwner ownOwner;
 
 
     @Id
@@ -85,4 +84,13 @@ public class GmoCommissionType extends EmsEntity {
         this.gmoCommissions = gmoCommissions;
     }
 
+    @ManyToOne()
+    @JoinColumn(name="gmo_ownownerid")
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
+
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
+    }
 }

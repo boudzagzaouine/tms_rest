@@ -1,8 +1,6 @@
 package com.bagile.gmo.dto;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 public class InsuranceTermsVehicle extends EmsDto {
 
@@ -11,7 +9,7 @@ public class InsuranceTermsVehicle extends EmsDto {
     private InsuranceTerm insuranceTerm;
     private BigDecimal amount;
     private Insurance insurance;
-
+    private Owner owner;
 
     public Long getId() {
         return id;
@@ -36,6 +34,14 @@ public class InsuranceTermsVehicle extends EmsDto {
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
     }*/
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
 
     public InsuranceTerm getInsuranceTerm() {
         return insuranceTerm;

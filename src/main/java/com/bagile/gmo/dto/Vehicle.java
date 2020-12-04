@@ -47,7 +47,7 @@ public class Vehicle extends Patrimony implements Serializable {
     private BigDecimal currentMileage;
 //    private List<InsuranceTermsVehicle> insuranceTermVehicles=new ArrayList<>();
     private List<Turn> turns=new ArrayList<>();
-
+ private Owner owner;
 
 
     public Vehicle() {
@@ -319,7 +319,13 @@ public class Vehicle extends Patrimony implements Serializable {
         this.transport = transport;
     }
 
+    public Owner getOwner() {
+        return owner;
+    }
 
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
 
     @Override
     public boolean equals(Object o) {

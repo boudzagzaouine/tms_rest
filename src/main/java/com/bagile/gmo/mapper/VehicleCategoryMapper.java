@@ -1,14 +1,9 @@
 package com.bagile.gmo.mapper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.bagile.gmo.dto.VehicleCategory;
 import com.bagile.gmo.entities.GmoVehicleCategory;
+
+import java.util.*;
 
 public class VehicleCategoryMapper {
     public VehicleCategoryMapper() {
@@ -68,6 +63,10 @@ public class VehicleCategoryMapper {
         gmoVehicleCategory.setCreationDate(vehicle.getCreationDate());
         gmoVehicleCategory.setUpdateDate(vehicle.getUpdateDate());
 
+        if(!lazy){
+
+            gmoVehicleCategory.setOwnOwner(OwnerMapper.toEntity(vehicle.getOwner(),true));
+        }
             return gmoVehicleCategory;
 
     }
@@ -93,7 +92,9 @@ public class VehicleCategoryMapper {
         vehicle.setCreationDate(gmoVehicleCategory.getCreationDate());
         vehicle.setUpdateDate(gmoVehicleCategory.getUpdateDate());
 
-
+if(!lazy){
+    vehicle.setOwner(OwnerMapper.toDto(gmoVehicleCategory.getOwnOwner(),true));
+}
             return vehicle;
 
     }

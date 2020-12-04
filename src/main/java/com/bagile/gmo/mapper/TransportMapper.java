@@ -57,6 +57,7 @@ public class TransportMapper {
         if (!lazy) {
             trpTransport.setAdrAddress (AddressMapper.toEntity (transport.getAddress ( ), true));
             trpTransport.setGmoTransportCategoryVehicles (TransportCategoryVehicleMapper.toEntities (transport.getTransportCategorieVehicules ( ), true));
+            trpTransport.setOwnOwner (OwnerMapper.toEntity (transport.getOwner ( ), true));
 
         }
 
@@ -85,6 +86,7 @@ public class TransportMapper {
         if (!lazy) {
             transport.setAddress (AddressMapper.toDto(trpTransport.getAdrAddress(), true));
             transport.setTransportCategorieVehicules (TransportCategoryVehicleMapper.toDtos(trpTransport.getGmoTransportCategoryVehicles(), true));
+            transport.setOwner (OwnerMapper.toDto(trpTransport.getOwnOwner(), true));
 
         }
         return transport;

@@ -48,6 +48,12 @@ public class ZoneMapper {
         gmoZone.setCreationDate(zone.getCreationDate());
         gmoZone.setUpdateDate(zone.getUpdateDate());
 
+        if(!lazy) {
+
+            gmoZone.setOwnOwner(OwnerMapper.toEntity(zone.getOwner(),true));
+
+        }
+
         return gmoZone;
 
     }
@@ -61,6 +67,12 @@ public class ZoneMapper {
         zone.setCode(gmoZone.getGmoZoneCode());
         zone.setDescription(gmoZone.getGmoZoneDescription());
 
+
+      if(!lazy){
+
+          zone.setOwner(OwnerMapper.toDto(gmoZone.getOwnOwner(),true));
+
+      }
 
         return zone;
 

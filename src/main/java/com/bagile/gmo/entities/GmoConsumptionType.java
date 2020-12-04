@@ -1,7 +1,5 @@
 package com.bagile.gmo.entities;
 
-import org.hibernate.annotations.SQLDelete;
-
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +10,8 @@ public class GmoConsumptionType extends EmsEntity{
     private long gmoConsumptionTypeId;
     private String gmoConsumptionTypeCode;
     private String gmoConsumptionTypeDescription;
+  private OwnOwner ownOwner;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -33,7 +33,15 @@ public class GmoConsumptionType extends EmsEntity{
     public void setGmoConsumptionTypeCode(String gmoConsumptionTypeCode) {
         this.gmoConsumptionTypeCode = gmoConsumptionTypeCode;
     }
+    @ManyToOne()
+    @JoinColumn(name="gmo_ownownerid")
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
 
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
+    }
 
 
 

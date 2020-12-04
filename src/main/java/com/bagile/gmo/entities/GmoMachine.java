@@ -19,6 +19,7 @@ public class GmoMachine extends GmoPatrimony {
     private BigDecimal gmoMachineAamount;
     private TrpTransport trpTransport;
 
+    private OwnOwner ownOwner;
 
    /* @Column(name = "gmo_machinecode", unique = true, nullable = false, length = 90)
     public String getGmoPatrimonyCode() {
@@ -91,4 +92,13 @@ public class GmoMachine extends GmoPatrimony {
     }
 
 
- }
+    @ManyToOne()
+    @JoinColumn(name="gmo_ownerowner")
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
+
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
+    }
+}

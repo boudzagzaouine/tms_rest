@@ -52,6 +52,11 @@ public class CommissionTypeMapper {
         gmoCommissionType.setCreationDate(commissionType.getCreationDate());
         gmoCommissionType.setUpdateDate(commissionType.getUpdateDate());
 
+        if(!lazy){
+
+            gmoCommissionType.setOwnOwner(OwnerMapper.toEntity(commissionType.getOwner(),true));
+        }
+
         return gmoCommissionType;
 
     }
@@ -67,6 +72,11 @@ public class CommissionTypeMapper {
         commissionType.setPercentage (gmoCommissionType.getGmoCommissionTypepercentage ());
         commissionType.setMinDistance (gmoCommissionType.getGmoCommissionTypeMinDistance ());
         commissionType.setMaxDistance (gmoCommissionType.getGmoCommissionTypeMaxDistance ());
+
+        if(!lazy){
+
+            commissionType.setOwner(OwnerMapper.toDto(gmoCommissionType.getOwnOwner(),true));
+        }
 
         return commissionType;
 

@@ -48,6 +48,7 @@ public class GmoVehicle extends GmoPatrimony {
 
     private Set<GmoTurn> gmoTurns=new HashSet<>();
 
+    private OwnOwner ownOwner;
 
   /*  @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -347,5 +348,15 @@ public class GmoVehicle extends GmoPatrimony {
 
     public void setGmoTurns(Set<GmoTurn> gmoTurns) {
         this.gmoTurns = gmoTurns;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name="gmo_ownowner")
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
+
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
     }
 }

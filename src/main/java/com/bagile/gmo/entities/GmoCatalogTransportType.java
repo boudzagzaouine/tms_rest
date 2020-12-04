@@ -17,6 +17,8 @@ public class GmoCatalogTransportType extends EmsEntity{
     private BigDecimal gmoCatalogTransportAmountTva;
     private PrmVat prmvat;
 
+    private OwnOwner ownOwner;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_catalogtransportcategoryvehicle_id", allocationSize = 1)
@@ -100,6 +102,17 @@ public class GmoCatalogTransportType extends EmsEntity{
 
     public void setPrmvat(PrmVat prmvat) {
         this.prmvat = prmvat;
+    }
+
+
+   @ManyToOne()
+   @JoinColumn(name="gmo_ownownerid")
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
+
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
     }
 }
 

@@ -16,7 +16,7 @@ public class GmoBadgeTypeDriver extends EmsEntity {
     private String gmoBadgeNumber;
     private Date gmoDeliveranceDate;
     private Date gmoValidityEndDate;
-
+ private OwnOwner ownOwner;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -76,4 +76,13 @@ public class GmoBadgeTypeDriver extends EmsEntity {
     }
 
 
+    @ManyToOne()
+    @JoinColumn(name="gmo_ownowner")
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
+
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
+    }
 }

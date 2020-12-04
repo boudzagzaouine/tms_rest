@@ -2,9 +2,7 @@ package com.bagile.gmo.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 public class Machine extends Patrimony implements Serializable {
@@ -22,6 +20,7 @@ public class Machine extends Patrimony implements Serializable {
     private Date aquisitionDate;
     private BigDecimal amount;
      private Transport transport;
+private Owner owner;
 
 
 
@@ -89,6 +88,13 @@ public class Machine extends Patrimony implements Serializable {
     }
 
 
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
 
     public ConsumptionType getConsumptionType() {
         return consumptionType;

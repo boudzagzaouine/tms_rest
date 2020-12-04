@@ -5,6 +5,8 @@ public class  ActionType {
 	private long id;
 	private String code;
 	private String description;
+ private Owner owner;
+
 
 	public long getId() {
 		return id;
@@ -23,5 +25,13 @@ public class  ActionType {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Owner getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
 	}
 }

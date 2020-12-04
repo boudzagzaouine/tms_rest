@@ -58,6 +58,7 @@ public class MachineMapper {
             gmoMachine.setGmoConsumptionType (ConsumptionTypeMapper.toEntity (machine.getConsumptionType (), true));
             gmoMachine.setTrpTransport (TransportMapper.toEntity (machine.getTransport (), false));
             gmoMachine.setGmoMaintenancePlan (MaintenancePlanMapper.toEntity (machine.getMaintenancePlan (), false));
+            gmoMachine.setOwnOwner (OwnerMapper.toEntity (machine.getOwner (), false));
 
         }
         return gmoMachine;
@@ -89,6 +90,7 @@ public class MachineMapper {
             machine.setConsumptionType (ConsumptionTypeMapper.toDto (gmoMachine.getGmoConsumptionType (), true));
             machine.setTransport (TransportMapper.toDto (gmoMachine.getTrpTransport (), false));
             machine.setMaintenancePlan (MaintenancePlanMapper.toDto (gmoMachine.getGmoMaintenancePlan (), false));
+            machine.setOwner (OwnerMapper.toDto (gmoMachine.getOwnOwner (), false));
 
         }
         return machine;

@@ -29,7 +29,7 @@ public class Transport  extends EmsDto implements Serializable {
     private String description;
     private Address address;
     private Boolean active;
-
+ private Owner owner;
     private List<TransportCategoryVehicle> transportCategorieVehicules=new ArrayList<>();
 
     private List<Turn> turns=new ArrayList<>();
@@ -148,7 +148,13 @@ public class Transport  extends EmsDto implements Serializable {
     }
 
 
+    public Owner getOwner() {
+        return owner;
+    }
 
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
 
     public BigDecimal getSiret() {
         return siret;

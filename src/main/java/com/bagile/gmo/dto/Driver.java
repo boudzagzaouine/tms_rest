@@ -32,6 +32,7 @@ private String carte;
 
     private List<Turn> turns = new ArrayList<>();
 
+    private Owner owner;
 
     public Driver() {
     }
@@ -84,8 +85,15 @@ private String carte;
         this.lastMedicalVisit = lastMedicalVisit;
     }
 
+    public Owner getOwner() {
+        return owner;
+    }
 
- /*   public Badge getBadge() {
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
+    /*   public Badge getBadge() {
         return badge;
     }
 

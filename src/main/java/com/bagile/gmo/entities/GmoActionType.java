@@ -1,8 +1,6 @@
 package com.bagile.gmo.entities;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 
 @Entity
@@ -15,6 +13,7 @@ public class GmoActionType extends EmsEntity {
     private String gmoActionTypeCode;
     private String gmoActionTypeDescription;
 
+    private OwnOwner ownOwner;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -46,5 +45,15 @@ public class GmoActionType extends EmsEntity {
         this.gmoActionTypeDescription = gmoActionTypeDescription;
     }
 
-   
+
+
+    @ManyToOne
+    @JoinColumn(name = "gmo_notificationtypeownowner")
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
+
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
+    }
 }

@@ -1,14 +1,7 @@
 package com.bagile.gmo.entities;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 @Entity
 @Table(name="gmo_vehiclecategory")
@@ -27,7 +20,7 @@ public class GmoVehicleCategory  extends EmsEntity {
     private BigDecimal gmoVehicleCategoryTonnage;
     private  BigDecimal gmoVehicleCategoryEmptyWeight;
     private BigDecimal gmoVehicleCategoryTotalWeight;
-
+  private OwnOwner ownOwner;
 
 
     public GmoVehicleCategory() {
@@ -73,8 +66,15 @@ public class GmoVehicleCategory  extends EmsEntity {
         this.gmoVehicleCategoryLength = gmoVehicleCategoryLength;
     }
 
+    @ManyToOne()
+    @JoinColumn(name="gmo_ownownerid")
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
 
-
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
+    }
 
     @Column(name = "gmo_vehiclecategorywidth")
     public BigDecimal getGmoVehicleCategoryWidth() {

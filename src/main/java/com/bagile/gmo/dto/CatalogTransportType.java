@@ -17,6 +17,7 @@ public class CatalogTransportType extends EmsDto implements Serializable {
     private BigDecimal amountTtc;
     private BigDecimal amountTva;
     private Vat vat;
+  private Owner owner;
 
 
 
@@ -93,6 +94,14 @@ public class CatalogTransportType extends EmsDto implements Serializable {
 
     public void setVat(Vat vat) {
         this.vat = vat;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     @Override

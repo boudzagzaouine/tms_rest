@@ -4,7 +4,8 @@ public class ContractType extends EmsDto{
 
     private long id;
     private String code;
-  private String description;
+    private String description;
+    private Owner owner;
 
     public ContractType() {
     }
@@ -31,5 +32,13 @@ public class ContractType extends EmsDto{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 }

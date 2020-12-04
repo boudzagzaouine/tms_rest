@@ -10,7 +10,7 @@ public class TransportCategoryVehicle extends EmsDto implements Serializable {
     private Transport transport;
     private VehicleCategory vehicleCategory;
     private int quantity;
-
+    private Owner owner;
 
     public TransportCategoryVehicle() {
     }
@@ -45,6 +45,14 @@ public class TransportCategoryVehicle extends EmsDto implements Serializable {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     @Override

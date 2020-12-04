@@ -10,7 +10,7 @@ public class ConsumptionType extends EmsDto implements Serializable {
     private long id;
     private String code;
     private String description;
-
+private  Owner owner;
     public ConsumptionType() {
     }
 
@@ -38,6 +38,14 @@ public class ConsumptionType extends EmsDto implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     @Override

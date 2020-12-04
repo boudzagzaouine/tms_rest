@@ -1,17 +1,8 @@
 package com.bagile.gmo.entities;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 @Entity
 @Table(name="gmo_contracttype")
@@ -31,6 +22,10 @@ public class GmoContractType extends EmsEntity{
     @OneToMany(mappedBy = "gmoContractType",cascade = CascadeType.ALL)
     private Set<GmoVehicle> gmoVehicles = new HashSet<>();
 
+
+    @ManyToOne()
+    @JoinColumn(name="gmo_ownownerid")
+    private OwnOwner ownOwner;
 
     public GmoContractType() {
     }
@@ -65,5 +60,14 @@ public class GmoContractType extends EmsEntity{
 
     public void setGmoContractTypeDescription(String gmoContractTypeDescription) {
         this.gmoContractTypeDescription = gmoContractTypeDescription;
+    }
+
+
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
+
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
     }
 }

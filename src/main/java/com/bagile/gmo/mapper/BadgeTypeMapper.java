@@ -1,14 +1,9 @@
 package com.bagile.gmo.mapper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.bagile.gmo.dto.BadgeType;
 import com.bagile.gmo.entities.GmoBadgeType;
+
+import java.util.*;
 
 public class BadgeTypeMapper {
     public BadgeTypeMapper() {
@@ -46,11 +41,14 @@ public class BadgeTypeMapper {
         gmoBadgeType.setGmoBadgeTypeCode(badgeType.getCode() != null ? badgeType.getCode().toUpperCase() : null);
         gmoBadgeType.setGmoBadgeTypeDescription (badgeType.getDescription ());
 
-
         gmoBadgeType.setCreatedBy(badgeType.getCreatedBy());
         gmoBadgeType.setUpdatedBy(badgeType.getUpdatedBy());
         gmoBadgeType.setCreationDate(badgeType.getCreationDate());
         gmoBadgeType.setUpdateDate(badgeType.getUpdateDate());
+
+          if(!lazy){
+              gmoBadgeType.setOwnOwner(OwnerMapper.toEntity(badgeType.getOwner(),true));
+          }
 
         return gmoBadgeType;
 
@@ -65,7 +63,9 @@ public class BadgeTypeMapper {
         badgeType.setCode(gmoBadgeType.getGmoBadgeTypeCode());
         badgeType.setDescription (gmoBadgeType.getGmoBadgeTypeDescription ());
 
-
+ if(!lazy){
+      badgeType.setOwner(OwnerMapper.toDto(gmoBadgeType.getOwnOwner(),true));
+ }
         return badgeType;
 
     }

@@ -103,6 +103,7 @@ public class VehicleMapper {
            // gmoVehicle.setGmoInsuranceTermsVehicules (InsuranceTermsVehicleMapper.toEntities (vehicle.getInsuranceTermVehicles (), false));
             gmoVehicle.setTrpTransport (TransportMapper.toEntity (vehicle.getTransport (), false));
             gmoVehicle.setGmoMaintenancePlan (MaintenancePlanMapper.toEntity (vehicle.getMaintenancePlan (), false));
+            gmoVehicle.setOwnOwner (OwnerMapper.toEntity (vehicle.getOwner (), false));
 
             //oneToOne(gmoVehicle);
            // oneToMany(gmoVehicle);
@@ -159,6 +160,7 @@ public class VehicleMapper {
            // vehicle.setInsuranceTermVehicles (InsuranceTermsVehicleMapper.toDtos(gmoVehicle.getGmoInsuranceTermsVehicules (), false));
             vehicle.setTransport (TransportMapper.toDto (gmoVehicle.getTrpTransport (), false));
             vehicle.setMaintenancePlan (MaintenancePlanMapper.toDto (gmoVehicle.getGmoMaintenancePlan (), false));
+            vehicle.setOwner (OwnerMapper.toDto (gmoVehicle.getOwnOwner (), false));
 
         }
         return vehicle;

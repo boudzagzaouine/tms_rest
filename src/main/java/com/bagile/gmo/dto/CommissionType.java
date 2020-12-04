@@ -17,6 +17,7 @@ public class CommissionType extends EmsDto implements Serializable {
     private long  maxDistance;
     private BigDecimal percentage ;
     private List<CommissionDriver> commissions = new ArrayList<>();
+    private Owner owner;
 
     public BigDecimal getPercentage() {
         return percentage;
@@ -72,5 +73,13 @@ public class CommissionType extends EmsDto implements Serializable {
 
     public void setCommissions(List<CommissionDriver> commissions) {
         this.commissions = commissions;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 }

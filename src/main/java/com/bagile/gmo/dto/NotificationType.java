@@ -11,7 +11,7 @@ public class NotificationType extends EmsDto implements Serializable {
     private String code;
     private String email;
 
-
+    private Owner owner;
 
     public NotificationType() {
     }
@@ -39,6 +39,14 @@ public class NotificationType extends EmsDto implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     @Override

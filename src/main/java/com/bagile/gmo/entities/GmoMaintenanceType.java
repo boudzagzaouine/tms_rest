@@ -1,12 +1,6 @@
 package com.bagile.gmo.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
@@ -27,7 +21,9 @@ public class GmoMaintenanceType  extends EmsEntity {
     @Column(name = "gmo_maintenancetypedescription")
     private String gmoMaintenanceTypeDescription;
 
-
+    @ManyToOne()
+    @JoinColumn(name="gmo_ownownerid")
+    private OwnOwner ownOwner;
     public GmoMaintenanceType() {
     }
 
@@ -53,5 +49,13 @@ public class GmoMaintenanceType  extends EmsEntity {
 
     public void setGmoMaintenanceTypeDescription(String gmoMaintenanceTypeDescription) {
         this.gmoMaintenanceTypeDescription = gmoMaintenanceTypeDescription;
+    }
+
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
+
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
     }
 }

@@ -1,17 +1,8 @@
 package com.bagile.gmo.entities;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 @Entity
 @Table(name="gmo_terminsurance")
@@ -28,6 +19,8 @@ public class GmoInsuranceTerm extends  EmsEntity{
     private Set<GmoInsuranceTypeTerms> gmoInsuranceTypeTerms=new HashSet<>();
 
     private Set<GmoInsuranceTermsVehicule> gmoInsuranceTermsVehicules=new HashSet<>();
+
+    private OwnOwner ownOwner;
 
 
     @Id
@@ -58,7 +51,18 @@ public class GmoInsuranceTerm extends  EmsEntity{
         this.gmoInsuranceTermDescription = gmoInsuranceTermDescription;
     }
 
-   /* @OneToMany(mappedBy = "gmoInsuranceTerm")
+    @ManyToOne()
+    @JoinColumn(name="gmo_ownownerid")
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
+
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
+    }
+
+
+    /* @OneToMany(mappedBy = "gmoInsuranceTerm")
     public List<GmoInsuranceTermLigne> getGmoInsuranceTermLigne() {
         return gmoInsuranceTermInsurances;
     }

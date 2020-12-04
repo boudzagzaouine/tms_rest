@@ -13,7 +13,17 @@ public class InsuranceTerm extends EmsDto {
 
     private List<InsuranceTypeTerms> insuranceTypeTermsSet=new ArrayList<>();
 
+     private Owner owner;
+
     public InsuranceTerm() {
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     public Long getId() {

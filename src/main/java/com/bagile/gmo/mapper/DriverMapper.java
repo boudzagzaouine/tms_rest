@@ -1,15 +1,9 @@
 package com.bagile.gmo.mapper;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.bagile.gmo.dto.Driver;
 import com.bagile.gmo.entities.GmoDriver;
+
+import java.util.*;
 
 public class DriverMapper {
     public DriverMapper() {
@@ -78,6 +72,7 @@ public class DriverMapper {
         if (!lazy) {
             //gmoDriver.setGmoCommissions(CommissionDriverMapper.toEntities(driver.getCommissions(), false));
             gmoDriver.setGmoBadgeTypeDrivers(BadgeTypeDriverMapper.toEntities(driver.getBadgeTypeDrivers(), false));
+            gmoDriver.setOwnOwner(OwnerMapper.toEntity(driver.getOwner(), false));
 
             oneToMany(gmoDriver);
 
@@ -133,6 +128,8 @@ public class DriverMapper {
         if (!lazy) {
          //   driver.setCommissions(CommissionDriverMapper.toDtos(gmoDriver.getGmoCommissions (), false));
             driver.setBadgeTypeDrivers(BadgeTypeDriverMapper.toDtos(gmoDriver.getGmoBadgeTypeDrivers(), false));
+            driver.setOwner(OwnerMapper.toDto(gmoDriver.getOwnOwner(), false));
+
         }
         return driver;
 

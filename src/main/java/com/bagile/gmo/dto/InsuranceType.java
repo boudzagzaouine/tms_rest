@@ -15,7 +15,15 @@ public class InsuranceType extends EmsDto implements Serializable {
    // private Set<VehicleCategory> vehicleCategories = new HashSet<>();
 
    private List<InsuranceTypeTerms> insuranceTypeTermsSet=new ArrayList<>();
+  private Owner owner;
 
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
 
     public long getId() {
         return id;

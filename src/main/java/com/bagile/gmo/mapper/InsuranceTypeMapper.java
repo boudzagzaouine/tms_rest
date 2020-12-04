@@ -53,6 +53,7 @@ public class InsuranceTypeMapper {
         gmoInsuranceType.setUpdateDate(insuranceType.getUpdateDate());
 
         if(!lazy) {
+            gmoInsuranceType.setOwnOwner(OwnerMapper.toEntity(insuranceType.getOwner(),true));
        gmoInsuranceType.setGmoInsuranceTypeTerms (InsuranceTypeTermsMapper.toEntities(insuranceType.getInsuranceTypeTermsSet(),false));
        //     oneToMany(gmoInsuranceType);
         }
@@ -75,7 +76,7 @@ public class InsuranceTypeMapper {
         insuranceType.setUpdateDate(gmoInsuranceType.getUpdateDate());
 
         if(!lazy) {
-
+ insuranceType.setOwner(OwnerMapper.toDto(gmoInsuranceType.getOwnOwner(),true));
        //   insuranceType.setInsurances (InsuranceMapper.toDtos(gmoInsuranceType.getGmoInsurances (),false));
         insuranceType.setInsuranceTypeTermsSet (InsuranceTypeTermsMapper.toDtos(gmoInsuranceType.getGmoInsuranceTypeTerms (),false));
 

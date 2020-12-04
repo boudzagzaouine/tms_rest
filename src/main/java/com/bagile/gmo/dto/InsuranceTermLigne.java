@@ -12,7 +12,7 @@ public class InsuranceTermLigne extends EmsDto implements Serializable {
     private Insurance insurance;
     private InsuranceTerm insuranceTerm;
     private BigDecimal amount;
-
+ private Owner owner;
     public long getId() {
         return id;
     }
@@ -43,5 +43,13 @@ public class InsuranceTermLigne extends EmsDto implements Serializable {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 }

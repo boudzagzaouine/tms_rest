@@ -14,7 +14,7 @@ public class BadgeTypeDriver extends EmsDto implements Serializable {
     private String badgeNumber;
     private Date   deliveranceDate;
     private Date   validityEndDate;
-
+ private Owner owner;
 
 
 
@@ -65,5 +65,13 @@ public class BadgeTypeDriver extends EmsDto implements Serializable {
 
     public void setValidityEndDate(Date validityEndDate) {
         this.validityEndDate = validityEndDate;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 }

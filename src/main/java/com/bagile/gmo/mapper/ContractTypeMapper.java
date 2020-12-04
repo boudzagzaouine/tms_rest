@@ -1,14 +1,9 @@
 package com.bagile.gmo.mapper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.bagile.gmo.dto.ContractType;
 import com.bagile.gmo.entities.GmoContractType;
+
+import java.util.*;
 
 public class ContractTypeMapper {
     public ContractTypeMapper() {
@@ -52,6 +47,11 @@ public class ContractTypeMapper {
         gmoContractType.setCreationDate(contractType.getCreationDate());
         gmoContractType.setUpdateDate(contractType.getUpdateDate());
 
+        if(!lazy){
+
+            gmoContractType.setOwnOwner(OwnerMapper.toEntity(contractType.getOwner(),true));
+
+        }
         return gmoContractType;
 
     }
@@ -70,6 +70,10 @@ public class ContractTypeMapper {
         contractType.setCreationDate(gmoContractType.getCreationDate());
         contractType.setUpdateDate(gmoContractType.getUpdateDate());
 
+        if(!lazy){
+
+            contractType.setOwner(OwnerMapper.toDto(gmoContractType.getOwnOwner(),true));
+        }
         return contractType;
 
     }

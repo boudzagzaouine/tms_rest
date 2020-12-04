@@ -1,14 +1,9 @@
 package com.bagile.gmo.mapper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.bagile.gmo.dto.MaintenanceType;
 import com.bagile.gmo.entities.GmoMaintenanceType;
+
+import java.util.*;
 
 public class MaintenanceTypeMapper {
 
@@ -50,6 +45,9 @@ public class MaintenanceTypeMapper {
         type.setCreationDate(gmoType.getCreationDate());
         type.setUpdateDate(gmoType.getUpdateDate());
 
+        if(!lazy){
+            type.setOwner(OwnerMapper.toDto(gmoType.getOwnOwner(),true));
+        }
         return type;
     }
 
@@ -67,6 +65,10 @@ public class MaintenanceTypeMapper {
         gmoType.setCreationDate(type.getCreationDate());
         gmoType.setUpdateDate(type.getUpdateDate());
 
+        if(!lazy){
+
+            gmoType.setOwnOwner(OwnerMapper.toEntity(type.getOwner(),true));
+        }
         return gmoType;
     }
 

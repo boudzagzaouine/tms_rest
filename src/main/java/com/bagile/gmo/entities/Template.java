@@ -12,6 +12,7 @@ public class Template {
     private String text;
     private String subject;
 
+
     public long getId() {
         return id;
     }
@@ -43,4 +44,6 @@ public class Template {
     public void setSubject(String subject) {
         this.subject = subject;
     }
+
+
 }

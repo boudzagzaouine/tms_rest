@@ -1,14 +1,9 @@
 package com.bagile.gmo.mapper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.bagile.gmo.dto.MaintenanceState;
 import com.bagile.gmo.entities.GmoMaintenanceState;
+
+import java.util.*;
 
 public class MaintenanceStateMapper {
     private MaintenanceStateMapper(){
@@ -54,7 +49,7 @@ public class MaintenanceStateMapper {
            // state.setCreationDate(gmoState.getGmoMaintenanceStateCreationDate());
           //  state.setCreationUser(UserMapper.toDto(gmoState.getGmoMaintenanceStateCreationUser(),true));
            // state.setTypeMaintenance(TypeMaintenanceMapper.toDto(gmoState.getGmoMaintenanceStateType()));
-           // state.setMaintenancePlans(MaintenancePlanMapper.toDtos(gmoState.getGmoMaintenanceStatePlans(),true));
+            state.setOwner(OwnerMapper.toDto(gmoState.getOwnOwner(),true));
            // state.setUpDateDate(gmoState.getGmoMaintenanceStateUpDateDate());
         }
         return state;
@@ -78,7 +73,7 @@ public class MaintenanceStateMapper {
         if(!lazy) {
            // gmoState.setGmoMaintenanceStateCreationDate(state.getCreationDate());
            // gmoState.setGmoMaintenanceStateCreationUser(UserMapper.toEntity(state.getCreationUser(),true));
-           // gmoState.setGmoMaintenanceStateType(TypeMaintenanceMapper.toEntity(state.getTypeMaintenance()));
+            gmoState.setOwnOwner(OwnerMapper.toEntity(state.getOwner(),true));
            // gmoState.setGmoMaintenanceStateUpDateDate(state.getUpDateDate());
            // gmoState.setGmoMaintenanceStatePlans(MaintenancePlanMapper.toEntities(state.getMaintenancePlans(),true));
         }

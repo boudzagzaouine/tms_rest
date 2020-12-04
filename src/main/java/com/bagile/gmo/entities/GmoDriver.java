@@ -47,6 +47,7 @@ public class GmoDriver extends EmsEntity {
 
     private Set<GmoTurn> gmoTurns = new HashSet<>();
 
+    private OwnOwner ownOwner;
 
     public GmoDriver() {
     }
@@ -132,6 +133,16 @@ public class GmoDriver extends EmsEntity {
     public void setGmoBadge(GmoBadge gmobadge) {
         this.gmoBadge = gmobadge;
     }*/
+
+  @ManyToOne()
+  @JoinColumn(name="gmo_ownowner")
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
+
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
+    }
 
     @Column(name = "gmo_drivername")
     public String getGmoDriverName() {
