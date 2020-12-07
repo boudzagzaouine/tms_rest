@@ -20,6 +20,7 @@ public class ActionLineMaintenance extends EmsDto {
     private BigDecimal totalPriceTTC;
     private BigDecimal amountVat;
     private Maintenance maintenance;
+    private Owner owner;
 //private MaintenanceState maintenanceState;
     @JsonIgnore
     private List<MaintenanceStock> maintenanceStocks;
@@ -123,7 +124,13 @@ public class ActionLineMaintenance extends EmsDto {
         this.unitPrice = unitPrice;
     }
 
+    public Owner getOwner() {
+        return owner;
+    }
 
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
 
     @Override
     public boolean equals(Object o) {

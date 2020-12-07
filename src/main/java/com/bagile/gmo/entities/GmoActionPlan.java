@@ -42,7 +42,7 @@ public class GmoActionPlan extends EmsEntity {
 
     private GmoConditionalType gmoConditionalType;
     private BigDecimal gmoActionPlanValueconditionalType;
-
+ private OwnOwner  ownOwner;
     public GmoActionPlan() {
     }
     @Id
@@ -300,5 +300,13 @@ public class GmoActionPlan extends EmsEntity {
         this.gmoActionPlanDayOfMonth = gmoDayOfMonth;
     }
 
+   @ManyToOne()
+   @JoinColumn(name="gmo_ownownerid")
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
 
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
+    }
 }

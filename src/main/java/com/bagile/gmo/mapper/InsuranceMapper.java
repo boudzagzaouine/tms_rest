@@ -1,9 +1,9 @@
 package com.bagile.gmo.mapper;
 
-import java.util.*;
-
 import com.bagile.gmo.dto.Insurance;
 import com.bagile.gmo.entities.GmoInsurance;
+
+import java.util.*;
 
 public class InsuranceMapper {
     public InsuranceMapper() {
@@ -67,6 +67,7 @@ public class InsuranceMapper {
               gmoInsurance.setGmoInsuranceTermsLignes (InsuranceTermsVehicleMapper.toEntities (insurance.getInsuranceTermLignes (), false));
              gmoInsurance.setGmoInsuranceType (InsuranceTypeMapper.toEntity (insurance.getInsuranceType (), false));
             gmoInsurance.setGmoPatrimony (PatrimonyMapper.toEntity (insurance.getPatrimony (), false));
+            gmoInsurance.setOwnOwner (OwnerMapper.toEntity (insurance.getOwner (), false));
 
             //gmoInsurance.setGmoVehicle (VehicleMapper.toEntity (insurance.getVehicle (), true));
 
@@ -101,6 +102,7 @@ public class InsuranceMapper {
             insurance.setInsuranceType (InsuranceTypeMapper.toDto (gmoInsurance.getGmoInsuranceType (), false));
             //insurance.setVehicle (VehicleMapper.toDto (gmoInsurance.getGmoVehicle (), false));
             insurance.setPatrimony(PatrimonyMapper.toDto(gmoInsurance.getGmoPatrimony(),false));
+            insurance.setOwner(OwnerMapper.toDto(gmoInsurance.getOwnOwner(),false));
 
         }
         return insurance;

@@ -57,6 +57,9 @@ public class ActionLineMaintenanceMapper {
 			gmoActionLineMaintenance
 					.setPdtProduct(ProductMapper.toEntity(actionLineMaintenance.getProduct(), true));
 
+			gmoActionLineMaintenance
+					.setOwnOwner(OwnerMapper.toEntity(actionLineMaintenance.getOwner(), true));
+
 		}
 		return gmoActionLineMaintenance;
 	}
@@ -77,6 +80,7 @@ public class ActionLineMaintenanceMapper {
 		if (!lazy) {
 			actionLineMaintenance.setMaintenance(MaintenanceMapper.toDto(gmoActionLineMaintenance.getGmoMaintenance(), true));
 			actionLineMaintenance.setProduct(ProductMapper.toDto(gmoActionLineMaintenance.getPdtProduct(), false));
+			actionLineMaintenance.setOwner(OwnerMapper.toDto(gmoActionLineMaintenance.getOwnOwner(), false));
 
 		}
 		return actionLineMaintenance;

@@ -116,6 +116,7 @@ public class MaintenanceMapper {
             gmoMaintenance.setRcpSupplier(SupplierMapper.toEntity (maintenance.getSupplier(), false));
             gmoMaintenance.setRcpPurshaseOrder(PurshaseOrderMapper.toEntity (maintenance.getPurshaseOrder(), false));
 
+            gmoMaintenance.setOwnOwner(OwnerMapper.toEntity (maintenance.getOwner(), false));
 
             oneToMany(gmoMaintenance);
 
@@ -183,6 +184,7 @@ public class MaintenanceMapper {
 
             maintenance.setSupplier(SupplierMapper.toDto(gmoMaintenance.getRcpSupplier(),true));
             maintenance.setPurshaseOrder(PurshaseOrderMapper.toDto(gmoMaintenance.getRcpPurshaseOrder(),true));
+            maintenance.setOwner(OwnerMapper.toDto(gmoMaintenance.getOwnOwner(),true));
 
         }
 

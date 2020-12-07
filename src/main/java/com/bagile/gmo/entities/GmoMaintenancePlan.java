@@ -18,7 +18,7 @@ public class GmoMaintenancePlan extends EmsEntity {
     private String gmoMaintenancePlanCode;
     private String gmoMaintenancePlanDescription;
     private Set<GmoActionPlan> gmoActionPlans = new HashSet<>();
-
+    private OwnOwner ownOwner;
     public GmoMaintenancePlan() {
     }
     @Id
@@ -53,7 +53,15 @@ public class GmoMaintenancePlan extends EmsEntity {
     }
 
 
+    @ManyToOne()
+    @JoinColumn(name="gmo_ownownerid")
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
 
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
+    }
 
     @OneToMany(fetch = FetchType.LAZY,cascade = {CascadeType.ALL,CascadeType.MERGE}, mappedBy = "gmoMaintenancePlan", orphanRemoval=true)
     public Set<GmoActionPlan> getGmoActionPlans() {

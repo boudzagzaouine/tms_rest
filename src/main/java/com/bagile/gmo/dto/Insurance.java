@@ -23,6 +23,7 @@ public class Insurance extends EmsDto{
 
     // private List<InsuranceTermLigne> insuranceTermLignes = new ArrayList<>();
 
+    private Owner owner;
 
     public Insurance() {
     }
@@ -138,5 +139,13 @@ public class Insurance extends EmsDto{
 
     public void setInsuranceType(InsuranceType insuranceType) {
         this.insuranceType = insuranceType;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 }

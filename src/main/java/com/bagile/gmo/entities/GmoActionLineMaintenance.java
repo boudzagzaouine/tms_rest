@@ -23,7 +23,7 @@ public class GmoActionLineMaintenance extends EmsEntity {
     private BigDecimal gmoActionLineMaintenanceOrderQuantity;
     private Set<GmoMaintenanceStock> gmoMaintenanceStocks=new HashSet<GmoMaintenanceStock>(0);
     private GmoMaintenance gmoMaintenance;
-
+ private OwnOwner ownOwner;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "seq")
@@ -140,6 +140,17 @@ public class GmoActionLineMaintenance extends EmsEntity {
 
     public void setGmoMaintenance(GmoMaintenance gmoMaintenance) {
         this.gmoMaintenance = gmoMaintenance;
+    }
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_ownownerid")
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
+
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
     }
 
     @Override

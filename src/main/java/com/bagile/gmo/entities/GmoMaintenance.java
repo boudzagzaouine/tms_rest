@@ -117,6 +117,9 @@ private String gmoAgent ;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_purchaseorderid")
     private RcpPurshaseOrder rcpPurshaseOrder;
+    @ManyToOne()
+    @JoinColumn(name = "gmo_ownownerid")
+      private OwnOwner ownOwner;
 
 
     public GmoMaintenance() {
@@ -152,6 +155,14 @@ private String gmoAgent ;
 
     public void setGmoConditionalType(GmoConditionalType gmoConditionalType) {
         this.gmoConditionalType = gmoConditionalType;
+    }
+
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
+
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
     }
 
     public BigDecimal getGmoMaintenanceValueconditionalType() {

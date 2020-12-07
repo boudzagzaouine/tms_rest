@@ -99,6 +99,7 @@ public class ActionPlanMapper {
 
             gmoActionPlan.setGmoActionType(ActionTypeMapper.toEntity (actionPlan.getActionType(), false));
             gmoActionPlan.setGmoConditionalType(ConditionalTypeMapper.toEntity (actionPlan.getConditionalType(), false));
+            gmoActionPlan.setOwnOwner(OwnerMapper.toEntity (actionPlan.getOwner(), false));
 
             // oneToMany(gmoActionPlan);
 
@@ -159,6 +160,7 @@ public class ActionPlanMapper {
             actionPlan.setMaintenancePlan(MaintenancePlanMapper.toDto(gmoActionPlan.getGmoMaintenancePlan(),true));
             actionPlan.setActionType(ActionTypeMapper.toDto(gmoActionPlan.getGmoActionType(),false));
             actionPlan.setConditionalType(ConditionalTypeMapper.toDto(gmoActionPlan.getGmoConditionalType(),false));
+            actionPlan.setOwner(OwnerMapper.toDto(gmoActionPlan.getOwnOwner(),false));
 
         }
 

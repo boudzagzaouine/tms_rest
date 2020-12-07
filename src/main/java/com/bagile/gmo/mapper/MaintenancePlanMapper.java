@@ -53,7 +53,9 @@ public class MaintenancePlanMapper {
         if (!lazy) {
 
             gmoMaintenance.setGmoActionPlans(ActionPlanMapper.toEntities (maintenance.getActionPlans(), false));
-           oneToMany(gmoMaintenance);
+            gmoMaintenance.setOwnOwner(OwnerMapper.toEntity (maintenance.getOwner(), false));
+
+            oneToMany(gmoMaintenance);
 
         }
         return gmoMaintenance;
@@ -89,6 +91,7 @@ public class MaintenancePlanMapper {
 
 
             maintenance.setActionPlans(ActionPlanMapper.toDtos(gmoMaintenance.getGmoActionPlans(),false));
+            maintenance.setOwner(OwnerMapper.toDto(gmoMaintenance.getOwnOwner(),false));
 
         }
 

@@ -17,7 +17,7 @@ public class MaintenancePlan extends EmsDto implements Serializable {
     private String code;
     private String description;
     private List<ActionPlan> actionPlans    = new ArrayList<>();
-
+ private Owner owner;
 
     public MaintenancePlan() {
     }
@@ -52,6 +52,14 @@ public class MaintenancePlan extends EmsDto implements Serializable {
 
     public void setActionPlans(List<ActionPlan> actionPlans) {
         this.actionPlans = actionPlans;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     @Override

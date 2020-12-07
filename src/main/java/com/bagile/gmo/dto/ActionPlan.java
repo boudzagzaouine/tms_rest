@@ -40,6 +40,7 @@ public class ActionPlan extends EmsDto implements Serializable {
     private ActionType actionType ;
  private ConditionalType conditionalType;
  private BigDecimal valueconditionalType;
+ private Owner owner;
 
     public ActionPlan() {
     }
@@ -255,6 +256,14 @@ public class ActionPlan extends EmsDto implements Serializable {
 
     public void setValueconditionalType(BigDecimal valueconditionalType) {
         this.valueconditionalType = valueconditionalType;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     @Override

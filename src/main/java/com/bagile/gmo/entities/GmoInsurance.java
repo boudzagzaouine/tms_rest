@@ -1,11 +1,10 @@
 package com.bagile.gmo.entities;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.*;
 
 @Entity
 @Table(name = "gmo_insurance")
@@ -25,6 +24,7 @@ public class GmoInsurance extends EmsEntity {
     private GmoInsuranceType gmoInsuranceType;
     private Set<GmoInsuranceTermsVehicule> gmoInsuranceTermsLignes=new HashSet<>();
 
+    private OwnOwner ownOwner;
     //private Set<GmoInsuranceTermLigne> gmoInsuranceTermInsurances = new HashSet<>();
 
     @Id
@@ -182,4 +182,14 @@ public class GmoInsurance extends EmsEntity {
             this.setGmoInsuranceVehicleCode(null);
         }
     }*/
+
+@ManyToOne()
+@JoinColumn(name="gmo_ownownerid")
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
+
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
+    }
 }

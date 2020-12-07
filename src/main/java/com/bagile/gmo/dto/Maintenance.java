@@ -47,6 +47,7 @@ public class Maintenance extends EmsDto implements Serializable {
 
     private Supplier supplier;
     private PurshaseOrder purshaseOrder;
+    private Owner owner;
 
     public Maintenance() {
     }
@@ -317,6 +318,14 @@ public class Maintenance extends EmsDto implements Serializable {
 
     public void setMaintenancePlan(MaintenancePlan maintenancePlan) {
         this.maintenancePlan = maintenancePlan;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     @Override
