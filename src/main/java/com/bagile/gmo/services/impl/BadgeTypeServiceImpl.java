@@ -93,7 +93,8 @@ public class BadgeTypeServiceImpl implements BadgeTypeService {
 
 
     @Override
-    public List<BadgeType> findAll() {
+    public List<BadgeType> findAll()
+    {
         return BadgeTypeMapper.toDtos(badgeTypeRepository.findAll(), false);
     }
 

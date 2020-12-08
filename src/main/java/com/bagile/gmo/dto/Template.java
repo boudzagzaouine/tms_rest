@@ -1,17 +1,14 @@
-package com.bagile.gmo.entities;
+package com.bagile.gmo.dto;
 
-import javax.persistence.*;
+import java.io.Serializable;
 
-@Entity
-public class Template {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_template_id")
-    private long id;
+public class Template extends EmsDto implements Serializable {
+
+     private long id;
     private String code;
     private String text;
     private String subject;
-
+    private Owner owner;
 
     public long getId() {
         return id;
@@ -46,4 +43,11 @@ public class Template {
     }
 
 
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
 }

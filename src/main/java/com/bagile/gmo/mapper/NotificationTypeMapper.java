@@ -15,8 +15,8 @@ public class NotificationTypeMapper {
         map = new HashMap<> ( );
 
         map.put ("id", "gmoNotificationTypeId");
-        map.put ("code", "gmoNotificationTypeCode");
-        map.put ("email", "gmoNotificationTypeEmail");
+        map.put ("code", "gmoNotificationCode");
+        map.put ("email", "gmoNotificationEmail");
 
         map.put ("creationDate", "creationDate");
         map.put ("updateDate", "updateDate");
@@ -80,12 +80,12 @@ public class NotificationTypeMapper {
         if (null == gmoNotificationTypes) {
             return null;
         }
-        List<NotificationType> vehicules = new ArrayList<> ( );
+        List<NotificationType> notificationTypes = new ArrayList<> ( );
 
         for (GmoNotificationType gmoNotificationType : gmoNotificationTypes) {
-            vehicules.add (toDto (gmoNotificationType, lazy));
+            notificationTypes.add (toDto (gmoNotificationType, lazy));
         }
-        return vehicules;
+        return notificationTypes;
     }
 
     public static Set<GmoNotificationType> toEntities(Set<NotificationType> notificationTypes, boolean lazy) {

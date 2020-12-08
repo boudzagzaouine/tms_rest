@@ -53,6 +53,7 @@ public class NotificationTypeServiceImpl implements NotificationTypeService {
             return findAll ();
         }
         return NotificationTypeMapper.toDtos(notificationTypeRepository.findAll(Search.expression(search, GmoNotificationType.class)), false);
+
     }
 
     @Override

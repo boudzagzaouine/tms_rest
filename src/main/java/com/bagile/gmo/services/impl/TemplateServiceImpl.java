@@ -1,9 +1,11 @@
 package com.bagile.gmo.services.impl;
 
-import com.bagile.gmo.entities.Template;
+import com.bagile.gmo.dto.Template;
+import com.bagile.gmo.entities.GmoTemplate;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.mapper.TemplateMapper;
 import com.bagile.gmo.repositories.TemplateRepository;
 import com.bagile.gmo.services.TemplateService;
 import com.bagile.gmo.util.Search;
@@ -25,7 +27,9 @@ public class TemplateServiceImpl implements TemplateService {
 
     @Override
     public Template save(Template template) {
-        return templateRepository.saveAndFlush(template);
+
+        return TemplateMapper.toDto(templateRepository.saveAndFlush(TemplateMapper.toEntity(template, false)), false);
+
     }
 
     @Override
@@ -40,7 +44,8 @@ public class TemplateServiceImpl implements TemplateService {
 
     @Override
     public Template findById(Long id) throws IdNotFound {
-        return templateRepository.findById(id).orElseThrow(() -> new IdNotFound(id));
+        return TemplateMapper.toDto(templateRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
+
     }
 
 
@@ -51,19 +56,23 @@ public class TemplateServiceImpl implements TemplateService {
 
     @Override
     public void delete(Template template) {
-        templateRepository.delete(template);
+        templateRepository.delete(TemplateMapper.toEntity(template, false));
+
+
     }
 
     @Override
     public List<Template> findAll() {
-        return templateRepository.findAll();
+        return TemplateMapper.toDtos(templateRepository.findAll(), false);
+
     }
 
     @Override
     public List<Template> findAll(int page, int size) {
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return templateRepository.findAll(pageable).toList();
+        return TemplateMapper.toDtos(templateRepository.findAll(pageable), false);
+
     }
 
     @Override
@@ -71,7 +80,8 @@ public class TemplateServiceImpl implements TemplateService {
         if (search.equals("")){
             return findAll ();
         }
-        return templateRepository.findAll(Search.expression(search, Template.class));
+        return TemplateMapper.toDtos(templateRepository.findAll(Search.expression(search, GmoTemplate.class)), false);
+
     }
 
     @Override
@@ -81,7 +91,8 @@ public class TemplateServiceImpl implements TemplateService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return templateRepository.findAll(Search.expression(search, Template.class), pageable).toList();
+        return TemplateMapper.toDtos(templateRepository.findAll(Search.expression(search, GmoTemplate.class), pageable), false);
+
     }
 
     @Override

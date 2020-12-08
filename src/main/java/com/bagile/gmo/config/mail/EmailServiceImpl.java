@@ -1,7 +1,7 @@
 package com.bagile.gmo.config.mail;
 
 import com.bagile.gmo.dto.Notification;
-import com.bagile.gmo.entities.Template;
+import com.bagile.gmo.dto.Template;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.services.ContactService;
 import com.bagile.gmo.services.impl.MailConfigServiceImpl;
