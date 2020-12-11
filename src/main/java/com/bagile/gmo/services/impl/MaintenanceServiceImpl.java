@@ -369,11 +369,10 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     @Override
     public Maintenance closeMaintenance(Maintenance maintenance) throws IdNotFound, AttributesNotFound, ErrorType {
         MaintenanceState stateF = maintenanceStateService.findById(4L);
-
-         maintenance.setMaintenanceState(stateF);
-         Maintenance maintenance1= save(maintenance);
-
-
+        maintenance.setMaintenanceState(stateF);
+        Maintenance maintenance1= save(maintenance);
+      //  updateMaintenance(maintenance1);
+  // programetype = conditionnelle
        if(maintenance.getProgramType().getId()==2L) {
             loadMaintenanceByM(maintenance);
 
@@ -403,6 +402,8 @@ public class MaintenanceServiceImpl implements MaintenanceService {
         maintenance2.setMileageNext(kmNext);
 
         maintenance.setCode(getNextVal());
+
+        maintenance2.setCode(getNextVal());
 
         maintenance2.setConditionalType(maintenance.getConditionalType());
         maintenance2.setValueconditionalType(maintenance.getValueconditionalType());

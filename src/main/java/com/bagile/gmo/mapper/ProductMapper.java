@@ -302,7 +302,7 @@ public class ProductMapper {
             product.setProductPacks(ProductPackMapper.toDtos(pdtProduct.getPdtProductPacks(), false));
           //  product.setProductDimensions(ProductDimensionMapper.toDtos(pdtProduct.getPdtProductDimensions(), false));
 
-            product.setVat(VatMapper.toDto(pdtProduct.getPrmVat(), false));
+            product.setVat(VatMapper.toDto(pdtProduct.getPrmVat(), true));
             product.setPurchaseVat(VatMapper.toDto(pdtProduct.getPrmVatPurchase(), true));
 
         }
