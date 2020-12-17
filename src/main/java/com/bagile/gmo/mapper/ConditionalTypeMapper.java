@@ -17,6 +17,7 @@ public class ConditionalTypeMapper {
         map.put("id", "gmoConditionalTypeId");
         map.put("code", "gmoConditionalTypeCode");
         map.put("description", "gmoConditionalTypeDescription");
+        map.put("owner", "ownOwner");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -47,7 +48,11 @@ public class ConditionalTypeMapper {
         gmoConditionalType.setCreationDate(conditionalType.getCreationDate());
         gmoConditionalType.setUpdateDate(conditionalType.getUpdateDate());
 
-        return gmoConditionalType;
+        if (!lazy) {
+            gmoConditionalType.setOwnOwner (OwnerMapper.toEntity (conditionalType.getOwner (), true));
+
+        }
+            return gmoConditionalType;
 
     }
 
@@ -60,8 +65,11 @@ public class ConditionalTypeMapper {
         conditionalType.setCode(gmoConditionalType.getGmoConditionalTypeCode());
         conditionalType.setDescription (gmoConditionalType.getGmoConditionalTypeDescription ());
 
+        if (!lazy) {
 
-        return conditionalType;
+            conditionalType.setOwner(OwnerMapper.toDto(gmoConditionalType.getOwnOwner(), true));
+        }
+            return conditionalType;
 
     }
 

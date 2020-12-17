@@ -20,7 +20,9 @@ public class GmoMachine extends GmoPatrimony {
     private TrpTransport trpTransport;
 
     private OwnOwner ownOwner;
+    private GmoMachine gmoResource;
 
+    private String gmoMachineName ;
    /* @Column(name = "gmo_machinecode", unique = true, nullable = false, length = 90)
     public String getGmoPatrimonyCode() {
         return gmoPatrimonyCode;
@@ -60,6 +62,14 @@ public class GmoMachine extends GmoPatrimony {
         this.gmoMachineAamount = gmoMachineAamount;
     }
 
+    @Column(name = "gmo_machinename")
+    public String getGmoMachineName() {
+        return gmoMachineName;
+    }
+
+    public void setGmoMachineName(String gmoMachineName) {
+        this.gmoMachineName = gmoMachineName;
+    }
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "gmo_contracttypeid")
@@ -69,6 +79,17 @@ public class GmoMachine extends GmoPatrimony {
 
     public void setGmoContractType(GmoContractType gmoContractType) {
         this.gmoContractType = gmoContractType;
+    }
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_ressource")
+    public GmoMachine getGmoResource() {
+        return gmoResource;
+    }
+
+    public void setGmoResource(GmoMachine gmoResource) {
+        this.gmoResource = gmoResource;
     }
 
     @ManyToOne(cascade = CascadeType.MERGE)

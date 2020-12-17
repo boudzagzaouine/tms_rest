@@ -24,6 +24,9 @@ public class MachineMapper {
         map.put("amount", "gmoAamount");
         map.put("transport", "trpTransport");
 
+        map.put("name", "gmoMachineName");
+        map.put("resource", "gmoResource");
+
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdBy");
@@ -49,6 +52,7 @@ public class MachineMapper {
         gmoMachine.setGmoMachineAquisitionDate(machine.getAquisitionDate());
         gmoMachine.setGmoMachineAamount(machine.getAmount());
         gmoMachine.setGmoMachineRef(machine.getRef());
+        gmoMachine.setGmoMachineName(machine.getName());
 
 
 
@@ -59,7 +63,8 @@ public class MachineMapper {
             gmoMachine.setTrpTransport (TransportMapper.toEntity (machine.getTransport (), false));
             gmoMachine.setGmoMaintenancePlan (MaintenancePlanMapper.toEntity (machine.getMaintenancePlan (), false));
             gmoMachine.setOwnOwner (OwnerMapper.toEntity (machine.getOwner (), false));
-
+            gmoMachine.setOwnOwner (OwnerMapper.toEntity (machine.getOwner (), false));
+            gmoMachine.setGmoResource(toEntity(machine.getResource(),true));
         }
         return gmoMachine;
 
@@ -75,12 +80,12 @@ public class MachineMapper {
         machine.setAquisitionDate(gmoMachine.getGmoMachineAquisitionDate());
         machine.setAmount(gmoMachine.getGmoMachineAamount());
         machine.setRef(gmoMachine.getGmoMachineRef());
+        machine.setName(gmoMachine.getGmoMachineName());
 
         machine.setCreatedBy(gmoMachine.getCreatedBy());
         machine.setUpdatedBy(gmoMachine.getUpdatedBy());
         machine.setCreationDate(gmoMachine.getCreationDate());
         machine.setUpdateDate(gmoMachine.getUpdateDate());
-
 
 
 
@@ -91,7 +96,7 @@ public class MachineMapper {
             machine.setTransport (TransportMapper.toDto (gmoMachine.getTrpTransport (), false));
             machine.setMaintenancePlan (MaintenancePlanMapper.toDto (gmoMachine.getGmoMaintenancePlan (), false));
             machine.setOwner (OwnerMapper.toDto (gmoMachine.getOwnOwner (), false));
-
+            machine.setResource(toDto(gmoMachine.getGmoResource(),true));
         }
         return machine;
 

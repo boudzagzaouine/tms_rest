@@ -14,15 +14,15 @@ public class Machine extends Patrimony implements Serializable {
     private static final long serialVersionUID = 6072929769333595397L;
    // private long id;
     //private String code;
-   private String ref;
-    private ContractType contractType;
-    private ConsumptionType consumptionType;
-    private Date aquisitionDate;
-    private BigDecimal amount;
-     private Transport transport;
-private Owner owner;
-
-
+      private String ref;
+      private ContractType contractType;
+      private ConsumptionType consumptionType;
+      private Date aquisitionDate;
+      private BigDecimal amount;
+      private Transport transport;
+      private Owner owner;
+      private Machine resource;
+      private String name;
 
 
     public Machine() {
@@ -111,6 +111,22 @@ private Owner owner;
 
     public void setTransport(Transport transport) {
         this.transport = transport;
+    }
+
+    public Machine getResource() {
+        return resource;
+    }
+
+    public void setResource(Machine resource) {
+        this.resource = resource;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

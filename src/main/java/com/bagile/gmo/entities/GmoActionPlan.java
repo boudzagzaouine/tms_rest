@@ -74,7 +74,7 @@ public class GmoActionPlan extends EmsEntity {
         return gmoService;
     }
 
-    @ManyToMany(cascade=CascadeType.MERGE)
+    @ManyToMany()
     @JoinTable(name="gmo_day_plan", joinColumns=@JoinColumn(name="gmo_ActionPlanid"),
             inverseJoinColumns=@JoinColumn(name="gmo_dayid"))
     public Set<GmoDay> getGmoDays() {
@@ -85,7 +85,7 @@ public class GmoActionPlan extends EmsEntity {
         this.gmoDays = gmoDays;
     }
 
-    @ManyToMany(cascade=CascadeType.MERGE)
+    @ManyToMany()
     @JoinTable(name="gmo_month_plan", joinColumns=@JoinColumn(name="gmo_ActionPlanid"),
             inverseJoinColumns=@JoinColumn(name="gmo_monthid"))
     public Set<GmoMonth> getGmoMonths() {
@@ -130,7 +130,7 @@ public class GmoActionPlan extends EmsEntity {
         this.gmoServiceProvider = gmoServiceProvider;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.MERGE)
+    @ManyToOne()
     @JoinColumn(name = "gmo_conditionaltypeid")
     public GmoConditionalType getGmoConditionalType() {
         return gmoConditionalType;

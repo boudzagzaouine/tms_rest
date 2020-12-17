@@ -92,8 +92,8 @@ public class ActionPlanMapper {
             gmoActionPlan.setGmoServiceProvider(ServiceProviderMapper.toEntity(actionPlan.getServiceProvider(),false));
             gmoActionPlan.setGmoService (ResponsabilityMapper.toEntity (actionPlan.getService(), false));
             gmoActionPlan.setGmoProgramType(ProgramTypeMapper.toEntity(actionPlan.getProgramType(),false));
-            gmoActionPlan.setGmoMonths(MonthMapper.toEntities (actionPlan.getMonths(), false));
-            gmoActionPlan.setGmoDays(DayMapper.toEntities (actionPlan.getDays(), false));
+            gmoActionPlan.setGmoMonths(MonthMapper.toEntities (actionPlan.getMonths(), true));
+            gmoActionPlan.setGmoDays(DayMapper.toEntities (actionPlan.getDays(), true));
             gmoActionPlan.setGmoMaintenancePlan(MaintenancePlanMapper.toEntity (actionPlan.getMaintenancePlan(), false));
             gmoActionPlan.setGmoMaintenanceType(MaintenanceTypeMapper.toEntity (actionPlan.getMaintenanceType(), false));
 
@@ -156,7 +156,7 @@ public class ActionPlanMapper {
             actionPlan.setService(ResponsabilityMapper.toDto (gmoActionPlan.getGmoService (), true));
             actionPlan.setProgramType(ProgramTypeMapper.toDto(gmoActionPlan.getGmoProgramType(),false));
             actionPlan.setDays(DayMapper.toDtos(gmoActionPlan.getGmoDays(),true));
-            actionPlan.setMonths(MonthMapper.toDtos(gmoActionPlan.getGmoMonths(),false));
+            actionPlan.setMonths(MonthMapper.toDtos(gmoActionPlan.getGmoMonths(),true));
             actionPlan.setMaintenancePlan(MaintenancePlanMapper.toDto(gmoActionPlan.getGmoMaintenancePlan(),true));
             actionPlan.setActionType(ActionTypeMapper.toDto(gmoActionPlan.getGmoActionType(),false));
             actionPlan.setConditionalType(ConditionalTypeMapper.toDto(gmoActionPlan.getGmoConditionalType(),false));

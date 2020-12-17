@@ -12,7 +12,7 @@ public class ConditionalType extends EmsDto implements Serializable {
     private long id;
     private String code;
     private String description;
-
+ private Owner owner;
 
     public long getId() {
         return id;
@@ -38,6 +38,13 @@ public class ConditionalType extends EmsDto implements Serializable {
         this.description = description;
     }
 
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
 
     @Override
     public boolean equals(Object o) {

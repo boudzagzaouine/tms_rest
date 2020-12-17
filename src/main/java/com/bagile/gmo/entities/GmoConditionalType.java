@@ -12,7 +12,7 @@ public class GmoConditionalType extends EmsEntity {
 	private long gmoConditionalTypeId;
     private String gmoConditionalTypeCode;
     private String gmoConditionalTypeDescription;
-
+    private OwnOwner ownOwner;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -44,5 +44,13 @@ public class GmoConditionalType extends EmsEntity {
         this.gmoConditionalTypeDescription = gmoConditionalTypeDescription;
     }
 
+    @ManyToOne()
+    @JoinColumn(name="gmo_ownownerid")
+    public OwnOwner getOwnOwner() {
+        return ownOwner;
+    }
 
+    public void setOwnOwner(OwnOwner ownOwner) {
+        this.ownOwner = ownOwner;
+    }
 }

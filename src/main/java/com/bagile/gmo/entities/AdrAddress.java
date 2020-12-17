@@ -21,7 +21,7 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
 
     private OwnOwner ownOwner;
 
-    @NotNull
+  //  @NotNull
     @Size(max = 30)
     private String adrAddressCode;
 
@@ -114,7 +114,7 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
         this.ownOwner = ownOwner;
     }
 
-    @Column(name = "adr_addresscode", nullable = false, length = 30)
+    @Column(name = "adr_addresscode",  length = 30)
     public String getAdrAddressCode() {
         return this.adrAddressCode;
     }
