@@ -42,7 +42,7 @@ public class InsuranceTypeMapper {
         }
         GmoInsuranceType gmoInsuranceType = new GmoInsuranceType();
         gmoInsuranceType.setGmoInsuranceTypeId(insuranceType.getId());
-        gmoInsuranceType.setGmoInsuranceTypeCode(insuranceType.getCode());
+        gmoInsuranceType.setGmoInsuranceTypeCode(insuranceType.getCode().toUpperCase());
         gmoInsuranceType.setGmoInsuranceTypeDescription (insuranceType.getDescription ());
 
 

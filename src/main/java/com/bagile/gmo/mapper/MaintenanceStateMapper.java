@@ -61,7 +61,7 @@ public class MaintenanceStateMapper {
         }
         GmoMaintenanceState gmoState = new GmoMaintenanceState();
         gmoState.setGmoMaintenanceStateId(state.getId());
-        gmoState.setGmoMaintenanceStateCode(state.getCode());
+        gmoState.setGmoMaintenanceStateCode(state.getCode().toUpperCase());
         gmoState.setGmoMaintenanceStateDescription(state.getDescription());
 
 

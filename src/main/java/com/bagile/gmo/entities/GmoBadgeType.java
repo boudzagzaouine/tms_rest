@@ -16,7 +16,7 @@ public class GmoBadgeType extends EmsEntity {
     private String gmoBadgeTypeDescription;
 
     private Set<GmoBadgeTypeDriver> gmoBadgeTypeDrivers=new HashSet<>();
-private OwnOwner ownOwner;
+    private OwnOwner ownOwner;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")

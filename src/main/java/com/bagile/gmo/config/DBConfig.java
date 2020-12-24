@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 
 @Configuration
 public class DBConfig {
+
     @Bean
 	public DataSource dataSource() {
 	        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
@@ -15,6 +16,6 @@ public class DBConfig {
 	        dataSourceBuilder.url("jdbc:postgresql://localhost:5433/emsdb");
 	        dataSourceBuilder.username("postgres");
 	        dataSourceBuilder.password("passroot");
-	        return dataSourceBuilder.build();   
+	        return dataSourceBuilder.build();
 	}
 }

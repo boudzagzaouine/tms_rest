@@ -31,7 +31,8 @@ public class GmoInsuranceType extends EmsEntity {
     public void setGmoInsuranceTypeId(long gmoInsuranceTypeId) {
         this.gmoInsuranceTypeId = gmoInsuranceTypeId;
     }
-    @Column(name = "gmo_insurancetypecode")
+
+    @Column(name = "gmo_insurancetypecode", unique = true, nullable = false, length = 90)
     public String getGmoInsuranceTypeCode() {
         return gmoInsuranceTypeCode;
     }
