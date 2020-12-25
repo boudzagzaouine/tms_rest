@@ -4,7 +4,10 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name="gmo_catalogtransport",uniqueConstraints ={@UniqueConstraint(columnNames ={"gmo_vehiclecategoryid","trp_transportid","gmo_zonesournceid","gmo_zonedistinationid"})})
+@Table(name="gmo_catalogtransport",
+        uniqueConstraints ={@UniqueConstraint
+                (columnNames ={"gmo_vehiclecategoryid","trp_transportid",
+                               "gmo_zonesournceid","gmo_zonedistinationid"})})
 public class GmoCatalogTransportType extends EmsEntity{
 
     private long gmoCatalogTransportId;

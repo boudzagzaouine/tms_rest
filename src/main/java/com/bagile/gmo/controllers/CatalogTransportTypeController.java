@@ -45,7 +45,8 @@ public class CatalogTransportTypeController {
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
     @ResponseBody
     public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
-        return catalogTransportTypeService.size(search);
+        Long size = catalogTransportTypeService.size(search);
+        return size;
     }
 
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")

@@ -81,7 +81,12 @@ public class ZoneServiceImpl implements ZoneService {
     public void delete(Zone zone) {
         delete(zone.getId());
     }
+    @Override
+    public void deleteAll(List<Long> ids) {
 
+        for (Long id : ids) {
+            zoneRepository.deleteById(id);        }
+    }
     @Override
     public List<Zone> findAll() {
         return ZoneMapper.toDtos(zoneRepository.findAll(), false);
