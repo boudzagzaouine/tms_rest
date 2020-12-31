@@ -77,8 +77,7 @@ public class CriteriaPredicate {
         } catch (ClassNotFoundException e) {
             //e.printStackTrace();
         }
-        //System.out.println(criteria.getKey() + type.getTypeName() +criteria.getValue().toString() + " searching");
-
+        System.out.println(criteria.getKey() + type.getTypeName() +criteria.getValue().toString() + " searching");
 
 
         if (Boolean.TYPE == type || Boolean.class == type) {
@@ -100,6 +99,7 @@ public class CriteriaPredicate {
                 if ("<".equals(this.criteria.getOperation())) {
                     return datePath.loe(date);
                 }
+
             } catch (ParseException e) {
                 throw new ErrorType("");
             }
@@ -136,10 +136,10 @@ public class CriteriaPredicate {
         if (Long.TYPE == type || Long.class == type || Integer.TYPE == type || Integer.class == type || Short.class == type || Short.TYPE == type) {
             NumberPath<Long> path = entityPath.getNumber(criteria.getKey(),
                     Long.class);
-            if(criteria.getOperation().equals("^")){
-                String[] split = criteria.getValue().toString().split(";") ;
-                ArrayList<Long> numbers=new ArrayList<Long>();
-                for(int i=0;i<split.length;i++){
+            if (criteria.getOperation().equals("^")) {
+                String[] split = criteria.getValue().toString().split(";");
+                ArrayList<Long> numbers = new ArrayList<Long>();
+                for (int i = 0; i < split.length; i++) {
                     numbers.add(Long.valueOf(split[i]));
                 }
                 return path.in(numbers);
@@ -155,7 +155,7 @@ public class CriteriaPredicate {
                 return path.ne(valueLong);
             }
         }
-        System.out.println(criteria.getKey() + type.getTypeName() +criteria.getValue().toString() + " Not found");
+        System.out.println(criteria.getKey() + type.getTypeName() + criteria.getValue().toString() + " Not found");
         throw new ErrorType(criteria.getKey(), type.getTypeName(), criteria.getValue().toString());
     }
 }

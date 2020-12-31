@@ -1,5 +1,7 @@
 package com.bagile.gmo.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -27,6 +29,8 @@ public class Maintenance extends EmsDto implements Serializable {
     private MaintenanceState maintenanceState;
     private BigDecimal triggerDay;
     private Date triggerDate;
+    @JsonFormat
+            (shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd")
     private Date interventionDate;
     private Date maintenanceDate;
     private Patrimony patrimony;

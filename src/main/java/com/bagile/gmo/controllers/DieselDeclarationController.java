@@ -17,8 +17,8 @@ import java.util.List;
 @RequestMapping(value = "/dieselDeclarations")
 public class DieselDeclarationController {
 
-    private final DieselDeclarationService dieselDeclarationService;
 
+    private final DieselDeclarationService dieselDeclarationService;
     public DieselDeclarationController(DieselDeclarationService dieselDeclarationService) {
         this.dieselDeclarationService = dieselDeclarationService;
     }
