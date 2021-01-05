@@ -69,7 +69,6 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 
 
 
-
         return MaintenanceMapper.toDto(maintenanceRepository.save(MaintenanceMapper.toEntity(maintenance, false)), false);
 
     }
@@ -213,9 +212,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
             maintenance.setValueconditionalType(actionPlan.getValueconditionalType());
             maintenance.setMileageNext(actionPlan.getMileage());
         }
-
             maintenance.setCode(getNextVal());
-
             maintenance.setProgramType(actionPlan.getProgramType());
             maintenance.setMaintenanceState(maintenanceState);
             maintenance.setMaintenancePlan(actionPlan.getMaintenancePlan());

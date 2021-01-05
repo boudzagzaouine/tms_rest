@@ -11,6 +11,10 @@ public class GmoDieselDeclaration extends EmsEntity{
     private long gmoDieselDeclarationId;
     private String gmoDieselDeclarationCode;
     private GmoVehicle gmoVehicle;
+    private GmoDriver gmoDriver;
+    private long gmoTypeDeclaration;
+    private GmoSubscriptionCard gmoSubscriptionCard;
+    private String gmoBon;
     private BigDecimal gmoDieselDeclarationAmount;
     private BigDecimal gmoDieselDeclarationMileage;
     private Date gmoDieselDeclarationDate;
@@ -84,5 +88,43 @@ public class GmoDieselDeclaration extends EmsEntity{
 
     public void setOwnOwner(OwnOwner ownOwner) {
         this.ownOwner = ownOwner;
+    }
+
+    @Column(name = "gmo_gmotypedeclaration")
+    public long getGmoTypeDeclaration() {
+        return gmoTypeDeclaration;
+    }
+
+    public void setGmoTypeDeclaration(long gmoTypeDeclaration) {
+        this.gmoTypeDeclaration = gmoTypeDeclaration;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name="gmo_gmosubscriptioncard")
+    public GmoSubscriptionCard getGmoSubscriptionCard() {
+        return gmoSubscriptionCard;
+    }
+
+    public void setGmoSubscriptionCard(GmoSubscriptionCard gmoSubscriptionCard) {
+        this.gmoSubscriptionCard = gmoSubscriptionCard;
+    }
+
+    @Column(name = "gmo_gmodieseldeclaration_bon")
+    public String getGmoBon() {
+        return gmoBon;
+    }
+
+    public void setGmoBon(String gmoBon) {
+        this.gmoBon = gmoBon;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name="gmo_gmodriver")
+    public GmoDriver getGmoDriver() {
+        return gmoDriver;
+    }
+
+    public void setGmoDriver(GmoDriver gmoDriver) {
+        this.gmoDriver = gmoDriver;
     }
 }

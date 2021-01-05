@@ -47,6 +47,8 @@ public class DieselDeclarationMapper {
         gmoDieselDeclaration.setGmoDieselDeclarationAmount(dieselDeclaration.getAmount ( ));
         gmoDieselDeclaration.setGmoDieselDeclarationDate(dieselDeclaration.getDieselDeclarationDate ( ));
         gmoDieselDeclaration.setGmoDieselDeclarationMileage(dieselDeclaration.getMileage ( ));
+        gmoDieselDeclaration.setGmoTypeDeclaration(dieselDeclaration.getTypeDeclaration ( ));
+        gmoDieselDeclaration.setGmoBon(dieselDeclaration.getBon ( ));
 
         gmoDieselDeclaration.setCreatedBy (dieselDeclaration.getCreatedBy ( ));
         gmoDieselDeclaration.setUpdatedBy (dieselDeclaration.getUpdatedBy ( ));
@@ -54,6 +56,8 @@ public class DieselDeclarationMapper {
         if (!lazy) {
             gmoDieselDeclaration.setGmoVehicle (VehicleMapper.toEntity (dieselDeclaration.getVehicle ( ), true));
             gmoDieselDeclaration.setOwnOwner (OwnerMapper.toEntity (dieselDeclaration.getOwner ( ), true));
+            gmoDieselDeclaration.setGmoDriver (DriverMapper.toEntity (dieselDeclaration.getDriver ( ), true));
+            gmoDieselDeclaration.setGmoSubscriptionCard (SubscriptionCardMapper.toEntity (dieselDeclaration.getSubscriptionCard ( ), true));
 
         }
 
@@ -71,6 +75,8 @@ public class DieselDeclarationMapper {
         dieselDeclaration.setAmount (gmoDieselDeclaration.getGmoDieselDeclarationAmount());
         dieselDeclaration.setDieselDeclarationDate (gmoDieselDeclaration.getGmoDieselDeclarationDate());
         dieselDeclaration.setMileage (gmoDieselDeclaration.getGmoDieselDeclarationMileage());
+        dieselDeclaration.setTypeDeclaration (gmoDieselDeclaration.getGmoTypeDeclaration());
+        dieselDeclaration.setBon (gmoDieselDeclaration.getGmoBon());
 
         dieselDeclaration.setCreatedBy (gmoDieselDeclaration.getCreatedBy ());
         dieselDeclaration.setUpdatedBy (gmoDieselDeclaration.getUpdatedBy ());
@@ -80,6 +86,8 @@ public class DieselDeclarationMapper {
         if (!lazy) {
             dieselDeclaration.setVehicle (VehicleMapper.toDto (gmoDieselDeclaration.getGmoVehicle(), true));
             dieselDeclaration.setOwner (OwnerMapper.toDto (gmoDieselDeclaration.getOwnOwner(), true));
+            dieselDeclaration.setDriver(DriverMapper.toDto (gmoDieselDeclaration.getGmoDriver(), true));
+            dieselDeclaration.setSubscriptionCard (SubscriptionCardMapper.toDto (gmoDieselDeclaration.getGmoSubscriptionCard(), true));
 
 
         }

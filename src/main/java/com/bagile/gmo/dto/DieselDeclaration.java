@@ -13,10 +13,14 @@ public class DieselDeclaration extends EmsDto implements Serializable {
     private long id;
     private String code;
     private Vehicle vehicle;
+    private Driver driver ;
+    private long typeDeclaration ;
+    private SubscriptionCard subscriptionCard;
+    private String bon;
     private BigDecimal amount;
     private BigDecimal mileage;
     private Date dieselDeclarationDate;
- private Owner owner;
+    private Owner owner;
 
     public long getId() {
         return id;
@@ -64,6 +68,39 @@ public class DieselDeclaration extends EmsDto implements Serializable {
 
     public void setDieselDeclarationDate(Date dieselDeclarationDate) {
         this.dieselDeclarationDate = dieselDeclarationDate;
+    }
+
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
+
+    public long getTypeDeclaration() {
+        return typeDeclaration;
+    }
+
+    public void setTypeDeclaration(long typeDeclaration) {
+        this.typeDeclaration = typeDeclaration;
+    }
+
+    public SubscriptionCard getSubscriptionCard() {
+        return subscriptionCard;
+    }
+
+    public void setSubscriptionCard(SubscriptionCard subscriptionCard) {
+        this.subscriptionCard = subscriptionCard;
+    }
+
+    public String getBon() {
+        return bon;
+    }
+
+    public void setBon(String bon) {
+        this.bon = bon;
     }
 
     public Owner getOwner() {
