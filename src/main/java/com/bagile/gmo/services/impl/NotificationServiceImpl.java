@@ -232,6 +232,8 @@ public class NotificationServiceImpl implements NotificationService {
                     notification.setMaintenanceId(maintenanace.getId());
                     notification.setPatimonyCode(maintenanace.getPatrimony().getCode());
                     notification.setAction(maintenanace.getActionType().getCode());
+
+
                     //notifications.add(notification);
                     save(notification);
                     MailConfig mail=mailConfigService.findById(1L);
@@ -281,6 +283,7 @@ public class NotificationServiceImpl implements NotificationService {
                                 notification.setNotificationType(notificationTypeP);
                                 notification.setNotificationState(notificationStatee);
                                 notification.setProductId(product.getId());
+                              
                                 notifications.add(notification);
 
                                 MailConfig mail=mailConfigService.findById(1L);

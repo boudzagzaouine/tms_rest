@@ -33,6 +33,7 @@ public class GmoDriver extends EmsEntity {
     private String gmoCarte;
 
     private String gmoDriverName;
+    private GmoSubscriptionCard gmoSubscriptionCard;
 
     private String gmoDriverSurname;
     private String gmoDriverTele1;
@@ -111,6 +112,17 @@ public class GmoDriver extends EmsEntity {
     public void setGmoDriverCommission(BigDecimal gmoDriverCommission) {
         this.gmoDriverCommission = gmoDriverCommission;
     }
+
+    @ManyToOne()
+    @JoinColumn(name="gmo_gmosubscriptioncard")
+    public GmoSubscriptionCard getGmoSubscriptionCard() {
+        return gmoSubscriptionCard;
+    }
+
+    public void setGmoSubscriptionCard(GmoSubscriptionCard gmoSubscriptionCard) {
+        this.gmoSubscriptionCard = gmoSubscriptionCard;
+    }
+
 
     @Column(name = "gmo_driverisworking")
     public Boolean isGmoWorking() {

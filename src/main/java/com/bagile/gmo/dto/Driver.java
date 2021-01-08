@@ -29,6 +29,7 @@ private String carte;
     private String comment;
     //private List<CommissionDriver> commissions=new ArrayList<>();
     private List<BadgeTypeDriver> badgeTypeDrivers = new ArrayList<>();
+    private SubscriptionCard subscriptionCard;
 
     private List<Turn> turns = new ArrayList<>();
 
@@ -100,6 +101,14 @@ private String carte;
     public void setBadge(Badge badge) {
         this.badge = badge;
     }*/
+
+    public SubscriptionCard getSubscriptionCard() {
+        return subscriptionCard;
+    }
+
+    public void setSubscriptionCard(SubscriptionCard subscriptionCard) {
+        this.subscriptionCard = subscriptionCard;
+    }
 
     public String getName() {
         return name;

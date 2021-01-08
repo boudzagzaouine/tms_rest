@@ -35,7 +35,7 @@ public class PdtProduct extends EmsEntity implements java.io.Serializable {
     private RcpSupplier rcpSupplier;
     private WrhWarehouse wrhWarehouse;
     @Size(max = 30)
-    @NotNull
+   // @NotNull
     private String pdtProductCode;
     @Size(max = 1)
 
@@ -285,7 +285,7 @@ public class PdtProduct extends EmsEntity implements java.io.Serializable {
         this.pdtProductRaisonToOut = pdtProductRaisonToOut;
     }
 
-    @Column(name = "pdt_productcode", nullable = false, length = 30)
+    @Column(name = "pdt_productcode", length = 30)
     public String getPdtProductCode() {
         return this.pdtProductCode;
     }

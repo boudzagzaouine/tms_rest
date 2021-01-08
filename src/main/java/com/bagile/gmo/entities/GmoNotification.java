@@ -10,6 +10,9 @@ public class GmoNotification extends EmsEntity{
     private long gmoNotificationId;
     private String gmoNotificationCode;
     private GmoNotificationState gmoNotificationState ;
+
+
+
     private long gmoNotificationProductId;
     private long gmoNotificationMaintenanceId;
     private String gmoNotificationPatrimonyCode ;
@@ -47,6 +50,9 @@ public class GmoNotification extends EmsEntity{
         this.gmoNotificationState = gmoNotificationState;
     }
 
+
+
+
     @ManyToOne
     @JoinColumn(name = "gmo_notificationtypeid")
     public GmoNotificationType getGmoNotificationType() {
@@ -59,7 +65,7 @@ public class GmoNotification extends EmsEntity{
 
 
 
-    @Column(name = "gmo_productid")
+    @Column(name = "gmo_notificationproductid")
     public long getGmoNotificationProductId() {
         return gmoNotificationProductId;
     }

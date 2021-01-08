@@ -172,6 +172,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
                       kmNext=kmlastMaintenance+Kmcondition ;
 
                            itemActionPlan.setMileage(kmNext);
+
                      maintenanceList.add(loadMaintenance(itemActionPlan, patrimony));
                  }
                  else if(patrimony instanceof  Vehicle)  {
@@ -205,12 +206,17 @@ public class MaintenanceServiceImpl implements MaintenanceService {
                  maintenance.setTriggerDate(dt.minusDays(day).toDate());
                  maintenance.setInterventionDate(actionPlan.getInterventionDate());
                  maintenance.setTriggerDay(actionPlan.getTriggerDay());
+                 maintenance.setMaintenanceDate(actionPlan.getInterventionDate());
              }
 
         if(actionPlan.getProgramType().getId()==2){//conditionnelle
             maintenance.setConditionalType(actionPlan.getConditionalType());
             maintenance.setValueconditionalType(actionPlan.getValueconditionalType());
             maintenance.setMileageNext(actionPlan.getMileage());
+            maintenance.setMileage(actionPlan.getMileage());
+            maintenance.setMaintenanceDate(new Date());
+
+
         }
             maintenance.setCode(getNextVal());
             maintenance.setProgramType(actionPlan.getProgramType());
@@ -397,9 +403,8 @@ public class MaintenanceServiceImpl implements MaintenanceService {
         Kmcondition =maintenance.getValueconditionalType().doubleValue();
         kmNext=kmlastMaintenance+Kmcondition ;
         maintenance2.setMileageNext(kmNext);
-
         maintenance.setCode(getNextVal());
-
+      maintenance2.setMileage(kmNext);
         maintenance2.setCode(getNextVal());
 
         maintenance2.setConditionalType(maintenance.getConditionalType());

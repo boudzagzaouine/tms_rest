@@ -73,6 +73,7 @@ public class DriverMapper {
             //gmoDriver.setGmoCommissions(CommissionDriverMapper.toEntities(driver.getCommissions(), false));
             gmoDriver.setGmoBadgeTypeDrivers(BadgeTypeDriverMapper.toEntities(driver.getBadgeTypeDrivers(), false));
             gmoDriver.setOwnOwner(OwnerMapper.toEntity(driver.getOwner(), false));
+            gmoDriver.setGmoSubscriptionCard(SubscriptionCardMapper.toEntity(driver.getSubscriptionCard(), false));
 
             oneToMany(gmoDriver);
 
@@ -129,6 +130,8 @@ public class DriverMapper {
          //   driver.setCommissions(CommissionDriverMapper.toDtos(gmoDriver.getGmoCommissions (), false));
             driver.setBadgeTypeDrivers(BadgeTypeDriverMapper.toDtos(gmoDriver.getGmoBadgeTypeDrivers(), false));
             driver.setOwner(OwnerMapper.toDto(gmoDriver.getOwnOwner(), false));
+            driver.setSubscriptionCard(SubscriptionCardMapper.toDto(gmoDriver.getGmoSubscriptionCard(), false));
+            driver.setSubscriptionCard(SubscriptionCardMapper.toDto(gmoDriver.getGmoSubscriptionCard(), false));
 
         }
         return driver;

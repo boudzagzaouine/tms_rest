@@ -55,7 +55,7 @@ public class ActionLineMaintenanceMapper {
 					.setGmoMaintenance(MaintenanceMapper.toEntity(actionLineMaintenance.getMaintenance(), true));
 
 			gmoActionLineMaintenance
-					.setPdtProduct(ProductMapper.toEntity(actionLineMaintenance.getProduct(), true));
+					.setPdtProduct(ProductMapper.toEntity(actionLineMaintenance.getProduct(), false));
 
 			gmoActionLineMaintenance
 					.setOwnOwner(OwnerMapper.toEntity(actionLineMaintenance.getOwner(), true));

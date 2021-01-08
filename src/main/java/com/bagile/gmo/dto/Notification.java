@@ -12,6 +12,8 @@ public class Notification extends EmsDto implements Serializable {
     private String code;
     private String type;
     private NotificationState notificationState;
+
+
     private long productId;
     private long maintenanceId;
     private String patimonyCode;
@@ -82,6 +84,7 @@ public class Notification extends EmsDto implements Serializable {
     public void setAction(String action) {
         this.action = action;
     }
+
 
 
     public NotificationType getNotificationType() {
