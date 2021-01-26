@@ -14,7 +14,7 @@ public class NotificationTypeMapper {
     static {
         map = new HashMap<> ( );
 
-        map.put ("id", "gmoNotificationTypeId");
+        map.put ("id", "gmoNotificationId");
         map.put ("code", "gmoNotificationCode");
         map.put ("email", "gmoNotificationEmail");
 

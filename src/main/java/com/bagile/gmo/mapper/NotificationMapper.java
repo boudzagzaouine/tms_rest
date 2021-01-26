@@ -17,7 +17,7 @@ public class NotificationMapper {
         map.put ("id", "gmoNotificationId");
         map.put ("code", "gmoNotificationCode");
         map.put ("notificationState", "gmoNotificationState");
-        map.put ("type", "gmoNotificationType");
+        map.put ("notificationType", "gmoNotificationType");
         map.put ("productId", "gmoNotificationProductId");
         map.put ("maintenanceId", "gmoNotificationMaintenanceId");
 

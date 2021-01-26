@@ -6,8 +6,8 @@ import com.bagile.gmo.entities.GmoMonth;
 import java.util.*;
 
 public class MonthMapper {
-	public MonthMapper() {
-	}
+	/*public MonthMapper() {
+	}*/
 
 	private static Map<String, String> map;
 
@@ -15,7 +15,7 @@ public class MonthMapper {
 		map = new HashMap<>();
 
 		map.put("id", "gmoMonthId");
-		map.put("code", "gmoMonthType");
+		map.put("code", "gmoMonthCode");
 		map.put("description", "gmoMaintenanceState");
 	
 

@@ -6,8 +6,8 @@ import com.bagile.gmo.entities.GmoDay;
 import java.util.*;
 
 public class DayMapper {
-	public DayMapper() {
-	}
+	/*public DayMapper() {
+	}*/
 
 	private static Map<String, String> map;
 
@@ -15,7 +15,7 @@ public class DayMapper {
 		map = new HashMap<>();
 
 		map.put("id", "gmoDayId");
-		map.put("code", "gmoDayType");
+		map.put("code", "gmoDayCode");
 		map.put("description", "gmoMaintenanceState");
 	
 

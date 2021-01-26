@@ -1,7 +1,6 @@
 package com.bagile.gmo.entities;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
 @Table(name="gmo_day")
@@ -11,6 +10,10 @@ public class GmoDay extends EmsEntity{
     private String gmoDayCode;
     private String gmoDayDescription;
     private long gmoValue;
+
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_day_id", allocationSize = 1)
