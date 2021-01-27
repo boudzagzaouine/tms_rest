@@ -63,7 +63,7 @@ public class VehicleFeatureMapper {
             return null;
         }
         VehicleFeature vehicleFeature = new VehicleFeature ( );
-        vehicleFeature.setId ((int) gmovehicleFeature.getGmoVehicleFeatureId ());
+        vehicleFeature.setId (gmovehicleFeature.getGmoVehicleFeatureId ());
         vehicleFeature.setCode (gmovehicleFeature.getGmoVehicleFeatureCode ());
         vehicleFeature.setDescription (gmovehicleFeature.getGmoVehicleFeatureDescription ());
         vehicleFeature.setValue (gmovehicleFeature.getGmoVehicleFeatureValue ());

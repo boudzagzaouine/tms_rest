@@ -16,7 +16,7 @@ import java.util.Date;
 @Table(name = "wrh_warehouse", uniqueConstraints = @UniqueConstraint(columnNames = "wrh_warehousecode"))
 public class WrhWarehouse extends EmsEntity implements java.io.Serializable {
 
-    private long wrhWarehouseId;
+    private Long wrhWarehouseId;
     //@NotNull
     //private AdrAddress adrAddress;
     @Size(max = 30)
@@ -65,11 +65,11 @@ public class WrhWarehouse extends EmsEntity implements java.io.Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_wrh_warehouse_id", allocationSize = 1)
     @Column(name = "wrh_warehouseid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getWrhWarehouseId() {
+    public Long getWrhWarehouseId() {
         return this.wrhWarehouseId;
     }
 
-    public void setWrhWarehouseId(long wrhWarehouseId) {
+    public void setWrhWarehouseId(Long wrhWarehouseId) {
         this.wrhWarehouseId = wrhWarehouseId;
     }
 

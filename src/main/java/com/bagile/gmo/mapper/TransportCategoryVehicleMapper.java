@@ -64,7 +64,7 @@ public class TransportCategoryVehicleMapper {
             return null;
         }
         TransportCategoryVehicle transport = new TransportCategoryVehicle ( );
-        transport.setId ((int) trpTransport.getGmoCatalogTransportCategorieVehicleId ());
+        transport.setId (trpTransport.getGmoCatalogTransportCategorieVehicleId ());
         transport.setQuantity (trpTransport.getGmoTransportCategorieVehicleQuantity ());
 
 

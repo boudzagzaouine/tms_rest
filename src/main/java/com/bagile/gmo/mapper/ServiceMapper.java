@@ -56,7 +56,7 @@ public class ServiceMapper {
             return null;
         }
         Service operationType = new Service( );
-        operationType.setId ((int) gmoOperationType.getGmoOperationTypeId ());
+        operationType.setId (gmoOperationType.getGmoOperationTypeId ());
         operationType.setCode (gmoOperationType.getGmoOperationTypeCode ());
         operationType.setDescription (gmoOperationType.getGmoOperationTypeDescription ());
 

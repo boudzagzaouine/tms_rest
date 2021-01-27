@@ -87,6 +87,7 @@ public class ProductServiceImpl implements ProductService {
         if (0 >= product.getId ( )) {
             mode = "I";
             product.setCreationDate (EmsDate.getDateNow ( ));
+
             operation = "A";
         }
 

@@ -56,7 +56,7 @@ public class ResponsabilityMapper {
             return null;
         }
         Responsability responsability = new Responsability ( );
-        responsability.setId ((int) gmoResponsability.getGmoResponsabilityId ());
+        responsability.setId (gmoResponsability.getGmoResponsabilityId ());
         responsability.setCode (gmoResponsability.getGmoResponsabilityCode ());
         responsability.setDescription (gmoResponsability.getGmoResponsabilityDescription ());
 

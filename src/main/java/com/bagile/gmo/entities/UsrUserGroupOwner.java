@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "usr_user_group_own_owner")
 public class UsrUserGroupOwner extends EmsEntity implements Serializable {
-    private long usrUserGroupOwnOwnerId;
+    private Long usrUserGroupOwnOwnerId;
     @NotNull
     private UsrUserGroup usrUserGroup;
     @NotNull
@@ -20,11 +20,11 @@ public class UsrUserGroupOwner extends EmsEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_user_group_own_owner_id", allocationSize = 1)
     @Column(name = "usr_user_group_own_owner_id", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getUsrUserGroupOwnOwnerId() {
+    public Long getUsrUserGroupOwnOwnerId() {
         return usrUserGroupOwnOwnerId;
     }
 
-    public void setUsrUserGroupOwnOwnerId(long usrUserGroupOwnOwnerId) {
+    public void setUsrUserGroupOwnOwnerId(Long usrUserGroupOwnOwnerId) {
         this.usrUserGroupOwnOwnerId = usrUserGroupOwnOwnerId;
     }
 

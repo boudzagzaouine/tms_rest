@@ -19,7 +19,7 @@ import java.util.Set;
         @UniqueConstraint(columnNames = "pdt_aliaseancode")})
 public class PdtAlias extends EmsEntity implements java.io.Serializable {
 
-    private long pdtAliasId;
+    private Long pdtAliasId;
 
     private OwnOwner ownOwner;
     private PdtProduct pdtProduct;
@@ -43,7 +43,7 @@ public class PdtAlias extends EmsEntity implements java.io.Serializable {
     public PdtAlias() {
     }
 
-    public PdtAlias(long pdtAliasId, OwnOwner ownOwner, PdtProduct pdtProduct,
+    public PdtAlias(Long pdtAliasId, OwnOwner ownOwner, PdtProduct pdtProduct,
                     PdtUom pdtUom, String pdtAliasEanCode) {
         this.pdtAliasId = pdtAliasId;
         this.ownOwner = ownOwner;
@@ -52,7 +52,7 @@ public class PdtAlias extends EmsEntity implements java.io.Serializable {
         this.pdtAliasEanCode = pdtAliasEanCode;
     }
 
-    public PdtAlias(long pdtAliasId, OwnOwner ownOwner, PdtProduct pdtProduct,
+    public PdtAlias(Long pdtAliasId, OwnOwner ownOwner, PdtProduct pdtProduct,
                     PdtUom pdtUom, String pdtAliasEanCode,
                     Date pdtAliasCreationDate, Date pdtAliasUpdateDate,
                     Set<PdtProductPack> pdtProductPacks) {
@@ -70,11 +70,11 @@ public class PdtAlias extends EmsEntity implements java.io.Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_pdt_alias", allocationSize = 1)
     @Column(name = "pdt_aliasid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getPdtAliasId() {
+    public Long getPdtAliasId() {
         return this.pdtAliasId;
     }
 
-    public void setPdtAliasId(long pdtAliasId) {
+    public void setPdtAliasId(Long pdtAliasId) {
         this.pdtAliasId = pdtAliasId;
     }
 

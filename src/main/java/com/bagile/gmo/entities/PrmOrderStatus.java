@@ -13,7 +13,7 @@ import com.bagile.gmo.dto.EmsDto;
 @Table(name = "prm_orderstatus", uniqueConstraints = {@UniqueConstraint(columnNames = "prm_orderstatuscode")})
 public class PrmOrderStatus extends EmsDto implements java.io.Serializable {
 
-    private long prmOrderStatusId;
+    private Long prmOrderStatusId;
     @Size(max = 30)
     @NotNull
     private String prmOrderStatusCode;
@@ -39,11 +39,11 @@ public class PrmOrderStatus extends EmsDto implements java.io.Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_prm_orderstatus", allocationSize = 1)
     @Column(name = "prm_orderstatusid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getPrmOrderStatusId() {
+    public Long getPrmOrderStatusId() {
         return this.prmOrderStatusId;
     }
 
-    public void setPrmOrderStatusId(long prmOrderStatusId) {
+    public void setPrmOrderStatusId(Long prmOrderStatusId) {
         this.prmOrderStatusId = prmOrderStatusId;
     }
 

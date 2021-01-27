@@ -143,7 +143,7 @@ public class ReceptionMapper {
                 rl.setRcpReception(reception);
                 rl.setRcpReceptionLineUpdateDate(EmsDate.getDateNow());
               if (0 >= rl.getRcpReceptionLineId()) {
-                    rl.setRcpReceptionLineId(0);
+                    rl.setRcpReceptionLineId(0L);
                     rl.setRcpReceptionLineCreationDate(EmsDate.getDateNow());
                     rl.setPrmOrderStatus(reception.getPrmOrderStatus());
                 }

@@ -56,7 +56,7 @@ public class ServiceProviderMapper {
             return null;
         }
         ServiceProvider serviceProvider = new ServiceProvider ( );
-        serviceProvider.setId ((int) gmoServiceProvider.getGmoServiceProviderId ());
+        serviceProvider.setId (gmoServiceProvider.getGmoServiceProviderId ());
         serviceProvider.setCode (gmoServiceProvider.getGmoServiceProviderCode ());
         serviceProvider.setDescription (gmoServiceProvider.getGmoServiceProviderDescription ());
 

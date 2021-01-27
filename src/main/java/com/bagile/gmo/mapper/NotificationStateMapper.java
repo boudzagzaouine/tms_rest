@@ -56,7 +56,7 @@ public class NotificationStateMapper {
             return null;
         }
         NotificationState notificationState = new NotificationState ( );
-        notificationState.setId ((int) gmoNotificationState.getGmoNotificationId ());
+        notificationState.setId (gmoNotificationState.getGmoNotificationId ());
         notificationState.setCode (gmoNotificationState.getGmoNotificationCode ());
         notificationState.setDescription (gmoNotificationState.getGmoNotificationDescription ());
 

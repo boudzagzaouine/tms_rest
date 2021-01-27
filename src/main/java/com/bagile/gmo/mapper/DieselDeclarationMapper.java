@@ -58,6 +58,7 @@ public class DieselDeclarationMapper {
             gmoDieselDeclaration.setOwnOwner (OwnerMapper.toEntity (dieselDeclaration.getOwner ( ), true));
             gmoDieselDeclaration.setGmoDriver (DriverMapper.toEntity (dieselDeclaration.getDriver ( ), true));
             gmoDieselDeclaration.setGmoSubscriptionCard (SubscriptionCardMapper.toEntity (dieselDeclaration.getSubscriptionCard ( ), true));
+            gmoDieselDeclaration.setRcpPurshaseOrder (PurshaseOrderMapper.toEntity (dieselDeclaration.getPurshaseOrder ( ), false));
 
         }
 
@@ -70,7 +71,7 @@ public class DieselDeclarationMapper {
             return null;
         }
         DieselDeclaration dieselDeclaration = new DieselDeclaration ( );
-        dieselDeclaration.setId ((int) gmoDieselDeclaration.getGmoDieselDeclarationId ());
+        dieselDeclaration.setId (gmoDieselDeclaration.getGmoDieselDeclarationId ());
         dieselDeclaration.setCode (gmoDieselDeclaration.getGmoDieselDeclarationCode ());
         dieselDeclaration.setAmount (gmoDieselDeclaration.getGmoDieselDeclarationAmount());
         dieselDeclaration.setDieselDeclarationDate (gmoDieselDeclaration.getGmoDieselDeclarationDate());
@@ -88,6 +89,7 @@ public class DieselDeclarationMapper {
             dieselDeclaration.setOwner (OwnerMapper.toDto (gmoDieselDeclaration.getOwnOwner(), true));
             dieselDeclaration.setDriver(DriverMapper.toDto (gmoDieselDeclaration.getGmoDriver(), true));
             dieselDeclaration.setSubscriptionCard (SubscriptionCardMapper.toDto (gmoDieselDeclaration.getGmoSubscriptionCard(), true));
+            dieselDeclaration.setPurshaseOrder (PurshaseOrderMapper.toDto (gmoDieselDeclaration.getRcpPurshaseOrder(), false));
 
 
         }

@@ -22,7 +22,7 @@ import java.util.Set;
         @UniqueConstraint(columnNames = {"pdt_productcode"})})
 public class PdtProduct extends EmsEntity implements java.io.Serializable {
 
-    private long pdtProductId;
+    private Long pdtProductId;
 
 
     private OwnOwner ownOwner;
@@ -163,11 +163,11 @@ public class PdtProduct extends EmsEntity implements java.io.Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_pdt_product", allocationSize = 1)
     @Column(name = "pdt_productid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getPdtProductId() {
+    public Long getPdtProductId() {
         return this.pdtProductId;
     }
 
-    public void setPdtProductId(long pdtProductId) {
+    public void setPdtProductId(Long pdtProductId) {
         this.pdtProductId = pdtProductId;
     }
 

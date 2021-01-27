@@ -9,7 +9,7 @@ public class GmoResponsability extends EmsEntity {
 
 	private static final long serialVersionUID = 2773120607426017439L;
 
-	private long gmoResponsabilityId;
+	private Long gmoResponsabilityId;
     private String gmoResponsabilityCode;
     private String gmoResponsabilityDescription;
 
@@ -18,11 +18,11 @@ public class GmoResponsability extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_responsability_id", allocationSize = 1)
     @Column(name = "gmo_responsabilityid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoResponsabilityId() {
+    public Long getGmoResponsabilityId() {
         return gmoResponsabilityId;
     }
 
-    public void setGmoResponsabilityId(long gmoResponsabilityId) {
+    public void setGmoResponsabilityId(Long gmoResponsabilityId) {
         this.gmoResponsabilityId = gmoResponsabilityId;
     }
 

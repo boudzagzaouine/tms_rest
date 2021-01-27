@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Table(name="gmo_vehiculefeature")
 public class GmoVehicleFeature extends EmsEntity{
 
-    private long gmoVehicleFeatureId;
+    private Long gmoVehicleFeatureId;
     private String gmoVehicleFeatureCode;
     private String gmoVehicleFeatureDescription;
     private BigDecimal gmoVehicleFeatureValue;
@@ -20,11 +20,11 @@ public class GmoVehicleFeature extends EmsEntity{
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_vehiculefeature_id", allocationSize = 1)
     @Column(name = "gmo_vehiculefeatureid", unique = true, nullable = false, precision = 10, scale = 0)
 
-    public long getGmoVehicleFeatureId() {
+    public Long getGmoVehicleFeatureId() {
         return gmoVehicleFeatureId;
     }
 
-    public void setGmoVehicleFeatureId(long gmoVehicleFeatureId) {
+    public void setGmoVehicleFeatureId(Long gmoVehicleFeatureId) {
         this.gmoVehicleFeatureId = gmoVehicleFeatureId;
     }
     @Column(name = "gmo_vehiclefeaturecode")

@@ -242,7 +242,7 @@ public class SaleOrderLineMapper {
                 sl.setCmdSaleOrderLineUpdateDate(EmsDate.getDateNow());
                 if (0 >= sl.getCmdSaleOrderLineId()) {
                     sl.setCmdSaleOrderLineCreationDate(EmsDate.getDateNow());
-                    sl.setCmdSaleOrderLineId(0);
+                    sl.setCmdSaleOrderLineId(0L);
                     sl.setServiceParent(saleOrderline);
                 }
             });

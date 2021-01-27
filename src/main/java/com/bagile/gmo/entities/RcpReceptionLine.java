@@ -20,7 +20,7 @@ import java.util.Set;
 @Table(name = "rcp_receptionline")
 public class RcpReceptionLine extends EmsEntity implements java.io.Serializable {
 
-    private long rcpReceptionLineId;
+    private Long rcpReceptionLineId;
    // @NotNull
     private OwnOwner ownOwner;
     @NotNull
@@ -123,11 +123,11 @@ public class RcpReceptionLine extends EmsEntity implements java.io.Serializable 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_rcp_receptionline", allocationSize = 1)
     @Column(name = "rcp_receptionlineid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getRcpReceptionLineId() {
+    public Long getRcpReceptionLineId() {
         return this.rcpReceptionLineId;
     }
 
-    public void setRcpReceptionLineId(long rcpReceptionLineId) {
+    public void setRcpReceptionLineId(Long rcpReceptionLineId) {
         this.rcpReceptionLineId = rcpReceptionLineId;
     }
 

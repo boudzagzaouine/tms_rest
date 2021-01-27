@@ -19,7 +19,7 @@ public class UsrUserGroup extends EmsEntity implements java.io.Serializable {
 
     private static final long serialVersionUID = 4316246777960907747L;
 
-    private long usrUserGroupId;
+    private Long usrUserGroupId;
     @Size(max = 30)
     @NotNull
     private String usrUserGroupCode;
@@ -38,11 +38,11 @@ public class UsrUserGroup extends EmsEntity implements java.io.Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_usr_user_group_id", allocationSize = 1)
     @Column(name = "usr_usergroupid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getUsrUserGroupId() {
+    public Long getUsrUserGroupId() {
         return this.usrUserGroupId;
     }
 
-    public void setUsrUserGroupId(long usrUserGroupId) {
+    public void setUsrUserGroupId(Long usrUserGroupId) {
         this.usrUserGroupId = usrUserGroupId;
     }
 

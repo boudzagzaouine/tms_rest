@@ -15,7 +15,7 @@ import java.util.Set;
 @Table(name = "trp_transport", uniqueConstraints = @UniqueConstraint(columnNames = "trp_transportcode"))
 public class TrpTransport extends EmsEntity implements java.io.Serializable {
 
-    private long trpTransportId;
+    private Long trpTransportId;
 
     @Size(max = 30)
     @NotNull
@@ -66,11 +66,11 @@ public class TrpTransport extends EmsEntity implements java.io.Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_trp_transport", allocationSize = 1)
     @Column(name = "trp_transportid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getTrpTransportId() {
+    public Long getTrpTransportId() {
         return this.trpTransportId;
     }
 
-    public void setTrpTransportId(long trpTransportId) {
+    public void setTrpTransportId(Long trpTransportId) {
         this.trpTransportId = trpTransportId;
     }
 

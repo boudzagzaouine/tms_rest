@@ -76,7 +76,7 @@ public class VehicleCategoryMapper {
             return null;
         }
         VehicleCategory vehicle = new VehicleCategory();
-        vehicle.setId((int) gmoVehicleCategory.getGmoVehicleCategoryId());
+        vehicle.setId(gmoVehicleCategory.getGmoVehicleCategoryId());
         vehicle.setCode(gmoVehicleCategory.getGmoVehicleCategoryCode());
         vehicle.setDescription(gmoVehicleCategory.getGmoVehicleCategoryDescription());
         vehicle.setWidth (gmoVehicleCategory.getGmoVehicleCategoryWidth ());

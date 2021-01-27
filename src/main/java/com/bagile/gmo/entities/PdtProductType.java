@@ -19,7 +19,7 @@ import java.util.Set;
         @UniqueConstraint(columnNames = "pdt_producttypecode")})
 public class PdtProductType extends EmsEntity {
 
-    private long pdtProductTypeId;
+    private Long pdtProductTypeId;
     private OwnOwner ownOwner;
     private PdtProductType pdtProductTypeParent;
     @Size(max = 30)
@@ -42,12 +42,12 @@ public class PdtProductType extends EmsEntity {
     public PdtProductType() {
     }
 
-    public PdtProductType(long pdtProductTypeId, String pdtProductTypeCode) {
+    public PdtProductType(Long pdtProductTypeId, String pdtProductTypeCode) {
         this.pdtProductTypeId = pdtProductTypeId;
         this.pdtProductTypeCode = pdtProductTypeCode;
     }
 
-    public PdtProductType(long pdtProductTypeId, OwnOwner ownOwner,
+    public PdtProductType(Long pdtProductTypeId, OwnOwner ownOwner,
                           PdtProductType pdtProductType, String pdtProductTypeCode,
                           String pdtProductTypeDescription, Date pdtProductTypeCreationDate,
                           Date pdtProductTypeUpdateDate, Set<PdtProductType> pdtProductTypes,
@@ -69,11 +69,11 @@ public class PdtProductType extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_pdt_producttype", allocationSize = 1)
     @Column(name = "pdt_producttypeid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getPdtProductTypeId() {
+    public Long getPdtProductTypeId() {
         return this.pdtProductTypeId;
     }
 
-    public void setPdtProductTypeId(long pdtProductTypeId) {
+    public void setPdtProductTypeId(Long pdtProductTypeId) {
         this.pdtProductTypeId = pdtProductTypeId;
     }
 

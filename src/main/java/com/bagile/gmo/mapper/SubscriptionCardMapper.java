@@ -59,7 +59,7 @@ public class SubscriptionCardMapper {
             return null;
         }
         SubscriptionCard subscriptionCard = new SubscriptionCard();
-        subscriptionCard.setId((int) gmoSubscriptionCard.getGmoSubscriptionCardId());
+        subscriptionCard.setId(gmoSubscriptionCard.getGmoSubscriptionCardId());
         subscriptionCard.setCode(gmoSubscriptionCard.getGmoSubscriptionCardCode());
         subscriptionCard.setDescription (gmoSubscriptionCard.getGmoSubscriptionCardDescription ());
 

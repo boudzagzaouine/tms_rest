@@ -13,7 +13,7 @@ public class GmoDriver extends EmsEntity {
      */
     private static final long serialVersionUID = 7465274138053290715L;
 
-    private long gmoDriverId;
+    private Long gmoDriverId;
 
     private String gmoDriverCode;
     private String gmoDriverCin;
@@ -57,11 +57,11 @@ public class GmoDriver extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_driver_id", allocationSize = 1)
     @Column(name = "gmo_driverid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoDriverId() {
+    public Long getGmoDriverId() {
         return gmoDriverId;
     }
 
-    public void setGmoDriverId(long gmoDriverId) {
+    public void setGmoDriverId(Long gmoDriverId) {
         this.gmoDriverId = gmoDriverId;
     }
 

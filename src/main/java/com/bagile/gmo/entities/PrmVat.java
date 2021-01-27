@@ -12,7 +12,7 @@ import java.util.Set;
 @Entity
 @Table(name = "prm_vat",uniqueConstraints = @UniqueConstraint(columnNames = "prm_vatvalue"))
 public class PrmVat extends EmsEntity{
-    private long prmVatId;
+    private Long prmVatId;
     @NotNull
     private BigDecimal prmVatValue;
    private Set<PdtProduct> pdtProduct=new HashSet<>();
@@ -22,11 +22,11 @@ public class PrmVat extends EmsEntity{
     @SequenceGenerator(name = "seq", sequenceName = "prm_vat_prm_vatid_seq", allocationSize = 1)
     @Column(name = "prm_vatid", unique = true, nullable = false, precision = 10, scale = 0)
 
-    public long getPrmVatId() {
+    public Long getPrmVatId() {
         return prmVatId;
     }
 
-    public void setPrmVatId(long prmVatId) {
+    public void setPrmVatId(Long prmVatId) {
         this.prmVatId = prmVatId;
     }
 

@@ -24,7 +24,7 @@ import java.util.Set;
 @Immutable
 public class PdtProductView extends EmsEntity implements java.io.Serializable {
 
-    private long pdtProductId;
+    private Long pdtProductId;
     private LocLocation locLocation;
     @NotNull
     private OwnOwner ownOwner;
@@ -185,11 +185,11 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
 
     @Id
     @Column(name = "pdt_productid")
-    public long getPdtProductId() {
+    public Long getPdtProductId() {
         return this.pdtProductId;
     }
 
-    public void setPdtProductId(long pdtProductId) {
+    public void setPdtProductId(Long pdtProductId) {
         this.pdtProductId = pdtProductId;
     }
 

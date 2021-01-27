@@ -20,7 +20,7 @@ import java.util.Set;
         @UniqueConstraint(columnNames = "rcp_PurshaseOrderCode")})
 public class RcpPurshaseOrder extends EmsEntity implements java.io.Serializable {
 
-    private long rcpPurshaseOrderId;
+    private Long rcpPurshaseOrderId;
    // @NotNull
     private OwnOwner ownOwner;
     private AdrAddressInfo adrAddress;
@@ -115,11 +115,11 @@ public class RcpPurshaseOrder extends EmsEntity implements java.io.Serializable 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_rcp_purshaseorder", allocationSize = 1)
     @Column(name = "rcp_purshaseorderid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getRcpPurshaseOrderId() {
+    public Long getRcpPurshaseOrderId() {
         return this.rcpPurshaseOrderId;
     }
 
-    public void setRcpPurshaseOrderId(long rcpPurshaseOrderId) {
+    public void setRcpPurshaseOrderId(Long rcpPurshaseOrderId) {
         this.rcpPurshaseOrderId = rcpPurshaseOrderId;
     }
 

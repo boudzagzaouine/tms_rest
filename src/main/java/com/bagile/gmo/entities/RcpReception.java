@@ -21,7 +21,7 @@ import java.util.Set;
         @UniqueConstraint(columnNames = "rcp_receptioncode")})
 public class RcpReception extends EmsEntity implements java.io.Serializable {
 
-    private long rcpReceptionId;
+    private Long rcpReceptionId;
    // @NotNull
     private OwnOwner ownOwner;
     private AdrAddressInfo adrAddress;
@@ -110,11 +110,11 @@ public class RcpReception extends EmsEntity implements java.io.Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_rcp_reception", allocationSize = 1)
     @Column(name = "rcp_receptionid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getRcpReceptionId() {
+    public Long getRcpReceptionId() {
         return this.rcpReceptionId;
     }
 
-    public void setRcpReceptionId(long rcpReceptionId) {
+    public void setRcpReceptionId(Long rcpReceptionId) {
         this.rcpReceptionId = rcpReceptionId;
     }
 

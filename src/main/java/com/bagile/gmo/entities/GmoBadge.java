@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Table(name="gmo_badge")
 public class GmoBadge  extends EmsEntity{
 
-    private long gmoBadgeId;
+    private Long gmoBadgeId;
     private String gmoBadgeCode;
     private String gmoBadgeDescription;
     private GmoBadgeType gmoBadgeType;
@@ -23,11 +23,11 @@ public class GmoBadge  extends EmsEntity{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_badge_id", allocationSize = 1)
     @Column(name = "gmo_badgeid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoBadgeId() {
+    public Long getGmoBadgeId() {
         return gmoBadgeId;
     }
 
-    public void setGmoBadgeId(long gmoBadgeId) {
+    public void setGmoBadgeId(Long gmoBadgeId) {
         this.gmoBadgeId = gmoBadgeId;
     }
 

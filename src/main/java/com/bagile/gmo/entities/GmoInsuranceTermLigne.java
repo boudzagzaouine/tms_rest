@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @Table(name = "gmo_insurancetermligne")
 public class GmoInsuranceTermLigne extends EmsEntity {
 
-    private long gmoInsuranceTermLigneId;
+    private Long gmoInsuranceTermLigneId;
     private GmoInsurance gmoInsurance;
     private GmoInsuranceTerm gmoInsuranceTerm;
     private BigDecimal gmoAmount;
@@ -19,10 +19,10 @@ public class GmoInsuranceTermLigne extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_insurancetermligne_id", allocationSize = 1)
     @Column(name = "gmo_insurancetermligneid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoInsuranceTermLigneId() {
+    public Long getGmoInsuranceTermLigneId() {
         return gmoInsuranceTermLigneId;
     }
-    public void setGmoInsuranceTermLigneId(long gmoInsuranceTermLigneId) {
+    public void setGmoInsuranceTermLigneId(Long gmoInsuranceTermLigneId) {
         this.gmoInsuranceTermLigneId = gmoInsuranceTermLigneId;
     }
 

@@ -61,7 +61,7 @@ public class ProgramTypeMapper {
             return null;
         }
         ProgramType programType = new ProgramType ( );
-        programType.setId ((int) gmoProgramType.getGmoProgramTypeId ());
+        programType.setId (gmoProgramType.getGmoProgramTypeId ());
         programType.setCode (gmoProgramType.getGmoProgramTypeCode ());
         programType.setDescription (gmoProgramType.getGmoProgramTypeDescription ());
 

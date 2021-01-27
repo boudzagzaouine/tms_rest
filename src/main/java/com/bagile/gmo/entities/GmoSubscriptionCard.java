@@ -9,7 +9,7 @@ public class GmoSubscriptionCard extends EmsEntity {
 
 	private static final long serialVersionUID = 2773120607426017439L;
 
-	private long gmoSubscriptionCardId;
+	private Long gmoSubscriptionCardId;
     private String gmoSubscriptionCardCode;
     private String gmoSubscriptionCardDescription;
     private OwnOwner ownOwner;
@@ -18,11 +18,11 @@ public class GmoSubscriptionCard extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_subscription_card_id", allocationSize = 1)
     @Column(name = "gmo_subscriptioncardid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoSubscriptionCardId() {
+    public Long getGmoSubscriptionCardId() {
         return gmoSubscriptionCardId;
     }
 
-    public void setGmoSubscriptionCardId(long gmoSubscriptionCardId) {
+    public void setGmoSubscriptionCardId(Long gmoSubscriptionCardId) {
         this.gmoSubscriptionCardId = gmoSubscriptionCardId;
     }
 

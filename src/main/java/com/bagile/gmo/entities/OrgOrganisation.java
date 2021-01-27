@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name="org_organisation")
 public class OrgOrganisation extends EmsEntity{
-    private long orgOrganisationId;
+    private Long orgOrganisationId;
     @NotNull
     @Size(max = 30)
     private String orgOrganisationCode;
@@ -88,11 +88,11 @@ public class OrgOrganisation extends EmsEntity{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_org_organisation", allocationSize = 1)
     @Column(name = "org_organisationid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getOrgOrganisationId() {
+    public Long getOrgOrganisationId() {
         return orgOrganisationId;
     }
 
-    public void setOrgOrganisationId(long orgOrganisationId) {
+    public void setOrgOrganisationId(Long orgOrganisationId) {
         this.orgOrganisationId = orgOrganisationId;
     }
 

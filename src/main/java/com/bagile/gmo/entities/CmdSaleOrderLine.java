@@ -25,7 +25,7 @@ public class CmdSaleOrderLine extends EmsEntity implements Serializable  {
      */
     private static final long serialVersionUID = -796228846507513413L;
 
-    private long cmdSaleOrderLineId;
+    private Long cmdSaleOrderLineId;
     private CmdSaleOrder cmdSaleOrder;
 
     @NotNull
@@ -39,7 +39,7 @@ public class CmdSaleOrderLine extends EmsEntity implements Serializable  {
     @NotNull
 
     @Max(999999999)
-    private long cmdSaleOrderLineLineNumber;
+    private Long cmdSaleOrderLineLineNumber;
     @NotNull
 
     @Max(999999999)
@@ -128,11 +128,11 @@ public class CmdSaleOrderLine extends EmsEntity implements Serializable  {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_cmd_saleorderline", allocationSize = 1)
     @Column(name = "cmd_saleorderlineid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getCmdSaleOrderLineId() {
+    public Long getCmdSaleOrderLineId() {
         return this.cmdSaleOrderLineId;
     }
 
-    public void setCmdSaleOrderLineId(long cmdSaleOrderLineId) {
+    public void setCmdSaleOrderLineId(Long cmdSaleOrderLineId) {
         this.cmdSaleOrderLineId = cmdSaleOrderLineId;
     }
 
@@ -210,11 +210,11 @@ public class CmdSaleOrderLine extends EmsEntity implements Serializable  {
     }
 
     @Column(name = "cmd_saleorderlinelinenumber", nullable = false, precision = 10, scale = 0)
-    public long getCmdSaleOrderLineLineNumber() {
+    public Long getCmdSaleOrderLineLineNumber() {
         return this.cmdSaleOrderLineLineNumber;
     }
 
-    public void setCmdSaleOrderLineLineNumber(long cmdSaleOrderLineLineNumber) {
+    public void setCmdSaleOrderLineLineNumber(Long cmdSaleOrderLineLineNumber) {
         this.cmdSaleOrderLineLineNumber = cmdSaleOrderLineLineNumber;
     }
 

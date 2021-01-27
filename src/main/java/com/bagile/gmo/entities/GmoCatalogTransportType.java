@@ -10,7 +10,7 @@ import java.math.BigDecimal;
                                "gmo_zonesournceid","gmo_zonedistinationid"})})
 public class GmoCatalogTransportType extends EmsEntity{
 
-    private long gmoCatalogTransportId;
+    private Long gmoCatalogTransportId;
     private TrpTransport trpTransport;
     private GmoVehicleCategory gmoVehicleCategory;
     private GmoZone gmoZoneSource ;
@@ -26,11 +26,11 @@ public class GmoCatalogTransportType extends EmsEntity{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_catalogtransportcategoryvehicle_id", allocationSize = 1)
     @Column(name = "gmo_catalogtransportcategoryvehicleid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoCatalogTransportCategoryVehicleId() {
+    public Long getGmoCatalogTransportCategoryVehicleId() {
         return gmoCatalogTransportId;
     }
 
-    public void setGmoCatalogTransportCategoryVehicleId(long gmoCatalogTransportCategoryVehicleId) {
+    public void setGmoCatalogTransportCategoryVehicleId(Long gmoCatalogTransportCategoryVehicleId) {
         this.gmoCatalogTransportId = gmoCatalogTransportCategoryVehicleId;
     }
 

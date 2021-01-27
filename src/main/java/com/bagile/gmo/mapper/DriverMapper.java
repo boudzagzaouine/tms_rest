@@ -24,7 +24,7 @@ public class DriverMapper {
         map.put("working", "gmoWorking");
        map.put("badgeTypeDrivers", "gmoBadgeTypeDrivers");
 
-        map.put("name", "gmoDrivertName");
+        map.put("name", "gmoDriverName");
         map.put("surname", "gmoDriverSurname");
         map.put("tele1", "gmoDriverTele1");
         map.put("fax", "gmoDriverFax");
@@ -104,7 +104,7 @@ public class DriverMapper {
             return null;
         }
         Driver driver = new Driver();
-        driver.setId((int) gmoDriver.getGmoDriverId());
+        driver.setId(gmoDriver.getGmoDriverId());
         driver.setCin(gmoDriver.getGmoDriverCin());
         driver.setCode(gmoDriver.getGmoDriverCode() != null ? gmoDriver.getGmoDriverCode().toUpperCase() : null);
         driver.setBirthDate(gmoDriver.getGmoDriverBirthDate ());

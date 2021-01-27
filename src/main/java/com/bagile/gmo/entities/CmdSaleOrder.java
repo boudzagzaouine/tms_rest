@@ -26,7 +26,7 @@ public class CmdSaleOrder extends EmsDto implements Serializable {
      */
     private static final long serialVersionUID = 4700899893257928381L;
 
-    private long cmdSaleOrderId;
+    private Long cmdSaleOrderId;
     private CmdAccount cmdAccount;
     @NotNull
     private OwnOwner ownOwner;
@@ -118,11 +118,11 @@ public class CmdSaleOrder extends EmsDto implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_cmd_saleorder", allocationSize = 1)
     @Column(name = "cmd_saleorderid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getCmdSaleOrderId() {
+    public Long getCmdSaleOrderId() {
         return this.cmdSaleOrderId;
     }
 
-    public void setCmdSaleOrderId(long cmdSaleOrderId) {
+    public void setCmdSaleOrderId(Long cmdSaleOrderId) {
         this.cmdSaleOrderId = cmdSaleOrderId;
     }
 

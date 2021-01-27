@@ -12,7 +12,7 @@ public class GmoContractType extends EmsEntity{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_contracttype_id", allocationSize = 1)
     @Column(name = "gmo_contracttypeid", unique = true, nullable = false, precision = 10, scale = 0)
-     private long gmoContractTypeId;
+     private Long gmoContractTypeId;
     @Column(name = "gmo_contracttypecode", unique = true, nullable = false, length = 90)
     private String gmoContractTypeCode;
 
@@ -38,11 +38,11 @@ public class GmoContractType extends EmsEntity{
         this.gmoVehicles = gmoVehicles;
     }
 
-    public long getGmoContractTypeId() {
+    public Long getGmoContractTypeId() {
         return gmoContractTypeId;
     }
 
-    public void setGmoContractTypeId(long gmoContractTypeId) {
+    public void setGmoContractTypeId(Long gmoContractTypeId) {
         this.gmoContractTypeId = gmoContractTypeId;
     }
 

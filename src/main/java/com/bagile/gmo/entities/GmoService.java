@@ -9,7 +9,7 @@ public class GmoService extends EmsEntity {
 
 	private static final long serialVersionUID = 2773120607426017439L;
 
-	private long gmoOperationTypeId;
+	private Long gmoOperationTypeId;
     private String gmoOperationTypeCode;
     private String gmoOperationTypeDescription;
 
@@ -18,11 +18,11 @@ public class GmoService extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_operation_type_id", allocationSize = 1)
     @Column(name = "gmo_operationtypeeid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoOperationTypeId() {
+    public Long getGmoOperationTypeId() {
         return gmoOperationTypeId;
     }
 
-    public void setGmoOperationTypeId(long gmoOperationTypeId) {
+    public void setGmoOperationTypeId(Long gmoOperationTypeId) {
         this.gmoOperationTypeId = gmoOperationTypeId;
     }
 

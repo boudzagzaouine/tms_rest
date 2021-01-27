@@ -61,7 +61,7 @@ public class ContractTypeMapper {
             return null;
         }
         ContractType contractType = new ContractType();
-        contractType.setId((int) gmoContractType.getGmoContractTypeId());
+        contractType.setId(gmoContractType.getGmoContractTypeId());
         contractType.setCode(gmoContractType.getGmoContractTypeCode());
         contractType.setDescription (gmoContractType.getGmoContractTypeDescription ());
 

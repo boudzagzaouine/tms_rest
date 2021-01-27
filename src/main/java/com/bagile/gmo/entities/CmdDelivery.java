@@ -19,7 +19,7 @@ import java.util.Set;
 @Entity
 @Table(name = "cmd_delivery", uniqueConstraints = @UniqueConstraint(columnNames = "cmd_deliverycode"))
 public class CmdDelivery extends EmsDto {
-    private long cmdDeliveryId;
+    private Long cmdDeliveryId;
     @Size(max = 30)
     @NotNull
     private String cmdDeliveryCode;
@@ -76,11 +76,11 @@ public class CmdDelivery extends EmsDto {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_cmd_delivery", allocationSize = 1)
     @Column(name = "cmd_deliveryid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getCmdDeliveryId() {
+    public Long getCmdDeliveryId() {
         return cmdDeliveryId;
     }
 
-    public void setCmdDeliveryId(long cmdDeliveryId) {
+    public void setCmdDeliveryId(Long cmdDeliveryId) {
         this.cmdDeliveryId = cmdDeliveryId;
     }
 

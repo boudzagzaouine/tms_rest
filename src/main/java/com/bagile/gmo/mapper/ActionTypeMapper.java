@@ -47,7 +47,7 @@ public class ActionTypeMapper {
 			return null;
 		}
 		ActionType actionType = new ActionType();
-		actionType.setId((int) gmoActionType.getGmoActionTypeId());
+		actionType.setId(gmoActionType.getGmoActionTypeId());
 		actionType.setCode(gmoActionType.getGmoActionTypeCode() != null ? gmoActionType.getGmoActionTypeCode().toUpperCase() : null);
 		actionType.setDescription(gmoActionType.getGmoActionTypeDescription());
 

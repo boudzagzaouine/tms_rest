@@ -21,7 +21,7 @@ public class UsrHabilitation extends EmsEntity implements java.io.Serializable, 
 
     private static final long serialVersionUID = -5912577005612840837L;
 
-    private long usrHabilitationId;
+    private Long usrHabilitationId;
     @Size(max = 50)
     @NotNull
     private String usrHabilitationCode;
@@ -40,11 +40,11 @@ public class UsrHabilitation extends EmsEntity implements java.io.Serializable, 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_usr_habilitation_id", allocationSize = 1)
     @Column(name = "usr_habilitationid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getUsrHabilitationId() {
+    public Long getUsrHabilitationId() {
         return this.usrHabilitationId;
     }
 
-    public void setUsrHabilitationId(long usrHabilitationId) {
+    public void setUsrHabilitationId(Long usrHabilitationId) {
         this.usrHabilitationId = usrHabilitationId;
     }
 

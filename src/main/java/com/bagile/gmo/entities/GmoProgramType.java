@@ -11,7 +11,7 @@ public class GmoProgramType extends EmsEntity {
 
 	private static final long serialVersionUID = 2773120607426017439L;
 
-	private long gmoProgramTypeId;
+	private Long gmoProgramTypeId;
     private String gmoProgramTypeCode;
     private String gmoProgramTypeDescription;
     private GmoMaintenanceType gmoMaintenanceType ;
@@ -20,11 +20,11 @@ public class GmoProgramType extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_programe_type_id", allocationSize = 1)
     @Column(name = "gmo_programtypeid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoProgramTypeId() {
+    public Long getGmoProgramTypeId() {
         return gmoProgramTypeId;
     }
 
-    public void setGmoProgramTypeId(long gmoProgramTypeId) {
+    public void setGmoProgramTypeId(Long gmoProgramTypeId) {
         this.gmoProgramTypeId = gmoProgramTypeId;
     }
 

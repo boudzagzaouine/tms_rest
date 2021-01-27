@@ -8,12 +8,13 @@ import java.util.Date;
 @Table(name="gmo_dieseldeclaration")
 public class GmoDieselDeclaration extends EmsEntity{
 
-    private long gmoDieselDeclarationId;
+    private Long gmoDieselDeclarationId;
     private String gmoDieselDeclarationCode;
     private GmoVehicle gmoVehicle;
     private GmoDriver gmoDriver;
-    private long gmoTypeDeclaration;
+    private Long gmoTypeDeclaration;
     private GmoSubscriptionCard gmoSubscriptionCard;
+    private RcpPurshaseOrder rcpPurshaseOrder;
     private String gmoBon;
     private BigDecimal gmoDieselDeclarationAmount;
     private BigDecimal gmoDieselDeclarationMileage;
@@ -23,11 +24,11 @@ public class GmoDieselDeclaration extends EmsEntity{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_diesel_declaration_id", allocationSize = 1)
     @Column(name = "gmo_dieseldeclarationid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoDieselDeclarationId() {
+    public Long getGmoDieselDeclarationId() {
         return gmoDieselDeclarationId;
     }
 
-    public void setGmoDieselDeclarationId(long gmoBadgeId) {
+    public void setGmoDieselDeclarationId(Long gmoBadgeId) {
         this.gmoDieselDeclarationId = gmoBadgeId;
     }
 
@@ -52,6 +53,15 @@ public class GmoDieselDeclaration extends EmsEntity{
     }
 
 
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "gmo_rcppurchaseorderid")
+    public RcpPurshaseOrder getRcpPurshaseOrder() {
+        return rcpPurshaseOrder;
+    }
+
+    public void setRcpPurshaseOrder(RcpPurshaseOrder rcpPurshaseOrder) {
+        this.rcpPurshaseOrder = rcpPurshaseOrder;
+    }
 
     @Column(name = "gmo_dieseldeclarationamount")
     public BigDecimal getGmoDieselDeclarationAmount() {
@@ -91,11 +101,11 @@ public class GmoDieselDeclaration extends EmsEntity{
     }
 
     @Column(name = "gmo_gmotypedeclaration")
-    public long getGmoTypeDeclaration() {
+    public Long getGmoTypeDeclaration() {
         return gmoTypeDeclaration;
     }
 
-    public void setGmoTypeDeclaration(long gmoTypeDeclaration) {
+    public void setGmoTypeDeclaration(Long gmoTypeDeclaration) {
         this.gmoTypeDeclaration = gmoTypeDeclaration;
     }
 

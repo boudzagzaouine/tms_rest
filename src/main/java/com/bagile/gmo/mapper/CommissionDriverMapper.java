@@ -60,7 +60,7 @@ public class CommissionDriverMapper {
             return null;
         }
         CommissionDriver commission = new CommissionDriver();
-        commission.setId((int) gmoCommission.getGmoCommissionId());
+        commission.setId(gmoCommission.getGmoCommissionId());
 
         commission.setDatee(gmoCommission.getGmoDatee());
 

@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "gmo_template")
 public class GmoTemplate extends EmsEntity{
 
-    private long gmoTemplateId;
+    private Long gmoTemplateId;
     private String gmoTemplateCode;
     private String gmoTemplateText;
     private String gmoTemplateSubject;
@@ -17,11 +17,11 @@ public class GmoTemplate extends EmsEntity{
     @SequenceGenerator(name = "seq", sequenceName = "seq_template_id")
     @Column(name = "gmo_templateid", unique = true, nullable = false, precision = 10, scale = 0)
 
-    public long getGmoTemplateId() {
+    public Long getGmoTemplateId() {
         return gmoTemplateId;
     }
 
-    public void setGmoTemplateId(long gmoTemplateId) {
+    public void setGmoTemplateId(Long gmoTemplateId) {
         this.gmoTemplateId = gmoTemplateId;
     }
 

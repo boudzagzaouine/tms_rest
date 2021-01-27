@@ -17,7 +17,7 @@ import java.util.Date;
 @Table(name = "pdt_productpack")
 public class PdtProductPack extends EmsEntity {
 
-    private long pdtProductPackId;
+    private Long pdtProductPackId;
    // @NotNull
     private OwnOwner ownOwner;
     private PdtAlias pdtAlias;
@@ -74,11 +74,11 @@ public class PdtProductPack extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_pdt_productpack", allocationSize = 1)
     @Column(name = "pdt_productpackid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getPdtProductPackId() {
+    public Long getPdtProductPackId() {
         return this.pdtProductPackId;
     }
 
-    public void setPdtProductPackId(long pdtProductPackId) {
+    public void setPdtProductPackId(Long pdtProductPackId) {
         this.pdtProductPackId = pdtProductPackId;
     }
 

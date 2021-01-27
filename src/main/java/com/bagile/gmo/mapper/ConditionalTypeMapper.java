@@ -61,7 +61,7 @@ public class ConditionalTypeMapper {
             return null;
         }
         ConditionalType conditionalType = new ConditionalType();
-        conditionalType.setId((int) gmoConditionalType.getGmoConditionalTypeId());
+        conditionalType.setId(gmoConditionalType.getGmoConditionalTypeId());
         conditionalType.setCode(gmoConditionalType.getGmoConditionalTypeCode());
         conditionalType.setDescription (gmoConditionalType.getGmoConditionalTypeDescription ());
 

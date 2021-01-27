@@ -65,7 +65,7 @@ public class InsuranceTypeMapper {
             return null;
         }
         InsuranceType insuranceType = new InsuranceType();
-        insuranceType.setId((int) gmoInsuranceType.getGmoInsuranceTypeId());
+        insuranceType.setId(gmoInsuranceType.getGmoInsuranceTypeId());
         insuranceType.setCode(gmoInsuranceType.getGmoInsuranceTypeCode());
         insuranceType.setDescription (gmoInsuranceType.getGmoInsuranceTypeDescription ());
 

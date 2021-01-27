@@ -57,7 +57,7 @@ public class BadgeMapper {
             return null;
         }
         Badge badge = new Badge ( );
-        badge.setId ((int) gmoBadge.getGmoBadgeId ());
+        badge.setId (gmoBadge.getGmoBadgeId ());
         badge.setCode (gmoBadge.getGmoBadgeCode ());
         badge.setDescription (gmoBadge.getGmoBadgeDescription ());
 

@@ -6,10 +6,10 @@ import javax.persistence.*;
 @Table(name="gmo_day")
 public class GmoDay extends EmsEntity{
 
-    private long gmoDayId;
+    private Long gmoDayId;
     private String gmoDayCode;
     private String gmoDayDescription;
-    private long gmoValue;
+    private Long gmoValue;
 
 
 
@@ -18,11 +18,11 @@ public class GmoDay extends EmsEntity{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_day_id", allocationSize = 1)
     @Column(name = "gmo_dayid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoDayId() {
+    public Long getGmoDayId() {
         return gmoDayId;
     }
 
-    public void setGmoDayId(long gmoDayId) {
+    public void setGmoDayId(Long gmoDayId) {
         this.gmoDayId = gmoDayId;
     }
 
@@ -37,11 +37,11 @@ public class GmoDay extends EmsEntity{
 
     @Column(name = "gmo_dayvalue", nullable = false, length = 90)
 
-    public long getGmoValue() {
+    public Long getGmoValue() {
         return gmoValue;
     }
 
-    public void setGmoValue(long value) {
+    public void setGmoValue(Long value) {
         this.gmoValue = value;
     }
 

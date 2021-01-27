@@ -1,17 +1,7 @@
 package com.bagile.gmo.entities;
 
+import javax.persistence.*;
 import java.util.Date;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 
 @Entity
@@ -20,7 +10,7 @@ public class GmoCommissionDriver extends EmsEntity {
 
 	private static final long serialVersionUID = -8643467091485336055L;
 
-	private long gmoCommissionId;
+	private Long gmoCommissionId;
     private GmoDriver gmoDriver;
     private GmoCommissionType gmoCommissionType;
     private Date gmoDatee;
@@ -30,11 +20,11 @@ public class GmoCommissionDriver extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_commission_id", allocationSize = 1)
     @Column(name = "gmo_Commissionid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoCommissionId() {
+    public Long getGmoCommissionId() {
         return gmoCommissionId;
     }
 
-    public void setGmoCommissionId(long gmoCommissionTypeId) {
+    public void setGmoCommissionId(Long gmoCommissionTypeId) {
         this.gmoCommissionId = gmoCommissionTypeId;
     }
 

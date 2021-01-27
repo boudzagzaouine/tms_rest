@@ -58,7 +58,7 @@ public class NotificationTypeMapper {
             return null;
         }
         NotificationType notificationType = new NotificationType ( );
-        notificationType.setId ((int) gmoNotificationType.getGmoNotificationId ());
+        notificationType.setId (gmoNotificationType.getGmoNotificationId ());
         notificationType.setCode (gmoNotificationType.getGmoNotificationCode ());
         notificationType.setEmail (gmoNotificationType.getGmoNotificationEmail ());
 

@@ -61,7 +61,7 @@ public class TemplateMapper {
             return null;
         }
         Template template = new Template();
-        template.setId((int) gmoTemplate.getGmoTemplateId());
+        template.setId(gmoTemplate.getGmoTemplateId());
         template.setCode(gmoTemplate.getGmoTemplateCode());
         template.setText (gmoTemplate.getGmoTemplateText ());
         template.setSubject (gmoTemplate.getGmoTemplateSubject ());

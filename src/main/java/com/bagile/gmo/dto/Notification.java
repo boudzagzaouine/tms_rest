@@ -10,12 +10,11 @@ public class Notification extends EmsDto implements Serializable {
     private static final long serialVersionUID = -134482768077497935L;
     private long id;
     private String code;
-    private String type;
+    private String patrimonyType;
     private NotificationState notificationState;
-
-
     private long productId;
     private long maintenanceId;
+
     private String patimonyCode;
     private NotificationType notificationType;
     private String   action ;
@@ -36,12 +35,12 @@ public class Notification extends EmsDto implements Serializable {
         this.code = code;
     }
 
-    public String getType() {
-        return type;
+    public String getPatrimonyType() {
+        return patrimonyType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setPatrimonyType(String patrimonyType) {
+        this.patrimonyType = patrimonyType;
     }
 
     public NotificationState getNotificationState() {

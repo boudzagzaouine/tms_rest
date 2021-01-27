@@ -59,7 +59,7 @@ public class ConsumptionTypeMapper {
             return null;
         }
         ConsumptionType consumptionType = new ConsumptionType ( );
-        consumptionType.setId ((int) gmoConsumptionType.getGmoConsumptionTypeId ());
+        consumptionType.setId (gmoConsumptionType.getGmoConsumptionTypeId ());
         consumptionType.setCode (gmoConsumptionType.getGmoConsumptionTypeCode ());
         consumptionType.setDescription (gmoConsumptionType.getGmoConsumptionTypeDescription ());
 

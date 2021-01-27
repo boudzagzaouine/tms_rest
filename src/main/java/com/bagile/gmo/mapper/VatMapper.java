@@ -56,7 +56,7 @@ public class VatMapper {
             return null;
         }
         Vat vat = new Vat ( );
-        vat.setId ((int) prmVat.getPrmVatId ());
+        vat.setId (prmVat.getPrmVatId ());
         vat.setValue (prmVat.getPrmVatValue ());
 
         vat.setCreatedBy (prmVat.getCreatedBy ());

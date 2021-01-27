@@ -10,7 +10,7 @@ public class GmoBadgeTypeDriver extends EmsEntity {
 
 	private static final long serialVersionUID = -1006213047251860151L;
 
-	private long gmoBadgeTypeDriverId;
+	private Long gmoBadgeTypeDriverId;
     private GmoDriver gmoDriver;
     private GmoBadgeType gmoBadgeType;
     private String gmoBadgeNumber;
@@ -22,11 +22,11 @@ public class GmoBadgeTypeDriver extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_badgetypedriver_id", allocationSize = 1)
     @Column(name = "gmo_badgetypedriverid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoBadgeTypeDriverId() {
+    public Long getGmoBadgeTypeDriverId() {
         return gmoBadgeTypeDriverId;
     }
 
-    public void setGmoBadgeTypeDriverId(long gmoBadgeTypeDriverId) {
+    public void setGmoBadgeTypeDriverId(Long gmoBadgeTypeDriverId) {
         this.gmoBadgeTypeDriverId = gmoBadgeTypeDriverId;
     }
     @ManyToOne(cascade = CascadeType.MERGE)

@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 public class GmoTurnLine extends EmsDto implements Serializable  {
 
 
-    private long gmoTurnLineeId;
+    private Long gmoTurnLineeId;
    // private OwnOwner ownOwner;
     private String gmoTurnLineDescription;
     private PdtProduct pdtProduct;
@@ -37,11 +37,11 @@ public class GmoTurnLine extends EmsDto implements Serializable  {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_turnline", allocationSize = 1)
     @Column(name = "gmo_turnlineid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoTurnLineeId() {
+    public Long getGmoTurnLineeId() {
         return gmoTurnLineeId;
     }
 
-    public void setGmoTurnLineeId(long gmoTurnLineeId) {
+    public void setGmoTurnLineeId(Long gmoTurnLineeId) {
         this.gmoTurnLineeId = gmoTurnLineeId;
     }
 

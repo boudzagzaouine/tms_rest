@@ -9,7 +9,7 @@ public class GmoConditionalType extends EmsEntity {
 
 	private static final long serialVersionUID = 2773120607426017439L;
 
-	private long gmoConditionalTypeId;
+	private Long gmoConditionalTypeId;
     private String gmoConditionalTypeCode;
     private String gmoConditionalTypeDescription;
     private OwnOwner ownOwner;
@@ -18,11 +18,11 @@ public class GmoConditionalType extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_conditional_type_id", allocationSize = 1)
     @Column(name = "gmo_conditionaltypeid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoConditionalTypeId() {
+    public Long getGmoConditionalTypeId() {
         return gmoConditionalTypeId;
     }
 
-    public void setGmoConditionalTypeId(long gmoConditionalTypeId) {
+    public void setGmoConditionalTypeId(Long gmoConditionalTypeId) {
         this.gmoConditionalTypeId = gmoConditionalTypeId;
     }
 

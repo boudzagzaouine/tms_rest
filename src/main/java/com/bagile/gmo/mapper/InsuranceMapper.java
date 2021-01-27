@@ -81,7 +81,7 @@ public class InsuranceMapper {
             return null;
         }
         Insurance insurance = new Insurance();
-        insurance.setId((int) gmoInsurance.getGmoInsuranceId());
+        insurance.setId(gmoInsurance.getGmoInsuranceId());
         insurance.setCode(gmoInsurance.getGmoInsuranceCode());
         insurance.setNumber (gmoInsurance.getGmoInsuranceNumber ());
         insurance.setDescription (gmoInsurance.getGmoInsuranceDescription ());

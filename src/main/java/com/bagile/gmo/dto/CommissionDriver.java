@@ -1,9 +1,7 @@
 package com.bagile.gmo.dto;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Objects;
 
 public class CommissionDriver extends EmsDto implements Serializable {
     /**
@@ -40,7 +38,7 @@ public class CommissionDriver extends EmsDto implements Serializable {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

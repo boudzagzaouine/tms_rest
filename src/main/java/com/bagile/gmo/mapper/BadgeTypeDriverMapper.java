@@ -65,7 +65,7 @@ public class BadgeTypeDriverMapper {
             return null;
         }
         BadgeTypeDriver badgeTypeDriver = new BadgeTypeDriver();
-        badgeTypeDriver.setId((int) gmoBadgeTypeDriver.getGmoBadgeTypeDriverId());
+        badgeTypeDriver.setId(gmoBadgeTypeDriver.getGmoBadgeTypeDriverId());
         badgeTypeDriver.setBadgeNumber( gmoBadgeTypeDriver.getGmoBadgeNumber());
         badgeTypeDriver.setDeliveranceDate( gmoBadgeTypeDriver.getGmoDeliveranceDate());
         badgeTypeDriver.setValidityEndDate( gmoBadgeTypeDriver.getGmoValidityEndDate());

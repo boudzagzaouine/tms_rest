@@ -27,7 +27,7 @@ public class CmdAccount extends EmsDto implements Serializable{
      *
      */
     private static final long serialVersionUID = -8407687683333368760L;
-    private long cmdAccountId;
+    private Long cmdAccountId;
     private CmdCompany cmdCompany;
     @NotNull
     private OwnOwner ownOwner;
@@ -84,11 +84,11 @@ public class CmdAccount extends EmsDto implements Serializable{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_cmd_account", allocationSize = 1)
     @Column(name = "cmd_accountid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getCmdAccountId() {
+    public Long getCmdAccountId() {
         return this.cmdAccountId;
     }
 
-    public void setCmdAccountId(long cmdAccountId) {
+    public void setCmdAccountId(Long cmdAccountId) {
         this.cmdAccountId = cmdAccountId;
     }
 

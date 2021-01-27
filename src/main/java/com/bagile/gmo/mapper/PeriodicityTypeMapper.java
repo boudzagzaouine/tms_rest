@@ -56,7 +56,7 @@ public class PeriodicityTypeMapper {
             return null;
         }
         PeriodicityType periodicityType = new PeriodicityType ( );
-        periodicityType.setId ((int) gmoPeriodicityType.getGmoPeriodicityTypeId ());
+        periodicityType.setId (gmoPeriodicityType.getGmoPeriodicityTypeId ());
         periodicityType.setCode (gmoPeriodicityType.getGmoPeriodicityTypeCode ());
         periodicityType.setDescription (gmoPeriodicityType.getGmoPeriodicityTypeDescription ());
 

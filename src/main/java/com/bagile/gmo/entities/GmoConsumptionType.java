@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 public class GmoConsumptionType extends EmsEntity{
 
-    private long gmoConsumptionTypeId;
+    private Long gmoConsumptionTypeId;
     private String gmoConsumptionTypeCode;
     private String gmoConsumptionTypeDescription;
   private OwnOwner ownOwner;
@@ -17,11 +17,11 @@ public class GmoConsumptionType extends EmsEntity{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_consumptiontype_id", allocationSize = 1)
     @Column(name = "gmo_consumptiontype_id", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoConsumptionTypeId() {
+    public Long getGmoConsumptionTypeId() {
         return gmoConsumptionTypeId;
     }
 
-    public void setGmoConsumptionTypeId(long gmoConsumptionTypeId) {
+    public void setGmoConsumptionTypeId(Long gmoConsumptionTypeId) {
         this.gmoConsumptionTypeId = gmoConsumptionTypeId;
     }
 

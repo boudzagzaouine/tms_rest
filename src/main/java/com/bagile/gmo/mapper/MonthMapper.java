@@ -49,7 +49,7 @@ public class MonthMapper {
 			return null;
 		}
 		Month month = new Month();
-		month.setId((int) gmoMonth.getGmoMonthId());
+		month.setId(gmoMonth.getGmoMonthId());
 		month.setCode(gmoMonth.getGmoMonthCode());
 		month.setDescription(gmoMonth.getGmoMonthDescription());
 		month.setValue(gmoMonth.getGmoValue());

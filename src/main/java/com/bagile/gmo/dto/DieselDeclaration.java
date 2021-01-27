@@ -16,6 +16,7 @@ public class DieselDeclaration extends EmsDto implements Serializable {
     private Driver driver ;
     private long typeDeclaration ;
     private SubscriptionCard subscriptionCard;
+    private PurshaseOrder purshaseOrder;
     private String bon;
     private BigDecimal amount;
     private BigDecimal mileage;
@@ -109,6 +110,15 @@ public class DieselDeclaration extends EmsDto implements Serializable {
 
     public void setOwner(Owner owner) {
         this.owner = owner;
+    }
+
+
+    public PurshaseOrder getPurshaseOrder() {
+        return purshaseOrder;
+    }
+
+    public void setPurshaseOrder(PurshaseOrder purshaseOrder) {
+        this.purshaseOrder = purshaseOrder;
     }
 
     @Override

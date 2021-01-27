@@ -49,7 +49,7 @@ public class DayMapper {
 			return null;
 		}
 		Day day = new Day();
-		day.setId((int) gmoDay.getGmoDayId());
+		day.setId(gmoDay.getGmoDayId());
 		day.setCode(gmoDay.getGmoDayCode());
 		day.setDescription(gmoDay.getGmoDayDescription());
 		day.setValue(gmoDay.getGmoValue());

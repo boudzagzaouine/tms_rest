@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "rcp_supplier")
@@ -15,7 +16,7 @@ import java.util.Date;
 // @Where(clause = "rcp_supplierisactive = true")
 public class RcpSupplier extends EmsEntity implements java.io.Serializable {
 
-    private long rcpSupplierId;
+    private Long rcpSupplierId;
    // @NotNull
     private OwnOwner ownOwner;
     private PrmContact prmContact;
@@ -40,11 +41,11 @@ public class RcpSupplier extends EmsEntity implements java.io.Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_rcp_supplier_id", allocationSize = 1)
     @Column(name = "rcp_supplierid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getRcpSupplierId() {
+    public Long getRcpSupplierId() {
         return this.rcpSupplierId;
     }
 
-    public void setRcpSupplierId(long rcpSupplierId) {
+    public void setRcpSupplierId(Long rcpSupplierId) {
         this.rcpSupplierId = rcpSupplierId;
     }
 
@@ -159,9 +160,6 @@ public class RcpSupplier extends EmsEntity implements java.io.Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 7 * hash + (int) this.getRcpSupplierId();
-        hash = 7 * hash + (int) this.getRcpSupplierId();
-        return hash;
+        return Objects.hash(rcpSupplierId);
     }
 }

@@ -20,7 +20,7 @@ import java.util.Set;
 @Table(name = "rcp_purshaseorderline")
 public class RcpPurshaseOrderLine extends EmsEntity implements java.io.Serializable {
 
-    private long rcpPurshaseOrderLineId;
+    private Long rcpPurshaseOrderLineId;
    // @NotNull
     private OwnOwner ownOwner;
     @NotNull
@@ -120,11 +120,11 @@ public class RcpPurshaseOrderLine extends EmsEntity implements java.io.Serializa
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_rcp_purshaseorderline", allocationSize = 1)
     @Column(name = "rcp_purshaseorderlineid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getRcpPurshaseOrderLineId() {
+    public Long getRcpPurshaseOrderLineId() {
         return this.rcpPurshaseOrderLineId;
     }
 
-    public void setRcpPurshaseOrderLineId(long rcpPurshaseOrderLineId) {
+    public void setRcpPurshaseOrderLineId(Long rcpPurshaseOrderLineId) {
         this.rcpPurshaseOrderLineId = rcpPurshaseOrderLineId;
     }
 

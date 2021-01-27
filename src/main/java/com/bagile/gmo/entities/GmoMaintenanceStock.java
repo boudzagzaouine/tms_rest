@@ -25,7 +25,7 @@ public class GmoMaintenanceStock extends EmsDto implements Serializable  {
      */
     private static final long serialVersionUID = -2420807901768365828L;
 
-    private long gmoSaleOrderStockId;
+    private Long gmoSaleOrderStockId;
     private GmoMaintenance gmoMaintenance;
 
     private GmoActionLineMaintenance gmoActionLineMaintenance;
@@ -80,11 +80,11 @@ public class GmoMaintenanceStock extends EmsDto implements Serializable  {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_saleorderstock", allocationSize = 1)
     @Column(name = "gmo_saleorderstockid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getgmoSaleOrderStockId() {
+    public Long getgmoSaleOrderStockId() {
         return this.gmoSaleOrderStockId;
     }
 
-    public void setgmoSaleOrderStockId(long gmoSaleOrderStockId) {
+    public void setgmoSaleOrderStockId(Long gmoSaleOrderStockId) {
         this.gmoSaleOrderStockId = gmoSaleOrderStockId;
     }
 

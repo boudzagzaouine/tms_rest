@@ -111,7 +111,7 @@ public class DeliveryMapper {
                 rl.setOwnOwner(cmdDelivery.getOwnOwner());
                 rl.setWrhWarehouse(cmdDelivery.getWrhWarehouse());
                 if (0 >= rl.getCmdDeliveryLineId()) {
-                    rl.setCmdDeliveryLineId(0);
+                    rl.setCmdDeliveryLineId(0L);
                     rl.setCmdDeliveryLineCreationDate(EmsDate.getDateNow());
                 }
             });

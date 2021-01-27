@@ -7,25 +7,25 @@ import javax.persistence.*;
 public class GmoNotification extends EmsEntity{
 
 
-    private long gmoNotificationId;
+    private Long gmoNotificationId;
     private String gmoNotificationCode;
     private GmoNotificationState gmoNotificationState ;
-
-    private long gmoNotificationProductId;
-    private long gmoNotificationMaintenanceId;
+    private String  gmoNotificationPatrimonyType;
+    private Long gmoNotificationProductId;
+    private Long gmoNotificationMaintenanceId;
     private String gmoNotificationPatrimonyCode ;
-    private  GmoNotificationType gmoNotificationType;
+    private GmoNotificationType gmoNotificationType;
     private String gmoNotificationAction;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_notification_id", allocationSize = 1)
     @Column(name = "gmo_notificationid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoNotificationId() {
+    public Long getGmoNotificationId() {
         return gmoNotificationId;
     }
 
-    public void setGmoNotificationId(long gmoNotificationId) {
+    public void setGmoNotificationId(Long gmoNotificationId) {
         this.gmoNotificationId = gmoNotificationId;
     }
 
@@ -48,8 +48,14 @@ public class GmoNotification extends EmsEntity{
         this.gmoNotificationState = gmoNotificationState;
     }
 
+    @Column(name = "gmo_notificationpatrimonytype", length = 90)
+    public String getGmoNotificationPatrimonyType() {
+        return gmoNotificationPatrimonyType;
+    }
 
-
+    public void setGmoNotificationPatrimonyType(String gmoNotificationPatrimonyType) {
+        this.gmoNotificationPatrimonyType = gmoNotificationPatrimonyType;
+    }
 
     @ManyToOne
     @JoinColumn(name = "gmo_notificationtypeid")
@@ -64,20 +70,20 @@ public class GmoNotification extends EmsEntity{
 
 
     @Column(name = "gmo_notificationproductid")
-    public long getGmoNotificationProductId() {
+    public Long getGmoNotificationProductId() {
         return gmoNotificationProductId;
     }
 
-    public void setGmoNotificationProductId(long gmoNotificationProductID) {
+    public void setGmoNotificationProductId(Long gmoNotificationProductID) {
         this.gmoNotificationProductId = gmoNotificationProductID;
     }
 
     @Column(name = "gmo_notifiationmaintenanceid")
-    public long getGmoNotificationMaintenanceId() {
+    public Long getGmoNotificationMaintenanceId() {
         return gmoNotificationMaintenanceId;
     }
 
-    public void setGmoNotificationMaintenanceId(long gmoNotificationMaintenanceId) {
+    public void setGmoNotificationMaintenanceId(Long gmoNotificationMaintenanceId) {
         this.gmoNotificationMaintenanceId = gmoNotificationMaintenanceId;
     }
 

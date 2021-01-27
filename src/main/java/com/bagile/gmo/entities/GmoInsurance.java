@@ -9,7 +9,7 @@ import java.util.Set;
 @Entity
 @Table(name = "gmo_insurance")
 public class GmoInsurance extends EmsEntity {
-    private long gmoInsuranceId;
+    private Long gmoInsuranceId;
     private String gmoInsuranceCode;
     private String gmoInsuranceNumber;
     private String gmoInsuranceDescription;
@@ -31,11 +31,11 @@ public class GmoInsurance extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_insurance_id", allocationSize = 1)
     @Column(name = "gmo_insuranceid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoInsuranceId() {
+    public Long getGmoInsuranceId() {
         return gmoInsuranceId;
     }
 
-    public void setGmoInsuranceId(long gmoInsuranceId) {
+    public void setGmoInsuranceId(Long gmoInsuranceId) {
         this.gmoInsuranceId = gmoInsuranceId;
     }
 

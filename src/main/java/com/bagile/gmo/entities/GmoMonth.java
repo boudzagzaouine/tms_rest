@@ -7,21 +7,21 @@ import java.math.BigDecimal;
 @Table(name="gmo_month")
 public class GmoMonth extends EmsEntity{
 
-    private long gmoMonthId;
+    private Long gmoMonthId;
     private String gmoMonthCode;
     private String gmoMonthDescription;
-    private long gmoValue;
+    private Long gmoValue;
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_month_id", allocationSize = 1)
     @Column(name = "gmo_monthid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoMonthId() {
+    public Long getGmoMonthId() {
         return gmoMonthId;
     }
 
-    public void setGmoMonthId(long gmoMonthId) {
+    public void setGmoMonthId(Long gmoMonthId) {
         this.gmoMonthId = gmoMonthId;
     }
 
@@ -36,11 +36,11 @@ public class GmoMonth extends EmsEntity{
 
     @Column(name = "gmo_monthvalue", nullable = false, length = 90)
 
-    public long getGmoValue() {
+    public Long getGmoValue() {
         return gmoValue;
     }
 
-    public void setGmoValue(long value) {
+    public void setGmoValue(Long value) {
         this.gmoValue = value;
     }
 

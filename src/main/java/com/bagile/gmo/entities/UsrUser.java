@@ -20,7 +20,7 @@ public class UsrUser extends EmsEntity implements Serializable {
 
     private static final long serialVersionUID = -3952175616242893842L;
 
-    private long usrUserId;
+    private Long usrUserId;
     @NotNull
     private OwnOwner ownOwner;
     @NotNull
@@ -58,11 +58,11 @@ public class UsrUser extends EmsEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_usr_user_id", allocationSize = 1)
     @Column(name = "usr_userid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getUsrUserId() {
+    public Long getUsrUserId() {
         return this.usrUserId;
     }
 
-    public void setUsrUserId(long usrUserId) {
+    public void setUsrUserId(Long usrUserId) {
         this.usrUserId = usrUserId;
     }
 

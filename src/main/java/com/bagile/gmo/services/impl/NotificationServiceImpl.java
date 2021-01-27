@@ -111,9 +111,13 @@ public class NotificationServiceImpl implements NotificationService {
         if (search.equals("")) {
             return findAll(page, size);
         }
+
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
         return NotificationMapper.toDtos(notificationRepository.findAll(Search.expression(search, GmoNotification.class), pageable), false);
+
+
+
     }
 
     @Override
@@ -141,9 +145,12 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public List<Notification> findAll(int page, int size) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
-        Pageable pageable = PageRequest.of(page, size, sort);
-        return NotificationMapper.toDtos(notificationRepository.findAll(pageable), false);
+
+            Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
+            Pageable pageable = PageRequest.of(page, size, sort);
+            return NotificationMapper.toDtos(notificationRepository.findAll(pageable), false);
+
+
     }
 
     @Override
@@ -231,9 +238,13 @@ public class NotificationServiceImpl implements NotificationService {
                     notification.setNotificationState(notificationStateRetard);
                     notification.setMaintenanceId(maintenanace.getId());
                     notification.setPatimonyCode(maintenanace.getPatrimony().getCode());
+                    if(maintenanace.getPatrimony() instanceof Vehicle){
+                        notification.setPatrimonyType("vehicule");
+                    }
+                    else if(maintenanace.getPatrimony() instanceof Machine){
+                        notification.setPatrimonyType("machine");
+                    }
                     notification.setAction(maintenanace.getActionType().getCode());
-
-
                     //notifications.add(notification);
                     save(notification);
                     MailConfig mail=mailConfigService.findById(1L);

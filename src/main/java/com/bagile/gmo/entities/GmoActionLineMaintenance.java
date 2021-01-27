@@ -11,7 +11,7 @@ import java.util.Set;
 public class GmoActionLineMaintenance extends EmsEntity {
 
 	private static final long serialVersionUID = -6143066188263513604L;
-	private long gmoActionLineId;
+	private Long gmoActionLineId;
     private PdtProduct pdtProduct;
     private String gmoActionLineDescription;
     private BigDecimal gmoActionLineTotalPriceHT;
@@ -29,11 +29,11 @@ public class GmoActionLineMaintenance extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "seq")
     @SequenceGenerator (name = "seq", sequenceName = "seq_gmo_actionline_id", allocationSize = 1)
     @Column(name = "gmo_gmo_actionlineid")
-    public long getGmoActionLineId() {
+    public Long getGmoActionLineId() {
         return gmoActionLineId;
     }
 
-    public void setGmoActionLineId(long gmoActionLineId) {
+    public void setGmoActionLineId(Long gmoActionLineId) {
         this.gmoActionLineId = gmoActionLineId;
     }
 

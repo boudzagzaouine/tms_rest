@@ -24,7 +24,7 @@ public class CmdCompany extends EmsDto implements Serializable  {
      *
      */
     private static final long serialVersionUID = -3249779645949658793L;
-    private long cmdCompanyId;
+    private Long cmdCompanyId;
     @NotNull
     private OwnOwner ownOwner;
     @Size(max = 30)
@@ -75,14 +75,14 @@ public class CmdCompany extends EmsDto implements Serializable  {
     public CmdCompany() {
     }
 
-    public CmdCompany(long cmdCompanyId, OwnOwner ownOwner,
+    public CmdCompany(Long cmdCompanyId, OwnOwner ownOwner,
                       String cmdCompanyCode) {
         this.cmdCompanyId = cmdCompanyId;
         this.ownOwner = ownOwner;
         this.cmdCompanyCode = cmdCompanyCode;
     }
 
-    public CmdCompany(long cmdCompanyId, OwnOwner ownOwner,
+    public CmdCompany(Long cmdCompanyId, OwnOwner ownOwner,
                       String cmdCompanyCode, String cmdCompanySiret,
                       String cmdCompanyComment, Date cmdCompanyCreationDate,
                       Date cmdCompanyUpdateDate, String cmdCompanyVariable1,
@@ -115,11 +115,11 @@ public class CmdCompany extends EmsDto implements Serializable  {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_cmd_company", allocationSize = 1)
     @Column(name = "cmd_companyid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getCmdCompanyId() {
+    public Long getCmdCompanyId() {
         return this.cmdCompanyId;
     }
 
-    public void setCmdCompanyId(long cmdCompanyId) {
+    public void setCmdCompanyId(Long cmdCompanyId) {
         this.cmdCompanyId = cmdCompanyId;
     }
 

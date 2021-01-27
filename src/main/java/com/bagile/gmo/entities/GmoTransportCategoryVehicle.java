@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class GmoTransportCategoryVehicle extends EmsEntity {
 
 
-    private long gmoCatalogTransportCategorieVehicleId;
+    private Long gmoCatalogTransportCategorieVehicleId;
     private GmoVehicleCategory gmoVehicleCategory;
     private TrpTransport trpTransport;
     private int gmoTransportCategorieVehicleQuantity;
@@ -21,11 +21,11 @@ public class GmoTransportCategoryVehicle extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_badge_type_id", allocationSize = 1)
     @Column(name = "gmo_transportcategoryvehicleid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoCatalogTransportCategorieVehicleId() {
+    public Long getGmoCatalogTransportCategorieVehicleId() {
         return gmoCatalogTransportCategorieVehicleId;
     }
 
-    public void setGmoCatalogTransportCategorieVehicleId(long gmoCatalogTransportCategorieVehicleId) {
+    public void setGmoCatalogTransportCategorieVehicleId(Long gmoCatalogTransportCategorieVehicleId) {
         this.gmoCatalogTransportCategorieVehicleId = gmoCatalogTransportCategorieVehicleId;
     }
 

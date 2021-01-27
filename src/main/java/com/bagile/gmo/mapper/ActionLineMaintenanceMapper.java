@@ -69,7 +69,7 @@ public class ActionLineMaintenanceMapper {
 			return null;
 		}
 		ActionLineMaintenance actionLineMaintenance = new ActionLineMaintenance();
-		actionLineMaintenance.setId((int) gmoActionLineMaintenance.getGmoActionLineId());
+		actionLineMaintenance.setId(gmoActionLineMaintenance.getGmoActionLineId());
 		actionLineMaintenance.setDescription(gmoActionLineMaintenance.getGmoActionLineDescription());
 		actionLineMaintenance.setTotalPriceHT(gmoActionLineMaintenance.getGmoActionLineTotalPriceHT());
 		actionLineMaintenance.setTotalPriceTTC(gmoActionLineMaintenance.getGmoActionLineTotalPriceTTC());

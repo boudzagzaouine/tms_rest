@@ -13,7 +13,7 @@ public class GmoVehicle extends GmoPatrimony {
 
 	private static final long serialVersionUID = 612360418697069780L;
 
-	//private long gmoVehicleId;
+	//private Long gmoVehicleId;
     private String gmoRegistrationNumber;
     private Date gmoVehicleTechnicalVisit;
     private BigDecimal gmoVehicleValueTechnicalvisit;
@@ -54,11 +54,11 @@ public class GmoVehicle extends GmoPatrimony {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_vehicule_id", allocationSize = 1)
     @Column(name = "gmo_vehiculeid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoVehicleId() {
+    public Long getGmoVehicleId() {
         return gmoVehicleId;
     }
 
-    public void setGmoVehicleId(long gmoVehicleId) {
+    public void setGmoVehicleId(Long gmoVehicleId) {
         this.gmoVehicleId = gmoVehicleId;
     }*/
 

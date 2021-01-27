@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name="gmo_notificationtypetype")
 public class GmoNotificationType extends EmsEntity{
 
-    private long gmoNotificationId;
+    private Long gmoNotificationId;
     private String gmoNotificationCode;
     private String gmoNotificationEmail;
 
@@ -17,11 +17,11 @@ public class GmoNotificationType extends EmsEntity{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_notificationtype_id", allocationSize = 1)
     @Column(name = "gmo_notificationtypeid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoNotificationId() {
+    public Long getGmoNotificationId() {
         return gmoNotificationId;
     }
 
-    public void setGmoNotificationId(long gmoNotificationId) {
+    public void setGmoNotificationId(Long gmoNotificationId) {
         this.gmoNotificationId = gmoNotificationId;
     }
 

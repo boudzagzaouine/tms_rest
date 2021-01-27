@@ -34,7 +34,7 @@ public class GmoActionPlan extends EmsEntity {
     private String gmoActionPlanObservation;
     private Date gmoActionPlanDeclaredDate;
     private BigDecimal gmoActionPlanDuration;
-    private long gmoActionPlanDayOfMonth;
+    private Long gmoActionPlanDayOfMonth;
     private Set<GmoMonth> gmoMonths = new HashSet<>();
     private Set<GmoDay> gmoDays = new HashSet<>();
     private GmoMaintenancePlan gmoMaintenancePlan;
@@ -292,11 +292,11 @@ public class GmoActionPlan extends EmsEntity {
     }
 
     @Column(name = "gmo_maintenancedayofmonth")
-    public long getGmoActionPlanDayOfMonth() {
+    public Long getGmoActionPlanDayOfMonth() {
         return gmoActionPlanDayOfMonth;
     }
 
-    public void setGmoActionPlanDayOfMonth(long gmoDayOfMonth) {
+    public void setGmoActionPlanDayOfMonth(Long gmoDayOfMonth) {
         this.gmoActionPlanDayOfMonth = gmoDayOfMonth;
     }
 

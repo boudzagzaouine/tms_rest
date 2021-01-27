@@ -17,7 +17,7 @@ import java.util.Set;
 @Table(name = "prm_ordertype", uniqueConstraints = @UniqueConstraint(columnNames = "prm_ordertypecode"))
 public class PrmOrderType extends EmsDto implements java.io.Serializable {
 
-    private long prmOrderTypeId;
+    private Long prmOrderTypeId;
     @Size(max = 30)
     private String prmOrderTypeCode;
     @Size(max = 255)
@@ -42,11 +42,11 @@ public class PrmOrderType extends EmsDto implements java.io.Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_prm_ordertype", allocationSize = 1)
     @Column(name = "prm_ordertypeid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getPrmOrderTypeId() {
+    public Long getPrmOrderTypeId() {
         return this.prmOrderTypeId;
     }
 
-    public void setPrmOrderTypeId(long prmOrderTypeId) {
+    public void setPrmOrderTypeId(Long prmOrderTypeId) {
         this.prmOrderTypeId = prmOrderTypeId;
     }
 

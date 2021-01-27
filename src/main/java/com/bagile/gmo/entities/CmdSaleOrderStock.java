@@ -24,7 +24,7 @@ public class CmdSaleOrderStock extends EmsEntity implements Serializable  {
      */
     private static final long serialVersionUID = -2420807901768365828L;
 
-    private long cmdSaleOrderStockId;
+    private Long cmdSaleOrderStockId;
     private CmdDelivery cmdDelivery;
 
     private CmdDeliveryLine cmdDeliveryLine;
@@ -80,11 +80,11 @@ public class CmdSaleOrderStock extends EmsEntity implements Serializable  {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_cmd_saleorderstock", allocationSize = 1)
     @Column(name = "cmd_saleorderstockid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getCmdSaleOrderStockId() {
+    public Long getCmdSaleOrderStockId() {
         return this.cmdSaleOrderStockId;
     }
 
-    public void setCmdSaleOrderStockId(long cmdSaleOrderStockId) {
+    public void setCmdSaleOrderStockId(Long cmdSaleOrderStockId) {
         this.cmdSaleOrderStockId = cmdSaleOrderStockId;
     }
 

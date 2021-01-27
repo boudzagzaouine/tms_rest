@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "prm_setting")
 public class PrmSetting extends EmsEntity {
-    private long prmSettingId;
+    private Long prmSettingId;
     private String prmSettingCode;
     private String prmSettingValue;
     private OrgOrganisation orgOrganisation;
@@ -23,11 +23,11 @@ public class PrmSetting extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "schema_emsgc.prm_setting_prm_setting_id_seq", allocationSize = 1)
     @Column(name = "prm_setting_id", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getPrmSettingId() {
+    public Long getPrmSettingId() {
         return prmSettingId;
     }
 
-    public void setPrmSettingId(long prmSettingId) {
+    public void setPrmSettingId(Long prmSettingId) {
         this.prmSettingId = prmSettingId;
     }
 

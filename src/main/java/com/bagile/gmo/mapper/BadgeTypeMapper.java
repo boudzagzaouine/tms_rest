@@ -59,7 +59,7 @@ public class BadgeTypeMapper {
             return null;
         }
         BadgeType badgeType = new BadgeType();
-        badgeType.setId((int) gmoBadgeType.getGmoBadgeTypeId());
+        badgeType.setId(gmoBadgeType.getGmoBadgeTypeId());
         badgeType.setCode(gmoBadgeType.getGmoBadgeTypeCode());
         badgeType.setDescription (gmoBadgeType.getGmoBadgeTypeDescription ());
 

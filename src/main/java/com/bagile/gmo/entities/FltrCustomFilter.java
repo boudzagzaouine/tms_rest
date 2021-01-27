@@ -18,7 +18,7 @@ public class FltrCustomFilter extends EmsEntity implements Serializable {
 
 	private static final long serialVersionUID = -2692418708409874221L;
 
-	private long fltrId;
+	private Long fltrId;
 	private String fltrQuery;
 	private String fltrName;
 	private UsrUser fltrUser;
@@ -27,10 +27,10 @@ public class FltrCustomFilter extends EmsEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_fltr_id", allocationSize = 1)
     @Column(name = "fltr_filterid", unique = true, nullable = false, precision = 10, scale = 0)
-	public long getFltrId() {
+	public Long getFltrId() {
 		return fltrId;
 	}
-	public void setFltrId(long fltrId) {
+	public void setFltrId(Long fltrId) {
 		this.fltrId = fltrId;
 	}
 	

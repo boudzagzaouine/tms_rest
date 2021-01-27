@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -19,7 +20,7 @@ import java.util.Set;
         @UniqueConstraint(columnNames = "stk_containercode")})
 public class StkContainer extends EmsEntity implements java.io.Serializable {
 
-    private long stkContainerId;
+    private Long stkContainerId;
   //  @NotNull
     private LocLocation locLocation;
    // @NotNull
@@ -69,11 +70,11 @@ public class StkContainer extends EmsEntity implements java.io.Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_stk_container", allocationSize = 1)
     @Column(name = "stk_containerid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getStkContainerId() {
+    public Long getStkContainerId() {
         return this.stkContainerId;
     }
 
-    public void setStkContainerId(long stkContainerId) {
+    public void setStkContainerId(Long stkContainerId) {
         this.stkContainerId = stkContainerId;
     }
 
@@ -288,10 +289,7 @@ public class StkContainer extends EmsEntity implements java.io.Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 7 * hash + (int) this.getStkContainerId();
-        hash = 7 * hash + (int) this.getStkContainerId();
-        return hash;
+        return Objects.hash(stkContainerId);
     }
 
 }

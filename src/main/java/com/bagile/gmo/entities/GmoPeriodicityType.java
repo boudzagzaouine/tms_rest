@@ -9,7 +9,7 @@ public class GmoPeriodicityType extends EmsEntity {
 
 	private static final long serialVersionUID = 2773120607426017439L;
 
-	private long gmoPeriodicityTypeId;
+	private Long gmoPeriodicityTypeId;
     private String gmoPeriodicityTypeCode;
     private String gmoPeriodicityTypeDescription;
 
@@ -18,11 +18,11 @@ public class GmoPeriodicityType extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_periodicitytype_id", allocationSize = 1)
     @Column(name = "gmo_periodicitytypeid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoPeriodicityTypeId() {
+    public Long getGmoPeriodicityTypeId() {
         return gmoPeriodicityTypeId;
     }
 
-    public void setGmoPeriodicityTypeId(long gmoPeriodicityTypeId) {
+    public void setGmoPeriodicityTypeId(Long gmoPeriodicityTypeId) {
         this.gmoPeriodicityTypeId = gmoPeriodicityTypeId;
     }
 

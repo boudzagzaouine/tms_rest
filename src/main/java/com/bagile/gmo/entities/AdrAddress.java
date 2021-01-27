@@ -17,7 +17,7 @@ import java.util.Date;
 @Table(name = "adr_address")
 public class AdrAddress extends EmsEntity implements java.io.Serializable {
 
-    private long adrAddressId;
+    private Long adrAddressId;
 
     private OwnOwner ownOwner;
 
@@ -95,11 +95,11 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_adr_address", allocationSize = 1)
     @Column(name = "adr_addressid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getAdrAddressId() {
+    public Long getAdrAddressId() {
         return this.adrAddressId;
     }
 
-    public void setAdrAddressId(long adrAddressId) {
+    public void setAdrAddressId(Long adrAddressId) {
         this.adrAddressId = adrAddressId;
     }
 

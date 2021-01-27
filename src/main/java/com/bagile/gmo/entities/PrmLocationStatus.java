@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity(name="prm_locationstatus")
 public class PrmLocationStatus extends EmsEntity {
-    private long prmLocationStatusId;
+    private Long prmLocationStatusId;
     private String prmLocationStatusCode;
     private String prmLocationStatusDescription;
     private OrgOrganisation orgOrganisation;
@@ -16,10 +16,10 @@ public class PrmLocationStatus extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_prm_locationstatut", allocationSize = 1)
     @Column(name = "prm_locationstatusid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getPrmLocationStatusId() {
+    public Long getPrmLocationStatusId() {
         return prmLocationStatusId;
     }
-    public void setPrmLocationStatusId(long prmLocationStatusId) {
+    public void setPrmLocationStatusId(Long prmLocationStatusId) {
         this.prmLocationStatusId = prmLocationStatusId;
     }
     @Column(name="prm_locationstatuscode",length = 50)

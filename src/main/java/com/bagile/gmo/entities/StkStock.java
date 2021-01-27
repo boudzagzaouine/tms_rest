@@ -18,7 +18,7 @@ import java.util.Date;
 @Table(name = "stk_stock")
 public class StkStock extends EmsEntity implements java.io.Serializable {
 
-    private long stkStockId;
+    private Long stkStockId;
    private LocLocation locLocation;
    // @NotNull
     private OwnOwner ownOwner;
@@ -110,11 +110,11 @@ public class StkStock extends EmsEntity implements java.io.Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_stk_stock", allocationSize = 1)
     @Column(name = "stk_stockid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getStkStockId() {
+    public Long getStkStockId() {
         return this.stkStockId;
     }
 
-    public void setStkStockId(long stkStockId) {
+    public void setStkStockId(Long stkStockId) {
         this.stkStockId = stkStockId;
     }
 

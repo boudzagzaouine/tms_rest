@@ -18,7 +18,7 @@ import java.util.Date;
 @Table(name = "cmd_deliveryline")
 
 public class CmdDeliveryLine extends EmsDto {
-    private long cmdDeliveryLineId;
+    private Long cmdDeliveryLineId;
     @Max(999999999)
     private Long cmdDeliveryLinelineNumber;
     private CmdSaleOrderLine cmdSaleOrderLine;
@@ -74,11 +74,11 @@ public class CmdDeliveryLine extends EmsDto {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_cmd_deliveryline", allocationSize = 1)
     @Column(name = "cmd_deliverylineid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getCmdDeliveryLineId() {
+    public Long getCmdDeliveryLineId() {
         return cmdDeliveryLineId;
     }
 
-    public void setCmdDeliveryLineId(long cmdDeliveryLineId) {
+    public void setCmdDeliveryLineId(Long cmdDeliveryLineId) {
         this.cmdDeliveryLineId = cmdDeliveryLineId;
     }
 

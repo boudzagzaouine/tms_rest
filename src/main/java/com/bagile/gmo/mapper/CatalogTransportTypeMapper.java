@@ -76,7 +76,7 @@ public class CatalogTransportTypeMapper {
             return null;
         }
         CatalogTransportType transport = new CatalogTransportType ( );
-        transport.setId ((int) trpTransport.getGmoCatalogTransportCategoryVehicleId ());
+        transport.setId (trpTransport.getGmoCatalogTransportCategoryVehicleId ());
         transport.setAmountHt (trpTransport.getGmoCatalogTransportCategoryVehicleAmountHt ());
         transport.setAmountTtc (trpTransport.getGmoCatalogTransportCategoryVehicleAmountTtc ());
         transport.setAmountTva (trpTransport.getGmoCatalogTransportCategoryVehicleAmountTva ());

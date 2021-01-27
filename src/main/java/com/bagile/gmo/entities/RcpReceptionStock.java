@@ -18,7 +18,7 @@ import java.util.Date;
 @Table(name = "rcp_receptionstock")
 public class RcpReceptionStock extends EmsEntity implements java.io.Serializable {
 
-    private long rcpReceptionStockId;
+    private Long rcpReceptionStockId;
    // @NotNull
     private OwnOwner ownOwner;
     @NotNull
@@ -73,11 +73,11 @@ public class RcpReceptionStock extends EmsEntity implements java.io.Serializable
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_rcp_receptionstock", allocationSize = 1)
     @Column(name = "rcp_receptionstockid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getRcpReceptionStockId() {
+    public Long getRcpReceptionStockId() {
         return this.rcpReceptionStockId;
     }
 
-    public void setRcpReceptionStockId(long rcpReceptionStockId) {
+    public void setRcpReceptionStockId(Long rcpReceptionStockId) {
         this.rcpReceptionStockId = rcpReceptionStockId;
     }
 

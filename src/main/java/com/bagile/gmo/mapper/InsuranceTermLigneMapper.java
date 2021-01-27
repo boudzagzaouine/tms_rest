@@ -60,7 +60,7 @@ public class InsuranceTermLigneMapper {
             return null;
         }
         InsuranceTermLigne insuranceTermInsurance = new InsuranceTermLigne();
-        insuranceTermInsurance.setId((int) gmoinsuranceTermInsurances.getGmoInsuranceTermLigneId());
+        insuranceTermInsurance.setId(gmoinsuranceTermInsurances.getGmoInsuranceTermLigneId());
         insuranceTermInsurance.setAmount( gmoinsuranceTermInsurances.getGmoAmount());
 
 

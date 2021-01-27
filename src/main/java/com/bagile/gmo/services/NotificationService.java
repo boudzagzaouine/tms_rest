@@ -9,6 +9,7 @@ import java.util.List;
 
 
 public interface NotificationService {
+
     Notification save(Notification Notification);
     List<Notification> saveAll(List<Notification> notifications);
 

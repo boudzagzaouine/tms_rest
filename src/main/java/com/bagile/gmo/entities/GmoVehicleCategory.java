@@ -10,7 +10,7 @@ public class GmoVehicleCategory  extends EmsEntity {
 
 	private static final long serialVersionUID = 7061065493531979221L;
 
-	private long gmoVehicleCategoryId;
+	private Long gmoVehicleCategoryId;
     private String gmoVehicleCategoryCode;
     private  String gmoVehicleCategoryDescription;
     private BigDecimal gmoVehicleCategoryLength;
@@ -31,11 +31,11 @@ public class GmoVehicleCategory  extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_vehicle_category_id", allocationSize = 1)
     @Column(name = "gmo_vehiclecategoryid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoVehicleCategoryId() {
+    public Long getGmoVehicleCategoryId() {
         return gmoVehicleCategoryId;
     }
 
-    public void setGmoVehicleCategoryId(long gmoVehicleCategoryId) {
+    public void setGmoVehicleCategoryId(Long gmoVehicleCategoryId) {
         this.gmoVehicleCategoryId = gmoVehicleCategoryId;
     }
 

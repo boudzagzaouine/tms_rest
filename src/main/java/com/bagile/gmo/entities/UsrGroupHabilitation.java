@@ -14,7 +14,7 @@ public class UsrGroupHabilitation extends EmsEntity implements java.io.Serializa
 
     private static final long serialVersionUID = 1358730598440653284L;
 
-    private long usrGroupHabilitationId;
+    private Long usrGroupHabilitationId;
     @NotNull
     private UsrHabilitation usrHabilitation;
     @NotNull
@@ -25,11 +25,11 @@ public class UsrGroupHabilitation extends EmsEntity implements java.io.Serializa
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_usr_group_habilitation_id", allocationSize = 1)
     @Column(name = "usr_grouphabilitationid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getUsrGroupHabilitationId() {
+    public Long getUsrGroupHabilitationId() {
         return this.usrGroupHabilitationId;
     }
 
-    public void setUsrGroupHabilitationId(long usrGroupHabilitationId) {
+    public void setUsrGroupHabilitationId(Long usrGroupHabilitationId) {
         this.usrGroupHabilitationId = usrGroupHabilitationId;
     }
 

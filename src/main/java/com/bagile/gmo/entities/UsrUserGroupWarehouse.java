@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "usr_usergroup_wrh_warehouse")
 public class UsrUserGroupWarehouse extends EmsEntity {
 
-    private long usrUserGroupWrhWarehouseId;
+    private Long usrUserGroupWrhWarehouseId;
     private UsrUserGroup usrUserGroup;
     private WrhWarehouse wrhWarehouse;
 
@@ -14,11 +14,11 @@ public class UsrUserGroupWarehouse extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_user_group_warehouse_id", allocationSize = 1)
     @Column(name = "usr_usergroup_wrh_warehouse_id", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getUsrUserGroupWrhWarehouseId() {
+    public Long getUsrUserGroupWrhWarehouseId() {
         return usrUserGroupWrhWarehouseId;
     }
 
-    public void setUsrUserGroupWrhWarehouseId(long usrUserGroupWrhWarehouseId) {
+    public void setUsrUserGroupWrhWarehouseId(Long usrUserGroupWrhWarehouseId) {
         this.usrUserGroupWrhWarehouseId = usrUserGroupWrhWarehouseId;
     }
 

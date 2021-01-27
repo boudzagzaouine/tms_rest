@@ -70,7 +70,7 @@ public class TransportMapper {
             return null;
         }
         Transport transport = new Transport ( );
-        transport.setId ((int) trpTransport.getTrpTransportId ());
+        transport.setId (trpTransport.getTrpTransportId ());
         transport.setCode (trpTransport.getTrpTransportCode ());
         transport.setDescription (trpTransport.getTrpTransportDescription ());
         transport.setComment (trpTransport.getTrpTransportComment ());

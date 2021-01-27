@@ -66,7 +66,7 @@ public class CommissionTypeMapper {
             return null;
         }
         CommissionType commissionType = new CommissionType();
-        commissionType.setId((int) gmoCommissionType.getGmoCommissionTypeId());
+        commissionType.setId(gmoCommissionType.getGmoCommissionTypeId());
         commissionType.setCode(gmoCommissionType.getGmoCommissionTypeCode());
         commissionType.setDescription (gmoCommissionType.getGmoCommissionTypeDescription ());
         commissionType.setPercentage (gmoCommissionType.getGmoCommissionTypepercentage ());

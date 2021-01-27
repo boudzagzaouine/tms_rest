@@ -24,7 +24,7 @@ public class GmoDriverZone extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_diver_zone_id", allocationSize = 1)
     @Column(name = "gmo_diverzoneid", unique = true, nullable = false, precision = 10, scale = 0)
-    private long gmoDriverZoneId;
+    private Long gmoDriverZoneId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_driverid")

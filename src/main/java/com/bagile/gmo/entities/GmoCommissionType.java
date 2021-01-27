@@ -10,11 +10,11 @@ import java.util.Set;
 @Table(name = "gmo_commissiontype")
 public class GmoCommissionType extends EmsEntity {
 
-    private long gmoCommissionTypeId;
+    private Long gmoCommissionTypeId;
     private String gmoCommissionTypeCode;
     private String gmoCommissionTypeDescription;
-    private long gmoCommissionTypeMinDistance;
-    private long gmoCommissionTypeMaxDistance;
+    private Long gmoCommissionTypeMinDistance;
+    private Long gmoCommissionTypeMaxDistance;
     private BigDecimal gmoCommissionTypePercentage;
     private Set<GmoCommissionDriver> gmoCommissions = new HashSet<>();
 
@@ -25,10 +25,10 @@ public class GmoCommissionType extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_commission_type_id", allocationSize = 1)
     @Column(name = "gmo_CommissionTypeid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoCommissionTypeId() {
+    public Long getGmoCommissionTypeId() {
         return gmoCommissionTypeId;
     }
-    public void setGmoCommissionTypeId(long gmoCommissionTypeId) {
+    public void setGmoCommissionTypeId(Long gmoCommissionTypeId) {
         this.gmoCommissionTypeId = gmoCommissionTypeId;
     }
 
@@ -58,20 +58,20 @@ public class GmoCommissionType extends EmsEntity {
     }
 
     @Column(name = "gmo_commissiontypemindistance")
-    public long getGmoCommissionTypeMinDistance() {
+    public Long getGmoCommissionTypeMinDistance() {
         return gmoCommissionTypeMinDistance;
     }
 
-    public void setGmoCommissionTypeMinDistance(long gmoCommissionTypeMinDistance) {
+    public void setGmoCommissionTypeMinDistance(Long gmoCommissionTypeMinDistance) {
         this.gmoCommissionTypeMinDistance = gmoCommissionTypeMinDistance;
     }
 
     @Column(name = "gmo_commissiontypemaxdistance")
-    public long getGmoCommissionTypeMaxDistance() {
+    public Long getGmoCommissionTypeMaxDistance() {
         return gmoCommissionTypeMaxDistance;
     }
 
-    public void setGmoCommissionTypeMaxDistance(long gmoCommissionTypeMaxDistance) {
+    public void setGmoCommissionTypeMaxDistance(Long gmoCommissionTypeMaxDistance) {
         this.gmoCommissionTypeMaxDistance = gmoCommissionTypeMaxDistance;
     }
 

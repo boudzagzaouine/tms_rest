@@ -23,7 +23,7 @@ public class NotificationMapper {
 
 
         map.put ("patimonyCode", "gmoNotificationPatrimonyCode");
-        map.put ("typePatrimony", "gmoNotificationTypePatrimony");
+        map.put ("patrimonyType", "gmoNotificationPatrimonyType");
         map.put ("action", "gmoNotificationAction");
 
         map.put ("creationDate", "creationDate");
@@ -48,10 +48,12 @@ public class NotificationMapper {
         GmoNotification gmoNotification = new GmoNotification ( );
         gmoNotification.setGmoNotificationId (notification.getId ( ));
         gmoNotification.setGmoNotificationCode (notification.getCode ( ) != null ? notification.getCode ( ).toUpperCase ( ) : null);
-        gmoNotification.setGmoNotificationProductId(notification.getProductId ( ));
+        gmoNotification.setGmoNotificationProductId(notification.getProductId ());
+
         gmoNotification.setGmoNotificationMaintenanceId(notification.getMaintenanceId ( ));
         gmoNotification.setGmoNotificationPatrimonyCode(notification.getPatimonyCode ( ));
         gmoNotification.setGmoNotificationAction(notification.getAction ( ));
+        gmoNotification.setGmoNotificationPatrimonyType(notification.getPatrimonyType ( ));
 
         gmoNotification.setCreatedBy (notification.getCreatedBy ( ));
         gmoNotification.setUpdatedBy (notification.getUpdatedBy ( ));
@@ -71,9 +73,11 @@ public class NotificationMapper {
             return null;
         }
         Notification notification = new Notification ( );
-        notification.setId ((int) gmoNotification.getGmoNotificationId ());
+        notification.setId (gmoNotification.getGmoNotificationId ());
         notification.setCode (gmoNotification.getGmoNotificationCode ());
-        notification.setProductId (gmoNotification.getGmoNotificationProductId());
+        notification.setPatrimonyType (gmoNotification.getGmoNotificationPatrimonyType ());
+
+        // notification.setProductId (gmoNotification.getGmoNotificationProductId());
         notification.setMaintenanceId (gmoNotification.getGmoNotificationMaintenanceId());
         notification.setAction (gmoNotification.getGmoNotificationAction());
         notification.setPatimonyCode (gmoNotification.getGmoNotificationPatrimonyCode());

@@ -11,7 +11,7 @@ public class GmoBadgeType extends EmsEntity {
 
 	private static final long serialVersionUID = 2773120607426017439L;
 
-	private long gmoBadgeTypeId;
+	private Long gmoBadgeTypeId;
     private String gmoBadgeTypeCode;
     private String gmoBadgeTypeDescription;
 
@@ -22,11 +22,11 @@ public class GmoBadgeType extends EmsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_badge_type_id", allocationSize = 1)
     @Column(name = "gmo_badgetypeid", unique = true, nullable = false, precision = 10, scale = 0)
-    public long getGmoBadgeTypeId() {
+    public Long getGmoBadgeTypeId() {
         return gmoBadgeTypeId;
     }
 
-    public void setGmoBadgeTypeId(long gmoBadgeTypeId) {
+    public void setGmoBadgeTypeId(Long gmoBadgeTypeId) {
         this.gmoBadgeTypeId = gmoBadgeTypeId;
     }
 
