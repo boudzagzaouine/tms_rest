@@ -54,6 +54,8 @@ public class NotificationMapper {
         gmoNotification.setGmoNotificationPatrimonyCode(notification.getPatimonyCode ( ));
         gmoNotification.setGmoNotificationAction(notification.getAction ( ));
         gmoNotification.setGmoNotificationPatrimonyType(notification.getPatrimonyType ( ));
+        gmoNotification.setGmoNotificationIntervention(notification.getIntervention ( ));
+        gmoNotification.setGmoNotificationProgrameType(notification.getProgrameType ());
 
         gmoNotification.setCreatedBy (notification.getCreatedBy ( ));
         gmoNotification.setUpdatedBy (notification.getUpdatedBy ( ));
@@ -77,10 +79,13 @@ public class NotificationMapper {
         notification.setCode (gmoNotification.getGmoNotificationCode ());
         notification.setPatrimonyType (gmoNotification.getGmoNotificationPatrimonyType ());
 
-        // notification.setProductId (gmoNotification.getGmoNotificationProductId());
+        notification.setProductId (gmoNotification.getGmoNotificationProductId());
         notification.setMaintenanceId (gmoNotification.getGmoNotificationMaintenanceId());
         notification.setAction (gmoNotification.getGmoNotificationAction());
         notification.setPatimonyCode (gmoNotification.getGmoNotificationPatrimonyCode());
+        notification.setIntervention (gmoNotification.getGmoNotificationIntervention());
+        notification.setProgrameType (gmoNotification.getGmoNotificationProgrameType());
+
 
         notification.setCreatedBy (gmoNotification.getCreatedBy ());
         notification.setUpdatedBy (gmoNotification.getUpdatedBy ());

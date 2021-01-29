@@ -200,11 +200,13 @@ public class NotificationServiceImpl implements NotificationService {
         List<Maintenance> maintenanceConditionelList = maintenanceService.find("programType.id:"+2+",maintenanceState.id:"+ 1L); //1 =cree
 
         for(Maintenance m: maintenanceConditionelList){
-            if((((Vehicle) (m.getPatrimony())).getCurrentMileage()) != null) {
-                if (m.getMileageNext().compareTo(((Vehicle) (m.getPatrimony())).getCurrentMileage().doubleValue()) <= 0) {
+            if(m.getConditionalType().getId()==1L) {
+                if ((((Vehicle) (m.getPatrimony())).getCurrentMileage()) != null) {
+                    if (m.getMileageNext().compareTo(((Vehicle) (m.getPatrimony())).getCurrentMileage().doubleValue()) <= 0) {
 
-                    addMaintenanceToNotification(maintenanceConditionelList, 1L, 2L); //2= en retard
+                        addMaintenanceToNotification(maintenanceConditionelList, 1L, 2L); //2= en retard
 
+                    }
                 }
             }
         }
@@ -237,12 +239,25 @@ public class NotificationServiceImpl implements NotificationService {
                     notification.setNotificationType(notificationTypeM);
                     notification.setNotificationState(notificationStateRetard);
                     notification.setMaintenanceId(maintenanace.getId());
-                    notification.setPatimonyCode(maintenanace.getPatrimony().getCode());
+                    notification.setProgrameType(maintenanace.getProgramType().getCode());
+                    if(maintenanace.getProgramType().getId()==1L) {
+                        notification.setIntervention(maintenanace.getInterventionDate().toString());
+
+
+                    }else if(maintenanace.getProgramType().getId()==2L){
+                        notification.setIntervention(maintenanace.getMileageNext().toString());
+                    }
+
+                    notification.setProductId(0L);
+
                     if(maintenanace.getPatrimony() instanceof Vehicle){
                         notification.setPatrimonyType("vehicule");
+                        notification.setPatimonyCode(((Vehicle) maintenanace.getPatrimony()).getRegistrationNumber());
                     }
                     else if(maintenanace.getPatrimony() instanceof Machine){
                         notification.setPatrimonyType("machine");
+                        notification.setPatimonyCode(((Machine) maintenanace.getPatrimony()).getName());
+
                     }
                     notification.setAction(maintenanace.getActionType().getCode());
                     //notifications.add(notification);
@@ -294,9 +309,10 @@ public class NotificationServiceImpl implements NotificationService {
                                 notification.setNotificationType(notificationTypeP);
                                 notification.setNotificationState(notificationStatee);
                                 notification.setProductId(product.getId());
-                              
+                                notification.setPatrimonyType(product.getProductType().getCode());
+                                notification.setIntervention(product.getStockQuantity().toString());
+                                notification.setMaintenanceId(0L);
                                 notifications.add(notification);
-
                                 MailConfig mail=mailConfigService.findById(1L);
                                 Template template=templateService.findById(2L);
                                 emailService.sendEmail(notification,mail,template);

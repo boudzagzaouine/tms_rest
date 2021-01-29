@@ -11,6 +11,8 @@ public class GmoNotification extends EmsEntity{
     private String gmoNotificationCode;
     private GmoNotificationState gmoNotificationState ;
     private String  gmoNotificationPatrimonyType;
+    private String gmoNotificationProgrameType;
+    private String gmoNotificationIntervention;
     private Long gmoNotificationProductId;
     private Long gmoNotificationMaintenanceId;
     private String gmoNotificationPatrimonyCode ;
@@ -67,7 +69,23 @@ public class GmoNotification extends EmsEntity{
         this.gmoNotificationType = gmoNotificationTypePatrimony;
     }
 
+    @Column(name = "gmo_notificationprogrametype")
+    public String getGmoNotificationProgrameType() {
+        return gmoNotificationProgrameType;
+    }
 
+    public void setGmoNotificationProgrameType(String gmoNotificationProgrameType) {
+        this.gmoNotificationProgrameType = gmoNotificationProgrameType;
+    }
+
+    @Column(name = "gmo_notificationintervention")
+    public String getGmoNotificationIntervention() {
+        return gmoNotificationIntervention;
+    }
+
+    public void setGmoNotificationIntervention(String gmoNotificationIntervention) {
+        this.gmoNotificationIntervention = gmoNotificationIntervention;
+    }
 
     @Column(name = "gmo_notificationproductid")
     public Long getGmoNotificationProductId() {

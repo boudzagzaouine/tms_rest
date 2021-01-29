@@ -161,34 +161,38 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 
 
             if(itemActionPlan.getProgramType().getId()==2L) { //conditionnel
-
-                Maintenance maintenance =getMaintenanceByActionType(itemActionPlan.getActionType().getId(),patrimony.getId()) ;
+                if(itemActionPlan.getConditionalType().getId()== 1L){
+                Maintenance maintenance = getMaintenanceByActionType(itemActionPlan.getActionType().getId(), patrimony.getId());
                 double kmlastMaintenance;
                 double Kmcondition;
                 double kmNext;
-                 if(maintenance !=null) {
-                      kmlastMaintenance=maintenance.getMileage();
-                      Kmcondition =itemActionPlan.getValueconditionalType().doubleValue();
-                      kmNext=kmlastMaintenance+Kmcondition ;
+                if (maintenance != null) {
+                    kmlastMaintenance = maintenance.getMileage();
+                    Kmcondition = itemActionPlan.getValueconditionalType().doubleValue();
+                    kmNext = kmlastMaintenance + Kmcondition;
 
-                           itemActionPlan.setMileage(kmNext);
+                    itemActionPlan.setMileage(kmNext);
+                    maintenanceList.add(loadMaintenance(itemActionPlan, patrimony));
+                } else if (patrimony instanceof Vehicle) {
+                    kmlastMaintenance = ((Vehicle) patrimony).getInitialMileage().doubleValue();
+                    Kmcondition = itemActionPlan.getValueconditionalType().doubleValue();
+                    kmNext = kmlastMaintenance + Kmcondition;
+                    itemActionPlan.setMileage(kmNext);
+                    maintenanceList.add(loadMaintenance(itemActionPlan, patrimony));
 
-                     maintenanceList.add(loadMaintenance(itemActionPlan, patrimony));
-                 }
-                 else if(patrimony instanceof  Vehicle)  {
-                     kmlastMaintenance=   ((Vehicle) patrimony).getInitialMileage().doubleValue();
-                     Kmcondition =itemActionPlan.getValueconditionalType().doubleValue();
-                     kmNext=kmlastMaintenance+Kmcondition ;
-                     itemActionPlan.setMileage(kmNext);
-                     maintenanceList.add(loadMaintenance(itemActionPlan, patrimony));
+                }
+            }
+                else if (patrimony instanceof Machine){
+                    maintenanceList.add(loadMaintenance(itemActionPlan, patrimony));
+                }
 
-                 }
+
 
             }
 
 
 
-            }
+        }
 
 
         return saveAll(maintenanceList);
@@ -377,8 +381,9 @@ public class MaintenanceServiceImpl implements MaintenanceService {
       //  updateMaintenance(maintenance1);
   // programetype = conditionnelle
        if(maintenance.getProgramType().getId()==2L) {
-            loadMaintenanceByM(maintenance);
-
+           if(maintenance.getConditionalType().getId()==1L) {
+               loadMaintenanceByM(maintenance);
+           }
         }
 
         Notification notification = notificationService.findOne("maintenanceId:" + maintenance.getId());

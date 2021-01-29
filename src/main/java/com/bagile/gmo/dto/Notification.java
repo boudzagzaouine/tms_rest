@@ -11,11 +11,12 @@ public class Notification extends EmsDto implements Serializable {
     private long id;
     private String code;
     private String patrimonyType;
+    private String programeType;
     private NotificationState notificationState;
     private long productId;
     private long maintenanceId;
-
     private String patimonyCode;
+    private String intervention;
     private NotificationType notificationType;
     private String   action ;
 
@@ -49,6 +50,22 @@ public class Notification extends EmsDto implements Serializable {
 
     public void setNotificationState(NotificationState notificationState) {
         this.notificationState = notificationState;
+    }
+
+    public String getIntervention() {
+        return intervention;
+    }
+
+    public void setIntervention(String intervention) {
+        this.intervention = intervention;
+    }
+
+    public String getProgrameType() {
+        return programeType;
+    }
+
+    public void setProgrameType(String programeType) {
+        this.programeType = programeType;
     }
 
     public long getProductId() {
