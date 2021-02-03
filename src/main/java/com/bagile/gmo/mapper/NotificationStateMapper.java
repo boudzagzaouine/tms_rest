@@ -15,7 +15,7 @@ public class NotificationStateMapper {
         map = new HashMap<> ( );
 
         map.put ("id", "gmoNotificationStateId");
-        map.put ("code", "gmoNotificationStateCode");
+        map.put ("code", "gmoNotificationCode");
         map.put ("description", "gmoNotificationStateDescription");
 
         map.put ("creationDate", "creationDate");

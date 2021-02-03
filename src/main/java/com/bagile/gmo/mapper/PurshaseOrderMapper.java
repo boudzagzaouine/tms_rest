@@ -125,7 +125,7 @@ public class PurshaseOrderMapper {
 
         if (!lazy) {
           //  rcpPurshaseOrder.setPrmPaymentStatus(PaymentStatusMapper.toEntity(purshaseOrder.getPaymentStatus(),true));
-            rcpPurshaseOrder.setRcpSupplier(SupplierMapper.toEntity(purshaseOrder.getSupplier(), true));
+            rcpPurshaseOrder.setRcpSupplier(SupplierMapper.toEntity(purshaseOrder.getSupplier(), false));
          //   rcpPurshaseOrder.setRcpExtraCosts(ExtraCostMapper.toEntities(purshaseOrder.getExtraCosts(), true));
             rcpPurshaseOrder.setWrhWarehouseSource(WarehouseMapper.toEntity(purshaseOrder.getWarehouseSource(), true));
             rcpPurshaseOrder.setWrhWarehouseDestination(WarehouseMapper.toEntity(purshaseOrder.getWarehouse(), true));
@@ -221,7 +221,7 @@ public class PurshaseOrderMapper {
 
         if (!lazy) {
            // purshaseOrder.setPaymentStatus(PaymentStatusMapper.toDto(rcpPurshaseOrder.getPrmPaymentStatus(),true));
-            purshaseOrder.setSupplier(SupplierMapper.toDto(rcpPurshaseOrder.getRcpSupplier(), true));
+            purshaseOrder.setSupplier(SupplierMapper.toDto(rcpPurshaseOrder.getRcpSupplier(), false));
          //   purshaseOrder.setExtraCosts(ExtraCostMapper.toDtos(rcpPurshaseOrder.getRcpExtraCosts(), true));
             purshaseOrder.setWarehouseSource(WarehouseMapper.toDto(rcpPurshaseOrder.getWrhWarehouseSource(), true));
             purshaseOrder.setWarehouse(WarehouseMapper.toDto(rcpPurshaseOrder.getWrhWarehouseDestination(), true));

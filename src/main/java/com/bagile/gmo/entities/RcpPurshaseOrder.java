@@ -133,7 +133,7 @@ public class RcpPurshaseOrder extends EmsEntity implements java.io.Serializable 
         this.ownOwner = ownOwner;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY ,cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rcp_purshaseordersupplierid", nullable = false)
     public RcpSupplier getRcpSupplier() {
         return rcpSupplier;

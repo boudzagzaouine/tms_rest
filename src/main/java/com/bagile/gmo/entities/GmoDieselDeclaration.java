@@ -42,7 +42,7 @@ public class GmoDieselDeclaration extends EmsEntity{
         this.gmoDieselDeclarationCode = gmoDieselDeclarationCode;
     }
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "gmo_vehicleid")
     public GmoVehicle getGmoVehicle() {
         return gmoVehicle;
@@ -53,7 +53,7 @@ public class GmoDieselDeclaration extends EmsEntity{
     }
 
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "gmo_rcppurchaseorderid")
     public RcpPurshaseOrder getRcpPurshaseOrder() {
         return rcpPurshaseOrder;

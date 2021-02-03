@@ -111,7 +111,7 @@ public class StockMapper {
            // stkStock.setWrhWarehouse(WarehouseMapper.toEntity(stock.getWarehouse(), true));
             stkStock.setPdtProduct(ProductMapper.toEntity(stock.getProduct(), true));
             stkStock.setOwnOwner(OwnerMapper.toEntity(stock.getOwner(), true));
-            stkStock.setRcpSupplier(SupplierMapper.toEntity(stock.getSupplier(), true));
+            stkStock.setRcpSupplier(SupplierMapper.toEntity(stock.getSupplier(), false));
            // stkStock.setPrmBlockType(BlockTypeMapper.toEntity(stock.getBlockType(), true));
            // stkStock.setPrmColor(ColorMapper.toEntity(stock.getColor(), true));
             stkStock.setPdtUom(UomMapper.toEntity(stock.getUom(), true));
@@ -167,7 +167,7 @@ public class StockMapper {
             stock.setProduct(ProductMapper.toDto(stkStock.getPdtProduct(), false));
           //  stock.setWarehouse(WarehouseMapper.toDto(stkStock.getWrhWarehouse(), true));
             stock.setOwner(OwnerMapper.toDto(stkStock.getOwnOwner(), true));
-            stock.setSupplier(SupplierMapper.toDto(stkStock.getRcpSupplier(), true));
+            stock.setSupplier(SupplierMapper.toDto(stkStock.getRcpSupplier(), false));
          //   stock.setBlockType(BlockTypeMapper.toDto(stkStock.getPrmBlockType(), true));
           //  stock.setColor(ColorMapper.toDto(stkStock.getPrmColor(), true));
             stock.setUom(UomMapper.toDto(stkStock.getPdtUom(), true));

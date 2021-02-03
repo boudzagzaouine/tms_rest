@@ -9,7 +9,7 @@ public class GmoNotification extends EmsEntity{
 
     private Long gmoNotificationId;
     private String gmoNotificationCode;
-    private GmoNotificationState gmoNotificationState ;
+    private GmoNotificationState gmoNotificationState;
     private String  gmoNotificationPatrimonyType;
     private String gmoNotificationProgrameType;
     private String gmoNotificationIntervention;
