@@ -21,6 +21,7 @@ import java.util.List;
 @Service
 @Transactional
 public class BadgeTypeServiceImpl implements BadgeTypeService {
+
     private final BadgeTypeRepository badgeTypeRepository;
 
     public BadgeTypeServiceImpl(BadgeTypeRepository badgeTypeRepository) {
