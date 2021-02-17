@@ -121,8 +121,20 @@ private String gmoAgent ;
     @JoinColumn(name = "gmo_ownownerid")
       private OwnOwner ownOwner;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_driverid")
+    private GmoDriver gmoDriver;
 
     public GmoMaintenance() {
+    }
+
+
+    public GmoDriver getGmoDriver() {
+        return gmoDriver;
+    }
+
+    public void setGmoDriver(GmoDriver gmoDriver) {
+        this.gmoDriver = gmoDriver;
     }
 
     public Long getGmoMaintenanceId() {

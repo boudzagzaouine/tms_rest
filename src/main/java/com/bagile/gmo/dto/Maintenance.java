@@ -49,7 +49,7 @@ public class Maintenance extends EmsDto implements Serializable {
     private Supplier supplier;
     private PurshaseOrder purshaseOrder;
     private Owner owner;
-
+private Driver driver;
     public Maintenance() {
     }
 
@@ -117,6 +117,14 @@ public class Maintenance extends EmsDto implements Serializable {
 
     public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
     }
 
     public PurshaseOrder getPurshaseOrder() {

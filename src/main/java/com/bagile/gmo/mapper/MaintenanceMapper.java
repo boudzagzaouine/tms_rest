@@ -102,6 +102,7 @@ public class MaintenanceMapper {
             gmoMaintenance.setGmoMaintenanceType(MaintenanceTypeMapper.toEntity(maintenance.getMaintenanceType(), true));
             gmoMaintenance.setGmoMaintenanceState(MaintenanceStateMapper.toEntity(maintenance.getMaintenanceState(), true));
             gmoMaintenance.setGmoPatrimony(PatrimonyMapper.toEntity(maintenance.getPatrimony(),true));
+            gmoMaintenance.setGmoDriver(DriverMapper.toEntity(maintenance.getDriver(),false));
 
             gmoMaintenance.setGmoPeriodicityType(PeriodicityTypeMapper.toEntity(maintenance.getPeriodicityType(),false));
             gmoMaintenance.setGmoResponsability (ResponsabilityMapper.toEntity (maintenance.getResponsability(), false));
@@ -181,6 +182,7 @@ public class MaintenanceMapper {
             maintenance.setMaintenancePlan(MaintenancePlanMapper.toDto(gmoMaintenance.getGmoMaintenancePlan(),true));
             maintenance.setActionType(ActionTypeMapper.toDto(gmoMaintenance.getGmoActionType(),true));
             maintenance.setConditionalType(ConditionalTypeMapper.toDto(gmoMaintenance.getGmoConditionalType(),true));
+            maintenance.setDriver(DriverMapper.toDto(gmoMaintenance.getGmoDriver(),true));
 
             maintenance.setSupplier(SupplierMapper.toDto(gmoMaintenance.getRcpSupplier(),true));
             maintenance.setPurshaseOrder(PurshaseOrderMapper.toDto(gmoMaintenance.getRcpPurshaseOrder(),true));
