@@ -83,7 +83,7 @@ public class MaintenanceMapper {
         gmoMaintenance.setGmoMaintenanceTotalPrice (maintenance.getTotalPrice ());
         gmoMaintenance.setGmoMaintenanceMileage (maintenance.getMileage ());
         gmoMaintenance.setGmoInterventionDate (maintenance.getInterventionDate ());
-        gmoMaintenance.setGmoAgent (maintenance.getAgent ());
+       // gmoMaintenance.setGmoAgent (maintenance.getAgent ());
         gmoMaintenance.setGmoEmployer (maintenance.getEmployer ());
         gmoMaintenance.setGmoTriggerDay(maintenance.getTriggerDay());
         gmoMaintenance.setGmoTriggerDate(maintenance.getTriggerDate());
@@ -118,6 +118,7 @@ public class MaintenanceMapper {
             gmoMaintenance.setRcpPurshaseOrder(PurshaseOrderMapper.toEntity (maintenance.getPurshaseOrder(), false));
 
             gmoMaintenance.setOwnOwner(OwnerMapper.toEntity (maintenance.getOwner(), false));
+            gmoMaintenance.setGmoAgent(AgentMapper.toEntity (maintenance.getAgent(), false));
 
             oneToMany(gmoMaintenance);
 
@@ -156,7 +157,7 @@ public class MaintenanceMapper {
         maintenance.setTriggerDay(gmoMaintenance.getGmoTriggerDay());
         maintenance.setTriggerDate(gmoMaintenance.getGmoTriggerDate());
         maintenance.setInterventionDate (gmoMaintenance.getGmoInterventionDate ());
-        maintenance.setAgent (gmoMaintenance.getGmoAgent ());
+       // maintenance.setAgent (gmoMaintenance.getGmoAgent ());
         maintenance.setEmployer (gmoMaintenance.getGmoEmployer ());
         maintenance.setDuration (gmoMaintenance.getGmoDuration ()  );
         maintenance.setDeclaredDate (gmoMaintenance.getGmoDeclaredDate ());
@@ -187,6 +188,7 @@ public class MaintenanceMapper {
             maintenance.setSupplier(SupplierMapper.toDto(gmoMaintenance.getRcpSupplier(),true));
             maintenance.setPurshaseOrder(PurshaseOrderMapper.toDto(gmoMaintenance.getRcpPurshaseOrder(),true));
             maintenance.setOwner(OwnerMapper.toDto(gmoMaintenance.getOwnOwner(),true));
+            maintenance.setAgent(AgentMapper.toDto(gmoMaintenance.getGmoAgent(),true));
 
         }
 

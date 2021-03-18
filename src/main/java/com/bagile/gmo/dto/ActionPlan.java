@@ -28,7 +28,8 @@ public class ActionPlan extends EmsDto implements Serializable {
     private Date interventionDate;
     private Double mileage = 0.0;
     private BigDecimal totalPrice;
-    private  String  agent ;
+   // private  String  agent ;
+    private Agent agent;
     private   String  employer ;
     private   String  observation;
     private Date declaredDate;
@@ -168,11 +169,19 @@ public class ActionPlan extends EmsDto implements Serializable {
         this.triggerDate = triggerDate;
     }
 
-    public String getAgent() {
+   /* public String getAgent() {
         return agent;
     }
 
     public void setAgent(String agent) {
+        this.agent = agent;
+    }*/
+
+    public Agent getAgent() {
+        return agent;
+    }
+
+    public void setAgent(Agent agent) {
         this.agent = agent;
     }
 

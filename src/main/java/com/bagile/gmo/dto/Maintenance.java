@@ -35,7 +35,8 @@ public class Maintenance extends EmsDto implements Serializable {
     private Double mileageNext = 0.0;
     private BigDecimal totalPrice;
    // private List<ActionMaintenance> actionMaintenances;
-    private  String  agent ;
+    //private  String  agent ;
+    private Agent agent;
     private   String  employer ;
     private   String  observation;
     private Date declaredDate;
@@ -281,11 +282,19 @@ private Driver driver;
         this.triggerDate = triggerDate;
     }
 
-    public String getAgent() {
+    /*public String getAgent() {
         return agent;
     }
 
     public void setAgent(String agent) {
+        this.agent = agent;
+    }*/
+
+    public Agent getAgent() {
+        return agent;
+    }
+
+    public void setAgent(Agent agent) {
         this.agent = agent;
     }
 

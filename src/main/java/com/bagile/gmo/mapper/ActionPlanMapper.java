@@ -69,7 +69,7 @@ public class ActionPlanMapper {
         gmoActionPlan.setGmoActionPlanTotalPrice (actionPlan.getTotalPrice ());
         gmoActionPlan.setGmoActionPlanMileage (actionPlan.getMileage ());
         gmoActionPlan.setGmoActionPlanInterventionDate (actionPlan.getInterventionDate ());
-        gmoActionPlan.setGmoActionPlanAgent (actionPlan.getAgent ());
+      //  gmoActionPlan.setGmoActionPlanAgent (actionPlan.getAgent ());
         gmoActionPlan.setGmoActionPlanEmployer (actionPlan.getEmployer ());
         gmoActionPlan.setGmoActionPlanTriggerDay(actionPlan.getTriggerDay());
         gmoActionPlan.setGmoActionPlanTriggerDate(actionPlan.getTriggerDate());
@@ -100,6 +100,7 @@ public class ActionPlanMapper {
             gmoActionPlan.setGmoActionType(ActionTypeMapper.toEntity (actionPlan.getActionType(), false));
             gmoActionPlan.setGmoConditionalType(ConditionalTypeMapper.toEntity (actionPlan.getConditionalType(), false));
             gmoActionPlan.setOwnOwner(OwnerMapper.toEntity (actionPlan.getOwner(), false));
+            gmoActionPlan.setGmoAgent(AgentMapper.toEntity (actionPlan.getAgent(), false));
 
             // oneToMany(gmoActionPlan);
 
@@ -132,7 +133,7 @@ public class ActionPlanMapper {
         actionPlan.setTriggerDay(gmoActionPlan.getGmoActionPlanTriggerDay());
         actionPlan.setTriggerDate(gmoActionPlan.getGmoActionPlanTriggerDate());
         actionPlan.setInterventionDate (gmoActionPlan.getGmoActionPlanInterventionDate ());
-        actionPlan.setAgent (gmoActionPlan.getGmoActionPlanAgent ());
+      //  actionPlan.setAgent (gmoActionPlan.getGmoActionPlanAgent ());
         actionPlan.setEmployer (gmoActionPlan.getGmoActionPlanEmployer ());
         actionPlan.setDuration (gmoActionPlan.getGmoActionPlanDuration ()  );
         actionPlan.setDeclaredDate (gmoActionPlan.getGmoActionPlanDeclaredDate ());
@@ -161,6 +162,7 @@ public class ActionPlanMapper {
             actionPlan.setActionType(ActionTypeMapper.toDto(gmoActionPlan.getGmoActionType(),false));
             actionPlan.setConditionalType(ConditionalTypeMapper.toDto(gmoActionPlan.getGmoConditionalType(),false));
             actionPlan.setOwner(OwnerMapper.toDto(gmoActionPlan.getOwnOwner(),false));
+            actionPlan.setAgent(AgentMapper.toDto(gmoActionPlan.getGmoAgent(),false));
 
         }
 

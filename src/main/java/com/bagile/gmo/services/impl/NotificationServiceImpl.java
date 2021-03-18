@@ -240,6 +240,10 @@ public class NotificationServiceImpl implements NotificationService {
                     notification.setNotificationState(notificationStateRetard);
                     notification.setMaintenanceId(maintenanace.getId());
                     notification.setProgrameType(maintenanace.getProgramType().getCode());
+                    notification.setServiceProvider(maintenanace.getServiceProvider());
+
+                    notification.setResponsability(maintenanace.getResponsability());
+                    notification.setAgent(maintenanace.getAgent());
                     if(maintenanace.getProgramType().getId()==1L) {
                         notification.setIntervention(maintenanace.getInterventionDate().toString());
 

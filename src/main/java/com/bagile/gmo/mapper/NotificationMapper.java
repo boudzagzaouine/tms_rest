@@ -26,6 +26,10 @@ public class NotificationMapper {
         map.put ("patrimonyType", "gmoNotificationPatrimonyType");
         map.put ("action", "gmoNotificationAction");
 
+        map.put ("responsability", "gmoResponsability");
+        map.put ("serviceProvider", "gmoServiceProvider");
+        map.put ("agent", "gmoAgent");
+
         map.put ("creationDate", "creationDate");
         map.put ("updateDate", "updateDate");
         map.put ("createdBy", "createdBy");
@@ -56,6 +60,7 @@ public class NotificationMapper {
         gmoNotification.setGmoNotificationPatrimonyType(notification.getPatrimonyType ( ));
         gmoNotification.setGmoNotificationIntervention(notification.getIntervention ( ));
         gmoNotification.setGmoNotificationProgrameType(notification.getProgrameType ());
+        //gmoNotification.setGmoAgent(notification.getAgent ());
 
         gmoNotification.setCreatedBy (notification.getCreatedBy ( ));
         gmoNotification.setUpdatedBy (notification.getUpdatedBy ( ));
@@ -63,6 +68,9 @@ public class NotificationMapper {
         if (!lazy) {
             gmoNotification.setGmoNotificationState (NotificationStateMapper.toEntity (notification.getNotificationState ( ), true));
             gmoNotification.setGmoNotificationType (NotificationTypeMapper.toEntity (notification.getNotificationType ( ), true));
+            gmoNotification.setGmoResponsability (ResponsabilityMapper.toEntity (notification.getResponsability ( ), true));
+            gmoNotification.setGmoServiceProvider (ServiceProviderMapper.toEntity (notification.getServiceProvider ( ), true));
+            gmoNotification.setGmoAgent (AgentMapper.toEntity (notification.getAgent ( ), true));
 
         }
 
@@ -85,6 +93,7 @@ public class NotificationMapper {
         notification.setPatimonyCode (gmoNotification.getGmoNotificationPatrimonyCode());
         notification.setIntervention (gmoNotification.getGmoNotificationIntervention());
         notification.setProgrameType (gmoNotification.getGmoNotificationProgrameType());
+     //   notification.setAgent (gmoNotification.getGmoAgent());
 
 
         notification.setCreatedBy (gmoNotification.getCreatedBy ());
@@ -95,6 +104,9 @@ public class NotificationMapper {
         if (!lazy) {
             notification.setNotificationState (NotificationStateMapper.toDto (gmoNotification.getGmoNotificationState(), true));
             notification.setNotificationType (NotificationTypeMapper.toDto (gmoNotification.getGmoNotificationType(), true));
+            notification.setResponsability (ResponsabilityMapper.toDto (gmoNotification.getGmoResponsability(), true));
+            notification.setServiceProvider (ServiceProviderMapper.toDto (gmoNotification.getGmoServiceProvider(), true));
+            notification.setAgent (AgentMapper.toDto (gmoNotification.getGmoAgent(), true));
 
 
         }

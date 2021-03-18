@@ -78,8 +78,12 @@ public class GmoMaintenance extends EmsEntity {
     private Date gmoMaintenanceDate;
 
 
-    @Column(name = "gmo_maintenanceagent")
-private String gmoAgent ;
+    /*@Column(name = "gmo_maintenanceagent")
+    private String gmoAgent ;*/
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_maintenanceagentid")
+    private GmoAgent gmoAgent;
+
     @Column(name = "gmo_maintenanceemployer")
     private String gmoEmployer ;
     @Column(name = "gmo_maintenanceobservation")
@@ -371,11 +375,19 @@ private String gmoAgent ;
     }
 
 
-    public String getGmoAgent() {
+    /*public String getGmoAgent() {
         return gmoAgent;
     }
 
     public void setGmoAgent(String gmoAgent) {
+        this.gmoAgent = gmoAgent;
+    }*/
+
+    public GmoAgent getGmoAgent() {
+        return gmoAgent;
+    }
+
+    public void setGmoAgent(GmoAgent gmoAgent) {
         this.gmoAgent = gmoAgent;
     }
 

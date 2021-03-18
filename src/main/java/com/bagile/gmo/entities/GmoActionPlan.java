@@ -29,7 +29,8 @@ public class GmoActionPlan extends EmsEntity {
     private Date gmoActionPlanInterventionDate;
     private Double gmoActionPlanMileage = 0.0;
     private BigDecimal gmoActionPlanTotalPrice = BigDecimal.ZERO;
-    private String gmoActionPlanAgent;
+   // private String gmoActionPlanAgent;
+     private GmoAgent gmoAgent;
     private String gmoActionPlanEmployer;
     private String gmoActionPlanObservation;
     private Date gmoActionPlanDeclaredDate;
@@ -246,13 +247,22 @@ public class GmoActionPlan extends EmsEntity {
     }
 
 
-    @Column(name = "gmo_ActionPlanagent")
+   /* @Column(name = "gmo_ActionPlanagent")
     public String getGmoActionPlanAgent() {
         return gmoActionPlanAgent;
     }
 
     public void setGmoActionPlanAgent(String gmoAgent) {
         this.gmoActionPlanAgent = gmoAgent;
+    }*/
+   @ManyToOne(fetch = FetchType.LAZY)
+   @JoinColumn(name = "gmo_agentid")
+    public GmoAgent getGmoAgent() {
+        return gmoAgent;
+    }
+
+    public void setGmoAgent(GmoAgent gmoAgent) {
+        this.gmoAgent = gmoAgent;
     }
 
     @Column(name = "gmo_ActionPlanemployer")

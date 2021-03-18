@@ -19,7 +19,10 @@ public class Notification extends EmsDto implements Serializable {
     private String intervention;
     private NotificationType notificationType;
     private String   action ;
-
+    private Responsability responsability;
+    private ServiceProvider serviceProvider;
+   // private String agent;
+ private Agent agent;
     public long getId() {
         return id;
     }
@@ -101,7 +104,37 @@ public class Notification extends EmsDto implements Serializable {
         this.action = action;
     }
 
+    public Responsability getResponsability() {
+        return responsability;
+    }
 
+    public void setResponsability(Responsability responsability) {
+        this.responsability = responsability;
+    }
+
+   /* public String getAgent() {
+        return agent;
+    }
+
+    public void setAgent(String agent) {
+        this.agent = agent;
+    }*/
+
+    public Agent getAgent() {
+        return agent;
+    }
+
+    public void setAgent(Agent agent) {
+        this.agent = agent;
+    }
+
+    public ServiceProvider getServiceProvider() {
+        return serviceProvider;
+    }
+
+    public void setServiceProvider(ServiceProvider serviceProvider) {
+        this.serviceProvider = serviceProvider;
+    }
 
     public NotificationType getNotificationType() {
         return notificationType;

@@ -19,6 +19,11 @@ public class GmoNotification extends EmsEntity{
     private GmoNotificationType gmoNotificationType;
     private String gmoNotificationAction;
 
+    private GmoResponsability gmoResponsability;
+
+    private GmoServiceProvider gmoServiceProvider;
+    //private  String gmoAgent;
+ private GmoAgent gmoAgent;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_notification_id", allocationSize = 1)
@@ -48,6 +53,44 @@ public class GmoNotification extends EmsEntity{
 
     public void setGmoNotificationState(GmoNotificationState gmoNotificationState) {
         this.gmoNotificationState = gmoNotificationState;
+    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_responsabilityid")
+    public GmoResponsability getGmoResponsability() {
+        return gmoResponsability;
+    }
+
+    public void setGmoResponsability(GmoResponsability gmoResponsability) {
+        this.gmoResponsability = gmoResponsability;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_serviceproviderid")
+    public GmoServiceProvider getGmoServiceProvider() {
+        return gmoServiceProvider;
+    }
+
+    public void setGmoServiceProvider(GmoServiceProvider gmoServiceProvider) {
+        this.gmoServiceProvider = gmoServiceProvider;
+    }
+
+  /*  @Column(name = "gmo_agent", length = 90)
+    public String getGmoAgent() {
+        return gmoAgent;
+    }
+
+    public void setGmoAgent(String gmoAgent) {
+        this.gmoAgent = gmoAgent;
+    }*/
+
+    @ManyToOne
+    @JoinColumn(name = "gmo_agentid")
+    public GmoAgent getGmoAgent() {
+        return gmoAgent;
+    }
+
+    public void setGmoAgent(GmoAgent gmoAgent) {
+        this.gmoAgent = gmoAgent;
     }
 
     @Column(name = "gmo_notificationpatrimonytype", length = 90)

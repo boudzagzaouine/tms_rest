@@ -288,7 +288,7 @@ public interface SettingService {
 
 
 
-    default String generateCodeVehicle()              // id = 23
+    default String generateCodeVehicle()
     {
         Setting setting = null;
         try {
@@ -299,7 +299,17 @@ public interface SettingService {
         return (setting != null) ? setting.getValue() : "";
     }
 
-    default String generateCodeMachinee()              // id = 23
+    default String generateAgent()
+    {
+        Setting setting = null;
+        try {
+            setting = findById(106L);
+        } catch (IdNotFound idNotFound) {
+            return null;
+        }
+        return (setting != null) ? setting.getValue() : "";
+    }
+    default String generateCodeMachinee()
     {
         Setting setting = null;
         try {
