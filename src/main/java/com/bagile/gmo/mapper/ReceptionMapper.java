@@ -123,7 +123,7 @@ public class ReceptionMapper {
             rcpReception.setRcpPurshaseOrder(PurshaseOrderMapper.toEntity(reception.getPurshaseOrder(), true));
             rcpReception.setPrmOrderType(OrderTypeMapper.toEntity(reception.getOrderType(), true));
             rcpReception.setOwnOwner(OwnerMapper.toEntity(reception.getOwner(), true));
-            rcpReception.setRcpSupplier(SupplierMapper.toEntity(reception.getSupplier(), true));
+            rcpReception.setRcpSupplier(SupplierMapper.toEntity(reception.getSupplier(), false));
             rcpReception.setTrpTransport(TransportMapper.toEntity(reception.getTransport(), true));
             rcpReception.setAdrAddress(AddressInfoMapper.toEntity(reception.getAddress(), true));
             rcpReception.setRcpReceptionLines(ReceptionLineMapper.toEntities(reception.getReceptionLines(), false));
@@ -201,7 +201,7 @@ public class ReceptionMapper {
             reception.setOrderStatus(OrderStatusMapper.toDto(rcpReception.getPrmOrderStatus(), true));
             reception.setWarehouse(WarehouseMapper.toDto(rcpReception.getWrhWarehouse(), true));
             reception.setOwner(OwnerMapper.toDto(rcpReception.getOwnOwner(), true));
-            reception.setSupplier(SupplierMapper.toDto(rcpReception.getRcpSupplier(), true));
+            reception.setSupplier(SupplierMapper.toDto(rcpReception.getRcpSupplier(), false));
             reception.setAddress(AddressInfoMapper.toDto(rcpReception.getAdrAddress(), true));
             reception.setOrderType(OrderTypeMapper.toDto(rcpReception.getPrmOrderType(), true));
             reception.setPurshaseOrder(PurshaseOrderMapper.toDto(rcpReception.getRcpPurshaseOrder(), true));
