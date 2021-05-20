@@ -77,7 +77,12 @@ public class FuelPumpServiceImpl implements FuelPumpService {
     public void delete(Long id) {
         fuelPumpRepository.deleteById(id);
     }
+    @Override
+    public void deleteAll(List<Long> ids) {
 
+        for (Long id : ids) {
+            fuelPumpRepository.deleteById(id);        }
+    }
     @Override
     public void delete(FuelPump fuelPump) {
         fuelPumpRepository.delete(FuelPumpMapper.toEntity(fuelPump, false));

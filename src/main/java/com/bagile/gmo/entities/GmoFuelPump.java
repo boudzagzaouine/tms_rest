@@ -10,7 +10,7 @@ public class GmoFuelPump extends EmsEntity{
     private Long gmoFuelPumpId;
     private String gmoFuelPumpCode;
     private PdtProduct pdtProduct;
-    private GmoPump pump;
+    private GmoPump gmoPump;
     private BigDecimal gmoFuelPumpQuantity;
   
 
@@ -47,12 +47,12 @@ public class GmoFuelPump extends EmsEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_pumpid", nullable = false)
-    public GmoPump getPump() {
-        return pump;
+    public GmoPump getGmoPump() {
+        return gmoPump;
     }
 
-    public void setPump(GmoPump pump) {
-        this.pump = pump;
+    public void setGmoPump(GmoPump pump) {
+        this.gmoPump = pump;
     }
 
 

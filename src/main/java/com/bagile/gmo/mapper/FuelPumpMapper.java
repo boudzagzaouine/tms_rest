@@ -16,9 +16,13 @@ public class FuelPumpMapper {
 
         map.put ("id", "gmoFuelPumpId");
         map.put ("code", "gmoFuelPumpCode");
-        map.put ("description", "gmoFuelPumpDescription");
+
+        map.put ("product", "pdtProduct");
+        map.put ("pump", "gmoPump");
+
 
         map.put ("quantity", "gmoFuelPumpQuantity");
+
         map.put ("creationDate", "creationDate");
         map.put ("updateDate", "updateDate");
         map.put ("createdBy", "createdBy");
@@ -47,8 +51,8 @@ public class FuelPumpMapper {
         gmoFuelPump.setUpdatedBy (fuelPump.getUpdatedBy ( ));
 
         if (!lazy) {
-           gmoFuelPump.setPdtProduct (ProductMapper.toEntity (fuelPump.getProduct ( ), true));
-            gmoFuelPump.setPump (PumpMapper.toEntity (fuelPump.getPump ( ), true));
+           gmoFuelPump.setPdtProduct (ProductMapper.toEntity (fuelPump.getProduct ( ), false));
+            gmoFuelPump.setGmoPump(PumpMapper.toEntity (fuelPump.getPump ( ), true));
 
         }
 
@@ -72,8 +76,8 @@ public class FuelPumpMapper {
         fuelPump.setUpdateDate (gmoFuelPump.getUpdateDate ());
 
         if (!lazy) {
-            fuelPump.setProduct (ProductMapper.toDto (gmoFuelPump.getPdtProduct(), true));
-            fuelPump.setPump(PumpMapper.toDto (gmoFuelPump.getPump(), true));
+            fuelPump.setProduct (ProductMapper.toDto (gmoFuelPump.getPdtProduct(), false));
+            fuelPump.setPump(PumpMapper.toDto (gmoFuelPump.getGmoPump(), true));
 
         }
         return fuelPump;
