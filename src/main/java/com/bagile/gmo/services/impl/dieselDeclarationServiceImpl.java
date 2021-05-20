@@ -1,6 +1,7 @@
 package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.DieselDeclaration;
+import com.bagile.gmo.dto.FuelPump;
 import com.bagile.gmo.dto.Vehicle;
 import com.bagile.gmo.entities.GmoDieselDeclaration;
 import com.bagile.gmo.exceptions.AttributesNotFound;
@@ -9,6 +10,7 @@ import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.DieselDeclarationMapper;
 import com.bagile.gmo.repositories.DieselDeclarationRepository;
 import com.bagile.gmo.services.DieselDeclarationService;
+import com.bagile.gmo.services.FuelPumpService;
 import com.bagile.gmo.services.SettingService;
 import com.bagile.gmo.services.VehicleService;
 import com.bagile.gmo.util.Search;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -34,6 +37,11 @@ public class dieselDeclarationServiceImpl implements DieselDeclarationService {
 
     @Autowired
     private SettingService settingService;
+
+
+    @Autowired
+    private FuelPumpService fuelPumpService;
+
     public dieselDeclarationServiceImpl(DieselDeclarationRepository dieselDeclarationRepository) {
         this.dieselDeclarationRepository = dieselDeclarationRepository;
     }
@@ -45,6 +53,14 @@ public class dieselDeclarationServiceImpl implements DieselDeclarationService {
         Vehicle vehicle = vehicleService.findById(dDeclaration.getVehicle().getId());
         vehicle.setCurrentMileage(dDeclaration.getMileage());
         vehicleService.save(vehicle);
+if(dieselDeclaration.getTypeDeclaration()==3) {
+            FuelPump fuelPump = fuelPumpService.findById(dieselDeclaration.getFuelPump().getId());
+            BigDecimal quantityDeclaration = dieselDeclaration.getQuantity();
+            BigDecimal quantityFuelPump = fuelPump.getQuantity();
+            BigDecimal res = quantityFuelPump.subtract(quantityDeclaration);
+            fuelPump.setQuantity(res);
+            fuelPumpService.save(fuelPump);
+        }
         return dDeclaration;
 
     }

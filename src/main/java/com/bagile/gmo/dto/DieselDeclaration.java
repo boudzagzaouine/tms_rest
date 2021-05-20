@@ -22,6 +22,8 @@ public class DieselDeclaration extends EmsDto implements Serializable {
     private BigDecimal mileage;
     private Date dieselDeclarationDate;
     private Owner owner;
+    private FuelPump fuelPump;
+    private BigDecimal quantity ;
 
     public long getId() {
         return id;
@@ -119,6 +121,23 @@ public class DieselDeclaration extends EmsDto implements Serializable {
 
     public void setPurshaseOrder(PurshaseOrder purshaseOrder) {
         this.purshaseOrder = purshaseOrder;
+    }
+
+
+    public FuelPump getFuelPump() {
+        return fuelPump;
+    }
+
+    public void setFuelPump(FuelPump fuelPump) {
+        this.fuelPump = fuelPump;
+    }
+
+    public BigDecimal getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
     }
 
     @Override

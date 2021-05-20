@@ -19,7 +19,11 @@ public class GmoDieselDeclaration extends EmsEntity{
     private BigDecimal gmoDieselDeclarationAmount;
     private BigDecimal gmoDieselDeclarationMileage;
     private Date gmoDieselDeclarationDate;
- private OwnOwner ownOwner;
+    private OwnOwner ownOwner;
+
+    private GmoFuelPump gmoFuelPump;
+    private BigDecimal gmoDieselDeclarationQuantity;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_diesel_declaration_id", allocationSize = 1)
@@ -136,5 +140,24 @@ public class GmoDieselDeclaration extends EmsEntity{
 
     public void setGmoDriver(GmoDriver gmoDriver) {
         this.gmoDriver = gmoDriver;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name="gmo_fuelpumpid")
+    public GmoFuelPump getGmoFuelPump() {
+        return gmoFuelPump;
+    }
+
+    public void setGmoFuelPump(GmoFuelPump gmoFuelPump) {
+        this.gmoFuelPump = gmoFuelPump;
+    }
+
+    @Column(name = "gmo_gmodieseldeclarationquantity")
+    public BigDecimal getGmoDieselDeclarationQuantity() {
+        return gmoDieselDeclarationQuantity;
+    }
+
+    public void setGmoDieselDeclarationQuantity(BigDecimal gmoDieselDeclarationQuantity) {
+        this.gmoDieselDeclarationQuantity = gmoDieselDeclarationQuantity;
     }
 }

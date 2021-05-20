@@ -49,6 +49,7 @@ public class DieselDeclarationMapper {
         gmoDieselDeclaration.setGmoDieselDeclarationMileage(dieselDeclaration.getMileage ( ));
         gmoDieselDeclaration.setGmoTypeDeclaration(dieselDeclaration.getTypeDeclaration ( ));
         gmoDieselDeclaration.setGmoBon(dieselDeclaration.getBon ( ));
+        gmoDieselDeclaration.setGmoDieselDeclarationQuantity(dieselDeclaration.getQuantity ( ));
 
         gmoDieselDeclaration.setCreatedBy (dieselDeclaration.getCreatedBy ( ));
         gmoDieselDeclaration.setUpdatedBy (dieselDeclaration.getUpdatedBy ( ));
@@ -59,6 +60,7 @@ public class DieselDeclarationMapper {
             gmoDieselDeclaration.setGmoDriver (DriverMapper.toEntity (dieselDeclaration.getDriver ( ), true));
             gmoDieselDeclaration.setGmoSubscriptionCard (SubscriptionCardMapper.toEntity (dieselDeclaration.getSubscriptionCard ( ), true));
             gmoDieselDeclaration.setRcpPurshaseOrder (PurshaseOrderMapper.toEntity (dieselDeclaration.getPurshaseOrder ( ), false));
+            gmoDieselDeclaration.setGmoFuelPump (FuelPumpMapper.toEntity (dieselDeclaration.getFuelPump ( ), false));
 
         }
 
@@ -78,7 +80,7 @@ public class DieselDeclarationMapper {
         dieselDeclaration.setMileage (gmoDieselDeclaration.getGmoDieselDeclarationMileage());
         dieselDeclaration.setTypeDeclaration (gmoDieselDeclaration.getGmoTypeDeclaration());
         dieselDeclaration.setBon (gmoDieselDeclaration.getGmoBon());
-
+        dieselDeclaration.setQuantity (gmoDieselDeclaration.getGmoDieselDeclarationQuantity());
         dieselDeclaration.setCreatedBy (gmoDieselDeclaration.getCreatedBy ());
         dieselDeclaration.setUpdatedBy (gmoDieselDeclaration.getUpdatedBy ());
         dieselDeclaration.setCreationDate (gmoDieselDeclaration.getCreationDate ());
@@ -90,6 +92,7 @@ public class DieselDeclarationMapper {
             dieselDeclaration.setDriver(DriverMapper.toDto (gmoDieselDeclaration.getGmoDriver(), true));
             dieselDeclaration.setSubscriptionCard (SubscriptionCardMapper.toDto (gmoDieselDeclaration.getGmoSubscriptionCard(), true));
             dieselDeclaration.setPurshaseOrder (PurshaseOrderMapper.toDto (gmoDieselDeclaration.getRcpPurshaseOrder(), false));
+            dieselDeclaration.setFuelPump (FuelPumpMapper.toDto (gmoDieselDeclaration.getGmoFuelPump(), false));
 
 
         }
