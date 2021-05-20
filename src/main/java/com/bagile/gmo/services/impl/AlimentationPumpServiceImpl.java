@@ -79,6 +79,13 @@ public class AlimentationPumpServiceImpl implements AlimentationPumpService {
     }
 
     @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            alimentationPumpRepository.deleteById(id);        }
+    }
+
+    @Override
     public void delete(AlimentationPump alimentationPump) {
         alimentationPumpRepository.delete(AlimentationPumpMapper.toEntity(alimentationPump, false));
     }

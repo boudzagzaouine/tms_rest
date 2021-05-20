@@ -24,6 +24,7 @@ public interface AlimentationPumpService {
     Long size(String search) throws AttributesNotFound, ErrorType;
 
     void delete(Long id);
+    void deleteAll (List<Long> ids);
 
     void delete(AlimentationPump alimentationPump);
 

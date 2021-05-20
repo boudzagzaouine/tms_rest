@@ -10,10 +10,13 @@ public class AlimentationPump extends EmsDto implements Serializable {
     private static final long serialVersionUID = 3467898889038526418L;
 
     private long id;
-    private String code;
+    //private String code;
     private FuelPump fuelPump;
     private BigDecimal quantity;
     private Date dateAlimentation;
+    private ReceptionLine receptionLine;
+
+    private Reception reception;
     public AlimentationPump() {
     }
 
@@ -27,13 +30,13 @@ public class AlimentationPump extends EmsDto implements Serializable {
         this.id = id;
     }
 
-    public String getCode() {
+    /*public String getCode() {
         return code;
     }
 
     public void setCode(String code) {
         this.code = code;
-    }
+    }*/
 
     public FuelPump getFuelPump() {
         return fuelPump;
@@ -57,6 +60,24 @@ public class AlimentationPump extends EmsDto implements Serializable {
 
     public void setDateAlimentation(Date dateAlimentation) {
         this.dateAlimentation = dateAlimentation;
+    }
+
+
+    public ReceptionLine getReceptionLine() {
+        return receptionLine;
+    }
+
+    public void setReceptionLine(ReceptionLine receptionLine) {
+        this.receptionLine = receptionLine;
+    }
+
+
+    public Reception getReception() {
+        return reception;
+    }
+
+    public void setReception(Reception reception) {
+        this.reception = reception;
     }
 
     @Override

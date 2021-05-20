@@ -40,7 +40,7 @@ public class AlimentationPumpMapper {
 
         GmoAlimentationPump gmoAlimentationPump = new GmoAlimentationPump ( );
         gmoAlimentationPump.setGmoAlimentationPumpId (alimentationPump.getId ( ));
-        gmoAlimentationPump.setGmoAlimentationPumpCode (alimentationPump.getCode ( ) != null ? alimentationPump.getCode ( ).toUpperCase ( ) : null);
+      //  gmoAlimentationPump.setGmoAlimentationPumpCode (alimentationPump.getCode ( ) != null ? alimentationPump.getCode ( ).toUpperCase ( ) : null);
         gmoAlimentationPump.setGmoAlimentationQuantity(alimentationPump.getQuantity ( ));
         gmoAlimentationPump.setGmoAlimentationPumpdate(alimentationPump.getDateAlimentation ( ));
 
@@ -48,7 +48,9 @@ public class AlimentationPumpMapper {
         gmoAlimentationPump.setUpdatedBy (alimentationPump.getUpdatedBy ( ));
 
         if (!lazy) {
-           gmoAlimentationPump.setGmoFuelPump (FuelPumpMapper.toEntity (alimentationPump.getFuelPump ( ), true));
+           gmoAlimentationPump.setGmoFuelPump (FuelPumpMapper.toEntity (alimentationPump.getFuelPump ( ), false));
+            gmoAlimentationPump.setRcpReceptionLine (ReceptionLineMapper.toEntity (alimentationPump.getReceptionLine ( ), true));
+            gmoAlimentationPump.setRcpReception (ReceptionMapper.toEntity (alimentationPump.getReception ( ), true));
 
         }
 
@@ -62,7 +64,7 @@ public class AlimentationPumpMapper {
         }
         AlimentationPump alimentationPump = new AlimentationPump ( );
         alimentationPump.setId (gmoAlimentationPump.getGmoAlimentationPumpId ());
-        alimentationPump.setCode (gmoAlimentationPump.getGmoAlimentationPumpCode ());
+       // alimentationPump.setCode (gmoAlimentationPump.getGmoAlimentationPumpCode ());
         alimentationPump.setQuantity (gmoAlimentationPump.getGmoAlimentationQuantity ());
         alimentationPump.setDateAlimentation (gmoAlimentationPump.getGmoAlimentationPumpdate ());
 
@@ -73,7 +75,9 @@ public class AlimentationPumpMapper {
         alimentationPump.setUpdateDate (gmoAlimentationPump.getUpdateDate ());
 
         if (!lazy) {
-            alimentationPump.setFuelPump (FuelPumpMapper.toDto (gmoAlimentationPump.getGmoFuelPump(), true));
+            alimentationPump.setFuelPump (FuelPumpMapper.toDto (gmoAlimentationPump.getGmoFuelPump(), false));
+            alimentationPump.setReceptionLine (ReceptionLineMapper.toDto (gmoAlimentationPump.getRcpReceptionLine(), true));
+            alimentationPump.setReception (ReceptionMapper.toDto (gmoAlimentationPump.getRcpReception(), true));
 
         }
         return alimentationPump;

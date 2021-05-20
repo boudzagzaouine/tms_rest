@@ -9,12 +9,13 @@ import java.util.Date;
 public class GmoAlimentationPump extends EmsEntity{
 
     private Long gmoAlimentationPumpId;
-    private String gmoAlimentationPumpCode;
+   // private String gmoAlimentationPumpCode;
     private GmoFuelPump gmoFuelPump;
     private BigDecimal gmoAlimentationQuantity;
     private Date gmoAlimentationPumpdate;
 
-
+   private RcpReceptionLine rcpReceptionLine;
+   private RcpReception rcpReception;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -28,14 +29,14 @@ public class GmoAlimentationPump extends EmsEntity{
         this.gmoAlimentationPumpId = gmoAlimentationPumpId;
     }
 
-    @Column(name = "gmo_alimentationpumpcode", unique = true, nullable = false, length = 90)
+  /*  @Column(name = "gmo_alimentationpumpcode", unique = true, nullable = false, length = 90)
     public String getGmoAlimentationPumpCode() {
         return gmoAlimentationPumpCode;
     }
 
     public void setGmoAlimentationPumpCode(String gmoAlimentationPumpCode) {
         this.gmoAlimentationPumpCode = gmoAlimentationPumpCode;
-    }
+    }*/
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_fuelpumpid", nullable = false)
@@ -65,5 +66,25 @@ public class GmoAlimentationPump extends EmsEntity{
 
     public void setGmoAlimentationPumpdate(Date gmoAlimentationPumpdate) {
         this.gmoAlimentationPumpdate = gmoAlimentationPumpdate;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_receptionlineid")
+    public RcpReceptionLine getRcpReceptionLine() {
+        return rcpReceptionLine;
+    }
+
+    public void setRcpReceptionLine(RcpReceptionLine rcpReceptionLine) {
+        this.rcpReceptionLine = rcpReceptionLine;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_receptionid")
+    public RcpReception getRcpReception() {
+        return rcpReception;
+    }
+
+    public void setRcpReception(RcpReception rcpReception) {
+        this.rcpReception = rcpReception;
     }
 }
