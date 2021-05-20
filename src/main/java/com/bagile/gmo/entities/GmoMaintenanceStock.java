@@ -75,6 +75,7 @@ public class GmoMaintenanceStock extends EmsDto implements Serializable  {
    // private PdtProductDimension pdtProductDimension;
     private PdtProductPack pdtProductPack;
 
+    private GmoDieselDeclaration gmoDieselDeclaration;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -91,7 +92,7 @@ public class GmoMaintenanceStock extends EmsDto implements Serializable  {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "gmo_maintenanaceid", nullable = false)
+    @JoinColumn(name = "gmo_maintenanaceid")
     public GmoMaintenance getGmoMaintenance() {
         return gmoMaintenance;
     }
@@ -102,8 +103,18 @@ public class GmoMaintenanceStock extends EmsDto implements Serializable  {
 
 
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_declarationgasoilid")
+    public GmoDieselDeclaration getGmoDieselDeclaration() {
+        return gmoDieselDeclaration;
+    }
+
+    public void setGmoDieselDeclaration(GmoDieselDeclaration gmoDieselDeclaration) {
+        this.gmoDieselDeclaration = gmoDieselDeclaration;
+    }
+
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
-    @JoinColumn(name = "gmo_actionmaintenancelineid", nullable = false)
+    @JoinColumn(name = "gmo_actionmaintenancelineid")
     public GmoActionLineMaintenance getGmoActionLineMaintenance() {
         return gmoActionLineMaintenance;
     }

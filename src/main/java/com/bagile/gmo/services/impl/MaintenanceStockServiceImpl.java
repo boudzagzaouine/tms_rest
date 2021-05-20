@@ -51,6 +51,8 @@ public class MaintenanceStockServiceImpl implements MaintenanceStockService {
     @Autowired
     private LocationService locationService;
 
+    @Autowired
+    private DieselDeclarationService dieselDeclarationService;
 
 
     private final static Logger LOGGER = LoggerFactory
@@ -62,7 +64,12 @@ public class MaintenanceStockServiceImpl implements MaintenanceStockService {
         LOGGER.info("Deliver one deliveryLine");
 
            // if (settingService.posCanStockBeNegative()) {
-                return actionStockProduct(maintenanceStock);
+        if(maintenanceStock.getMaintenance() != null) {
+            return actionStockProduct(maintenanceStock);
+        }
+        else{
+            return actionStockProductwithDeclarationGasoil(maintenanceStock);
+        }
            // } else return actionStockProduct(maintenanceStock);
 
     }
@@ -200,6 +207,8 @@ public class MaintenanceStockServiceImpl implements MaintenanceStockService {
                 List<Stock> stocks = stockService.searchStock(maintenanceStock);
                 if (stocks == null || stocks.isEmpty()) {
                     LOGGER.info("stock to deliver not found  in maintenanceStock");
+                    throw new RuntimeException("Stock to deliver not found for maintenanceStock");
+
                 }
                 boolean found = false;
                 BigDecimal quantityServed = maintenanceStock.getQuantityServed();
@@ -290,6 +299,134 @@ public class MaintenanceStockServiceImpl implements MaintenanceStockService {
         return maintenanceStock;
     }
     //this is customized to bcgs projet
+
+
+
+
+    private MaintenanceStock actionStockProductwithDeclarationGasoil(MaintenanceStock maintenanceStock) throws IdNotFound {
+
+
+        DieselDeclaration dieselDeclaration = dieselDeclarationService.findById(maintenanceStock.getDieselDeclaration().getId());
+
+        Boolean accounted = null;
+
+        if (maintenanceStock.getOrderDate() == null) {
+            maintenanceStock.setOrderDate(EmsDate.getDateNow());
+        }
+        maintenanceStock.setUpdateDate(EmsDate.getDateNow());
+        if (0 >= maintenanceStock.getId()) {
+            maintenanceStock.setCreationDate(EmsDate.getDateNow());
+        }
+        try {
+            // if(actionLineMaintenance.getMaintenanceState().getId() != 4 ) {
+            //search stock with the same informations of maintenanceStock
+            List<Stock> stocks = stockService.searchStock(maintenanceStock);
+            if (stocks == null || stocks.isEmpty()) {
+                LOGGER.info("stock to deliver not found  in maintenanceStock");
+                throw new RuntimeException("Stock to deliver not found for maintenanceStock");
+            }
+            boolean found = false;
+            BigDecimal quantityServed =  maintenanceStock.getQuantityServed();
+            BigDecimal allReadyServerd = BigDecimal.ZERO;
+            for (int i = 0; i < stocks.size(); i++) {
+                Stock stock = stocks.get(i);
+                if (EmsComprator.compare(maintenanceStock.getBlockType(), stock.getBlockType())
+                        && (!settingService.dlcManagement() || EmsComprator.compare(maintenanceStock.getDlc(), stock.getDlc()))
+                        // && (!settingService.dluoManagement() || EmsComprator.compare(maintenanceStock.getDluo(), stock.getDluo()))
+                        //&& (!settingService.lotManagement() || EmsComprator.compare(maintenanceStock.getLot(), stock.getLot()))
+                        && (!settingService.weightManagement() || EmsComprator.compare(maintenanceStock.getWeight(), stock.getWeight()))
+                        //&& (!settingService.qualityManagement() || EmsComprator.compare(maintenanceStock.getQuality(), stock.getQuality()))
+                        && EmsComprator.compare(maintenanceStock.getProduct(), stock.getProduct())
+                        && (!settingService.serialNumberManagement() || EmsComprator.compare(maintenanceStock.getSerialNo(), stock.getSerialNo()))
+                        //&& (!settingService.colorManagement() || EmsComprator.compare(maintenanceStock.getColor(), stock.getColor()))
+                        //  && (!settingService.dimensionManagement() || EmsComprator.compare(maintenanceStock.getProductDimension(), stock.getProductDimension()))
+                        && checkContainerSource(maintenanceStock, stock)
+                ) {
+                    BigDecimal convertedStockQuantity = productService.convertQuantityByUom(stock.getQuantity(), maintenanceStock.getProductPack(), stock.getProductPack());
+                    Container container = null;
+                    if (maintenanceStock.getContainer() != null)
+                        container = containerService.findOne("code:" + maintenanceStock.getContainer().getCode());
+                    if (null == container) {
+                        container = containerService.createContainer(maintenanceStock);
+                        maintenanceStock.setContainer(container);
+                    } else {
+                        maintenanceStock.setContainer(container);
+                    }
+                    found = true;
+                    if (convertedStockQuantity.compareTo(quantityServed) < 0) {
+                        quantityServed = quantityServed.subtract(convertedStockQuantity);
+                        stock.setSalePrice(dieselDeclaration.getAmount());
+                        stock.setActive(false);
+                        allReadyServerd = allReadyServerd.add(convertedStockQuantity);
+                        MaintenanceStock maintenanceStock1 = copyMaintenanceStock(maintenanceStock, convertedStockQuantity, stock);
+                        if (i == stocks.size() - 1)
+                            //maintenanceStock.setQuantityServed(quantityServed);
+
+                            maintenanceStock = maintenanceStock1;
+
+                    } else if (convertedStockQuantity.compareTo(quantityServed) == 1) {
+                        Stock stockForMaintenance = stockService.createStock(stock, maintenanceStock.getUom(), quantityServed, maintenanceStock.getLocation(), container, maintenanceStock.getProductPack(), accounted, dieselDeclaration.getAmount());
+                        maintenanceStock.setStock(stockForMaintenance);
+                        BigDecimal convertedQuantityServed = productService.convertQuantityByUom(quantityServed, stock.getProductPack(), maintenanceStock.getProductPack());
+                        stock.setQuantity(stock.getQuantity().subtract(convertedQuantityServed));
+                        maintenanceStock.setQuantityServed(quantityServed);
+                        allReadyServerd = allReadyServerd.add(quantityServed);
+                        quantityServed = BigDecimal.ZERO;
+                        maintenanceStock = MaintenanceStockMapper.toDto(maintenanaceStockRepository.saveAndFlush(MaintenanceStockMapper.toEntity(maintenanceStock, false)), false);
+
+                    } else {
+                        maintenanceStock.setStock(stock);
+                        maintenanceStock.setQuantityServed(quantityServed);
+                        allReadyServerd = allReadyServerd.add(quantityServed);
+                        quantityServed = BigDecimal.ZERO;
+                        stock.setActive(false);
+                        stock.setSalePrice(dieselDeclaration.getAmount());
+                        maintenanceStock = MaintenanceStockMapper.toDto(maintenanaceStockRepository.saveAndFlush(MaintenanceStockMapper.toEntity(maintenanceStock, false)), false);
+                    }
+                    if (null != stock.getContainer()) {
+                        stock.setContainer(containerService.setOutBoundDate(maintenanceStock));
+                    }
+                    // stock.setAccountedSale(accounted);
+
+
+                    stock = stockService.save(stock);
+                    //receptionLineService.closeReceptionLineWhenUsingStock(stock);
+                    if (0 == quantityServed.compareTo(BigDecimal.ZERO)) {
+                        break;
+                    }
+                }
+            }
+            // modifier status action line et save
+            long id =4;
+          //  MaintenanceState maintenanceState= maintenanceStateService.findById(id);
+            //actionLineMaintenance.setMaintenanceState(maintenanceState);
+          //  actionLineMaintenanceService.save(actionLineMaintenance);
+          //  ActionLineMaintenance actionLineMaintenancee = null;
+            if (found) {
+                BigDecimal subtract = allReadyServerd.subtract(quantityServed);
+               // actionLineMaintenancee = actionLineMaintenanceService.findById(actionLineMaintenance.getId());
+               // maintenanceService.updateMaintenance(actionLineMaintenancee.getMaintenance());
+            }
+            // }
+        } catch (ProductControls | IdNotFound | AttributesNotFound | ErrorType | CustomException  e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return maintenanceStock;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

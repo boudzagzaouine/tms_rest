@@ -343,9 +343,12 @@ public class StockServiceImpl implements StockService, AddActive {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
             StringBuffer search = new StringBuffer();
+            search.append("active:true,");
             if (null != maintenanceStock.getProduct()) {
                 search.append("product.id:");
                 search.append(maintenanceStock.getProduct().getId());
+            } else {
+                throw new RuntimeException("Can not search a stock without product :p");
             }
             if (null != maintenanceStock.getOwner()) {
                 search.append(",owner.id:");
@@ -401,7 +404,7 @@ public class StockServiceImpl implements StockService, AddActive {
 
           //  }
             return find(search.toString());
-        } catch (AttributesNotFound | ErrorType e) {
+        } catch (AttributesNotFound | ErrorType | RuntimeException e) {
             LOGGER.error(e.getMessage(), e);
             return null;
         }

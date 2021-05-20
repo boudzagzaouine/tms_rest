@@ -38,6 +38,7 @@ public class MaintenanceStock  extends EmsDto implements Serializable {
     private BigDecimal weight;
    // private ProductDimension productDimension;
     private ProductPack productPack;
+    private DieselDeclaration dieselDeclaration;
 
 
     public Maintenance getMaintenance() {
@@ -243,6 +244,15 @@ public class MaintenanceStock  extends EmsDto implements Serializable {
         this.productDimension = productDimension;
     }
    */
+
+    public DieselDeclaration getDieselDeclaration() {
+        return dieselDeclaration;
+    }
+
+    public void setDieselDeclaration(DieselDeclaration dieselDeclaration) {
+        this.dieselDeclaration = dieselDeclaration;
+    }
+
     public ProductPack getProductPack() {
         return productPack;
     }

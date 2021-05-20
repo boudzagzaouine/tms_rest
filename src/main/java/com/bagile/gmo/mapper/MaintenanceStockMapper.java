@@ -94,6 +94,8 @@ public class MaintenanceStockMapper {
             maintenanceStock.setUom(UomMapper.toDto(gmoMaintenanceStock.getPdtUom(), true));
             maintenanceStock.setWarehouse(WarehouseMapper.toDto(gmoMaintenanceStock.getWrhWarehouse(), true));
             maintenanceStock.setStock(StockMapper.toDto(gmoMaintenanceStock.getStkStock(), false));
+
+            maintenanceStock.setDieselDeclaration(DieselDeclarationMapper.toDto(gmoMaintenanceStock.getGmoDieselDeclaration(), false));
         }
         return maintenanceStock;
     }
@@ -131,6 +133,8 @@ public class MaintenanceStockMapper {
             gmoMaintenanceStock.setStkContainer(ContainerMapper.toEntity(maintenanceStock.getContainer(), true));
             gmoMaintenanceStock.setWrhWarehouse(WarehouseMapper.toEntity(maintenanceStock.getWarehouse(), true));
             gmoMaintenanceStock.setStkStock(StockMapper.toEntity(maintenanceStock.getStock(), true));
+            gmoMaintenanceStock.setGmoDieselDeclaration(DieselDeclarationMapper.toEntity(maintenanceStock.getDieselDeclaration(), false));
+
         }
         return gmoMaintenanceStock;
     }
