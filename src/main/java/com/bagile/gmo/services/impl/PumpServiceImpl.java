@@ -79,6 +79,12 @@ public class PumpServiceImpl implements PumpService {
     }
 
     @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            pumpRepository.deleteById(id);        }
+    }
+    @Override
     public void delete(Pump pump) {
         pumpRepository.delete(PumpMapper.toEntity(pump, false));
     }
