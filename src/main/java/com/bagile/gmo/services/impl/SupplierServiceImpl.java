@@ -9,6 +9,7 @@ import com.bagile.gmo.mapper.SupplierMapper;
 import com.bagile.gmo.repositories.SupplierRepository;
 import com.bagile.gmo.services.SettingService;
 import com.bagile.gmo.services.SupplierService;
+import com.bagile.gmo.util.GmaoSearch;
 import com.bagile.gmo.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +26,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class SupplierServiceImpl implements SupplierService {
+public class SupplierServiceImpl implements SupplierService,GmaoSearch {
     private final SupplierRepository supplierRepository;
 
     @Autowired
@@ -38,14 +40,15 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public Supplier save(Supplier supplier) {
+    public Supplier save(@NonNull Supplier supplier) {
         LOGGER.info("save Supplier");
+        supplier.setGmao(true);
         return SupplierMapper.toDto(supplierRepository.saveAndFlush(SupplierMapper.toEntity(supplier, false)), false);
     }
 
     @Override
-    public Long size() {
-        return supplierRepository.count();
+    public Long size() throws AttributesNotFound, ErrorType {
+        return supplierRepository.count(Search.expression(addGmaoToSearch(""), RcpSupplier.class));
     }
 
     @Override
@@ -63,17 +66,18 @@ public class SupplierServiceImpl implements SupplierService {
         if (search.equals("")){
             return findAll ();
         }
-        return SupplierMapper.toDtos(supplierRepository.findAll(Search.expression(search, RcpSupplier.class)), false);
+        return SupplierMapper.toDtos(supplierRepository.findAll(Search.expression(addGmaoToSearch(search), RcpSupplier.class)), false);
     }
 
     @Override
-    public List<Supplier> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
+    public List<Supplier> find(String search,int page, int size) throws AttributesNotFound, ErrorType {
         if (search.equals("")){
             return findAll (page, size);
         }
+
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return SupplierMapper.toDtos(supplierRepository.findAll(Search.expression(search, RcpSupplier.class), pageable), false);
+        return SupplierMapper.toDtos(supplierRepository.findAll(Search.expression(addGmaoToSearch(search), RcpSupplier.class), pageable), false);
     }
 
     @Override
@@ -81,7 +85,7 @@ public class SupplierServiceImpl implements SupplierService {
         if (search.equals("")){
             return size ();
         }
-        return supplierRepository.count(Search.expression(search, RcpSupplier.class));
+        return supplierRepository.count(Search.expression(addGmaoToSearch(search), RcpSupplier.class));
     }
 
     @Override
@@ -103,10 +107,10 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public List<Supplier> findAll(int page, int size) {
+    public List<Supplier> findAll(int page, int size) throws AttributesNotFound, ErrorType {
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return SupplierMapper.toDtos(supplierRepository.findAll(pageable), false);
+        return SupplierMapper.toDtos(supplierRepository.findAll(Search.expression(addGmaoToSearch(""), RcpSupplier.class), pageable), false);
     }
 
     @Override

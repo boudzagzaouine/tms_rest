@@ -2,7 +2,6 @@ package com.bagile.gmo.services;
 
 import com.bagile.gmo.dto.SaleOrder;
 import com.bagile.gmo.exceptions.AttributesNotFound;
-import com.bagile.gmo.exceptions.CustomException;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 
@@ -13,7 +12,7 @@ public interface SaleOrderService {
     SaleOrder save(SaleOrder saleOrder);
 
 
-    Long size();
+    Long size() throws AttributesNotFound, ErrorType;
 
     Boolean isExist(Long id);
 
@@ -33,7 +32,7 @@ public interface SaleOrderService {
 
     List<SaleOrder> findAll();
 
-    List<SaleOrder> findAll(int page, int size);
+    List<SaleOrder> findAll(int page, int size) throws AttributesNotFound, ErrorType;
 
     String getNextVal();
 

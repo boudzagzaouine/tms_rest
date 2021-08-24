@@ -12,6 +12,6 @@ import java.util.List;
 public interface VehicleRepository extends JpaRepository<GmoVehicle,Long>,
         QuerydslPredicateExecutor<GmoVehicle> {
 
-    @Query(value="select nextval('schema_emsgc.seq_vehicle_code')",nativeQuery = true)
+    @Query(value="select nextval('schema_crm.seq_vehicle_code')",nativeQuery = true)
     public List<BigInteger> getNextVal();
 }

@@ -28,7 +28,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 @Service
-public class StockServiceImpl implements StockService, AddActive {
+public class StockServiceImpl implements StockService, AddActive,GmaoSearch {
 
     @Autowired
     private StockRepository stockRepository;
@@ -59,6 +59,7 @@ public class StockServiceImpl implements StockService, AddActive {
     public Stock save(Stock stock) throws IdNotFound, CustomException, AttributesNotFound, ErrorType {
 
         LOGGER.info("save Stock");
+        stock.setGmao(true);
         stock.setUpdateDate(EmsDate.getDateNow());
        /* Stock stkFound = searchStock(stock);
         if (stkFound != null) {
@@ -78,7 +79,7 @@ public class StockServiceImpl implements StockService, AddActive {
         }
         if (null == stock.getPurchasePrice())
             stock.setPurchasePrice(stock.getProduct().getPurshasePriceUB());
-        updateQuantity(stock);
+            updateQuantity(stock);
 
         if (stock.getProduct().getStockQuantity() == null) {
             stock.getProduct().setStockQuantity(BigDecimal.ZERO);
@@ -102,8 +103,8 @@ public class StockServiceImpl implements StockService, AddActive {
      */
 
     @Override
-    public Long size() {
-        return stockRepository.count();
+    public Long size() throws AttributesNotFound, ErrorType {
+        return stockRepository.count(Search.expression(addGmaoToSearch(""), StkStock.class));
     }
 
     /**
@@ -140,7 +141,7 @@ public class StockServiceImpl implements StockService, AddActive {
      */
     @Override
     public Stock findOne(String search) throws AttributesNotFound, ErrorType {
-        return StockMapper.toDto(stockRepository.findOne(Search.expression (search, StkStock.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
+        return StockMapper.toDto(stockRepository.findOne(Search.expression (addGmaoToSearch(search), StkStock.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
     }
 
     /**
@@ -157,7 +158,7 @@ public class StockServiceImpl implements StockService, AddActive {
         if (search.equals("")){
             return findAll ();
         }
-        return StockMapper.toDtos(stockRepository.findAll(Search.expression(search, StkStock.class)), false);
+        return StockMapper.toDtos(stockRepository.findAll(Search.expression(addGmaoToSearch(search), StkStock.class)), false);
 
 
 
@@ -181,7 +182,7 @@ public class StockServiceImpl implements StockService, AddActive {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return StockMapper.toDtos(stockRepository.findAll(Search.expression(search, StkStock.class), pageable), false);
+        return StockMapper.toDtos(stockRepository.findAll(Search.expression(addGmaoToSearch(search), StkStock.class), pageable), false);
     }
 
     /**
@@ -197,7 +198,7 @@ public class StockServiceImpl implements StockService, AddActive {
         if (search.equals("")){
             return size ();
         }
-        return stockRepository.count(Search.expression(search, StkStock.class));
+        return stockRepository.count(Search.expression(addGmaoToSearch(search), StkStock.class));
     }
 
     /**
@@ -240,7 +241,7 @@ public class StockServiceImpl implements StockService, AddActive {
     public List<Stock> findAll(int page, int size) throws AttributesNotFound, ErrorType {
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return StockMapper.toDtos(stockRepository.findAll(pageable), false);
+        return StockMapper.toDtos(stockRepository.findAll(Search.expression(addGmaoToSearch(""), StkStock.class), pageable), false);
     }
 
     /**
@@ -409,6 +410,8 @@ public class StockServiceImpl implements StockService, AddActive {
             return null;
         }
     }
+
+
 
     /***
      * search stock based on existing stock

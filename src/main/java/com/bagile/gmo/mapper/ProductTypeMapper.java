@@ -20,6 +20,8 @@ public class ProductTypeMapper {
         map.put("description", "pdtProductTypeDescription");
         map.put("creationDate", "pdtProductTypeCreationDate");
         map.put("updateDate", "pdtProductTypeUpdateDate");
+        map.put("gmao", "pdtProductTypeGmao");
+
     }
 
     public static Map<String, String> getMap() {
@@ -40,6 +42,8 @@ public class ProductTypeMapper {
         pdtProductType.setPdtProductTypeDescription(productType.getDescription());
         pdtProductType.setPdtProductTypeCreationDate(productType.getCreationDate());
         pdtProductType.setPdtProductTypeUpdateDate(productType.getUpdateDate());
+        pdtProductType.setPdtProductTypeGmao(productType.getGmao());
+
         if (!lazy) {
             pdtProductType.setPdtProductTypeParent(toEntity(productType.getProductType(), true));
             pdtProductType.setOwnOwner(OwnerMapper.toEntity(productType.getOwner(), true));
@@ -62,6 +66,8 @@ public class ProductTypeMapper {
         productType.setDescription(pdtProductType.getPdtProductTypeDescription());
         productType.setCreationDate(pdtProductType.getPdtProductTypeCreationDate());
         productType.setUpdateDate(pdtProductType.getPdtProductTypeUpdateDate());
+        productType.setGmao(pdtProductType.getPdtProductTypeGmao());
+
         if (!lazy) {
             productType.setProductType(toDto(pdtProductType.getPdtProductTypeParent(), true));
             productType.setOwner(OwnerMapper.toDto(pdtProductType.getOwnOwner(), true));

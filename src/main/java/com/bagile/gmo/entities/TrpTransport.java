@@ -59,6 +59,8 @@ public class TrpTransport extends EmsEntity implements java.io.Serializable {
     private Set<GmoTurn> gmoTurns=new HashSet<>();
 
   private OwnOwner ownOwner;
+
+  private Boolean trpTransportGmao;
     public TrpTransport() {
     }
 
@@ -129,6 +131,15 @@ public class TrpTransport extends EmsEntity implements java.io.Serializable {
         this.trpTransportComment = trpTransportComment;
     }
 
+
+    @Column(name = "trp_transportgmao")
+    public Boolean getTrpTransportGmao() {
+        return trpTransportGmao;
+    }
+
+    public void setTrpTransportGmao(Boolean trpTransportGmao) {
+        this.trpTransportGmao = trpTransportGmao;
+    }
 
     @Column(name = "trp_transportvariable1")
     public String getTrpTransportVariable1() {

@@ -108,6 +108,8 @@ public class RcpPurshaseOrder extends EmsEntity implements java.io.Serializable 
     private CmdAccount cmdAccount;
 
     private String rcpPurshaseOrdernotes;
+    private Boolean rcpPurshaseOrderGmao;
+
     public RcpPurshaseOrder() {
     }
 
@@ -216,6 +218,15 @@ public class RcpPurshaseOrder extends EmsEntity implements java.io.Serializable 
 
     public void setRcpPurshaseOrdernotes(String rcpPurshaseOrdernotes) {
         this.rcpPurshaseOrdernotes = rcpPurshaseOrdernotes;
+    }
+
+    @Column(name = "rcp_purshaseordergmao")
+    public Boolean getRcpPurshaseOrderGmao() {
+        return rcpPurshaseOrderGmao;
+    }
+
+    public void setRcpPurshaseOrderGmao(Boolean rcpPurshaseOrderGmao) {
+        this.rcpPurshaseOrderGmao = rcpPurshaseOrderGmao;
     }
 
     @Column(name = "rcp_purshaseordersupplierordercode", length = 30)

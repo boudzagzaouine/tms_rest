@@ -43,6 +43,8 @@ public interface ContainerService {
     //Create container for SaleOrderStock
     Container createContainer(MaintenanceStock maintenanceStock);
 
+    Container createContainer(AlimentationPump alimentationPump);
+
     //Create Container for DeliveryLine
     Container createContainer(DeliveryLine deliveryLine);
 

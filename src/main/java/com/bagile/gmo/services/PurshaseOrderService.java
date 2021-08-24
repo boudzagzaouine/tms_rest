@@ -1,14 +1,9 @@
 package com.bagile.gmo.services;
 
 import com.bagile.gmo.dto.PurshaseOrder;
-import com.bagile.gmo.dto.PurshaseOrder;
-import com.bagile.gmo.dto.Reception;
-import com.bagile.gmo.dto.SaleOrder;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
-
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -16,7 +11,7 @@ public interface PurshaseOrderService {
 
     PurshaseOrder save(PurshaseOrder purshaseOrder);
 
-    Long size();
+    Long size() throws AttributesNotFound, ErrorType;
 
     Boolean isExist(Long id);
 

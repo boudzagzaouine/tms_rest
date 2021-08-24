@@ -8,7 +8,12 @@ import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.AlimentationPumpMapper;
 import com.bagile.gmo.repositories.AlimentationPumpRepository;
 import com.bagile.gmo.services.AlimentationPumpService;
+import com.bagile.gmo.services.LocationService;
+import com.bagile.gmo.services.StockService;
 import com.bagile.gmo.util.Search;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -23,13 +28,29 @@ import java.util.List;
 public class AlimentationPumpServiceImpl implements AlimentationPumpService {
 
     private final AlimentationPumpRepository alimentationPumpRepository;
+
+    @Autowired
+    private LocationService locationService;
+
+    @Autowired
+    private StockService stockService;
+
+    private final static Logger LOGGER = LoggerFactory
+            .getLogger(AlimentationPumpService.class);
+
     public AlimentationPumpServiceImpl(AlimentationPumpRepository alimentationPumpRepository) {
         this.alimentationPumpRepository = alimentationPumpRepository;
     }
 
     @Override
-    public AlimentationPump save(AlimentationPump alimentationPump) {
-        return AlimentationPumpMapper.toDto(alimentationPumpRepository.saveAndFlush(AlimentationPumpMapper.toEntity(alimentationPump, false)), false);
+    public AlimentationPump save(AlimentationPump alimentationPump) throws IdNotFound, AttributesNotFound, ErrorType {
+
+
+        //List<Stock> sotcks = stockService.find("location.id !:"+20000L+",product.id:"+ alimentationPump.getFuelPump().getProduct().getId());
+
+
+
+        return  AlimentationPumpMapper.toDto(alimentationPumpRepository.saveAndFlush(AlimentationPumpMapper.toEntity(alimentationPump, false)), false);
     }
 
     @Override
@@ -101,6 +122,8 @@ public class AlimentationPumpServiceImpl implements AlimentationPumpService {
         Pageable pageable = PageRequest.of(page, size, sort);
         return AlimentationPumpMapper.toDtos(alimentationPumpRepository.findAll(pageable), false);
     }
+
+
 
 }
 

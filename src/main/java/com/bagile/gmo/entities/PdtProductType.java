@@ -39,6 +39,8 @@ public class PdtProductType extends EmsEntity {
     private Set<PdtProduct> pdtProductsForPdtProductSubTypeId = new HashSet<PdtProduct>(
             0);
 
+
+    private Boolean pdtProductTypeGmao;
     public PdtProductType() {
     }
 
@@ -113,6 +115,15 @@ public class PdtProductType extends EmsEntity {
 
     public void setPdtProductTypeDescription(String pdtProductTypeDescription) {
         this.pdtProductTypeDescription = pdtProductTypeDescription;
+    }
+
+    @Column(name = "pdt_producttypegmao")
+    public Boolean getPdtProductTypeGmao() {
+        return pdtProductTypeGmao;
+    }
+
+    public void setPdtProductTypeGmao(Boolean pdtProductType) {
+        this.pdtProductTypeGmao = pdtProductType;
     }
 
     @Temporal(TemporalType.TIMESTAMP)

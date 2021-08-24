@@ -159,6 +159,8 @@ public class PdtProduct extends EmsEntity implements java.io.Serializable {
     private PrmVat prmVat;
     private PrmVat prmVatPurchase;
 
+    private Boolean pdtProductGmao;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_pdt_product", allocationSize = 1)
@@ -292,6 +294,15 @@ public class PdtProduct extends EmsEntity implements java.io.Serializable {
 
     public void setPdtProductCode(String pdtProductCode) {
         this.pdtProductCode = pdtProductCode;
+    }
+
+    @Column(name = "pdt_productgmao")
+    public Boolean getPdtProductGmao() {
+        return pdtProductGmao;
+    }
+
+    public void setPdtProductGmao(Boolean pdtProductGmao) {
+        this.pdtProductGmao = pdtProductGmao;
     }
 
     @Column(name = "pdt_productpriceub")

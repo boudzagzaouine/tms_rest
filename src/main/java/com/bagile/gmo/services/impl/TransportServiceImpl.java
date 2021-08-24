@@ -9,6 +9,7 @@ import com.bagile.gmo.mapper.TransportMapper;
 import com.bagile.gmo.repositories.TransportRepository;
 import com.bagile.gmo.services.SettingService;
 import com.bagile.gmo.services.TransportService;
+import com.bagile.gmo.util.GmaoSearch;
 import com.bagile.gmo.util.Search;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -22,7 +23,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class TransportServiceImpl implements TransportService {
+public class TransportServiceImpl implements TransportService, GmaoSearch {
     private final TransportRepository transportRepository;
     @Autowired
     private SettingService settingService;
@@ -33,12 +34,13 @@ public class TransportServiceImpl implements TransportService {
 
     @Override
     public Transport save(Transport transport) {
+        transport.setGmao(true);
         return TransportMapper.toDto(transportRepository.saveAndFlush(TransportMapper.toEntity(transport, false)), false);
     }
 
     @Override
-    public Long size() {
-        return transportRepository.count();
+    public Long size() throws AttributesNotFound, ErrorType {
+        return transportRepository.count(Search.expression(addGmaoToSearch(""), TrpTransport.class));
     }
 
     @Override
@@ -56,7 +58,7 @@ public class TransportServiceImpl implements TransportService {
         if (search.equals("")){
             return findAll ();
         }
-        return TransportMapper.toDtos(transportRepository.findAll(Search.expression(search, TrpTransport.class)), false);
+        return TransportMapper.toDtos(transportRepository.findAll(Search.expression(addGmaoToSearch(search), TrpTransport.class)), false);
     }
 
     @Override
@@ -66,7 +68,7 @@ public class TransportServiceImpl implements TransportService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return TransportMapper.toDtos(transportRepository.findAll(Search.expression(search, TrpTransport.class), pageable), false);
+        return TransportMapper.toDtos(transportRepository.findAll(Search.expression(addGmaoToSearch(search), TrpTransport.class), pageable), false);
     }
 
     @Override
@@ -74,7 +76,7 @@ public class TransportServiceImpl implements TransportService {
         if (search.equals("")){
             return size ();
         }
-        return transportRepository.count(Search.expression(search, TrpTransport.class));
+        return transportRepository.count(Search.expression(addGmaoToSearch(""), TrpTransport.class));
     }
 
     @Override
@@ -99,10 +101,10 @@ public class TransportServiceImpl implements TransportService {
     }
 
     @Override
-    public List<Transport> findAll(int page, int size) {
+    public List<Transport> findAll(int page, int size) throws AttributesNotFound, ErrorType {
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return TransportMapper.toDtos(transportRepository.findAll(pageable), false);
+        return TransportMapper.toDtos(transportRepository.findAll(Search.expression(addGmaoToSearch(""), TrpTransport.class),pageable), false);
     }
     @Override
     public String getNextVal() {

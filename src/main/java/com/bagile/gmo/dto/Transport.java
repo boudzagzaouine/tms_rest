@@ -29,7 +29,10 @@ public class Transport  extends EmsDto implements Serializable {
     private String description;
     private Address address;
     private Boolean active;
+    private Boolean gmao;
+
  private Owner owner;
+
     private List<TransportCategoryVehicle> transportCategorieVehicules=new ArrayList<>();
 
     private List<Turn> turns=new ArrayList<>();
@@ -147,6 +150,14 @@ public class Transport  extends EmsDto implements Serializable {
         this.variable10 = variable10;
     }
 
+
+    public Boolean getGmao() {
+        return gmao;
+    }
+
+    public void setGmao(Boolean gmao) {
+        this.gmao = gmao;
+    }
 
     public Owner getOwner() {
         return owner;

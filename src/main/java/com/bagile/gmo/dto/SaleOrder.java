@@ -3,7 +3,6 @@ package com.bagile.gmo.dto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 public class SaleOrder  extends EmsDto implements Serializable {
@@ -59,6 +58,7 @@ public class SaleOrder  extends EmsDto implements Serializable {
     private BigDecimal vatDefaultCurrency;
     private BigDecimal exchangeRate;
 
+    private Boolean gmao;
 
 
     public long getId() {
@@ -155,6 +155,14 @@ public class SaleOrder  extends EmsDto implements Serializable {
 
     public void setVariable7(String variable7) {
         this.variable7 = variable7;
+    }
+
+    public Boolean getGmao() {
+        return gmao;
+    }
+
+    public void setGmao(Boolean gmao) {
+        this.gmao = gmao;
     }
 
     public String getVariable8() {

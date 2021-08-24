@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public interface AlimentationPumpService {
-    AlimentationPump save(AlimentationPump alimentationPump);
+    AlimentationPump save(AlimentationPump alimentationPump) throws IdNotFound, AttributesNotFound, ErrorType;
 
     Long size();
 
@@ -31,4 +31,5 @@ public interface AlimentationPumpService {
     List<AlimentationPump> findAll();
 
     List<AlimentationPump> findAll(int page, int size);
+
 }

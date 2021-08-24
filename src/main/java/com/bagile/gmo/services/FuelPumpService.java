@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public interface FuelPumpService {
-    FuelPump save(FuelPump fuelPump);
+    FuelPump save(FuelPump fuelPump) throws IdNotFound;
 
     Long size();
 

@@ -292,7 +292,7 @@ public interface SettingService {
     {
         Setting setting = null;
         try {
-            setting = findById(102L);
+            setting = findById(1002L);
         } catch (IdNotFound idNotFound) {
             return null;
         }
@@ -313,7 +313,7 @@ public interface SettingService {
     {
         Setting setting = null;
         try {
-            setting = findById(103L);
+            setting = findById(1003L);
         } catch (IdNotFound idNotFound) {
             return null;
         }
@@ -324,7 +324,7 @@ public interface SettingService {
     {
         Setting setting = null;
         try {
-            setting = findById(104L);
+            setting = findById(1004L);
         } catch (IdNotFound idNotFound) {
             return null;
         }
@@ -334,7 +334,7 @@ public interface SettingService {
     {
         Setting setting = null;
         try {
-            setting = findById(100L);
+            setting = findById(1000L);
         } catch (IdNotFound idNotFound) {
             return null;
         }
@@ -355,7 +355,7 @@ public interface SettingService {
     {
         Setting setting = null;
         try {
-            setting = findById(105L);
+            setting = findById(1005L);
         } catch (IdNotFound idNotFound) {
             return null;
         }

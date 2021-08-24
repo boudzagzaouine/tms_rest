@@ -12,6 +12,7 @@ import com.bagile.gmo.services.OrderStatusService;
 import com.bagile.gmo.services.PurshaseOrderLineService;
 import com.bagile.gmo.services.PurshaseOrderService;
 import com.bagile.gmo.services.SettingService;
+import com.bagile.gmo.util.GmaoSearch;
 import com.bagile.gmo.util.Search;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -26,7 +27,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class PurshaseOrderServiceImpl implements PurshaseOrderService {
+public class PurshaseOrderServiceImpl implements PurshaseOrderService, GmaoSearch {
     
     private final PurshaseOrderRepository purshaseOrderRepository;
     @Autowired
@@ -43,12 +44,13 @@ public class PurshaseOrderServiceImpl implements PurshaseOrderService {
 
     @Override
     public PurshaseOrder save(PurshaseOrder purshaseOrder) {
+         purshaseOrder.setGmao(true);
         return PurshaseOrderMapper.toDto(purshaseOrderRepository.saveAndFlush(PurshaseOrderMapper.toEntity(purshaseOrder, false)), false);
     }
 
     @Override
-    public Long size() {
-        return purshaseOrderRepository.count();
+    public Long size() throws AttributesNotFound, ErrorType {
+        return purshaseOrderRepository.count(Search.expression(addGmaoToSearch(""),RcpPurshaseOrder.class));
     }
 
     @Override
@@ -66,7 +68,7 @@ public class PurshaseOrderServiceImpl implements PurshaseOrderService {
         if (search.equals("")){
             return findAll ();
         }
-        return PurshaseOrderMapper.toDtos(purshaseOrderRepository.findAll(Search.expression(search, RcpPurshaseOrder.class)), false);
+        return PurshaseOrderMapper.toDtos(purshaseOrderRepository.findAll(Search.expression(addGmaoToSearch(search), RcpPurshaseOrder.class)), false);
     }
 
     @Override
@@ -76,7 +78,7 @@ public class PurshaseOrderServiceImpl implements PurshaseOrderService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return PurshaseOrderMapper.toDtos(purshaseOrderRepository.findAll(Search.expression(search, RcpPurshaseOrder.class), pageable), false);
+        return PurshaseOrderMapper.toDtos(purshaseOrderRepository.findAll(Search.expression(addGmaoToSearch(search), RcpPurshaseOrder.class), pageable), false);
     }
 
     @Override
@@ -90,7 +92,7 @@ public class PurshaseOrderServiceImpl implements PurshaseOrderService {
         if (search.equals("")){
             return size ();
         }
-        return purshaseOrderRepository.count(Search.expression(search, RcpPurshaseOrder.class));
+        return purshaseOrderRepository.count(Search.expression(addGmaoToSearch(search), RcpPurshaseOrder.class));
     }
 
     @Override
@@ -115,10 +117,10 @@ public class PurshaseOrderServiceImpl implements PurshaseOrderService {
     }
 
     @Override
-    public List<PurshaseOrder> findAll(int page, int size) {
+    public List<PurshaseOrder> findAll(int page, int size) throws AttributesNotFound, ErrorType {
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return PurshaseOrderMapper.toDtos(purshaseOrderRepository.findAll(pageable), false);
+        return PurshaseOrderMapper.toDtos(purshaseOrderRepository.findAll(Search.expression(addGmaoToSearch(""), RcpPurshaseOrder.class),pageable), false);
     }
     private void archivePurshaseOrder(PurshaseOrder purshaseOrder) throws IdNotFound {
         if (purshaseOrder.getOrderStatus().equals(orderStatusService.closedStatus())){

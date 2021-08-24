@@ -63,6 +63,8 @@ public class Reception  extends EmsDto implements Serializable {
     private BigDecimal extraCost;
     private Date supplierDeliveryDate;
 
+    private Boolean gmao ;
+
     public String getTransportContact() {
         return transportContact;
     }
@@ -232,6 +234,13 @@ public class Reception  extends EmsDto implements Serializable {
     }
 
 
+    public Boolean getGmao() {
+        return gmao;
+    }
+
+    public void setGmao(Boolean gmao) {
+        this.gmao = gmao;
+    }
 
     public String getOrderCode() {
         return orderCode;

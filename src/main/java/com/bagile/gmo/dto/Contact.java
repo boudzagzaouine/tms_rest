@@ -15,7 +15,7 @@ public class Contact extends EmsDto implements Serializable {
     private String tel1;
     private String tel2;
     private String fax ;
-    private String contactType;
+   // private String contactType;
     private  String email;
     private String comment;
     private boolean  active ;
@@ -72,14 +72,14 @@ public class Contact extends EmsDto implements Serializable {
         this.fax = fax;
     }
 
-    public String getContactType() {
+  /*  public String getContactType() {
         return contactType;
     }
 
     public void setContactType(String contactType) {
         this.contactType = contactType;
     }
-
+*/
     public String getEmail() {
         return email;
     }

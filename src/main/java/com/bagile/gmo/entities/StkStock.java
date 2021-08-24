@@ -92,6 +92,8 @@ public class StkStock extends EmsEntity implements java.io.Serializable {
     private Boolean stkStockActive;
     private Boolean stkStockAppliedBruteToNet;
 
+    private Boolean stkStockGmao;
+
 
     public StkStock() {
     }
@@ -205,6 +207,15 @@ public class StkStock extends EmsEntity implements java.io.Serializable {
 
     public void setStkStockQuantity(BigDecimal stkStockQuantity) {
         this.stkStockQuantity = stkStockQuantity;
+    }
+
+    @Column(name = "stk_stockgmao")
+    public Boolean getStkStockGmao() {
+        return stkStockGmao;
+    }
+
+    public void setStkStockGmao(Boolean stkStockGmao) {
+        this.stkStockGmao = stkStockGmao;
     }
 
     @Temporal(TemporalType.DATE)

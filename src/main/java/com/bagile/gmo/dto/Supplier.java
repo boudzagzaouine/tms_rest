@@ -11,7 +11,7 @@ public class Supplier extends EmsDto {
     private Contact contact;
     private Address address;
     private Boolean active;
-
+    private Boolean gmao;
 
     public long getId() {
         return id;
@@ -86,6 +86,13 @@ public class Supplier extends EmsDto {
     }
 
 
+    public Boolean getGmao() {
+        return gmao;
+    }
+
+    public void setGmao(Boolean gmao) {
+        this.gmao = gmao;
+    }
 
     @Override
     public boolean equals(Object object) {

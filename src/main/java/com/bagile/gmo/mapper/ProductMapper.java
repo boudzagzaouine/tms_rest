@@ -101,6 +101,8 @@ public class ProductMapper {
         map.put("variableWeight", "pdtProductVariableWeight");
         map.put("customsPercentage", "pdtProductCustomsPercentage");
         map.put("purchaseVat", "prmVatPurchase");
+        map.put("gmao", "pdtProductGmao");
+
 
     }
     public static Map<String, String> getMap() {
@@ -187,6 +189,7 @@ public class ProductMapper {
         pdtProduct.setPdtProductTTCSalePriceUB(product.getSalePriceTTCUB());
         pdtProduct.setPdtProductTTCPurshasePriceUB(product.getPurshasePriceTTCUB());
         pdtProduct.setPdtProductProfessionalTTCSalePrice(product.getProfessionalTTCSalePrice());
+        pdtProduct.setPdtProductGmao(product.getGmao());
 
 
         if (!lazy) {
@@ -287,6 +290,7 @@ public class ProductMapper {
         product.setSalePriceTTCUB(pdtProduct.getPdtProductTTCSalePriceUB());
         product.setPurshasePriceTTCUB(pdtProduct.getPdtProductTTCPurshasePriceUB());
         product.setProfessionalTTCSalePrice(pdtProduct.getPdtProductProfessionalTTCSalePrice());
+        product.setGmao(pdtProduct.getPdtProductGmao());
 
 
         if (!lazy) {
@@ -395,6 +399,9 @@ public class ProductMapper {
         product.setSalePriceTTCUB(pdtProductView.getPdtProductTTCSalePriceUB());
         product.setPurshasePriceTTCUB(pdtProductView.getPdtProductTTCPurshasePriceUB());
         product.setProfessionalTTCSalePrice(pdtProductView.getPdtProductProfessionalTTCSalePrice());
+        product.setGmao(pdtProductView.getPdtProductGmao());
+
+
         if (!lazy) {
           //  product.setProductCategory(ProductCategoryMapper.toDto(pdtProductView.getPdtProductCategory(), true));
             product.setVat(VatMapper.toDto(pdtProductView.getPrmVat(), false));

@@ -8,6 +8,7 @@ import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.ProductTypeMapper;
 import com.bagile.gmo.repositories.ProductTypeRepository;
 import com.bagile.gmo.services.ProductTypeService;
+import com.bagile.gmo.util.GmaoSearch;
 import com.bagile.gmo.util.Search;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -20,7 +21,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class ProductTypeServiceImpl implements ProductTypeService {
+public class ProductTypeServiceImpl implements ProductTypeService, GmaoSearch {
     private final ProductTypeRepository productTypeRepository;
 
     public ProductTypeServiceImpl(ProductTypeRepository productTypeRepository) {
@@ -29,12 +30,13 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 
     @Override
     public ProductType save(ProductType productType) {
+         productType.setGmao(true);
         return ProductTypeMapper.toDto(productTypeRepository.saveAndFlush(ProductTypeMapper.toEntity(productType, false)), false);
     }
 
     @Override
-    public Long size() {
-        return productTypeRepository.count();
+    public Long size() throws AttributesNotFound, ErrorType {
+        return productTypeRepository.count(Search.expression(addGmaoToSearch(""), PdtProductType.class));
     }
 
     @Override
@@ -52,7 +54,7 @@ public class ProductTypeServiceImpl implements ProductTypeService {
         if (search.equals("")){
             return findAll ();
         }
-        return ProductTypeMapper.toDtos(productTypeRepository.findAll(Search.expression(search, PdtProductType.class)), false);
+        return ProductTypeMapper.toDtos(productTypeRepository.findAll(Search.expression(addGmaoToSearch(search), PdtProductType.class)), false);
     }
 
     @Override
@@ -62,7 +64,7 @@ public class ProductTypeServiceImpl implements ProductTypeService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return ProductTypeMapper.toDtos(productTypeRepository.findAll(Search.expression(search, PdtProductType.class), pageable), false);
+        return ProductTypeMapper.toDtos(productTypeRepository.findAll(Search.expression(addGmaoToSearch(search), PdtProductType.class), pageable), false);
     }
 
     @Override
@@ -70,7 +72,7 @@ public class ProductTypeServiceImpl implements ProductTypeService {
         if (search.equals("")){
             return size ();
         }
-        return productTypeRepository.count(Search.expression(search, PdtProductType.class));
+        return productTypeRepository.count(Search.expression(addGmaoToSearch(search), PdtProductType.class));
     }
 
     @Override
@@ -98,10 +100,10 @@ public class ProductTypeServiceImpl implements ProductTypeService {
     }
 
     @Override
-    public List<ProductType> findAll(int page, int size) {
+    public List<ProductType> findAll(int page, int size) throws AttributesNotFound, ErrorType {
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return ProductTypeMapper.toDtos(productTypeRepository.findAll(pageable), false);
+        return ProductTypeMapper.toDtos(productTypeRepository.findAll(Search.expression(addGmaoToSearch(""), PdtProductType.class), pageable), false);
     }
 
 }

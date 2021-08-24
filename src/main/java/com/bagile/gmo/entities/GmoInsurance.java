@@ -96,7 +96,7 @@ public class GmoInsurance extends EmsEntity {
         this.gmoInsuranceTerm = gmoInsuranceTerm;
     }*/
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne()
     @JoinColumn(name = "gmo_insurancesupplierid")
     public RcpSupplier getRcpSupplier() {
         return rcpSupplier;

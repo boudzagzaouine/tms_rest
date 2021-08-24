@@ -49,6 +49,7 @@ public class Stock extends EmsDto implements Serializable {
     private BigDecimal purchasePrice;
     private BigDecimal salePrice;
     private Boolean appliedBruteToNet = false;
+    private Boolean gmao;
   //private ProductionLine productionLine;
  // private Production production;
 
@@ -173,13 +174,21 @@ public class Stock extends EmsDto implements Serializable {
         this.receptionDate = receptionDate;
     }
 
-    /*public Warehouse getWarehouse() {
-         return this.warehouse;
+    public Boolean getGmao() {
+        return gmao;
     }
 
-    public void setWarehouse(Warehouse warehouse) {
-         this.warehouse = warehouse;
-    }*/
+    public void setGmao(Boolean gmao) {
+        this.gmao = gmao;
+    }
+
+    /*public Warehouse getWarehouse() {
+             return this.warehouse;
+        }
+
+        public void setWarehouse(Warehouse warehouse) {
+             this.warehouse = warehouse;
+        }*/
     public Product getProduct() {
         return this.product;
     }

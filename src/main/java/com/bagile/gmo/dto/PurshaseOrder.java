@@ -69,6 +69,8 @@ public class PurshaseOrder  extends EmsDto implements Serializable {
 
     private String notes;
 
+    private Boolean gmao;
+
     public long getId() {
         return id;
     }
@@ -204,6 +206,14 @@ public class PurshaseOrder  extends EmsDto implements Serializable {
     public void setReceptions(Set<Reception> receptions) {
         this.receptions = receptions;
     }*/
+
+    public Boolean getGmao() {
+        return gmao;
+    }
+
+    public void setGmao(Boolean gmao) {
+        this.gmao = gmao;
+    }
 
     public String getNotes() {
         return notes;

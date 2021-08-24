@@ -186,6 +186,8 @@ public class LocationServiceImpl implements LocationService {
      */
     @Override
     public Location getDefaultLocationForDelivery() throws AttributesNotFound, ErrorType {
-        return findOne("defaultLocation:true,locationStatus.id:1");
+        return find("defaultLocation:true,locationStatus.id:1").stream().findFirst().orElse(null);
     }
+
+
 }

@@ -22,6 +22,7 @@ public class SupplierMapper {
         map.put("creationDate", "rcpSupplierCreationDate");
         map.put("updateDate", "rcpSupplierUpdateDate");
         map.put("active", "rcpSupplierIsActive");
+        map.put("gmao", "rcpSupplierGmao");
 
 
     }
@@ -48,6 +49,8 @@ public class SupplierMapper {
         rcpSupplier.setRcpSupplierCreationDate(supplier.getCreationDate());
         rcpSupplier.setRcpSupplierUpdateDate(supplier.getUpdateDate());
         rcpSupplier.setRcpSupplierIsActive(supplier.getActive());
+        rcpSupplier.setRcpSupplierGmao(supplier.getGmao());
+
         if (!lazy) {
             rcpSupplier.setOwnOwner(OwnerMapper.toEntity(supplier.getOwner(), true));
             rcpSupplier.setPrmContact(ContactMapper.toEntity(supplier.getContact(), true));
@@ -69,6 +72,8 @@ public class SupplierMapper {
         supplier.setCreationDate(rcpSupplier.getRcpSupplierCreationDate());
         supplier.setUpdateDate(rcpSupplier.getRcpSupplierUpdateDate());
         supplier.setActive(rcpSupplier.getRcpSupplierIsActive());
+        supplier.setGmao(rcpSupplier.getRcpSupplierGmao());
+
         if (!lazy) {
             supplier.setOwner(OwnerMapper.toDto(rcpSupplier.getOwnOwner(), true));
             supplier.setContact(ContactMapper.toDto(rcpSupplier.getPrmContact(), true));

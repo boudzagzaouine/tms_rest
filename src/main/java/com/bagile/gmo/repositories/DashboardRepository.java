@@ -18,7 +18,7 @@ public class DashboardRepository {
 
     public BigDecimal averageconsumptionvehicle(long vehicleId,long CategoryId, Date dateDepart,Date dateFin)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_emsgc.averageconsumptionvehicle(?,?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_crm.averageconsumptionvehicle(?,?,?,?)");
         query.setParameter(1,vehicleId);
         query.setParameter(2,CategoryId);
         query.setParameter(3,dateDepart);
@@ -28,7 +28,7 @@ public class DashboardRepository {
 
     public BigDecimal correctivemaintenancecostsbyvehicle(long vehicleId,long CategoryId, Date dateDepart,Date dateFin)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_emsgc.correctivemaintenancecostsbyvehicle(?,?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_crm.correctivemaintenancecostsbyvehicle(?,?,?,?)");
         query.setParameter(1,vehicleId);
         query.setParameter(2,CategoryId);
         query.setParameter(3,dateDepart);
@@ -38,7 +38,7 @@ public class DashboardRepository {
 
     public BigDecimal preventivemaintenancecostsbyvehicle(long vehicleId,long CategoryId, Date dateDepart,Date dateFin)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_emsgc.preventivemaintenancecostsbyvehicle(?,?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_crm.preventivemaintenancecostsbyvehicle(?,?,?,?)");
         query.setParameter(1,vehicleId);
         query.setParameter(2,CategoryId);
         query.setParameter(3,dateDepart);
@@ -48,7 +48,7 @@ public class DashboardRepository {
 
     public BigDecimal traveledmileagebyvechile(long vehicleId,long CategoryId, Date dateDepart,Date dateFin)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_emsgc.traveledmileagebyvechile(?,?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_crm.traveledmileagebyvechile(?,?,?,?)");
         query.setParameter(1,vehicleId);
         query.setParameter(2,CategoryId);
         query.setParameter(3,dateDepart);
@@ -58,7 +58,7 @@ public class DashboardRepository {
 
     public BigDecimal totalnumberofproblemsbyvehicle(long vehicleId,long CategoryId, Date dateDepart,Date dateFin)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_emsgc.totalnumberofproblemsbyvehicle(?,?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_crm.totalnumberofproblemsbyvehicle(?,?,?,?)");
         query.setParameter(1,vehicleId);
         query.setParameter(2,CategoryId);
         query.setParameter(3,dateDepart);
@@ -73,7 +73,7 @@ public class DashboardRepository {
 
     public BigDecimal averageconsumptiondriver(long driverId, Date dateDepart,Date dateFin)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_emsgc.averageconsumptiondriver(?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_crm.averageconsumptiondriver(?,?,?)");
         query.setParameter(1,driverId);
         query.setParameter(2,dateDepart);
         query.setParameter(3,dateFin);
@@ -82,7 +82,7 @@ public class DashboardRepository {
 
     public BigDecimal correctivemaintenancecostsbydriver(long driverId, Date dateDepart,Date dateFin)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_emsgc.correctivemaintenancecostsbydriver(?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_crm.correctivemaintenancecostsbydriver(?,?,?)");
         query.setParameter(1,driverId);
         query.setParameter(2,dateDepart);
         query.setParameter(3,dateFin);
@@ -91,7 +91,7 @@ public class DashboardRepository {
 
     public BigDecimal preventivemaintenancecostsbydriver(long driverId, Date dateDepart,Date dateFin)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_emsgc.preventivemaintenancecostsbydriver(?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_crm.preventivemaintenancecostsbydriver(?,?,?)");
         query.setParameter(1,driverId);
         query.setParameter(2,dateDepart);
         query.setParameter(3,dateFin);
@@ -100,7 +100,7 @@ public class DashboardRepository {
 
     public BigDecimal traveledmileagebydriver(long driverId, Date dateDepart,Date dateFin)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_emsgc.traveledmileagebydriver(?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_crm.traveledmileagebydriver(?,?,?)");
         query.setParameter(1,driverId);
         query.setParameter(2,dateDepart);
         query.setParameter(3,dateFin);
@@ -109,7 +109,7 @@ public class DashboardRepository {
 
     public BigDecimal totalnumberofproblemsbydriver(long driverId, Date dateDepart,Date dateFin)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_emsgc.totalnumberofproblemsbydriver(?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_crm.totalnumberofproblemsbydriver(?,?,?)");
         query.setParameter(1,driverId);
         query.setParameter(2,dateDepart);
         query.setParameter(3,dateFin);
@@ -122,7 +122,7 @@ public class DashboardRepository {
 
     public BigDecimal averageconsumptionvehicleseniorityvehicle(long categoryid, long slice1,long slice2,long senioritymode)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_emsgc.averageconsumptionseniorityvehicle(?,?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_crm.averageconsumptionseniorityvehicle(?,?,?,?)");
         query.setParameter(1,categoryid);
         query.setParameter(2,slice1);
         query.setParameter(3,slice2);
@@ -132,7 +132,7 @@ public class DashboardRepository {
 
     public BigDecimal correctivemaintenancecostsbyseniorityvehicle(long categoryid, long slice1,long slice2,long senioritymode)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_emsgc.correctivemaintenancecostsbyseniorityvehicle(?,?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_crm.correctivemaintenancecostsbyseniorityvehicle(?,?,?,?)");
         query.setParameter(1,categoryid);
         query.setParameter(2,slice1);
         query.setParameter(3,slice2);
@@ -142,7 +142,7 @@ public class DashboardRepository {
 
     public BigDecimal preventivemaintenancecostsbyseniorityvehicle(long categoryid, long slice1,long slice2,long senioritymode)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_emsgc.preventivemaintenancecostsbyseniorityvehicle(?,?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_crm.preventivemaintenancecostsbyseniorityvehicle(?,?,?,?)");
         query.setParameter(1,categoryid);
         query.setParameter(2,slice1);
         query.setParameter(3,slice2);
@@ -152,7 +152,7 @@ public class DashboardRepository {
 
     public BigDecimal traveledmileagebyvechileseniorityvehicle(long categoryid, long slice1,long slice2,long senioritymode)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_emsgc.traveledmileagebyseniorityvehicle(?,?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_crm.traveledmileagebyseniorityvehicle(?,?,?,?)");
         query.setParameter(1,categoryid);
         query.setParameter(2,slice1);
         query.setParameter(3,slice2);
@@ -162,7 +162,7 @@ public class DashboardRepository {
 
     public BigDecimal totalnumberofproblemsbyseniorityvehicle(long categoryid, long slice1,long slice2,long senioritymode)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_emsgc.totalnumberofproblemsbyseniorityvehicle(?,?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_crm.totalnumberofproblemsbyseniorityvehicle(?,?,?,?)");
         query.setParameter(1,categoryid);
         query.setParameter(2,slice1);
         query.setParameter(3,slice2);

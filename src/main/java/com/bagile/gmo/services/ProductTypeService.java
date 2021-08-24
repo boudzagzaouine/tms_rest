@@ -10,7 +10,7 @@ import java.util.List;
 public interface ProductTypeService {
     ProductType save(ProductType productType);
 
-    Long size();
+    Long size() throws AttributesNotFound, ErrorType;
 
     Boolean isExist(Long id);
 
@@ -28,5 +28,5 @@ public interface ProductTypeService {
     void deleteAll(List<Long> ids);
     List<ProductType> findAll();
 
-    List<ProductType> findAll(int page, int size);
+    List<ProductType> findAll(int page, int size) throws AttributesNotFound, ErrorType;
 }

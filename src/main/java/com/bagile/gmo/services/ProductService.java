@@ -14,7 +14,7 @@ public interface ProductService {
 
     Product save(Product product) throws IdNotFound, AttributesNotFound, ErrorType;
 
-    Long size();
+    Long size() throws AttributesNotFound, ErrorType;
 
     Boolean isExist(Long id);
 

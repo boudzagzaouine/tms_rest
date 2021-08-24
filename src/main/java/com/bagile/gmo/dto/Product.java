@@ -104,6 +104,9 @@ public class Product extends EmsEntity {
        private Vat vat;
        private Vat purchaseVat;
 
+       private Boolean gmao;
+
+
     public Vat getVat() {
         return vat;
     }
@@ -198,6 +201,14 @@ public class Product extends EmsEntity {
 
     public void setVariable2(String variable2) {
         this.variable2 = variable2;
+    }
+
+    public Boolean getGmao() {
+        return gmao;
+    }
+
+    public void setGmao(Boolean gmao) {
+        this.gmao = gmao;
     }
 
     public String getVariable3() {

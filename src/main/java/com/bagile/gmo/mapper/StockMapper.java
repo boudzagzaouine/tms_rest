@@ -57,6 +57,8 @@ public class StockMapper {
         map.put("active", "stkStockActive");
         map.put("appliedBruteToNet", "stkStockAppliedBruteToNet");
         map.put("productionLine", "prcProductionLine");
+        map.put("gmao", "stkStockGmao");
+
 
     }
 
@@ -106,6 +108,8 @@ public class StockMapper {
         stkStock.setStkStockPurchasePrice(stock.getPurchasePrice());
         stkStock.setStkStockSalePrice(stock.getSalePrice());
         stkStock.setStkStockAppliedBruteToNet(stock.getAppliedBruteToNet());
+        stkStock.setStkStockGmao(stock.getGmao());
+
         if (!lazy) {
             //stkStock.setPdtProductDimension(ProductDimensionMapper.toEntity(stock.getProductDimension(), true));
            // stkStock.setWrhWarehouse(WarehouseMapper.toEntity(stock.getWarehouse(), true));
@@ -161,6 +165,8 @@ public class StockMapper {
         stock.setPurchasePrice(stkStock.getStkStockPurchasePrice());
         stock.setSalePrice(stkStock.getStkStockSalePrice());
         stock.setAppliedBruteToNet(stkStock.getStkStockAppliedBruteToNet());
+        stock.setGmao(stkStock.getStkStockGmao());
+
         if (!lazy) {
             stock.setProductPack(ProductPackMapper.toDto(stkStock.getPdtProductPack(), false));
           //  stock.setProductDimension(ProductDimensionMapper.toDto(stkStock.getPdtProductDimension(), true));

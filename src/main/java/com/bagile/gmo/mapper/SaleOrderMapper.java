@@ -67,6 +67,7 @@ public class SaleOrderMapper {
         map.put("confirmed", "cmdSaleOrderConfirmed");
         map.put("dealResponsible", "cmdDealResponsible");
         map.put("lines","cmdSaleOrderLines");
+        map.put("gmao","cmdSaleOrderGmao");
 
     }
 
@@ -122,6 +123,7 @@ public class SaleOrderMapper {
         saleOrder.setTotalPriceTTCDefaultCurrency(cmdSaleOrder.getCmdSaleOrderTotalPriceTTCDefaultCurrency());
         saleOrder.setVatDefaultCurrency(cmdSaleOrder.getCmdSaleOrderVatDefaultCurrency());
         saleOrder.setExchangeRate(cmdSaleOrder.getCmdSaleOrderExchangeRate());
+        saleOrder.setGmao(cmdSaleOrder.getCmdSaleOrderGmao());
 
 
         if (!lazy) {
@@ -185,6 +187,7 @@ public class SaleOrderMapper {
         cmdSaleOrder.setCmdSaleOrderTotalPriceTTCDefaultCurrency(saleOrder.getTotalPriceTTCDefaultCurrency());
         cmdSaleOrder.setCmdSaleOrderVatDefaultCurrency(saleOrder.getVatDefaultCurrency());
         cmdSaleOrder.setCmdSaleOrderExchangeRate(saleOrder.getExchangeRate());
+        cmdSaleOrder.setCmdSaleOrderGmao(saleOrder.getGmao());
 
 
         if (!lazy) {

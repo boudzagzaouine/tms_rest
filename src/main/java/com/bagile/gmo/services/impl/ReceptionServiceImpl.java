@@ -7,6 +7,7 @@ import com.bagile.gmo.mapper.ReceptionMapper;
 import com.bagile.gmo.repositories.ReceptionRepository;
 import com.bagile.gmo.services.*;
 import com.bagile.gmo.util.EmsDate;
+import com.bagile.gmo.util.GmaoSearch;
 import com.bagile.gmo.util.Search;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -22,7 +23,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class ReceptionServiceImpl implements ReceptionService {
+public class ReceptionServiceImpl implements ReceptionService, GmaoSearch {
     @Autowired
 
     private  ReceptionRepository receptionRepository;
@@ -49,6 +50,8 @@ public class ReceptionServiceImpl implements ReceptionService {
     @Override
     public Reception save(Reception reception) throws ContainerException, ProductControls, AttributesNotFound, ErrorType, IdNotFound, CustomException {
        // LOGGER.info("save Reception");
+  reception.setGmao(true);
+
         reception.setUpdateDate(EmsDate.getDateNow());
         String operation = "F";
         if (0 >= reception.getId()) {
@@ -67,14 +70,7 @@ public class ReceptionServiceImpl implements ReceptionService {
                     receptionStockService.updateReceptionStock(receptionLine);
                 }
 
-
-
-
             }
-
-
-
-
 
         }
 
@@ -110,8 +106,8 @@ public class ReceptionServiceImpl implements ReceptionService {
         }
     }
     @Override
-    public Long size() {
-        return receptionRepository.count();
+    public Long size() throws AttributesNotFound, ErrorType {
+        return receptionRepository.count(Search.expression(addGmaoToSearch(""), RcpReception.class));
     }
 
     @Override
@@ -129,7 +125,7 @@ public class ReceptionServiceImpl implements ReceptionService {
         if (search.equals("")){
             return findAll ();
         }
-        return ReceptionMapper.toDtos(receptionRepository.findAll(Search.expression(search, RcpReception.class)), false);
+        return ReceptionMapper.toDtos(receptionRepository.findAll(Search.expression(addGmaoToSearch(search), RcpReception.class)), false);
     }
 
     @Override
@@ -139,7 +135,7 @@ public class ReceptionServiceImpl implements ReceptionService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return ReceptionMapper.toDtos(receptionRepository.findAll(Search.expression(search, RcpReception.class), pageable), false);
+        return ReceptionMapper.toDtos(receptionRepository.findAll(Search.expression(addGmaoToSearch(search), RcpReception.class), pageable), false);
     }
 
     @Override
@@ -155,7 +151,7 @@ public class ReceptionServiceImpl implements ReceptionService {
         if (search.equals("")){
             return size ();
         }
-        return receptionRepository.count(Search.expression(search, RcpReception.class));
+        return receptionRepository.count(Search.expression(addGmaoToSearch(search), RcpReception.class));
     }
 
     @Override
@@ -202,10 +198,10 @@ public class ReceptionServiceImpl implements ReceptionService {
     }
 
     @Override
-    public List<Reception> findAll(int page, int size) {
+    public List<Reception> findAll(int page, int size) throws AttributesNotFound, ErrorType {
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return ReceptionMapper.toDtos(receptionRepository.findAll(pageable), false);
+        return ReceptionMapper.toDtos(receptionRepository.findAll(Search.expression(addGmaoToSearch(""), RcpReception.class), pageable), false);
 
     }
 

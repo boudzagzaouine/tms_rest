@@ -12,7 +12,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "rcp_supplier")
-// @SQLDelete(sql = "update schema_gmo.rcp_supplier set rcp_supplierisactive = false")
+// @SQLDelete(sql = "update schema_crm.rcp_supplier set rcp_supplierisactive = false")
 // @Where(clause = "rcp_supplierisactive = true")
 public class RcpSupplier extends EmsEntity implements java.io.Serializable {
 
@@ -36,6 +36,8 @@ public class RcpSupplier extends EmsEntity implements java.io.Serializable {
     private Date rcpSupplierUpdateDate;
    // @NotNull
     private Boolean rcpSupplierIsActive;
+
+    private Boolean rcpSupplierGmao;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -104,6 +106,14 @@ public class RcpSupplier extends EmsEntity implements java.io.Serializable {
 
     public void setRcpSupplierDescription(String rcpSupplierDescription) {
         this.rcpSupplierDescription = rcpSupplierDescription;
+    }
+    @Column(name = "rcp_suppliergmao")
+    public Boolean getRcpSupplierGmao() {
+        return rcpSupplierGmao;
+    }
+
+    public void setRcpSupplierGmao(Boolean rcpGmo) {
+        this.rcpSupplierGmao = rcpGmo;
     }
 
     @Column(name = "rcp_suppliercomment")

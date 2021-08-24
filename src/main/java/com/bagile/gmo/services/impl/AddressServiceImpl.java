@@ -113,7 +113,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public String getNextVal() {
-        String value=settingService.generateCodeSupplier() + addressRepository.getNextVal().get(0);
+        String value=settingService.generateCodeAddress() + addressRepository.getNextVal().get(0);
         return value;
 
     }

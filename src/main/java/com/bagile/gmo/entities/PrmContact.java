@@ -14,7 +14,7 @@ public class PrmContact extends EmsEntity {
     private String prmContactTel1;
     private String prmContactTel2;
     private String prmContactFax;
-    private String prmContactType;
+   // private String prmContactType;
     private String prmContactEmail;
     private String prmContactComment;
     private Boolean prmContactActive;
@@ -75,14 +75,14 @@ public class PrmContact extends EmsEntity {
         this.prmContactFax = prmContactFax;
     }
 
-    @Column(name = "prm_contacttype")
+  /*  @Column(name = "prm_contacttype")
     public String getPrmContactType() {
         return prmContactType;
     }
     public void setPrmContactType(String prmContactType) {
         this.prmContactType = prmContactType;
     }
-
+*/
     @Column(name = "prm_contactemail")
     public String getPrmContactEmail() {
         return prmContactEmail;

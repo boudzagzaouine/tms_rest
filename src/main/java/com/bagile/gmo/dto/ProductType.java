@@ -20,6 +20,8 @@ public class ProductType  extends EmsDto implements Serializable {
     private ProductType productType;
     private Set<Product> productsForProductType;
     private Set<Product> productsForProductSubType;
+    private Boolean gmao;
+
 
     public long getId() {
         return id;
@@ -115,6 +117,14 @@ public class ProductType  extends EmsDto implements Serializable {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public Boolean getGmao() {
+        return gmao;
+    }
+
+    public void setGmao(Boolean gmao) {
+        this.gmao = gmao;
     }
 
     @Override

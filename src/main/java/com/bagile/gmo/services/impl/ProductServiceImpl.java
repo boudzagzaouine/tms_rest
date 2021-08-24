@@ -14,6 +14,7 @@ import com.bagile.gmo.services.NotificationService;
 import com.bagile.gmo.services.ProductPackService;
 import com.bagile.gmo.services.ProductService;
 import com.bagile.gmo.util.EmsDate;
+import com.bagile.gmo.util.GmaoSearch;
 import com.bagile.gmo.util.Search;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;
@@ -32,7 +33,7 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class ProductServiceImpl implements ProductService {
+public class ProductServiceImpl implements ProductService, GmaoSearch {
 
     @Autowired
     private ProductRepository productRepository;
@@ -76,7 +77,7 @@ public class ProductServiceImpl implements ProductService {
 
         return ProductMapper.toDto(productRepository.saveAndFlush(ProductMapper.toEntity(product, false)), false);*/
 
-
+ product.setGmao(true);
         LOGGER.info ("save Product");
         Set<ProductPack> listProdctPacks = product.getProductPacks ( );
         product.setProductPacks (null);
@@ -252,8 +253,8 @@ public class ProductServiceImpl implements ProductService {
         return pack;
     }
     @Override
-    public Long size() {
-        return productRepository.count();
+    public Long size() throws AttributesNotFound, ErrorType {
+        return productRepository.count(Search.expression(addGmaoToSearch(""), PdtProduct.class));
 
     }
 
@@ -315,7 +316,7 @@ public class ProductServiceImpl implements ProductService {
                 (Search.expression(search, PdtProduct.class)), false);*/
         search = addActiveConditionToSearch(search);
         return ProductMapper.toViewDtos(productViewRepository.findAll(Search
-                .expression(search, PdtProductView.class)), false);
+                .expression(addGmaoToSearch(search), PdtProductView.class)), false);
     }
 
     private String addActiveConditionToSearch(String search) {
@@ -323,7 +324,7 @@ public class ProductServiceImpl implements ProductService {
             if (!search.endsWith(",") && !search.isEmpty()) {
                 search += ",";
             }
-            search += "active:true";
+            search += "active:true,gmao:true";
         }
         return search;
     }
@@ -353,7 +354,7 @@ public class ProductServiceImpl implements ProductService {
         Sort sort = Sort.by(Sort.Direction.ASC, "pdtProductCode");
         return ProductMapper.toViewDtos(
                 productViewRepository.findAll(
-                        Search.expression(search, PdtProductView.class), pageable),
+                        Search.expression(addGmaoToSearch(search), PdtProductView.class), pageable),
                 false);
     }
 
@@ -363,13 +364,13 @@ public class ProductServiceImpl implements ProductService {
         if (search.equals("")) {
             return size();
         }
-        return productRepository.count(Search.expression(search, PdtProduct.class));
+        return productRepository.count(Search.expression(addGmaoToSearch(search), PdtProduct.class));
     }
 
     @Override
     public List<Product> findAll() throws AttributesNotFound, ErrorType {
         return ProductMapper.toViewDtos(
-                productViewRepository.findAll( ),
+                productViewRepository.findAll(Search.expression(addGmaoToSearch(""), PdtProduct.class)),
                 false);
 
 
@@ -399,7 +400,7 @@ public class ProductServiceImpl implements ProductService {
         Pageable pageable = PageRequest.of(page, size, sort);
         return ProductMapper.toDtos(productRepository.findAll(pageable), false);*/
 
-        return ProductMapper.toDtos(productRepository.findAll(pageable), false);
+        return ProductMapper.toDtos(productRepository.findAll(Search.expression(addGmaoToSearch(""), PdtProduct.class), pageable), false);
 
     }
 

@@ -293,7 +293,7 @@ public class NotificationServiceImpl implements NotificationService {
         Notification notificationSearchProduct ;
         List<Notification> notifications = new ArrayList<>();
         NotificationState notificationStatee = notificationStateService.findById(3L);//epuise
-        List<Product> productList = productService.findAll();
+        List<Product> productList = productService.find("");
         NotificationType notificationTypeP = notificationTypeService.findById(2L); // Maintenance
 
         if (productList.size()>0) {

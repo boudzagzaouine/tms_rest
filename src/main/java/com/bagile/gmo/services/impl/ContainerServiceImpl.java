@@ -30,7 +30,7 @@ public class ContainerServiceImpl implements ContainerService, AddActive {
     @Autowired
     private ContainerRepository containerRepository;
     @Autowired
-    private LocationService locationService ;
+    private LocationService locationService;
     @Autowired
     private SettingService settingService;
 
@@ -39,6 +39,7 @@ public class ContainerServiceImpl implements ContainerService, AddActive {
 
     /**
      * create or update container
+     *
      * @param container
      * @return
      */
@@ -74,7 +75,7 @@ public class ContainerServiceImpl implements ContainerService, AddActive {
 
     @Override
     public Container findOne(String search) throws AttributesNotFound, ErrorType {
-        return ContainerMapper.toDto(containerRepository.findOne (Search.expression (search, StkContainer.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
+        return ContainerMapper.toDto(containerRepository.findOne(Search.expression(search, StkContainer.class)).orElseThrow(() -> new AttributesNotFound(search)), false);
     }
 
     @Override
@@ -131,6 +132,7 @@ public class ContainerServiceImpl implements ContainerService, AddActive {
 
     /**
      * generate container code and write it  on 18 numeric's number
+     *
      * @return
      */
     @Override
@@ -141,6 +143,7 @@ public class ContainerServiceImpl implements ContainerService, AddActive {
 
     /**
      * create container from SaleOrderStock
+     *
      * @param maintenanceStock
      * @return
      */
@@ -149,15 +152,18 @@ public class ContainerServiceImpl implements ContainerService, AddActive {
     public Container createContainer(MaintenanceStock maintenanceStock) {
         Container container;
         boolean containerManagement = settingService.containerManagement();
-        if (containerManagement || (maintenanceStock.getContainer() != null && maintenanceStock.getContainer().getId() > 0)) {
+        //containerManagement || (maintenanceStock.getContainer() != null && maintenanceStock.getContainer().getId() > 0)
+        if (containerManagement && maintenanceStock.getContainer() != null) {
             container = maintenanceStock.getContainer();
         } else {
             container = new Container();
             container.setCode(getNextVal());
         }
 
+        //
+        //container.setLocation(maintenanceStock.getLocation());
         try {
-            container.setLocation(maintenanceStock.getLocation()!=null?maintenanceStock.getLocation():locationService.getDefaultLocationForDelivery());
+            container.setLocation(maintenanceStock.getLocation() != null ? maintenanceStock.getLocation() : locationService.getDefaultLocationForDelivery());
         } catch (AttributesNotFound attributesNotFound) {
             attributesNotFound.printStackTrace();
         } catch (ErrorType errorType) {
@@ -170,6 +176,35 @@ public class ContainerServiceImpl implements ContainerService, AddActive {
         container.setUpdateDate(EmsDate.getDateNow());
         container.setReceptionDate(maintenanceStock.getOrderDate() != null ? maintenanceStock.getOrderDate() : new Date());
         container.setOutBoundDate(maintenanceStock.getOrderDate());
+        return save(container);
+    }
+
+    @Override
+    public Container createContainer(AlimentationPump alimentationPump) {
+        Container container;
+        boolean containerManagement = settingService.containerManagement();
+        //containerManagement || (maintenanceStock.getContainer() != null && maintenanceStock.getContainer().getId() > 0)
+
+            container = new Container();
+            container.setCode(getNextVal());
+
+
+        //
+        //container.setLocation(maintenanceStock.getLocation());
+        try {
+            container.setLocation(locationService.getDefaultLocationForDelivery());
+        } catch (AttributesNotFound attributesNotFound) {
+            attributesNotFound.printStackTrace();
+        } catch (ErrorType errorType) {
+            errorType.printStackTrace();
+        }
+
+       // container.setOwner(alimentationPump.getOwner());
+       // container.setWarehouse(maintenanceStock.getWarehouse());
+        container.setCreationDate(EmsDate.getDateNow());
+        container.setUpdateDate(EmsDate.getDateNow());
+        //container.setReceptionDate(maintenanceStock.getOrderDate() != null ? maintenanceStock.getOrderDate() : new Date());
+        //container.setOutBoundDate(maintenanceStock.getOrderDate());
         return save(container);
     }
 
@@ -187,6 +222,7 @@ public class ContainerServiceImpl implements ContainerService, AddActive {
 
     /**
      * create container from stock
+     *
      * @param stock
      * @return
      * @throws IdNotFound
@@ -207,7 +243,7 @@ public class ContainerServiceImpl implements ContainerService, AddActive {
         }
         container.setLocation(location);
 
-        container.setWarehouse(stock.getWarehouse()!=null?stock.getWarehouse():location.getWarehouse());
+        container.setWarehouse(stock.getWarehouse() != null ? stock.getWarehouse() : location.getWarehouse());
         container.setCreationDate(EmsDate.getDateNow());
         container.setUpdateDate(EmsDate.getDateNow());
         container.setReceptionDate(EmsDate.getDateNow());
@@ -215,9 +251,9 @@ public class ContainerServiceImpl implements ContainerService, AddActive {
     }
 
 
-
     /**
      * setOutBoundDate for container
+     *
      * @param maintenanceStock
      * @return container
      * @throws IdNotFound
@@ -246,6 +282,7 @@ public class ContainerServiceImpl implements ContainerService, AddActive {
 
     /**
      * create container from receptionStock
+     *
      * @param receptionStock
      * @return container
      * @throws ContainerException
@@ -256,7 +293,7 @@ public class ContainerServiceImpl implements ContainerService, AddActive {
         LOGGER.info("> Creating container for reception stock");
         Container container;
         boolean containerManagement = settingService.containerManagement();
-        if (containerManagement) {
+        if (containerManagement && receptionStock.getContainer() != null) {
             container = receptionStock.getContainer();
         } else {
             container = new Container();
@@ -266,6 +303,7 @@ public class ContainerServiceImpl implements ContainerService, AddActive {
         if (receptionStock.getLocation() != null) {
             LOGGER.info("> Reception stock came with it's Location ");
             container.setLocation(receptionStock.getLocation());
+
         } else {
             try {
                 LOGGER.info("> Reception Stock doesn't have location, so it will be attributed the default location");
@@ -273,6 +311,7 @@ public class ContainerServiceImpl implements ContainerService, AddActive {
                 if (locations != null && locations.size() > 0) {
                     LOGGER.info("> Found the default location");
                     container.setLocation(locations.get(0));
+                   // container.setWarehouse(receptionStock.getLocation().getWarehouse());
                 } else {
 
                     LOGGER.error("> Defalut location could not be found");
@@ -284,7 +323,7 @@ public class ContainerServiceImpl implements ContainerService, AddActive {
                 errorType.printStackTrace();
             } catch (Exception e) {
 
-                LOGGER.error(e.getMessage(),e);
+                LOGGER.error(e.getMessage(), e);
                 throw new ContainerException("Code conteneur exist déja");
             }
         }
@@ -301,6 +340,7 @@ public class ContainerServiceImpl implements ContainerService, AddActive {
 
     /**
      * create contianer from saleOrderLine
+     *
      * @param saleOrderLine
      * @return
      */
@@ -315,10 +355,11 @@ public class ContainerServiceImpl implements ContainerService, AddActive {
         container.setReceptionDate(EmsDate.getDateNow());
         return ContainerMapper.toDto(containerRepository.saveAndFlush(ContainerMapper.toEntity(container, false)), false);
     }
+
     @Override
-    public void archiveContainer(Container container){
+    public void archiveContainer(Container container) {
         try {
-            container=findById(container.getId());
+            container = findById(container.getId());
         } catch (IdNotFound idNotFound) {
             idNotFound.printStackTrace();
         }

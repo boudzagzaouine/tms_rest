@@ -63,6 +63,7 @@ public class PurshaseOrderMapper {
         map.put("deal", "cmdDeal");
         map.put("account", "cmdAccount");
         map.put("notes", "rcpPurshaseOrdernotes");
+        map.put("gmao", "rcpPurshaseOrderGmao");
 
 
     }
@@ -122,6 +123,7 @@ public class PurshaseOrderMapper {
         rcpPurshaseOrder.setRcpPurshaseOrderProvisionalCost(purshaseOrder.getProvisionalCost());
         rcpPurshaseOrder.setRcpPurshaseOrderExtraCost(purshaseOrder.getExtraCost());
         rcpPurshaseOrder.setRcpPurshaseOrdernotes(purshaseOrder.getNotes());
+        rcpPurshaseOrder.setRcpPurshaseOrderGmao(purshaseOrder.getGmao());
 
         if (!lazy) {
           //  rcpPurshaseOrder.setPrmPaymentStatus(PaymentStatusMapper.toEntity(purshaseOrder.getPaymentStatus(),true));
@@ -218,6 +220,7 @@ public class PurshaseOrderMapper {
         purshaseOrder.setProvisionalCost(rcpPurshaseOrder.getRcpPurshaseOrderProvisionalCost());
         purshaseOrder.setExtraCost(rcpPurshaseOrder.getRcpPurshaseOrderExtraCost());
         purshaseOrder.setNotes(rcpPurshaseOrder.getRcpPurshaseOrdernotes());
+        purshaseOrder.setGmao(rcpPurshaseOrder.getRcpPurshaseOrderGmao());
 
         if (!lazy) {
            // purshaseOrder.setPaymentStatus(PaymentStatusMapper.toDto(rcpPurshaseOrder.getPrmPaymentStatus(),true));

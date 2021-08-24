@@ -1,6 +1,7 @@
 package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.FuelPump;
+import com.bagile.gmo.dto.Location;
 import com.bagile.gmo.entities.GmoFuelPump;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
@@ -8,7 +9,9 @@ import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.FuelPumpMapper;
 import com.bagile.gmo.repositories.FuelPumpRepository;
 import com.bagile.gmo.services.FuelPumpService;
+import com.bagile.gmo.services.LocationService;
 import com.bagile.gmo.util.Search;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -22,13 +25,20 @@ import java.util.List;
 @Transactional
 public class FuelPumpServiceImpl implements FuelPumpService {
 
+    @Autowired
+    private LocationService locationService;
+
     private final FuelPumpRepository fuelPumpRepository;
     public FuelPumpServiceImpl(FuelPumpRepository fuelPumpRepository) {
         this.fuelPumpRepository = fuelPumpRepository;
     }
 
     @Override
-    public FuelPump save(FuelPump fuelPump) {
+    public FuelPump save(FuelPump fuelPump) throws IdNotFound {
+
+        Location location = locationService.findById(20000L);
+        fuelPump.setLocation(location);
+
         return FuelPumpMapper.toDto(fuelPumpRepository.saveAndFlush(FuelPumpMapper.toEntity(fuelPump, false)), false);
     }
 

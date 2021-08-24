@@ -110,6 +110,10 @@ public class CmdSaleOrder extends EmsDto implements Serializable {
     private String cmdSaleOrderDealCode;
     private Boolean cmdSaleOrderConfirmed;
 
+    private Boolean cmdSaleOrderGmao;
+
+
+
     public CmdSaleOrder() {
     }
 
@@ -283,6 +287,15 @@ public class CmdSaleOrder extends EmsDto implements Serializable {
 
     public void setCmdSaleOrderDescription(String cmdSaleOrderDescription) {
         this.cmdSaleOrderDescription = cmdSaleOrderDescription;
+    }
+
+    @Column(name = "cmd_saleordergmao")
+    public Boolean getCmdSaleOrderGmao() {
+        return cmdSaleOrderGmao;
+    }
+
+    public void setCmdSaleOrderGmao(Boolean cmdSaleOrderGmao) {
+        this.cmdSaleOrderGmao = cmdSaleOrderGmao;
     }
 
     @Temporal(TemporalType.DATE)

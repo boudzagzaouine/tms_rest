@@ -22,6 +22,7 @@ public class TransportMapper {
         map.put ("address", "adrAddress");
         map.put ("description", "trpTransportDescription");
         map.put ("active", "trpTransportIsActive");
+        map.put ("gmao", "trpTransportGmao");
 
 
         map.put ("creationDate", "creationDate");
@@ -50,6 +51,7 @@ public class TransportMapper {
         trpTransport.setTrpTransportComment (transport.getComment ( ));
         trpTransport.setTrpTransportName (transport.getName ( ));
         trpTransport.setTrpTransportIsActive (transport.getActive ( ));
+        trpTransport.setTrpTransportGmao (transport.getGmao ( ));
 
         trpTransport.setCreatedBy (transport.getCreatedBy ( ));
         trpTransport.setUpdatedBy (transport.getUpdatedBy ( ));
@@ -77,6 +79,7 @@ public class TransportMapper {
         transport.setName (trpTransport.getTrpTransportName ());
 
         transport.setActive (trpTransport.getTrpTransportIsActive ());
+        transport.setGmao (trpTransport.getTrpTransportGmao ());
 
         transport.setCreatedBy (trpTransport.getCreatedBy ());
         transport.setUpdatedBy (trpTransport.getUpdatedBy ());

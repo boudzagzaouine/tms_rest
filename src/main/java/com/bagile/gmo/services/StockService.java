@@ -10,7 +10,7 @@ public interface StockService {
 
     Stock save(Stock stock) throws IdNotFound, CustomException, AttributesNotFound, ErrorType;
 
-    Long size();
+    Long size() throws AttributesNotFound, ErrorType;
 
     Boolean isExist(Long id);
 
@@ -37,7 +37,8 @@ public interface StockService {
             ProductControls, IdNotFound, CustomException, AttributesNotFound, ErrorType;
     Stock createStock(ReceptionStock receptionStock, Boolean accounted);
     List<Stock> searchStock(MaintenanceStock maintenanceStock);
-   // List<Stock> searchStock(Task task);
+
+    // List<Stock> searchStock(Task task);
     Stock createStock(MaintenanceStock maintenanceStock);
     //Stock createStock(Task task);
 

@@ -13,6 +13,6 @@ public interface AgentRepository extends JpaRepository<GmoAgent, Long>,
         QuerydslPredicateExecutor<GmoAgent> {
 
 
-    @Query(value="select nextval('schema_emsgc.seq_agent_code')",nativeQuery = true)
+    @Query(value="select nextval('schema_crm.seq_agent_code')",nativeQuery = true)
     public List<BigInteger> getNextVal();
 }

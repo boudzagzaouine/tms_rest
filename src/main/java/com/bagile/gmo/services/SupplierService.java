@@ -11,7 +11,7 @@ import java.util.List;
 public interface SupplierService {
     Supplier save(Supplier supplier);
 
-    Long size();
+    Long size() throws AttributesNotFound, ErrorType;
 
     Boolean isExist(Long id);
 
@@ -29,7 +29,7 @@ public interface SupplierService {
 
     List<Supplier> findAll();
 
-    List<Supplier> findAll(int page, int size);
+    List<Supplier> findAll(int page, int size) throws AttributesNotFound, ErrorType;
     void deleteAll (List<Long> ids);
     String getNextVal();
 

@@ -106,6 +106,10 @@ public class RcpReception extends EmsEntity implements java.io.Serializable {
    // private UsrBox usrBox;
     private BigDecimal rcpReceptionProvisionalCost;
     private Date rcpReceptionSupplierDeliveryDate;
+
+    private Boolean rcpReceptionGmao;
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_rcp_reception", allocationSize = 1)
@@ -221,6 +225,16 @@ public class RcpReception extends EmsEntity implements java.io.Serializable {
 
     public void setRcpReceptionNumberOfContainers(Long rcpReceptionNumberOfContainers) {
         this.rcpReceptionNumberOfContainers = rcpReceptionNumberOfContainers;
+    }
+
+
+    @Column(name = "rcp_receptiongmao")
+    public Boolean getRcpReceptionGmao() {
+        return rcpReceptionGmao;
+    }
+
+    public void setRcpReceptionGmao(Boolean rcpReceptionGmao) {
+        this.rcpReceptionGmao = rcpReceptionGmao;
     }
 
     @Column(name = "rcp_receptionremarks")

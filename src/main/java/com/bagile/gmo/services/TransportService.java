@@ -11,7 +11,7 @@ import java.util.List;
 public interface TransportService {
     Transport save(Transport transport);
 
-    Long size();
+    Long size() throws AttributesNotFound, ErrorType;
 
     Boolean isExist(Long id);
 
@@ -30,6 +30,6 @@ public interface TransportService {
 
     List<Transport> findAll();
 
-    List<Transport> findAll(int page, int size);
+    List<Transport> findAll(int page, int size) throws AttributesNotFound, ErrorType;
     String getNextVal();
 }

@@ -60,6 +60,8 @@ public class ReceptionMapper {
         map.put("accounted", "rcpReceptionAccounted");
         map.put("box", "usrBox");
         map.put("supplierDeliveryDate", "rcpReceptionSupplierDeliveryDate");
+        map.put("gmao", "rcpReceptionGmao");
+
     }
 
     public static String getField(String key) {
@@ -115,6 +117,8 @@ public class ReceptionMapper {
         rcpReception.setRcpPurshaseExchangeRate(reception.getExchangeRate());
         rcpReception.setRcpReceptionProvisionalCost(reception.getProvisionalCost());
         rcpReception.setRcpReceptionSupplierDeliveryDate(reception.getSupplierDeliveryDate());
+        rcpReception.setRcpReceptionGmao(reception.getGmao());
+
         if (!lazy) {
             rcpReception.setCmdAccount(AccountMapper.toEntity(reception.getAccount(), true));
            // rcpReception.setLocLocation(LocationMapper.toEntity(reception.getLocation(), true));
@@ -195,6 +199,8 @@ public class ReceptionMapper {
         reception.setCreatedBy(rcpReception.getCreatedBy());
         reception.setProvisionalCost(rcpReception.getRcpReceptionProvisionalCost());
         reception.setSupplierDeliveryDate(rcpReception.getRcpReceptionSupplierDeliveryDate());
+        reception.setGmao(rcpReception.getRcpReceptionGmao());
+
         if (!lazy) {
             reception.setAccount(AccountMapper.toDto(rcpReception.getCmdAccount(), true));
            // reception.setLocation(LocationMapper.toDto(rcpReception.getLocLocation(), true));
