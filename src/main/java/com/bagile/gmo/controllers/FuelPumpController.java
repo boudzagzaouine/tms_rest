@@ -79,14 +79,14 @@ public class FuelPumpController {
     //@PreAuthorize("hasRole('BADGE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public FuelPump add(@RequestBody FuelPump fuelPump) {
+    public FuelPump add(@RequestBody FuelPump fuelPump) throws IdNotFound {
         return fuelPumpService.save(fuelPump);
     }
 
     //@PreAuthorize("hasRole('BADGE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public FuelPump set(@RequestBody FuelPump fuelPump) {
+    public FuelPump set(@RequestBody FuelPump fuelPump) throws IdNotFound {
         return fuelPumpService.save(fuelPump);
     }
 

@@ -12,7 +12,8 @@ public class GmoFuelPump extends EmsEntity{
     private PdtProduct pdtProduct;
     private GmoPump gmoPump;
     private BigDecimal gmoFuelPumpQuantity;
-  
+
+    private LocLocation locLocation;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -55,6 +56,15 @@ public class GmoFuelPump extends EmsEntity{
         this.gmoPump = pump;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_loclocationid")
+    public LocLocation getLocLocation() {
+        return locLocation;
+    }
+
+    public void setLocLocation(LocLocation locLocation) {
+        this.locLocation = locLocation;
+    }
 
 
     @Column(name = "gmo_fuelpumpquantity")

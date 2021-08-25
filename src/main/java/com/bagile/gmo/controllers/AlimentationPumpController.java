@@ -3,6 +3,7 @@ package com.bagile.gmo.controllers;
 import com.bagile.gmo.dto.AlimentationPump;
 import com.bagile.gmo.dto.FuelPump;
 import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.CustomException;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.services.AlimentationPumpService;
@@ -11,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
@@ -85,14 +87,14 @@ public class AlimentationPumpController {
     //@PreAuthorize("hasRole('BADGE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public AlimentationPump add(@RequestBody AlimentationPump alimentationPump) {
+    public AlimentationPump add(@RequestBody AlimentationPump alimentationPump) throws IdNotFound, AttributesNotFound, ErrorType, CustomException, IOException {
         return alimentationPumpService.save(alimentationPump);
     }
 
     //@PreAuthorize("hasRole('BADGE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public AlimentationPump set(@RequestBody AlimentationPump alimentationPump) throws AttributesNotFound, ErrorType, IdNotFound {
+    public AlimentationPump set(@RequestBody AlimentationPump alimentationPump) throws AttributesNotFound, ErrorType, IdNotFound, CustomException, IOException {
         FuelPump fuelPump ;
         BigDecimal quantityAlimentation,quantityfuelpump,res;
         fuelPump = fuelPumpService.findById(alimentationPump.getFuelPump().getId());

@@ -13,7 +13,7 @@ public class FuelPump extends EmsDto implements Serializable {
     private Product product;
     private Pump pump;
      private BigDecimal quantity;
-
+    private Location location;
     public FuelPump() {
     }
 
@@ -55,6 +55,14 @@ public class FuelPump extends EmsDto implements Serializable {
 
     public void setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     @Override

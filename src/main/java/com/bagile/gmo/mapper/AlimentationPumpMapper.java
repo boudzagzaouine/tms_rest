@@ -49,8 +49,8 @@ public class AlimentationPumpMapper {
 
         if (!lazy) {
            gmoAlimentationPump.setGmoFuelPump (FuelPumpMapper.toEntity (alimentationPump.getFuelPump ( ), false));
-            gmoAlimentationPump.setRcpReceptionLine (ReceptionLineMapper.toEntity (alimentationPump.getReceptionLine ( ), true));
-            gmoAlimentationPump.setRcpReception (ReceptionMapper.toEntity (alimentationPump.getReception ( ), true));
+          //  gmoAlimentationPump.setRcpReceptionLine (ReceptionLineMapper.toEntity (alimentationPump.getReceptionLine ( ), true));
+            //gmoAlimentationPump.setRcpReception (ReceptionMapper.toEntity (alimentationPump.getReception ( ), true));
 
         }
 
@@ -76,8 +76,8 @@ public class AlimentationPumpMapper {
 
         if (!lazy) {
             alimentationPump.setFuelPump (FuelPumpMapper.toDto (gmoAlimentationPump.getGmoFuelPump(), false));
-            alimentationPump.setReceptionLine (ReceptionLineMapper.toDto (gmoAlimentationPump.getRcpReceptionLine(), true));
-            alimentationPump.setReception (ReceptionMapper.toDto (gmoAlimentationPump.getRcpReception(), true));
+          //  alimentationPump.setReceptionLine (ReceptionLineMapper.toDto (gmoAlimentationPump.getRcpReceptionLine(), true));
+           // alimentationPump.setReception (ReceptionMapper.toDto (gmoAlimentationPump.getRcpReception(), true));
 
         }
         return alimentationPump;

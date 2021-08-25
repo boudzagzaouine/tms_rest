@@ -53,6 +53,7 @@ public class FuelPumpMapper {
         if (!lazy) {
            gmoFuelPump.setPdtProduct (ProductMapper.toEntity (fuelPump.getProduct ( ), false));
             gmoFuelPump.setGmoPump(PumpMapper.toEntity (fuelPump.getPump ( ), true));
+            gmoFuelPump.setLocLocation(LocationMapper.toEntity (fuelPump.getLocation ( ), true));
 
         }
 
@@ -78,6 +79,7 @@ public class FuelPumpMapper {
         if (!lazy) {
             fuelPump.setProduct (ProductMapper.toDto (gmoFuelPump.getPdtProduct(), false));
             fuelPump.setPump(PumpMapper.toDto (gmoFuelPump.getGmoPump(), true));
+            fuelPump.setLocation(LocationMapper.toDto (gmoFuelPump.getLocLocation(), true));
 
         }
         return fuelPump;

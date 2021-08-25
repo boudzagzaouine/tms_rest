@@ -14,8 +14,8 @@ public class GmoAlimentationPump extends EmsEntity{
     private BigDecimal gmoAlimentationQuantity;
     private Date gmoAlimentationPumpdate;
 
-   private RcpReceptionLine rcpReceptionLine;
-   private RcpReception rcpReception;
+    //  private RcpReceptionLine rcpReceptionLine;
+   //  private RcpReception rcpReception;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -68,7 +68,7 @@ public class GmoAlimentationPump extends EmsEntity{
         this.gmoAlimentationPumpdate = gmoAlimentationPumpdate;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+/*    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_receptionlineid")
     public RcpReceptionLine getRcpReceptionLine() {
         return rcpReceptionLine;
@@ -86,5 +86,5 @@ public class GmoAlimentationPump extends EmsEntity{
 
     public void setRcpReception(RcpReception rcpReception) {
         this.rcpReception = rcpReception;
-    }
+    }*/
 }
