@@ -1,7 +1,6 @@
 package com.bagile.gmo.controllers;
 
 import com.bagile.gmo.dto.Insurance;
-import com.bagile.gmo.dto.Vehicle;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
@@ -90,6 +89,8 @@ public class InsuranceController {
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Insurance set(@RequestBody Insurance insurance) {
+
+
         return insuranceService.save(insurance);
     }
     //@PreAuthorize("hasRole('BADGE_DELETE')")

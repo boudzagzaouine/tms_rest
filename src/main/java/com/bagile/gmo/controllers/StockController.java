@@ -37,7 +37,7 @@ public class StockController {
     //@PreAuthorize("hasAnyRole('BADGETYPE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
-    public Long size() {
+    public Long size() throws AttributesNotFound, ErrorType {
         return stockService.size();
     }
     //@PreAuthorize("hasAnyRole('BADGETYPE_VIEW')")

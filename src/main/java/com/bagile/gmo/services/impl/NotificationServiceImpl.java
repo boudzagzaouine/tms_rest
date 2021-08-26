@@ -169,14 +169,14 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     @Scheduled(fixedDelay = 60000L)
-    public void verify() throws AttributesNotFound, ErrorType, IdNotFound {
+    public void verify()   {
 
         try {
         verifyTriggerDateMaintenance();
         verifyStockProduct();
             LOGGER.info("execute Scheduled ");
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(),e);
 
         }
 

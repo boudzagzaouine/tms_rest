@@ -1,19 +1,11 @@
 package com.bagile.gmo.controllers;
 
 import com.bagile.gmo.dto.PurshaseOrder;
-import com.bagile.gmo.dto.PurshaseOrder;
-import com.bagile.gmo.dto.SaleOrder;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.services.PurshaseOrderService;
-import com.bagile.gmo.services.PurshaseOrderService;
-import com.bagile.gmo.services.UserDetailsServiceWarehouse;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,7 +36,7 @@ public class PurshaseOrderController {
     //@PreAuthorize("hasAnyRole('BADGETYPE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
-    public Long size() {
+    public Long size() throws AttributesNotFound, ErrorType {
         return purshaseOrderService.size();
     }
     //@PreAuthorize("hasAnyRole('BADGETYPE_VIEW')")
@@ -76,7 +68,6 @@ public class PurshaseOrderController {
     @ResponseBody
     public List<PurshaseOrder> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         return purshaseOrderService.find(search, page, size);
-
     }
     //@PreAuthorize("hasRole('BADGETYPE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

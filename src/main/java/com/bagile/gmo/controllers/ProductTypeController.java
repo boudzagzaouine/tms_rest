@@ -29,14 +29,14 @@ public class ProductTypeController {
    //@PreAuthorize("hasAnyRole('BADGETYPE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
-    public List<ProductType> getProductType(@RequestParam int page, @RequestParam int size) {
+    public List<ProductType> getProductType(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         return productTypeService.findAll(page, size);
 
     }
     //@PreAuthorize("hasAnyRole('BADGETYPE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
-    public Long size() {
+    public Long size() throws AttributesNotFound, ErrorType {
         return productTypeService.size();
     }
     //@PreAuthorize("hasAnyRole('BADGETYPE_VIEW')")

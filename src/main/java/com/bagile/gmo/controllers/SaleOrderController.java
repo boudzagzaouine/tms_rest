@@ -29,14 +29,14 @@ public class SaleOrderController {
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
-    public List<SaleOrder> getSaleOrders(@RequestParam int page, @RequestParam int size) {
+    public List<SaleOrder> getSaleOrders(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         return saleOrderService.findAll(page, size);
 
     }
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
-    public Long size() {
+    public Long size() throws AttributesNotFound, ErrorType {
         return saleOrderService.size();
     }
 

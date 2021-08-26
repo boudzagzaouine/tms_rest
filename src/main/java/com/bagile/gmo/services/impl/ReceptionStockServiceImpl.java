@@ -51,7 +51,11 @@ public class ReceptionStockServiceImpl implements ReceptionStockService {
     private NotificationService notificationService;
 
     @Autowired
+    private LocationService locationService;
+
+    @Autowired
     private ProductPackService productPackService;
+
     private final static Logger LOGGER = LoggerFactory
             .getLogger(ReceptionStockServiceImpl.class);
 
@@ -72,7 +76,8 @@ public class ReceptionStockServiceImpl implements ReceptionStockService {
 
         if (0 == receptionStock.getId()) {
             LOGGER.info(">Create a new ReceptionStock ");
-
+  Location location=locationService.findById(2L);
+            receptionStock.setLocation(location);
             receptionStock.setCreationDate(EmsDate.getDateNow());
             receptionStock.setUpdateDate(EmsDate.getDateNow());
             receptionStock.setReceptionDate(null == receptionStock.getReceptionDate() ? receptionStock.getReception().getReceptionDate() == null ? EmsDate.getDateNow() : receptionStock.getReception().getReceptionDate() : receptionStock.getReceptionDate());

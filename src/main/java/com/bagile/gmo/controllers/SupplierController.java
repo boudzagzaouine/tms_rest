@@ -30,14 +30,14 @@ public class SupplierController {
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
-    public List<Supplier> getSuppliers(@RequestParam int page, @RequestParam int size) {
+    public List<Supplier> getSuppliers(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         return supplierService.findAll(page, size);
 
     }
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
-    public Long size() {
+    public Long size() throws AttributesNotFound, ErrorType {
         return supplierService.size();
     }
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")

@@ -30,14 +30,14 @@ public class TransportController {
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
-    public List<Transport> getTransports(@RequestParam int page, @RequestParam int size) {
+    public List<Transport> getTransports(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         return transportService.findAll(page, size);
 
     }
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
-    public Long size() {
+    public Long size() throws AttributesNotFound, ErrorType {
         return transportService.size();
     }
 

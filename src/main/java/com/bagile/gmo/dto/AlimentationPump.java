@@ -14,9 +14,12 @@ public class AlimentationPump extends EmsDto implements Serializable {
     private FuelPump fuelPump;
     private BigDecimal quantity;
     private Date dateAlimentation;
-    private ReceptionLine receptionLine;
+   // private ReceptionLine receptionLine;
 
-    private Reception reception;
+  //  private Reception reception;
+
+
+
     public AlimentationPump() {
     }
 
@@ -63,7 +66,8 @@ public class AlimentationPump extends EmsDto implements Serializable {
     }
 
 
-    public ReceptionLine getReceptionLine() {
+
+  /* public ReceptionLine getReceptionLine() {
         return receptionLine;
     }
 
@@ -78,7 +82,7 @@ public class AlimentationPump extends EmsDto implements Serializable {
 
     public void setReception(Reception reception) {
         this.reception = reception;
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {

@@ -39,5 +39,4 @@ public interface LocationService {
     Location getDefaultLocationForReception() throws AttributesNotFound, ErrorType;
 
     Location getDefaultLocationForDelivery() throws AttributesNotFound, ErrorType;
-
 }

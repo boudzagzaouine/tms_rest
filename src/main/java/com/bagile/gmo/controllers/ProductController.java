@@ -39,7 +39,7 @@ public class ProductController {
     }
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
-    public Long size() {
+    public Long size() throws AttributesNotFound, ErrorType {
         return productService.size();
     }
     @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
