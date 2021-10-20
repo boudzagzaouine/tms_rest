@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 public class MaintenanceStateServiceImpl implements MaintenanceStateService {
 
     private final MaintenanceStateRepository maintenanceStateRepository;

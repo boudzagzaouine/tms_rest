@@ -47,6 +47,9 @@ public class Vehicle extends Patrimony implements Serializable {
     private BigDecimal currentMileage;
 //    private List<InsuranceTermsVehicle> insuranceTermVehicles=new ArrayList<>();
     private List<Turn> turns=new ArrayList<>();
+
+    private Date release; // mise en circulation
+    private BigDecimal age;
  private Owner owner;
 
 
@@ -325,6 +328,22 @@ public class Vehicle extends Patrimony implements Serializable {
 
     public void setOwner(Owner owner) {
         this.owner = owner;
+    }
+
+    public Date getRelease() {
+        return release;
+    }
+
+    public void setRelease(Date release) {
+        this.release = release;
+    }
+
+    public BigDecimal getAge() {
+        return age;
+    }
+
+    public void setAge(BigDecimal age) {
+        this.age = age;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.bagile.gmo.dto;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,6 +35,11 @@ private String carte;
     private List<Turn> turns = new ArrayList<>();
 
     private Owner owner;
+
+    private BigDecimal charged ;
+
+    private BigDecimal salary ;
+    private Date dateOfAssignment ;
 
     public Driver() {
     }
@@ -188,6 +194,32 @@ private String carte;
 
     public void setTurns(List<Turn> turns) {
         this.turns = turns;
+    }
+
+
+    public BigDecimal getCharged() {
+        return charged;
+    }
+
+    public void setCharged(BigDecimal charged) {
+        this.charged = charged;
+    }
+
+    public BigDecimal getSalary() {
+        return salary;
+    }
+
+    public void setSalary(BigDecimal salary) {
+        this.salary = salary;
+    }
+
+
+    public Date getDateOfAssignment() {
+        return dateOfAssignment;
+    }
+
+    public void setDateOfAssignment(Date dateOfAssignment) {
+        this.dateOfAssignment = dateOfAssignment;
     }
 
     @Override

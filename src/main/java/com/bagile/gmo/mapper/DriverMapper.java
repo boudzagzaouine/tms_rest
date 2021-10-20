@@ -67,6 +67,9 @@ public class DriverMapper {
         gmoDriver.setGmoDriverEmail(driver.getEmail());
         gmoDriver.setGmoDriverComment(driver.getComment());
  gmoDriver.setGmoCarte((driver.getCarte()));
+        gmoDriver.setGmoDriverCharged((driver.getCharged()));
+        gmoDriver.setGmoDriverSalary((driver.getSalary()));
+        gmoDriver.setGmoDriverDateOfAssignment((driver.getDateOfAssignment()));
 
 
         if (!lazy) {
@@ -125,6 +128,10 @@ public class DriverMapper {
         driver.setUpdatedBy(gmoDriver.getUpdatedBy());
         driver.setCreationDate(gmoDriver.getCreationDate());
         driver.setUpdateDate(gmoDriver.getUpdateDate());
+        driver.setCharged(gmoDriver.getGmoDriverCharged());
+        driver.setSalary(gmoDriver.getGmoDriverSalary());
+        driver.setDateOfAssignment(gmoDriver.getGmoDriverDateOfAssignment());
+
 
         if (!lazy) {
          //   driver.setCommissions(CommissionDriverMapper.toDtos(gmoDriver.getGmoCommissions (), false));

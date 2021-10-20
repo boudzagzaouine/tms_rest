@@ -19,7 +19,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class NotificationStateServiceImpl implements NotificationStateService {
 
     private final NotificationStateRepository notificationStateRepository;

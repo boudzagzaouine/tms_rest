@@ -19,7 +19,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class CommissionDriverServiceImpl implements CommissionDriverService {
     
     private final CommissionDriverRepository commissionRepository;

@@ -19,7 +19,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class VatServiceImpl implements VatService {
     private final VatRepository vatRepository;
     public VatServiceImpl(VatRepository vatRepository) {

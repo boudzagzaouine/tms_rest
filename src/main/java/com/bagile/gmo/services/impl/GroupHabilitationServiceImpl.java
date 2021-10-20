@@ -18,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 public class GroupHabilitationServiceImpl implements GroupHabilitationService {
 
     private final GroupHabilitationRepository groupHabilitationRepository;

@@ -19,7 +19,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class VehicleFeatureServiceImpl implements VehicleFeatureService {
     private final VehicleFeatureRepository vehicleFeatureRepository;
     public VehicleFeatureServiceImpl(VehicleFeatureRepository vehicleFeatureRepository) {

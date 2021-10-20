@@ -19,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
@@ -29,7 +30,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class NotificationServiceImpl implements NotificationService {
 
     private final NotificationRepository notificationRepository;
@@ -169,6 +169,7 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     @Scheduled(fixedDelay = 60000L)
+    @Transactional(propagation = Propagation.REQUIRED)
     public void verify()   {
 
         try {

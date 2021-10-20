@@ -20,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 public class ContractTypeServiceImpl implements ContractTypeService {
 
     @Autowired

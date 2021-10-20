@@ -23,7 +23,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 public class DriverServiceImpl implements DriverService {
     private final DriverRepository driverRepository;
     private final ContactService contactService;

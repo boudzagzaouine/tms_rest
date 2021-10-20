@@ -19,7 +19,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class InsuranceTermLigneServiceImpl implements InsuranceTermLigneService {
 
     private final InsuranceTermLigneRepository insuranceTermLigneRepository;

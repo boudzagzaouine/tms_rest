@@ -20,7 +20,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class SaleOrderLineServiceImpl implements SaleOrderLineService {
     private final SaleOrderLineRepository saleOrderLineRepository;
     public SaleOrderLineServiceImpl(SaleOrderLineRepository saleOrderLineRepository) {

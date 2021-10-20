@@ -24,7 +24,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class ReceptionLineServiceImpl implements ReceptionLineService {
     @Autowired
     private  ReceptionLineRepository receptionLineRepository;

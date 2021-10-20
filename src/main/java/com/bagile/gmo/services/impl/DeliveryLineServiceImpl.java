@@ -21,7 +21,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class DeliveryLineServiceImpl implements DeliveryLineService {
     private final DeliveryLineRepository deliveryLineRepository;
     public DeliveryLineServiceImpl(DeliveryLineRepository deliveryLineRepository) {

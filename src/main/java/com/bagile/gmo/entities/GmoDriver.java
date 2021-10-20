@@ -50,6 +50,12 @@ public class GmoDriver extends EmsEntity {
 
     private OwnOwner ownOwner;
 
+    private BigDecimal gmoDriverCharged ;
+
+    private BigDecimal gmoDriverSalary ;
+
+
+    private Date gmoDriverDateOfAssignment;
     public GmoDriver() {
     }
 
@@ -253,5 +259,33 @@ public class GmoDriver extends EmsEntity {
 
     public void setGmoTurns(Set<GmoTurn> gmoTurns) {
         this.gmoTurns = gmoTurns;
+    }
+
+    @Column(name = "gmo_drivercharged")
+    public BigDecimal getGmoDriverCharged() {
+        return gmoDriverCharged;
+    }
+
+    public void setGmoDriverCharged(BigDecimal gmoDriverCharged) {
+        this.gmoDriverCharged = gmoDriverCharged;
+    }
+
+    @Column(name = "gmo_driversalary")
+    public BigDecimal getGmoDriverSalary() {
+        return gmoDriverSalary;
+    }
+
+    public void setGmoDriverSalary(BigDecimal gmoDriverSalary) {
+        this.gmoDriverSalary = gmoDriverSalary;
+    }
+
+
+    @Column(name = "gmo_driverdateofassignment")
+    public Date getGmoDriverDateOfAssignment() {
+        return gmoDriverDateOfAssignment;
+    }
+
+    public void setGmoDriverDateOfAssignment(Date gmoDriverDateOfAssignment) {
+        this.gmoDriverDateOfAssignment = gmoDriverDateOfAssignment;
     }
 }

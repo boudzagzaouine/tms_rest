@@ -50,6 +50,9 @@ public class GmoVehicle extends GmoPatrimony {
 
     private OwnOwner ownOwner;
 
+    private Date gmoVehicleRelease;
+
+
   /*  @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_vehicule_id", allocationSize = 1)
@@ -359,4 +362,15 @@ public class GmoVehicle extends GmoPatrimony {
     public void setOwnOwner(OwnOwner ownOwner) {
         this.ownOwner = ownOwner;
     }
+
+    @Column(name = "gmo_vehiculerelease")
+    public Date getGmoVehicleRelease() {
+        return gmoVehicleRelease;
+    }
+
+    public void setGmoVehicleRelease(Date gmoVehicleRelease) {
+        this.gmoVehicleRelease = gmoVehicleRelease;
+    }
+
+
 }

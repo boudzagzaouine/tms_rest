@@ -22,7 +22,7 @@ public class Notification extends EmsDto implements Serializable {
     private Responsability responsability;
     private ServiceProvider serviceProvider;
    // private String agent;
- private Agent agent;
+    private Agent agent;
     public long getId() {
         return id;
     }

@@ -19,7 +19,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class PeriodicityTypeServiceImpl implements PeriodicityTypeService {
     private final PeriodicityTypeRepository periodicityTypeRepository;
 

@@ -22,7 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 public class AgentServiceImpl implements AgentService {
     private final AgentRepository agentRepository;
     private final static Logger LOGGER = LoggerFactory

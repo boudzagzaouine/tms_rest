@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
-@Transactional
 public class MachineServiceImpl implements MachineService {
 
     private final MachineRepository machineRepository;

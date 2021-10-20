@@ -17,7 +17,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class SaleOrderStockServiceImpl implements SaleOrderStockService {
     private final SaleOrderStockRepository saleOrderStockRepository;
     public SaleOrderStockServiceImpl(SaleOrderStockRepository saleOrderStockRepository) {

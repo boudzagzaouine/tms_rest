@@ -18,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 public class UserGroupWarehouseServiceImpl implements UserGroupWarehouseService {
 
     private final UserGroupWarehouseRepository userGroupWarehouseRepository;

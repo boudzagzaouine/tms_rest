@@ -19,7 +19,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class InsuranceTypeServiceImpl implements InsuranceTypeService {
 
     private final InsuranceTypeRepository insuranceTypeRepository;

@@ -19,7 +19,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class ConsumptionTypeServiceImpl implements ConsumptionTypeService {
     private final ConsumptionTypeRepository consumptionTypeRepository;
     public ConsumptionTypeServiceImpl(ConsumptionTypeRepository consumptionTypeRepository) {

@@ -19,7 +19,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class ProgramTypeServiceImpl implements ProgramTypeService {
     private final ProgramTypeRepository programTypeRepository;
 

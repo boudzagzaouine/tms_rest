@@ -19,7 +19,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class ResponsabilityServiceImpl implements ResponsabilityService {
     private final ResponsabilityRepository responsabilityRepository;
 

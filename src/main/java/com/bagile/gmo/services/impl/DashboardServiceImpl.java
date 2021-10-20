@@ -10,7 +10,6 @@ import java.util.Date;
 
 
 @Service
-@Transactional
 public class DashboardServiceImpl implements DashboardService {
 
 

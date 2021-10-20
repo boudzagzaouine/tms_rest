@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Transactional
 public class MaintenanceStockServiceImpl implements MaintenanceStockService {
 
     @Autowired

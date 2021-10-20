@@ -22,7 +22,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class ReceptionServiceImpl implements ReceptionService, GmaoSearch {
     @Autowired
 

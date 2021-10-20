@@ -20,7 +20,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class SaleOrderServiceImpl implements SaleOrderService, GmaoSearch {
     private final SaleOrderRepository saleOrderOrderRepository;
     public SaleOrderServiceImpl(SaleOrderRepository saleOrderOrderRepository) {

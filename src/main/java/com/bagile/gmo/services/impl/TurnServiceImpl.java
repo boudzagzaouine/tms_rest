@@ -20,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 public class TurnServiceImpl implements TurnService {
     private final TurnRepository TurnRepository;
     private final static Logger LOGGER = LoggerFactory

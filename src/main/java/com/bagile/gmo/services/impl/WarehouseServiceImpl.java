@@ -27,7 +27,6 @@ import java.util.List;
 //import com.bagile.gmo.services.ContainerRepository;
 
 @Service
-@Transactional
 public class WarehouseServiceImpl implements WarehouseService {
 
     private final WarehouseRepository warehouseRepository;

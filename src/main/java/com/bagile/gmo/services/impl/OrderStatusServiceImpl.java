@@ -19,7 +19,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class OrderStatusServiceImpl implements OrderStatusService {
     private final OrderStatusRepository orderStatusRepository;
     public OrderStatusServiceImpl(OrderStatusRepository orderStatusRepository) {

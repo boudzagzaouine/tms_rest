@@ -19,7 +19,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class CatalogTransportTypeServiceImpl implements CatalogTransportTypeService {
     private final CatalogTransportTypeRepository catalogTransportTypeRepository;
     

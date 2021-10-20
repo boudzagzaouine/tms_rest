@@ -19,7 +19,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -27,7 +26,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class dieselDeclarationServiceImpl implements DieselDeclarationService {
 
     private final DieselDeclarationRepository dieselDeclarationRepository;

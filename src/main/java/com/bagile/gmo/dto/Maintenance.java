@@ -46,11 +46,12 @@ public class Maintenance extends EmsDto implements Serializable {
      private List<ActionLineMaintenance> actionLineMaintenances;
     private ConditionalType conditionalType;
     private BigDecimal valueconditionalType;
-
     private Supplier supplier;
     private PurshaseOrder purshaseOrder;
     private Owner owner;
-private Driver driver;
+   private Driver driver;
+
+
     public Maintenance() {
     }
 

@@ -13,6 +13,7 @@ import java.util.*;
  * @author aelguezzar
  */
 public class OrganisationMapper {
+
     private OrganisationMapper() {
     }
 

@@ -19,7 +19,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class TransportCategoryVehicleServiceImpl implements TransportCategoryVehicleService {
     
     private final TransportCategoryVehicleRepository transportCategoryVehicleRepository;

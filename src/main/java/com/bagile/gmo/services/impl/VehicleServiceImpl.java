@@ -24,7 +24,6 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
-@Transactional
 public class VehicleServiceImpl implements VehicleService {
 
     private final VehicleRepository vehicleRepository;

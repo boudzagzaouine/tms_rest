@@ -19,7 +19,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class ConditionalTypeServiceImpl implements ConditionalTypeService {
     private final ConditionalTypeRepository conditionalTypeRepository;
 

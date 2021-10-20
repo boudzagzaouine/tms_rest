@@ -93,6 +93,8 @@ public class VehicleMapper {
 
         gmoVehicle.setGmoVehicleVignette (vehicle.getVignette());
         gmoVehicle.setGmoVehicleValueVignete(vehicle.getValueVignette());
+        gmoVehicle.setGmoVehicleRelease(vehicle.getRelease());
+
 
         if (!lazy) {
             gmoVehicle.setGmoVehicleCategory(VehicleCategoryMapper.toEntity(vehicle.getVehicleCategory(), true));
@@ -150,6 +152,7 @@ public class VehicleMapper {
 
         vehicle.setVignette(gmoVehicle.getGmoVehicleVignette());
         vehicle.setValueVignette(gmoVehicle.getGmoVehicleValueVignete());
+        vehicle.setRelease(gmoVehicle.getGmoVehicleRelease());
 
         if (!lazy) {
             vehicle.setBadgeType(BadgeTypeMapper.toDto(gmoVehicle.getGmoBadgeType(), true));

@@ -26,7 +26,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class PurshaseOrderServiceImpl implements PurshaseOrderService, GmaoSearch {
     
     private final PurshaseOrderRepository purshaseOrderRepository;

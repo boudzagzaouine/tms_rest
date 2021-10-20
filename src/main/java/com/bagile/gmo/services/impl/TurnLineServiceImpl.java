@@ -22,7 +22,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class TurnLineServiceImpl implements TurnLineService {
     private final TurnLineRepository turnLineRepository;
     private final SaleOrderLineService saleOrderLineService;

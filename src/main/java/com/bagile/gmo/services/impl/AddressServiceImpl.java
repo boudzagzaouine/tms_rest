@@ -21,7 +21,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class AddressServiceImpl implements AddressService {
 
     private final AddressRepository addressRepository;

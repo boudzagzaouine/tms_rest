@@ -19,7 +19,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class ServiceProviderServiceImpl implements ServiceProviderService {
     private final ServiceProviderRepository serviceProviderRepository;
 

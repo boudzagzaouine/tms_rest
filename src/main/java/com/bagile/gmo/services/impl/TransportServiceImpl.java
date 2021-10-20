@@ -22,7 +22,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class TransportServiceImpl implements TransportService, GmaoSearch {
     private final TransportRepository transportRepository;
     @Autowired

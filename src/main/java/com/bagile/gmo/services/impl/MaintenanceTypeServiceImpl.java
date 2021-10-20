@@ -18,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 public class MaintenanceTypeServiceImpl implements MaintenanceTypeService {
 
     private final MaintenanceTypeRepository MaintenancetypeRepository;

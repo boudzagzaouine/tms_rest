@@ -19,7 +19,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class SubscriptionCardServiceImpl implements SubscriptionCardService {
     private final SubscriptionCardRepository subscriptionCardRepository;
 

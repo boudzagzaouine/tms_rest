@@ -29,7 +29,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class AlimentationPumpServiceImpl implements AlimentationPumpService {
 
     private final AlimentationPumpRepository alimentationPumpRepository;

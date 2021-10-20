@@ -19,7 +19,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class CommissionTypeServiceImpl implements CommissionTypeService {
     
     private final CommissionTypeRepository commissionTypeRepository;

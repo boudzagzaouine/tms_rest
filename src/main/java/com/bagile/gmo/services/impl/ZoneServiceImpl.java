@@ -18,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 public class ZoneServiceImpl implements ZoneService {
     private final ZoneRepository zoneRepository;
 
