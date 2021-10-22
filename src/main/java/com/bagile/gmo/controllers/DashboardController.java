@@ -1,5 +1,8 @@
 package com.bagile.gmo.controllers;
 
+import com.bagile.gmo.dto.Dashboard;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.services.DashboardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/dashboard")
@@ -64,10 +68,39 @@ public class DashboardController {
         return dashboardService.getTotalnumberofproblemsbyvehicle(vehicleId, categoryId, dateDepart, dateFin);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value ="/LineChartMaintenanceCorrectiveByVehicle")
+    @ResponseBody
+    public List<Dashboard> getLineChartMaintenanceCorrectiveByVehicle(@RequestParam Long vehicleId, @RequestParam Long categoryId, @RequestParam Date dateDepart, @RequestParam Date dateFin) throws IdNotFound, ParseException, ParseException, AttributesNotFound, ErrorType {
+
+
+        return dashboardService.getLineChartMaintenanceCorrectiveByVehicle(vehicleId, categoryId, dateDepart, dateFin);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value ="/LineChartMaintenancePreventiveByVehicle")
+    @ResponseBody
+    public List<Dashboard> getLineChartMaintenancePreventiveByVehicle(@RequestParam Long vehicleId, @RequestParam Long categoryId, @RequestParam Date dateDepart, @RequestParam Date dateFin) throws IdNotFound, ParseException, ParseException, AttributesNotFound, ErrorType {
+
+
+        return dashboardService.getLineChartMaintenancePreventiveByVehicle(vehicleId, categoryId, dateDepart, dateFin);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value ="/BarChartGasoilByVehicle")
+    @ResponseBody
+    public List<Dashboard> getBarChartGasoilByVehicle(@RequestParam String vehicleId, @RequestParam Long categoryId, @RequestParam Date dateDepart, @RequestParam Date dateFin) throws IdNotFound, ParseException, ParseException, AttributesNotFound, ErrorType {
+
+
+        return dashboardService.getBarChartGasoilByVehicle(vehicleId, categoryId, dateDepart, dateFin);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value ="/averageAgeByVehicle")
+    @ResponseBody
+    public int getaverageAgeByVehicle() throws IdNotFound, ParseException, ParseException, AttributesNotFound, ErrorType {
+
+
+        return dashboardService.getaverageAgeByVehicle();
+    }
 
     /**/
-
-
     @RequestMapping(method = RequestMethod.GET, value ="/averageConsumptiondriver")
     @ResponseBody
     public BigDecimal getAverageConsumptionDriver(@RequestParam Long driverId, @RequestParam Date dateDepart, @RequestParam Date dateFin) throws IdNotFound, ParseException, ParseException {
@@ -107,7 +140,24 @@ public class DashboardController {
     }
 
 
-/* seniority*/
+
+    @RequestMapping(method = RequestMethod.GET, value ="/BarChartGasoilByDriver")
+    @ResponseBody
+    public List<Dashboard> getBarChartGasoilByDriver(@RequestParam long driverId, @RequestParam Date dateDepart, @RequestParam Date dateFin) throws IdNotFound, ParseException, ParseException, AttributesNotFound, ErrorType {
+
+
+        return dashboardService.getBarChartGasoilByDriver(driverId, dateDepart, dateFin);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value ="/PercentGasoilByDriver")
+    @ResponseBody
+    public List<Object> getPercentGasoilByDriver() throws IdNotFound, ParseException, ParseException, AttributesNotFound, ErrorType {
+
+
+        return dashboardService.getPercentGasoilByDriver();
+    }
+
+    /* seniority*/
 
 
     @RequestMapping(method = RequestMethod.GET, value ="/averageConsumptionseniorityvehicle")
@@ -147,6 +197,8 @@ public class DashboardController {
 
         return dashboardService.getTotalnumberofproblemsbyseniorityvehicle(categoryid, slice1, slice2, senioritymode);
     }
+
+
 
 
 

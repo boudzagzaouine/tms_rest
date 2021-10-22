@@ -1,5 +1,6 @@
 package com.bagile.gmo.repositories;
 
+import com.bagile.gmo.dto.Maintenance;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -8,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -66,6 +68,16 @@ public class DashboardRepository {
         return (BigDecimal) query.getSingleResult();
     }
 
+    public List<Maintenance> statisticMaintenance(long vehicleId, long CategoryId, Date dateDepart, Date dateFin)
+    {
+        Query query = em.createNativeQuery("select * from schema_crm.gmo_maintenance where schema_crm.gmo_maintenance.gmopatrimony_gmo_patrimonyid=? and schema_crm.gmo_maintenance.gmo_maintenancemaintenancedate between ? and ? ");
+        query.setParameter(1,vehicleId);
+        query.setParameter(2,dateDepart);
+        query.setParameter(3,dateFin);
+
+        return   query.getResultList();
+    }
+
 
 
 
@@ -114,6 +126,16 @@ public class DashboardRepository {
         query.setParameter(2,dateDepart);
         query.setParameter(3,dateFin);
         return (BigDecimal) query.getSingleResult();
+    }
+
+    public List<Object> getPercentGasoilByDriver()
+    {
+        Query query = em.createNativeQuery("select distinct gmo_drivercode,gmo_drivercin,gmo_driverdateofassignment,\n" +
+                "sum(gmo_dieseldeclaration.gmo_dieseldeclarationamount) as amount,((sum(gmo_dieseldeclaration.gmo_dieseldeclarationamount)*100)/(select sum(gmo_dieseldeclaration.gmo_dieseldeclarationamount) from schema_crm.gmo_dieseldeclaration )) as average\n" +
+                "from schema_crm.gmo_driver ,schema_crm.gmo_dieseldeclaration\n" +
+                "where gmo_dieseldeclaration.gmo_gmodriver=gmo_driver.gmo_driverid\n" +
+                "group by gmo_drivercode,gmo_drivercin,gmo_driverdateofassignment");
+        return (List<Object>) query.getResultList();
     }
 
 

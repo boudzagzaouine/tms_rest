@@ -1,7 +1,12 @@
 package com.bagile.gmo.services;
 
+import com.bagile.gmo.dto.Dashboard;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public interface DashboardService {
 
@@ -16,7 +21,10 @@ public interface DashboardService {
     BigDecimal getTraveledmileagebyvechile(long vehicleId,long CategoryId, Date dateDepart, Date dateFin);
 
     BigDecimal getTotalnumberofproblemsbyvehicle(long vehicleId,long CategoryId, Date dateDepart, Date dateFin);
-
+    List<Dashboard> getLineChartMaintenanceCorrectiveByVehicle(long vehicleId,long CategoryId, Date dateDepart, Date dateFin) throws AttributesNotFound, ErrorType;
+    List<Dashboard> getLineChartMaintenancePreventiveByVehicle(long vehicleId,long CategoryId, Date dateDepart, Date dateFin) throws AttributesNotFound, ErrorType;
+    List<Dashboard> getBarChartGasoilByVehicle(String vehicleId,long CategoryId, Date dateDepart, Date dateFin) throws AttributesNotFound, ErrorType;
+    int getaverageAgeByVehicle() throws AttributesNotFound, ErrorType;
 
 
 
@@ -30,6 +38,8 @@ public interface DashboardService {
 
     BigDecimal getTotalnumberofproblemsbydriver(long driverId, Date dateDepart, Date dateFin);
 
+    List<Dashboard> getBarChartGasoilByDriver(long driverId, Date dateDepart, Date dateFin) throws AttributesNotFound, ErrorType;
+    public List<Object> getPercentGasoilByDriver();
 
 
     BigDecimal getAverageconsumptionseniorityvehicle(long categoryid, long slice1,long slice2,long senioritymode);

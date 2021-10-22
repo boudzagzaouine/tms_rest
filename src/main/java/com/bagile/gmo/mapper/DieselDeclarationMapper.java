@@ -17,6 +17,7 @@ public class DieselDeclarationMapper {
         map.put ("id", "gmoDieselDeclarationId");
         map.put ("code", "gmoDieselDeclarationCode");
         map.put ("vehicle", "gmoVehicle");
+        map.put ("driver", "gmoDriver");
         map.put ("amount", "gmoDieselDeclarationAmount");
         map.put ("mileage", "gmoDieselDeclarationMileage");
         map.put ("dieselDeclarationDate", "gmoDieselDeclarationDate");
