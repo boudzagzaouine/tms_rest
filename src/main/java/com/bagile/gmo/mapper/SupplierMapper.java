@@ -55,9 +55,21 @@ public class SupplierMapper {
             rcpSupplier.setOwnOwner(OwnerMapper.toEntity(supplier.getOwner(), true));
             rcpSupplier.setPrmContact(ContactMapper.toEntity(supplier.getContact(), true));
             rcpSupplier.setAdrAddress (AddressMapper.toEntity (supplier.getAddress (), true));
+            rcpSupplier.setTmsPlannings (PlanningMapper.toEntities (supplier.getPlannings (), true));
+
+            oneToMany(rcpSupplier);
+
         }
         return rcpSupplier;
     }
+
+    private static void oneToMany(RcpSupplier rcpSupplier){
+        rcpSupplier.getTmsPlannings().forEach(
+                e->{
+                    e.setCreationDate(new Date());
+                    e.setRcpSupplier(rcpSupplier);
+                }
+        );}
 
     public static Supplier toDto(RcpSupplier rcpSupplier, boolean lazy) {
         if (null == rcpSupplier) {
@@ -78,6 +90,8 @@ public class SupplierMapper {
             supplier.setOwner(OwnerMapper.toDto(rcpSupplier.getOwnOwner(), true));
             supplier.setContact(ContactMapper.toDto(rcpSupplier.getPrmContact(), true));
             supplier.setAddress (AddressMapper.toDto (rcpSupplier.getAdrAddress (), true));
+            supplier.setPlannings (PlanningMapper.toDtos (rcpSupplier.getTmsPlannings (), true));
+
         }
         return supplier;
     }

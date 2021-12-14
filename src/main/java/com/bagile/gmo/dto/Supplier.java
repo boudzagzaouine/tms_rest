@@ -1,5 +1,8 @@
 package com.bagile.gmo.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Supplier extends EmsDto {
 
     private long id;
@@ -12,6 +15,7 @@ public class Supplier extends EmsDto {
     private Address address;
     private Boolean active;
     private Boolean gmao;
+    private List<Planning> plannings= new ArrayList<>();
 
     public long getId() {
         return id;
@@ -85,6 +89,13 @@ public class Supplier extends EmsDto {
         this.active = active;
     }
 
+    public List<Planning> getPlannings() {
+        return plannings;
+    }
+
+    public void setPlannings(List<Planning> plannings) {
+        this.plannings = plannings;
+    }
 
     public Boolean getGmao() {
         return gmao;

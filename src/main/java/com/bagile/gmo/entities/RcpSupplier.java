@@ -8,7 +8,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "rcp_supplier")
@@ -38,6 +40,9 @@ public class RcpSupplier extends EmsEntity implements java.io.Serializable {
     private Boolean rcpSupplierIsActive;
 
     private Boolean rcpSupplierGmao;
+
+    private Set<TmsPlanning> tmsPlannings = new HashSet<>();
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -152,6 +157,15 @@ public class RcpSupplier extends EmsEntity implements java.io.Serializable {
 
     public void setRcpSupplierUpdateDate(Date rcpSupplierUpdateDate) {
         this.rcpSupplierUpdateDate = rcpSupplierUpdateDate;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY,cascade={CascadeType.ALL,CascadeType.MERGE},mappedBy = "rcpSupplier", orphanRemoval=true)
+    public Set<TmsPlanning> getTmsPlannings() {
+        return tmsPlannings;
+    }
+
+    public void setTmsPlannings(Set<TmsPlanning> tmsPlannings) {
+        this.tmsPlannings = tmsPlannings;
     }
 
     @Override
