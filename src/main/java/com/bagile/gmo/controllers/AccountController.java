@@ -90,4 +90,11 @@ public class AccountController {
         accountService.delete(id);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/nextval")
+    @ResponseBody
+    public String nextVal()
+    {
+        return  accountService.getNextVal();
+    }
+
 }

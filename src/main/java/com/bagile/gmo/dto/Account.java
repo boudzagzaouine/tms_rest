@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 public class Account extends EmsDto implements Serializable, Comparable<Account> {
@@ -59,8 +61,6 @@ public class Account extends EmsDto implements Serializable, Comparable<Account>
     private String variable10;
 
     private Set<SaleOrder> saleOrders;
-
-
     private Contact contact;
     private String description;
     private String password;
@@ -71,6 +71,19 @@ public class Account extends EmsDto implements Serializable, Comparable<Account>
     private BigDecimal turnover;
     private BigDecimal maxCredit;
     private Boolean wholesale;
+
+
+    private List<Planning> plannings= new ArrayList<>();
+
+
+
+    public List<Planning> getPlannings() {
+        return plannings;
+    }
+
+    public void setPlannings(List<Planning> plannings) {
+        this.plannings = plannings;
+    }
 
     public String getName() {
         return this.name;

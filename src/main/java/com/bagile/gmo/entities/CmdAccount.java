@@ -80,6 +80,8 @@ public class CmdAccount extends EmsDto implements Serializable{
     private BigDecimal cmdAccountMaxCredit;
     private Boolean cmdAccountWholesale;
 
+    private Set<TmsPlanning> tmsPlannings = new HashSet<> ();
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_cmd_account", allocationSize = 1)
@@ -347,4 +349,12 @@ public class CmdAccount extends EmsDto implements Serializable{
         this.cmdAccountWholesale = cmdAccountWholesale;
     }
 
+    @OneToMany(fetch = FetchType.LAZY,cascade={CascadeType.ALL,CascadeType.MERGE},mappedBy = "cmdAccount", orphanRemoval=true)
+    public Set<TmsPlanning> getTmsPlannings() {
+        return tmsPlannings;
+    }
+
+    public void setTmsPlannings(Set<TmsPlanning> tmsPlannings) {
+        this.tmsPlannings = tmsPlannings;
+    }
 }

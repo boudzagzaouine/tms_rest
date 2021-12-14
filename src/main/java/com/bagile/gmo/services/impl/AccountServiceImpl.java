@@ -8,12 +8,13 @@ import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.AccountMapper;
 import com.bagile.gmo.repositories.AccountRepository;
 import com.bagile.gmo.services.AccountService;
+import com.bagile.gmo.services.SettingService;
 import com.bagile.gmo.util.Search;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +23,8 @@ import java.util.List;
 public class AccountServiceImpl implements AccountService {
 
     private final AccountRepository accountRepository;
+    @Autowired
+    private SettingService settingService;
     public AccountServiceImpl(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
@@ -99,14 +102,15 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public List<Account> findAll(int page, int size) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
+        Sort sort = Sort.by(Sort.Direction.DESC, "cmdAccountUpdateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
         return AccountMapper.toDtos(accountRepository.findAll(pageable), false);
     }
 
     @Override
     public String getNextVal() {
-        return null;
+        String value=settingService.generateCodeAccount() + accountRepository.getNextVal().get(0);
+        return value;
     }
 
 }

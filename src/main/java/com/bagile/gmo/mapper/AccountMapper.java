@@ -98,6 +98,7 @@ public class AccountMapper {
 
             account.setTransport(TransportMapper.toDto(cmdAccount.getTrpTransport(), true));
             account.setDeliveryAddress(AddressMapper.toDto(cmdAccount.getAdrAddressByCmdAccountDeliveryAddressId(), false));
+            account.setPlannings(PlanningMapper.toDtos(cmdAccount.getTmsPlannings(), false));
 
         }
         return account;
@@ -141,11 +142,19 @@ public class AccountMapper {
             cmdAccount.setOwnOwner(OwnerMapper.toEntity(account.getOwner(), lazy));
             cmdAccount.setTrpTransport(TransportMapper.toEntity(account.getTransport(), lazy));
             cmdAccount.setAdrAddressByCmdAccountDeliveryAddressId(AddressMapper.toEntity(account.getDeliveryAddress(), lazy));
+            cmdAccount.setTmsPlannings(PlanningMapper.toEntities(account.getPlannings(), lazy));
+            oneToMany(cmdAccount);
 
         }
         return cmdAccount;
     }
-
+    private static void oneToMany(CmdAccount cmdAccount){
+        cmdAccount.getTmsPlannings().forEach(
+                e->{
+                    e.setCreationDate(new Date());
+                    e.setCmdAccount(cmdAccount);
+                }
+        );}
 
 
     public static List<Account> toDtos(List<CmdAccount> cmdAccounts, boolean lazy) {

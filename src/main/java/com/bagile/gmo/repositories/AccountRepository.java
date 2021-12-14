@@ -1,10 +1,12 @@
 package com.bagile.gmo.repositories;
 
+import com.bagile.gmo.entities.CmdAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
-import com.bagile.gmo.entities.CmdAccount;
+import java.math.BigInteger;
+import java.util.List;
 
 public interface AccountRepository extends JpaRepository<CmdAccount, Long>,
 		QuerydslPredicateExecutor<CmdAccount> {
@@ -13,6 +15,6 @@ public interface AccountRepository extends JpaRepository<CmdAccount, Long>,
 	CmdAccount findByCmdAccountCodeAndCmdAccountPassword(String cmdAccountCode,String cmdAccountPassword);
 
 	@Query(value = "select nextVal('schema_crm.seq_account_code')", nativeQuery = true)
-	Long getNextVal();
+	public List<BigInteger> getNextVal();
 
 }
