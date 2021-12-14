@@ -393,12 +393,16 @@ public class MaintenanceServiceImpl implements MaintenanceService {
                loadMaintenanceByM(maintenance);
            }
         }
+   if(maintenance.getId() != 0){
 
-        Notification notification = notificationService.findOne("maintenanceId:" + maintenance.getId());
-        if (notification != null) {
+       Notification notification = notificationService.findOne("maintenanceId:" + maintenance.getId());
+       if (notification != null) {
 
-            notificationService.delete(notification.getId());
-        }
+           notificationService.delete(notification.getId());
+       }
+
+
+   }
 
             return maintenance1;
     }

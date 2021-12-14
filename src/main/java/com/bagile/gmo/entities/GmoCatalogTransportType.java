@@ -52,7 +52,7 @@ public class GmoCatalogTransportType extends EmsEntity{
     public void setGmoVehicleCategory(GmoVehicleCategory gmoVehicleCategory) {
         this.gmoVehicleCategory = gmoVehicleCategory;
     }
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_zonesournceid")
     public GmoZone getGmoZoneSource() {
         return gmoZoneSource;
@@ -61,7 +61,7 @@ public class GmoCatalogTransportType extends EmsEntity{
     public void setGmoZoneSource(GmoZone gmoZoneSource) {
         this.gmoZoneSource = gmoZoneSource;
     }
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_zonedistinationid")
     public GmoZone getGmoZoneDestination() {
         return gmoZoneDestination;

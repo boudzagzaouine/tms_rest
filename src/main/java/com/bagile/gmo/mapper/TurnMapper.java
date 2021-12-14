@@ -1,14 +1,10 @@
 package com.bagile.gmo.mapper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.bagile.gmo.dto.Turn;
-import com.bagile.gmo.entities.GmoTurn;
+import com.bagile.gmo.entities.TmsTurn;
+import com.bagile.gmo.util.EmsDate;
+
+import java.util.*;
 
 public class TurnMapper {
     public TurnMapper() {
@@ -19,8 +15,7 @@ public class TurnMapper {
     static {
         map = new HashMap<>();
 
-        map.put("id", "gmoTurnId");
-        map.put("turns", "gmoTurns");
+        map.put("id", "tmsTurnId");
         map.put("vehicle", "gmoVehicle");
         map.put("transport", "trpTransport");
         map.put("dateDelivery", "dateDelivery");
@@ -40,39 +35,107 @@ public class TurnMapper {
         return map.get(key);
     }
 
-    public static GmoTurn toEntity(Turn turn, boolean lazy) {
+    public static TmsTurn toEntity(Turn turn, boolean lazy) {
         if (null == turn) {
             return null;
         }
-        GmoTurn gmoTurn = new GmoTurn();
-        gmoTurn.setGmoTurnId(turn.getId());
+        TmsTurn gmoTurn = new TmsTurn();
+        gmoTurn.setTmsTurnId(turn.getId());
         gmoTurn.setDateDelivery(turn.getDateDelivery());
-   
-        
+
+        gmoTurn.setTmsTurnTotalSoTTC(turn.getTotalSoTTC());
+        gmoTurn.setTmsTurnTotalPoTTC(turn.getTotalPoTTC());
+        gmoTurn.setTmsTurnTotalSoQnt(turn.getTotalSoQnt());
+        gmoTurn.setTmsTurnTotalPoQnt(turn.getTotalPoQnt());
+        gmoTurn.setTmsTurnTotalSoPriceTurn(turn.getTotalSoPriceTurn());
+        gmoTurn.setTmsTurnTotalPoPriceTurn(turn.getTotalPoPriceTurn());
+        gmoTurn.setTmsTurnPackagingType(turn.getPackagingType());
+        gmoTurn.setTmsTurnCode(turn.getCode());
+
+
         if (!lazy) {
             //gmoTurn.setGmoCommissions(CommissionTurnMapper.toEntities(turn.getCommissions(), false));
-            gmoTurn.setGmoTurnLines(TurnLineMapper.toEntities(turn.getTurnLines(), false));
-            gmoTurn.setGmoDrivers(DriverMapper.toEntities(turn.getDrivers(), false));
-            gmoTurn.setTrpTransport(TransportMapper.toEntity(turn.getTransport(), false));
-            gmoTurn.setGmoVehicle(VehicleMapper.toEntity(turn.getVehicle(), false));
+            //gmoTurn.setGmoDrivers(DriverMapper.toEntities(turn.getDrivers(), false));
+           // gmoTurn.setTrpTransport(TransportMapper.toEntity(turn.getTransport(), false));
+           // gmoTurn.setGmoVehicle(VehicleMapper.toEntity(turn.getVehicle(), false));
+            gmoTurn.setTmsTurnType(TurnTypeMapper.toEntity(turn.getTurnType(), false));
+            gmoTurn.setTmsTurnSoPos(TurnSoPoMapper.toEntities(turn.getTurnSoPos(), false));
+            gmoTurn.setTmsTurnTransports(TurnTrasnportMapper.toEntities(turn.getTurnTransports(), false));
 
-
+            oneToMany(gmoTurn);
+            oneToManyTransport(gmoTurn);
 
         }
         return gmoTurn;
 
     }
+    private static void oneToMany(TmsTurn tmsTurn) {
+        if(null !=tmsTurn.getTmsTurnSoPos()){
+            tmsTurn.getTmsTurnSoPos().forEach(
+                    tmsTurnSoPos -> {
+
+                        if(0> tmsTurnSoPos.getTmsTurnSoPoeId()){
+                            tmsTurnSoPos.setCreationDate(EmsDate.getDateNow());
+                            tmsTurnSoPos.setTmsTurnSoPoeId(0L);
+                        }
+
+                        tmsTurnSoPos.setUpdateDate(EmsDate.getDateNow());
+                        tmsTurnSoPos.setTmsTurn(tmsTurn);
+                    }
+            );
+        }
+
+        if(null !=tmsTurn.getTmsTurnTransports()){
+            tmsTurn.getTmsTurnTransports().forEach(
+                    tmsTurnTransport -> {
+
+                        if(0> tmsTurnTransport.getTmsTurnTransportId()){
+                            tmsTurnTransport.setCreationDate(EmsDate.getDateNow());
+                            tmsTurnTransport.setTmsTurnTransportId(0L);
+                        }
+
+                        tmsTurnTransport.setUpdateDate(EmsDate.getDateNow());
+                        tmsTurnTransport.setTmsTurnn(tmsTurn);
+                    }
+            );
+        }
+    }
+    private static void oneToManyTransport(TmsTurn tmsTurn) {
+
+        if(null !=tmsTurn.getTmsTurnTransports()){
+            tmsTurn.getTmsTurnTransports().forEach(
+                    tmsTurnTransport -> {
+
+                        if(0> tmsTurnTransport.getTmsTurnTransportId()){
+                            tmsTurnTransport.setCreationDate(EmsDate.getDateNow());
+                            tmsTurnTransport.setTmsTurnTransportId(0L);
+                        }
+
+                        tmsTurnTransport.setUpdateDate(EmsDate.getDateNow());
+                        tmsTurnTransport.setTmsTurnn(tmsTurn);
+                    }
+            );
+        }
+    }
 
 
-
-    public static Turn toDto(GmoTurn gmoTurn, boolean lazy) {
+    public static Turn toDto(TmsTurn gmoTurn, boolean lazy) {
         if (null == gmoTurn) {
             return null;
         }
         Turn turn = new Turn();
-        turn.setId( gmoTurn.getGmoTurnId());
+        turn.setId( gmoTurn.getTmsTurnId());
         turn.setDateDelivery(gmoTurn.getDateDelivery());
 
+        turn.setTotalSoTTC(gmoTurn.getTmsTurnTotalSoTTC());
+        turn.setTotalPoTTC(gmoTurn.getTmsTurnTotalPoTTC());
+        turn.setTotalSoQnt(gmoTurn.getTmsTurnTotalSoQnt());
+        turn.setTotalPoQnt(gmoTurn.getTmsTurnTotalPoQnt());
+        turn.setTotalSoPriceTurn(gmoTurn.getTmsTurnTotalSoPriceTurn());
+        turn.setTotalPoPriceTurn(gmoTurn.getTmsTurnTotalPoPriceTurn());
+        turn.setPackagingType(gmoTurn.getTmsTurnPackagingType());
+
+        turn.setCode(gmoTurn.getTmsTurnCode());
 
         turn.setCreatedBy(gmoTurn.getCreatedBy());
         turn.setUpdatedBy(gmoTurn.getUpdatedBy());
@@ -81,10 +144,12 @@ public class TurnMapper {
 
         if (!lazy) {
          //   turn.setCommissions(CommissionTurnMapper.toDtos(gmoTurn.getGmoCommissions (), false));
-            turn.setDrivers(DriverMapper.toDtos(gmoTurn.getGmoDrivers(), false));
-            turn.setTurnLines(TurnLineMapper.toDtos(gmoTurn.getGmoTurnLines(), false));
-            turn.setTransport(TransportMapper.toDto(gmoTurn.getTrpTransport(), false));
-            turn.setVehicle(VehicleMapper.toDto(gmoTurn.getGmoVehicle(), false));
+           // turn.setDrivers(DriverMapper.toDtos(gmoTurn.getGmoDrivers(), false));
+            //turn.setTransport(TransportMapper.toDto(gmoTurn.getTrpTransport(), false));
+           // turn.setVehicle(VehicleMapper.toDto(gmoTurn.getGmoVehicle(), false));
+            turn.setTurnType(TurnTypeMapper.toDto(gmoTurn.getTmsTurnType(), false));
+            turn.setTurnSoPos(TurnSoPoMapper.toDtos(gmoTurn.getTmsTurnSoPos(), false));
+            turn.setTurnTransports(TurnTrasnportMapper.toDtos(gmoTurn.getTmsTurnTransports(), false));
 
         }
         return turn;
@@ -92,37 +157,38 @@ public class TurnMapper {
     }
 
 
-    public static List<Turn> toDtos(Iterable<? extends GmoTurn> gmoTurns, boolean lazy) {
-        if (null == gmoTurns) {
+    public static List<Turn> toDtos(Iterable<? extends TmsTurn> tmsTurns, boolean lazy) {
+        if (null == tmsTurns) {
             return null;
         }
         List<Turn> turns = new ArrayList<>();
-
-        for (GmoTurn gmoTurn : gmoTurns) {
-            turns.add(toDto(gmoTurn, lazy));
+        for (TmsTurn tmsTurn : tmsTurns) {
+            turns.add(toDto(tmsTurn, lazy));
         }
         return turns;
     }
 
-    public static Set<GmoTurn> toEntities(Set<Turn> turns, boolean lazy) {
+    public static Set<TmsTurn> toEntities(Set<? extends Turn> turns, boolean lazy) {
         if (null == turns) {
             return null;
         }
-        Set<GmoTurn> gmoTurns = new HashSet<>();
+        Set<TmsTurn> tmsTurns = new HashSet<>();
+
         for (Turn turn : turns) {
-            gmoTurns.add(toEntity(turn, lazy));
+            tmsTurns.add(toEntity(turn, lazy));
         }
-        return gmoTurns;
+        return tmsTurns;
     }
 
-    public static Set<Turn> toDtos(Set<GmoTurn> gmoTurns, boolean lazy) {
-        if (null == gmoTurns) {
+    public static Set<Turn> toDtos(Set<? extends TmsTurn> tmsTurns, boolean lazy) {
+        if (null == tmsTurns) {
             return null;
         }
         Set<Turn> turns = new HashSet<>();
-        for (GmoTurn gmoTurn : gmoTurns) {
-            turns.add(toDto(gmoTurn, lazy));
+        for (TmsTurn tmsTurn : tmsTurns) {
+            turns.add(toDto(tmsTurn, lazy));
         }
         return turns;
     }
+
 }

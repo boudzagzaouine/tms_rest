@@ -30,6 +30,8 @@ public class Container  extends EmsDto implements Serializable {
     private Date receptionDate;
     private Warehouse warehouse;
     private Boolean active=true;
+    private ContainerType containerType;
+
 
     public Location getLocation() {
         return location;
@@ -211,6 +213,15 @@ public class Container  extends EmsDto implements Serializable {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+
+    public ContainerType getContainerType() {
+        return containerType;
+    }
+
+    public void setContainerType(ContainerType containerType) {
+        this.containerType = containerType;
     }
 
     @Override

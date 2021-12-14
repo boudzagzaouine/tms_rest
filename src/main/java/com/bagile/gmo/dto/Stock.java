@@ -52,7 +52,7 @@ public class Stock extends EmsDto implements Serializable {
     private Boolean gmao;
   //private ProductionLine productionLine;
  // private Production production;
-
+  private SaleOrderLine saleOrderLine;
    public Location getLocation() {
         return this.location;
     }
@@ -419,6 +419,15 @@ public class Stock extends EmsDto implements Serializable {
     public void setProduction(Production production) {
         this.production = production;
     }*/
+
+
+    public SaleOrderLine getSaleOrderLine() {
+        return saleOrderLine;
+    }
+
+    public void setSaleOrderLine(SaleOrderLine saleOrderLine) {
+        this.saleOrderLine = saleOrderLine;
+    }
 
     @Override
     public boolean equals(Object object) {

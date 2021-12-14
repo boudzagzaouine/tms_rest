@@ -77,7 +77,6 @@ public class GmoMaintenance extends EmsEntity {
     @Column(name = "gmo_maintenancemaintenancedate")
     private Date gmoMaintenanceDate;
 
-
     /*@Column(name = "gmo_maintenanceagent")
     private String gmoAgent ;*/
     @ManyToOne(fetch = FetchType.LAZY)

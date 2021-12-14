@@ -56,7 +56,7 @@ public class TrpTransport extends EmsEntity implements java.io.Serializable {
 
     private Set<GmoTransportCategoryVehicle> gmoTransportCategoryVehicles=new HashSet<>();
 
-    private Set<GmoTurn> gmoTurns=new HashSet<>();
+    //private Set<TmsTurn> gmoTurns=new HashSet<>();
 
   private OwnOwner ownOwner;
 
@@ -249,15 +249,15 @@ public class TrpTransport extends EmsEntity implements java.io.Serializable {
         this.gmoTransportCategoryVehicles = gmoTransportCategoryVehicles;
     }
 
-    @OneToMany(mappedBy = "trpTransport",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    public Set<GmoTurn> getGmoTurns() {
+  /*  @OneToMany(mappedBy = "trpTransport",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    public Set<TmsTurn> getGmoTurns() {
         return gmoTurns;
     }
 
-    public void setGmoTurns(Set<GmoTurn> gmoTurns) {
+    public void setGmoTurns(Set<TmsTurn> gmoTurns) {
         this.gmoTurns = gmoTurns;
     }
-
+*/
     @ManyToOne()
     @JoinColumn(name="gmo_ownownerid")
     public OwnOwner getOwnOwner() {

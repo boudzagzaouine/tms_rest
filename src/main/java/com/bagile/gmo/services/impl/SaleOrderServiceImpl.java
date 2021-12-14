@@ -14,7 +14,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -34,7 +33,7 @@ public class SaleOrderServiceImpl implements SaleOrderService, GmaoSearch {
 
     @Override
     public Long size() throws AttributesNotFound, ErrorType {
-        return saleOrderOrderRepository.count(Search.expression(addGmaoToSearch(""),SaleOrder.class));
+        return saleOrderOrderRepository.count(Search.expression((""),SaleOrder.class));
     }
 
     @Override
@@ -57,7 +56,7 @@ public class SaleOrderServiceImpl implements SaleOrderService, GmaoSearch {
         if (search.equals("")){
             return findAll ();
         }
-        return SaleOrderMapper.toDtos(saleOrderOrderRepository.findAll(Search.expression(addGmaoToSearch(search), CmdSaleOrder.class)), false);
+        return SaleOrderMapper.toDtos(saleOrderOrderRepository.findAll(Search.expression((search), CmdSaleOrder.class)), false);
     }
 
     @Override
@@ -67,7 +66,7 @@ public class SaleOrderServiceImpl implements SaleOrderService, GmaoSearch {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return SaleOrderMapper.toDtos(saleOrderOrderRepository.findAll(Search.expression(addGmaoToSearch(search), CmdSaleOrder.class), pageable), false);
+        return SaleOrderMapper.toDtos(saleOrderOrderRepository.findAll(Search.expression((search), CmdSaleOrder.class), pageable), false);
     }
 
     @Override
@@ -75,7 +74,7 @@ public class SaleOrderServiceImpl implements SaleOrderService, GmaoSearch {
         if (search.equals("")){
             return size ();
         }
-        return saleOrderOrderRepository.count(Search.expression(addGmaoToSearch(search), CmdSaleOrder.class));
+        return saleOrderOrderRepository.count(Search.expression((search), CmdSaleOrder.class));
     }
 
     @Override
@@ -104,7 +103,7 @@ public class SaleOrderServiceImpl implements SaleOrderService, GmaoSearch {
     public List<SaleOrder> findAll(int page, int size) throws AttributesNotFound, ErrorType {
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return SaleOrderMapper.toDtos(saleOrderOrderRepository.findAll(Search.expression(addGmaoToSearch(""), CmdSaleOrder.class),pageable), false);
+        return SaleOrderMapper.toDtos(saleOrderOrderRepository.findAll(Search.expression((""), CmdSaleOrder.class),pageable), false);
     }
 
 }

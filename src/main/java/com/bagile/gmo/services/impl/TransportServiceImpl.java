@@ -16,7 +16,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -95,8 +94,8 @@ public class TransportServiceImpl implements TransportService, GmaoSearch {
             transportRepository.deleteById(id);        }
     }
     @Override
-    public List<Transport> findAll() {
-        return TransportMapper.toDtos(transportRepository.findAll(), false);
+    public List<Transport> findAll() throws AttributesNotFound, ErrorType {
+        return TransportMapper.toDtos(transportRepository.findAll(Search.expression(addGmaoToSearch(""), TrpTransport.class)), false);
     }
 
     @Override

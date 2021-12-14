@@ -1,7 +1,7 @@
 package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.TurnLine;
-import com.bagile.gmo.entities.GmoTurnLine;
+import com.bagile.gmo.entities.TmsTurnLine;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
@@ -14,9 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,11 +34,13 @@ public class TurnLineServiceImpl implements TurnLineService {
         TurnLine line = TurnLineMapper.toDto (turnLineRepository.saveAndFlush (TurnLineMapper.toEntity (turnLine, false)), false);
 
         // TODO
-        if (line.getSaleOrderLine ( ).getQuantityServed ( ) == null) {
+     /*   if (line.getSaleOrderLine ( ).getQuantityServed ( ) == null) {
             line.getSaleOrderLine ( ).setQuantityServed (BigDecimal.ZERO);
-        }
+               //  line.getSaleOrderLine ( ).setQantityToLoad (line.getQuantityServed ( ));
+
+        }*/
         //line.getSaleOrderLine ( ).setQuantityServed (line.getSaleOrderLine ( ).getQuantityServed ( ).add (line.getQuantityServed ( )));
-        line.getSaleOrderLine ( ).setQantityToLoad (line.getQuantityServed ( ));
+
 
         //saleOrderLineService.save (line.getSaleOrderLine ( ));
 
@@ -84,7 +84,7 @@ public class TurnLineServiceImpl implements TurnLineService {
         if (search.equals ("")) {
             return findAll ( );
         }
-        return TurnLineMapper.toDtos (turnLineRepository.findAll (Search.expression (search, GmoTurnLine.class)), false);
+        return TurnLineMapper.toDtos (turnLineRepository.findAll (Search.expression (search,TmsTurnLine.class)), false);
     }
 
     @Override
@@ -94,7 +94,7 @@ public class TurnLineServiceImpl implements TurnLineService {
         }
         Sort sort = Sort.by (Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of (page, size, sort);
-        return TurnLineMapper.toDtos (turnLineRepository.findAll (Search.expression (search, GmoTurnLine.class), pageable), false);
+        return TurnLineMapper.toDtos (turnLineRepository.findAll (Search.expression (search,TmsTurnLine.class), pageable), false);
     }
 
     @Override
@@ -102,7 +102,7 @@ public class TurnLineServiceImpl implements TurnLineService {
         if (search.equals ("")) {
             return size ( );
         }
-        return turnLineRepository.count (Search.expression (search, GmoTurnLine.class));
+        return turnLineRepository.count (Search.expression (search, TmsTurnLine.class));
     }
 
     @Override

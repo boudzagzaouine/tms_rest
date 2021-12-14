@@ -30,14 +30,14 @@ public class CatalogTransportTypeController {
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
-    public List<CatalogTransportType> getCatalogTransportType(@RequestParam int page, @RequestParam int size) {
+    public List<CatalogTransportType> getCatalogTransportType(@RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         return catalogTransportTypeService.findAll(page, size);
 
     }
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/size")
     @ResponseBody
-    public Long size() {
+    public Long size() throws AttributesNotFound, ErrorType {
         return catalogTransportTypeService.size();
     }
 

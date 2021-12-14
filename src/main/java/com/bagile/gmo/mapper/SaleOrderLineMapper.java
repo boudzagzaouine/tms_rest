@@ -23,6 +23,8 @@ public class SaleOrderLineMapper {
         map = new HashMap<>();
         map.put("id", "cmdSaleOrderLineId");
         map.put("saleOrder", "cmdSaleOrder");
+        map.put("orderStatus", "prmOrderStatus");
+
         map.put("owner", "ownOwner");
         map.put("product", "pdtProduct");
         map.put("uom", "pdtUom");
@@ -140,7 +142,7 @@ public class SaleOrderLineMapper {
             saleOrderLine.setUom(UomMapper.toDto(cmdSaleOrderLine.getPdtUom(), true));
             saleOrderLine.setWarehouse(WarehouseMapper.toDto(cmdSaleOrderLine.getWrhWarehouse(), true));
             saleOrderLine.setParentService(toDto(cmdSaleOrderLine.getServiceParent(), true));
-            saleOrderLine.setServices(toDtos(cmdSaleOrderLine.getServices(), false));
+            saleOrderLine.setServices(toDtos(cmdSaleOrderLine.getServices(), true));
             saleOrderLine.setProductPack(ProductPackMapper.toDto(cmdSaleOrderLine.getPdtProductPack(), false));
 
         }

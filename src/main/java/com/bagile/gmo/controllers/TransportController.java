@@ -24,7 +24,7 @@ public class TransportController {
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
-    public List<Transport> getTransports() {
+    public List<Transport> getTransports() throws AttributesNotFound, ErrorType {
         return transportService.findAll();
     }
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")

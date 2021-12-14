@@ -28,7 +28,7 @@ public interface TransportService {
     void delete(Transport transport);
     void deleteAll (List<Long> ids);
 
-    List<Transport> findAll();
+    List<Transport> findAll() throws AttributesNotFound, ErrorType;
 
     List<Transport> findAll(int page, int size) throws AttributesNotFound, ErrorType;
     String getNextVal();

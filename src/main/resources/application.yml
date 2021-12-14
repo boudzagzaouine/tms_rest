@@ -22,7 +22,7 @@ spring:
     serialization.fail-on-empty-beans: false
 
 server:
-  port: 8087
+  port: 8088
 
 
 #logging:

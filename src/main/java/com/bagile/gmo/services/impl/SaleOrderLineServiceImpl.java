@@ -1,7 +1,7 @@
 package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.SaleOrderLine;
-import com.bagile.gmo.entities.CmdSaleOrder;
+import com.bagile.gmo.entities.CmdSaleOrderLine;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
@@ -13,7 +13,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +66,7 @@ public class SaleOrderLineServiceImpl implements SaleOrderLineService {
         if (search.equals("")){
             return findAll ();
         }
-        return SaleOrderLineMapper.toDtos(saleOrderLineRepository.findAll(Search.expression(search, CmdSaleOrder.class)), false);
+        return SaleOrderLineMapper.toDtos(saleOrderLineRepository.findAll(Search.expression(search, CmdSaleOrderLine.class)), false);
     }
 
     @Override
@@ -77,7 +76,7 @@ public class SaleOrderLineServiceImpl implements SaleOrderLineService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return SaleOrderLineMapper.toDtos(saleOrderLineRepository.findAll(Search.expression(search, CmdSaleOrder.class), pageable), false);
+        return SaleOrderLineMapper.toDtos(saleOrderLineRepository.findAll(Search.expression(search, CmdSaleOrderLine.class), pageable), false);
     }
 
     @Override
@@ -85,7 +84,7 @@ public class SaleOrderLineServiceImpl implements SaleOrderLineService {
         if (search.equals("")){
             return size ();
         }
-        return saleOrderLineRepository.count(Search.expression(search, CmdSaleOrder.class));
+        return saleOrderLineRepository.count(Search.expression(search, CmdSaleOrderLine.class));
     }
 
     @Override

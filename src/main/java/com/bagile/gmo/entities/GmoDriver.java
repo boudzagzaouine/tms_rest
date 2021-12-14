@@ -46,7 +46,7 @@ public class GmoDriver extends EmsEntity {
    // private Set<GmoCommissionDriver> gmoCommissions = new HashSet<>();
     private Set<GmoBadgeTypeDriver> gmoBadgeTypeDrivers=new HashSet<>();
 
-    private Set<GmoTurn> gmoTurns = new HashSet<>();
+    //private Set<TmsTurn> gmoTurns = new HashSet<>();
 
     private OwnOwner ownOwner;
 
@@ -252,14 +252,14 @@ public class GmoDriver extends EmsEntity {
         this.gmoCarte = gmoCarte;
     }
 
-    @ManyToMany(mappedBy = "gmoDrivers")
-    public Set<GmoTurn> getGmoTurns() {
+   /* @ManyToMany(mappedBy = "gmoDrivers")
+    public Set<TmsTurn> getGmoTurns() {
         return gmoTurns;
     }
 
-    public void setGmoTurns(Set<GmoTurn> gmoTurns) {
+    public void setGmoTurns(Set<TmsTurn> gmoTurns) {
         this.gmoTurns = gmoTurns;
-    }
+    }*/
 
     @Column(name = "gmo_drivercharged")
     public BigDecimal getGmoDriverCharged() {

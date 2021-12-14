@@ -1,7 +1,6 @@
 package com.bagile.gmo.mapper;
 
 
-
 import com.bagile.gmo.dto.PurshaseOrder;
 import com.bagile.gmo.entities.RcpPurshaseOrder;
 import com.bagile.gmo.util.EmsDate;
@@ -257,33 +256,24 @@ public class PurshaseOrderMapper {
         return purshaseOrders;
     }
 
-    public static List<PurshaseOrder> toDtos(Iterable<RcpPurshaseOrder> rcpPurshaseOrders, boolean lazy) {
-        if (null == rcpPurshaseOrders) {
-            return Collections.emptyList();
-        }
-        List<PurshaseOrder> purshaseOrders = new ArrayList<>();
-        for (RcpPurshaseOrder rcpPurshaseOrder : rcpPurshaseOrders) {
-            purshaseOrders.add(toDto(rcpPurshaseOrder, lazy));
-        }
-        return purshaseOrders;
-    }
 
-    public static Set<RcpPurshaseOrder> toEntities(Set<PurshaseOrder> purshaseOrders, boolean lazy) {
+
+    public static Set<RcpPurshaseOrder> toEntities(List<PurshaseOrder> purshaseOrders, boolean lazy) {
         if (null == purshaseOrders) {
-            return Collections.emptySet();
+            return null;
         }
         Set<RcpPurshaseOrder> rcpPurshaseOrders = new HashSet<>();
-        for (PurshaseOrder rurshaseOrder : purshaseOrders) {
-            rcpPurshaseOrders.add(toEntity(rurshaseOrder, lazy));
+        for (PurshaseOrder purshaseOrder : purshaseOrders) {
+            rcpPurshaseOrders.add(toEntity(purshaseOrder, lazy));
         }
         return rcpPurshaseOrders;
     }
 
-    public static Set<PurshaseOrder> toDtos(Set<RcpPurshaseOrder> rcpPurshaseOrders, boolean lazy) {
+    public static List<PurshaseOrder> toDtos(Iterable< ? extends RcpPurshaseOrder> rcpPurshaseOrders, boolean lazy) {
         if (null == rcpPurshaseOrders) {
-            return Collections.emptySet();
+            return null;
         }
-        Set<PurshaseOrder> purshaseOrders = new HashSet<>();
+        List<PurshaseOrder> purshaseOrders = new ArrayList<>();
         for (RcpPurshaseOrder rcpPurshaseOrder : rcpPurshaseOrders) {
             purshaseOrders.add(toDto(rcpPurshaseOrder, lazy));
         }

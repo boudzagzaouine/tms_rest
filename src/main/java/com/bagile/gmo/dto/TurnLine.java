@@ -2,8 +2,6 @@ package com.bagile.gmo.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.Set;
 
 public class TurnLine extends EmsDto implements Serializable {
 
@@ -23,10 +21,11 @@ public class TurnLine extends EmsDto implements Serializable {
     private BigDecimal totalPriceHT;
     private BigDecimal totalPriceTTC;
     private Vat vat;
-   private ProductPack productPack;
-private SaleOrderLine saleOrderLine;
-private Turn turn;
-    private SaleOrder saleOrder;
+    private ProductPack productPack;
+    private TurnSoPo turnSoPo;
+    private SaleOrderLine saleOrderLine;
+    private PurshaseOrderLine purshaseOrderLine;
+
 
     public long getId() {
         return this.id;
@@ -44,13 +43,6 @@ private Turn turn;
         this.owner = owner;
     }*/
 
-    public SaleOrder getSaleOrder() {
-        return saleOrder;
-    }
-
-    public void setSaleOrder(SaleOrder saleOrder) {
-        this.saleOrder = saleOrder;
-    }
 
     public String getDescription() {
         return description;
@@ -132,11 +124,19 @@ private Turn turn;
         this.saleOrderLine = saleOrderLine;
     }
 
-    public Turn getTurn() {
-        return turn;
+    public TurnSoPo getTurnSoPo() {
+        return turnSoPo;
     }
 
-    public void setTurn(Turn turn) {
-        this.turn = turn;
+    public void setTurnSoPo(TurnSoPo turnSoPo) {
+        this.turnSoPo = turnSoPo;
+    }
+
+    public PurshaseOrderLine getPurshaseOrderLine() {
+        return purshaseOrderLine;
+    }
+
+    public void setPurshaseOrderLine(PurshaseOrderLine purshaseOrderLine) {
+        this.purshaseOrderLine = purshaseOrderLine;
     }
 }

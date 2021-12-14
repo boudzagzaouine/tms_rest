@@ -62,6 +62,7 @@ public class StkContainer extends EmsEntity implements java.io.Serializable {
     private Set<CmdSaleOrderStock> cmdSaleOrderStocks = new HashSet<CmdSaleOrderStock>(
             0);
     private Set<StkStock> stkStocks = new HashSet<StkStock>(0);
+    private PrmContainerType prmContainerType;
 
     public StkContainer() {
     }
@@ -97,6 +98,17 @@ public class StkContainer extends EmsEntity implements java.io.Serializable {
     public void setOwnOwner(OwnOwner ownOwner) {
         this.ownOwner = ownOwner;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "stk_containercontainertypeid")
+    public PrmContainerType getPrmContainerType() {
+        return prmContainerType;
+    }
+
+    public void setPrmContainerType(PrmContainerType prmContainerType) {
+        this.prmContainerType = prmContainerType;
+    }
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "stk_containerwarehouseid")

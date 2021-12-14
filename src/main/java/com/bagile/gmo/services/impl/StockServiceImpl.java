@@ -158,7 +158,8 @@ public class StockServiceImpl implements StockService, AddActive,GmaoSearch {
         if (search.equals("")){
             return findAll ();
         }
-        return StockMapper.toDtos(stockRepository.findAll(Search.expression(addGmaoToSearch(search), StkStock.class)), false);
+        //return StockMapper.toDtos(stockRepository.findAll(Search.expression(addGmaoToSearch(search), StkStock.class)), false);
+        return StockMapper.toDtos(stockRepository.findAll(Search.expression(search, StkStock.class)), false);
 
 
 

@@ -3,8 +3,6 @@ package com.bagile.gmo.entities;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "gmo_vehicule")
@@ -46,7 +44,7 @@ public class GmoVehicle extends GmoPatrimony {
 
     private TrpTransport trpTransport;
 
-    private Set<GmoTurn> gmoTurns=new HashSet<>();
+ //   private Set<TmsTurn> gmoTurns=new HashSet<>();
 
     private OwnOwner ownOwner;
 
@@ -344,14 +342,14 @@ public class GmoVehicle extends GmoPatrimony {
     }
 
 
-    @OneToMany(mappedBy = "gmoVehicle",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
-    public Set<GmoTurn> getGmoTurns() {
+   /* @OneToMany(mappedBy = "gmoVehicle",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+    public Set<TmsTurn> getGmoTurns() {
         return gmoTurns;
     }
 
-    public void setGmoTurns(Set<GmoTurn> gmoTurns) {
+    public void setGmoTurns(Set<TmsTurn> gmoTurns) {
         this.gmoTurns = gmoTurns;
-    }
+    }*/
 
     @ManyToOne()
     @JoinColumn(name="gmo_ownowner")

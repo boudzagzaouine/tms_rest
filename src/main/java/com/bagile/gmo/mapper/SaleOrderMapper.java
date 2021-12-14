@@ -85,6 +85,8 @@ public class SaleOrderMapper {
             return null;
         }
         SaleOrder saleOrder = new SaleOrder();
+        saleOrder.setId(cmdSaleOrder.getCmdSaleOrderId());
+
         saleOrder.setCode(cmdSaleOrder.getCmdSaleOrderCode());
         saleOrder.setContainers(cmdSaleOrder.getCmdSaleOrderContainers());
         saleOrder.setCreationDate(cmdSaleOrder.getCmdSaleOrderCreationDate());
@@ -138,7 +140,7 @@ public class SaleOrderMapper {
             saleOrder.setTransport(TransportMapper.toDto(cmdSaleOrder.getTrpTransport(), true));
             saleOrder.setWarehouse(WarehouseMapper.toDto(cmdSaleOrder.getWrhWarehouseSource(), true));
             saleOrder.setWarehouseDestination(WarehouseMapper.toDto(cmdSaleOrder.getWrhWarehouseDestination(), true));
-            saleOrder.setLines(SaleOrderLineMapper.toDtos(cmdSaleOrder.getCmdSaleOrderLines(), false));
+            //saleOrder.setLines(SaleOrderLineMapper.toDtos(cmdSaleOrder.getCmdSaleOrderLines(), true));
 
         }
         return saleOrder;
@@ -149,6 +151,8 @@ public class SaleOrderMapper {
             return null;
         }
         CmdSaleOrder cmdSaleOrder = new CmdSaleOrder();
+        cmdSaleOrder.setCmdSaleOrderId(saleOrder.getId());
+
         cmdSaleOrder.setCmdSaleOrderCode(saleOrder.getCode() != null ? saleOrder.getCode().toUpperCase() : null);
         cmdSaleOrder.setCmdSaleOrderContainers(saleOrder.getContainers());
         cmdSaleOrder.setCmdSaleOrderCreationDate(saleOrder.getCreationDate());
@@ -203,7 +207,7 @@ public class SaleOrderMapper {
             cmdSaleOrder.setTrpTransport(TransportMapper.toEntity(saleOrder.getTransport(), true));
             cmdSaleOrder.setWrhWarehouseSource(WarehouseMapper.toEntity(saleOrder.getWarehouse(), true));
             cmdSaleOrder.setWrhWarehouseDestination(WarehouseMapper.toEntity(saleOrder.getWarehouseDestination(), true));
-            cmdSaleOrder.setCmdSaleOrderLines(SaleOrderLineMapper.toEntities(saleOrder.getLines(), false));
+            cmdSaleOrder.setCmdSaleOrderLines(SaleOrderLineMapper.toEntities(saleOrder.getLines(), true));
 
         }
         return cmdSaleOrder;
@@ -216,43 +220,36 @@ public class SaleOrderMapper {
             return null;
         }
         List<SaleOrder> saleOrders = new ArrayList<>();
-        for (CmdSaleOrder cmdSaleOrder : cmdSaleOrders) {
-            saleOrders.add(toDto(cmdSaleOrder, lazy));
+        for (CmdSaleOrder cmdsaleOrder : cmdSaleOrders) {
+            saleOrders.add(toDto(cmdsaleOrder, lazy));
         }
         return saleOrders;
     }
 
-    public static List<SaleOrder> toDtos(Iterable<CmdSaleOrder> cmdSaleOrders, boolean lazy) {
+    public static List<SaleOrder> toDtos(Iterable< ? extends CmdSaleOrder> cmdSaleOrders, boolean lazy) {
         if (null == cmdSaleOrders) {
             return null;
         }
         List<SaleOrder> saleOrders = new ArrayList<>();
-        for (CmdSaleOrder cmdSaleOrder : cmdSaleOrders) {
-            saleOrders.add(toDto(cmdSaleOrder, lazy));
+        for (CmdSaleOrder cmdsaleOrder : cmdSaleOrders) {
+            saleOrders.add(toDto(cmdsaleOrder, lazy));
         }
         return saleOrders;
     }
 
-    public static Set<CmdSaleOrder> toEntities(Set<SaleOrder> saleOrders, boolean lazy) {
+
+    public static Set<CmdSaleOrder> toEntities(List<SaleOrder> saleOrders, boolean lazy) {
         if (null == saleOrders) {
             return null;
         }
         Set<CmdSaleOrder> cmdSaleOrders = new HashSet<>();
-        for (SaleOrder saleOrder : saleOrders) {
-            cmdSaleOrders.add(toEntity(saleOrder, lazy));
+        for (SaleOrder SaleOrder : saleOrders) {
+            cmdSaleOrders.add(toEntity(SaleOrder, lazy));
         }
         return cmdSaleOrders;
     }
 
-    public static Set<SaleOrder> toDtos(Set<CmdSaleOrder> cmdSaleOrders, boolean lazy) {
-        if (null == cmdSaleOrders) {
-            return null;
-        }
-        Set<SaleOrder> saleOrders = new HashSet<>();
-        for (CmdSaleOrder cmdSaleOrder : cmdSaleOrders) {
-            saleOrders.add(toDto(cmdSaleOrder, lazy));
-        }
-        return saleOrders;
-    }
+   
+
 
 }

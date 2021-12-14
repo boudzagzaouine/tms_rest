@@ -93,7 +93,7 @@ public class StkStock extends EmsEntity implements java.io.Serializable {
     private Boolean stkStockAppliedBruteToNet;
 
     private Boolean stkStockGmao;
-
+ private CmdSaleOrderLine cmdSaleOrderLine;
 
     public StkStock() {
     }
@@ -128,6 +128,16 @@ public class StkStock extends EmsEntity implements java.io.Serializable {
 
     public void setLocLocation(LocLocation locLocation) {
         this.locLocation = locLocation;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "stk_stocksaleorderlineid")
+    public CmdSaleOrderLine getCmdSaleOrderLine() {
+        return cmdSaleOrderLine;
+    }
+
+    public void setCmdSaleOrderLine(CmdSaleOrderLine cmdSaleOrderLine) {
+        this.cmdSaleOrderLine = cmdSaleOrderLine;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)

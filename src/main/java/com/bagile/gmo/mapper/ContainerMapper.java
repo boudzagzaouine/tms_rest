@@ -76,6 +76,8 @@ public class ContainerMapper {
 //            stkContainer.setCmdSaleOrderStockArcs(SaleOrderStockArcMapper.toEntities(container.getSaleOrderStockArcs(), true));
 //            stkContainer.setStkStockArcs(StockArcMapper.toEntities(container.getStockArcs(), true));
            stkContainer.setStkStocks(StockMapper.toEntities(container.getStocks(), false));
+            stkContainer.setPrmContainerType(ContainerTypeMapper.toEntity(container.getContainerType(), true));
+
         }
         return stkContainer;
     }
@@ -112,6 +114,8 @@ public class ContainerMapper {
    //         container.setSaleOrderStockArcs(SaleOrderStockArcMapper.toDtos(stkContainer.getCmdSaleOrderStockArcs(), true));
           //  container.setStockArcs(StockArcMapper.toDtos(stkContainer.getStkStockArcs(), true));
          container.setStocks(StockMapper.toDtos(stkContainer.getStkStocks(), false));
+            container.setContainerType(ContainerTypeMapper.toDto(stkContainer.getPrmContainerType(), false));
+
         }
         return container;
     }

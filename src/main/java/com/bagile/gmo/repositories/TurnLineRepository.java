@@ -1,11 +1,10 @@
 package com.bagile.gmo.repositories;
 
+import com.bagile.gmo.entities.TmsTurnLine;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
-import com.bagile.gmo.entities.GmoTurnLine;
-
-public interface TurnLineRepository extends JpaRepository<GmoTurnLine, Long>,
-		QuerydslPredicateExecutor<GmoTurnLine> {
+public interface TurnLineRepository extends JpaRepository<TmsTurnLine, Long>,
+		QuerydslPredicateExecutor<TmsTurnLine> {
 
 }

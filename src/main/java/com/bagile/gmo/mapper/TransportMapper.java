@@ -15,7 +15,7 @@ public class TransportMapper {
     static {
         map = new HashMap<> ( );
 
-        map.put ("id", "gmoBadgeId");
+        map.put ("id", "trpTransportId");
         map.put ("comment", "trpTransportComment");
         map.put ("code", "trpTransportCode");
         map.put ("name", "trpTransportName");

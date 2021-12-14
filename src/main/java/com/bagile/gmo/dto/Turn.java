@@ -1,6 +1,7 @@
 package com.bagile.gmo.dto;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.*;
 
 public class Turn extends EmsDto implements Serializable {
@@ -8,12 +9,22 @@ public class Turn extends EmsDto implements Serializable {
     private static final long serialVersionUID = 3467898889038526418L;
 
     private long id;
-    private Set<Driver>drivers=new HashSet<>();
-    private Vehicle  vehicle;
-    private Transport transport;
+    private String code;
+  //  private Set<Driver>drivers=new HashSet<>();
+  //  private Vehicle  vehicle;
+  //  private Transport transport;
     private Date dateDelivery;
-   private List<TurnLine> turnLines = new ArrayList<>();
+   private List<TurnSoPo> turnSoPos = new ArrayList<>();
+    private List<TurnTransport> turnTransports = new ArrayList<>();
 
+    private TurnType turnType;
+    private BigDecimal totalSoTTC;
+    private BigDecimal totalPoTTC;
+    private BigDecimal totalSoQnt;
+    private BigDecimal totalPoQnt ;
+    private BigDecimal totalSoPriceTurn ;
+    private BigDecimal totalPoPriceTurn;
+  private String packagingType;
 
     public Turn() {
     }
@@ -27,7 +38,14 @@ public class Turn extends EmsDto implements Serializable {
         this.id = id;
     }
 
-    public Set<Driver> getDrivers() {
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+/*public Set<Driver> getDrivers() {
         return drivers;
     }
 
@@ -49,6 +67,14 @@ public class Turn extends EmsDto implements Serializable {
 
     public void setTransport(Transport transport) {
         this.transport = transport;
+    }*/
+
+    public String getPackagingType() {
+        return packagingType;
+    }
+
+    public void setPackagingType(String packagingType) {
+        this.packagingType = packagingType;
     }
 
     public Date getDateDelivery() {
@@ -59,20 +85,85 @@ public class Turn extends EmsDto implements Serializable {
         this.dateDelivery = dateDelivery;
     }
 
-    public List<TurnLine> getTurnLines() {
-        return turnLines;
+    public List<TurnSoPo> getTurnSoPos() {
+        return turnSoPos;
     }
 
-    public void setTurnLines(List<TurnLine> turnLines) {
-        this.turnLines = turnLines;
+    public void setTurnSoPos(List<TurnSoPo> turnSoPos) {
+        this.turnSoPos = turnSoPos;
+    }
+
+    public TurnType getTurnType() {
+        return turnType;
+    }
+
+    public void setTurnType(TurnType turnType) {
+        this.turnType = turnType;
+    }
+
+    public BigDecimal getTotalSoTTC() {
+        return totalSoTTC;
+    }
+
+    public void setTotalSoTTC(BigDecimal totalSoTTC) {
+        this.totalSoTTC = totalSoTTC;
+    }
+
+    public BigDecimal getTotalPoTTC() {
+        return totalPoTTC;
+    }
+
+    public void setTotalPoTTC(BigDecimal totalPoTTC) {
+        this.totalPoTTC = totalPoTTC;
+    }
+
+    public BigDecimal getTotalSoQnt() {
+        return totalSoQnt;
+    }
+
+    public void setTotalSoQnt(BigDecimal totalSoQnt) {
+        this.totalSoQnt = totalSoQnt;
+    }
+
+    public BigDecimal getTotalPoQnt() {
+        return totalPoQnt;
+    }
+
+    public void setTotalPoQnt(BigDecimal totalPoQnt) {
+        this.totalPoQnt = totalPoQnt;
+    }
+
+    public BigDecimal getTotalSoPriceTurn() {
+        return totalSoPriceTurn;
+    }
+
+    public void setTotalSoPriceTurn(BigDecimal totalSoPriceTurn) {
+        this.totalSoPriceTurn = totalSoPriceTurn;
+    }
+
+    public BigDecimal getTotalPoPriceTurn() {
+        return totalPoPriceTurn;
+    }
+
+    public void setTotalPoPriceTurn(BigDecimal totalPoPriceTurn) {
+        this.totalPoPriceTurn = totalPoPriceTurn;
+    }
+
+
+    public List<TurnTransport> getTurnTransports() {
+        return turnTransports;
+    }
+
+    public void setTurnTransports(List<TurnTransport> turnTransports) {
+        this.turnTransports = turnTransports;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Turn badge = (Turn) o;
-        return getId() == badge.getId();
+        Turn turn = (Turn) o;
+        return getId() == turn.getId();
     }
 
     @Override

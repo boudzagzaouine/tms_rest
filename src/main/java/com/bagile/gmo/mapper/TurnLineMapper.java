@@ -3,15 +3,10 @@
  */
 package com.bagile.gmo.mapper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.bagile.gmo.dto.TurnLine;
-import com.bagile.gmo.entities.GmoTurnLine;
+import com.bagile.gmo.entities.TmsTurnLine;
+
+import java.util.*;
 
 /**
  * @author aelguezzar
@@ -37,8 +32,7 @@ public class TurnLineMapper {
         map.put("totalPriceHT", "gmoTurnLineTotalPriceHT");
         map.put("totalPriceTTC", "gmoTurnLineTotalPriceTTC");
         map.put("productPack", "pdtProductPack");
-        map.put("turnLine", "gmoTurnLine");
-        map.put("turn", "gmoTurn");
+        map.put("turn", "tmsTurn");
         map.put("saleOrder", "cmdSaleOrder");
 
 
@@ -54,17 +48,17 @@ public class TurnLineMapper {
         return map;
     }
 
-    public static TurnLine toDto(GmoTurnLine gmoTurnLine, boolean lazy) {
+    public static TurnLine toDto(TmsTurnLine gmoTurnLine, boolean lazy) {
         if (null == gmoTurnLine) {
             return null;
         }
         TurnLine turnLine = new TurnLine();
-        turnLine.setId(gmoTurnLine.getGmoTurnLineeId());
-        turnLine.setDescription(gmoTurnLine.getGmoTurnLineDescription());
-        turnLine.setQuantityServed(gmoTurnLine.getGmoTurnLineQuantityServed());
-        turnLine.setSalePrice(gmoTurnLine.getGmoTurnLineSalePrice());
-        turnLine.setTotalPriceHT(gmoTurnLine.getGmoTurnLineTotalPriceHT());
-        turnLine.setTotalPriceTTC(gmoTurnLine.getGmoTurnLineTotalPriceTTC());
+        turnLine.setId(gmoTurnLine.getTmsTurnLineeId());
+        turnLine.setDescription(gmoTurnLine.getTmsTurnLineDescription());
+        turnLine.setQuantityServed(gmoTurnLine.getTmsTurnLineQuantityServed());
+        turnLine.setSalePrice(gmoTurnLine.getTmsTurnLineSalePrice());
+        turnLine.setTotalPriceHT(gmoTurnLine.getTmsTurnLineTotalPriceHT());
+        turnLine.setTotalPriceTTC(gmoTurnLine.getTmsTurnLineTotalPriceTTC());
 
         
         turnLine.setUpdatedBy(gmoTurnLine.getUpdatedBy());
@@ -78,25 +72,25 @@ public class TurnLineMapper {
             turnLine.setProductPack(ProductPackMapper.toDto(gmoTurnLine.getPdtProductPack(), false));
             turnLine.setSaleOrderLine(SaleOrderLineMapper.toDto(gmoTurnLine.getCmdSaleOrderLine(), false));
             turnLine.setSaleOrderLine(SaleOrderLineMapper.toDto(gmoTurnLine.getCmdSaleOrderLine(), false));
-            turnLine.setSaleOrder(SaleOrderMapper.toDto(gmoTurnLine.getCmdSaleOrder(), false));
-            turnLine.setTurn(TurnMapper.toDto(gmoTurnLine.getGmoTurn(), false));
+            turnLine.setTurnSoPo(TurnSoPoMapper.toDto(gmoTurnLine.getTmsTurnSoPo(), true));
 
+            turnLine.setPurshaseOrderLine(PurshaseOrderLineMapper.toDto(gmoTurnLine.getRcpPurshaseOrderLine(), false));
 
         }
         return turnLine;
     }
 
-    public static GmoTurnLine toEntity(TurnLine turnLine, boolean lazy) {
+    public static TmsTurnLine toEntity(TurnLine turnLine, boolean lazy) {
         if (null == turnLine) {
             return null;
         }
-        GmoTurnLine gmoTurnLine = new GmoTurnLine();
-        gmoTurnLine.setGmoTurnLineeId(turnLine.getId());
-        gmoTurnLine.setGmoTurnLineDescription(turnLine.getDescription());
-        gmoTurnLine.setGmoTurnLineQuantityServed(turnLine.getQuantityServed());
-        gmoTurnLine.setGmoTurnLineSalePrice(turnLine.getSalePrice());
-        gmoTurnLine.setGmoTurnLineTotalPriceHT(turnLine.getTotalPriceHT());
-        gmoTurnLine.setGmoTurnLineTotalPriceTTC(turnLine.getTotalPriceTTC());
+       TmsTurnLine gmoTurnLine = new TmsTurnLine();
+        gmoTurnLine.setTmsTurnLineeId(turnLine.getId());
+        gmoTurnLine.setTmsTurnLineDescription(turnLine.getDescription());
+        gmoTurnLine.setTmsTurnLineQuantityServed(turnLine.getQuantityServed());
+        gmoTurnLine.setTmsTurnLineSalePrice(turnLine.getSalePrice());
+        gmoTurnLine.setTmsTurnLineTotalPriceHT(turnLine.getTotalPriceHT());
+        gmoTurnLine.setTmsTurnLineTotalPriceTTC(turnLine.getTotalPriceTTC());
 
         gmoTurnLine.setUpdatedBy(turnLine.getUpdatedBy());
         gmoTurnLine.setCreatedBy(turnLine.getCreatedBy());
@@ -107,42 +101,42 @@ public class TurnLineMapper {
             gmoTurnLine.setPdtUom(UomMapper.toEntity(turnLine.getUom(), true));
             gmoTurnLine.setPdtProductPack(ProductPackMapper.toEntity(turnLine.getProductPack(), true));
             gmoTurnLine.setCmdSaleOrderLine(SaleOrderLineMapper.toEntity(turnLine.getSaleOrderLine(), true));
-            gmoTurnLine.setGmoTurn(TurnMapper.toEntity(turnLine.getTurn(), true));
-            gmoTurnLine.setCmdSaleOrder(SaleOrderMapper.toEntity(turnLine.getSaleOrder(), true));
-            gmoTurnLine.setGmoTurn(TurnMapper.toEntity(turnLine.getTurn(), true));
+            gmoTurnLine.setTmsTurnSoPo(TurnSoPoMapper.toEntity(turnLine.getTurnSoPo(), true));
+
+            gmoTurnLine.setRcpPurshaseOrderLine(PurshaseOrderLineMapper.toEntity(turnLine.getPurshaseOrderLine(), true));
 
         }
         return gmoTurnLine;
     }
 
-    public static List<TurnLine> toDtos(List<GmoTurnLine> gmoTurnLines, boolean lazy) {
+    public static List<TurnLine> toDtos(List<TmsTurnLine> gmoTurnLines, boolean lazy) {
         if (null == gmoTurnLines) {
             return null;
         }
         List<TurnLine> turnLines = new ArrayList<>();
-        for (GmoTurnLine gmoTurnLine : gmoTurnLines) {
+        for (TmsTurnLine gmoTurnLine : gmoTurnLines) {
             turnLines.add(toDto(gmoTurnLine, lazy));
         }
         return turnLines;
     }
 
-    public static List<TurnLine> toDtos(Iterable< ? extends GmoTurnLine> gmoTurnLines, boolean lazy) {
+    public static List<TurnLine> toDtos(Iterable< ? extends TmsTurnLine> gmoTurnLines, boolean lazy) {
         if (null == gmoTurnLines) {
             return null;
         }
         List<TurnLine> turnLines = new ArrayList<>();
-        for (GmoTurnLine gmoTurnLine : gmoTurnLines) {
+        for (TmsTurnLine gmoTurnLine : gmoTurnLines) {
             turnLines.add(toDto(gmoTurnLine, lazy));
         }
         return turnLines;
     }
 
 
-    public static Set<GmoTurnLine> toEntities(List<TurnLine> turnLines, boolean lazy) {
+    public static Set<TmsTurnLine> toEntities(List<TurnLine> turnLines, boolean lazy) {
         if (null == turnLines) {
             return null;
         }
-        Set<GmoTurnLine> gmoTurnLines = new HashSet<>();
+        Set<TmsTurnLine> gmoTurnLines = new HashSet<>();
         for (TurnLine turnLine : turnLines) {
             gmoTurnLines.add(toEntity(turnLine, lazy));
         }
