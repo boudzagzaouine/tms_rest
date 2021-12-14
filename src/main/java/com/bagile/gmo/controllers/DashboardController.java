@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -32,64 +33,74 @@ public class DashboardController {
 
     @RequestMapping(method = RequestMethod.GET, value ="/averageConsumption")
     @ResponseBody
-    public BigDecimal getAverageConsumption(@RequestParam Long vehicleId, @RequestParam Long categoryId, @RequestParam Date dateDepart, @RequestParam Date dateFin) throws IdNotFound, ParseException, ParseException {
-        return dashboardService.getAverageconsumptionvehicle(vehicleId, categoryId, dateDepart, dateFin);
+    public BigDecimal getAverageConsumption(@RequestParam Long vehicleId, @RequestParam Long categoryId, @RequestParam String dateDepart, @RequestParam String dateFin) throws IdNotFound, ParseException, ParseException {
+        Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(dateDepart);
+        Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(dateFin);
+        return dashboardService.getAverageconsumptionvehicle(vehicleId, categoryId, date1, date2);
     }
 
     @RequestMapping(method = RequestMethod.GET, value ="/correctivemaintenancecostsbyvehicle")
     @ResponseBody
-    public BigDecimal getCorrectivemaintenancecostsbyvehicle(@RequestParam Long vehicleId, @RequestParam Long categoryId, @RequestParam Date dateDepart, @RequestParam Date dateFin) throws IdNotFound, ParseException, ParseException {
+    public BigDecimal getCorrectivemaintenancecostsbyvehicle(@RequestParam Long vehicleId, @RequestParam Long categoryId, @RequestParam String dateDepart, @RequestParam String dateFin) throws IdNotFound, ParseException, ParseException {
 
-
-        return dashboardService.getCorrectivemaintenancecostsbyvehicle(vehicleId, categoryId, dateDepart, dateFin);
+        Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(dateDepart);
+        Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(dateFin);
+        return dashboardService.getCorrectivemaintenancecostsbyvehicle(vehicleId, categoryId, date1, date2);
     }
 
     @RequestMapping(method = RequestMethod.GET, value ="/preventivemaintenancecostsbyvehicle")
     @ResponseBody
-    public BigDecimal getPreventivemaintenancecostsbyvehicle(@RequestParam Long vehicleId, @RequestParam Long categoryId, @RequestParam Date dateDepart, @RequestParam Date dateFin) throws IdNotFound, ParseException, ParseException {
+    public BigDecimal getPreventivemaintenancecostsbyvehicle(@RequestParam Long vehicleId, @RequestParam Long categoryId, @RequestParam String dateDepart, @RequestParam String dateFin) throws IdNotFound, ParseException, ParseException {
 
-
-        return dashboardService.getPreventivemaintenancecostsbyvehicle(vehicleId, categoryId, dateDepart, dateFin);
+        Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(dateDepart);
+        Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(dateFin);
+        return dashboardService.getPreventivemaintenancecostsbyvehicle(vehicleId, categoryId, date1, date2);
     }
 
     @RequestMapping(method = RequestMethod.GET, value ="/traveledmileagebyvechile")
     @ResponseBody
-    public BigDecimal getTraveledmileagebyvechile(@RequestParam Long vehicleId, @RequestParam Long categoryId, @RequestParam Date dateDepart, @RequestParam Date dateFin) throws IdNotFound, ParseException, ParseException {
+    public BigDecimal getTraveledmileagebyvechile(@RequestParam Long vehicleId, @RequestParam Long categoryId, @RequestParam String dateDepart, @RequestParam String dateFin) throws IdNotFound, ParseException, ParseException {
 
-
-        return dashboardService.getTraveledmileagebyvechile(vehicleId, categoryId, dateDepart, dateFin);
+        Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(dateDepart);
+        Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(dateFin);
+        return dashboardService.getTraveledmileagebyvechile(vehicleId, categoryId, date1, date2);
     }
 
     @RequestMapping(method = RequestMethod.GET, value ="/totalnumberofproblemsbyvehicle")
     @ResponseBody
-    public BigDecimal getTotalnumberofproblemsbyvehicle(@RequestParam Long vehicleId, @RequestParam Long categoryId, @RequestParam Date dateDepart, @RequestParam Date dateFin) throws IdNotFound, ParseException, ParseException {
+    public BigDecimal getTotalnumberofproblemsbyvehicle(@RequestParam Long vehicleId, @RequestParam Long categoryId, @RequestParam String dateDepart, @RequestParam String dateFin) throws IdNotFound, ParseException, ParseException {
 
-
-        return dashboardService.getTotalnumberofproblemsbyvehicle(vehicleId, categoryId, dateDepart, dateFin);
+        Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(dateDepart);
+        Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(dateFin);
+        return dashboardService.getTotalnumberofproblemsbyvehicle(vehicleId, categoryId, date1, date2);
     }
 
     @RequestMapping(method = RequestMethod.GET, value ="/LineChartMaintenanceCorrectiveByVehicle")
     @ResponseBody
-    public List<Dashboard> getLineChartMaintenanceCorrectiveByVehicle(@RequestParam Long vehicleId, @RequestParam Long categoryId, @RequestParam Date dateDepart, @RequestParam Date dateFin) throws IdNotFound, ParseException, ParseException, AttributesNotFound, ErrorType {
+    public List<Dashboard> getLineChartMaintenanceCorrectiveByVehicle(@RequestParam Long vehicleId, @RequestParam Long categoryId, @RequestParam String dateDepart, @RequestParam String dateFin) throws IdNotFound, ParseException, ParseException, AttributesNotFound, ErrorType {
 
-
-        return dashboardService.getLineChartMaintenanceCorrectiveByVehicle(vehicleId, categoryId, dateDepart, dateFin);
+        Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(dateDepart);
+        Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(dateFin);
+        return dashboardService.getLineChartMaintenanceCorrectiveByVehicle(vehicleId, categoryId, date1, date2);
     }
 
     @RequestMapping(method = RequestMethod.GET, value ="/LineChartMaintenancePreventiveByVehicle")
     @ResponseBody
-    public List<Dashboard> getLineChartMaintenancePreventiveByVehicle(@RequestParam Long vehicleId, @RequestParam Long categoryId, @RequestParam Date dateDepart, @RequestParam Date dateFin) throws IdNotFound, ParseException, ParseException, AttributesNotFound, ErrorType {
+    public List<Dashboard> getLineChartMaintenancePreventiveByVehicle(@RequestParam Long vehicleId, @RequestParam Long categoryId, @RequestParam String dateDepart, @RequestParam String dateFin) throws IdNotFound, ParseException, ParseException, AttributesNotFound, ErrorType {
 
-
-        return dashboardService.getLineChartMaintenancePreventiveByVehicle(vehicleId, categoryId, dateDepart, dateFin);
+        Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(dateDepart);
+        Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(dateFin);
+        return dashboardService.getLineChartMaintenancePreventiveByVehicle(vehicleId, categoryId, date1, date2);
     }
 
     @RequestMapping(method = RequestMethod.GET, value ="/BarChartGasoilByVehicle")
     @ResponseBody
-    public List<Dashboard> getBarChartGasoilByVehicle(@RequestParam String vehicleId, @RequestParam Long categoryId, @RequestParam Date dateDepart, @RequestParam Date dateFin) throws IdNotFound, ParseException, ParseException, AttributesNotFound, ErrorType {
+    public List<Dashboard> getBarChartGasoilByVehicle(@RequestParam String vehicleId, @RequestParam Long categoryId, @RequestParam String dateDepart, @RequestParam String dateFin) throws IdNotFound, ParseException, ParseException, AttributesNotFound, ErrorType {
 
+        Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(dateDepart);
+        Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(dateFin);
 
-        return dashboardService.getBarChartGasoilByVehicle(vehicleId, categoryId, dateDepart, dateFin);
+        return dashboardService.getBarChartGasoilByVehicle(vehicleId, categoryId, date1, date2);
     }
 
     @RequestMapping(method = RequestMethod.GET, value ="/averageAgeByVehicle")
@@ -103,50 +114,57 @@ public class DashboardController {
     /**/
     @RequestMapping(method = RequestMethod.GET, value ="/averageConsumptiondriver")
     @ResponseBody
-    public BigDecimal getAverageConsumptionDriver(@RequestParam Long driverId, @RequestParam Date dateDepart, @RequestParam Date dateFin) throws IdNotFound, ParseException, ParseException {
-        return dashboardService.getAverageconsumptiondriver(driverId, dateDepart, dateFin);
+    public BigDecimal getAverageConsumptionDriver(@RequestParam Long driverId, @RequestParam String dateDepart, @RequestParam String dateFin) throws IdNotFound, ParseException, ParseException {
+        Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(dateDepart);
+        Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(dateFin);
+        return dashboardService.getAverageconsumptiondriver(driverId, date1, date2);
     }
 
     @RequestMapping(method = RequestMethod.GET, value ="/correctivemaintenancecostsbydriver")
     @ResponseBody
-    public BigDecimal getCorrectivemaintenancecostsbyDriver(@RequestParam Long driverId, @RequestParam Date dateDepart, @RequestParam Date dateFin) throws IdNotFound, ParseException, ParseException {
+    public BigDecimal getCorrectivemaintenancecostsbyDriver(@RequestParam Long driverId, @RequestParam String dateDepart, @RequestParam String dateFin) throws IdNotFound, ParseException, ParseException {
 
-
-        return dashboardService.getCorrectivemaintenancecostsbydriver(driverId, dateDepart, dateFin);
+        Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(dateDepart);
+        Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(dateFin);
+        return dashboardService.getCorrectivemaintenancecostsbydriver(driverId, date1, date2);
     }
 
     @RequestMapping(method = RequestMethod.GET, value ="/preventivemaintenancecostsbydriver")
     @ResponseBody
-    public BigDecimal getPreventivemaintenancecostsbydriver(@RequestParam Long driverId, @RequestParam Date dateDepart, @RequestParam Date dateFin) throws IdNotFound, ParseException, ParseException {
+    public BigDecimal getPreventivemaintenancecostsbydriver(@RequestParam Long driverId, @RequestParam String dateDepart, @RequestParam String dateFin) throws IdNotFound, ParseException, ParseException {
 
-
-        return dashboardService.getPreventivemaintenancecostsbydriver(driverId, dateDepart, dateFin);
+        Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(dateDepart);
+        Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(dateFin);
+        return dashboardService.getPreventivemaintenancecostsbydriver(driverId, date1, date2);
     }
 
     @RequestMapping(method = RequestMethod.GET, value ="/traveledmileagebydriver")
     @ResponseBody
-    public BigDecimal getTraveledmileagebydriver(@RequestParam Long driverId, @RequestParam Date dateDepart, @RequestParam Date dateFin) throws IdNotFound, ParseException, ParseException {
+    public BigDecimal getTraveledmileagebydriver(@RequestParam Long driverId, @RequestParam String dateDepart, @RequestParam String dateFin) throws IdNotFound, ParseException, ParseException {
 
-
-        return dashboardService.getTraveledmileagebydriver(driverId, dateDepart, dateFin);
+        Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(dateDepart);
+        Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(dateFin);
+        return dashboardService.getTraveledmileagebydriver(driverId, date1, date2);
     }
 
     @RequestMapping(method = RequestMethod.GET, value ="/totalnumberofproblemsbydriver")
     @ResponseBody
-    public BigDecimal getTotalnumberofproblemsbydriver(@RequestParam Long driverId, @RequestParam Date dateDepart, @RequestParam Date dateFin) throws IdNotFound, ParseException, ParseException {
+    public BigDecimal getTotalnumberofproblemsbydriver(@RequestParam Long driverId, @RequestParam String dateDepart, @RequestParam String dateFin) throws IdNotFound, ParseException, ParseException {
 
-
-        return dashboardService.getTotalnumberofproblemsbydriver(driverId, dateDepart, dateFin);
+        Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(dateDepart);
+        Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(dateFin);
+        return dashboardService.getTotalnumberofproblemsbydriver(driverId, date1, date2);
     }
 
 
 
     @RequestMapping(method = RequestMethod.GET, value ="/BarChartGasoilByDriver")
     @ResponseBody
-    public List<Dashboard> getBarChartGasoilByDriver(@RequestParam long driverId, @RequestParam Date dateDepart, @RequestParam Date dateFin) throws IdNotFound, ParseException, ParseException, AttributesNotFound, ErrorType {
+    public List<Dashboard> getBarChartGasoilByDriver(@RequestParam long driverId, @RequestParam String dateDepart, @RequestParam String dateFin) throws IdNotFound, ParseException, ParseException, AttributesNotFound, ErrorType {
 
-
-        return dashboardService.getBarChartGasoilByDriver(driverId, dateDepart, dateFin);
+        Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(dateDepart);
+        Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(dateFin);
+        return dashboardService.getBarChartGasoilByDriver(driverId, date1, date2);
     }
 
     @RequestMapping(method = RequestMethod.GET, value ="/PercentGasoilByDriver")
@@ -163,6 +181,8 @@ public class DashboardController {
     @RequestMapping(method = RequestMethod.GET, value ="/averageConsumptionseniorityvehicle")
     @ResponseBody
     public BigDecimal getAverageConsumptionseniorityvehicle(@RequestParam Long categoryid, @RequestParam Long slice1, @RequestParam Long slice2, @RequestParam Long senioritymode) throws IdNotFound, ParseException, ParseException {
+
+
         return dashboardService.getAverageconsumptionseniorityvehicle(categoryid, slice1, slice2, senioritymode);
     }
 
