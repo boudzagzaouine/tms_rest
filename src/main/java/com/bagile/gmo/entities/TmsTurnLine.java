@@ -6,9 +6,8 @@ import com.bagile.gmo.dto.EmsDto;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-
-
-
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -30,6 +29,8 @@ public class TmsTurnLine extends EmsDto implements Serializable  {
     private CmdSaleOrderLine cmdSaleOrderLine;
     private TmsTurnSoPo tmsTurnSoPo ;
     private RcpPurshaseOrderLine rcpPurshaseOrderLine;
+    private Set<StkStock> stkStocks = new HashSet<>();
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -62,6 +63,17 @@ public class TmsTurnLine extends EmsDto implements Serializable  {
 
     public void setPdtProduct(PdtProduct pdtProduct) {
         this.pdtProduct = pdtProduct;
+    }
+
+
+    @OneToMany
+    @JoinColumn(name = "tms_stockid")
+    public Set<StkStock> getStkStocks() {
+        return stkStocks;
+    }
+
+    public void setStkStocks(Set<StkStock> stkStocks) {
+        this.stkStocks = stkStocks;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)

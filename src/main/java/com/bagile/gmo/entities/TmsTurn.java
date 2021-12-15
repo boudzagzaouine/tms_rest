@@ -28,7 +28,7 @@ public class TmsTurn extends EmsEntity {
     private BigDecimal tmsTurnTotalSoPriceTurn ;
     private BigDecimal tmsTurnTotalPoPriceTurn;
     private String tmsTurnPackagingType;
-
+  private String  tmsTurnLoadingType;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_turn_id", allocationSize = 1)
@@ -94,7 +94,14 @@ public class TmsTurn extends EmsEntity {
     }
 
 
+    @Column(name = "tms_turnloadingtype")
+    public String getTmsTurnLoadingType() {
+        return tmsTurnLoadingType;
+    }
 
+    public void setTmsTurnLoadingType(String tmsTurnLoadingType) {
+        this.tmsTurnLoadingType = tmsTurnLoadingType;
+    }
 
     @Column(name = "tms_turnpackagingtype")
     public String getTmsTurnPackagingType() {
@@ -114,7 +121,7 @@ public class TmsTurn extends EmsEntity {
         this.tmsTurnCode = tmsTurnCode;
     }
 
-    @OneToMany(mappedBy = "tmsTurn")
+    @OneToMany(mappedBy = "tmsTurn",cascade = CascadeType.MERGE)
     public Set<TmsTurnSoPo> getTmsTurnSoPos() {
         return tmsTurnSoPos;
     }
@@ -123,7 +130,7 @@ public class TmsTurn extends EmsEntity {
         this.tmsTurnSoPos = tmsTurnSoPos;
     }
 
-    @OneToMany(mappedBy = "tmsTurnn")
+    @OneToMany(mappedBy = "tmsTurnn",cascade = CascadeType.MERGE)
     public Set<TmsTurnTransport> getTmsTurnTransports() {
         return tmsTurnTransports;
     }

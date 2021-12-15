@@ -2,6 +2,7 @@ package com.bagile.gmo.dto;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 public class Container  extends EmsDto implements Serializable {
@@ -24,7 +25,7 @@ public class Container  extends EmsDto implements Serializable {
     private String variable8;
     private String variable9;
     private String variable10;
-    private Set<Stock> stocks;
+    private List<Stock> stocks;
     private Date creationDate;
     private Set<SaleOrderStock> saleOrderStocks;
     private Date receptionDate;
@@ -167,11 +168,11 @@ public class Container  extends EmsDto implements Serializable {
         this.variable10 = variable10;
     }
 
-    public Set<Stock> getStocks() {
+    public List<Stock> getStocks() {
         return stocks;
     }
 
-    public void setStocks(Set<Stock> stocks) {
+    public void setStocks(List<Stock> stocks) {
         this.stocks = stocks;
     }
 

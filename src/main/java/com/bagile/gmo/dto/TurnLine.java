@@ -2,6 +2,8 @@ package com.bagile.gmo.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TurnLine extends EmsDto implements Serializable {
 
@@ -25,6 +27,7 @@ public class TurnLine extends EmsDto implements Serializable {
     private TurnSoPo turnSoPo;
     private SaleOrderLine saleOrderLine;
     private PurshaseOrderLine purshaseOrderLine;
+    private List<Stock> stocks = new ArrayList<>();
 
 
     public long getId() {
@@ -43,6 +46,13 @@ public class TurnLine extends EmsDto implements Serializable {
         this.owner = owner;
     }*/
 
+    public List<Stock> getStocks() {
+        return stocks;
+    }
+
+    public void setStocks(List<Stock> stocks) {
+        this.stocks = stocks;
+    }
 
     public String getDescription() {
         return description;

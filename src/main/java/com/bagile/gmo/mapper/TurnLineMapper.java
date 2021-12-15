@@ -75,6 +75,7 @@ public class TurnLineMapper {
             turnLine.setTurnSoPo(TurnSoPoMapper.toDto(gmoTurnLine.getTmsTurnSoPo(), true));
 
             turnLine.setPurshaseOrderLine(PurshaseOrderLineMapper.toDto(gmoTurnLine.getRcpPurshaseOrderLine(), false));
+            turnLine.setStocks(StockMapper.toDtos(gmoTurnLine.getStkStocks(), false));
 
         }
         return turnLine;
@@ -104,6 +105,7 @@ public class TurnLineMapper {
             gmoTurnLine.setTmsTurnSoPo(TurnSoPoMapper.toEntity(turnLine.getTurnSoPo(), true));
 
             gmoTurnLine.setRcpPurshaseOrderLine(PurshaseOrderLineMapper.toEntity(turnLine.getPurshaseOrderLine(), true));
+            gmoTurnLine.setStkStocks(StockMapper.toEntities(turnLine.getStocks(), true));
 
         }
         return gmoTurnLine;

@@ -3,7 +3,6 @@ package com.bagile.gmo.mapper;
 import com.bagile.gmo.dto.Stock;
 import com.bagile.gmo.entities.StkStock;
 
-
 import java.util.*;
 
 public class StockMapper {
@@ -75,172 +74,209 @@ public class StockMapper {
         if (null == stock) {
             return null;
         }
-        StkStock stkStock = new StkStock();
-        stkStock.setStkStockId(stock.getId());
-        stkStock.setStkStockQuantity(stock.getQuantity());
-        stkStock.setStkStockQuantityBaseUom(stock.getQuantityUomBase());
-        stkStock.setStkStockDlc(stock.getDlc());
-        stkStock.setStkStockDluo(stock.getDluo());
-        stkStock.setStkStockSerialNo(stock.getSerialNo());
-        stkStock.setStkStockLot(stock.getLot());
-        stkStock.setStkStockReceptionDate(stock.getReceptionDate());
-        stkStock.setCreationDate(stock.getCreationDate());
-        stkStock.setUpdateDate(stock.getUpdateDate());
-        stkStock.setStkStockVariable1(stock.getVariable1());
-        stkStock.setStkStockVariable2(stock.getVariable2());
-        stkStock.setStkStockVariable3(stock.getVariable3());
-        stkStock.setStkStockVariable4(stock.getVariable4());
-        stkStock.setStkStockVariable5(stock.getVariable5());
-        stkStock.setStkStockVariable6(stock.getVariable6());
-        stkStock.setStkStockVariable7(stock.getVariable7());
-        stkStock.setStkStockVariable8(stock.getVariable8());
-        stkStock.setStkStockVariable9(stock.getVariable9());
-        stkStock.setStkStockVariable10(stock.getVariable10());
-        stkStock.setStkStockKit(stock.getKit());
-        stkStock.setStkStockQuality(stock.getQuality());
-        stkStock.setStkStockWeight(stock.getWeight());
-        stkStock.setStkStockComment(stock.getComment());
-        stkStock.setStkStockAccountedSale(stock.getAccountedSale());
-        stkStock.setStkStockAccountedPurchase(stock.getAccountedPurchase());
-        stkStock.setStkStockActive(stock.getActive());
-        stkStock.setUpdatedBy(stock.getUpdatedBy());
-        stkStock.setCreatedBy(stock.getCreatedBy());
-        stkStock.setStkStockPurchasePrice(stock.getPurchasePrice());
-        stkStock.setStkStockSalePrice(stock.getSalePrice());
-        stkStock.setStkStockAppliedBruteToNet(stock.getAppliedBruteToNet());
-        stkStock.setStkStockGmao(stock.getGmao());
+        StkStock stkStocks = new StkStock();
+        stkStocks.setStkStockId(stock.getId());
+        stkStocks.setStkStockQuantity(stock.getQuantity());
+        stkStocks.setStkStockQuantityBaseUom(stock.getQuantityUomBase());
+        stkStocks.setStkStockDlc(stock.getDlc());
+        stkStocks.setStkStockDluo(stock.getDluo());
+        stkStocks.setStkStockSerialNo(stock.getSerialNo());
+        stkStocks.setStkStockLot(stock.getLot());
+        stkStocks.setStkStockReceptionDate(stock.getReceptionDate());
+        stkStocks.setCreationDate(stock.getCreationDate());
+        stkStocks.setUpdateDate(stock.getUpdateDate());
+        stkStocks.setStkStockVariable1(stock.getVariable1());
+        stkStocks.setStkStockVariable2(stock.getVariable2());
+        stkStocks.setStkStockVariable3(stock.getVariable3());
+        stkStocks.setStkStockVariable4(stock.getVariable4());
+        stkStocks.setStkStockVariable5(stock.getVariable5());
+        stkStocks.setStkStockVariable6(stock.getVariable6());
+        stkStocks.setStkStockVariable7(stock.getVariable7());
+        stkStocks.setStkStockVariable8(stock.getVariable8());
+        stkStocks.setStkStockVariable9(stock.getVariable9());
+        stkStocks.setStkStockVariable10(stock.getVariable10());
+        stkStocks.setStkStockKit(stock.getKit());
+        stkStocks.setStkStockQuality(stock.getQuality());
+        stkStocks.setStkStockWeight(stock.getWeight());
+        stkStocks.setStkStockComment(stock.getComment());
+        stkStocks.setStkStockAccountedSale(stock.getAccountedSale());
+        stkStocks.setStkStockAccountedPurchase(stock.getAccountedPurchase());
+        stkStocks.setStkStockActive(stock.getActive());
+        stkStocks.setUpdatedBy(stock.getUpdatedBy());
+        stkStocks.setCreatedBy(stock.getCreatedBy());
+        stkStocks.setStkStockPurchasePrice(stock.getPurchasePrice());
+        stkStocks.setStkStockSalePrice(stock.getSalePrice());
+        stkStocks.setStkStockAppliedBruteToNet(stock.getAppliedBruteToNet());
+        stkStocks.setStkStockGmao(stock.getGmao());
 
         if (!lazy) {
-            //stkStock.setPdtProductDimension(ProductDimensionMapper.toEntity(stock.getProductDimension(), true));
-           // stkStock.setWrhWarehouse(WarehouseMapper.toEntity(stock.getWarehouse(), true));
-            stkStock.setPdtProduct(ProductMapper.toEntity(stock.getProduct(), true));
-            stkStock.setOwnOwner(OwnerMapper.toEntity(stock.getOwner(), true));
-            stkStock.setRcpSupplier(SupplierMapper.toEntity(stock.getSupplier(), false));
-           // stkStock.setPrmBlockType(BlockTypeMapper.toEntity(stock.getBlockType(), true));
-           // stkStock.setPrmColor(ColorMapper.toEntity(stock.getColor(), true));
-            stkStock.setPdtUom(UomMapper.toEntity(stock.getUom(), true));
-            stkStock.setLocLocation(LocationMapper.toEntity(stock.getLocation(), true));
-            stkStock.setStkContainer(ContainerMapper.toEntity(stock.getContainer(), false));
-            stkStock.setRcpReceptionLine(ReceptionLineMapper.toEntity(stock.getReceptionLine(), true));
-            stkStock.setRcpReceptionStock(ReceptionStockMapper.toEntity(stock.getReceptionStock(), true));
-            stkStock.setPdtProductPack(ProductPackMapper.toEntity(stock.getProductPack(), true));
-            stkStock.setCmdSaleOrderLine(SaleOrderLineMapper.toEntity(stock.getSaleOrderLine(), true));
+            //stkStocks.setPdtProductDimension(ProductDimensionMapper.toEntity(stock.getProductDimension(), true));
+           // stkStocks.setWrhWarehouse(WarehouseMapper.toEntity(stock.getWarehouse(), true));
+            stkStocks.setPdtProduct(ProductMapper.toEntity(stock.getProduct(), true));
+            stkStocks.setOwnOwner(OwnerMapper.toEntity(stock.getOwner(), true));
+            stkStocks.setRcpSupplier(SupplierMapper.toEntity(stock.getSupplier(), false));
+           // stkStocks.setPrmBlockType(BlockTypeMapper.toEntity(stock.getBlockType(), true));
+           // stkStocks.setPrmColor(ColorMapper.toEntity(stock.getColor(), true));
+            stkStocks.setPdtUom(UomMapper.toEntity(stock.getUom(), true));
+            stkStocks.setLocLocation(LocationMapper.toEntity(stock.getLocation(), true));
+            stkStocks.setStkContainer(ContainerMapper.toEntity(stock.getContainer(), false));
+            stkStocks.setRcpReceptionLine(ReceptionLineMapper.toEntity(stock.getReceptionLine(), true));
+            stkStocks.setRcpReceptionStock(ReceptionStockMapper.toEntity(stock.getReceptionStock(), true));
+            stkStocks.setPdtProductPack(ProductPackMapper.toEntity(stock.getProductPack(), true));
+            stkStocks.setCmdSaleOrderLine(SaleOrderLineMapper.toEntity(stock.getSaleOrderLine(), true));
 
-            // stkStock.setPrcProductionLine(ProductionLineMapper.toEntity(stock.getProductionLine(), true));
-            //stkStock.setWrhWarehouse(WarehouseMapper.toEntity(stock.getWarehouse(), true));
+            // stkStocks.setPrcProductionLine(ProductionLineMapper.toEntity(stock.getProductionLine(), true));
+            //stkStocks.setWrhWarehouse(WarehouseMapper.toEntity(stock.getWarehouse(), true));
         }
-        return stkStock;
+        return stkStocks;
     }
 
-    public static Stock toDto(StkStock stkStock, boolean lazy) {
-        if (null == stkStock) {
+    public static Stock toDto(StkStock stkStocks, boolean lazy) {
+        if (null == stkStocks) {
             return null;
         }
         Stock stock = new Stock();
-        stock.setId(stkStock.getStkStockId());
-        stock.setQuantity(stkStock.getStkStockQuantity());
-        stock.setQuantityUomBase(stkStock.getStkStockQuantityBaseUom());
-        stock.setDlc(stkStock.getStkStockDlc());
-        stock.setDluo(stkStock.getStkStockDluo());
-        stock.setSerialNo(stkStock.getStkStockSerialNo());
-        stock.setLot(stkStock.getStkStockLot());
-        stock.setReceptionDate(stkStock.getStkStockReceptionDate());
-        stock.setCreationDate(stkStock.getCreationDate());
-        stock.setUpdateDate(stkStock.getUpdateDate());
-        stock.setVariable1(stkStock.getStkStockVariable1());
-        stock.setVariable2(stkStock.getStkStockVariable2());
-        stock.setVariable3(stkStock.getStkStockVariable3());
-        stock.setVariable4(stkStock.getStkStockVariable4());
-        stock.setVariable5(stkStock.getStkStockVariable5());
-        stock.setVariable6(stkStock.getStkStockVariable6());
-        stock.setVariable7(stkStock.getStkStockVariable7());
-        stock.setVariable8(stkStock.getStkStockVariable8());
-        stock.setVariable9(stkStock.getStkStockVariable9());
-        stock.setVariable10(stkStock.getStkStockVariable10());
-        stock.setKit(stkStock.getStkStockKit());
-        stock.setQuality(stkStock.getStkStockQuality());
-        stock.setWeight(stkStock.getStkStockWeight());
-        stock.setComment(stkStock.getStkStockComment());
-        stock.setAccountedSale(stkStock.getStkStockAccountedSale());
-        stock.setAccountedPurchase(stkStock.getStkStockAccountedPurchase());
-        stock.setActive(stkStock.getStkStockActive());
-        stock.setPurchasePrice(stkStock.getStkStockPurchasePrice());
-        stock.setSalePrice(stkStock.getStkStockSalePrice());
-        stock.setAppliedBruteToNet(stkStock.getStkStockAppliedBruteToNet());
-        stock.setGmao(stkStock.getStkStockGmao());
+        stock.setId(stkStocks.getStkStockId());
+        stock.setQuantity(stkStocks.getStkStockQuantity());
+        stock.setQuantityUomBase(stkStocks.getStkStockQuantityBaseUom());
+        stock.setDlc(stkStocks.getStkStockDlc());
+        stock.setDluo(stkStocks.getStkStockDluo());
+        stock.setSerialNo(stkStocks.getStkStockSerialNo());
+        stock.setLot(stkStocks.getStkStockLot());
+        stock.setReceptionDate(stkStocks.getStkStockReceptionDate());
+        stock.setCreationDate(stkStocks.getCreationDate());
+        stock.setUpdateDate(stkStocks.getUpdateDate());
+        stock.setVariable1(stkStocks.getStkStockVariable1());
+        stock.setVariable2(stkStocks.getStkStockVariable2());
+        stock.setVariable3(stkStocks.getStkStockVariable3());
+        stock.setVariable4(stkStocks.getStkStockVariable4());
+        stock.setVariable5(stkStocks.getStkStockVariable5());
+        stock.setVariable6(stkStocks.getStkStockVariable6());
+        stock.setVariable7(stkStocks.getStkStockVariable7());
+        stock.setVariable8(stkStocks.getStkStockVariable8());
+        stock.setVariable9(stkStocks.getStkStockVariable9());
+        stock.setVariable10(stkStocks.getStkStockVariable10());
+        stock.setKit(stkStocks.getStkStockKit());
+        stock.setQuality(stkStocks.getStkStockQuality());
+        stock.setWeight(stkStocks.getStkStockWeight());
+        stock.setComment(stkStocks.getStkStockComment());
+        stock.setAccountedSale(stkStocks.getStkStockAccountedSale());
+        stock.setAccountedPurchase(stkStocks.getStkStockAccountedPurchase());
+        stock.setActive(stkStocks.getStkStockActive());
+        stock.setPurchasePrice(stkStocks.getStkStockPurchasePrice());
+        stock.setSalePrice(stkStocks.getStkStockSalePrice());
+        stock.setAppliedBruteToNet(stkStocks.getStkStockAppliedBruteToNet());
+        stock.setGmao(stkStocks.getStkStockGmao());
 
         if (!lazy) {
-            stock.setProductPack(ProductPackMapper.toDto(stkStock.getPdtProductPack(), false));
-          //  stock.setProductDimension(ProductDimensionMapper.toDto(stkStock.getPdtProductDimension(), true));
-            stock.setProduct(ProductMapper.toDto(stkStock.getPdtProduct(), false));
-          //  stock.setWarehouse(WarehouseMapper.toDto(stkStock.getWrhWarehouse(), true));
-            stock.setOwner(OwnerMapper.toDto(stkStock.getOwnOwner(), true));
-            stock.setSupplier(SupplierMapper.toDto(stkStock.getRcpSupplier(), false));
-         //   stock.setBlockType(BlockTypeMapper.toDto(stkStock.getPrmBlockType(), true));
-          //  stock.setColor(ColorMapper.toDto(stkStock.getPrmColor(), true));
-            stock.setUom(UomMapper.toDto(stkStock.getPdtUom(), true));
-            stock.setLocation(LocationMapper.toDto(stkStock.getLocLocation(), true));
-           stock.setContainer(ContainerMapper.toDto(stkStock.getStkContainer(), false));
-           stock.setReceptionLine(ReceptionLineMapper.toDto(stkStock.getRcpReceptionLine(), true));
-           stock.setReceptionStock(ReceptionStockMapper.toDto(stkStock.getRcpReceptionStock(), true));
-            stock.setSaleOrderLine(SaleOrderLineMapper.toDto(stkStock.getCmdSaleOrderLine(), true));
+            stock.setProductPack(ProductPackMapper.toDto(stkStocks.getPdtProductPack(), false));
+          //  stock.setProductDimension(ProductDimensionMapper.toDto(stkStocks.getPdtProductDimension(), true));
+            stock.setProduct(ProductMapper.toDto(stkStocks.getPdtProduct(), false));
+          //  stock.setWarehouse(WarehouseMapper.toDto(stkStocks.getWrhWarehouse(), true));
+            stock.setOwner(OwnerMapper.toDto(stkStocks.getOwnOwner(), true));
+            stock.setSupplier(SupplierMapper.toDto(stkStocks.getRcpSupplier(), false));
+         //   stock.setBlockType(BlockTypeMapper.toDto(stkStocks.getPrmBlockType(), true));
+          //  stock.setColor(ColorMapper.toDto(stkStocks.getPrmColor(), true));
+            stock.setUom(UomMapper.toDto(stkStocks.getPdtUom(), true));
+            stock.setLocation(LocationMapper.toDto(stkStocks.getLocLocation(), true));
+           stock.setContainer(ContainerMapper.toDto(stkStocks.getStkContainer(), false));
+           stock.setReceptionLine(ReceptionLineMapper.toDto(stkStocks.getRcpReceptionLine(), true));
+           stock.setReceptionStock(ReceptionStockMapper.toDto(stkStocks.getRcpReceptionStock(), true));
+            stock.setSaleOrderLine(SaleOrderLineMapper.toDto(stkStocks.getCmdSaleOrderLine(), true));
 
 
-            //  stock.setProductionLine(ProductionLineMapper.toDto(stkStock.getPrcProductionLine(), true));
-            // stock.setWarehouse(WarehouseMapper.toDto(stkStock.getWrhWarehouse(), true));
+            //  stock.setProductionLine(ProductionLineMapper.toDto(stkStocks.getPrcProductionLine(), true));
+            // stock.setWarehouse(WarehouseMapper.toDto(stkStocks.getWrhWarehouse(), true));
         }
         return stock;
     }
 
-   /* public static Stock toViewDto(StkStockView stkStock, boolean lazy) {
-        if (null == stkStock) {
+   /* public static Stock toViewDto(StkStockView stkStocks, boolean lazy) {
+        if (null == stkStocks) {
             return null;
         }
         Stock stock = new Stock();
-        stock.setId(stkStock.getStkStockId());
-        stock.setQuantity(stkStock.getStkStockQuantity());
-        stock.setDlc(stkStock.getStkStockDlc());
-        stock.setDluo(stkStock.getStkStockDluo());
-        stock.setSerialNo(stkStock.getStkStockSerialNo());
-        stock.setLot(stkStock.getStkStockLot());
-        stock.setReceptionDate(stkStock.getStkStockReceptionDate());
-        stock.setCreationDate(stkStock.getStkStockCreationDate());
-        stock.setUpdateDate(stkStock.getStkStockUpdateDate());
-        stock.setVariable1(stkStock.getStkStockVariable1());
-        stock.setVariable2(stkStock.getStkStockVariable2());
-        stock.setVariable3(stkStock.getStkStockVariable3());
-        stock.setVariable4(stkStock.getStkStockVariable4());
-        stock.setVariable5(stkStock.getStkStockVariable5());
-        stock.setVariable6(stkStock.getStkStockVariable6());
-        stock.setVariable7(stkStock.getStkStockVariable7());
-        stock.setVariable8(stkStock.getStkStockVariable8());
-        stock.setVariable9(stkStock.getStkStockVariable9());
-        stock.setVariable10(stkStock.getStkStockVariable10());
-        stock.setKit(stkStock.getStkStockKit());
-        stock.setQuality(stkStock.getStkStockQuality());
-        stock.setWeight(stkStock.getStkStockWeight());
-        stock.setComment(stkStock.getStkStockComment());
-        stock.setAccountedSale(stkStock.getStkStockAccountedSale());
-        stock.setAccountedPurchase(stkStock.getStkStockAccountedPurchase());
+        stock.setId(stkStocks.getStkStockId());
+        stock.setQuantity(stkStocks.getStkStockQuantity());
+        stock.setDlc(stkStocks.getStkStockDlc());
+        stock.setDluo(stkStocks.getStkStockDluo());
+        stock.setSerialNo(stkStocks.getStkStockSerialNo());
+        stock.setLot(stkStocks.getStkStockLot());
+        stock.setReceptionDate(stkStocks.getStkStockReceptionDate());
+        stock.setCreationDate(stkStocks.getStkStockCreationDate());
+        stock.setUpdateDate(stkStocks.getStkStockUpdateDate());
+        stock.setVariable1(stkStocks.getStkStockVariable1());
+        stock.setVariable2(stkStocks.getStkStockVariable2());
+        stock.setVariable3(stkStocks.getStkStockVariable3());
+        stock.setVariable4(stkStocks.getStkStockVariable4());
+        stock.setVariable5(stkStocks.getStkStockVariable5());
+        stock.setVariable6(stkStocks.getStkStockVariable6());
+        stock.setVariable7(stkStocks.getStkStockVariable7());
+        stock.setVariable8(stkStocks.getStkStockVariable8());
+        stock.setVariable9(stkStocks.getStkStockVariable9());
+        stock.setVariable10(stkStocks.getStkStockVariable10());
+        stock.setKit(stkStocks.getStkStockKit());
+        stock.setQuality(stkStocks.getStkStockQuality());
+        stock.setWeight(stkStocks.getStkStockWeight());
+        stock.setComment(stkStocks.getStkStockComment());
+        stock.setAccountedSale(stkStocks.getStkStockAccountedSale());
+        stock.setAccountedPurchase(stkStocks.getStkStockAccountedPurchase());
         if (!lazy) {
-            stock.setProductDimension(ProductDimensionMapper.toDto(stkStock.getPdtProductDimension(), true));
-            stock.setProductPack(ProductPackMapper.toDto(stkStock.getPdtProductPack(), false));
-            stock.setProduct(ProductMapper.toDto(stkStock.getPdtProduct(), false));
-            stock.setWarehouse(WarehouseMapper.toDto(stkStock.getWrhWarehouse(), true));
-            stock.setOwner(OwnerMapper.toDto(stkStock.getOwnOwner(), true));
-            stock.setSupplier(SupplierMapper.toDto(stkStock.getRcpSupplier(), true));
-            stock.setBlockType(BlockTypeMapper.toDto(stkStock.getPrmBlockType(), true));
-            stock.setColor(ColorMapper.toDto(stkStock.getPrmColor(), true));
-            stock.setUom(UomMapper.toDto(stkStock.getPdtUom(), true));
-            stock.setLocation(LocationMapper.toDto(stkStock.getLocLocation(), true));
-            stock.setContainer(ContainerMapper.toDto(stkStock.getStkContainer(), true));
-            stock.setReceptionLine(ReceptionLineMapper.toDto(stkStock.getRcpReceptionLine(), true));
-            stock.setReceptionStock(ReceptionStockMapper.toDto(stkStock.getRcpReceptionStock(), true));
+            stock.setProductDimension(ProductDimensionMapper.toDto(stkStocks.getPdtProductDimension(), true));
+            stock.setProductPack(ProductPackMapper.toDto(stkStocks.getPdtProductPack(), false));
+            stock.setProduct(ProductMapper.toDto(stkStocks.getPdtProduct(), false));
+            stock.setWarehouse(WarehouseMapper.toDto(stkStocks.getWrhWarehouse(), true));
+            stock.setOwner(OwnerMapper.toDto(stkStocks.getOwnOwner(), true));
+            stock.setSupplier(SupplierMapper.toDto(stkStocks.getRcpSupplier(), true));
+            stock.setBlockType(BlockTypeMapper.toDto(stkStocks.getPrmBlockType(), true));
+            stock.setColor(ColorMapper.toDto(stkStocks.getPrmColor(), true));
+            stock.setUom(UomMapper.toDto(stkStocks.getPdtUom(), true));
+            stock.setLocation(LocationMapper.toDto(stkStocks.getLocLocation(), true));
+            stock.setContainer(ContainerMapper.toDto(stkStocks.getStkContainer(), true));
+            stock.setReceptionLine(ReceptionLineMapper.toDto(stkStocks.getRcpReceptionLine(), true));
+            stock.setReceptionStock(ReceptionStockMapper.toDto(stkStocks.getRcpReceptionStock(), true));
 
-            // stock.setWarehouse(WarehouseMapper.toDto(stkStock.getWrhWarehouse(), true));
+            // stock.setWarehouse(WarehouseMapper.toDto(stkStocks.getWrhWarehouse(), true));
         }
         return stock;
     }*/
+
+    
+
+  /* public static List<Stock> toViewDtos(List<StkStockView> stkStocks, boolean lazy) {
+        if (null == stkStocks) {
+            return null;
+        }
+        List<Stock> stocks = new ArrayList<>();
+        for (StkStockView stkStocks : stkStocks) {
+            stocks.add(toViewDto(stkStocks, lazy));
+        }
+        return stocks;
+    }*/
+  
+    /*public static List<Stock> toDtos(Iterable< ? extends StkStock> stkStocks, boolean lazy) {
+        if (null == stkStocks) {
+            return null;
+        }
+        List<Stock> stocks = new ArrayList<>();
+        for (StkStock stkStocks : stkStocks) {
+            stocks.add(toDto(stkStocks, lazy));
+        }
+        return stocks;
+    }*/
+
+    /*public static List<Stock> toViewDtos(Iterable<StkStockView> stkStocks, boolean lazy) {
+        if (null == stkStocks) {
+            return null;
+        }
+        List<Stock> stocks = new ArrayList<>();
+        for (StkStockView stkStocks : stkStocks) {
+            stocks.add(toViewDto(stkStocks, lazy));
+        }
+        return stocks;
+    }*/
+
+
 
     public static List<Stock> toDtos(List<StkStock> stkStocks, boolean lazy) {
         if (null == stkStocks) {
@@ -253,18 +289,7 @@ public class StockMapper {
         return stocks;
     }
 
-  /* public static List<Stock> toViewDtos(List<StkStockView> stkStocks, boolean lazy) {
-        if (null == stkStocks) {
-            return null;
-        }
-        List<Stock> stocks = new ArrayList<>();
-        for (StkStockView stkStock : stkStocks) {
-            stocks.add(toViewDto(stkStock, lazy));
-        }
-        return stocks;
-    }*/
-
-    public static List<Stock> toDtos(Iterable<StkStock> stkStocks, boolean lazy) {
+    public static List<Stock> toDtos(Iterable< ? extends StkStock> stkStocks, boolean lazy) {
         if (null == stkStocks) {
             return null;
         }
@@ -275,18 +300,8 @@ public class StockMapper {
         return stocks;
     }
 
-    /*public static List<Stock> toViewDtos(Iterable<StkStockView> stkStocks, boolean lazy) {
-        if (null == stkStocks) {
-            return null;
-        }
-        List<Stock> stocks = new ArrayList<>();
-        for (StkStockView stkStock : stkStocks) {
-            stocks.add(toViewDto(stkStock, lazy));
-        }
-        return stocks;
-    }*/
 
-    public static Set<StkStock> toEntities(Set<Stock> stocks, boolean lazy) {
+    public static Set<StkStock> toEntities(List<Stock> stocks, boolean lazy) {
         if (null == stocks) {
             return null;
         }
@@ -297,14 +312,5 @@ public class StockMapper {
         return stkStocks;
     }
 
-    public static Set<Stock> toDtos(Set<StkStock> stkStocks, boolean lazy) {
-        if (null == stkStocks) {
-            return null;
-        }
-        Set<Stock> stocks = new HashSet<>();
-        for (StkStock stkStock : stkStocks) {
-            stocks.add(toDto(stkStock, lazy));
-        }
-        return stocks;
-    }
+
 }

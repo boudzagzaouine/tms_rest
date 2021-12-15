@@ -20,7 +20,7 @@ public class TurnMapper {
         map.put("transport", "trpTransport");
         map.put("dateDelivery", "dateDelivery");
         map.put("turnLines", "gmoTurnLines");
-   
+
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdBy");
@@ -51,6 +51,7 @@ public class TurnMapper {
         gmoTurn.setTmsTurnTotalPoPriceTurn(turn.getTotalPoPriceTurn());
         gmoTurn.setTmsTurnPackagingType(turn.getPackagingType());
         gmoTurn.setTmsTurnCode(turn.getCode());
+        gmoTurn.setTmsTurnLoadingType(turn.getLoadingType());
 
 
         if (!lazy) {
@@ -136,6 +137,7 @@ public class TurnMapper {
         turn.setPackagingType(gmoTurn.getTmsTurnPackagingType());
 
         turn.setCode(gmoTurn.getTmsTurnCode());
+        turn.setLoadingType(gmoTurn.getTmsTurnLoadingType());
 
         turn.setCreatedBy(gmoTurn.getCreatedBy());
         turn.setUpdatedBy(gmoTurn.getUpdatedBy());

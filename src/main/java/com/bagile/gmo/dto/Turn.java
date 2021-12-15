@@ -25,6 +25,7 @@ public class Turn extends EmsDto implements Serializable {
     private BigDecimal totalSoPriceTurn ;
     private BigDecimal totalPoPriceTurn;
   private String packagingType;
+  private String loadingType;
 
     public Turn() {
     }
@@ -156,6 +157,15 @@ public class Turn extends EmsDto implements Serializable {
 
     public void setTurnTransports(List<TurnTransport> turnTransports) {
         this.turnTransports = turnTransports;
+    }
+
+
+    public String getLoadingType() {
+        return loadingType;
+    }
+
+    public void setLoadingType(String loadingType) {
+        this.loadingType = loadingType;
     }
 
     @Override
