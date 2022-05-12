@@ -75,7 +75,8 @@ public class ReceptionController {
     //@PreAuthorize("hasRole('BADGETYPE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Reception add(@RequestBody Reception reception ) throws ContainerException, ProductControls, AttributesNotFound, ErrorType, IdNotFound, CustomException {return receptionService.save(reception);}
+    public Reception add(@RequestBody Reception reception ) throws ContainerException, ProductControls, AttributesNotFound, ErrorType, IdNotFound, CustomException {
+        return receptionService.save(reception);}
     //@PreAuthorize("hasRole('BADGETYPE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody

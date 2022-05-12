@@ -16,7 +16,7 @@ public class AlimentationPumpMapper {
 
         map.put ("id", "gmoAlimentationPumpId");
         map.put ("code", "gmoAlimentationPumpCode");
-        map.put ("description", "gmoAlimentationPumpDescription");
+        map.put ("fuelPump", "gmoFuelPump");
 
         map.put ("quantity", "gmoAlimentationPumpQuantity");
         map.put ("creationDate", "creationDate");
