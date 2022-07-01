@@ -42,7 +42,7 @@ public class PlanningMapper {
         }
         TmsPlanning tmsPlanning = new TmsPlanning();
         tmsPlanning.setTmsPlanningId(planning.getId());
-        tmsPlanning.setTmsPlanningDay(planning.getDay() != null ? planning.getDay().toUpperCase() : null);
+//        tmsPlanning.setTmsPlanningDay(planning.getDay() != null ? planning.getDay().toUpperCase() : null);
         tmsPlanning.setTmsPlanningMorning (planning.getMorning ());
         tmsPlanning.setTmsPlanningMorningTimeStart (planning.getMorningTimeStart ());
         tmsPlanning.setTmsPlanningMorningTimeEnd (planning.getMorningTimeEnd ());
@@ -60,6 +60,7 @@ public class PlanningMapper {
               tmsPlanning.setOwnOwner(OwnerMapper.toEntity(planning.getOwner(),true));
               tmsPlanning.setCmdAccount(AccountMapper.toEntity(planning.getAccount(),true));
               tmsPlanning.setRcpSupplier(SupplierMapper.toEntity(planning.getSupplier(),true));
+              tmsPlanning.setTmsPlanningDay(DayMapper.toEntity(planning.getDay(),true));
 
 
 
@@ -77,7 +78,7 @@ public class PlanningMapper {
         }
         Planning planning = new Planning();
         planning.setId(tmsPlanning.getTmsPlanningId());
-        planning.setDay(tmsPlanning.getTmsPlanningDay());
+//        planning.setDay(tmsPlanning.getTmsPlanningDay());
         planning.setMorning (tmsPlanning.getTmsPlanningMorning ());
         planning.setMorningTimeStart (tmsPlanning.getTmsPlanningMorningTimeStart ());
         planning.setMorningTimeEnd (tmsPlanning.getTmsPlanningMorningTimeEnd ());
@@ -91,6 +92,7 @@ public class PlanningMapper {
       planning.setOwner(OwnerMapper.toDto(tmsPlanning.getOwnOwner(),true));
             planning.setAccount(AccountMapper.toDto(tmsPlanning.getCmdAccount(),true));
             planning.setSupplier(SupplierMapper.toDto(tmsPlanning.getRcpSupplier(),true));
+            planning.setDay(DayMapper.toDto(tmsPlanning.getTmsPlanningDay(),true));
 
 
         }

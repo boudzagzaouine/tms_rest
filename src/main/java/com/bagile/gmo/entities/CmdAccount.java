@@ -82,6 +82,7 @@ public class CmdAccount extends EmsDto implements Serializable{
 
     private Set<TmsPlanning> tmsPlannings = new HashSet<> ();
 
+    private Date cmdAccountDeliveryDate ;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_cmd_account", allocationSize = 1)
@@ -94,7 +95,7 @@ public class CmdAccount extends EmsDto implements Serializable{
         this.cmdAccountId = cmdAccountId;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cmd_accountcompanyid")
     public CmdCompany getCmdCompany() {
         return this.cmdCompany;
@@ -164,6 +165,14 @@ public class CmdAccount extends EmsDto implements Serializable{
         this.cmdAccountCode = cmdAccountCode;
     }
 
+    @Column(name = "cmd_accountdeliverydate")
+    public Date getCmdAccountDeliveryDate() {
+        return cmdAccountDeliveryDate;
+    }
+
+    public void setCmdAccountDeliveryDate(Date cmdAccountDeliveryDate) {
+        this.cmdAccountDeliveryDate = cmdAccountDeliveryDate;
+    }
 
     @Column(name = "cmd_accountcomment")
     public String getCmdAccountComment() {

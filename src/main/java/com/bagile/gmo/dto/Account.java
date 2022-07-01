@@ -75,7 +75,7 @@ public class Account extends EmsDto implements Serializable, Comparable<Account>
 
     private List<Planning> plannings= new ArrayList<>();
 
-
+  private Date deliveryDate ;
 
     public List<Planning> getPlannings() {
         return plannings;
@@ -293,6 +293,13 @@ public class Account extends EmsDto implements Serializable, Comparable<Account>
         this.password = password;
     }
 
+    public Date getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
 
     public BigDecimal getBilledAmount() {
         return billedAmount;

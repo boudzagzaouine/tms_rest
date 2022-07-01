@@ -16,6 +16,7 @@ public class Supplier extends EmsDto {
     private Boolean active;
     private Boolean gmao;
     private List<Planning> plannings= new ArrayList<>();
+    private SupplierType supplierType;
 
     public long getId() {
         return id;
@@ -103,6 +104,14 @@ public class Supplier extends EmsDto {
 
     public void setGmao(Boolean gmao) {
         this.gmao = gmao;
+    }
+
+    public SupplierType getSupplierType() {
+        return supplierType;
+    }
+
+    public void setSupplierType(SupplierType supplierType) {
+        this.supplierType = supplierType;
     }
 
     @Override

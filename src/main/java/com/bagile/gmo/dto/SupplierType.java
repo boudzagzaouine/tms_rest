@@ -1,15 +1,11 @@
 package com.bagile.gmo.dto;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class  ActionType {
+public class SupplierType {
 
 	private long id;
 	private String code;
 	private String description;
  private Owner owner;
-	private List<ActionTypeRepair> actionTypeRepairs= new ArrayList<>();
 
 
 	public long getId() {
@@ -37,13 +33,5 @@ public class  ActionType {
 
 	public void setOwner(Owner owner) {
 		this.owner = owner;
-	}
-
-	public List<ActionTypeRepair> getActionTypeRepairs() {
-		return actionTypeRepairs;
-	}
-
-	public void setActionTypeRepairs(List<ActionTypeRepair> actionTypeRepairs) {
-		this.actionTypeRepairs = actionTypeRepairs;
 	}
 }

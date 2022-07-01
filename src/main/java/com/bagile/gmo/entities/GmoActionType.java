@@ -1,6 +1,8 @@
 package com.bagile.gmo.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -12,6 +14,7 @@ public class GmoActionType extends EmsEntity {
 	private Long gmoActionTypeId;
     private String gmoActionTypeCode;
     private String gmoActionTypeDescription;
+    private Set<GmoActionTypeRepair> gmoActionTypeRepairs = new HashSet<>();
 
     private OwnOwner ownOwner;
 
@@ -55,5 +58,14 @@ public class GmoActionType extends EmsEntity {
 
     public void setOwnOwner(OwnOwner ownOwner) {
         this.ownOwner = ownOwner;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "gmoActionType", orphanRemoval=true)
+    public Set<GmoActionTypeRepair> getGmoActionTypeRepairs() {
+        return gmoActionTypeRepairs;
+    }
+
+    public void setGmoActionTypeRepairs(Set<GmoActionTypeRepair> gmoActionTypeRepairs) {
+        this.gmoActionTypeRepairs = gmoActionTypeRepairs;
     }
 }

@@ -90,6 +90,7 @@ public class AccountMapper {
         account.setCreatedBy(cmdAccount.getUpdatedBy());
         account.setMaxCredit(cmdAccount.getCmdAccountMaxCredit());
         account.setWholesale(cmdAccount.getCmdAccountWholesale());
+        account.setDeliveryDate(cmdAccount.getCmdAccountDeliveryDate());
 
         if (!lazy) {
             account.setCompany(CompanyMapper.toDto(cmdAccount.getCmdCompany(), false));
@@ -135,6 +136,7 @@ public class AccountMapper {
         cmdAccount.setCreatedBy(account.getCreatedBy());
         cmdAccount.setCmdAccountMaxCredit(account.getMaxCredit());
         cmdAccount.setCmdAccountWholesale(account.getWholesale());
+        cmdAccount.setCmdAccountDeliveryDate(account.getDeliveryDate());
 
         if (!lazy) {
             cmdAccount.setCmdCompany(CompanyMapper.toEntity(account.getCompany(), lazy));

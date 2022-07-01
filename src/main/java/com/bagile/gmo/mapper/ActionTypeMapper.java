@@ -1,6 +1,7 @@
 package com.bagile.gmo.mapper;
 
 import com.bagile.gmo.dto.ActionType;
+import com.bagile.gmo.entities.CmdAccount;
 import com.bagile.gmo.entities.GmoActionType;
 
 import java.util.*;
@@ -38,6 +39,10 @@ public class ActionTypeMapper {
 
 		if(!lazy){
 			gmoActionType.setOwnOwner(OwnerMapper.toEntity(actionType.getOwner(),true));
+			gmoActionType.setGmoActionTypeRepairs(ActionTypeRepairMapper.toEntities(actionType.getActionTypeRepairs(),false));
+
+			oneToMany(gmoActionType);
+
 		}
 		return gmoActionType;
 	}
@@ -52,6 +57,7 @@ public class ActionTypeMapper {
 		actionType.setDescription(gmoActionType.getGmoActionTypeDescription());
 
 		if(!lazy){
+			actionType.setActionTypeRepairs(ActionTypeRepairMapper.toDtos(gmoActionType.getGmoActionTypeRepairs(),false));
 
 			actionType.setOwner(OwnerMapper.toDto(gmoActionType.getOwnOwner(),true));
 
@@ -59,6 +65,17 @@ public class ActionTypeMapper {
 		return actionType;
 
 	}
+
+	private static void oneToMany(GmoActionType gmoActionType){
+		gmoActionType.getGmoActionTypeRepairs().forEach(
+				e->{
+					if(0>=e.getGmoActionTypeRepairId())
+						e.setGmoActionTypeRepairId(0L);
+					e.setCreationDate(new Date());
+					e.setGmoActionType(gmoActionType);
+				}
+		);}
+
 
 	public static List<ActionType> toDtos(Iterable<? extends GmoActionType> gmoActionTypes, boolean lazy) {
 		if (null == gmoActionTypes) {

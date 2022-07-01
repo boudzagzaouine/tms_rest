@@ -25,13 +25,13 @@ public class CmdCompany extends EmsDto implements Serializable  {
      */
     private static final long serialVersionUID = -3249779645949658793L;
     private Long cmdCompanyId;
-    @NotNull
+  //  @NotNull
     private OwnOwner ownOwner;
     @Size(max = 30)
     @NotNull
     private String cmdCompanyCode;
     @Size(max = 50)
-    @NotNull
+   // @NotNull
     private String cmdCompanyName;
     @Size(max = 20)
     private String cmdCompanySiret;

@@ -1,8 +1,12 @@
 package com.bagile.gmo.entities;
 
+import com.bagile.gmo.dto.Driver;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "gmo_vehicule")
@@ -50,6 +54,11 @@ public class GmoVehicle extends GmoPatrimony {
 
     private Date gmoVehicleRelease;
 
+    private GmoDriver gmoDriver ;
+    private String gmoVehicleFixOrVariable ;
+    private Date gmoVehicledateDriver;
+
+    private Set<GmoVehicleProduct> gmoVehicleProductSet = new HashSet<>();
 
   /*  @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -144,6 +153,32 @@ public class GmoVehicle extends GmoPatrimony {
 
     public void setGmoVehicleCategory(GmoVehicleCategory gmoVehicleCategory) {
         this.gmoVehicleCategory = gmoVehicleCategory;
+    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_driverid")
+    public GmoDriver getGmoDriver() {
+        return gmoDriver;
+    }
+
+    public void setGmoDriver(GmoDriver gmoDriver) {
+        this.gmoDriver = gmoDriver;
+    }
+
+    @Column(name = "gmo_vehiculefixorvariable")
+    public String getGmoVehicleFixOrVariable() {
+        return gmoVehicleFixOrVariable;
+    }
+
+    public void setGmoVehicleFixOrVariable(String gmoVehicleFixOrVariable) {
+        this.gmoVehicleFixOrVariable = gmoVehicleFixOrVariable;
+    }
+    @Column(name = "gmo_vehiculedatedriver")
+    public Date getGmoVehicledateDriver() {
+        return gmoVehicledateDriver;
+    }
+
+    public void setGmoVehicledateDriver(Date gmoVehicledateDriver) {
+        this.gmoVehicledateDriver = gmoVehicledateDriver;
     }
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
@@ -350,6 +385,15 @@ public class GmoVehicle extends GmoPatrimony {
     public void setGmoTurns(Set<TmsTurn> gmoTurns) {
         this.gmoTurns = gmoTurns;
     }*/
+
+    @OneToMany(mappedBy = "gmoVehicle",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+    public Set<GmoVehicleProduct> getGmoVehicleProductSet() {
+        return gmoVehicleProductSet;
+    }
+
+    public void setGmoVehicleProductSet(Set<GmoVehicleProduct> gmoVehicleProductSet) {
+        this.gmoVehicleProductSet = gmoVehicleProductSet;
+    }
 
     @ManyToOne()
     @JoinColumn(name="gmo_ownowner")

@@ -51,7 +51,11 @@ public class Vehicle extends Patrimony implements Serializable {
     private Date release; // mise en circulation
     private BigDecimal age;
  private Owner owner;
+    private Driver driver ;
+    private String fixOrVariable ;
+    private Date dateDriver;
 
+    private List<VehicleProduct> vehicleProducts = new ArrayList<>();
 
     public Vehicle() {
     }
@@ -344,6 +348,38 @@ public class Vehicle extends Patrimony implements Serializable {
 
     public void setAge(BigDecimal age) {
         this.age = age;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
+
+    public String getFixOrVariable() {
+        return fixOrVariable;
+    }
+
+    public void setFixOrVariable(String fixOrVariable) {
+        this.fixOrVariable = fixOrVariable;
+    }
+
+    public Date getDateDriver() {
+        return dateDriver;
+    }
+
+    public void setDateDriver(Date dateDriver) {
+        this.dateDriver = dateDriver;
+    }
+
+    public List<VehicleProduct> getVehicleProducts() {
+        return vehicleProducts;
+    }
+
+    public void setVehicleProducts(List<VehicleProduct> vehicleProducts) {
+        this.vehicleProducts = vehicleProducts;
     }
 
     @Override

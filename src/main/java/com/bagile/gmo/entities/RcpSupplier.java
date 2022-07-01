@@ -43,6 +43,7 @@ public class RcpSupplier extends EmsEntity implements java.io.Serializable {
 
     private Set<TmsPlanning> tmsPlannings = new HashSet<>();
 
+    private GmoSupplierType gmoSupplierType;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -166,6 +167,16 @@ public class RcpSupplier extends EmsEntity implements java.io.Serializable {
 
     public void setTmsPlannings(Set<TmsPlanning> tmsPlannings) {
         this.tmsPlannings = tmsPlannings;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "rcp_supplierTypeid")
+    public GmoSupplierType getGmoSupplierType() {
+        return gmoSupplierType;
+    }
+
+    public void setGmoSupplierType(GmoSupplierType gmoSupplierType) {
+        this.gmoSupplierType = gmoSupplierType;
     }
 
     @Override

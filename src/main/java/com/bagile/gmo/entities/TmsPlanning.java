@@ -8,7 +8,7 @@ import java.util.Date;
 public class TmsPlanning extends EmsEntity{
 
     private Long tmsPlanningId;
-    private String tmsPlanningDay;
+    private GmoDay tmsPlanningDay;
     private String tmsPlanningMorning;
     private Date tmsPlanningMorningTimeStart;
     private Date tmsPlanningMorningTimeEnd;
@@ -33,14 +33,17 @@ public class TmsPlanning extends EmsEntity{
         this.tmsPlanningId = tmsHolidayId;
     }
 
-    @Column(name = "tms_planningday",nullable = false)
-    public String getTmsPlanningDay() {
+    @ManyToOne()
+    @JoinColumn(name="tms_planningdayid")
+    public GmoDay getTmsPlanningDay() {
         return tmsPlanningDay;
     }
 
-    public void setTmsPlanningDay(String tmsPlanninDay) {
-        this.tmsPlanningDay = tmsPlanninDay;
+    public void setTmsPlanningDay(GmoDay tmsPlanningDay) {
+        this.tmsPlanningDay = tmsPlanningDay;
     }
+
+
 
     @Column(name = "tms_planningmorning")
     public String getTmsPlanningMorning() {

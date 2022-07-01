@@ -10,7 +10,7 @@ public class Planning extends EmsDto implements Serializable {
      */
     private static final long serialVersionUID = -134482768077497935L;
     private long id;
-    private String Day ;
+    private Day day ;
     private String morning;
     private Date morningTimeStart;
     private Date morningTimeEnd;
@@ -30,12 +30,12 @@ public class Planning extends EmsDto implements Serializable {
         this.id = id;
     }
 
-    public String getDay() {
-        return Day;
+    public Day getDay() {
+        return day;
     }
 
-    public void setDay(String day) {
-        Day = day;
+    public void setDay(Day day) {
+        this.day = day;
     }
 
     public String getMorning() {

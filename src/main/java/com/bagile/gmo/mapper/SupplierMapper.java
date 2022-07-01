@@ -23,6 +23,7 @@ public class SupplierMapper {
         map.put("updateDate", "rcpSupplierUpdateDate");
         map.put("active", "rcpSupplierIsActive");
         map.put("gmao", "rcpSupplierGmao");
+        map.put("supplierType", "gmoSupplierType");
 
 
     }
@@ -55,7 +56,8 @@ public class SupplierMapper {
             rcpSupplier.setOwnOwner(OwnerMapper.toEntity(supplier.getOwner(), true));
             rcpSupplier.setPrmContact(ContactMapper.toEntity(supplier.getContact(), true));
             rcpSupplier.setAdrAddress (AddressMapper.toEntity (supplier.getAddress (), true));
-            rcpSupplier.setTmsPlannings (PlanningMapper.toEntities (supplier.getPlannings (), true));
+            rcpSupplier.setTmsPlannings (PlanningMapper.toEntities (supplier.getPlannings (), false));
+            rcpSupplier.setGmoSupplierType (SupplierTypeMapper.toEntity (supplier.getSupplierType (), true));
 
             oneToMany(rcpSupplier);
 
@@ -90,7 +92,8 @@ public class SupplierMapper {
             supplier.setOwner(OwnerMapper.toDto(rcpSupplier.getOwnOwner(), true));
             supplier.setContact(ContactMapper.toDto(rcpSupplier.getPrmContact(), true));
             supplier.setAddress (AddressMapper.toDto (rcpSupplier.getAdrAddress (), true));
-            supplier.setPlannings (PlanningMapper.toDtos (rcpSupplier.getTmsPlannings (), true));
+            supplier.setPlannings (PlanningMapper.toDtos (rcpSupplier.getTmsPlannings (), false));
+            supplier.setSupplierType (SupplierTypeMapper.toDto (rcpSupplier.getGmoSupplierType (), true));
 
         }
         return supplier;

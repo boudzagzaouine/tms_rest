@@ -1,5 +1,6 @@
 package com.bagile.gmo.mapper;
 
+import com.bagile.gmo.dto.Driver;
 import com.bagile.gmo.dto.Vehicle;
 import com.bagile.gmo.entities.GmoVehicle;
 
@@ -94,6 +95,8 @@ public class VehicleMapper {
         gmoVehicle.setGmoVehicleVignette (vehicle.getVignette());
         gmoVehicle.setGmoVehicleValueVignete(vehicle.getValueVignette());
         gmoVehicle.setGmoVehicleRelease(vehicle.getRelease());
+        gmoVehicle.setGmoVehicleFixOrVariable(vehicle.getFixOrVariable());
+        gmoVehicle.setGmoVehicledateDriver(vehicle.getDateDriver());
 
 
         if (!lazy) {
@@ -106,9 +109,11 @@ public class VehicleMapper {
             gmoVehicle.setTrpTransport (TransportMapper.toEntity (vehicle.getTransport (), false));
             gmoVehicle.setGmoMaintenancePlan (MaintenancePlanMapper.toEntity (vehicle.getMaintenancePlan (), false));
             gmoVehicle.setOwnOwner (OwnerMapper.toEntity (vehicle.getOwner (), false));
+            gmoVehicle.setGmoDriver (DriverMapper.toEntity (vehicle.getDriver (), false));
+            gmoVehicle.setGmoVehicleProductSet (VehicleProductMapper.toEntities (vehicle.getVehicleProducts (), false));
 
             //oneToOne(gmoVehicle);
-           // oneToMany(gmoVehicle);
+           oneToMany(gmoVehicle);
         }
         return gmoVehicle;
 
@@ -153,6 +158,8 @@ public class VehicleMapper {
         vehicle.setVignette(gmoVehicle.getGmoVehicleVignette());
         vehicle.setValueVignette(gmoVehicle.getGmoVehicleValueVignete());
         vehicle.setRelease(gmoVehicle.getGmoVehicleRelease());
+        vehicle.setFixOrVariable(gmoVehicle.getGmoVehicleFixOrVariable());
+        vehicle.setDateDriver(gmoVehicle.getGmoVehicledateDriver());
 
         if (!lazy) {
             vehicle.setBadgeType(BadgeTypeMapper.toDto(gmoVehicle.getGmoBadgeType(), true));
@@ -164,19 +171,21 @@ public class VehicleMapper {
             vehicle.setTransport (TransportMapper.toDto (gmoVehicle.getTrpTransport (), false));
             vehicle.setMaintenancePlan (MaintenancePlanMapper.toDto (gmoVehicle.getGmoMaintenancePlan (), false));
             vehicle.setOwner (OwnerMapper.toDto (gmoVehicle.getOwnOwner (), false));
+            vehicle.setDriver (DriverMapper.toDto (gmoVehicle.getGmoDriver (), false));
+            vehicle.setVehicleProducts (VehicleProductMapper.toDtos (gmoVehicle.getGmoVehicleProductSet (), false));
 
         }
         return vehicle;
 
     }
-   /* private static void oneToMany(GmoVehicle vehicle) {
-        vehicle.getGmoInsuranceTermsVehicules().forEach(
+    private static void oneToMany(GmoVehicle vehicle) {
+        vehicle.getGmoVehicleProductSet().forEach(
                 e -> {
                     e.setCreationDate(new Date());
                     e.setGmoVehicle(vehicle);
                 }
         );
-    }*/
+    }
   /*private static void oneToOne(GmoVehicle vehicle) {
         vehicle.getGmoInsurance().setGmoVehicle(vehicle);
                 }*/
