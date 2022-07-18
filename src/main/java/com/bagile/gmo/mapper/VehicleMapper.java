@@ -97,6 +97,8 @@ public class VehicleMapper {
         gmoVehicle.setGmoVehicleRelease(vehicle.getRelease());
         gmoVehicle.setGmoVehicleFixOrVariable(vehicle.getFixOrVariable());
         gmoVehicle.setGmoVehicledateDriver(vehicle.getDateDriver());
+        gmoVehicle.setGmoVehicleInterneOrExterne(vehicle.getInterneOrExterne());
+        gmoVehicle.setGmoVehicleDurationInMonths(vehicle.getDurationInMonths());
 
 
         if (!lazy) {
@@ -160,6 +162,10 @@ public class VehicleMapper {
         vehicle.setRelease(gmoVehicle.getGmoVehicleRelease());
         vehicle.setFixOrVariable(gmoVehicle.getGmoVehicleFixOrVariable());
         vehicle.setDateDriver(gmoVehicle.getGmoVehicledateDriver());
+
+        vehicle.setInterneOrExterne(gmoVehicle.getGmoVehicleInterneOrExterne());
+        vehicle.setDurationInMonths(gmoVehicle.getGmoVehicleDurationInMonths());
+
 
         if (!lazy) {
             vehicle.setBadgeType(BadgeTypeMapper.toDto(gmoVehicle.getGmoBadgeType(), true));

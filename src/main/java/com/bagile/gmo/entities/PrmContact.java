@@ -20,6 +20,8 @@ public class PrmContact extends EmsEntity {
     private Boolean prmContactActive;
     private OwnOwner ownOwner;
 
+    private CmdAccount cmdAccount ;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_prm_contact_id", allocationSize = 1)
@@ -122,5 +124,13 @@ public class PrmContact extends EmsEntity {
         this.ownOwner = ownOwner;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "adr_addressaccountid")
+    public CmdAccount getCmdAccount() {
+        return cmdAccount;
+    }
 
+    public void setCmdAccount(CmdAccount cmdAccount) {
+        this.cmdAccount = cmdAccount;
+    }
 }

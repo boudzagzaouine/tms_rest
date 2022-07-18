@@ -54,7 +54,8 @@ public class Vehicle extends Patrimony implements Serializable {
     private Driver driver ;
     private String fixOrVariable ;
     private Date dateDriver;
-
+    private String interneOrExterne ;
+    private Long durationInMonths ;
     private List<VehicleProduct> vehicleProducts = new ArrayList<>();
 
     public Vehicle() {
@@ -84,6 +85,14 @@ public class Vehicle extends Patrimony implements Serializable {
         this.code = code;
     }
 */
+
+    public String getInterneOrExterne() {
+        return interneOrExterne;
+    }
+
+    public void setInterneOrExterne(String interneOrExterne) {
+        this.interneOrExterne = interneOrExterne;
+    }
 
     public BigDecimal getInitialMileage() {
         return initialMileage;
@@ -380,6 +389,14 @@ public class Vehicle extends Patrimony implements Serializable {
 
     public void setVehicleProducts(List<VehicleProduct> vehicleProducts) {
         this.vehicleProducts = vehicleProducts;
+    }
+
+    public Long getDurationInMonths() {
+        return durationInMonths;
+    }
+
+    public void setDurationInMonths(Long durationInMonths) {
+        this.durationInMonths = durationInMonths;
     }
 
     @Override

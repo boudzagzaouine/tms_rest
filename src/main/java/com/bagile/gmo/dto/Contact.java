@@ -21,6 +21,8 @@ public class Contact extends EmsDto implements Serializable {
     private boolean  active ;
     private Owner owner;
 
+    private Account account;
+
     public Contact() {
     }
 
@@ -72,14 +74,22 @@ public class Contact extends EmsDto implements Serializable {
         this.fax = fax;
     }
 
-  /*  public String getContactType() {
-        return contactType;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setContactType(String contactType) {
-        this.contactType = contactType;
+    public void setAccount(Account account) {
+        this.account = account;
     }
-*/
+
+    /*  public String getContactType() {
+            return contactType;
+        }
+
+        public void setContactType(String contactType) {
+            this.contactType = contactType;
+        }
+    */
     public String getEmail() {
         return email;
     }

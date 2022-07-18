@@ -82,6 +82,10 @@ public class CmdAccount extends EmsDto implements Serializable{
 
     private Set<TmsPlanning> tmsPlannings = new HashSet<> ();
 
+    private Set<AdrAddress> adrAddresses = new HashSet<> ();
+    private Set<PrmContact> prmContacts = new HashSet<> ();
+
+
     private Date cmdAccountDeliveryDate ;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -361,6 +365,24 @@ public class CmdAccount extends EmsDto implements Serializable{
     @OneToMany(fetch = FetchType.LAZY,cascade={CascadeType.ALL,CascadeType.MERGE},mappedBy = "cmdAccount", orphanRemoval=true)
     public Set<TmsPlanning> getTmsPlannings() {
         return tmsPlannings;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY,cascade={CascadeType.ALL,CascadeType.MERGE},mappedBy = "cmdAccount", orphanRemoval=true)
+    public Set<AdrAddress> getAdrAddresses() {
+        return adrAddresses;
+    }
+
+    public void setAdrAddresses(Set<AdrAddress> adrAddresses) {
+        this.adrAddresses = adrAddresses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY,cascade={CascadeType.ALL,CascadeType.MERGE},mappedBy = "cmdAccount", orphanRemoval=true)
+    public Set<PrmContact> getPrmContacts() {
+        return prmContacts;
+    }
+
+    public void setPrmContacts(Set<PrmContact> prmContacts) {
+        this.prmContacts = prmContacts;
     }
 
     public void setTmsPlannings(Set<TmsPlanning> tmsPlannings) {

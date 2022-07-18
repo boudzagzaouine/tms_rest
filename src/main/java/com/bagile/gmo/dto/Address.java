@@ -1,5 +1,7 @@
 package com.bagile.gmo.dto;
 
+import com.bagile.gmo.entities.CmdAccount;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -34,6 +36,7 @@ public class Address extends EmsDto implements Serializable {
     private String variable10;
     private Long addressType;
  private Owner owner;
+ private Account account ;
 
     public long getId() {
         return this.id;
@@ -211,6 +214,14 @@ public class Address extends EmsDto implements Serializable {
         this.digiCode = digiCode;
     }
 
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
     /**
      * @return the line2
      */
@@ -232,6 +243,8 @@ public class Address extends EmsDto implements Serializable {
     public void setAddressType(Long addressType) {
         this.addressType = addressType;
     }
+
+
 
     @Override
     public boolean equals(Object object) {

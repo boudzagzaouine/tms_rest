@@ -64,6 +64,8 @@ public class ContactMapper {
         gmoContact.setUpdateDate(contact.getUpdateDate());
         if (!lazy) {
             gmoContact.setOwnOwner(OwnerMapper.toEntity(contact.getOwner(), true));
+            gmoContact.setCmdAccount(AccountMapper.toEntity(contact.getAccount(), true));
+
 //            prmContact.setInvInvoices(InvoiceMapper.toEntities(contact.getInvoices(), true));
 //            prmContact.setInvInvoiceArcs(InvoiceArcMapper.toEntities(contact.getInvoiceArcs(), true));
 //            prmContact.setRcpSuppliers(SupplierMapper.toEntities(contact.getSuppliers(), true));
@@ -95,6 +97,8 @@ public class ContactMapper {
         if (!lazy) {
 
             contact.setOwner(OwnerMapper.toDto(gmoContact.getOwnOwner(), true));
+            contact.setAccount(AccountMapper.toDto(gmoContact.getCmdAccount(), true));
+
 //            contact.setInvoices(InvoiceMapper.toDtos(prmContact.getInvInvoices(), true));
 //            contact.setInvoiceArcs(InvoiceArcMapper.toDtos(prmContact.getInvInvoiceArcs(), true));
 //            contact.setSuppliers(SupplierMapper.toDtos(prmContact.getRcpSuppliers(), true));
@@ -116,7 +120,7 @@ public class ContactMapper {
         return contacts;
     }
 
-    public static Set<PrmContact> toEntities(Set<Contact> contacts, boolean lazy) {
+    public static Set<PrmContact> toEntities(Iterable<? extends Contact> contacts, boolean lazy) {
         if (null == contacts) {
             return null;
         }
@@ -127,14 +131,5 @@ public class ContactMapper {
         return prmContacts;
     }
 
-    public static Set<Contact> toDtos(Set<PrmContact> gmoContacts, boolean lazy) {
-        if (null == gmoContacts) {
-            return null;
-        }
-        Set<Contact> contacts = new HashSet<>();
-        for (PrmContact gmoContact : gmoContacts) {
-            contacts.add(toDto(gmoContact, lazy));
-        }
-        return contacts;
-    }
+
 }

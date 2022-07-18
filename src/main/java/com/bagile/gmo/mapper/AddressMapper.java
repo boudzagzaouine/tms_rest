@@ -5,7 +5,9 @@ package com.bagile.gmo.mapper;
 
 
 import com.bagile.gmo.dto.Address;
+import com.bagile.gmo.dto.Planning;
 import com.bagile.gmo.entities.AdrAddress;
+import com.bagile.gmo.entities.TmsPlanning;
 
 import java.util.*;
 
@@ -82,6 +84,8 @@ public class AddressMapper {
         address.setAddressType(adrAddress.getAddAddressType());
         if (!lazy) {
             address.setOwner(OwnerMapper.toDto(adrAddress.getOwnOwner(), true));
+            address.setAccount(AccountMapper.toDto(adrAddress.getCmdAccount(), true));
+
 //            address.setWarehouses(WarehouseMapper.toDtos(adrAddress.getWrhWarehouses(), true));
 //            address.setAccountsForAccountDeliveryAddress(
 //                    AccountMapper.toDtos(adrAddress.getCmdAccountsForCmdAccountDeliveryAddressId(), true));
@@ -135,6 +139,8 @@ public class AddressMapper {
         adrAddress.setAddAddressType(address.getAddressType());
         if (!lazy) {
             adrAddress.setOwnOwner(OwnerMapper.toEntity(address.getOwner(), true));
+            adrAddress.setCmdAccount(AccountMapper.toEntity(address.getAccount(), true));
+
 //            adrAddress.setCmdAccountsForCmdAccountDeliveryAddressId(
 //                    AccountMapper.toEntities(address.getAccountsForAccountDeliveryAddress(), true));
 //            adrAddress.setCmdAccountsForCmdAccountInvoicesAddressId(
@@ -180,7 +186,7 @@ public class AddressMapper {
         return addresses;
     }
 
-    public static Set<AdrAddress> toEntities(Set<Address> addresses, boolean lazy) {
+    public static Set<AdrAddress> toEntities(Iterable<? extends Address> addresses, boolean lazy) {
         if (null == addresses) {
             return null;
         }
@@ -191,15 +197,6 @@ public class AddressMapper {
         return adrAddresses;
     }
 
-    public static Set<Address> toDtos(Set<AdrAddress> adrAddresses, boolean lazy) {
-        if (null == adrAddresses) {
-            return null;
-        }
-        Set<Address> addresses = new HashSet<>();
-        for (AdrAddress adrAddress : adrAddresses) {
-            addresses.add(toDto(adrAddress, lazy));
-        }
-        return addresses;
-    }
+
 
 }

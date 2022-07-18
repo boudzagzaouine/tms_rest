@@ -60,6 +60,9 @@ public class GmoVehicle extends GmoPatrimony {
 
     private Set<GmoVehicleProduct> gmoVehicleProductSet = new HashSet<>();
 
+    private String gmoVehicleInterneOrExterne ;
+    private Long gmoVehicleDurationInMonths ;
+
   /*  @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_vehicule_id", allocationSize = 1)
@@ -107,6 +110,24 @@ public class GmoVehicle extends GmoPatrimony {
 
     public void setGmoVehicleValueTechnicalvisit(BigDecimal gmoVehicleValueTechnicalvisit) {
         this.gmoVehicleValueTechnicalvisit = gmoVehicleValueTechnicalvisit;
+    }
+
+    @Column(name = "gmo_vehiculeinterneorexterne")
+    public String getGmoVehicleInterneOrExterne() {
+        return gmoVehicleInterneOrExterne;
+    }
+
+    public void setGmoVehicleInterneOrExterne(String gmoVehicleInterneOrExterne) {
+        this.gmoVehicleInterneOrExterne = gmoVehicleInterneOrExterne;
+    }
+
+    @Column(name = "gmo_vehiculedurationinmonths")
+    public Long getGmoVehicleDurationInMonths() {
+        return gmoVehicleDurationInMonths;
+    }
+
+    public void setGmoVehicleDurationInMonths(Long gmoVehicleDurationInMonths) {
+        this.gmoVehicleDurationInMonths = gmoVehicleDurationInMonths;
     }
 
     @Column(name = "gmo_vehiculeaquisitiondate")

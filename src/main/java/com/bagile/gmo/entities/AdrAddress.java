@@ -80,6 +80,8 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
     @Size(max = 255)
     private String adrAddressVariable10;
 
+    private CmdAccount cmdAccount;
+
 
     @Column(name = "add_addresstype", precision = 10, scale = 0)
     public Long getAddAddressType() {
@@ -112,6 +114,17 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
 
     public void setOwnOwner(OwnOwner ownOwner) {
         this.ownOwner = ownOwner;
+    }
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "adr_addressaccountid")
+    public CmdAccount getCmdAccount() {
+        return cmdAccount;
+    }
+
+    public void setCmdAccount(CmdAccount cmdAccount) {
+        this.cmdAccount = cmdAccount;
     }
 
     @Column(name = "adr_addresscode",  length = 30)
