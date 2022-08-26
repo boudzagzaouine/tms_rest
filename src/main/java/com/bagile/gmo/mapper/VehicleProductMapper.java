@@ -1,5 +1,6 @@
 package com.bagile.gmo.mapper;
 
+import com.bagile.gmo.dto.ProductType;
 import com.bagile.gmo.dto.VehicleProduct;
 import com.bagile.gmo.entities.GmoVehicleProduct;
 
@@ -34,10 +35,14 @@ public class VehicleProductMapper {
 		GmoVehicleProduct gmoVehicleProduct = new GmoVehicleProduct();
 		gmoVehicleProduct.setGmoVehicleProductId(vehicleProduct.getId());
 		gmoVehicleProduct.setGmoVehicleProductReference(vehicleProduct.getReference());
+		gmoVehicleProduct.setGmoVehicleProductReferenceOther(vehicleProduct.getReferenceOther());
+
 
 		if(!lazy){
 			gmoVehicleProduct.setOwnOwner(OwnerMapper.toEntity(vehicleProduct.getOwner(),true));
 			gmoVehicleProduct.setPdtProduct(ProductMapper.toEntity(vehicleProduct.getProduct(),false));
+			gmoVehicleProduct.setPdtProductType(ProductTypeMapper.toEntity(vehicleProduct.getProductType(),false));
+
 			gmoVehicleProduct.setGmoVehicle(VehicleMapper.toEntity(vehicleProduct.getVehicle(),false));
 
 
@@ -52,10 +57,13 @@ public class VehicleProductMapper {
 		VehicleProduct vehicleProduct = new VehicleProduct();
 		vehicleProduct.setId(gmoVehicleProduct.getGmoVehicleProductId());
 		vehicleProduct.setReference(gmoVehicleProduct.getGmoVehicleProductReference());
+		vehicleProduct.setReferenceOther(gmoVehicleProduct.getGmoVehicleProductReferenceOther());
+
 
 		if(!lazy){
 			vehicleProduct.setProduct(ProductMapper.toDto(gmoVehicleProduct.getPdtProduct(),false));
 			vehicleProduct.setVehicle(VehicleMapper.toDto(gmoVehicleProduct.getGmoVehicle(),true));
+			vehicleProduct.setProductType(ProductTypeMapper.toDto(gmoVehicleProduct.getPdtProductType(),false));
 
 			vehicleProduct.setOwner(OwnerMapper.toDto(gmoVehicleProduct.getOwnOwner(),true));
 

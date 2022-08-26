@@ -6,8 +6,12 @@ import java.util.List;
 public class VehicleProduct {
 
 	private long id;
+
+	private ProductType productType;
 	private Product Product;
 	private String reference;
+	private String referenceOther;
+
  private Owner owner;
 
  private Vehicle vehicle;
@@ -49,5 +53,21 @@ public class VehicleProduct {
 
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
+	}
+
+	public ProductType getProductType() {
+		return productType;
+	}
+
+	public void setProductType(ProductType productType) {
+		this.productType = productType;
+	}
+
+	public String getReferenceOther() {
+		return referenceOther;
+	}
+
+	public void setReferenceOther(String referenceOther) {
+		this.referenceOther = referenceOther;
 	}
 }

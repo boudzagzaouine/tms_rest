@@ -11,9 +11,13 @@ public class GmoVehicleProduct extends EmsEntity {
 	private static final long serialVersionUID = 2773120607426017439L;
 
 	private Long gmoVehicleProductId;
+
+    private PdtProductType pdtProductType;
+
     private PdtProduct pdtProduct;
     private String gmoVehicleProductReference;
 
+    private String gmoVehicleProductReferenceOther;
     private OwnOwner ownOwner;
     private GmoVehicle gmoVehicle;
 
@@ -58,10 +62,24 @@ public class GmoVehicleProduct extends EmsEntity {
         this.gmoVehicleProductReference = gmoVehicleProductReference;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "pdt_producttypeid")
+    public PdtProductType getPdtProductType() {
+        return pdtProductType;
+    }
 
+    public void setPdtProductType(PdtProductType pdtProductType) {
+        this.pdtProductType = pdtProductType;
+    }
 
+    @Column(name = "gmo_vehicleproductreferenceother")
+    public String getGmoVehicleProductReferenceOther() {
+        return gmoVehicleProductReferenceOther;
+    }
 
-
+    public void setGmoVehicleProductReferenceOther(String gmoVehicleProductReferenceOther) {
+        this.gmoVehicleProductReferenceOther = gmoVehicleProductReferenceOther;
+    }
 
     @ManyToOne
     @JoinColumn(name = "gmo_notificationtypeownowner")
