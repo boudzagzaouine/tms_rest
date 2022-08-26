@@ -52,17 +52,15 @@ public class ReceptionServiceImpl implements ReceptionService, GmaoSearch {
   reception.setGmao(true);
 
         reception.setUpdateDate(EmsDate.getDateNow());
-        String operation = "F";
         if (0 >= reception.getId()) {
             reception.setCreationDate(EmsDate.getDateNow());
             changeStatusToOnProgress(reception);
-            operation = "A";
             reception.setActive(true);
             calculateAllLines(reception);
             if (reception.getAccounted() == null) {
                 reception.setAccounted(true);
             }
-        } else {
+        } /*else {
             for (ReceptionLine receptionLine : reception.getReceptionLines()) {
 
                 if (receptionLine.getQuantityReceived() != null && receptionLine.getQuantity().compareTo(receptionLine.getQuantityReceived()) < 0) {
@@ -71,7 +69,7 @@ public class ReceptionServiceImpl implements ReceptionService, GmaoSearch {
 
             }
 
-        }
+        }*/
 
         return ReceptionMapper.toDto(receptionRepository.saveAndFlush(ReceptionMapper.toEntity(reception, false)), false);
     }

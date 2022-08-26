@@ -76,7 +76,7 @@ public class ReceptionStockServiceImpl implements ReceptionStockService {
 
         if (0 == receptionStock.getId()) {
             LOGGER.info(">Create a new ReceptionStock ");
-  Location location=locationService.findById(2L);
+           Location location=locationService.findById(2L);
             receptionStock.setLocation(location);
             receptionStock.setCreationDate(EmsDate.getDateNow());
             receptionStock.setUpdateDate(EmsDate.getDateNow());
