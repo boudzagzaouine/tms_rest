@@ -80,7 +80,10 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
     @Size(max = 255)
     private String adrAddressVariable10;
 
+
+   private String  adrAddressAddressTypeTms;
     private CmdAccount cmdAccount;
+
 
 
     @Column(name = "add_addresstype", precision = 10, scale = 0)
@@ -146,6 +149,14 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
         this.adrAddressContactTel = adrAddressContactTel;
     }
 
+    @Column(name = "adr_addressaddresstypetms", length = 20)
+    public String getAdrAddressAddressTypeTms() {
+        return adrAddressAddressTypeTms;
+    }
+
+    public void setAdrAddressAddressTypeTms(String adrAddressAddressTypeTms) {
+        this.adrAddressAddressTypeTms = adrAddressAddressTypeTms;
+    }
 
     @Column(name = "adr_addressline1", nullable = false, length = 50)
     public String getAdrAddressLine1() {

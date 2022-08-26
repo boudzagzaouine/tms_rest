@@ -38,12 +38,22 @@ public class Address extends EmsDto implements Serializable {
  private Owner owner;
  private Account account ;
 
+   private String  addressTypeTms;
+
     public long getId() {
         return this.id;
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getAddressTypeTms() {
+        return addressTypeTms;
+    }
+
+    public void setAddressTypeTms(String addressTypeTms) {
+        this.addressTypeTms = addressTypeTms;
     }
 
     public String getState() {

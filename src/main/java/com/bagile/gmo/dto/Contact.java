@@ -10,6 +10,7 @@ public class Contact extends EmsDto implements Serializable {
      */
     private static final long serialVersionUID = 6104428812454596331L;
     private long id;
+    private String code;
     private String name;
     private String surname ;
     private String tel1;
@@ -90,6 +91,15 @@ public class Contact extends EmsDto implements Serializable {
             this.contactType = contactType;
         }
     */
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public String getEmail() {
         return email;
     }

@@ -9,6 +9,8 @@ public class PrmContact extends EmsEntity {
     private static final long serialVersionUID = -2556249835469329497L;
 
     private Long prmContactId;
+
+    private String prmContactCode;
     private String prmContactName;
     private String prmContactSurname;
     private String prmContactTel1;
@@ -39,6 +41,15 @@ public class PrmContact extends EmsEntity {
     }
     public void setPrmContactName(String prmContactName) {
         this.prmContactName = prmContactName;
+    }
+
+    @Column(name = "prm_contactcode")
+    public String getPrmContactCode() {
+        return prmContactCode;
+    }
+
+    public void setPrmContactCode(String prmContactCode) {
+        this.prmContactCode = prmContactCode;
     }
 
     @Column(name = "prm_contactsurname")

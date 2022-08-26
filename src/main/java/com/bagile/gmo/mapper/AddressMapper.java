@@ -82,6 +82,9 @@ public class AddressMapper {
         address.setVariable9(adrAddress.getAdrAddressVariable9());
         address.setVariable10(adrAddress.getAdrAddressVariable10());
         address.setAddressType(adrAddress.getAddAddressType());
+        address.setAddressTypeTms(adrAddress.getAdrAddressAddressTypeTms());
+
+
         if (!lazy) {
             address.setOwner(OwnerMapper.toDto(adrAddress.getOwnOwner(), true));
             address.setAccount(AccountMapper.toDto(adrAddress.getCmdAccount(), true));
@@ -137,6 +140,9 @@ public class AddressMapper {
         adrAddress.setAdrAddressVariable9(address.getVariable9());
         adrAddress.setAdrAddressVariable10(address.getVariable10());
         adrAddress.setAddAddressType(address.getAddressType());
+        adrAddress.setAdrAddressAddressTypeTms(address.getAddressTypeTms());
+
+
         if (!lazy) {
             adrAddress.setOwnOwner(OwnerMapper.toEntity(address.getOwner(), true));
             adrAddress.setCmdAccount(AccountMapper.toEntity(address.getAccount(), true));

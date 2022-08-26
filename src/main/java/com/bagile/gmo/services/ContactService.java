@@ -34,4 +34,6 @@ public interface ContactService {
     List<Contact> findAll() throws AttributesNotFound, ErrorType;
 
     List<Contact> findAll(int page, int size) throws AttributesNotFound, ErrorType;
+    String getNextVal();
+
 }

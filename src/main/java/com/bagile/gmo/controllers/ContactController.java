@@ -132,4 +132,11 @@ public class ContactController {
         contactService.delete(id);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/nextval")
+    @ResponseBody
+    public String nextVal()
+    {
+        return  contactService.getNextVal();
+    }
+
 }

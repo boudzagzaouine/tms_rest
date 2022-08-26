@@ -8,10 +8,12 @@ import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.ContactMapper;
 import com.bagile.gmo.repositories.ContactRepository;
 import com.bagile.gmo.services.ContactService;
+import com.bagile.gmo.services.SettingService;
 import com.bagile.gmo.util.EmsDate;
 import com.bagile.gmo.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -26,6 +28,9 @@ public class ContactServiceImpl implements ContactService {
     private final ContactRepository contactRepository;
     //@Autowired
     // private SettingService settingService;
+
+    @Autowired
+    private SettingService settingService;
     private final static Logger LOGGER = LoggerFactory
             .getLogger (ContactService.class);
 
@@ -139,6 +144,14 @@ public class ContactServiceImpl implements ContactService {
     public List<Contact> findAll(int page, int size) throws AttributesNotFound, ErrorType {
         return find ("", page, size);
     }
+
+    @Override
+    public String getNextVal() {
+        String value=settingService.generateCodeContact() + contactRepository.getNextVal().get(0);
+        return value;
+
+    }
+
 
 
 }

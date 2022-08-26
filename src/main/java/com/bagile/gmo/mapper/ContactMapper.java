@@ -47,6 +47,8 @@ public class ContactMapper {
         }
         PrmContact gmoContact = new PrmContact();
         gmoContact.setPrmContactId(contact.getId());
+        gmoContact.setPrmContactCode(contact.getCode());
+
         gmoContact.setPrmContactName(contact.getName());
       //  gmoContact.setPrmContactType(contact.getContactType());
         gmoContact.setPrmContactSurname(contact.getSurname());
@@ -80,6 +82,9 @@ public class ContactMapper {
         }
         Contact contact = new Contact();
         contact.setId(gmoContact.getPrmContactId());
+
+        contact.setCode(gmoContact.getPrmContactCode());
+
         contact.setName(gmoContact.getPrmContactName());
         contact.setSurname(gmoContact.getPrmContactSurname());
         contact.setTel1 (gmoContact.getPrmContactTel1 ());
