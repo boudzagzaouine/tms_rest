@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -42,6 +43,7 @@ public class NotificationTypeServiceImpl implements NotificationTypeService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public NotificationType findById(Long id) throws IdNotFound {
         return NotificationTypeMapper.toDto(notificationTypeRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
     }

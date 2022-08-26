@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -167,7 +168,7 @@ public class NotificationServiceImpl implements NotificationService {
 
 
     @Override
-   // @Scheduled(fixedDelay = 60000L)
+    @Scheduled(fixedDelay = 60000L)
     @Transactional(propagation = Propagation.REQUIRED)
     public void verify()   {
 
@@ -182,6 +183,7 @@ public class NotificationServiceImpl implements NotificationService {
 
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     private void verifyTriggerDateMaintenance() throws IdNotFound, AttributesNotFound, ErrorType {
 
         //////if statut == cree et date intevention < dateNow
@@ -287,7 +289,7 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
 
-
+    @Transactional(propagation = Propagation.REQUIRED)
     private void verifyStockProduct() throws AttributesNotFound, ErrorType, IdNotFound {
 
         Notification notificationSearchProduct ;
