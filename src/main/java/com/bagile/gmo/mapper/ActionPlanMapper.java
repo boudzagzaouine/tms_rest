@@ -78,6 +78,7 @@ public class ActionPlanMapper {
         gmoActionPlan.setGmoActionPlanDayOfMonth(actionPlan.getDayOfMonth());
         gmoActionPlan.setGmoActionPlanInterventionDate(actionPlan.getInterventionDate());
         gmoActionPlan.setGmoActionPlanValueconditionalType(actionPlan.getValueconditionalType());
+        gmoActionPlan.setGmoActionPlanBlocking(actionPlan.getBlocking());
 
         gmoActionPlan.setGmoActionPlanDuration(actionPlan.getDuration());
         gmoActionPlan.setCreatedBy(actionPlan.getCreatedBy());
@@ -144,6 +145,7 @@ public class ActionPlanMapper {
         actionPlan.setCreationDate(gmoActionPlan.getCreationDate());
         actionPlan.setUpdateDate(gmoActionPlan.getUpdateDate());
         actionPlan.setValueconditionalType(gmoActionPlan.getGmoActionPlanValueconditionalType());
+        actionPlan.setBlocking(gmoActionPlan.getGmoActionPlanBlocking());
 
 
         if (!lazy) {

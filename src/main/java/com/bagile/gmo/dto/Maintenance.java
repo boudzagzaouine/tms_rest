@@ -51,6 +51,7 @@ public class Maintenance extends EmsDto implements Serializable {
     private Owner owner;
    private Driver driver;
 
+   private String blocking;
 
     public Maintenance() {
     }
@@ -207,6 +208,14 @@ public class Maintenance extends EmsDto implements Serializable {
 
     public void setMaintenanceDate(Date maintenanceDate) {
         this.maintenanceDate = maintenanceDate;
+    }
+
+    public String getBlocking() {
+        return blocking;
+    }
+
+    public void setBlocking(String blocking) {
+        this.blocking = blocking;
     }
 
     /*public List<ActionMaintenance> getActionMaintenances() {

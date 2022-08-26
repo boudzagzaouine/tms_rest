@@ -44,6 +44,9 @@ public class GmoActionPlan extends EmsEntity {
     private GmoConditionalType gmoConditionalType;
     private BigDecimal gmoActionPlanValueconditionalType;
  private OwnOwner  ownOwner;
+
+    private String gmoActionPlanBlocking;
+
     public GmoActionPlan() {
     }
     @Id
@@ -65,8 +68,18 @@ public class GmoActionPlan extends EmsEntity {
         return gmoActionPlanStartDate;
     }
 
+
     public void setGmoActionPlanStartDate(Date gmoActionPlanStartDate) {
         this.gmoActionPlanStartDate = gmoActionPlanStartDate;
+    }
+    @Column(name = "gmo_ActionPlanblocking")
+
+    public String getGmoActionPlanBlocking() {
+        return gmoActionPlanBlocking;
+    }
+
+    public void setGmoActionPlanBlocking(String gmoActionPlanBlocking) {
+        this.gmoActionPlanBlocking = gmoActionPlanBlocking;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)

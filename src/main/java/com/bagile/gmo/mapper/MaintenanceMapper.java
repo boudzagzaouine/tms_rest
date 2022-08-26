@@ -97,6 +97,7 @@ public class MaintenanceMapper {
         gmoMaintenance.setGmoMaintenanceValueconditionalType(maintenance.getValueconditionalType());
         gmoMaintenance.setGmoMaintenanceMileageNext(maintenance.getMileageNext());
         gmoMaintenance.setGmoMaintenanceDate(maintenance.getMaintenanceDate());
+        gmoMaintenance.setBlocking(maintenance.getBlocking());
 
         if (!lazy) {
             gmoMaintenance.setGmoMaintenanceType(MaintenanceTypeMapper.toEntity(maintenance.getMaintenanceType(), true));
@@ -169,6 +170,7 @@ public class MaintenanceMapper {
         maintenance.setValueconditionalType(gmoMaintenance.getGmoMaintenanceValueconditionalType());
         maintenance.setMileageNext(gmoMaintenance.getGmoMaintenanceMileageNext());
         maintenance.setMaintenanceDate(gmoMaintenance.getGmoMaintenanceDate());
+        maintenance.setBlocking(gmoMaintenance.getBlocking());
 
         if (!lazy) {
             maintenance.setMaintenanceType(MaintenanceTypeMapper.toDto(gmoMaintenance.getGmoMaintenanceType(), true));

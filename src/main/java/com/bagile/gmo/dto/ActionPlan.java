@@ -43,6 +43,8 @@ public class ActionPlan extends EmsDto implements Serializable {
  private BigDecimal valueconditionalType;
  private Owner owner;
 
+ private String blocking;
+
     public ActionPlan() {
     }
 
@@ -69,6 +71,14 @@ public class ActionPlan extends EmsDto implements Serializable {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public String getBlocking() {
+        return blocking;
+    }
+
+    public void setBlocking(String blocking) {
+        this.blocking = blocking;
     }
 
     public MaintenanceType getMaintenanceType() {

@@ -128,6 +128,8 @@ public class GmoMaintenance extends EmsEntity {
     @JoinColumn(name = "gmo_driverid")
     private GmoDriver gmoDriver;
 
+    @Column(name = "gmo_maintenancebloking")
+    private String blocking;
     public GmoMaintenance() {
     }
 
@@ -154,6 +156,14 @@ public class GmoMaintenance extends EmsEntity {
 
     public void setGmoMaintenanceCode(String gmoMaintenanceCode) {
         this.gmoMaintenanceCode = gmoMaintenanceCode;
+    }
+
+    public String getBlocking() {
+        return blocking;
+    }
+
+    public void setBlocking(String blocking) {
+        this.blocking = blocking;
     }
 
     public String getGmoMaintenanceDescription() {

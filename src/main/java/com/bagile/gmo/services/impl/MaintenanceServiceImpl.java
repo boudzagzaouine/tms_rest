@@ -243,6 +243,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 
             maintenance.setPatrimony(patrimony);
                 maintenance.setActionType(actionPlan.getActionType());
+        maintenance.setBlocking(actionPlan.getBlocking());
 
            /* List<ActionLineMaintenance> actionLineMaintenanaces = new ArrayList<>();
 
@@ -438,6 +439,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
         maintenance2.setResponsability(maintenance.getResponsability());
         maintenance2.setPatrimony(maintenance.getPatrimony());
         maintenance2.setActionType(maintenance.getActionType());
+        maintenance2.setBlocking(maintenance.getBlocking());
 
         save(maintenance2);
 

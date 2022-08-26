@@ -5,9 +5,12 @@ import com.bagile.gmo.dto.Patrimony;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
 import java.io.IOException;
 import java.util.List;
+
+
 
 public interface MaintenanceService {
     Maintenance save(Maintenance maintenance) throws AttributesNotFound, ErrorType;
