@@ -374,6 +374,21 @@ public class Account extends EmsDto implements Serializable, Comparable<Account>
     }
 
 
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     @Override
     public boolean equals(Object object) {

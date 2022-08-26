@@ -28,6 +28,17 @@ public class CmdAccount extends EmsDto implements Serializable{
      */
     private static final long serialVersionUID = -8407687683333368760L;
     private Long cmdAccountId;
+
+    @NotNull
+    @Size(max = 30)
+    private String cmdAccountCode;
+    private String cmdAccountName;
+
+    private String cmdAccountTelephone ;
+
+    private String cmdAccountEmail;
+
+
     private CmdCompany cmdCompany;
     @NotNull
     private OwnOwner ownOwner;
@@ -36,9 +47,7 @@ public class CmdAccount extends EmsDto implements Serializable{
     private TrpTransport trpTransport;
 
     private PrmContact prmContact;
-    @NotNull
-    @Size(max = 30)
-    private String cmdAccountCode;
+
     @Size(max = 255)
     private String cmdAccountComment;
     @Size(max = 1000)
@@ -74,7 +83,7 @@ public class CmdAccount extends EmsDto implements Serializable{
     private String cmdAccountVariable9;
     @Size(max = 255)
     private String cmdAccountVariable10;
-    private String cmdAccountName;
+
     private String cmdAccountPassword;
     private Set<CmdSaleOrder> cmdSaleOrders = new HashSet<CmdSaleOrder>(0);
     private BigDecimal cmdAccountMaxCredit;
@@ -158,6 +167,22 @@ public class CmdAccount extends EmsDto implements Serializable{
 
     public void setCmdAccountDescription(String cmdAccountDescription) {
         this.cmdAccountDescription = cmdAccountDescription;
+    }
+    @Column(name = "cmd_accounttelephone")
+    public String getCmdAccountTelephone() {
+        return cmdAccountTelephone;
+    }
+
+    public void setCmdAccountTelephone(String cmdAccountTelephone) {
+        this.cmdAccountTelephone = cmdAccountTelephone;
+    }
+    @Column(name = "cmd_accountemail")
+    public String getCmdAccountEmail() {
+        return cmdAccountEmail;
+    }
+
+    public void setCmdAccountEmail(String cmdAccountEmail) {
+        this.cmdAccountEmail = cmdAccountEmail;
     }
 
     @Column(name = "cmd_accountcode", unique = true, nullable = false, length = 30)

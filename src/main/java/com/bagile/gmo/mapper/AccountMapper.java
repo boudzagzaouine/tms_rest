@@ -68,6 +68,9 @@ public class AccountMapper {
         }
         Account account = new Account();
         account.setCode(cmdAccount.getCmdAccountCode());
+        account.setName(cmdAccount.getCmdAccountName());
+        account.setEmail(cmdAccount.getCmdAccountEmail());
+        account.setTelephone(cmdAccount.getCmdAccountTelephone());
         account.setComment(cmdAccount.getCmdAccountComment());
         account.setCreationDate(cmdAccount.getCmdAccountCreationDate());
         account.setId(cmdAccount.getCmdAccountId());
@@ -116,6 +119,9 @@ public class AccountMapper {
         }
         CmdAccount cmdAccount = new CmdAccount();
         cmdAccount.setCmdAccountCode(account.getCode() != null ? account.getCode().toUpperCase() : null);
+        cmdAccount.setCmdAccountEmail(account.getEmail());
+        cmdAccount.setCmdAccountTelephone(account.getTelephone());
+
         cmdAccount.setCmdAccountComment(account.getComment());
         cmdAccount.setCmdAccountCreationDate(account.getCreationDate());
         cmdAccount.setCmdAccountId(account.getId());

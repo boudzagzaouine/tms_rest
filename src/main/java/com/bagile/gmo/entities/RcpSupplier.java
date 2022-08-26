@@ -42,6 +42,7 @@ public class RcpSupplier extends EmsEntity implements java.io.Serializable {
     private Boolean rcpSupplierGmao;
 
     private Set<TmsPlanning> tmsPlannings = new HashSet<>();
+    private Set<TmsSupplierProduct> tmsSupplierProducts = new HashSet<>();
 
     private GmoSupplierType gmoSupplierType;
 
@@ -167,6 +168,15 @@ public class RcpSupplier extends EmsEntity implements java.io.Serializable {
 
     public void setTmsPlannings(Set<TmsPlanning> tmsPlannings) {
         this.tmsPlannings = tmsPlannings;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY,cascade={CascadeType.ALL,CascadeType.MERGE},mappedBy = "rcpSupplier", orphanRemoval=true)
+    public Set<TmsSupplierProduct> getTmsSupplierProducts() {
+        return tmsSupplierProducts;
+    }
+
+    public void setTmsSupplierProducts(Set<TmsSupplierProduct> tmsSupplierProducts) {
+        this.tmsSupplierProducts = tmsSupplierProducts;
     }
 
     @ManyToOne()

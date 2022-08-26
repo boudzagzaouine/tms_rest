@@ -16,6 +16,8 @@ public class Supplier extends EmsDto {
     private Boolean active;
     private Boolean gmao;
     private List<Planning> plannings= new ArrayList<>();
+    private List<SupplierProduct> supplierProducts= new ArrayList<>();
+
     private SupplierType supplierType;
 
     public long getId() {
@@ -48,6 +50,14 @@ public class Supplier extends EmsDto {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public List<SupplierProduct> getSupplierProducts() {
+        return supplierProducts;
+    }
+
+    public void setSupplierProducts(List<SupplierProduct> supplierProducts) {
+        this.supplierProducts = supplierProducts;
     }
 
     public String getTerms() {
@@ -135,4 +145,20 @@ public class Supplier extends EmsDto {
         hash = 7 * hash + (int) this.id;
         return hash;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
