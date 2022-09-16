@@ -26,12 +26,13 @@ public class SupplierInvoiceLineMapper {
         map.put("priceTTC", "invSupplierInvoiceLinePriceTTC");
         map.put("discount", "invSupplierInvoiceLineDiscount");
         map.put("quantity", "invSupplierInvoiceState");
-        map.put("invoiceSupplier", "invSupplierInvoiceState");
+        map.put("supplierInvoice", "invSupplierInvoice");
         map.put("product", "pdtProduct");
         map.put("uom", "pdtUom");
         map.put("tarifPrice", "invSupplierInvoiceTarifPrice");
         map.put("vat", "invSupplierInvoiceVat");
         map.put("productPack", "pdtProductPack");
+        map.put("gmao", "invSupplierInvoiceLineGmao");
 
     }
 
@@ -62,6 +63,8 @@ public class SupplierInvoiceLineMapper {
         invSupplierInvoiceLine.setInvSupplierInvoiceLineQuantity(supplierInvoiceLine.getQuantity());
         invSupplierInvoiceLine.setUpdatedBy(supplierInvoiceLine.getUpdatedBy());
         invSupplierInvoiceLine.setCreatedBy(supplierInvoiceLine.getCreatedBy());
+        invSupplierInvoiceLine.setInvSupplierInvoiceLineGmao(supplierInvoiceLine.getGmao());
+
         if (!lazy) {
             invSupplierInvoiceLine.setPdtProductPack(ProductPackMapper.toEntity(supplierInvoiceLine.getProductPack(), true));
            // invSupplierInvoiceLine.setPrmVat(VatMapper.toEntity(supplierInvoiceLine.getVat(), true));
@@ -88,6 +91,7 @@ public class SupplierInvoiceLineMapper {
         supplierInvoiceLine.setDiscount(invSupplierInvoiceLine.getInvSupplierInvoiceLineDiscount());
         supplierInvoiceLine.setTarifPrice(invSupplierInvoiceLine.getInvSupplierInvoiceLineTarifPrice());
         supplierInvoiceLine.setQuantity(invSupplierInvoiceLine.getInvSupplierInvoiceLineQuantity());
+        supplierInvoiceLine.setGmao(invSupplierInvoiceLine.getInvSupplierInvoiceLineGmao());
 
         if (!lazy) {
             supplierInvoiceLine.setProductPack(ProductPackMapper.toDto(invSupplierInvoiceLine.getPdtProductPack(), false));

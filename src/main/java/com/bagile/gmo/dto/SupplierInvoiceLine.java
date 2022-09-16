@@ -24,6 +24,9 @@ public class SupplierInvoiceLine extends EmsDto implements Serializable {
     private BigDecimal vat;
     private ProductPack productPack;
 
+    private Boolean gmao;
+
+
     public long getId() {
         return id;
     }
@@ -54,6 +57,14 @@ public class SupplierInvoiceLine extends EmsDto implements Serializable {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public Boolean getGmao() {
+        return gmao;
+    }
+
+    public void setGmao(Boolean gmao) {
+        this.gmao = gmao;
     }
 
     public Date getUpdateDate() {

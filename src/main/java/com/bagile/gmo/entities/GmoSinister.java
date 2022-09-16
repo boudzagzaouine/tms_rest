@@ -8,6 +8,8 @@ import com.bagile.gmo.dto.Vehicle;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -26,6 +28,8 @@ public class GmoSinister extends EmsEntity {
     private Date gmoSinisterDate;
     private String  gmoSinisterVenue ;
     private RcpSupplier rcpSupplier;
+
+    private Set<GmoDocument> gmoDocumentSet = new HashSet<>();
 
     private BigDecimal gmoSinisterRepayment;
     
@@ -127,6 +131,15 @@ public class GmoSinister extends EmsEntity {
         this.gmoSinisterRepayment = gmoSinisterRepayment;
     }
 
+    @OneToMany(mappedBy = "gmoSinister",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+    public Set<GmoDocument> getGmoDocumentSet() {
+        return gmoDocumentSet;
+    }
+
+    public void setGmoDocumentSet(Set<GmoDocument> gmoDocumentSet) {
+        this.gmoDocumentSet = gmoDocumentSet;
+    }
+
     @ManyToOne
     @JoinColumn(name = "gmo_notificationownowner")
     public OwnOwner getOwnOwner() {
@@ -136,6 +149,7 @@ public class GmoSinister extends EmsEntity {
     public void setOwnOwner(OwnOwner ownOwner) {
         this.ownOwner = ownOwner;
     }
+
 
     
 }

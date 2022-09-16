@@ -38,6 +38,7 @@ public class SupplierInvoiceMapper {
         map.put("parent", "parent");
         map.put("supplierInvoiceCode", "invSupplierInvoiceSupplierInvoiceCode");
         map.put("invoiceDate", "invSupplierInvoiceDate");
+        map.put("gmao", "invSupplierInvoiceGmao");
 
     }
 
@@ -70,6 +71,8 @@ public class SupplierInvoiceMapper {
         invSupplierInvoice.setUpdatedBy(supplierInvoice.getUpdatedBy());
         invSupplierInvoice.setCreatedBy(supplierInvoice.getCreatedBy());
         invSupplierInvoice.setInvSupplierInvoiceDate(supplierInvoice.getInvoiceDate());
+        invSupplierInvoice.setInvSupplierInvoiceGmao(supplierInvoice.getGmao());
+
         if (!lazy) {
             invSupplierInvoice.setPrmInvoiceStatus(InvoiceStatusMapper.toEntity(supplierInvoice.getInvoiceStatus(), true));
             invSupplierInvoice.setPrmPaymentStatus(PaymentStatusMapper.toEntity(supplierInvoice.getPaymentStatus(), true));
@@ -111,6 +114,8 @@ public class SupplierInvoiceMapper {
         supplierInvoice.setUpdatedBy(invSupplierInvoice.getUpdatedBy());
         supplierInvoice.setCreatedBy(invSupplierInvoice.getCreatedBy());
         supplierInvoice.setInvoiceDate(invSupplierInvoice.getInvSupplierInvoiceDate());
+        supplierInvoice.setGmao(invSupplierInvoice.getInvSupplierInvoiceGmao());
+
         if (!lazy) {
             supplierInvoice.setInvoiceStatus(InvoiceStatusMapper.toDto(invSupplierInvoice.getPrmInvoiceStatus(), true));
             supplierInvoice.setPaymentStatus(PaymentStatusMapper.toDto(invSupplierInvoice.getPrmPaymentStatus(), true));

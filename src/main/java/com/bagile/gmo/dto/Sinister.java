@@ -1,7 +1,9 @@
 package com.bagile.gmo.dto;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Sinister {
 
@@ -15,6 +17,9 @@ public class Sinister {
 	private String  venue ;
 	private Supplier supplier;
 	private BigDecimal repayment;
+
+	private List<Document> documents = new ArrayList<>();
+
     private Owner owner;
 
 
@@ -91,6 +96,14 @@ public class Sinister {
 
 	public void setRepayment(BigDecimal repayment) {
 		this.repayment = repayment;
+	}
+
+	public List<Document> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(List<Document> documents) {
+		this.documents = documents;
 	}
 
 	public Owner getOwner() {

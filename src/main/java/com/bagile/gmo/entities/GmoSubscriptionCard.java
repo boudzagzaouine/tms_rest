@@ -1,6 +1,7 @@
 package com.bagile.gmo.entities;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 
 @Entity
@@ -12,6 +13,11 @@ public class GmoSubscriptionCard extends EmsEntity {
 	private Long gmoSubscriptionCardId;
     private String gmoSubscriptionCardCode;
     private String gmoSubscriptionCardDescription;
+
+    private BigDecimal gmoSubscriptionCardPrice ;
+
+
+    private GmoSubscriptionCardType gmoSubscriptionCardType;
     private OwnOwner ownOwner;
 
     @Id
@@ -44,7 +50,30 @@ public class GmoSubscriptionCard extends EmsEntity {
         this.gmoSubscriptionCardDescription = gmoSubscriptionCardDescription;
     }
 
-    
+    @Column(name="gmo_subscriptioncardprice")
+
+    public BigDecimal getGmoSubscriptionCardPrice() {
+        return gmoSubscriptionCardPrice;
+    }
+
+    public void setGmoSubscriptionCardPrice(BigDecimal gmoSubscriptionCardPrice) {
+        this.gmoSubscriptionCardPrice = gmoSubscriptionCardPrice;
+    }
+
+
+
+    @ManyToOne
+    @JoinColumn(name="gmo_subscriptioncardtypeid")
+
+    public GmoSubscriptionCardType getGmoSubscriptionCardType() {
+        return gmoSubscriptionCardType;
+    }
+
+    public void setGmoSubscriptionCardType(GmoSubscriptionCardType gmoSubscriptionCardType) {
+        this.gmoSubscriptionCardType = gmoSubscriptionCardType;
+    }
+
+
     @ManyToOne()
     @JoinColumn(name="gmo_ownownerid")
     public OwnOwner getOwnOwner() {

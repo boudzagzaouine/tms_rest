@@ -2,6 +2,8 @@ package com.bagile.gmo.mapper;
 
 import com.bagile.gmo.dto.Sinister;
 import com.bagile.gmo.entities.GmoSinister;
+import com.bagile.gmo.entities.InvSupplierInvoice;
+import com.bagile.gmo.util.EmsDate;
 
 import java.util.*;
 
@@ -46,12 +48,26 @@ public class SinisterMapper {
 			gmoSinister.setGmoDriver(DriverMapper.toEntity(sinister.getDriver(),true));
 			gmoSinister.setRcpSupplier(SupplierMapper.toEntity(sinister.getSupplier(),false));
 			gmoSinister.setGmoSinisterType(SinisterTypeMapper.toEntity(sinister.getSinisterType(),true));
+			gmoSinister.setGmoDocumentSet(DocumentMapper.toEntities(sinister.getDocuments(),false));
 
 			gmoSinister.setOwnOwner(OwnerMapper.toEntity(sinister.getOwner(),true));
-
+      oneToMany(gmoSinister);
 
 		}
 		return gmoSinister;
+	}
+
+	public static void oneToMany(GmoSinister gmoSinister) {
+		if (null != gmoSinister.getGmoDocumentSet()) {
+			gmoSinister.getGmoDocumentSet().stream().forEach(sl -> {
+				sl.setGmoSinister(gmoSinister);
+				sl.setUpdateDate(EmsDate.getDateNow());
+				if (0 >= sl.getGmoDocumentId()) {
+					sl.setGmoDocumentId(0L);
+					sl.setCreationDate(EmsDate.getDateNow());
+				}
+			});
+		}
 	}
 
 	public static Sinister toDto(GmoSinister gmoSinister, boolean lazy) {
@@ -70,6 +86,7 @@ public class SinisterMapper {
 			sinister.setDriver(DriverMapper.toDto(gmoSinister.getGmoDriver(),true));
 			sinister.setSupplier(SupplierMapper.toDto(gmoSinister.getRcpSupplier(),false));
 			sinister.setSinisterType(SinisterTypeMapper.toDto(gmoSinister.getGmoSinisterType(),true));
+			sinister.setDocuments(DocumentMapper.toDtos(gmoSinister.getGmoDocumentSet(),false));
 
 			sinister.setOwner(OwnerMapper.toDto(gmoSinister.getOwnOwner(),true));
 

@@ -40,6 +40,7 @@ public class SupplierInvoice extends EmsDto implements Serializable {
     private Set<SupplierInvoiceReception> supplierInvoiceReceptions = new HashSet<>();
     private Set<SupplierInvoicePurchaseOrder> supplierInvoicePurchaseOrders = new HashSet<>();
 
+    private Boolean gmao;
     public Currency getCurrency() {
         return currency;
     }
@@ -119,6 +120,14 @@ public class SupplierInvoice extends EmsDto implements Serializable {
 
     public void setDeadLine(Date deadLine) {
         this.deadLine = deadLine;
+    }
+
+    public Boolean getGmao() {
+        return gmao;
+    }
+
+    public void setGmao(Boolean gmao) {
+        this.gmao = gmao;
     }
 
     public InvoiceStatus getInvoiceStatus() {

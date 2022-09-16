@@ -40,6 +40,9 @@ public class SubscriptionCardMapper {
         gmoSubscriptionCard.setGmoSubscriptionCardId(subscriptionCard.getId());
         gmoSubscriptionCard.setGmoSubscriptionCardCode(subscriptionCard.getCode() != null ? subscriptionCard.getCode().toUpperCase() : null);
         gmoSubscriptionCard.setGmoSubscriptionCardDescription (subscriptionCard.getDescription ());
+        gmoSubscriptionCard.setGmoSubscriptionCardPrice (subscriptionCard.getPrice ());
+
+
 
         gmoSubscriptionCard.setCreatedBy(subscriptionCard.getCreatedBy());
         gmoSubscriptionCard.setUpdatedBy(subscriptionCard.getUpdatedBy());
@@ -48,6 +51,8 @@ public class SubscriptionCardMapper {
 
           if(!lazy){
               gmoSubscriptionCard.setOwnOwner(OwnerMapper.toEntity(subscriptionCard.getOwner(),true));
+              gmoSubscriptionCard.setGmoSubscriptionCardType( SubscriptionCardTypeMapper.toEntity(subscriptionCard.getSubscriptionCardType(),true));
+
           }
 
         return gmoSubscriptionCard;
@@ -62,9 +67,12 @@ public class SubscriptionCardMapper {
         subscriptionCard.setId(gmoSubscriptionCard.getGmoSubscriptionCardId());
         subscriptionCard.setCode(gmoSubscriptionCard.getGmoSubscriptionCardCode());
         subscriptionCard.setDescription (gmoSubscriptionCard.getGmoSubscriptionCardDescription ());
+        subscriptionCard.setPrice (gmoSubscriptionCard.getGmoSubscriptionCardPrice());
 
  if(!lazy){
-      subscriptionCard.setOwner(OwnerMapper.toDto(gmoSubscriptionCard.getOwnOwner(),true));
+     subscriptionCard.setOwner(OwnerMapper.toDto(gmoSubscriptionCard.getOwnOwner(),true));
+     subscriptionCard.setSubscriptionCardType(SubscriptionCardTypeMapper.toDto(gmoSubscriptionCard.getGmoSubscriptionCardType(),true));
+
  }
         return subscriptionCard;
 

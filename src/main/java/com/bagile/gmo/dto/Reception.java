@@ -64,6 +64,7 @@ public class Reception  extends EmsDto implements Serializable {
     private Date supplierDeliveryDate;
 
     private Boolean gmao ;
+    private Boolean invoice;
 
     public String getTransportContact() {
         return transportContact;
@@ -87,6 +88,14 @@ public class Reception  extends EmsDto implements Serializable {
 
     public void setOwner(Owner owner) {
         this.owner = owner;
+    }
+
+    public Boolean getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Boolean invoice) {
+        this.invoice = invoice;
     }
 
     public Transport getTransport() {

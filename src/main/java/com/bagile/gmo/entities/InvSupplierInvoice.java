@@ -32,13 +32,13 @@ public class InvSupplierInvoice extends EmsEntity {
     private BigDecimal invSupplierInvoiceAmountPayed;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date invSupplierInvoiceDeadLine;
-    @NotNull
+  //  @NotNull
     private PrmInvoiceStatus prmInvoiceStatus;
     private Set<InvSupplierInvoiceLine> invSupplierInvoiceLines = new HashSet<InvSupplierInvoiceLine>();
     private RcpPurshaseOrder rcpPurshaseOrder;
     private WrhWarehouse wrhWarehouse;
     private OwnOwner ownOwner;
-    @NotNull
+   // @NotNull
     private PrmCurrency prmCurrency;
     @NotNull
     private Boolean invSupplierInvoiceActive;
@@ -51,6 +51,9 @@ public class InvSupplierInvoice extends EmsEntity {
     private Date invSupplierInvoiceDate;
     private Set<InvSupplierInvoiceReception> invSupplierInvoiceReceptions=new HashSet<>();
     private Set<InvSupplierInvoicePurchaseOrder> invSupplierInvoicePurchaseOrders=new HashSet<>();
+
+    private Boolean invSupplierInvoiceGmao;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "schema_crm.inv_supplierinvoice_inv_supplierinvoiceid_seq", allocationSize = 1)
@@ -70,6 +73,14 @@ public class InvSupplierInvoice extends EmsEntity {
 
     public void setInvSupplierInvoiceCode(String invSupplierInvoiceCode) {
         this.invSupplierInvoiceCode = invSupplierInvoiceCode;
+    }
+    @Column(name = "inv_supplierinvoicegmao")
+    public Boolean getInvSupplierInvoiceGmao() {
+        return invSupplierInvoiceGmao;
+    }
+
+    public void setInvSupplierInvoiceGmao(Boolean invSupplierInvoiceGmao) {
+        this.invSupplierInvoiceGmao = invSupplierInvoiceGmao;
     }
 
     @Temporal(TemporalType.TIMESTAMP)

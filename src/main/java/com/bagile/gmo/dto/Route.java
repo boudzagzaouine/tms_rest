@@ -2,7 +2,7 @@ package com.bagile.gmo.dto;
 
 import java.math.BigDecimal;
 
-public class PricingCIty {
+public class Route {
 
 	private long id;
 	private String code;
@@ -10,11 +10,7 @@ public class PricingCIty {
 	private Ville villeSource ;
 	private Pays paysDistination;
 	private Ville villeDestination;
-	private BigDecimal amountHt;
-	private BigDecimal amountTtc;
-	private BigDecimal amountTva;
-	private Pricing pricing;
-	private Vat vat;
+
 	private Owner owner;
 
 

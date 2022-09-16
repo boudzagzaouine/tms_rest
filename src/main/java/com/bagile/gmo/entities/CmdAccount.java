@@ -94,7 +94,8 @@ public class CmdAccount extends EmsDto implements Serializable{
     private Set<AdrAddress> adrAddresses = new HashSet<> ();
     private Set<PrmContact> prmContacts = new HashSet<> ();
 
-
+    private BigDecimal cmdAccountLatitude;
+    private BigDecimal cmdAccountLongitude;
     private Date cmdAccountDeliveryDate ;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -201,6 +202,25 @@ public class CmdAccount extends EmsDto implements Serializable{
 
     public void setCmdAccountDeliveryDate(Date cmdAccountDeliveryDate) {
         this.cmdAccountDeliveryDate = cmdAccountDeliveryDate;
+    }
+
+
+    @Column(name = "cmd_accountlatitude")
+    public BigDecimal getCmdAccountLatitude() {
+        return cmdAccountLatitude;
+    }
+
+    public void setCmdAccountLatitude(BigDecimal cmdAccountLatitude) {
+        this.cmdAccountLatitude = cmdAccountLatitude;
+    }
+
+    @Column(name = "cmd_accountlongitude")
+    public BigDecimal getCmdAccountLongitude() {
+        return cmdAccountLongitude;
+    }
+
+    public void setCmdAccountLongitude(BigDecimal cmdAccountLongitude) {
+        this.cmdAccountLongitude = cmdAccountLongitude;
     }
 
     @Column(name = "cmd_accountcomment")

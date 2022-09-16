@@ -108,7 +108,7 @@ public class RcpReception extends EmsEntity implements java.io.Serializable {
     private Date rcpReceptionSupplierDeliveryDate;
 
     private Boolean rcpReceptionGmao;
-
+    private Boolean rcpReceptionInvoice;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -235,6 +235,16 @@ public class RcpReception extends EmsEntity implements java.io.Serializable {
 
     public void setRcpReceptionGmao(Boolean rcpReceptionGmao) {
         this.rcpReceptionGmao = rcpReceptionGmao;
+    }
+
+    @Column(name = "rcp_receptioninvoice")
+
+    public Boolean getRcpReceptionInvoice() {
+        return rcpReceptionInvoice;
+    }
+
+    public void setRcpReceptionInvoice(Boolean rcpReceptionInvoice) {
+        this.rcpReceptionInvoice = rcpReceptionInvoice;
     }
 
     @Column(name = "rcp_receptionremarks")

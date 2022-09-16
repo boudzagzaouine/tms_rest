@@ -96,6 +96,10 @@ public class AccountMapper {
         account.setWholesale(cmdAccount.getCmdAccountWholesale());
         account.setDeliveryDate(cmdAccount.getCmdAccountDeliveryDate());
 
+        account.setLatitude(cmdAccount.getCmdAccountLatitude());
+        account.setLongitude(cmdAccount.getCmdAccountLatitude());
+
+
         if (!lazy) {
             account.setCompany(CompanyMapper.toDto(cmdAccount.getCmdCompany(), false));
             account.setOwner(OwnerMapper.toDto(cmdAccount.getOwnOwner(), true));
@@ -146,6 +150,10 @@ public class AccountMapper {
         cmdAccount.setCmdAccountMaxCredit(account.getMaxCredit());
         cmdAccount.setCmdAccountWholesale(account.getWholesale());
         cmdAccount.setCmdAccountDeliveryDate(account.getDeliveryDate());
+
+        cmdAccount.setCmdAccountLatitude(account.getLatitude());
+        cmdAccount.setCmdAccountLongitude(account.getLongitude());
+
 
         if (!lazy) {
             cmdAccount.setCmdCompany(CompanyMapper.toEntity(account.getCompany(), lazy));

@@ -14,15 +14,18 @@ spring:
     database: postgresql
     properties:
       hibernate:
+        enable_lazy_load_no_trans=true:
         default_schema: schema_crm
         format_sql: true
         generate_statistics: false
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
   jackson:
     serialization.fail-on-empty-beans: false
 
 server:
   port: 8088
+
 
 
 #logging:

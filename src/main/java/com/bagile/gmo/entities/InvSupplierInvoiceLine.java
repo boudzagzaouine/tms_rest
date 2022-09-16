@@ -32,7 +32,7 @@ public class InvSupplierInvoiceLine extends   EmsEntity {
     private PdtUom pdtUom;
     private InvSupplierInvoice invSupplierInvoice;
     private PdtProductPack pdtProductPack;
-
+    private Boolean invSupplierInvoiceLineGmao;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -53,6 +53,15 @@ public class InvSupplierInvoiceLine extends   EmsEntity {
 
     public void setInvSupplierInvoiceLineNumber(Long invSupplierInvoiceLineNumber) {
         this.invSupplierInvoiceLineNumber = invSupplierInvoiceLineNumber;
+    }
+    @Column(name = "inv_supplierinvoicelinegmao")
+
+    public Boolean getInvSupplierInvoiceLineGmao() {
+        return invSupplierInvoiceLineGmao;
+    }
+
+    public void setInvSupplierInvoiceLineGmao(Boolean invSupplierInvoiceLineGmao) {
+        this.invSupplierInvoiceLineGmao = invSupplierInvoiceLineGmao;
     }
 
     @Column(name = "inv_supplierinvoicelinedescription")

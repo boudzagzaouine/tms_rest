@@ -13,7 +13,7 @@ import java.util.List;
 public interface SupplierInvoiceService {
     SupplierInvoice save(SupplierInvoice supplierInvoice) throws IdNotFound, AttributesNotFound, ErrorType, CustomException;
 
-    Long size();
+    Long size() throws ErrorType, AttributesNotFound;
 
     Boolean isExist(Long id);
 
@@ -33,7 +33,7 @@ public interface SupplierInvoiceService {
 
     List<SupplierInvoice> findAll();
 
-    List<SupplierInvoice> findAll(Pageable pageable);
+    List<SupplierInvoice> findAll(Pageable pageable) throws ErrorType, AttributesNotFound;
 
     String getNextVal();
 

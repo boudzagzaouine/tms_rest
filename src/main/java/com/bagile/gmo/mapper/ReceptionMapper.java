@@ -118,6 +118,8 @@ public class ReceptionMapper {
         rcpReception.setRcpReceptionProvisionalCost(reception.getProvisionalCost());
         rcpReception.setRcpReceptionSupplierDeliveryDate(reception.getSupplierDeliveryDate());
         rcpReception.setRcpReceptionGmao(reception.getGmao());
+        rcpReception.setRcpReceptionInvoice(reception.getInvoice());
+
 
         if (!lazy) {
             rcpReception.setCmdAccount(AccountMapper.toEntity(reception.getAccount(), true));
@@ -200,6 +202,8 @@ public class ReceptionMapper {
         reception.setProvisionalCost(rcpReception.getRcpReceptionProvisionalCost());
         reception.setSupplierDeliveryDate(rcpReception.getRcpReceptionSupplierDeliveryDate());
         reception.setGmao(rcpReception.getRcpReceptionGmao());
+        reception.setInvoice(rcpReception.getRcpReceptionInvoice());
+
 
         if (!lazy) {
             reception.setAccount(AccountMapper.toDto(rcpReception.getCmdAccount(), true));

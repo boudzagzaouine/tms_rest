@@ -1,10 +1,9 @@
 package com.bagile.gmo.dto;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Objects;
 
-public class SubscriptionCard extends EmsDto implements Serializable {
+public class SubscriptionCardType extends EmsDto implements Serializable {
     /**
      *
      */
@@ -12,9 +11,6 @@ public class SubscriptionCard extends EmsDto implements Serializable {
     private long id;
     private String code;
     private String description;
-    private SubscriptionCardType subscriptionCardType;
-
-    private BigDecimal price ;
     private Owner owner;
     public long getId() {
         return id;
@@ -40,13 +36,7 @@ public class SubscriptionCard extends EmsDto implements Serializable {
         this.description = description;
     }
 
-    public SubscriptionCardType getSubscriptionCardType() {
-        return subscriptionCardType;
-    }
 
-    public void setSubscriptionCardType(SubscriptionCardType subscriptionCardType) {
-        this.subscriptionCardType = subscriptionCardType;
-    }
 
     public Owner getOwner() {
         return owner;
@@ -56,20 +46,11 @@ public class SubscriptionCard extends EmsDto implements Serializable {
         this.owner = owner;
     }
 
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        SubscriptionCard badgeType = (SubscriptionCard) o;
+        SubscriptionCardType badgeType = (SubscriptionCardType) o;
         return getId() == badgeType.getId();
     }
 

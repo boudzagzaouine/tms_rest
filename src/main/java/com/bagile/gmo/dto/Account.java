@@ -63,7 +63,6 @@ public class Account extends EmsDto implements Serializable, Comparable<Account>
     private String variable9;
 
     private String variable10;
-
     private Set<SaleOrder> saleOrders;
     private Contact contact;
     private String description;
@@ -82,6 +81,9 @@ public class Account extends EmsDto implements Serializable, Comparable<Account>
     private List<Contact> contacts= new ArrayList<>();
 
   private Date deliveryDate ;
+
+    private BigDecimal latitude;
+    private BigDecimal longitude;
 
     public List<Planning> getPlannings() {
         return plannings;
@@ -373,6 +375,21 @@ public class Account extends EmsDto implements Serializable, Comparable<Account>
         this.wholesale = wholesale;
     }
 
+    public BigDecimal getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(BigDecimal latitude) {
+        this.latitude = latitude;
+    }
+
+    public BigDecimal getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(BigDecimal longitude) {
+        this.longitude = longitude;
+    }
 
     public String getTelephone() {
         return telephone;

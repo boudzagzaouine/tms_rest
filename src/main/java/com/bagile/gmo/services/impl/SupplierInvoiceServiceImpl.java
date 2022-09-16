@@ -2,13 +2,16 @@ package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.*;
 import com.bagile.gmo.entities.InvSupplierInvoice;
+import com.bagile.gmo.entities.RcpReception;
 import com.bagile.gmo.exceptions.*;
+import com.bagile.gmo.mapper.ReceptionMapper;
 import com.bagile.gmo.mapper.SupplierInvoiceMapper;
 import com.bagile.gmo.repositories.SupplierInvoiceRepository;
 import com.bagile.gmo.services.*;
 import com.bagile.gmo.util.AddActive;
 
 import com.bagile.gmo.util.EmsDate;
+import com.bagile.gmo.util.GmaoSearch;
 import com.bagile.gmo.util.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +31,7 @@ import java.util.stream.Collectors;
  * Created by Enissay on 03/12/2016.
  */
 @Service
-public class SupplierInvoiceServiceImpl implements SupplierInvoiceService, AddActive {
+public class SupplierInvoiceServiceImpl implements SupplierInvoiceService, GmaoSearch {
     @Autowired
     private SupplierInvoiceRepository supplierInvoiceRepository;
     private final static Logger LOGGER = LoggerFactory
@@ -75,8 +78,8 @@ public class SupplierInvoiceServiceImpl implements SupplierInvoiceService, AddAc
     }
 
     @Override
-    public Long size() {
-        return supplierInvoiceRepository.count();
+    public Long size() throws ErrorType, AttributesNotFound {
+       return supplierInvoiceRepository.count(Search.expression(addGmaoToSearch(""), InvSupplierInvoice.class));
     }
 
     @Override
@@ -96,24 +99,24 @@ public class SupplierInvoiceServiceImpl implements SupplierInvoiceService, AddAc
 
     @Override
     public List<SupplierInvoice> find(String search) throws AttributesNotFound, ErrorType {
-        return SupplierInvoiceMapper.toDtos(supplierInvoiceRepository.findAll(Search.expression(addActiveToSearch(search), InvSupplierInvoice.class)), false);
+        return SupplierInvoiceMapper.toDtos(supplierInvoiceRepository.findAll(Search.expression(addGmaoToSearch(search), InvSupplierInvoice.class)), false);
     }
 
     @Override
     public SupplierInvoice findOne(String search) throws AttributesNotFound, ErrorType {
-        return SupplierInvoiceMapper.toDto(supplierInvoiceRepository.findOne(Search.expression(addActiveToSearch(search), InvSupplierInvoice.class)).orElseThrow(()-> new AttributesNotFound(search)), false);
+        return SupplierInvoiceMapper.toDto(supplierInvoiceRepository.findOne(Search.expression(addGmaoToSearch(search), InvSupplierInvoice.class)).orElseThrow(()-> new AttributesNotFound(search)), false);
     }
 
     @Override
     public List<SupplierInvoice> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
         Sort sort =  Sort.by(Sort.Direction.ASC, "invSupplierInvoiceDeadLine");
         Pageable pageable =  PageRequest.of(page, size, sort);
-        return SupplierInvoiceMapper.toDtos(supplierInvoiceRepository.findAll(Search.expression(addActiveToSearch(search), InvSupplierInvoice.class), pageable), false);
+        return SupplierInvoiceMapper.toDtos(supplierInvoiceRepository.findAll(Search.expression(addGmaoToSearch(search), InvSupplierInvoice.class), pageable), false);
     }
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        return supplierInvoiceRepository.count(Search.expression(addActiveToSearch(search), InvSupplierInvoice.class));
+        return supplierInvoiceRepository.count(Search.expression(addGmaoToSearch(search), InvSupplierInvoice.class));
     }
 
     @Override
@@ -134,8 +137,9 @@ public class SupplierInvoiceServiceImpl implements SupplierInvoiceService, AddAc
     }
 
     @Override
-    public List<SupplierInvoice> findAll(Pageable pageable) {
-        return SupplierInvoiceMapper.toDtos(supplierInvoiceRepository.findAll(pageable), false);
+    public List<SupplierInvoice> findAll(Pageable pageable) throws ErrorType, AttributesNotFound {
+        return SupplierInvoiceMapper.toDtos(supplierInvoiceRepository.findAll(Search.expression(addGmaoToSearch(""), InvSupplierInvoice.class), pageable), false);
+
     }
 
     @Override
@@ -338,6 +342,8 @@ public class SupplierInvoiceServiceImpl implements SupplierInvoiceService, AddAc
     public SupplierInvoice generateSupplierInvoiceFromReceptions(SupplierInvoice supplierInvoice) throws IdNotFound, AttributesNotFound, ErrorType, CustomException, ProductControls, ContainerException, ProductControls {
         List<Reception> receptions = supplierInvoice.getSupplierInvoiceReceptions().stream().map(supplierInvoiceReception -> supplierInvoiceReception.getReception()).collect(Collectors.toList());
         List<SupplierInvoiceLine> lines = new ArrayList<SupplierInvoiceLine>();
+        supplierInvoice.setGmao(true);
+
         supplierInvoice.setCode(getNextVal());
         supplierInvoice.setSupplier(receptions.get(0).getSupplier());
         supplierInvoice.setDiscount(BigDecimal.ZERO);
@@ -355,6 +361,8 @@ public class SupplierInvoiceServiceImpl implements SupplierInvoiceService, AddAc
 
         for (ReceptionLine so : receptionLines) {
             SupplierInvoiceLine line = new SupplierInvoiceLine();
+            line.setGmao(true);
+
             line.setId(id);
             id--;
             line.setNumber((long) (cpt * 1000));
@@ -381,7 +389,9 @@ public class SupplierInvoiceServiceImpl implements SupplierInvoiceService, AddAc
             rcp.setReceptionLines(receptionLines.stream().filter(receptionLine -> (receptionLine.getReception().getId() == reception.getId())).collect(Collectors.toSet()));
             rcp.setActive(false);
             rcp.setOrderStatus(orderStatusService.completedStatus());
+            rcp.setInvoice(true);
             rcp = receptionService.save(rcp);
+
             SupplierInvoiceReception supplierInvoiceReception = new SupplierInvoiceReception();
             supplierInvoiceReception.setReception(rcp);
             supplierInvoiceReceptions.add(supplierInvoiceReception);
@@ -442,7 +452,7 @@ public class SupplierInvoiceServiceImpl implements SupplierInvoiceService, AddAc
     }
 
     @Override
-    public String addActiveToSearch(String search) {
-        return AddActive.super.addActiveToSearch(search);
+    public String addGmaoToSearch(String search) {
+        return GmaoSearch.super.addGmaoToSearch(search);
     }
 }
