@@ -2,6 +2,7 @@ package com.bagile.gmo.entities;
 
 
 import javax.persistence.Embeddable;
+import java.math.BigDecimal;
 
 @Embeddable
 public class AdrAddressInfo {
@@ -20,6 +21,9 @@ public class AdrAddressInfo {
     private String adrAddressCountry;
 
     private String adrAddressDigiCode;
+
+    private Double adrAddressLatitude;
+    private Double adrAddressLongitude;
 
     public String getAdrAddressLine1() {
         return adrAddressLine1;
@@ -75,5 +79,21 @@ public class AdrAddressInfo {
 
     public void setAdrAddressDigiCode(String adrAddressDigiCode) {
         this.adrAddressDigiCode = adrAddressDigiCode;
+    }
+
+    public Double getAdrAddressLatitude() {
+        return adrAddressLatitude;
+    }
+
+    public void setAdrAddressLatitude(Double adrAddressLatitude) {
+        this.adrAddressLatitude = adrAddressLatitude;
+    }
+
+    public Double getAdrAddressLongitude() {
+        return adrAddressLongitude;
+    }
+
+    public void setAdrAddressLongitude(Double adrAddressLongitude) {
+        this.adrAddressLongitude = adrAddressLongitude;
     }
 }

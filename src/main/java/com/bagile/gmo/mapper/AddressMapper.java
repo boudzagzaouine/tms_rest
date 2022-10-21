@@ -85,6 +85,9 @@ public class AddressMapper {
         address.setAddressTypeTms(adrAddress.getAdrAddressAddressTypeTms());
 
 
+        address.setLatitude(adrAddress.getAdrAddressLatitude());
+        address.setLongitude(adrAddress.getAdrAddressLongitude());
+
         if (!lazy) {
             address.setOwner(OwnerMapper.toDto(adrAddress.getOwnOwner(), true));
             address.setAccount(AccountMapper.toDto(adrAddress.getCmdAccount(), true));
@@ -142,6 +145,8 @@ public class AddressMapper {
         adrAddress.setAddAddressType(address.getAddressType());
         adrAddress.setAdrAddressAddressTypeTms(address.getAddressTypeTms());
 
+        adrAddress.setAdrAddressLatitude(address.getLatitude());
+        adrAddress.setAdrAddressLongitude(address.getLongitude());
 
         if (!lazy) {
             adrAddress.setOwnOwner(OwnerMapper.toEntity(address.getOwner(), true));

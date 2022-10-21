@@ -5,6 +5,7 @@ import com.bagile.gmo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,7 +24,7 @@ public class LoginController {
         return "defaultSuccessUrl";
     }
 
-    @RequestMapping("/authentification")
+    @RequestMapping(value = "/authentification", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public User login(@RequestParam String email, @RequestParam String password) {
         return userService.findByEmailAndPassowrd(email, password);

@@ -151,6 +151,7 @@ public class CmdSaleOrder extends EmsDto implements Serializable {
     }
 
 
+
     @AttributeOverrides(value = {
             @AttributeOverride(name = "adrAddressLine1", column = @Column(name = "cmd_sorderdeliveryaddressline1")),
             @AttributeOverride(name = "adrAddressLine2", column = @Column(name = "cmd_sorderdeliveryaddressline2")),
@@ -159,6 +160,8 @@ public class CmdSaleOrder extends EmsDto implements Serializable {
             @AttributeOverride(name = "adrAddressState", column = @Column(name = "cmd_sorderdeliveryaddressstate")),
             @AttributeOverride(name = "adrAddressCountry", column = @Column(name = "cmd_sorderdeliveryaddresscountry")),
             @AttributeOverride(name = "adrAddressDigiCode", column = @Column(name = "cmd_sorderdeliveryaddressdigicode")),
+            @AttributeOverride(name = "adrAddressLatitude", column = @Column(name = "cmd_deliverydeliveryaddresslatitude")),
+            @AttributeOverride(name = "adrAddressLongitude", column = @Column(name = "cmd_deliverydeliveryaddresslongitude")),
     })
     @Embedded
     public AdrAddressInfo getDeliveryAddress() {

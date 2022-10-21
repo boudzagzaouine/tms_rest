@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -84,6 +85,8 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
    private String  adrAddressAddressTypeTms;
     private CmdAccount cmdAccount;
 
+    private Double adrAddressLatitude;
+    private Double adrAddressLongitude;
 
 
     @Column(name = "add_addresstype", precision = 10, scale = 0)
@@ -219,6 +222,24 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
 
     public void setAdrAddressDigiCode(String adrAddressDigiCode) {
         this.adrAddressDigiCode = adrAddressDigiCode;
+    }
+
+    @Column(name = "adr_addresslatitude")
+    public Double getAdrAddressLatitude() {
+        return adrAddressLatitude;
+    }
+
+    public void setAdrAddressLatitude(Double adrAddressLatitude) {
+        this.adrAddressLatitude = adrAddressLatitude;
+    }
+
+    @Column(name = "adr_addresslongitude")
+    public Double getAdrAddressLongitude() {
+        return adrAddressLongitude;
+    }
+
+    public void setAdrAddressLongitude(Double adrAddressLongitude) {
+        this.adrAddressLongitude = adrAddressLongitude;
     }
 
     @Temporal(TemporalType.TIMESTAMP)

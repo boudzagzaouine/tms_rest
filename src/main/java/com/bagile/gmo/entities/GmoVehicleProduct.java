@@ -1,6 +1,7 @@
 package com.bagile.gmo.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -14,10 +15,10 @@ public class GmoVehicleProduct extends EmsEntity {
 
     private PdtProductType pdtProductType;
 
-    private PdtProduct pdtProduct;
-    private String gmoVehicleProductReference;
 
-    private String gmoVehicleProductReferenceOther;
+    private PdtProduct pdtProduct;
+
+    private Set<GmoVehicleProductReference> gmoVehicleProductReferences = new HashSet<>();
     private OwnOwner ownOwner;
     private GmoVehicle gmoVehicle;
 
@@ -53,13 +54,13 @@ public class GmoVehicleProduct extends EmsEntity {
         this.gmoVehicle = gmoVehicle;
     }
 
-    @Column(name = "gmo_vehicleproductreference")
-    public String getGmoVehicleProductReference() {
-        return gmoVehicleProductReference;
+@OneToMany(mappedBy = "gmoVehicleProduct",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+    public Set<GmoVehicleProductReference> getGmoVehicleProductReferences() {
+        return gmoVehicleProductReferences;
     }
 
-    public void setGmoVehicleProductReference(String gmoVehicleProductReference) {
-        this.gmoVehicleProductReference = gmoVehicleProductReference;
+    public void setGmoVehicleProductReferences(Set<GmoVehicleProductReference> gmoVehicleProductReferences) {
+        this.gmoVehicleProductReferences = gmoVehicleProductReferences;
     }
 
     @ManyToOne
@@ -72,14 +73,7 @@ public class GmoVehicleProduct extends EmsEntity {
         this.pdtProductType = pdtProductType;
     }
 
-    @Column(name = "gmo_vehicleproductreferenceother")
-    public String getGmoVehicleProductReferenceOther() {
-        return gmoVehicleProductReferenceOther;
-    }
 
-    public void setGmoVehicleProductReferenceOther(String gmoVehicleProductReferenceOther) {
-        this.gmoVehicleProductReferenceOther = gmoVehicleProductReferenceOther;
-    }
 
     @ManyToOne
     @JoinColumn(name = "gmo_notificationtypeownowner")

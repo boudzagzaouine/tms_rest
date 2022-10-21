@@ -17,6 +17,7 @@ public class GmoActionTypeRepair extends EmsEntity {
     private String gmoActionTypeRepaireCity;
     private BigDecimal gmoActionTypeRepairePrice;
     private BigDecimal gmoActionTypeRepaireDuration;
+    private String gmoActionTypeRepaireDurationType;
 
     private GmoActionType gmoActionType;
     private OwnOwner ownOwner;
@@ -95,6 +96,16 @@ public class GmoActionTypeRepair extends EmsEntity {
 
     public void setGmoActionTypeRepaireRepairType(String gmoActionTypeRepaireRepairType) {
         this.gmoActionTypeRepaireRepairType = gmoActionTypeRepaireRepairType;
+    }
+
+    @Column(name = "gmo_actiontyperepairdurationtype")
+
+    public String getGmoActionTypeRepaireDurationType() {
+        return gmoActionTypeRepaireDurationType;
+    }
+
+    public void setGmoActionTypeRepaireDurationType(String gmoActionTypeRepaireDurationType) {
+        this.gmoActionTypeRepaireDurationType = gmoActionTypeRepaireDurationType;
     }
 
     @ManyToOne

@@ -3,6 +3,7 @@ package com.bagile.gmo.dto;
 import com.bagile.gmo.entities.CmdAccount;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Address extends EmsDto implements Serializable {
@@ -39,6 +40,9 @@ public class Address extends EmsDto implements Serializable {
  private Account account ;
 
    private String  addressTypeTms;
+
+    private Double latitude;
+    private Double longitude;
 
     public long getId() {
         return this.id;
@@ -254,7 +258,21 @@ public class Address extends EmsDto implements Serializable {
         this.addressType = addressType;
     }
 
+    public Double getLatitude() {
+        return latitude;
+    }
 
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
 
     @Override
     public boolean equals(Object object) {

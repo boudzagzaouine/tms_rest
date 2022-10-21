@@ -12,9 +12,9 @@ public class TmsTurn extends EmsEntity {
 
     private Long tmsTurnId;
     private String tmsTurnCode;
-   // private Set<GmoDriver> gmoDrivers =new HashSet<>();
-  //  private GmoVehicle gmoVehicle;
- //  private TrpTransport trpTransport;
+    private Set<GmoDriver> gmoDrivers =new HashSet<>();
+    private GmoVehicle gmoVehicle;
+   private TrpTransport trpTransport;
     private Date dateDelivery ;
     private Set<TmsTurnSoPo> tmsTurnSoPos = new HashSet<>();
     private Set<TmsTurnTransport> tmsTurnTransports = new HashSet<>();

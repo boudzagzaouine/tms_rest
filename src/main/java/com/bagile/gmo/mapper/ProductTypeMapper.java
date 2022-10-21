@@ -43,6 +43,7 @@ public class ProductTypeMapper {
         pdtProductType.setPdtProductTypeCreationDate(productType.getCreationDate());
         pdtProductType.setPdtProductTypeUpdateDate(productType.getUpdateDate());
         pdtProductType.setPdtProductTypeGmao(productType.getGmao());
+        pdtProductType.setPdtProductTypeComponent(productType.getComponent());
 
         if (!lazy) {
             pdtProductType.setPdtProductTypeParent(toEntity(productType.getProductType(), true));
@@ -67,6 +68,8 @@ public class ProductTypeMapper {
         productType.setCreationDate(pdtProductType.getPdtProductTypeCreationDate());
         productType.setUpdateDate(pdtProductType.getPdtProductTypeUpdateDate());
         productType.setGmao(pdtProductType.getPdtProductTypeGmao());
+        productType.setComponent(pdtProductType.getPdtProductTypeComponent());
+
 
         if (!lazy) {
             productType.setProductType(toDto(pdtProductType.getPdtProductTypeParent(), true));

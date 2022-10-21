@@ -38,6 +38,7 @@ public class ActionTypeRepairMapper {
 		gmoActionTypeRepair.setGmoActionTypeRepaireCity(actionTypeRepair.getCity());
 		gmoActionTypeRepair.setGmoActionTypeRepairePrice(actionTypeRepair.getPrice());
 		gmoActionTypeRepair.setGmoActionTypeRepaireDuration(actionTypeRepair.getDuration());
+		gmoActionTypeRepair.setGmoActionTypeRepaireDurationType(actionTypeRepair.getDurationType());
 
 
 		if(!lazy){
@@ -59,6 +60,7 @@ public class ActionTypeRepairMapper {
 		actionTypeRepair.setCity(gmoActionTypeRepair.getGmoActionTypeRepaireCity());
 		actionTypeRepair.setPrice(gmoActionTypeRepair.getGmoActionTypeRepairePrice());
 		actionTypeRepair.setDuration(gmoActionTypeRepair.getGmoActionTypeRepaireDuration());
+		actionTypeRepair.setDurationType(gmoActionTypeRepair.getGmoActionTypeRepaireDurationType());
 
 		if(!lazy){
 			actionTypeRepair.setSupplier(SupplierMapper.toDto(gmoActionTypeRepair.getRcpSupplier(),true));

@@ -5,6 +5,7 @@ package com.bagile.gmo.entities;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.swing.text.StyledEditorKit;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -41,6 +42,7 @@ public class PdtProductType extends EmsEntity {
 
 
     private Boolean pdtProductTypeGmao;
+    private Boolean pdtProductTypeComponent;
     public PdtProductType() {
     }
 
@@ -115,6 +117,15 @@ public class PdtProductType extends EmsEntity {
 
     public void setPdtProductTypeDescription(String pdtProductTypeDescription) {
         this.pdtProductTypeDescription = pdtProductTypeDescription;
+    }
+
+    @Column(name = "pdt_producttypecomponent")
+    public Boolean getPdtProductTypeComponent() {
+        return pdtProductTypeComponent;
+    }
+
+    public void setPdtProductTypeComponent(Boolean pdtProductTypeComponent) {
+        this.pdtProductTypeComponent = pdtProductTypeComponent;
     }
 
     @Column(name = "pdt_producttypegmao")

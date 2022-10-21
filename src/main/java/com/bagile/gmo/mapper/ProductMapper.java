@@ -190,6 +190,7 @@ public class ProductMapper {
         pdtProduct.setPdtProductTTCPurshasePriceUB(product.getPurshasePriceTTCUB());
         pdtProduct.setPdtProductProfessionalTTCSalePrice(product.getProfessionalTTCSalePrice());
         pdtProduct.setPdtProductGmao(product.getGmao());
+        pdtProduct.setPdtProductComponent(product.getComponent());
 
 
         if (!lazy) {
@@ -197,7 +198,7 @@ public class ProductMapper {
             pdtProduct.setPdtProductPack(ProductPackMapper.toEntity(product.getProductPack(), false));
             pdtProduct.setPickingPdtUom(UomMapper.toEntity(product.getPickingUom(), true));
             pdtProduct.setOwnOwner(OwnerMapper.toEntity(product.getOwner(), true));
-            pdtProduct.setPdtProductTypeByPdtProductTypeId(ProductTypeMapper.toEntity(product.getProductType(), true));
+            pdtProduct.setPdtProductTypeByPdtProductTypeId(ProductTypeMapper.toEntity(product.getProductType(), false));
             pdtProduct.setPdtProductTypeByPdtProductSubTypeId(ProductTypeMapper.toEntity(product.getProductSubType(), true));
             pdtProduct.setRcpSupplier(SupplierMapper.toEntity(product.getSupplier(), true));
             pdtProduct.setPdtUomByPdtProductUomBaseId(UomMapper.toEntity(product.getUomByProductUomBase(), false));
@@ -291,13 +292,14 @@ public class ProductMapper {
         product.setPurshasePriceTTCUB(pdtProduct.getPdtProductTTCPurshasePriceUB());
         product.setProfessionalTTCSalePrice(pdtProduct.getPdtProductProfessionalTTCSalePrice());
         product.setGmao(pdtProduct.getPdtProductGmao());
+        product.setComponent(pdtProduct.getPdtProductComponent());
 
 
         if (!lazy) {
             product.setProductPack(ProductPackMapper.toDto(pdtProduct.getPdtProductPack(), true));
             product.setPickingUom(UomMapper.toDto(pdtProduct.getPickingPdtUom(), true));
             product.setOwner(OwnerMapper.toDto(pdtProduct.getOwnOwner(), true));
-            product.setProductType(ProductTypeMapper.toDto(pdtProduct.getPdtProductTypeByPdtProductTypeId(), true));
+            product.setProductType(ProductTypeMapper.toDto(pdtProduct.getPdtProductTypeByPdtProductTypeId(), false));
            product.setProductSubType(ProductTypeMapper.toDto(pdtProduct.getPdtProductTypeByPdtProductSubTypeId(), true));
             product.setUomByProductUomBase(UomMapper.toDto(pdtProduct.getPdtUomByPdtProductUomBaseId(), false));
             product.setUomByProductUomPurshase(UomMapper.toDto(pdtProduct.getPdtUomByPdtProductUomPurshaseId(), true));
@@ -400,6 +402,7 @@ public class ProductMapper {
         product.setPurshasePriceTTCUB(pdtProductView.getPdtProductTTCPurshasePriceUB());
         product.setProfessionalTTCSalePrice(pdtProductView.getPdtProductProfessionalTTCSalePrice());
         product.setGmao(pdtProductView.getPdtProductGmao());
+        product.setComponent(pdtProductView.getPdtProductComponent());
 
 
         if (!lazy) {
@@ -416,7 +419,7 @@ public class ProductMapper {
             product.setPickingUom(UomMapper.toDto(pdtProductView.getPickingPdtUom(), true));
          //   product.setAlias(AliasMapper.toDto(pdtProductView.getPdtAlias(), true));
             product.setOwner(OwnerMapper.toDto(pdtProductView.getOwnOwner(), true));
-            product.setProductType(ProductTypeMapper.toDto(pdtProductView.getPdtProductTypeByPdtProductTypeId(), true));
+            product.setProductType(ProductTypeMapper.toDto(pdtProductView.getPdtProductTypeByPdtProductTypeId(), false));
             product.setProductSubType(ProductTypeMapper.toDto(pdtProductView.getPdtProductTypeByPdtProductSubTypeId(), true));
             product.setUomByProductUomBase(UomMapper.toDto(pdtProductView.getPdtUomByPdtProductUomBaseId(), true));
             product.setUomByProductUomPurshase(UomMapper.toDto(pdtProductView.getPdtUomByPdtProductUomPurshaseId(), true));

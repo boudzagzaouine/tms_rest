@@ -11,6 +11,7 @@ public class ActionTypeRepair {
 	private String city;
 	private BigDecimal price;
 	private BigDecimal duration;
+	private String durationType;
 	private ActionType actionType;
  private Owner owner;
 
@@ -84,5 +85,14 @@ public class ActionTypeRepair {
 
 	public void setOwner(Owner owner) {
 		this.owner = owner;
+	}
+
+
+	public String getDurationType() {
+		return durationType;
+	}
+
+	public void setDurationType(String durationType) {
+		this.durationType = durationType;
 	}
 }

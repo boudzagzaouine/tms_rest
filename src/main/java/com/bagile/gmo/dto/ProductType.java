@@ -21,6 +21,7 @@ public class ProductType  extends EmsDto implements Serializable {
     private Set<Product> productsForProductType;
     private Set<Product> productsForProductSubType;
     private Boolean gmao;
+    private Boolean component;
 
 
     public long getId() {
@@ -125,6 +126,15 @@ public class ProductType  extends EmsDto implements Serializable {
 
     public void setGmao(Boolean gmao) {
         this.gmao = gmao;
+    }
+
+
+    public Boolean getComponent() {
+        return component;
+    }
+
+    public void setComponent(Boolean component) {
+        this.component = component;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.bagile.gmo.dto;
 
+import java.math.BigDecimal;
+
 public  class AddressInfo {
     private String state;
     private String country;
@@ -9,6 +11,8 @@ public  class AddressInfo {
     private String line2;
     private String digiCode;
 
+    private Double latitude;
+    private Double longitude;
     public String getState() {
         return state;
     }
@@ -63,5 +67,21 @@ public  class AddressInfo {
 
     public void setDigiCode(String digiCode) {
         this.digiCode = digiCode;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 }

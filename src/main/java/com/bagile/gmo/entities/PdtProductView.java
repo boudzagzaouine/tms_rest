@@ -183,6 +183,7 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
     private BigDecimal pdtProductProfessionalTTCSalePrice;
 
     private Boolean pdtProductGmao;
+    private Boolean pdtProductComponent;
 
     @Id
     @Column(name = "pdt_productid")
@@ -335,6 +336,16 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
 
     public void setPdtProductRaisonToOut(Long pdtProductRaisonToOut) {
         this.pdtProductRaisonToOut = pdtProductRaisonToOut;
+    }
+
+    @Column(name = "pdt_productcomponent")
+
+    public Boolean getPdtProductComponent() {
+        return pdtProductComponent;
+    }
+
+    public void setPdtProductComponent(Boolean pdtProductComponent) {
+        this.pdtProductComponent = pdtProductComponent;
     }
 
     @Column(name = "pdt_productgmao")

@@ -14,7 +14,7 @@ public class TurnTypeMapper {
     static {
         map = new HashMap<>();
 
-        map.put("id", "tmsTurnTypeTypeId");
+        map.put("id", "tmsTurnTypeId");
         map.put("code", "tmsTurnTypeTypeCode");
         map.put("description", "tmsTurnTypeTypeDescription");
 

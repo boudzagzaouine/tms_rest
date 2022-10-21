@@ -243,6 +243,8 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 
             maintenance.setPatrimony(patrimony);
                 maintenance.setActionType(actionPlan.getActionType());
+  
+
         maintenance.setBlocking(actionPlan.getBlocking());
 
            /* List<ActionLineMaintenance> actionLineMaintenanaces = new ArrayList<>();

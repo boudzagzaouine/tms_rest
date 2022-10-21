@@ -30,6 +30,8 @@ public class AddressInfoMapper {
         addressInfo.setZip(adrAddress.getAdrAddressZip());
         addressInfo.setLine2(adrAddress.getAdrAddressLine2());
 
+        addressInfo.setLatitude(adrAddress.getAdrAddressLatitude());
+        addressInfo.setLongitude(adrAddress.getAdrAddressLongitude());
 
 
         return addressInfo;
@@ -47,7 +49,8 @@ public class AddressInfoMapper {
         addressInfo.setZip(address.getZip());
         addressInfo.setLine2(address.getLine2());
 
-
+        addressInfo.setLongitude(address.getLongitude());
+        addressInfo.setLongitude(address.getLongitude());
         return addressInfo;
     }
 
@@ -63,6 +66,9 @@ public class AddressInfoMapper {
         adrAddress.setAdrAddressState(addressInfo.getState());
         adrAddress.setAdrAddressZip(addressInfo.getZip());
         adrAddress.setAdrAddressLine2(addressInfo.getLine2());
+
+        adrAddress.setAdrAddressLatitude(addressInfo.getLatitude());
+        adrAddress.setAdrAddressLongitude(addressInfo.getLongitude());
         return adrAddress;
     }
 

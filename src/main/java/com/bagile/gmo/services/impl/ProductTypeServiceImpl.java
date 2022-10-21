@@ -105,5 +105,9 @@ public class ProductTypeServiceImpl implements ProductTypeService, GmaoSearch {
         return ProductTypeMapper.toDtos(productTypeRepository.findAll(Search.expression(addGmaoToSearch(""), PdtProductType.class), pageable), false);
     }
 
+    @Override
+    public List<ProductType> getParents() {
+        return ProductTypeMapper.toDtos(productTypeRepository.findByPdtProductTypeParentNull(), false);
+    }
 }
 

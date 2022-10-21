@@ -10,9 +10,9 @@ public class Turn extends EmsDto implements Serializable {
 
     private long id;
     private String code;
-  //  private Set<Driver>drivers=new HashSet<>();
-  //  private Vehicle  vehicle;
-  //  private Transport transport;
+    private Set<Driver>drivers=new HashSet<>();
+    private Vehicle  vehicle;
+   private Transport transport;
     private Date dateDelivery;
    private List<TurnSoPo> turnSoPos = new ArrayList<>();
     private List<TurnTransport> turnTransports = new ArrayList<>();
@@ -46,7 +46,7 @@ public class Turn extends EmsDto implements Serializable {
     public void setCode(String code) {
         this.code = code;
     }
-/*public Set<Driver> getDrivers() {
+public Set<Driver> getDrivers() {
         return drivers;
     }
 
@@ -68,7 +68,7 @@ public class Turn extends EmsDto implements Serializable {
 
     public void setTransport(Transport transport) {
         this.transport = transport;
-    }*/
+    }
 
     public String getPackagingType() {
         return packagingType;

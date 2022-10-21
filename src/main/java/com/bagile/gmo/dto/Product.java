@@ -105,6 +105,7 @@ public class Product extends EmsEntity {
        private Vat purchaseVat;
 
        private Boolean gmao;
+    private Boolean component;
 
 
     public Vat getVat() {
@@ -505,6 +506,14 @@ public class Product extends EmsEntity {
     // public void setSaleOrderStocks(Set<SaleOrderStock> saleOrderStocks) {
     //    this.saleOrderStocks = saleOrderStocks;
     // }
+
+    public Boolean getComponent() {
+        return component;
+    }
+
+    public void setComponent(Boolean component) {
+        this.component = component;
+    }
 
     public Set<ProductPack> getProductPacks() {
         return productPacks;

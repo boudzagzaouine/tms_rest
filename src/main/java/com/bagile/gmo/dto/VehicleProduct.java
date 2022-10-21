@@ -9,8 +9,8 @@ public class VehicleProduct {
 
 	private ProductType productType;
 	private Product Product;
-	private String reference;
-	private String referenceOther;
+
+	private List<VehicleProductReference> vehicleProductReferences = new ArrayList<>();
 
  private Owner owner;
 
@@ -31,13 +31,7 @@ public class VehicleProduct {
 		Product = product;
 	}
 
-	public String getReference() {
-		return reference;
-	}
 
-	public void setReference(String reference) {
-		this.reference = reference;
-	}
 
 	public Owner getOwner() {
 		return owner;
@@ -63,11 +57,12 @@ public class VehicleProduct {
 		this.productType = productType;
 	}
 
-	public String getReferenceOther() {
-		return referenceOther;
+
+	public List<VehicleProductReference> getVehicleProductReferences() {
+		return vehicleProductReferences;
 	}
 
-	public void setReferenceOther(String referenceOther) {
-		this.referenceOther = referenceOther;
+	public void setVehicleProductReferences(List<VehicleProductReference> vehicleProductReferences) {
+		this.vehicleProductReferences = vehicleProductReferences;
 	}
 }

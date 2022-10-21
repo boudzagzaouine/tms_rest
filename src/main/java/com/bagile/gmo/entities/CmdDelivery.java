@@ -143,6 +143,10 @@ public class CmdDelivery extends EmsDto {
             @AttributeOverride(name = "adrAddressState", column = @Column(name = "cmd_deliverydeliveryaddressstate")),
             @AttributeOverride(name = "adrAddressCountry", column = @Column(name = "cmd_deliverydeliveryaddresscountry")),
             @AttributeOverride(name = "adrAddressDigiCode", column = @Column(name = "cmd_deliverydeliveryaddressdigicode")),
+            @AttributeOverride(name = "adrAddressLatitude", column = @Column(name = "cmd_deliverydeliveryaddresslatitude")),
+            @AttributeOverride(name = "adrAddressLongitude", column = @Column(name = "cmd_deliverydeliveryaddresslongitude")),
+
+
     })
     public AdrAddressInfo getDeliveryAddress() {
         return deliveryAddress;

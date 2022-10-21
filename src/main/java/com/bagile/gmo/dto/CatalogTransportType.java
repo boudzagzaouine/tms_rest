@@ -11,8 +11,8 @@ public class CatalogTransportType extends EmsDto implements Serializable {
     private long id;
     private Transport transport;
     private VehicleCategory vehicleCategory;
-    private Zone zoneSource ;
-    private Zone zoneDestination;
+    private Ville villeSource ;
+    private Ville villeDestination;
     private BigDecimal amountHt;
     private BigDecimal amountTtc;
     private BigDecimal amountTva;
@@ -48,20 +48,21 @@ public class CatalogTransportType extends EmsDto implements Serializable {
         this.vehicleCategory = vehicleCategory;
     }
 
-    public Zone getZoneSource() {
-        return zoneSource;
+
+    public Ville getVilleSource() {
+        return villeSource;
     }
 
-    public void setZoneSource(Zone zoneSource) {
-        this.zoneSource = zoneSource;
+    public void setVilleSource(Ville villeSource) {
+        this.villeSource = villeSource;
     }
 
-    public Zone getZoneDestination() {
-        return zoneDestination;
+    public Ville getVilleDestination() {
+        return villeDestination;
     }
 
-    public void setZoneDestination(Zone zoneDestination) {
-        this.zoneDestination = zoneDestination;
+    public void setVilleDestination(Ville villeDestination) {
+        this.villeDestination = villeDestination;
     }
 
     public BigDecimal getAmountHt() {

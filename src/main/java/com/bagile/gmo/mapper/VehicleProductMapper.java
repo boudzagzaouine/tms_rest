@@ -2,6 +2,8 @@ package com.bagile.gmo.mapper;
 
 import com.bagile.gmo.dto.ProductType;
 import com.bagile.gmo.dto.VehicleProduct;
+import com.bagile.gmo.dto.VehicleProductReference;
+import com.bagile.gmo.entities.GmoVehicle;
 import com.bagile.gmo.entities.GmoVehicleProduct;
 
 import java.util.*;
@@ -34,8 +36,7 @@ public class VehicleProductMapper {
 		}
 		GmoVehicleProduct gmoVehicleProduct = new GmoVehicleProduct();
 		gmoVehicleProduct.setGmoVehicleProductId(vehicleProduct.getId());
-		gmoVehicleProduct.setGmoVehicleProductReference(vehicleProduct.getReference());
-		gmoVehicleProduct.setGmoVehicleProductReferenceOther(vehicleProduct.getReferenceOther());
+
 
 
 		if(!lazy){
@@ -45,9 +46,19 @@ public class VehicleProductMapper {
 
 			gmoVehicleProduct.setGmoVehicle(VehicleMapper.toEntity(vehicleProduct.getVehicle(),false));
 
-
+			gmoVehicleProduct.setGmoVehicleProductReferences(VehicleProductReferenceMapper.toEntities(vehicleProduct.getVehicleProductReferences(),false));
+			oneToMany(gmoVehicleProduct);
 		}
 		return gmoVehicleProduct;
+	}
+
+	private static void oneToMany(GmoVehicleProduct gmoVehicleProduct) {
+		gmoVehicleProduct.getGmoVehicleProductReferences().forEach(
+				e -> {
+					e.setCreationDate(new Date());
+					e.setGmoVehicleProduct(gmoVehicleProduct);
+				}
+		);
 	}
 
 	public static VehicleProduct toDto(GmoVehicleProduct gmoVehicleProduct, boolean lazy) {
@@ -56,8 +67,6 @@ public class VehicleProductMapper {
 		}
 		VehicleProduct vehicleProduct = new VehicleProduct();
 		vehicleProduct.setId(gmoVehicleProduct.getGmoVehicleProductId());
-		vehicleProduct.setReference(gmoVehicleProduct.getGmoVehicleProductReference());
-		vehicleProduct.setReferenceOther(gmoVehicleProduct.getGmoVehicleProductReferenceOther());
 
 
 		if(!lazy){
@@ -66,6 +75,7 @@ public class VehicleProductMapper {
 			vehicleProduct.setProductType(ProductTypeMapper.toDto(gmoVehicleProduct.getPdtProductType(),false));
 
 			vehicleProduct.setOwner(OwnerMapper.toDto(gmoVehicleProduct.getOwnOwner(),true));
+			vehicleProduct.setVehicleProductReferences(VehicleProductReferenceMapper.toDtos(gmoVehicleProduct.getGmoVehicleProductReferences(),true));
 
 		}
 		return vehicleProduct;

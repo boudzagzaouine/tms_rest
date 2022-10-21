@@ -29,4 +29,6 @@ public interface ProductTypeService {
     List<ProductType> findAll();
 
     List<ProductType> findAll(int page, int size) throws AttributesNotFound, ErrorType;
+
+    List<ProductType> getParents();
 }

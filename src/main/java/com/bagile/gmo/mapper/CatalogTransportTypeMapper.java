@@ -18,8 +18,8 @@ public class CatalogTransportTypeMapper {
         map.put ("id", "gmoCatalogTransportId");
         map.put ("transport", "trpTransport");
         map.put ("vehicleCategory", "gmoVehicleCategory");
-        map.put ("zoneSource", "gmoZoneSource");
-        map.put ("zoneDestination", "gmoZoneDestination");
+        map.put ("villeSource", "gmoVilleSource");
+        map.put ("villeDestination", "gmoVilleDestination");
         map.put ("amountHt", "gmoCatalogTransportAmountHt");
         map.put ("amountTtc", "gmoCatalogTransportAmountTtc");
         map.put ("amountTva", "gmoCatalogTransportAmountTva");
@@ -61,8 +61,8 @@ public class CatalogTransportTypeMapper {
             trpTransport.setPrmvat (VatMapper.toEntity (transport.getVat ( ), true));
             trpTransport.setGmoVehicleCategory (VehicleCategoryMapper.toEntity (transport.getVehicleCategory ( ), true));
             trpTransport.setTrpTransport (TransportMapper.toEntity (transport.getTransport ( ), true));
-            trpTransport.setGmoZoneSource (ZoneMapper.toEntity (transport.getZoneSource ( ), true));
-            trpTransport.setGmoZoneDestination (ZoneMapper.toEntity (transport.getZoneDestination ( ), true));
+            trpTransport.setGmoVilleSource (VilleMapper.toEntity (transport.getVilleSource ( ), true));
+            trpTransport.setGmoVilleDestination (VilleMapper.toEntity (transport.getVilleDestination ( ), true));
             trpTransport.setOwnOwner (OwnerMapper.toEntity (transport.getOwner(), true));
 
         }
@@ -89,8 +89,8 @@ public class CatalogTransportTypeMapper {
         if (!lazy) {
             transport.setVehicleCategory (VehicleCategoryMapper.toDto(trpTransport.getGmoVehicleCategory(), true));
             transport.setTransport (TransportMapper.toDto(trpTransport.getTrpTransport(), true));
-            transport.setZoneSource (ZoneMapper.toDto(trpTransport.getGmoZoneSource(), true));
-            transport.setZoneDestination (ZoneMapper.toDto(trpTransport.getGmoZoneDestination(), true));
+            transport.setVilleSource (VilleMapper.toDto(trpTransport.getGmoVilleSource(), true));
+            transport.setVilleDestination (VilleMapper.toDto(trpTransport.getGmoVilleDestination(), true));
             transport.setVat (VatMapper.toDto(trpTransport.getPrmvat(), true));
             transport.setOwner (OwnerMapper.toDto(trpTransport.getOwnOwner(), true));
 

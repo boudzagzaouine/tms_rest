@@ -101,4 +101,10 @@ public class ProductTypeController {
     public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
         productTypeService.deleteAll (Arrays.asList(ids));
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/getParents")
+    @ResponseBody
+    public List<ProductType> getParents() throws AttributesNotFound, ErrorType {
+        return productTypeService.getParents();
+    }
 }

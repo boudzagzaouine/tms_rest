@@ -7,14 +7,14 @@ import java.math.BigDecimal;
 @Table(name="gmo_catalogtransport",
         uniqueConstraints ={@UniqueConstraint
                 (columnNames ={"gmo_vehiclecategoryid","trp_transportid",
-                               "gmo_zonesournceid","gmo_zonedistinationid"})})
+                               "gmo_villesournceid","gmo_villedistinationid"})})
 public class GmoCatalogTransportType extends EmsEntity{
 
     private Long gmoCatalogTransportId;
     private TrpTransport trpTransport;
     private GmoVehicleCategory gmoVehicleCategory;
-    private GmoZone gmoZoneSource ;
-    private GmoZone gmoZoneDestination;
+    private PrmVille gmoVilleSource ;
+    private PrmVille gmoVilleDestination;
     private BigDecimal gmoCatalogTransportAmountHt;
     private BigDecimal gmoCatalogTransportAmountTtc;
     private BigDecimal gmoCatalogTransportAmountTva;
@@ -52,24 +52,29 @@ public class GmoCatalogTransportType extends EmsEntity{
     public void setGmoVehicleCategory(GmoVehicleCategory gmoVehicleCategory) {
         this.gmoVehicleCategory = gmoVehicleCategory;
     }
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "gmo_zonesournceid")
-    public GmoZone getGmoZoneSource() {
-        return gmoZoneSource;
+    @JoinColumn(name = "gmo_villesournceid")
+    public PrmVille getGmoVilleSource() {
+        return gmoVilleSource;
     }
 
-    public void setGmoZoneSource(GmoZone gmoZoneSource) {
-        this.gmoZoneSource = gmoZoneSource;
-    }
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "gmo_zonedistinationid")
-    public GmoZone getGmoZoneDestination() {
-        return gmoZoneDestination;
+    public void setGmoVilleSource(PrmVille gmoVilleSource) {
+        this.gmoVilleSource = gmoVilleSource;
     }
 
-    public void setGmoZoneDestination(GmoZone gmoZoneDestination) {
-        this.gmoZoneDestination = gmoZoneDestination;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_villedistinationid")
+    public PrmVille getGmoVilleDestination() {
+        return gmoVilleDestination;
     }
+
+    public void setGmoVilleDestination(PrmVille gmoVilleDestination) {
+        this.gmoVilleDestination = gmoVilleDestination;
+    }
+
+
 
     @Column(name = "gmo_catalogtransportamountht")
     public BigDecimal getGmoCatalogTransportCategoryVehicleAmountHt() {

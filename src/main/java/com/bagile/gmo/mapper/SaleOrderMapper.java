@@ -198,7 +198,7 @@ public class SaleOrderMapper {
 
             cmdSaleOrder.setCmdAccount(AccountMapper.toEntity(saleOrder.getAccount(), true));
             cmdSaleOrder.setCmdSaleOrderLines(SaleOrderLineMapper.toEntities(saleOrder.getLines(), false));
-            cmdSaleOrder.setDeliveryAddress(AddressInfoMapper.toEntity(saleOrder.getDeliveryAddress(), true));
+            cmdSaleOrder.setDeliveryAddress(AddressInfoMapper.toEntity(saleOrder.getDeliveryAddress(), false));
             cmdSaleOrder.setInvoiceAddress(AddressInfoMapper.toEntity(saleOrder.getInvoiceAddress(), true));
             cmdSaleOrder.setOwnOwner(OwnerMapper.toEntity(saleOrder.getOwner(), true));
             cmdSaleOrder.setPrmOrderStatus(OrderStatusMapper.toEntity(saleOrder.getOrderStatus(), true));
