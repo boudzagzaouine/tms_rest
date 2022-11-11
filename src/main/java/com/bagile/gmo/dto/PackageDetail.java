@@ -2,8 +2,6 @@ package com.bagile.gmo.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class PackageDetail extends EmsDto implements Serializable {
@@ -18,7 +16,7 @@ public class PackageDetail extends EmsDto implements Serializable {
     private BigDecimal length;
     private BigDecimal width;
     private BigDecimal height;
-    private DeliveryInfo deliveryInfo;
+    private OrderTransportInfo orderTransportInfo;
 private Owner owner;
     public long getId() {
         return id;
@@ -28,12 +26,12 @@ private Owner owner;
         this.id = id;
     }
 
-    public DeliveryInfo getDeliveryInfo() {
-        return deliveryInfo;
+    public OrderTransportInfo getOrderTransportInfo() {
+        return orderTransportInfo;
     }
 
-    public void setDeliveryInfo(DeliveryInfo deliveryInfo) {
-        this.deliveryInfo = deliveryInfo;
+    public void setOrderTransportInfo(OrderTransportInfo orderTransportInfo) {
+        this.orderTransportInfo = orderTransportInfo;
     }
 
     public ContainerType getContainerType() {

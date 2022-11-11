@@ -19,6 +19,11 @@ public class TmsContractAccount extends EmsEntity {
     private CmdAccount cmdAccount;
     private String tmsContractAccountContractType;
     private GmoVehicleCategory gmoVehicleCategory;
+
+
+    private PrmVille prmVilleSource;
+    private PrmVille prmVilleDistination ;
+
     private long tmsContractAccountQuantity;
     private AdrAddress adrSenderAddress;
     private AdrAddress adrReceiverAdresse;
@@ -29,6 +34,9 @@ public class TmsContractAccount extends EmsEntity {
 
 
     private String tmsContractAccountPackageType;
+
+    private TmsTurnType tmsTurnType;
+
     private OwnOwner ownOwner;
 
 
@@ -79,6 +87,37 @@ public class TmsContractAccount extends EmsEntity {
 
     public void setCmdAccount(CmdAccount cmdAccount) {
         this.cmdAccount = cmdAccount;
+    }
+
+
+    @ManyToOne()
+    @JoinColumn(name = "tms_turntypeid")
+    public TmsTurnType getTmsTurnType() {
+        return tmsTurnType;
+    }
+
+    public void setTmsTurnType(TmsTurnType tmsTurnType) {
+        this.tmsTurnType = tmsTurnType;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "tms_prmvillesourceid")
+    public PrmVille getPrmVilleSource() {
+        return prmVilleSource;
+    }
+
+    public void setPrmVilleSource(PrmVille prmVilleSource) {
+        this.prmVilleSource = prmVilleSource;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "tms_prmvilledistinationid")
+    public PrmVille getPrmVilleDistination() {
+        return prmVilleDistination;
+    }
+
+    public void setPrmVilleDistination(PrmVille prmVilleDistination) {
+        this.prmVilleDistination = prmVilleDistination;
     }
 
     @ManyToOne()

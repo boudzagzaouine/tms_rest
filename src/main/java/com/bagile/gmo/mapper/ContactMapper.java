@@ -25,6 +25,7 @@ public class ContactMapper {
         map.put("email", "prmContactEmail");
         map.put("comment", "prmContactComment");
         map.put("active","prmContactActive");
+        map.put("account","cmdAccount");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");

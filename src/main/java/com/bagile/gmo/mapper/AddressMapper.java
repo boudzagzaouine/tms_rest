@@ -49,6 +49,7 @@ public class AddressMapper {
         map.put("variable9","adrAddressVariable9");
         map.put("variable10","adrAddressVariable10");
         map.put("typeAddress","adrAddressType");
+        map.put("account","cmdAccount");
 
     }
 

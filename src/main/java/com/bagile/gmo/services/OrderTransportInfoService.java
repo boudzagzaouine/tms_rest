@@ -7,8 +7,8 @@ import com.bagile.gmo.exceptions.IdNotFound;
 
 import java.util.List;
 
-public interface DeliveryInfoService {
-    OrderTransportInfo save(OrderTransportInfo deliveryInfo);
+public interface OrderTransportInfoService {
+    OrderTransportInfo save(OrderTransportInfo orderTransportInfo);
 
     Long size();
 
@@ -24,7 +24,7 @@ public interface DeliveryInfoService {
 
     void delete(Long id);
 
-    void delete(OrderTransportInfo deliveryInfo);
+    void delete(OrderTransportInfo orderTransportInfo);
     void deleteAll (List<Long> ids);
 
     List<OrderTransportInfo> findAll();

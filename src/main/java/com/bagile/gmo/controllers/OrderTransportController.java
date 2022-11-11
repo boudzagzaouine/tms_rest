@@ -1,10 +1,10 @@
 package com.bagile.gmo.controllers;
 
-import com.bagile.gmo.dto.OrderDelivery;
+import com.bagile.gmo.dto.OrderTransport;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
-import com.bagile.gmo.services.OrderDeliveryService;
+import com.bagile.gmo.services.OrderTransportService;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,30 +13,30 @@ import java.util.Arrays;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/orderDeliveries")
-public class OrderDeliveryController {
+@RequestMapping(value = "/orderTransports")
+public class OrderTransportController {
 
-    private final OrderDeliveryService orderDeliveryService;
+    private final OrderTransportService orderDeliveryService;
 
-    public OrderDeliveryController(OrderDeliveryService orderDeliveryService) {
+    public OrderTransportController(OrderTransportService orderDeliveryService) {
         this.orderDeliveryService = orderDeliveryService;
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseBody
-    public List<OrderDelivery> getAll() {
+    public List<OrderTransport> getAll() {
         return orderDeliveryService.findAll();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/listPage")
     @ResponseBody
-    public List<OrderDelivery> getAll(@RequestParam int page, @RequestParam int size) {
+    public List<OrderTransport> getAll(@RequestParam int page, @RequestParam int size) {
         return orderDeliveryService.findAll(page, size);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
-    public OrderDelivery getOne(@PathVariable("id") Long id) throws IdNotFound {
+    public OrderTransport getOne(@PathVariable("id") Long id) throws IdNotFound {
         return orderDeliveryService.findById(id);
     }
 
@@ -60,32 +60,32 @@ public class OrderDeliveryController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
-    public List<OrderDelivery> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
+    public List<OrderTransport> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
         return orderDeliveryService.find(search);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
-    public List<OrderDelivery> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
+    public List<OrderTransport> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         return orderDeliveryService.find(search, page, size);
 
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public OrderDelivery add(@RequestBody OrderDelivery orderDelivery) {
+    public OrderTransport add(@RequestBody OrderTransport orderDelivery) {
         return orderDeliveryService.save(orderDelivery);
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public OrderDelivery set(@RequestBody OrderDelivery orderDelivery) {
+    public OrderTransport set(@RequestBody OrderTransport orderDelivery) {
         return orderDeliveryService.save(orderDelivery);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@RequestBody OrderDelivery orderDelivery) {
+    public void delete(@RequestBody OrderTransport orderDelivery) {
         orderDeliveryService.delete(orderDelivery);
     }
 

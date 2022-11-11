@@ -101,5 +101,13 @@ public class CatalogTransportTypeServiceImpl implements CatalogTransportTypeServ
         return CatalogTransportTypeMapper.toDtos(catalogTransportTypeRepository.findAll(pageable), false);
     }
 
+    @Override
+    public String getNextVal() {
+        String value="CT" + catalogTransportTypeRepository.getNextVal().get(0);
+        return value;
+
+
+    }
+
 }
 

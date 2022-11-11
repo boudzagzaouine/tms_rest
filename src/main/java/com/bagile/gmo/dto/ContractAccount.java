@@ -25,14 +25,16 @@ public class ContractAccount extends EmsDto implements Serializable, Comparable<
    private VehicleCategory vehicleCategory  ;
    private long quantity  ;
 
+   private Ville  source ;
+   private Ville distination ;
     private Address senderAddress  ;
     private Address receiverAdresse ;
 
    private Date  startDate ;
   private Date  endDate;
-  private BigDecimal   price ;
+  private BigDecimal price;
   private String  packageType ;
-
+    private TurnType turnType;
     public long getId() {
         return id;
     }
@@ -135,6 +137,30 @@ public class ContractAccount extends EmsDto implements Serializable, Comparable<
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public Ville getSource() {
+        return source;
+    }
+
+    public void setSource(Ville source) {
+        this.source = source;
+    }
+
+    public Ville getDistination() {
+        return distination;
+    }
+
+    public void setDistination(Ville distination) {
+        this.distination = distination;
+    }
+
+    public TurnType getTurnType() {
+        return turnType;
+    }
+
+    public void setTurnType(TurnType turnType) {
+        this.turnType = turnType;
     }
 
     @Override

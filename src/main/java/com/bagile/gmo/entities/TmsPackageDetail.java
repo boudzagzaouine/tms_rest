@@ -19,7 +19,7 @@ public class TmsPackageDetail extends EmsEntity{
     private BigDecimal tmsPackageDetailWidth;
     private BigDecimal tmsPackageDetailHeight;
 
-    private TmsDeliveryInfo tmsDeliveryInfo;
+    private TmsOrderTransportInfo tmsOrderTransportInfo;
 
 
     @Id
@@ -44,15 +44,19 @@ public class TmsPackageDetail extends EmsEntity{
     public void setPrmContainerType(PrmContainerType prmContainerType) {
         this.prmContainerType = prmContainerType;
     }
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_packagingdetaildeliveryinfoid")
-    public TmsDeliveryInfo getTmsDeliveryInfo() {
-        return tmsDeliveryInfo;
+    @JoinColumn(name = "tms_ordertransportinfoid")
+    public TmsOrderTransportInfo getTmsOrderTransportInfo() {
+        return tmsOrderTransportInfo;
     }
 
-    public void setTmsDeliveryInfo(TmsDeliveryInfo tmsDeliveryInfo) {
-        this.tmsDeliveryInfo = tmsDeliveryInfo;
+    public void setTmsOrderTransportInfo(TmsOrderTransportInfo tmsOrderTransportInfo) {
+        this.tmsOrderTransportInfo = tmsOrderTransportInfo;
     }
+
+
+
 
 
 

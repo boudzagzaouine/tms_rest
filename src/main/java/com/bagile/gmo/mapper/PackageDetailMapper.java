@@ -1,6 +1,5 @@
 package com.bagile.gmo.mapper;
 
-import com.bagile.gmo.dto.ContainerType;
 import com.bagile.gmo.dto.PackageDetail;
 import com.bagile.gmo.entities.TmsPackageDetail;
 
@@ -44,7 +43,7 @@ public class PackageDetailMapper {
 		if(!lazy){
 			//tmsPackageDetail.setOwnOwner(OwnerMapper.toEntity(packageDetail.getOwner(),true));
 			tmsPackageDetail.setPrmContainerType(ContainerTypeMapper.toEntity(packageDetail.getContainerType(),true));
-			tmsPackageDetail.setTmsDeliveryInfo(DeliveryInfoMapper.toEntity(packageDetail.getDeliveryInfo(),true));
+			tmsPackageDetail.setTmsOrderTransportInfo(OrderTransportInfoMapper.toEntity(packageDetail.getOrderTransportInfo(),true));
 
 
 		}
@@ -67,7 +66,7 @@ public class PackageDetailMapper {
 
 		if(!lazy){
 			packageDetail.setContainerType(ContainerTypeMapper.toDto(tmsPackageDetail.getPrmContainerType(),true));
-			packageDetail.setDeliveryInfo(DeliveryInfoMapper.toDto(tmsPackageDetail.getTmsDeliveryInfo(),true));
+			packageDetail.setOrderTransportInfo(OrderTransportInfoMapper.toDto(tmsPackageDetail.getTmsOrderTransportInfo(),true));
 
 			//packageDetail.setOwner(OwnerMapper.toDto(tmsPackageDetail.getOwnOwner(),true));
 

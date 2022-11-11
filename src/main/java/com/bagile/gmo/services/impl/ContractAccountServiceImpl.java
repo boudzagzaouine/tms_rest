@@ -109,7 +109,7 @@ public class ContractAccountServiceImpl implements ContractAccountService {
 
     @Override
     public String getNextVal() {
-        String value=settingService.generateCodeAccount() + contractAccountRepository.getNextVal().get(0);
+        String value="CC" + contractAccountRepository.getNextVal().get(0);
         return value;
     }
 

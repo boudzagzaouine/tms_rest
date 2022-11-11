@@ -6,8 +6,8 @@ import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.OrderTransportInfoMapper;
-import com.bagile.gmo.repositories.DeliveryInfoRepository;
-import com.bagile.gmo.services.DeliveryInfoService;
+import com.bagile.gmo.repositories.OrderTransportInfoRepository;
+import com.bagile.gmo.services.OrderTransportInfoService;
 import com.bagile.gmo.util.Search;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,32 +18,32 @@ import java.util.List;
 
 
 @Service
-public class DeliveryInfoServiceImpl implements DeliveryInfoService {
+public class OrderTransportInfoServiceImpl implements OrderTransportInfoService {
     
-    private final DeliveryInfoRepository deliveryInfoRepository;
+    private final OrderTransportInfoRepository orderTransportInfoRepository;
 
-    public DeliveryInfoServiceImpl(DeliveryInfoRepository deliveryInfoRepository) {
-        this.deliveryInfoRepository = deliveryInfoRepository;
+    public OrderTransportInfoServiceImpl(OrderTransportInfoRepository orderTransportInfoRepository) {
+        this.orderTransportInfoRepository = orderTransportInfoRepository;
     }
 
     @Override
-    public OrderTransportInfo save(OrderTransportInfo deliveryInfo) {
-        return OrderTransportInfoMapper.toDto(deliveryInfoRepository.saveAndFlush(OrderTransportInfoMapper.toEntity(deliveryInfo, false)), false);
+    public OrderTransportInfo save(OrderTransportInfo orderDeliveryType) {
+        return OrderTransportInfoMapper.toDto(orderTransportInfoRepository.saveAndFlush(OrderTransportInfoMapper.toEntity(orderDeliveryType, false)), false);
     }
 
     @Override
     public Long size() {
-        return deliveryInfoRepository.count();
+        return orderTransportInfoRepository.count();
     }
 
     @Override
     public Boolean isExist(Long id) {
-        return deliveryInfoRepository.existsById(id);
+        return orderTransportInfoRepository.existsById(id);
     }
 
     @Override
     public OrderTransportInfo findById(Long id) throws IdNotFound {
-        return OrderTransportInfoMapper.toDto(deliveryInfoRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
+        return OrderTransportInfoMapper.toDto(orderTransportInfoRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class DeliveryInfoServiceImpl implements DeliveryInfoService {
         if (search.equals("")){
             return findAll ();
         }
-        return OrderTransportInfoMapper.toDtos(deliveryInfoRepository.findAll(Search.expression(search, TmsOrderTransportInfo.class)), false);
+        return OrderTransportInfoMapper.toDtos(orderTransportInfoRepository.findAll(Search.expression(search, TmsOrderTransportInfo.class)), false);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class DeliveryInfoServiceImpl implements DeliveryInfoService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return OrderTransportInfoMapper.toDtos(deliveryInfoRepository.findAll(Search.expression(search, TmsOrderTransportInfo.class), pageable), false);
+        return OrderTransportInfoMapper.toDtos(orderTransportInfoRepository.findAll(Search.expression(search, TmsOrderTransportInfo.class), pageable), false);
     }
 
     @Override
@@ -69,17 +69,17 @@ public class DeliveryInfoServiceImpl implements DeliveryInfoService {
         if (search.equals("")){
             return size ();
         }
-        return deliveryInfoRepository.count(Search.expression(search, TmsOrderTransportInfo.class));
+        return orderTransportInfoRepository.count(Search.expression(search, TmsOrderTransportInfo.class));
     }
 
     @Override
     public void delete(Long id) {
-        deliveryInfoRepository.deleteById(id);
+        orderTransportInfoRepository.deleteById(id);
     }
 
     @Override
-    public void delete(OrderTransportInfo deliveryInfo) {
-        deliveryInfoRepository.delete(OrderTransportInfoMapper.toEntity(deliveryInfo, false));
+    public void delete(OrderTransportInfo orderDeliveryType) {
+        orderTransportInfoRepository.delete(OrderTransportInfoMapper.toEntity(orderDeliveryType, false));
     }
 
 
@@ -87,28 +87,26 @@ public class DeliveryInfoServiceImpl implements DeliveryInfoService {
     public void deleteAll(List<Long> ids) {
 
         for (Long id : ids) {
-            deliveryInfoRepository.deleteById(id);        }
+            orderTransportInfoRepository.deleteById(id);        }
     }
 
 
     @Override
     public List<OrderTransportInfo> findAll() {
-        return OrderTransportInfoMapper.toDtos(deliveryInfoRepository.findAll(), false);
+        return OrderTransportInfoMapper.toDtos(orderTransportInfoRepository.findAll(), false);
     }
 
     @Override
     public List<OrderTransportInfo> findAll(int page, int size) {
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return OrderTransportInfoMapper.toDtos(deliveryInfoRepository.findAll(pageable), false);
+        return OrderTransportInfoMapper.toDtos(orderTransportInfoRepository.findAll(pageable), false);
     }
 
     @Override
     public OrderTransportInfo findOne(String search) throws AttributesNotFound, ErrorType {
         return null;
     }
-
-
 
 }
 

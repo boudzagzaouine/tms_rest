@@ -30,4 +30,6 @@ public interface CatalogTransportTypeService {
     List<CatalogTransportType> findAll();
 
     List<CatalogTransportType> findAll(int page, int size);
+
+    String getNextVal();
 }

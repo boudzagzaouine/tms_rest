@@ -3,7 +3,7 @@ package com.bagile.gmo.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-public class AddressContactDeliveryInfo extends EmsDto implements Serializable {
+public class AddressContactOrderTransportInfo extends EmsDto implements Serializable {
 
     /**
      *
@@ -146,7 +146,7 @@ public class AddressContactDeliveryInfo extends EmsDto implements Serializable {
         if (object == null || object.getClass() != getClass()) {
             result = false;
         } else {
-            AddressContactDeliveryInfo obj = (AddressContactDeliveryInfo) object;
+            AddressContactOrderTransportInfo obj = (AddressContactOrderTransportInfo) object;
             if (this.id == obj.getId()) {
                 result = true;
             }

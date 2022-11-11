@@ -7,12 +7,14 @@ import java.math.BigDecimal;
 @Table(name="gmo_catalogtransport",
         uniqueConstraints ={@UniqueConstraint
                 (columnNames ={"gmo_vehiclecategoryid","trp_transportid",
-                               "gmo_villesournceid","gmo_villedistinationid"})})
+                               "gmo_villesournceid","gmo_villedistinationid","gmo_tmsturntypeid"})})
 public class GmoCatalogTransportType extends EmsEntity{
 
     private Long gmoCatalogTransportId;
     private TrpTransport trpTransport;
     private GmoVehicleCategory gmoVehicleCategory;
+
+    private TmsTurnType tmsTurnType;
     private PrmVille gmoVilleSource ;
     private PrmVille gmoVilleDestination;
     private BigDecimal gmoCatalogTransportAmountHt;
@@ -53,6 +55,8 @@ public class GmoCatalogTransportType extends EmsEntity{
         this.gmoVehicleCategory = gmoVehicleCategory;
     }
 
+
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gmo_villesournceid")
     public PrmVille getGmoVilleSource() {
@@ -62,6 +66,17 @@ public class GmoCatalogTransportType extends EmsEntity{
     public void setGmoVilleSource(PrmVille gmoVilleSource) {
         this.gmoVilleSource = gmoVilleSource;
     }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_tmsturntypeid")
+    public TmsTurnType getTmsTurnType() {
+        return tmsTurnType;
+    }
+
+    public void setTmsTurnType(TmsTurnType tmsTurnType) {
+        this.tmsTurnType = tmsTurnType;
+    }
+
+
 
 
     @ManyToOne(fetch = FetchType.LAZY)

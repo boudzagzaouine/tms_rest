@@ -16,6 +16,7 @@ public class CatalogTransportTypeMapper {
         map = new HashMap<> ( );
 
         map.put ("id", "gmoCatalogTransportId");
+        map.put ("turnType", "tmsTurnType");
         map.put ("transport", "trpTransport");
         map.put ("vehicleCategory", "gmoVehicleCategory");
         map.put ("villeSource", "gmoVilleSource");
@@ -64,6 +65,7 @@ public class CatalogTransportTypeMapper {
             trpTransport.setGmoVilleSource (VilleMapper.toEntity (transport.getVilleSource ( ), true));
             trpTransport.setGmoVilleDestination (VilleMapper.toEntity (transport.getVilleDestination ( ), true));
             trpTransport.setOwnOwner (OwnerMapper.toEntity (transport.getOwner(), true));
+            trpTransport.setTmsTurnType (TurnTypeMapper.toEntity (transport.getTurnType(), true));
 
         }
 
@@ -93,6 +95,7 @@ public class CatalogTransportTypeMapper {
             transport.setVilleDestination (VilleMapper.toDto(trpTransport.getGmoVilleDestination(), true));
             transport.setVat (VatMapper.toDto(trpTransport.getPrmvat(), true));
             transport.setOwner (OwnerMapper.toDto(trpTransport.getOwnOwner(), true));
+            transport.setTurnType (TurnTypeMapper.toDto(trpTransport.getTmsTurnType(), true));
 
         }
         return transport;

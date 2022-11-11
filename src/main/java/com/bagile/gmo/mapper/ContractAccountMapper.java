@@ -16,6 +16,15 @@ public class ContractAccountMapper {
 
 		map.put("id", "tmsContractAccountId");
 		map.put("code", "tmsContractAccountCode");
+		map.put("source", "prmVilleSource");
+		map.put("distination", "prmVilleDistination");
+		map.put ("turnType", "tmsTurnType");
+
+		map.put("startDate", "tmsContractAccountStartDate");
+		map.put("endDate", "tmsContractAccountEndDate");
+		map.put("vehicleCategory", "gmoVehicleCategory");
+
+
 		map.put("account", "cmdAccount");
 	}
 
@@ -51,6 +60,9 @@ public class ContractAccountMapper {
 
 			tmsContractAccount.setCmdAccount(AccountMapper.toEntity(contractAccount.getAccount(),true));
 
+			tmsContractAccount.setPrmVilleSource(VilleMapper.toEntity(contractAccount.getSource(),true));
+			tmsContractAccount.setPrmVilleDistination(VilleMapper.toEntity(contractAccount.getDistination(),true));
+			tmsContractAccount.setTmsTurnType(TurnTypeMapper.toEntity(contractAccount.getTurnType(),true));
 
 		}
 		return tmsContractAccount;
@@ -77,6 +89,9 @@ public class ContractAccountMapper {
 			contractAccount.setReceiverAdresse(AddressMapper.toDto(tmsContractAccount.getAdrReceiverAdresse(),false));
 			contractAccount.setAccount(AccountMapper.toDto(tmsContractAccount.getCmdAccount(),false));
 
+			contractAccount.setSource(VilleMapper.toDto(tmsContractAccount.getPrmVilleSource(),false));
+			contractAccount.setDistination(VilleMapper.toDto(tmsContractAccount.getPrmVilleDistination(),false));
+			contractAccount.setTurnType(TurnTypeMapper.toDto(tmsContractAccount.getTmsTurnType(),false));
 
 		}
 		return contractAccount;

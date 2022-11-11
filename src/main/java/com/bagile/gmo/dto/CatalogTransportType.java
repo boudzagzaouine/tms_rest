@@ -11,6 +11,8 @@ public class CatalogTransportType extends EmsDto implements Serializable {
     private long id;
     private Transport transport;
     private VehicleCategory vehicleCategory;
+
+    private TurnType turnType;
     private Ville villeSource ;
     private Ville villeDestination;
     private BigDecimal amountHt;
@@ -87,6 +89,14 @@ public class CatalogTransportType extends EmsDto implements Serializable {
 
     public void setAmountTva(BigDecimal amountTva) {
         this.amountTva = amountTva;
+    }
+
+    public TurnType getTurnType() {
+        return turnType;
+    }
+
+    public void setTurnType(TurnType turnType) {
+        this.turnType = turnType;
     }
 
     public Vat getVat() {
