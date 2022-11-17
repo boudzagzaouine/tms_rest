@@ -1,7 +1,5 @@
 package com.bagile.gmo.dto;
 
-import com.bagile.gmo.mapper.VehicleCategoryMapper;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.*;
@@ -19,7 +17,9 @@ public class TransportPlan extends EmsDto implements Serializable {
     private Transport  transport;
 
     private TurnStatus turnStatus;
-    private BigDecimal priceTTC ;
+
+    private BigDecimal purchasePrice;
+    private BigDecimal salePrice;
 
     private String villeSource;
     private String villeDistination;
@@ -53,6 +53,13 @@ public class TransportPlan extends EmsDto implements Serializable {
         this.vehicle = vehicle;
     }
 
+    public BigDecimal getPurchasePrice() {
+        return purchasePrice;
+    }
+
+    public void setPurchasePrice(BigDecimal purchasePrice) {
+        this.purchasePrice = purchasePrice;
+    }
 
     public String getVilleSource() {
         return villeSource;
@@ -110,12 +117,12 @@ public class TransportPlan extends EmsDto implements Serializable {
         this.turnStatus = turnStatus;
     }
 
-    public BigDecimal getPriceTTC() {
-        return priceTTC;
+    public BigDecimal getSalePrice() {
+        return salePrice;
     }
 
-    public void setPriceTTC(BigDecimal priceTTC) {
-        this.priceTTC = priceTTC;
+    public void setSalePrice(BigDecimal salePrice) {
+        this.salePrice = salePrice;
     }
 
     @Override

@@ -21,7 +21,7 @@ public class CatalogTransportTypeMapper {
         map.put ("vehicleCategory", "gmoVehicleCategory");
         map.put ("villeSource", "gmoVilleSource");
         map.put ("villeDestination", "gmoVilleDestination");
-        map.put ("amountHt", "gmoCatalogTransportAmountHt");
+        map.put ("interneOrExterne", "gmoCatalogTransportInternOrExterne");
         map.put ("amountTtc", "gmoCatalogTransportAmountTtc");
         map.put ("amountTva", "gmoCatalogTransportAmountTva");
         map.put ("vat", "prmvat");
@@ -48,11 +48,12 @@ public class CatalogTransportTypeMapper {
         }
 
         GmoCatalogTransportType trpTransport = new GmoCatalogTransportType( );
-        trpTransport.setGmoCatalogTransportCategoryVehicleId (transport.getId ());
+        trpTransport.setGmoCatalogTransportId (transport.getId ());
 
         trpTransport.setGmoCatalogTransportCategoryVehicleAmountHt (transport.getAmountHt ());
         trpTransport.setGmoCatalogTransportCategoryVehicleAmountTtc (transport.getAmountTtc ());
         trpTransport.setGmoCatalogTransportCategoryVehicleAmountTva (transport.getAmountTva ());
+        trpTransport.setGmoCatalogTransportInternOrExterne (transport.getInterneOrExterne ());
 
 
         trpTransport.setCreatedBy (transport.getCreatedBy ( ));
@@ -61,7 +62,7 @@ public class CatalogTransportTypeMapper {
         if (!lazy) {
             trpTransport.setPrmvat (VatMapper.toEntity (transport.getVat ( ), true));
             trpTransport.setGmoVehicleCategory (VehicleCategoryMapper.toEntity (transport.getVehicleCategory ( ), true));
-            trpTransport.setTrpTransport (TransportMapper.toEntity (transport.getTransport ( ), true));
+            trpTransport.setTrpTransport (TransportMapper.toEntity (transport.getTransport ( ), false));
             trpTransport.setGmoVilleSource (VilleMapper.toEntity (transport.getVilleSource ( ), true));
             trpTransport.setGmoVilleDestination (VilleMapper.toEntity (transport.getVilleDestination ( ), true));
             trpTransport.setOwnOwner (OwnerMapper.toEntity (transport.getOwner(), true));
@@ -78,10 +79,11 @@ public class CatalogTransportTypeMapper {
             return null;
         }
         CatalogTransportType transport = new CatalogTransportType ( );
-        transport.setId (trpTransport.getGmoCatalogTransportCategoryVehicleId ());
+        transport.setId (trpTransport.getGmoCatalogTransportId ());
         transport.setAmountHt (trpTransport.getGmoCatalogTransportCategoryVehicleAmountHt ());
         transport.setAmountTtc (trpTransport.getGmoCatalogTransportCategoryVehicleAmountTtc ());
         transport.setAmountTva (trpTransport.getGmoCatalogTransportCategoryVehicleAmountTva ());
+        transport.setInterneOrExterne (trpTransport.getGmoCatalogTransportInternOrExterne ());
 
         transport.setCreatedBy (trpTransport.getCreatedBy ());
         transport.setUpdatedBy (trpTransport.getUpdatedBy ());
@@ -90,7 +92,7 @@ public class CatalogTransportTypeMapper {
 
         if (!lazy) {
             transport.setVehicleCategory (VehicleCategoryMapper.toDto(trpTransport.getGmoVehicleCategory(), true));
-            transport.setTransport (TransportMapper.toDto(trpTransport.getTrpTransport(), true));
+            transport.setTransport (TransportMapper.toDto(trpTransport.getTrpTransport(), false));
             transport.setVilleSource (VilleMapper.toDto(trpTransport.getGmoVilleSource(), true));
             transport.setVilleDestination (VilleMapper.toDto(trpTransport.getGmoVilleDestination(), true));
             transport.setVat (VatMapper.toDto(trpTransport.getPrmvat(), true));

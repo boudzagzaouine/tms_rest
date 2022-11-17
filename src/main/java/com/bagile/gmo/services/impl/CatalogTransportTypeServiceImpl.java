@@ -1,6 +1,7 @@
 package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.CatalogTransportType;
+import com.bagile.gmo.dto.Maintenance;
 import com.bagile.gmo.entities.GmoCatalogTransportType;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,6 +33,18 @@ public class CatalogTransportTypeServiceImpl implements CatalogTransportTypeServ
         return CatalogTransportTypeMapper.toDto(catalogTransportTypeRepository.saveAndFlush(CatalogTransportTypeMapper.toEntity(transport, false)), false);
     }
 
+    @Override
+    public List<CatalogTransportType> saveAll(List<CatalogTransportType> catalogTransportTypes) throws AttributesNotFound, ErrorType {
+
+        List<CatalogTransportType> transportTypeList = new ArrayList<>();
+
+        for (CatalogTransportType catalogTransportType : catalogTransportTypes) {
+            transportTypeList.add(save(catalogTransportType));
+        }
+
+        return transportTypeList;
+
+    }
     @Override
     public Long size() {
         return catalogTransportTypeRepository.count();

@@ -53,7 +53,9 @@ public class TrpTransport extends EmsEntity implements java.io.Serializable {
     private String trpTransportVariable9;
     @Size(max = 255)
     private String trpTransportVariable10;
+    private Boolean trpTransportInterneOrExterne;
 
+    private PrmContact prmContact;
     private Set<GmoTransportCategoryVehicle> gmoTransportCategoryVehicles=new HashSet<>();
 
     //private Set<TmsTurn> gmoTurns=new HashSet<>();
@@ -87,6 +89,17 @@ public class TrpTransport extends EmsEntity implements java.io.Serializable {
         this.adrAddress = adrAddress;
     }
 
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "trp_transportcontactid", nullable = false)
+    public PrmContact getPrmContact() {
+        return prmContact;
+    }
+
+    public void setPrmContact(PrmContact prmContact) {
+        this.prmContact = prmContact;
+    }
+
     @Column(name = "trp_transportisactive", nullable = false)
     public Boolean getTrpTransportIsActive() {
         return trpTransportIsActive;
@@ -102,6 +115,16 @@ public class TrpTransport extends EmsEntity implements java.io.Serializable {
 
     public void setTrpTransportCode(String trpTransportCode) {
         this.trpTransportCode = trpTransportCode;
+    }
+
+    @Column(name = "trp_transportinterneorextern")
+
+    public Boolean getTrpTransportInterneOrExterne() {
+        return trpTransportInterneOrExterne;
+    }
+
+    public void setTrpTransportInterneOrExterne(Boolean trpTransportInterneOrExterne) {
+        this.trpTransportInterneOrExterne = trpTransportInterneOrExterne;
     }
 
     @Column(name = "trp_transportdescription")

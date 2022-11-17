@@ -3,8 +3,6 @@ package com.bagile.gmo.entities;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name="tms_transportplan")
@@ -21,7 +19,9 @@ public class TmsTransportPlan extends EmsEntity {
     private String prmVilleSource;
     private String prmVilleDistination;
     private TmsTurnStatus tmsTurnStatus;
-    private BigDecimal tmsTransportPlanPriceTTC ;
+    private BigDecimal tmsTransportPlanPurchasePrice;
+
+    private BigDecimal tmsTransportPlanSalePrice;
 
     private  Date tmsTransportPlanDate;
 
@@ -121,12 +121,21 @@ public class TmsTransportPlan extends EmsEntity {
     }
 
     @Column(name = "tms_transportplanpricettc")
-    public BigDecimal getTmsTransportPlanPriceTTC() {
-        return tmsTransportPlanPriceTTC;
+    public BigDecimal getTmsTransportPlanPurchasePrice() {
+        return tmsTransportPlanPurchasePrice;
     }
 
-    public void setTmsTransportPlanPriceTTC(BigDecimal tmsTransportPlanPriceTTC) {
-        this.tmsTransportPlanPriceTTC = tmsTransportPlanPriceTTC;
+    public void setTmsTransportPlanPurchasePrice(BigDecimal tmsTransportPlanPriceTTC) {
+        this.tmsTransportPlanPurchasePrice = tmsTransportPlanPriceTTC;
+    }
+
+    @Column(name = "tms_transportplansaleprice")
+    public BigDecimal getTmsTransportPlanSalePrice() {
+        return tmsTransportPlanSalePrice;
+    }
+
+    public void setTmsTransportPlanSalePrice(BigDecimal tmsTransportPlanSalePrice) {
+        this.tmsTransportPlanSalePrice = tmsTransportPlanSalePrice;
     }
 
     @Column(name = "tms_transportplandate")

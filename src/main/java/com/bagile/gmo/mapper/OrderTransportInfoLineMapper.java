@@ -63,6 +63,7 @@ public class OrderTransportInfoLineMapper {
             tmsOrderTransportInfoLine.setTmsAddressContactDeliveryInfo(AddressContactOrderTransportInfoMapper.toEntity(orderTransportInfoLine.getAddressContactDeliveryInfo(), true));
             tmsOrderTransportInfoLine.setTmsOrderTransportType(OrderTransportTypeMapper.toEntity(orderTransportInfoLine.getOrderTransportType(), true));
             tmsOrderTransportInfoLine.setTmsOrderTransportInfo(OrderTransportInfoMapper.toEntity(orderTransportInfoLine.getOrderTransportInfo(), true));
+            tmsOrderTransportInfoLine.setTmsTurnStatus(TurnStatusMapper.toEntity(orderTransportInfoLine.getTurnStatus(), true));
 
 
 
@@ -120,6 +121,7 @@ public class OrderTransportInfoLineMapper {
             orderTransportInfoLine.setOrderTransportType(OrderTransportTypeMapper.toDto(tmsOrderTransportInfoLine.getTmsOrderTransportType(), true));
 
             orderTransportInfoLine.setOrderTransportInfo(OrderTransportInfoMapper.toDto(tmsOrderTransportInfoLine.getTmsOrderTransportInfo(), true));
+            orderTransportInfoLine.setTurnStatus(TurnStatusMapper.toDto(tmsOrderTransportInfoLine.getTmsTurnStatus(), true));
 
         }
         return orderTransportInfoLine;

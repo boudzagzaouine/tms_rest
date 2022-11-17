@@ -21,7 +21,9 @@ public class OrderTransportInfoLine {
 	private BigDecimal capacityLivraison;
 	private String  commentLivraison;
 
-    private Long lineNumber;
+	private TurnStatus turnStatus;
+
+	private Long lineNumber;
 	private OrderTransportInfo orderTransportInfo;
 	private Owner owner;
 
@@ -40,6 +42,14 @@ public class OrderTransportInfoLine {
 
 	public void setOrderTransportType(OrderTransportType orderTransportType) {
 		this.orderTransportType = orderTransportType;
+	}
+
+	public TurnStatus getTurnStatus() {
+		return turnStatus;
+	}
+
+	public void setTurnStatus(TurnStatus turnStatus) {
+		this.turnStatus = turnStatus;
 	}
 
 	public AddressContactOrderTransportInfo getAddressContactDeliveryInfo() {

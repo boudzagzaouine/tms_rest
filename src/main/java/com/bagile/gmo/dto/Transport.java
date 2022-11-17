@@ -28,10 +28,13 @@ public class Transport  extends EmsDto implements Serializable {
     private BigDecimal siret;
     private String description;
     private Address address;
+    private Contact contact;
     private Boolean active;
     private Boolean gmao;
+    private Boolean interneOrExterne;
 
- private Owner owner;
+
+    private Owner owner;
 
     private List<TransportCategoryVehicle> transportCategorieVehicules=new ArrayList<>();
 
@@ -60,6 +63,14 @@ public class Transport  extends EmsDto implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
     public Date getUpdateDate() {
@@ -165,6 +176,14 @@ public class Transport  extends EmsDto implements Serializable {
 
     public void setOwner(Owner owner) {
         this.owner = owner;
+    }
+
+    public Boolean getInterneOrExterne() {
+        return interneOrExterne;
+    }
+
+    public void setInterneOrExterne(Boolean interneOrExterne) {
+        this.interneOrExterne = interneOrExterne;
     }
 
     public BigDecimal getSiret() {

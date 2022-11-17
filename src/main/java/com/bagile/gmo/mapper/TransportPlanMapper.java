@@ -1,7 +1,6 @@
 package com.bagile.gmo.mapper;
 
 import com.bagile.gmo.dto.TransportPlan;
-import com.bagile.gmo.dto.TurnStatus;
 import com.bagile.gmo.entities.TmsTransportPlan;
 
 import java.util.*;
@@ -16,6 +15,7 @@ public class TransportPlanMapper {
         map = new HashMap<>();
 
         map.put("id", "tmsTransportPlanId");
+
         map.put("vehicle", "tmsVehicle");
         map.put("vehicleCategory", "gmoVehicleCategory");
         map.put("orderTransport", "tmsOrderTransport");
@@ -44,10 +44,11 @@ public class TransportPlanMapper {
         }
         TmsTransportPlan tmsTransportPlan = new TmsTransportPlan();
         tmsTransportPlan.setTmsTransportPlanId(transportPlan.getId());
-        tmsTransportPlan.setTmsTransportPlanPriceTTC(transportPlan.getPriceTTC());
+        tmsTransportPlan.setTmsTransportPlanPurchasePrice(transportPlan.getPurchasePrice());
         tmsTransportPlan.setTmsTransportPlanDate(transportPlan.getDate());
         tmsTransportPlan.setPrmVilleSource(transportPlan.getVilleSource());
         tmsTransportPlan.setPrmVilleDistination(transportPlan.getVilleDistination());
+        tmsTransportPlan.setTmsTransportPlanSalePrice(transportPlan.getSalePrice());
 
 
         if (!lazy) {
@@ -74,11 +75,13 @@ public class TransportPlanMapper {
         }
         TransportPlan transportPlan = new TransportPlan();
         transportPlan.setId( tmsTransportPlan.getTmsTransportPlanId());
-        transportPlan.setPriceTTC(tmsTransportPlan.getTmsTransportPlanPriceTTC());
+        transportPlan.setPurchasePrice(tmsTransportPlan.getTmsTransportPlanPurchasePrice());
         transportPlan.setDate(tmsTransportPlan.getTmsTransportPlanDate());
 
         transportPlan.setVilleSource(tmsTransportPlan.getPrmVilleSource());
         transportPlan.setVilleDistination(tmsTransportPlan.getPrmVilleDistination());
+
+        transportPlan.setSalePrice(tmsTransportPlan.getTmsTransportPlanSalePrice());
 
         if (!lazy) {
             transportPlan.setOrderTransport(OrderTransportMapper.toDto(tmsTransportPlan.getTmsOrderTransport(), false));

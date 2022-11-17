@@ -110,4 +110,10 @@ public class TransportPlanController {
         return  transportPlanService.getNextVal();
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/getLastPriceTransport")
+    @ResponseBody
+    public TransportPlan getLastPriceTransport(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
+        return transportPlanService.getLastPriceTransport(search);
+    }
+
 }

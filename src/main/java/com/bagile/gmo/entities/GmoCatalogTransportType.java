@@ -22,18 +22,21 @@ public class GmoCatalogTransportType extends EmsEntity{
     private BigDecimal gmoCatalogTransportAmountTva;
     private PrmVat prmvat;
 
+    private Boolean gmoCatalogTransportInternOrExterne ;
     private OwnOwner ownOwner;
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_catalogtransportcategoryvehicle_id", allocationSize = 1)
     @Column(name = "gmo_catalogtransportcategoryvehicleid", unique = true, nullable = false, precision = 10, scale = 0)
-    public Long getGmoCatalogTransportCategoryVehicleId() {
+    public Long getGmoCatalogTransportId() {
         return gmoCatalogTransportId;
     }
 
-    public void setGmoCatalogTransportCategoryVehicleId(Long gmoCatalogTransportCategoryVehicleId) {
-        this.gmoCatalogTransportId = gmoCatalogTransportCategoryVehicleId;
+    public void setGmoCatalogTransportId(Long gmoCatalogTransportId) {
+        this.gmoCatalogTransportId = gmoCatalogTransportId;
     }
 
     @ManyToOne()
@@ -98,6 +101,15 @@ public class GmoCatalogTransportType extends EmsEntity{
 
     public void setGmoCatalogTransportCategoryVehicleAmountHt(BigDecimal gmoCatalogTransportCategoryVehicleAmountHt) {
         this.gmoCatalogTransportAmountHt = gmoCatalogTransportCategoryVehicleAmountHt;
+    }
+
+    @Column(name = "gmo_catalogtransportinternorexterne")
+    public Boolean getGmoCatalogTransportInternOrExterne() {
+        return gmoCatalogTransportInternOrExterne;
+    }
+
+    public void setGmoCatalogTransportInternOrExterne(Boolean gmoCatalogTransportInternOrExterne) {
+        this.gmoCatalogTransportInternOrExterne = gmoCatalogTransportInternOrExterne;
     }
 
     @Column(name = "gmo_catalogtransportamountttc")

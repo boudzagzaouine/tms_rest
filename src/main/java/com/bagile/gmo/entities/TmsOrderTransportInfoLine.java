@@ -25,6 +25,8 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
     private BigDecimal tmsOrderTransportCapacityLivraison;
     private String  tmsOrderTransportCommentLivraison;
 
+    private TmsTurnStatus tmsTurnStatus;
+
     private Long  tmsOrderTransportLineNumber ;
     private TmsOrderTransportInfo tmsOrderTransportInfo;
 
@@ -67,6 +69,16 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
 
     public void setTmsOrderTransportType(TmsOrderTransportType tmsOrderTransportService) {
         this.tmsOrderTransportType = tmsOrderTransportService;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "tms_turnstatusid")
+    public TmsTurnStatus getTmsTurnStatus() {
+        return tmsTurnStatus;
+    }
+
+    public void setTmsTurnStatus(TmsTurnStatus tmsTurnStatus) {
+        this.tmsTurnStatus = tmsTurnStatus;
     }
 
     @ManyToOne()

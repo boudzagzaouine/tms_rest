@@ -1,6 +1,7 @@
 package com.bagile.gmo.controllers;
 
 import com.bagile.gmo.dto.CatalogTransportType;
+import com.bagile.gmo.dto.Maintenance;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
@@ -82,6 +83,12 @@ public class CatalogTransportTypeController {
     @ResponseBody
     public CatalogTransportType add(@RequestBody CatalogTransportType catalogTransport) {
         return catalogTransportTypeService.save(catalogTransport);
+    }
+
+    @RequestMapping(value = "/saveALL", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<CatalogTransportType> addAll(@RequestBody List<CatalogTransportType> catalogTransports) throws AttributesNotFound, ErrorType {
+        return  catalogTransportTypeService.saveAll(catalogTransports);
     }
 
     //@PreAuthorize("hasRole('BADGE_EDIT')")

@@ -1,6 +1,7 @@
 package com.bagile.gmo.services;
 
 import com.bagile.gmo.dto.CatalogTransportType;
+import com.bagile.gmo.dto.Maintenance;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
@@ -10,6 +11,7 @@ import java.util.List;
 
 public interface CatalogTransportTypeService {
     CatalogTransportType save(CatalogTransportType transport);
+    List<CatalogTransportType> saveAll(List<CatalogTransportType> catalogTransportTypes) throws AttributesNotFound, ErrorType;
 
     Long size();
 

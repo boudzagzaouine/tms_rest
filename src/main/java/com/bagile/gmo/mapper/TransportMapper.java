@@ -1,5 +1,6 @@
 package com.bagile.gmo.mapper;
 
+import com.bagile.gmo.dto.Contact;
 import com.bagile.gmo.dto.Transport;
 import com.bagile.gmo.entities.TrpTransport;
 
@@ -23,6 +24,7 @@ public class TransportMapper {
         map.put ("description", "trpTransportDescription");
         map.put ("active", "trpTransportIsActive");
         map.put ("gmao", "trpTransportGmao");
+        map.put ("interneOrExterne", "trpTransportInterneOrExterne");
 
 
         map.put ("creationDate", "creationDate");
@@ -52,12 +54,15 @@ public class TransportMapper {
         trpTransport.setTrpTransportName (transport.getName ( ));
         trpTransport.setTrpTransportIsActive (transport.getActive ( ));
         trpTransport.setTrpTransportGmao (transport.getGmao ( ));
+        trpTransport.setTrpTransportInterneOrExterne (transport.getInterneOrExterne ( ));
 
         trpTransport.setCreatedBy (transport.getCreatedBy ( ));
         trpTransport.setUpdatedBy (transport.getUpdatedBy ( ));
 
         if (!lazy) {
             trpTransport.setAdrAddress (AddressMapper.toEntity (transport.getAddress ( ), true));
+            trpTransport.setPrmContact (ContactMapper.toEntity (transport.getContact ( ), true));
+
             trpTransport.setGmoTransportCategoryVehicles (TransportCategoryVehicleMapper.toEntities (transport.getTransportCategorieVehicules ( ), true));
             trpTransport.setOwnOwner (OwnerMapper.toEntity (transport.getOwner ( ), true));
 
@@ -80,6 +85,7 @@ public class TransportMapper {
 
         transport.setActive (trpTransport.getTrpTransportIsActive ());
         transport.setGmao (trpTransport.getTrpTransportGmao ());
+        transport.setInterneOrExterne (trpTransport.getTrpTransportInterneOrExterne ());
 
         transport.setCreatedBy (trpTransport.getCreatedBy ());
         transport.setUpdatedBy (trpTransport.getUpdatedBy ());
@@ -90,6 +96,7 @@ public class TransportMapper {
             transport.setAddress (AddressMapper.toDto(trpTransport.getAdrAddress(), true));
             transport.setTransportCategorieVehicules (TransportCategoryVehicleMapper.toDtos(trpTransport.getGmoTransportCategoryVehicles(), true));
             transport.setOwner (OwnerMapper.toDto(trpTransport.getOwnOwner(), true));
+            transport.setContact (ContactMapper.toDto(trpTransport.getPrmContact(), true));
 
         }
         return transport;

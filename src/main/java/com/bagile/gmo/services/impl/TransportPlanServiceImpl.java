@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -113,6 +114,19 @@ public class TransportPlanServiceImpl implements TransportPlanService {
         return null;
 
 
+    }
+
+    @Override
+    public TransportPlan getLastPriceTransport( String search) throws ErrorType, AttributesNotFound {
+        TransportPlan transportPlan = new TransportPlan();
+        List<TransportPlan> transportPlans = new ArrayList<>();
+        transportPlans= TransportPlanMapper.toDtos(transportPlanRepository.findAll(Search.expression(search,TmsTransportPlan.class),(Sort.by(Sort.Direction.DESC, "tmsTransportPlanDate"))), false);
+     if(!transportPlans.isEmpty()){
+         transportPlan=transportPlans.stream().findFirst().get();
+     }
+
+
+        return transportPlan;
     }
 
 }

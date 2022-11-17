@@ -19,6 +19,8 @@ public class CatalogTransportType extends EmsDto implements Serializable {
     private BigDecimal amountTtc;
     private BigDecimal amountTva;
     private Vat vat;
+
+    private Boolean interneOrExterne;
   private Owner owner;
 
 
@@ -107,6 +109,14 @@ public class CatalogTransportType extends EmsDto implements Serializable {
         this.vat = vat;
     }
 
+    public Boolean getInterneOrExterne() {
+        return interneOrExterne;
+    }
+
+    public void setInterneOrExterne(Boolean interneOrExterne) {
+        this.interneOrExterne = interneOrExterne;
+    }
+
     public Owner getOwner() {
         return owner;
     }
@@ -114,6 +124,8 @@ public class CatalogTransportType extends EmsDto implements Serializable {
     public void setOwner(Owner owner) {
         this.owner = owner;
     }
+
+
 
     @Override
     public boolean equals(Object o) {

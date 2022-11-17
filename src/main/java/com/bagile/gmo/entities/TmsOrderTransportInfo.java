@@ -26,7 +26,11 @@ public class TmsOrderTransportInfo extends EmsEntity {
 
     private BigDecimal tmsOrderTransportInfoPriceTTC;
 
+    private TmsTurnStatus tmsTurnStatus;
+
     private String tmsOrderTransportInfoType ;
+
+    private Boolean tmsOrderTransportInfoTrajetUnique;
     private TmsOrderTransport tmsOrderTransport;
 
 
@@ -63,9 +67,16 @@ public class TmsOrderTransportInfo extends EmsEntity {
         this.tmsOrderTransportInfoPackagingType = tmsOrderTransportInfoPackagingTypeAller;
     }
 
- 
+    @ManyToOne()
+    @JoinColumn(name = "tms_turnstatusid")
+    public TmsTurnStatus getTmsTurnStatus() {
+        return tmsTurnStatus;
+    }
 
-    
+    public void setTmsTurnStatus(TmsTurnStatus tmsTurnStatus) {
+        this.tmsTurnStatus = tmsTurnStatus;
+    }
+
     @OneToMany(mappedBy = "tmsOrderTransportInfo",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
     public Set<TmsPackageDetail> getTmsPackageDetails() {
         return tmsPackageDetails;
@@ -140,7 +151,14 @@ public class TmsOrderTransportInfo extends EmsEntity {
         this.tmsOrderTransportInfoType = tmsOrderTransportInfoType;
     }
 
+    @Column(name="tms_ordertransportinfotrajetunique")
+    public Boolean getTmsOrderTransportInfoTrajetUnique() {
+        return tmsOrderTransportInfoTrajetUnique;
+    }
 
+    public void setTmsOrderTransportInfoTrajetUnique(Boolean tmsOrderTransportInfoTrajetUnique) {
+        this.tmsOrderTransportInfoTrajetUnique = tmsOrderTransportInfoTrajetUnique;
+    }
 
     @Column(name="tms_ordertransportinfoweight")
     public BigDecimal getTmsOrderTransportInfoWeight() {

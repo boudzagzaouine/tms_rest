@@ -25,6 +25,9 @@ public class OrderTransportInfo {
 	private String  type ; //Aller || retour
 	private BigDecimal  priceTTC;
 
+	private TurnStatus turnStatus;
+
+	private Boolean trajetUnique;
 	private OrderTransport orderTransport;
 	private Owner owner;
 
@@ -55,6 +58,22 @@ public class OrderTransportInfo {
 
 	public AddressContactOrderTransportInfo getAddressContactInitial() {
 		return addressContactInitial;
+	}
+
+	public Boolean getTrajetUnique() {
+		return trajetUnique;
+	}
+
+	public TurnStatus getTurnStatus() {
+		return turnStatus;
+	}
+
+	public void setTurnStatus(TurnStatus turnStatus) {
+		this.turnStatus = turnStatus;
+	}
+
+	public void setTrajetUnique(Boolean trajetUnique) {
+		this.trajetUnique = trajetUnique;
 	}
 
 	public void setAddressContactInitial(AddressContactOrderTransportInfo addressContactInitial) {
