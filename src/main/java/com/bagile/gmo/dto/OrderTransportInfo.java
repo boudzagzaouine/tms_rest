@@ -28,6 +28,9 @@ public class OrderTransportInfo {
 	private TurnStatus turnStatus;
 
 	private Boolean trajetUnique;
+
+	private BigDecimal numberOfPallet ;
+
 	private OrderTransport orderTransport;
 	private Owner owner;
 
@@ -70,6 +73,14 @@ public class OrderTransportInfo {
 
 	public void setTurnStatus(TurnStatus turnStatus) {
 		this.turnStatus = turnStatus;
+	}
+
+	public BigDecimal getNumberOfPallet() {
+		return numberOfPallet;
+	}
+
+	public void setNumberOfPallet(BigDecimal numberOfPallet) {
+		this.numberOfPallet = numberOfPallet;
 	}
 
 	public void setTrajetUnique(Boolean trajetUnique) {

@@ -51,6 +51,7 @@ public class OrderTransportInfoMapper {
 
         tmsOrderTransportInfo.setTmsOrderTransportInfoType(orderTransportInfo.getType());
         tmsOrderTransportInfo.setTmsOrderTransportInfoTrajetUnique(orderTransportInfo.getTrajetUnique());
+        tmsOrderTransportInfo.setTmsOrderTransportInfoNumberOfPallet(orderTransportInfo.getNumberOfPallet());
 
 
 
@@ -125,6 +126,8 @@ public class OrderTransportInfoMapper {
         orderTransportInfo.setType(tmsOrderTransportInfo.getTmsOrderTransportInfoType());
 
         orderTransportInfo.setTrajetUnique(tmsOrderTransportInfo.getTmsOrderTransportInfoTrajetUnique());
+        orderTransportInfo.setNumberOfPallet(tmsOrderTransportInfo.getTmsOrderTransportInfoNumberOfPallet());
+
 
         if (!lazy) {
 

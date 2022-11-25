@@ -129,5 +129,13 @@ public class TransportPlanServiceImpl implements TransportPlanService {
         return transportPlan;
     }
 
+    @Override
+    public List<TransportPlan> getLastPriceTransports( String search) throws ErrorType, AttributesNotFound {
+
+        return TransportPlanMapper.toDtos(transportPlanRepository.findAll(Search.expression(search,TmsTransportPlan.class),(Sort.by(Sort.Direction.DESC, "tmsTransportPlanDate"))), false);
+
+
+    }
+
 }
 

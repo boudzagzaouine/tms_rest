@@ -31,6 +31,8 @@ public class TmsOrderTransportInfo extends EmsEntity {
     private String tmsOrderTransportInfoType ;
 
     private Boolean tmsOrderTransportInfoTrajetUnique;
+
+    private BigDecimal tmsOrderTransportInfoNumberOfPallet;
     private TmsOrderTransport tmsOrderTransport;
 
 
@@ -85,6 +87,8 @@ public class TmsOrderTransportInfo extends EmsEntity {
     public void setTmsPackageDetails(Set<TmsPackageDetail> tmsPackageDetails) {
         this.tmsPackageDetails = tmsPackageDetails;
     }
+
+
 
     @OneToMany(mappedBy = "tmsOrderTransportInfo",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
     public Set<TmsOrderTransportInfoLine> getTmsOrderTransportInfoLines() {
@@ -149,6 +153,16 @@ public class TmsOrderTransportInfo extends EmsEntity {
 
     public void setTmsOrderTransportInfoType(String tmsOrderTransportInfoType) {
         this.tmsOrderTransportInfoType = tmsOrderTransportInfoType;
+    }
+
+    @Column(name="tms_ordertransportinfonumberofpallet")
+
+    public BigDecimal getTmsOrderTransportInfoNumberOfPallet() {
+        return tmsOrderTransportInfoNumberOfPallet;
+    }
+
+    public void setTmsOrderTransportInfoNumberOfPallet(BigDecimal tmsOrderTransportInfoNumberOfPallet) {
+        this.tmsOrderTransportInfoNumberOfPallet = tmsOrderTransportInfoNumberOfPallet;
     }
 
     @Column(name="tms_ordertransportinfotrajetunique")

@@ -16,7 +16,7 @@ public class TransportPlanMapper {
 
         map.put("id", "tmsTransportPlanId");
 
-        map.put("vehicle", "tmsVehicle");
+        map.put("vehicle", "gmoVehicle");
         map.put("vehicleCategory", "gmoVehicleCategory");
         map.put("orderTransport", "tmsOrderTransport");
         map.put("villeSource", "prmVilleSource");

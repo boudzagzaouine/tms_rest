@@ -36,4 +36,6 @@ public interface TransportPlanService {
     String getNextVal();
 
     TransportPlan getLastPriceTransport(String search)  throws ErrorType, AttributesNotFound;
+    List<TransportPlan> getLastPriceTransports(String search)  throws ErrorType, AttributesNotFound;
+
 }
