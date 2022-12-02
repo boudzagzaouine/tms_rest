@@ -22,6 +22,7 @@ public class OrderTransportInfoMapper {
         map.put("transport", "trpTransport");
         map.put("dateDelivery", "dateDelivery");
         map.put("orderTransport", "tmsOrderTransport");
+        map.put("turnStatus", "tmsTurnStatus");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
