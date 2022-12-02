@@ -1,12 +1,14 @@
 package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.OrderTransportInfo;
+import com.bagile.gmo.dto.OrderTransportInfoLine;
 import com.bagile.gmo.entities.TmsOrderTransportInfo;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.OrderTransportInfoMapper;
 import com.bagile.gmo.repositories.OrderTransportInfoRepository;
+import com.bagile.gmo.services.OrderTransportInfoLineService;
 import com.bagile.gmo.services.OrderTransportInfoService;
 import com.bagile.gmo.util.Search;
 import org.springframework.data.domain.PageRequest;
@@ -21,14 +23,21 @@ import java.util.List;
 public class OrderTransportInfoServiceImpl implements OrderTransportInfoService {
     
     private final OrderTransportInfoRepository orderTransportInfoRepository;
-
-    public OrderTransportInfoServiceImpl(OrderTransportInfoRepository orderTransportInfoRepository) {
+    private final OrderTransportInfoLineService orderTransportInfoLineService;
+    public OrderTransportInfoServiceImpl(OrderTransportInfoRepository orderTransportInfoRepository, OrderTransportInfoLineService orderTransportInfoLineService) {
         this.orderTransportInfoRepository = orderTransportInfoRepository;
+        this.orderTransportInfoLineService = orderTransportInfoLineService;
     }
 
     @Override
-    public OrderTransportInfo save(OrderTransportInfo orderDeliveryType) {
-        return OrderTransportInfoMapper.toDto(orderTransportInfoRepository.saveAndFlush(OrderTransportInfoMapper.toEntity(orderDeliveryType, false)), false);
+    public OrderTransportInfo save(OrderTransportInfo orderTransportInfo) throws ErrorType, AttributesNotFound {
+       if(orderTransportInfo.getOrderTransportInfoLines()==null) {
+           List<OrderTransportInfoLine> orderTransportInfoLines = this.orderTransportInfoLineService.find("orderTransportInfo.id:" + orderTransportInfo.getId());
+           if (orderTransportInfoLines.size() > 0) {
+               orderTransportInfo.setOrderTransportInfoLines(orderTransportInfoLines);
+           }
+       }
+        return OrderTransportInfoMapper.toDto(orderTransportInfoRepository.saveAndFlush(OrderTransportInfoMapper.toEntity(orderTransportInfo, false)), false);
     }
 
     @Override
@@ -78,8 +87,8 @@ public class OrderTransportInfoServiceImpl implements OrderTransportInfoService 
     }
 
     @Override
-    public void delete(OrderTransportInfo orderDeliveryType) {
-        orderTransportInfoRepository.delete(OrderTransportInfoMapper.toEntity(orderDeliveryType, false));
+    public void delete(OrderTransportInfo orderTransportInfo) {
+        orderTransportInfoRepository.delete(OrderTransportInfoMapper.toEntity(orderTransportInfo, false));
     }
 
 

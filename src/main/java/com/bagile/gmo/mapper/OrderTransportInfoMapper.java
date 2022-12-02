@@ -52,6 +52,7 @@ public class OrderTransportInfoMapper {
         tmsOrderTransportInfo.setTmsOrderTransportInfoType(orderTransportInfo.getType());
         tmsOrderTransportInfo.setTmsOrderTransportInfoTrajetUnique(orderTransportInfo.getTrajetUnique());
         tmsOrderTransportInfo.setTmsOrderTransportInfoNumberOfPallet(orderTransportInfo.getNumberOfPallet());
+        tmsOrderTransportInfo.setTmsOrderTransportInfoDate(orderTransportInfo.getDate());
 
 
 
@@ -66,10 +67,12 @@ public class OrderTransportInfoMapper {
             tmsOrderTransportInfo.setTmsOrderTransport(OrderTransportMapper.toEntity(orderTransportInfo.getOrderTransport(), true));
             tmsOrderTransportInfo.setTmsTurnStatus(TurnStatusMapper.toEntity(orderTransportInfo.getTurnStatus(), true));
 
+            tmsOrderTransportInfo.setPrmVilleSource(VilleMapper.toEntity(orderTransportInfo.getVilleSource(), true));
+            tmsOrderTransportInfo.setPrmVilleDistination(VilleMapper.toEntity(orderTransportInfo.getVilleDistination(), true));
 
 
 
- oneToMany(tmsOrderTransportInfo);
+            oneToMany(tmsOrderTransportInfo);
 
         }
         return tmsOrderTransportInfo;
@@ -127,6 +130,7 @@ public class OrderTransportInfoMapper {
 
         orderTransportInfo.setTrajetUnique(tmsOrderTransportInfo.getTmsOrderTransportInfoTrajetUnique());
         orderTransportInfo.setNumberOfPallet(tmsOrderTransportInfo.getTmsOrderTransportInfoNumberOfPallet());
+        orderTransportInfo.setDate(tmsOrderTransportInfo.getTmsOrderTransportInfoDate());
 
 
         if (!lazy) {
@@ -140,6 +144,8 @@ public class OrderTransportInfoMapper {
             orderTransportInfo.setTurnStatus(TurnStatusMapper.toDto(tmsOrderTransportInfo.getTmsTurnStatus(), true));
 
             orderTransportInfo.setOrderTransport(OrderTransportMapper.toDto(tmsOrderTransportInfo.getTmsOrderTransport(), true));
+            orderTransportInfo.setVilleSource(VilleMapper.toDto(tmsOrderTransportInfo.getPrmVilleSource(), true));
+            orderTransportInfo.setVilleDistination(VilleMapper.toDto(tmsOrderTransportInfo.getPrmVilleDistination(), true));
 
 
         }

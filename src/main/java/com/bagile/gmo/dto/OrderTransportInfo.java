@@ -4,6 +4,7 @@ import com.querydsl.core.types.Order;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,6 +35,10 @@ public class OrderTransportInfo {
 	private OrderTransport orderTransport;
 	private Owner owner;
 
+	private Ville villeSource ;
+	private Ville villeDistination;
+
+ private Date date;
 
 
 	public long getId() {
@@ -59,8 +64,32 @@ public class OrderTransportInfo {
 		this.packageDetails = packageDetails;
 	}
 
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 	public AddressContactOrderTransportInfo getAddressContactInitial() {
 		return addressContactInitial;
+	}
+
+	public Ville getVilleSource() {
+		return villeSource;
+	}
+
+	public void setVilleSource(Ville villeSource) {
+		this.villeSource = villeSource;
+	}
+
+	public Ville getVilleDistination() {
+		return villeDistination;
+	}
+
+	public void setVilleDistination(Ville villeDistination) {
+		this.villeDistination = villeDistination;
 	}
 
 	public Boolean getTrajetUnique() {

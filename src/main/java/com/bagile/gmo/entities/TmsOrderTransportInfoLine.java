@@ -1,6 +1,9 @@
 
 package com.bagile.gmo.entities;
 
+import com.bagile.gmo.dto.PaymentType;
+import com.bagile.gmo.mapper.PaymentRuleMapper;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -17,6 +20,10 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
     private BigDecimal tmsOrderTransportWeightEnlevement ;
     private BigDecimal tmsOrderTransportCapacityEnlevement;
     private String  tmsOrderTransportCommentEnlevement;
+    private Boolean  tmsOrderTransportContreBlEnlevement;
+    private Boolean  tmsOrderTransportContreFactureEnlevement;
+    private PrmPaymentType prmPaymentTypeEnlevement;
+
 
     private TmsAddressContactOrderTransportInfo tmsAddressContactDeliveryInfoLivraison;
     private BigDecimal tmsAddressContactDeliveryInfoNumberOfPalletLivraison;
@@ -24,11 +31,15 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
     private BigDecimal tmsOrderTransportWeightLivraison ;
     private BigDecimal tmsOrderTransportCapacityLivraison;
     private String  tmsOrderTransportCommentLivraison;
+    private Boolean  tmsOrderTransportContreBlLivraison;
+    private Boolean  tmsOrderTransportContreFactureLivraison;
+    private PrmPaymentType prmPaymentTypeLivraison;
 
     private TmsTurnStatus tmsTurnStatus;
 
     private Long  tmsOrderTransportLineNumber ;
     private TmsOrderTransportInfo tmsOrderTransportInfo;
+
 
 
 
@@ -69,6 +80,59 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
 
     public void setTmsOrderTransportType(TmsOrderTransportType tmsOrderTransportService) {
         this.tmsOrderTransportType = tmsOrderTransportService;
+    }
+
+    @Column(name = "tms_ordertransportinfolinecontreblenlevement")
+    public Boolean getTmsOrderTransportContreBlEnlevement() {
+        return tmsOrderTransportContreBlEnlevement;
+    }
+
+    public void setTmsOrderTransportContreBlEnlevement(Boolean tmsOrderTransportContreBlEnlevement) {
+        this.tmsOrderTransportContreBlEnlevement = tmsOrderTransportContreBlEnlevement;
+    }
+    @Column(name = "tms_ordertransportinfolinecontrefactureenlevement")
+    public Boolean getTmsOrderTransportContreFactureEnlevement() {
+        return tmsOrderTransportContreFactureEnlevement;
+    }
+
+    public void setTmsOrderTransportContreFactureEnlevement(Boolean tmsOrderTransportContreFactureEnlevement) {
+        this.tmsOrderTransportContreFactureEnlevement = tmsOrderTransportContreFactureEnlevement;
+    }
+    @ManyToOne()
+    @JoinColumn(name = "tms_paymenttypeenlevementid")
+    public PrmPaymentType getPrmPaymentTypeEnlevement() {
+        return prmPaymentTypeEnlevement;
+    }
+
+    public void setPrmPaymentTypeEnlevement(PrmPaymentType prmPaymentTypeEnlevement) {
+        this.prmPaymentTypeEnlevement = prmPaymentTypeEnlevement;
+    }
+
+    @Column(name = "tms_ordertransportinfolinecontrebllivraison")
+    public Boolean getTmsOrderTransportContreBlLivraison() {
+        return tmsOrderTransportContreBlLivraison;
+    }
+
+    public void setTmsOrderTransportContreBlLivraison(Boolean tmsOrderTransportContreBlLivraison) {
+        this.tmsOrderTransportContreBlLivraison = tmsOrderTransportContreBlLivraison;
+    }
+    @Column(name = "tms_ordertransportinfolinecontrefacturelivraison")
+
+    public Boolean getTmsOrderTransportContreFactureLivraison() {
+        return tmsOrderTransportContreFactureLivraison;
+    }
+
+    public void setTmsOrderTransportContreFactureLivraison(Boolean tmsOrderTransportContreFactureLivraison) {
+        this.tmsOrderTransportContreFactureLivraison = tmsOrderTransportContreFactureLivraison;
+    }
+    @ManyToOne()
+    @JoinColumn(name = "tms_paymenttypelivraisonid")
+    public PrmPaymentType getPrmPaymentTypeLivraison() {
+        return prmPaymentTypeLivraison;
+    }
+
+    public void setPrmPaymentTypeLivraison(PrmPaymentType prmPaymentTypeLivraison) {
+        this.prmPaymentTypeLivraison = prmPaymentTypeLivraison;
     }
 
     @ManyToOne()

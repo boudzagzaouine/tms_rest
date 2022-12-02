@@ -132,6 +132,15 @@ public class CriteriaPredicate {
             if (criteria.getOperation().equalsIgnoreCase("<")) {
                 return path.lower().in(criteria.getValue().toString().toLowerCase().split(";"));
             }
+            if (criteria.getOperation().equalsIgnoreCase("^")) {
+                String[] split = criteria.getValue().toString().split(";");
+                ArrayList<String> strings = new ArrayList<String>();
+                for (int i = 0; i < split.length; i++) {
+                    strings.add(String.valueOf(split[i]));
+                }
+                return path.in(strings);
+            }
+
         }
         if (Long.TYPE == type || Long.class == type || Integer.TYPE == type || Integer.class == type || Short.class == type || Short.TYPE == type) {
             NumberPath<Long> path = entityPath.getNumber(criteria.getKey(),

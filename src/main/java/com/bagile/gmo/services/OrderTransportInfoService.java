@@ -8,7 +8,7 @@ import com.bagile.gmo.exceptions.IdNotFound;
 import java.util.List;
 
 public interface OrderTransportInfoService {
-    OrderTransportInfo save(OrderTransportInfo orderTransportInfo);
+    OrderTransportInfo save(OrderTransportInfo orderTransportInfo) throws ErrorType, AttributesNotFound;
 
     Long size();
 

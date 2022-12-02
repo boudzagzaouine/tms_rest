@@ -5,6 +5,7 @@ import com.bagile.gmo.dto.OrderTransportInfoLine;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,8 +35,9 @@ public class TmsOrderTransportInfo extends EmsEntity {
 
     private BigDecimal tmsOrderTransportInfoNumberOfPallet;
     private TmsOrderTransport tmsOrderTransport;
-
-
+    private PrmVille prmVilleSource;
+    private PrmVille prmVilleDistination;
+    private Date tmsOrderTransportInfoDate;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -70,6 +72,25 @@ public class TmsOrderTransportInfo extends EmsEntity {
     }
 
     @ManyToOne()
+    @JoinColumn(name = "tms_villesourceid")
+    public PrmVille getPrmVilleSource() {
+        return prmVilleSource;
+    }
+
+    public void setPrmVilleSource(PrmVille prmVilleSource) {
+        this.prmVilleSource = prmVilleSource;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "tms_villedistinationid")
+    public PrmVille getPrmVilleDistination() {
+        return prmVilleDistination;
+    }
+    public void setPrmVilleDistination(PrmVille prmVilleDistination) {
+        this.prmVilleDistination = prmVilleDistination;
+    }
+
+    @ManyToOne()
     @JoinColumn(name = "tms_turnstatusid")
     public TmsTurnStatus getTmsTurnStatus() {
         return tmsTurnStatus;
@@ -90,7 +111,7 @@ public class TmsOrderTransportInfo extends EmsEntity {
 
 
 
-    @OneToMany(mappedBy = "tmsOrderTransportInfo",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "tmsOrderTransportInfo",cascade =CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
     public Set<TmsOrderTransportInfoLine> getTmsOrderTransportInfoLines() {
         return tmsOrderTransportInfoLines;
     }
@@ -153,6 +174,16 @@ public class TmsOrderTransportInfo extends EmsEntity {
 
     public void setTmsOrderTransportInfoType(String tmsOrderTransportInfoType) {
         this.tmsOrderTransportInfoType = tmsOrderTransportInfoType;
+    }
+
+    @Column(name="tms_ordertransportinfodate")
+
+    public Date getTmsOrderTransportInfoDate() {
+        return tmsOrderTransportInfoDate;
+    }
+
+    public void setTmsOrderTransportInfoDate(Date tmsOrderTransportInfoDate) {
+        this.tmsOrderTransportInfoDate = tmsOrderTransportInfoDate;
     }
 
     @Column(name="tms_ordertransportinfonumberofpallet")

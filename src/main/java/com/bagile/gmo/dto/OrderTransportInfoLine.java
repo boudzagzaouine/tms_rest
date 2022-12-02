@@ -15,18 +15,23 @@ public class OrderTransportInfoLine {
 	private BigDecimal capacityEnlevement;
 	private String  commentEnlevement;
 
+	private Boolean contreBlEnlevement ;
+	private Boolean contreFactureEnlevement;
+	private PaymentType  paymentTypeEnlevement;
+
 	private BigDecimal numberOfPalletLivraison ;
 
 	private BigDecimal weightLivraison ;
 	private BigDecimal capacityLivraison;
 	private String  commentLivraison;
-
+	private Boolean contreBlLivraison ;
+	private Boolean contreFactureLivraison;
+	private PaymentType  paymentTypeLivraison;
 	private TurnStatus turnStatus;
 
 	private Long lineNumber;
 	private OrderTransportInfo orderTransportInfo;
 	private Owner owner;
-
 
 
 	public long getId() {
@@ -50,6 +55,54 @@ public class OrderTransportInfoLine {
 
 	public void setTurnStatus(TurnStatus turnStatus) {
 		this.turnStatus = turnStatus;
+	}
+
+	public Boolean getContreBlEnlevement() {
+		return contreBlEnlevement;
+	}
+
+	public void setContreBlEnlevement(Boolean contreBlEnlevement) {
+		this.contreBlEnlevement = contreBlEnlevement;
+	}
+
+	public Boolean getContreFactureEnlevement() {
+		return contreFactureEnlevement;
+	}
+
+	public void setContreFactureEnlevement(Boolean contreFactureEnlevement) {
+		this.contreFactureEnlevement = contreFactureEnlevement;
+	}
+
+	public PaymentType getPaymentTypeEnlevement() {
+		return paymentTypeEnlevement;
+	}
+
+	public void setPaymentTypeEnlevement(PaymentType paymentTypeEnlevement) {
+		this.paymentTypeEnlevement = paymentTypeEnlevement;
+	}
+
+	public Boolean getContreBlLivraison() {
+		return contreBlLivraison;
+	}
+
+	public void setContreBlLivraison(Boolean contreBlLivraison) {
+		this.contreBlLivraison = contreBlLivraison;
+	}
+
+	public Boolean getContreFactureLivraison() {
+		return contreFactureLivraison;
+	}
+
+	public void setContreFactureLivraison(Boolean contreFactureLivraison) {
+		this.contreFactureLivraison = contreFactureLivraison;
+	}
+
+	public PaymentType getPaymentTypeLivraison() {
+		return paymentTypeLivraison;
+	}
+
+	public void setPaymentTypeLivraison(PaymentType paymentTypeLivraison) {
+		this.paymentTypeLivraison = paymentTypeLivraison;
 	}
 
 	public AddressContactOrderTransportInfo getAddressContactDeliveryInfo() {
