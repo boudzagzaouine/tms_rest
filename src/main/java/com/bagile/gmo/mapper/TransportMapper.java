@@ -66,9 +66,27 @@ public class TransportMapper {
             trpTransport.setGmoTransportCategoryVehicles (TransportCategoryVehicleMapper.toEntities (transport.getTransportCategorieVehicules ( ), true));
             trpTransport.setOwnOwner (OwnerMapper.toEntity (transport.getOwner ( ), true));
 
+            trpTransport.setTransportProducts (TransportProductMapper.toEntities (transport.getTransportProducts ( ), false));
+
+            oneToMany(trpTransport);
         }
 
         return trpTransport;
+
+    }
+
+    private static void oneToMany(TrpTransport trpTransport){
+
+
+        trpTransport.getTransportProducts().forEach(
+                e->{
+                    e.setCreationDate(new Date());
+                    e.setTrpTransport(trpTransport);
+                }
+        );
+
+
+
 
     }
 
@@ -97,6 +115,7 @@ public class TransportMapper {
             transport.setTransportCategorieVehicules (TransportCategoryVehicleMapper.toDtos(trpTransport.getGmoTransportCategoryVehicles(), true));
             transport.setOwner (OwnerMapper.toDto(trpTransport.getOwnOwner(), true));
             transport.setContact (ContactMapper.toDto(trpTransport.getPrmContact(), true));
+            transport.setTransportProducts (TransportProductMapper.toDtos(trpTransport.getTransportProducts(), false));
 
         }
         return transport;

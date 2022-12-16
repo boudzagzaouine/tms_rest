@@ -3,6 +3,8 @@ package com.bagile.gmo.entities;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="tms_transportplan")
@@ -26,6 +28,7 @@ public class TmsTransportPlan extends EmsEntity {
     private  Date tmsTransportPlanDate;
 
 
+    private Set<TmsTransportPlanProductService> tmsTransportPlanProductServiceSet = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -78,6 +81,17 @@ public class TmsTransportPlan extends EmsEntity {
 
     public void setGmoVehicle(GmoVehicle gmoVehicle) {
         this.gmoVehicle = gmoVehicle;
+    }
+
+
+    @OneToMany(fetch = FetchType.LAZY,cascade={CascadeType.ALL,CascadeType.MERGE},mappedBy = "tmsTransportPlan", orphanRemoval=true)
+
+    public Set<TmsTransportPlanProductService> getTmsTransportPlanProductServiceSet() {
+        return tmsTransportPlanProductServiceSet;
+    }
+
+    public void setTmsTransportPlanProductServiceSet(Set<TmsTransportPlanProductService> tmsTransportPlanProductServiceSet) {
+        this.tmsTransportPlanProductServiceSet = tmsTransportPlanProductServiceSet;
     }
 
     @ManyToOne()

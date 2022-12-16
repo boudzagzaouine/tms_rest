@@ -55,6 +55,11 @@ public class OrderTransportInfoMapper {
         tmsOrderTransportInfo.setTmsOrderTransportInfoNumberOfPallet(orderTransportInfo.getNumberOfPallet());
         tmsOrderTransportInfo.setTmsOrderTransportInfoDate(orderTransportInfo.getDate());
 
+        tmsOrderTransportInfo.setNumberKm(orderTransportInfo.getNumberKm());
+        tmsOrderTransportInfo.setTime(orderTransportInfo.getTime());
+
+        tmsOrderTransportInfo.setTmsOrderTransportNumberKmRetour(orderTransportInfo.getNumberKmRetour());
+        tmsOrderTransportInfo.setTmsOrderTransportTimeRetour(orderTransportInfo.getTimeRetour());
 
 
         if (!lazy) {
@@ -133,6 +138,11 @@ public class OrderTransportInfoMapper {
         orderTransportInfo.setNumberOfPallet(tmsOrderTransportInfo.getTmsOrderTransportInfoNumberOfPallet());
         orderTransportInfo.setDate(tmsOrderTransportInfo.getTmsOrderTransportInfoDate());
 
+        orderTransportInfo.setNumberKm(tmsOrderTransportInfo.getNumberKm());
+        orderTransportInfo.setTime(tmsOrderTransportInfo.getTime());
+
+        orderTransportInfo.setNumberKmRetour(tmsOrderTransportInfo.getTmsOrderTransportNumberKmRetour());
+        orderTransportInfo.setTimeRetour(tmsOrderTransportInfo.getTmsOrderTransportTimeRetour());
 
         if (!lazy) {
 

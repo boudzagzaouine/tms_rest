@@ -57,6 +57,7 @@ public class VehicleCategoryMapper {
         gmoVehicleCategory.setGmoVehicleCategoryLength (vehicle.getLength ());
         gmoVehicleCategory.setGmoVehicleCategoriyheight (vehicle.getHeight ());
 
+        gmoVehicleCategory.setGmoVehicleCategoryPriceKm (vehicle.getPriceKm ());
 
         gmoVehicleCategory.setCreatedBy(vehicle.getCreatedBy());
         gmoVehicleCategory.setUpdatedBy(vehicle.getUpdatedBy());
@@ -86,6 +87,8 @@ public class VehicleCategoryMapper {
         vehicle.setTotalWeight (gmoVehicleCategory.getGmoVehicleCategoryTotalWeight ());
         vehicle.setLength (gmoVehicleCategory.getGmoVehicleCategoryLength ());
         vehicle.setHeight (gmoVehicleCategory.getGmoVehicleCategoriyheight ());
+
+        vehicle.setPriceKm (gmoVehicleCategory.getGmoVehicleCategoryPriceKm ());
 
         vehicle.setCreatedBy(gmoVehicleCategory.getCreatedBy());
         vehicle.setUpdatedBy(gmoVehicleCategory.getUpdatedBy());

@@ -25,6 +25,8 @@ public class TransportPlan extends EmsDto implements Serializable {
     private String villeDistination;
     private Date date ;
 
+    private List<TransportPlanProductService> transportPlanProductServices = new ArrayList<>();
+
     public TransportPlan() {
     }
 
@@ -123,6 +125,14 @@ public class TransportPlan extends EmsDto implements Serializable {
 
     public void setSalePrice(BigDecimal salePrice) {
         this.salePrice = salePrice;
+    }
+
+    public List<TransportPlanProductService> getTransportPlanProductServices() {
+        return transportPlanProductServices;
+    }
+
+    public void setTransportPlanProductServices(List<TransportPlanProductService> transportPlanProductServices) {
+        this.transportPlanProductServices = transportPlanProductServices;
     }
 
     @Override

@@ -19,6 +19,7 @@ public class OrderTransportInfoLine {
 	private Boolean contreFactureEnlevement;
 	private PaymentType  paymentTypeEnlevement;
 
+
 	private BigDecimal numberOfPalletLivraison ;
 
 	private BigDecimal weightLivraison ;

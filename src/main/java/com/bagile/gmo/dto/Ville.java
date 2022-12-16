@@ -1,6 +1,7 @@
 package com.bagile.gmo.dto;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
@@ -11,6 +12,9 @@ public class Ville extends EmsDto implements Serializable {
     private Pays pays;
     private Date creationDate;
     private Date updateDate;
+
+    private Double latitude;
+    private Double longitude;
 
     public long getId() {
         return id;
@@ -50,6 +54,22 @@ public class Ville extends EmsDto implements Serializable {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
     public Pays getPays() {

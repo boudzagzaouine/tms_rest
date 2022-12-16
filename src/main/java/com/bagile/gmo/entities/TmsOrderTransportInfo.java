@@ -39,6 +39,12 @@ public class TmsOrderTransportInfo extends EmsEntity {
     private PrmVille prmVilleDistination;
     private Date tmsOrderTransportInfoDate;
 
+    private BigDecimal numberKm;
+    private BigDecimal time;
+
+    private BigDecimal tmsOrderTransportNumberKmRetour ;
+    private BigDecimal tmsOrderTransportTimeRetour ;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_ordertransportinfo_id", allocationSize = 1)
@@ -95,6 +101,8 @@ public class TmsOrderTransportInfo extends EmsEntity {
     public TmsTurnStatus getTmsTurnStatus() {
         return tmsTurnStatus;
     }
+
+
 
     public void setTmsTurnStatus(TmsTurnStatus tmsTurnStatus) {
         this.tmsTurnStatus = tmsTurnStatus;
@@ -172,8 +180,26 @@ public class TmsOrderTransportInfo extends EmsEntity {
         return tmsOrderTransportInfoType;
     }
 
+
+
     public void setTmsOrderTransportInfoType(String tmsOrderTransportInfoType) {
         this.tmsOrderTransportInfoType = tmsOrderTransportInfoType;
+    }
+    @Column(name="tms_ordertransportinfonumberkm")
+    public BigDecimal getNumberKm() {
+        return numberKm;
+    }
+
+    public void setNumberKm(BigDecimal numberKm) {
+        this.numberKm = numberKm;
+    }
+    @Column(name="tms_ordertransportinfotime")
+    public BigDecimal getTime() {
+        return time;
+    }
+
+    public void setTime(BigDecimal time) {
+        this.time = time;
     }
 
     @Column(name="tms_ordertransportinfodate")
@@ -184,6 +210,24 @@ public class TmsOrderTransportInfo extends EmsEntity {
 
     public void setTmsOrderTransportInfoDate(Date tmsOrderTransportInfoDate) {
         this.tmsOrderTransportInfoDate = tmsOrderTransportInfoDate;
+    }
+    @Column(name="tms_ordertransportinfonumberkmretour")
+
+    public BigDecimal getTmsOrderTransportNumberKmRetour() {
+        return tmsOrderTransportNumberKmRetour;
+    }
+
+    public void setTmsOrderTransportNumberKmRetour(BigDecimal tmsOrderTransportNumberKmRetour) {
+        this.tmsOrderTransportNumberKmRetour = tmsOrderTransportNumberKmRetour;
+    }
+    @Column(name="tms_ordertransportinfotimeretour")
+
+    public BigDecimal getTmsOrderTransportTimeRetour() {
+        return tmsOrderTransportTimeRetour;
+    }
+
+    public void setTmsOrderTransportTimeRetour(BigDecimal tmsOrderTransportTimeRetour) {
+        this.tmsOrderTransportTimeRetour = tmsOrderTransportTimeRetour;
     }
 
     @Column(name="tms_ordertransportinfonumberofpallet")

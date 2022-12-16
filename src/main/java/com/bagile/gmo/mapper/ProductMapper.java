@@ -102,6 +102,7 @@ public class ProductMapper {
         map.put("customsPercentage", "pdtProductCustomsPercentage");
         map.put("purchaseVat", "prmVatPurchase");
         map.put("gmao", "pdtProductGmao");
+        map.put("service", "pdtProductService");
 
 
     }
@@ -191,6 +192,7 @@ public class ProductMapper {
         pdtProduct.setPdtProductProfessionalTTCSalePrice(product.getProfessionalTTCSalePrice());
         pdtProduct.setPdtProductGmao(product.getGmao());
         pdtProduct.setPdtProductComponent(product.getComponent());
+        pdtProduct.setPdtProductService(product.getService());
 
 
         if (!lazy) {
@@ -210,6 +212,8 @@ public class ProductMapper {
 
             pdtProduct.setPrmVat(VatMapper.toEntity(product.getVat(), true));
             pdtProduct.setPrmVatPurchase(VatMapper.toEntity(product.getPurchaseVat(), true));
+
+            pdtProduct.setTmsServiceType(ServiceTypeMapper.toEntity(product.getServiceType(), true));
 
         }
         return pdtProduct;
@@ -293,6 +297,7 @@ public class ProductMapper {
         product.setProfessionalTTCSalePrice(pdtProduct.getPdtProductProfessionalTTCSalePrice());
         product.setGmao(pdtProduct.getPdtProductGmao());
         product.setComponent(pdtProduct.getPdtProductComponent());
+        product.setService(pdtProduct.getPdtProductService());
 
 
         if (!lazy) {
@@ -310,6 +315,8 @@ public class ProductMapper {
 
             product.setVat(VatMapper.toDto(pdtProduct.getPrmVat(), true));
             product.setPurchaseVat(VatMapper.toDto(pdtProduct.getPrmVatPurchase(), true));
+
+            product.setServiceType(ServiceTypeMapper.toDto(pdtProduct.getTmsServiceType(), true));
 
         }
         return product;
@@ -403,6 +410,7 @@ public class ProductMapper {
         product.setProfessionalTTCSalePrice(pdtProductView.getPdtProductProfessionalTTCSalePrice());
         product.setGmao(pdtProductView.getPdtProductGmao());
         product.setComponent(pdtProductView.getPdtProductComponent());
+        product.setService(pdtProductView.getPdtProductService());
 
 
         if (!lazy) {

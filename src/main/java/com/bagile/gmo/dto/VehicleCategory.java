@@ -21,7 +21,7 @@ public class VehicleCategory extends EmsDto implements Serializable {
     private  BigDecimal emptyWeight;
     private BigDecimal totalWeight;
     private Owner owner;
-
+ private BigDecimal priceKm ;
     public VehicleCategory() {
     }
 
@@ -55,6 +55,14 @@ public class VehicleCategory extends EmsDto implements Serializable {
 
     public void setLength(BigDecimal length) {
         this.length = length;
+    }
+
+    public BigDecimal getPriceKm() {
+        return priceKm;
+    }
+
+    public void setPriceKm(BigDecimal priceKm) {
+        this.priceKm = priceKm;
     }
 
     public BigDecimal getHeight() {

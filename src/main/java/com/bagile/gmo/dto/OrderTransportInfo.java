@@ -40,6 +40,11 @@ public class OrderTransportInfo {
 
  private Date date;
 
+	private BigDecimal numberKm ;
+	private BigDecimal time ;
+
+	private BigDecimal numberKmRetour ;
+	private BigDecimal timeRetour ;
 
 	public long getId() {
 		return id;
@@ -62,6 +67,38 @@ public class OrderTransportInfo {
 
 	public void setPackageDetails(List<PackageDetail> packageDetails) {
 		this.packageDetails = packageDetails;
+	}
+
+	public BigDecimal getNumberKm() {
+		return numberKm;
+	}
+
+	public void setNumberKm(BigDecimal numberKm) {
+		this.numberKm = numberKm;
+	}
+
+	public BigDecimal getTime() {
+		return time;
+	}
+
+	public void setTime(BigDecimal time) {
+		this.time = time;
+	}
+
+	public BigDecimal getNumberKmRetour() {
+		return numberKmRetour;
+	}
+
+	public void setNumberKmRetour(BigDecimal numberKmRetour) {
+		this.numberKmRetour = numberKmRetour;
+	}
+
+	public BigDecimal getTimeRetour() {
+		return timeRetour;
+	}
+
+	public void setTimeRetour(BigDecimal timeRetour) {
+		this.timeRetour = timeRetour;
 	}
 
 	public Date getDate() {

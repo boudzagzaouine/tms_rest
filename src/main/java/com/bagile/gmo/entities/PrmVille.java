@@ -15,6 +15,9 @@ public class PrmVille extends EmsEntity implements Serializable {
     private Date prmVilleCreationDate;
     private Date prmVilleUpdateDate;
 
+    private Double  prmVilleLatitude;
+    private Double  prmVilleLongitude;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_prm_ville", allocationSize = 1)
@@ -43,6 +46,23 @@ public class PrmVille extends EmsEntity implements Serializable {
 
     public void setPrmVilleDescription(String prmVilleDescription) {
         this.prmVilleDescription = prmVilleDescription;
+    }
+
+    @Column(name = "prm_villelatitude")
+    public Double getPrmVilleLatitude() {
+        return prmVilleLatitude;
+    }
+
+    public void setPrmVilleLatitude(Double prmVilleLatitude) {
+        this.prmVilleLatitude = prmVilleLatitude;
+    }
+    @Column(name = "prm_villelongtitude")
+    public Double getPrmVilleLongitude() {
+        return prmVilleLongitude;
+    }
+
+    public void setPrmVilleLongitude(Double prmVilleLongitude) {
+        this.prmVilleLongitude = prmVilleLongitude;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)

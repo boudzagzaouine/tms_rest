@@ -2,6 +2,7 @@ package com.bagile.gmo.mapper;
 
 import com.bagile.gmo.dto.TransportPlan;
 import com.bagile.gmo.entities.TmsTransportPlan;
+import com.bagile.gmo.entities.TrpTransport;
 
 import java.util.*;
 
@@ -61,13 +62,23 @@ public class TransportPlanMapper {
 //            tmsTransportPlan.setPrmVilleSource(VilleMapper.toEntity(transportPlan.getVilleSource(), true));
 //            tmsTransportPlan.setPrmVilleDistination(VilleMapper.toEntity(transportPlan.getVilleDistination(), true));
 
+            oneToMany(tmsTransportPlan);
         }
         return tmsTransportPlan;
 
     }
 
 
+    private static void oneToMany(TmsTransportPlan tmsTransportPlan){
+        tmsTransportPlan.getTmsTransportPlanProductServiceSet().forEach(
+                e->{
+                    e.setCreationDate(new Date());
+                    e.setTmsTransportPlan(tmsTransportPlan);
+                }
+        );
 
+
+    }
 
     public static TransportPlan toDto(TmsTransportPlan tmsTransportPlan, boolean lazy) {
         if (null == tmsTransportPlan) {

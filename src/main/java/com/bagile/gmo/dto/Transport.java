@@ -37,6 +37,7 @@ public class Transport  extends EmsDto implements Serializable {
     private Owner owner;
 
     private List<TransportCategoryVehicle> transportCategorieVehicules=new ArrayList<>();
+    private List<TransportProduct> transportProducts= new ArrayList<>();
 
     private List<Turn> turns=new ArrayList<>();
 
@@ -63,6 +64,14 @@ public class Transport  extends EmsDto implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public List<TransportProduct> getTransportProducts() {
+        return transportProducts;
+    }
+
+    public void setTransportProducts(List<TransportProduct> transportProducts) {
+        this.transportProducts = transportProducts;
     }
 
     public Contact getContact() {
@@ -144,6 +153,7 @@ public class Transport  extends EmsDto implements Serializable {
     public void setVariable8(String variable8) {
         this.variable8 = variable8;
     }
+
 
     public String getVariable9() {
         return variable9;

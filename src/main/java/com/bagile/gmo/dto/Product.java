@@ -35,6 +35,7 @@ public class Product extends EmsEntity {
     private String variable9;
     private String variable10;
     private ProductType productType;
+    private ServiceType serviceType;
     private Boolean active=true;
     private Date creationDate;
     private ProductType productSubType;
@@ -107,6 +108,8 @@ public class Product extends EmsEntity {
        private Boolean gmao;
     private Boolean component;
 
+    private Boolean service ;
+
 
     public Vat getVat() {
         return vat;
@@ -154,6 +157,22 @@ public class Product extends EmsEntity {
 
     public void setUomByProductUomPurshase(Uom uomByProductUomPurshase) {
         this.uomByProductUomPurshase = uomByProductUomPurshase;
+    }
+
+    public Boolean getService() {
+        return service;
+    }
+
+    public void setService(Boolean service) {
+        this.service = service;
+    }
+
+    public ServiceType getServiceType() {
+        return serviceType;
+    }
+
+    public void setServiceType(ServiceType serviceType) {
+        this.serviceType = serviceType;
     }
 
     public Alias getAlias() {

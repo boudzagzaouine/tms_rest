@@ -43,6 +43,9 @@ public class VilleMapper {
         ville.setUpdateDate(prmVille.getPrmVilleUpdateDate());
         ville.setUpdatedBy(prmVille.getUpdatedBy());
         ville.setCreatedBy(prmVille.getCreatedBy());
+        ville.setLatitude(prmVille.getPrmVilleLatitude());
+        ville.setLongitude(prmVille.getPrmVilleLongitude());
+
         if(!lazy){
             ville.setPays(PaysMapper.toDto(prmVille.getPrmPays(),true));
         }
@@ -61,6 +64,9 @@ public class VilleMapper {
         prmVille.setPrmVilleUpdateDate(ville.getUpdateDate());
         prmVille.setUpdatedBy(ville.getUpdatedBy());
         prmVille.setCreatedBy(ville.getCreatedBy());
+        prmVille.setPrmVilleLatitude(ville.getLatitude());
+        prmVille.setPrmVilleLongitude(ville.getLongitude());
+
         if(!lazy)
         {
             prmVille.setPrmPays(PaysMapper.toEntity(ville.getPays(),true));

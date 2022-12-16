@@ -185,6 +185,8 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
     private Boolean pdtProductGmao;
     private Boolean pdtProductComponent;
 
+    private Boolean pdtProductService;
+
     @Id
     @Column(name = "pdt_productid")
     public Long getPdtProductId() {
@@ -346,6 +348,15 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
 
     public void setPdtProductComponent(Boolean pdtProductComponent) {
         this.pdtProductComponent = pdtProductComponent;
+    }
+
+    @Column(name = "pdt_productservice")
+    public Boolean getPdtProductService() {
+        return pdtProductService;
+    }
+
+    public void setPdtProductService(Boolean pdtProductService) {
+        this.pdtProductService = pdtProductService;
     }
 
     @Column(name = "pdt_productgmao")

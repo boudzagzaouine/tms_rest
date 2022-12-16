@@ -29,6 +29,8 @@ public class PdtProduct extends EmsEntity implements java.io.Serializable {
     private PdtProduct pdtProductParent;
     private PdtProductType pdtProductTypeByPdtProductTypeId;
     private PdtProductType pdtProductTypeByPdtProductSubTypeId;
+
+
     private PdtUom pdtUomByPdtProductUomSaleId;
     private PdtUom pdtUomByPdtProductUomBaseId;
     private PdtUom pdtUomByPdtProductUomPurshaseId;
@@ -162,7 +164,8 @@ public class PdtProduct extends EmsEntity implements java.io.Serializable {
     private Boolean pdtProductGmao;
 
     private Boolean pdtProductComponent;
-
+    private TmsServiceType tmsServiceType;
+    private Boolean pdtProductService;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -195,6 +198,16 @@ public class PdtProduct extends EmsEntity implements java.io.Serializable {
 
     public void setPdtProductParent(PdtProduct pdtProductParent) {
         this.pdtProductParent = pdtProductParent;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pdt_tmsservicetypeid")
+    public TmsServiceType getTmsServiceType() {
+        return tmsServiceType;
+    }
+
+    public void setTmsServiceType(TmsServiceType tmsServiceType) {
+        this.tmsServiceType = tmsServiceType;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -297,6 +310,15 @@ public class PdtProduct extends EmsEntity implements java.io.Serializable {
 
     public void setPdtProductCode(String pdtProductCode) {
         this.pdtProductCode = pdtProductCode;
+    }
+
+    @Column(name="pdt_productservice")
+    public Boolean getPdtProductService() {
+        return pdtProductService;
+    }
+
+    public void setPdtProductService(Boolean pdtProductService) {
+        this.pdtProductService = pdtProductService;
     }
 
     @Column(name = "pdt_productcomponent")

@@ -16,4 +16,19 @@ public interface GmaoSearch {
 
         return search;
     }
+
+    default String addServiceToSearch(String search) {
+        if(!search.equalsIgnoreCase("")){
+            if ( !search.trim().contains("service:false")) {
+                if (!search.endsWith(",")) {
+                    search += ",";
+                }
+                search += "service:true,gmao:true";
+            }
+        }else {
+            search += "service:true,gmao:true";
+        }
+
+        return search;
+    }
 }

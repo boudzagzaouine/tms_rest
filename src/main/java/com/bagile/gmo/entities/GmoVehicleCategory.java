@@ -22,7 +22,7 @@ public class GmoVehicleCategory  extends EmsEntity {
     private BigDecimal gmoVehicleCategoryTotalWeight;
   private OwnOwner ownOwner;
 
-
+  private BigDecimal gmoVehicleCategoryPriceKm ;
     public GmoVehicleCategory() {
     }
 
@@ -55,6 +55,16 @@ public class GmoVehicleCategory  extends EmsEntity {
 
     public void setGmoVehicleCategoryDescription(String gmoVehicleCategoryConsumption) {
         this.gmoVehicleCategoryDescription = gmoVehicleCategoryConsumption;
+    }
+
+    @Column(name = "gmo_vehiclecategorypricekm")
+
+    public BigDecimal getGmoVehicleCategoryPriceKm() {
+        return gmoVehicleCategoryPriceKm;
+    }
+
+    public void setGmoVehicleCategoryPriceKm(BigDecimal gmoVehicleCategoryPriceKm) {
+        this.gmoVehicleCategoryPriceKm = gmoVehicleCategoryPriceKm;
     }
 
     @Column(name = "gmo_vehiclecategorylength")

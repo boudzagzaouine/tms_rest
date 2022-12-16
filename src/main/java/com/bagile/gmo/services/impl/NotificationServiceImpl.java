@@ -168,7 +168,7 @@ public class NotificationServiceImpl implements NotificationService {
 
 
     @Override
-    @Scheduled(fixedDelay = 60000L)
+   // @Scheduled(fixedDelay = 60000L)
     @Transactional(propagation = Propagation.REQUIRED)
     public void verify()   {
 
