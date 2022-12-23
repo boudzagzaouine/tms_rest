@@ -34,4 +34,6 @@ public interface CompanyService {
     List<Company> findAll();
 
     List<Company> findAll(int page, int size);
+
+    String getNextVal();
 }

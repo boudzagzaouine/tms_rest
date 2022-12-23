@@ -3,6 +3,8 @@
  */
 package com.bagile.gmo.mapper;
 
+
+
 import com.bagile.gmo.dto.Company;
 import com.bagile.gmo.entities.CmdCompany;
 
@@ -44,6 +46,10 @@ public class CompanyMapper {
         map.put("professionalTax", "cmdCompanyProfessionalTax");
         map.put("tradeRegister", "cmdCompanyTradeRegister");
         map.put("cnssNumber", "cmdCompanyCnssNumber");
+        map.put("syncWms", "cmdCompanySyncWms");
+        map.put("activityArea", "cmdActivityArea");
+        map.put("commercialCourt", "cmdCompanyCommercialCourt");
+        map.put("organisation", "orgOrganisation");
     }
 
     public static String getField(String key) {
@@ -84,10 +90,23 @@ public class CompanyMapper {
         company.setFiscalIdentifier(cmdCompany.getCmdCompanyFiscalIdentifier());
         company.setUpdatedBy(cmdCompany.getUpdatedBy());
         company.setCreatedBy(cmdCompany.getCreatedBy());
+        company.setSyncWms(cmdCompany.getCmdCompanySyncWms());
+        company.setImage(cmdCompany.getCmdCompanyImage());
+        //company.setCommercialCourt(cmdCompany.getCmdCompanyCommercialCourt());
+        company.setTelephone(cmdCompany.getCmdCompanyTelephone());
+        company.setThreshold(cmdCompany.getCmdCompanyThreshold());
+        company.setWebSite(cmdCompany.getCmdCompanyWebSite());
+        company.setClassificationFiscale(cmdCompany.getCmdCompanyClassificationFiscale());
+        company.setPatent(cmdCompany.getCmdCompanyPatent());
+        company.setEmail(cmdCompany.getCmdCompanyEmail());
+        company.setFax(cmdCompany.getCmdCompanyFax());
+        company.setTurnover(cmdCompany.getCmdCompanyTurnover());
         if (!lazy) {
             company.setOwner(OwnerMapper.toDto(cmdCompany.getOwnOwner(), true));
             company.setAddress(AddressMapper.toDto(cmdCompany.getAdrAddress(), true));
             //company.setAccounts(AccountMapper.toDtos(cmdCompany.getCmdAccounts(), true));
+            company.setActivityArea(ActivityAreaMapper.toDto(cmdCompany.getCmdActivityArea(), true));
+
         }
         return company;
     }
@@ -114,15 +133,28 @@ public class CompanyMapper {
         cmdCompany.setCmdCompanyVariable9(company.getVariable9());
         cmdCompany.setCmdCompanyVariable10(company.getVariable10());
         cmdCompany.setCmdCompanyName(company.getName());
-        company.setCnssNumber(cmdCompany.getCmdCompanyCnssNumber());
+        cmdCompany.setCmdCompanyCnssNumber(company.getCnssNumber());
         cmdCompany.setCmdCompanyProfessionalTax(company.getProfessionalTax());
         cmdCompany.setCmdCommonIdentifierOfCompany(company.getCommonIdentifierOfCompany());
         cmdCompany.setCmdCompanyTradeRegister(company.getTradeRegister());
         cmdCompany.setCmdCompanyFiscalIdentifier(company.getFiscalIdentifier());
+        cmdCompany.setCmdCompanySyncWms(company.getSyncWms());
+        //cmdCompany.setCmdCompanyCommercialCourt(company.getCommercialCourt());
+        cmdCompany.setCmdCompanyImage(company.getImage());
+        cmdCompany.setCmdCompanyTelephone(company.getTelephone());
+        cmdCompany.setCmdCompanyThreshold(company.getThreshold());
+        cmdCompany.setCmdCompanyClassificationFiscale(company.getClassificationFiscale());
+        cmdCompany.setCmdCompanyWebSite(company.getWebSite());
+        cmdCompany.setCmdCompanyEmail(company.getEmail());
+        cmdCompany.setCmdCompanyPatent(company.getPatent());
+        cmdCompany.setCmdCompanyFax(company.getFax());
+        cmdCompany.setCmdCompanyTurnover(company.getTurnover());
         if (!lazy) {
             //cmdCompany.setCmdAccounts(AccountMapper.toEntities(company.getCards(), true));
             cmdCompany.setOwnOwner(OwnerMapper.toEntity(company.getOwner(), true));
             cmdCompany.setAdrAddress(AddressMapper.toEntity(company.getAddress(), true));
+            cmdCompany.setCmdActivityArea(ActivityAreaMapper.toEntity(company.getActivityArea(), true));
+
         }
         return cmdCompany;
     }

@@ -12,6 +12,6 @@ import java.util.List;
 public interface MachineRepository extends JpaRepository<GmoMachine,Long>,
         QuerydslPredicateExecutor<GmoMachine> {
 
-    @Query(value="select nextval('schema_crm.seq_machine_code')",nativeQuery = true)
+    @Query(value="select nextval('schema_crmexpress.seq_machine_code')",nativeQuery = true)
     public List<BigInteger> getNextVal();
 }

@@ -24,7 +24,7 @@ public interface ProductRepository extends JpaRepository<PdtProduct, Long>,
 	@Query(value = "select p.pdtProductCode from PdtProduct p where  p.pdtProductCode LIKE %:code%")
 	List<String> getProductsCodes(@Param("code") String code);
 
-	@Query(value = "select COALESCE(sum(stk_stockquantity),0) from schema_crm.stk_stock where stk_stockproductid=:id  and stk_stockactive=true", nativeQuery = true)
+	@Query(value = "select COALESCE(sum(stk_stockquantity),0) from schema_crmexpress.stk_stock where stk_stockproductid=:id  and stk_stockactive=true", nativeQuery = true)
 	BigDecimal stockQuantity(@Param("id") Long id);
 
 

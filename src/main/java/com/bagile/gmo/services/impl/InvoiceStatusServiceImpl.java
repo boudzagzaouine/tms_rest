@@ -38,11 +38,11 @@ public class InvoiceStatusServiceImpl implements InvoiceStatusService {
 
     @PostConstruct
     public void init() throws IdNotFound {
-        dispute = findById(5L);
-        created = findById(1L);
-        transferred = findById(2L);
-        closed = findById(3L);
-        canceled = findById(4L);
+        //dispute = findById(5L);
+     //   created = findById(1L);
+        //transferred = findById(2L);
+       // closed = findById(3L);
+       // canceled = findById(4L);
 
     }
 

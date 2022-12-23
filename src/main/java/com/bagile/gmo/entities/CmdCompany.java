@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,20 +19,20 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "cmd_company")
-public class CmdCompany extends EmsDto implements Serializable  {
+public class CmdCompany extends EmsEntity implements Serializable  {
 
     /**
      *
      */
     private static final long serialVersionUID = -3249779645949658793L;
-    private Long cmdCompanyId;
-  //  @NotNull
+    private long cmdCompanyId;
+    @NotNull
     private OwnOwner ownOwner;
     @Size(max = 30)
     @NotNull
     private String cmdCompanyCode;
     @Size(max = 50)
-   // @NotNull
+    @NotNull
     private String cmdCompanyName;
     @Size(max = 20)
     private String cmdCompanySiret;
@@ -71,18 +72,31 @@ public class CmdCompany extends EmsDto implements Serializable  {
     private String cmdCompanyTradeRegister;
     private String cmdCompanyCnssNumber;
     private Set<CmdAccount> cmdAccounts = new HashSet<CmdAccount>(0);
+    private Boolean cmdCompanySyncWms;
+    private byte[] cmdCompanyImage;
+    private String cmdCompanyCommercialCourt;
+    private CmdActivityArea cmdActivityArea;
+    private String cmdCompanyTelephone;
+    private BigDecimal cmdCompanyThreshold;
+    private String cmdCompanyClassificationFiscale;
+    private String cmdCompanyWebSite;
 
-    public CmdCompany() {
-    }
 
-    public CmdCompany(Long cmdCompanyId, OwnOwner ownOwner,
+    private String cmdCompanyEmail;
+    private String cmdCompanyPatent;
+    private BigDecimal cmdCompanyTurnover;
+    private String cmdCompanyFax;
+
+    public CmdCompany(){}
+
+    public CmdCompany(long cmdCompanyId, OwnOwner ownOwner,
                       String cmdCompanyCode) {
         this.cmdCompanyId = cmdCompanyId;
         this.ownOwner = ownOwner;
         this.cmdCompanyCode = cmdCompanyCode;
     }
 
-    public CmdCompany(Long cmdCompanyId, OwnOwner ownOwner,
+    public CmdCompany(long cmdCompanyId, OwnOwner ownOwner,
                       String cmdCompanyCode, String cmdCompanySiret,
                       String cmdCompanyComment, Date cmdCompanyCreationDate,
                       Date cmdCompanyUpdateDate, String cmdCompanyVariable1,
@@ -115,11 +129,11 @@ public class CmdCompany extends EmsDto implements Serializable  {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_cmd_company", allocationSize = 1)
     @Column(name = "cmd_companyid", unique = true, nullable = false, precision = 10, scale = 0)
-    public Long getCmdCompanyId() {
+    public long getCmdCompanyId() {
         return this.cmdCompanyId;
     }
 
-    public void setCmdCompanyId(Long cmdCompanyId) {
+    public void setCmdCompanyId(long cmdCompanyId) {
         this.cmdCompanyId = cmdCompanyId;
     }
 
@@ -298,7 +312,7 @@ public class CmdCompany extends EmsDto implements Serializable  {
         this.cmdCompanyName = cmdCompanyName;
     }
 
-    @Column(name = "cmd_companycommonidentifierofcompany", unique = true)
+    @Column(name = "cmd_companycommonidentifierofcompany")
     public String getCmdCommonIdentifierOfCompany() {
         return cmdCommonIdentifierOfCompany;
     }
@@ -306,7 +320,7 @@ public class CmdCompany extends EmsDto implements Serializable  {
     public void setCmdCommonIdentifierOfCompany(String cmdCommonIdentifierOfCompany) {
         this.cmdCommonIdentifierOfCompany = cmdCommonIdentifierOfCompany;
     }
-    @Column(name = "cmd_companyfiscalidentifier", unique = true)
+    @Column(name = "cmd_companyfiscalidentifier")
     public String getCmdCompanyFiscalIdentifier() {
         return cmdCompanyFiscalIdentifier;
     }
@@ -314,7 +328,7 @@ public class CmdCompany extends EmsDto implements Serializable  {
     public void setCmdCompanyFiscalIdentifier(String cmdCompanyFiscalIdentifier) {
         this.cmdCompanyFiscalIdentifier = cmdCompanyFiscalIdentifier;
     }
-    @Column(name = "cmd_companyprofessionaltax", unique = true)
+    @Column(name = "cmd_companyprofessionaltax")
     public String getCmdCompanyProfessionalTax() {
         return cmdCompanyProfessionalTax;
     }
@@ -322,7 +336,7 @@ public class CmdCompany extends EmsDto implements Serializable  {
     public void setCmdCompanyProfessionalTax(String cmdCompanyProfessionalTax) {
         this.cmdCompanyProfessionalTax = cmdCompanyProfessionalTax;
     }
-    @Column(name = "cmd_companytraderegister", unique = true)
+    @Column(name = "cmd_companytraderegister")
     public String getCmdCompanyTradeRegister() {
         return cmdCompanyTradeRegister;
     }
@@ -330,12 +344,122 @@ public class CmdCompany extends EmsDto implements Serializable  {
     public void setCmdCompanyTradeRegister(String cmdCompanyTradeRegister) {
         this.cmdCompanyTradeRegister = cmdCompanyTradeRegister;
     }
-    @Column(name = "cmd_companycnssnumber", unique = true)
+    @Column(name = "cmd_companycnssnumber")
     public String getCmdCompanyCnssNumber() {
         return cmdCompanyCnssNumber;
     }
 
     public void setCmdCompanyCnssNumber(String cmdCompanyCnssNumber) {
         this.cmdCompanyCnssNumber = cmdCompanyCnssNumber;
+    }
+
+    @Column(name = "cmd_companysyncwms")
+    public Boolean getCmdCompanySyncWms() {
+        return cmdCompanySyncWms;
+    }
+
+    public void setCmdCompanySyncWms(Boolean cmdCompanySyncWms) {
+        this.cmdCompanySyncWms = cmdCompanySyncWms;
+    }
+
+    @Column(name = "cmd_companyimage")
+    public byte[] getCmdCompanyImage() {
+        return cmdCompanyImage;
+    }
+
+    public void setCmdCompanyImage(byte[] cmdCompanyImage) {
+        this.cmdCompanyImage = cmdCompanyImage;
+    }
+
+//    @Column(name = "cmd_companycommercialcourt",nullable = false)
+//    public String getCmdCompanyCommercialCourt() {
+//        return cmdCompanyCommercialCourt;
+//    }
+//
+//    public void setCmdCompanyCommercialCourt(String cmdCompanyCommercialCourt) {
+//        this.cmdCompanyCommercialCourt = cmdCompanyCommercialCourt;
+//    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cmd_companyactivityareaid")
+    public CmdActivityArea getCmdActivityArea() {
+        return cmdActivityArea;
+    }
+
+    public void setCmdActivityArea(CmdActivityArea cmdActivityArea) {
+        this.cmdActivityArea = cmdActivityArea;
+    }
+
+    @Column(name = "cmd_companytelephone")
+    public String getCmdCompanyTelephone() {
+        return cmdCompanyTelephone;
+    }
+
+    public void setCmdCompanyTelephone(String cmdCompanyTelephone) {
+        this.cmdCompanyTelephone = cmdCompanyTelephone;
+    }
+
+    @Column(name = "cmd_companythreshold")
+    public BigDecimal getCmdCompanyThreshold() {
+        return cmdCompanyThreshold;
+    }
+
+    public void setCmdCompanyThreshold(BigDecimal cmdCompanyThreshold) {
+        this.cmdCompanyThreshold = cmdCompanyThreshold;
+    }
+
+    @Column(name = "cmd_companyclassificationfiscale")
+    public String getCmdCompanyClassificationFiscale() {
+        return cmdCompanyClassificationFiscale;
+    }
+
+    public void setCmdCompanyClassificationFiscale(String cmdCompanyClassificationFiscale) {
+        this.cmdCompanyClassificationFiscale = cmdCompanyClassificationFiscale;
+    }
+
+    @Column(name = "cmd_companywebsite")
+    public String getCmdCompanyWebSite() {
+        return cmdCompanyWebSite;
+    }
+
+    public void setCmdCompanyWebSite(String cmdCompanyWebSite) {
+        this.cmdCompanyWebSite = cmdCompanyWebSite;
+    }
+
+
+
+    @Column(name = "cmd_companyemail")
+    public String getCmdCompanyEmail() {
+        return cmdCompanyEmail;
+    }
+
+    public void setCmdCompanyEmail(String cmdCompanyEmail) {
+        this.cmdCompanyEmail = cmdCompanyEmail;
+    }
+
+    @Column(name = "cmd_companypatent")
+    public String getCmdCompanyPatent() {
+        return cmdCompanyPatent;
+    }
+
+    public void setCmdCompanyPatent(String cmdCompanyPatent) {
+        this.cmdCompanyPatent = cmdCompanyPatent;
+    }
+
+    @Column(name = "cmd_companyturnover")
+    public BigDecimal getCmdCompanyTurnover() {
+        return cmdCompanyTurnover;
+    }
+
+    public void setCmdCompanyTurnover(BigDecimal cmdCompanyTurnover) {
+        this.cmdCompanyTurnover = cmdCompanyTurnover;
+    }
+    @Column(name = "cmd_companyfax")
+    public String getCmdCompanyFax() {
+        return cmdCompanyFax;
+    }
+
+    public void setCmdCompanyFax(String cmdCompanyFax) {
+        this.cmdCompanyFax = cmdCompanyFax;
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface TransportRepository extends JpaRepository<TrpTransport, Long>,
 		QuerydslPredicateExecutor<TrpTransport> {
-	@Query(value="select nextval('schema_crm.seq_transport_code')",nativeQuery = true)
+	@Query(value="select nextval('schema_crmexpress.seq_transport_code')",nativeQuery = true)
 	public List<BigInteger> getNextVal();
 
 }

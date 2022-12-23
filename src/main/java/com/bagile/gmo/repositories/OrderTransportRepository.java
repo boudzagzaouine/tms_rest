@@ -13,6 +13,6 @@ import java.util.List;
 public interface OrderTransportRepository extends JpaRepository<TmsOrderTransport,Long>,
         QuerydslPredicateExecutor<TmsOrderTransport>{
 
-    @Query(value="select nextval('schema_crm.seq_orderdelivery_code')",nativeQuery = true)
+    @Query(value="select nextval('schema_crmexpress.seq_orderdelivery_code')",nativeQuery = true)
     public List<BigInteger> getNextVal();
 }

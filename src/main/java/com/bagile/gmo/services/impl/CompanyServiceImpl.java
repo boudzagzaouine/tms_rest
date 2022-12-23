@@ -8,7 +8,9 @@ import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.CompanyMapper;
 import com.bagile.gmo.repositories.CompanyRepository;
 import com.bagile.gmo.services.CompanyService;
+import com.bagile.gmo.services.SettingService;
 import com.bagile.gmo.util.Search;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -22,6 +24,8 @@ public class CompanyServiceImpl implements CompanyService {
 
     private final CompanyRepository companyRepository;
 
+    @Autowired
+    private SettingService settingService;
     public CompanyServiceImpl(CompanyRepository companyRepository) {
         this.companyRepository = companyRepository;
     }
@@ -102,6 +106,12 @@ public class CompanyServiceImpl implements CompanyService {
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
         return CompanyMapper.toDtos(companyRepository.findAll(pageable), false);
+    }
+
+    @Override
+    public String getNextVal() {
+        String value="CMP" + companyRepository.getNextVal().get(0);
+        return value;
     }
 
 }

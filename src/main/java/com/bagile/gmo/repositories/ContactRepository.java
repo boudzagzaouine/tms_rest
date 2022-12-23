@@ -13,6 +13,6 @@ public interface ContactRepository extends JpaRepository<PrmContact, Long>,
         QuerydslPredicateExecutor<PrmContact> {
 
 
-    @Query(value="select nextval('schema_crm.seq_contact_code')",nativeQuery = true)
+    @Query(value="select nextval('schema_crmexpress.seq_contact_code')",nativeQuery = true)
     public List<BigInteger> getNextVal();
 }

@@ -1,14 +1,12 @@
 package com.bagile.gmo.dto;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 
 public class Company extends EmsDto implements Serializable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = -7535874800230967001L;
 
     private long id;
@@ -31,11 +29,25 @@ public class Company extends EmsDto implements Serializable {
     private Date creationDate;
     private Set<Account> accounts;
     private Address address;
-    private String commonIdentifierOfCompany;
-    private String fiscalIdentifier;
+    private String commonIdentifierOfCompany; //ice
+    private String fiscalIdentifier; // IF
     private String professionalTax;
     private String tradeRegister;
     private String cnssNumber;
+    private Boolean syncWms=false;
+    private byte[] image;
+    private String commercialCourt;
+    private ActivityArea activityArea;
+    private String telephone;
+    private BigDecimal threshold; //seuil
+    private String classificationFiscale;
+    private String webSite;
+    private String email;
+    private String patent;
+
+    private BigDecimal turnover; //chiffre affr
+    private String fax;
+
     public long getId() {
         return this.id;
     }
@@ -240,6 +252,103 @@ public class Company extends EmsDto implements Serializable {
      */
     public void setAccounts(Set<Account> accounts) {
         this.accounts = accounts;
+    }
+
+    public Boolean getSyncWms() {
+        return syncWms;
+    }
+
+    public void setSyncWms(Boolean syncWms) {
+        this.syncWms = syncWms;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public String getCommercialCourt() {
+        return commercialCourt;
+    }
+
+    public void setCommercialCourt(String commercialCourt) {
+        this.commercialCourt = commercialCourt;
+    }
+
+    public ActivityArea getActivityArea() {
+        return activityArea;
+    }
+
+    public void setActivityArea(ActivityArea activityArea) {
+        this.activityArea = activityArea;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public BigDecimal getThreshold() {
+        return threshold;
+    }
+
+    public void setThreshold(BigDecimal threshold) {
+        this.threshold = threshold;
+    }
+
+    public String getClassificationFiscale() {
+        return classificationFiscale;
+    }
+
+    public void setClassificationFiscale(String classificationFiscale) {
+        this.classificationFiscale = classificationFiscale;
+    }
+
+    public String getWebSite() {
+        return webSite;
+    }
+
+    public void setWebSite(String webSite) {
+        this.webSite = webSite;
+    }
+
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPatent() {
+        return patent;
+    }
+
+    public void setPatent(String patent) {
+        this.patent = patent;
+    }
+
+    public BigDecimal getTurnover() {
+        return turnover;
+    }
+
+    public void setTurnover(BigDecimal turnover) {
+        this.turnover = turnover;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
     }
 
     @Override

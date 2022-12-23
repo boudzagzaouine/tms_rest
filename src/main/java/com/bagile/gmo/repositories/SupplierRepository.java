@@ -11,7 +11,7 @@ import java.util.List;
 public interface SupplierRepository extends JpaRepository<RcpSupplier,Long>,
         QuerydslPredicateExecutor<RcpSupplier> {
 
-    @Query(value="select nextval('schema_crm.seq_supplier_code')",nativeQuery = true)
+    @Query(value="select nextval('schema_crmexpress.seq_supplier_code')",nativeQuery = true)
     public List<BigInteger> getNextVal();
 }
 

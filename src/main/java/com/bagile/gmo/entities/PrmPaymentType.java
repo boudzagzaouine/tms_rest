@@ -20,7 +20,7 @@ public class PrmPaymentType extends EmsEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "schema_crm.prm_paymenttype_prm_paymenttypeid_seq", allocationSize = 1)
+    @SequenceGenerator(name = "seq", sequenceName = "schema_crmexpress.prm_paymenttype_prm_paymenttypeid_seq", allocationSize = 1)
     @Column(name = "prm_paymenttypeid", unique = true, nullable = false, precision = 10, scale = 0)
     public long getPrmPaymentTypeId() {
         return prmPaymentTypeId;

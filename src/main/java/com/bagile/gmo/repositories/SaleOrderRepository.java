@@ -11,9 +11,9 @@ import java.util.List;
 
 public interface SaleOrderRepository extends JpaRepository<CmdSaleOrder, Long>,
 		QuerydslPredicateExecutor<CmdSaleOrder> {
-	@Query(value="select nextval('schema_crm.seq_sale_order_code')",nativeQuery = true)
+	@Query(value="select nextval('schema_crmexpress.seq_sale_order_code')",nativeQuery = true)
 	public List<BigInteger> getNextVal();
-	@Query(value = "select nextval('schema_crm.seq_code_transfert')",nativeQuery = true)
+	@Query(value = "select nextval('schema_crmexpress.seq_code_transfert')",nativeQuery = true)
 	public List<BigInteger> getTransferCode();
 	public CmdSaleOrder findByCmdSaleOrderCode(String cmdSaleOrderCode);
 
