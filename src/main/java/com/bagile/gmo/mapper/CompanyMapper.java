@@ -103,7 +103,7 @@ public class CompanyMapper {
         company.setTurnover(cmdCompany.getCmdCompanyTurnover());
         if (!lazy) {
             company.setOwner(OwnerMapper.toDto(cmdCompany.getOwnOwner(), true));
-            company.setAddress(AddressMapper.toDto(cmdCompany.getAdrAddress(), true));
+            company.setAddress(AddressMapper.toDto(cmdCompany.getAdrAddress(), false));
             //company.setAccounts(AccountMapper.toDtos(cmdCompany.getCmdAccounts(), true));
             company.setActivityArea(ActivityAreaMapper.toDto(cmdCompany.getCmdActivityArea(), true));
 
@@ -152,7 +152,7 @@ public class CompanyMapper {
         if (!lazy) {
             //cmdCompany.setCmdAccounts(AccountMapper.toEntities(company.getCards(), true));
             cmdCompany.setOwnOwner(OwnerMapper.toEntity(company.getOwner(), true));
-            cmdCompany.setAdrAddress(AddressMapper.toEntity(company.getAddress(), true));
+            cmdCompany.setAdrAddress(AddressMapper.toEntity(company.getAddress(), false));
             cmdCompany.setCmdActivityArea(ActivityAreaMapper.toEntity(company.getActivityArea(), true));
 
         }

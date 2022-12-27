@@ -370,7 +370,7 @@ public class CmdAccount extends EmsDto implements Serializable{
         this.cmdSaleOrders = cmdSaleOrders;
     }
 
-    @Column(name = "cmd_accountname")
+    @Column(name = "cmd_accountname",unique = true)
     public String getCmdAccountName() {
         return cmdAccountName;
     }

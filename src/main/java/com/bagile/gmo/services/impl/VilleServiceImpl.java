@@ -61,16 +61,25 @@ public class VilleServiceImpl implements VilleService {
 
     @Override
     public List<Ville> find(String search) throws AttributesNotFound, ErrorType {
+        if (search.equals("")){
+            return findAll ();
+        }
         return VilleMapper.toDtos(villeRepository.findAll(Search.expression(search, PrmVille.class)), false);
     }
 
     @Override
     public List<Ville> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
+        if (search.equals("")){
+            return findAll (pageable);
+        }
         return VilleMapper.toDtos(villeRepository.findAll(Search.expression(search, PrmVille.class), pageable), false);
     }
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
+        if (search.equals("")){
+            return size ();
+        }
         return villeRepository.count(Search.expression(search, PrmVille.class));
     }
 

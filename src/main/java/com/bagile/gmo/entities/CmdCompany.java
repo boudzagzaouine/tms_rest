@@ -26,13 +26,12 @@ public class CmdCompany extends EmsEntity implements Serializable  {
      */
     private static final long serialVersionUID = -3249779645949658793L;
     private long cmdCompanyId;
-    @NotNull
+
     private OwnOwner ownOwner;
     @Size(max = 30)
     @NotNull
     private String cmdCompanyCode;
-    @Size(max = 50)
-    @NotNull
+
     private String cmdCompanyName;
     @Size(max = 20)
     private String cmdCompanySiret;
@@ -138,7 +137,7 @@ public class CmdCompany extends EmsEntity implements Serializable  {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cmd_companyownerid", nullable = false)
+    @JoinColumn(name = "cmd_companyownerid")
     public OwnOwner getOwnOwner() {
         return this.ownOwner;
     }
@@ -293,8 +292,8 @@ public class CmdCompany extends EmsEntity implements Serializable  {
         this.cmdAccounts = cmdAccounts;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cmd_companyaddressid", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY ,cascade = {CascadeType.ALL} )
+    @JoinColumn(name = "cmd_companyaddressid")
     public AdrAddress getAdrAddress() {
         return adrAddress;
     }

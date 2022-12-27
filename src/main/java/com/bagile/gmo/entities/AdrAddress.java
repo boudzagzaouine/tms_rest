@@ -26,10 +26,13 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
     @Size(max = 30)
     private String adrAddressCode;
 
+    @Size(max = 200)
+    private String adrAddressName;
+
     @Size(max = 20)
     private String adrAddressContactTel;
 
-    @NotNull
+
     @Size(max = 50)
     private String adrAddressLine1;
 
@@ -42,11 +45,15 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
     @Size(max = 50)
     private String adrAddressCity;
 
+    private  PrmVille prmVille;
+
     @Size(max = 50)
     private String adrAddressState;
 
     @Size(max = 50)
     private String adrAddressCountry;
+
+    private PrmPays prmPays ;
 
     @Size(max = 20)
     private String adrAddressDigiCode;
@@ -58,7 +65,7 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
     private Date adrAddressUpdateDate;
 
     @Max(999999999)
-    private Long addAddressType;
+    private Long addAddressType; // 2: facture  / 1:  livraison
 
     @Size(max = 255)
     private String adrAddressVariable1;
@@ -133,6 +140,27 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
         this.cmdAccount = cmdAccount;
     }
 
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "adr_addressvilleid")
+    public PrmVille getPrmVille() {
+        return prmVille;
+    }
+
+    public void setPrmVille(PrmVille prmVille) {
+        this.prmVille = prmVille;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "adr_addresspayid")
+    public PrmPays getPrmPays() {
+        return prmPays;
+    }
+
+    public void setPrmPays(PrmPays prmPays) {
+        this.prmPays = prmPays;
+    }
+
     @Column(name = "adr_addresscode",  length = 30)
     public String getAdrAddressCode() {
         return this.adrAddressCode;
@@ -140,6 +168,16 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
 
     public void setAdrAddressCode(String adrAddressCode) {
         this.adrAddressCode = adrAddressCode;
+    }
+
+    @Column(name = "adr_addressname",  length = 200)
+
+    public String getAdrAddressName() {
+        return adrAddressName;
+    }
+
+    public void setAdrAddressName(String adrAddressName) {
+        this.adrAddressName = adrAddressName;
     }
 
     @Column(name = "adr_addresscontacttel", length = 20)
@@ -161,7 +199,7 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
         this.adrAddressAddressTypeTms = adrAddressAddressTypeTms;
     }
 
-    @Column(name = "adr_addressline1", nullable = false, length = 50)
+    @Column(name = "adr_addressline1", length = 200)
     public String getAdrAddressLine1() {
         return this.adrAddressLine1;
     }

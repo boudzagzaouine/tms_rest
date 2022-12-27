@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -89,7 +90,11 @@ public class AddressController {
     public void delete(@PathVariable Long id) {
         addressService.delete(id);
     }
-
+    @RequestMapping(value = "/deleteAll", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
+        addressService.deleteAll (Arrays.asList(ids));
+    }
     @RequestMapping(method = RequestMethod.GET, value = "/nextval")
     @ResponseBody
     public String nextVal()

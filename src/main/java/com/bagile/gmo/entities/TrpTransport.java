@@ -84,7 +84,7 @@ public class TrpTransport extends EmsEntity implements java.io.Serializable {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "trp_transportaddressid", nullable = false)
+    @JoinColumn(name = "trp_transportaddressid")
     public AdrAddress getAdrAddress() {
         return adrAddress;
     }

@@ -16,6 +16,7 @@ public class BadgeMapper {
 
         map.put ("id", "gmoBadgeId");
         map.put ("code", "gmoBadgeCode");
+        map.put ("driver", "gmoBadgeCode");
         map.put ("badgeType", "gmoBadgeType");
         map.put ("description", "gmoBadgeDescription");
         map.put ("creationDate", "creationDate");

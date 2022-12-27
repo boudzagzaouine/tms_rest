@@ -28,6 +28,8 @@ public class AddressMapper {
         map.put("id","adrAddressId");
         map.put("owner","ownOwner");
         map.put("code","adrAddressCode");
+        map.put("name","adrAddressName");
+
         map.put("contactTel","adrAddressContactTel");
         map.put("line1","adrAddressLine1");
         map.put("line2","adrAdressLine2");
@@ -48,7 +50,7 @@ public class AddressMapper {
         map.put("variable8","adrAddressVariable8");
         map.put("variable9","adrAddressVariable9");
         map.put("variable10","adrAddressVariable10");
-        map.put("typeAddress","adrAddressType");
+        map.put("addressType","addAddressType");
         map.put("account","cmdAccount");
 
     }
@@ -64,6 +66,8 @@ public class AddressMapper {
         Address address = new Address();
         address.setCity(adrAddress.getAdrAddressCity());
         address.setCode(adrAddress.getAdrAddressCode());
+        address.setName(adrAddress.getAdrAddressName());
+
         address.setContactTel(adrAddress.getAdrAddressContactTel());
         address.setCountry(adrAddress.getAdrAddressCountry());
         address.setDigiCode(adrAddress.getAdrAddressDigiCode());
@@ -92,6 +96,8 @@ public class AddressMapper {
         if (!lazy) {
             address.setOwner(OwnerMapper.toDto(adrAddress.getOwnOwner(), true));
             address.setAccount(AccountMapper.toDto(adrAddress.getCmdAccount(), true));
+            address.setVille(VilleMapper.toDto(adrAddress.getPrmVille(), true));
+            address.setPays(PaysMapper.toDto(adrAddress.getPrmPays(), true));
 
 //            address.setWarehouses(WarehouseMapper.toDtos(adrAddress.getWrhWarehouses(), true));
 //            address.setAccountsForAccountDeliveryAddress(
@@ -123,6 +129,8 @@ public class AddressMapper {
         AdrAddress adrAddress = new AdrAddress();
         adrAddress.setAdrAddressCity(address.getCity());
         adrAddress.setAdrAddressCode(address.getCode()!=null?address.getCode().toUpperCase():null);
+        adrAddress.setAdrAddressName(address.getName());
+
         adrAddress.setAdrAddressContactTel(address.getContactTel());
         adrAddress.setAdrAddressCountry(address.getCountry());
         adrAddress.setAdrAddressCreationDate(address.getCreationDate());
@@ -152,6 +160,8 @@ public class AddressMapper {
         if (!lazy) {
             adrAddress.setOwnOwner(OwnerMapper.toEntity(address.getOwner(), true));
             adrAddress.setCmdAccount(AccountMapper.toEntity(address.getAccount(), true));
+            adrAddress.setPrmPays(PaysMapper.toEntity(address.getPays(), true));
+            adrAddress.setPrmVille(VilleMapper.toEntity(address.getVille(), true));
 
 //            adrAddress.setCmdAccountsForCmdAccountDeliveryAddressId(
 //                    AccountMapper.toEntities(address.getAccountsForAccountDeliveryAddress(), true));

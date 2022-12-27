@@ -25,8 +25,6 @@ public class TransportMapper {
         map.put ("active", "trpTransportIsActive");
         map.put ("gmao", "trpTransportGmao");
         map.put ("interneOrExterne", "trpTransportInterneOrExterne");
-
-
         map.put ("creationDate", "creationDate");
         map.put ("updateDate", "updateDate");
         map.put ("createdBy", "createdBy");
@@ -60,7 +58,7 @@ public class TransportMapper {
         trpTransport.setUpdatedBy (transport.getUpdatedBy ( ));
 
         if (!lazy) {
-            trpTransport.setAdrAddress (AddressMapper.toEntity (transport.getAddress ( ), true));
+            trpTransport.setAdrAddress (AddressMapper.toEntity (transport.getAddress ( ), false));
             trpTransport.setPrmContact (ContactMapper.toEntity (transport.getContact ( ), true));
 
             trpTransport.setGmoTransportCategoryVehicles (TransportCategoryVehicleMapper.toEntities (transport.getTransportCategorieVehicules ( ), true));
@@ -111,7 +109,7 @@ public class TransportMapper {
         transport.setUpdateDate (trpTransport.getUpdateDate ());
 
         if (!lazy) {
-            transport.setAddress (AddressMapper.toDto(trpTransport.getAdrAddress(), true));
+            transport.setAddress (AddressMapper.toDto(trpTransport.getAdrAddress(), false));
             transport.setTransportCategorieVehicules (TransportCategoryVehicleMapper.toDtos(trpTransport.getGmoTransportCategoryVehicles(), true));
             transport.setOwner (OwnerMapper.toDto(trpTransport.getOwnOwner(), true));
             transport.setContact (ContactMapper.toDto(trpTransport.getPrmContact(), true));

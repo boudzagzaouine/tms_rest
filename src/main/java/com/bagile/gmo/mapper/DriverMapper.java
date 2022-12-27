@@ -16,6 +16,7 @@ public class DriverMapper {
 
         map.put("id", "gmoDriverId");
         map.put("code", "gmoDriverCode");
+
         map.put("cin", "gmoDriverCin");
         map.put("birthDate", "gmoDriverBirthDate");
         map.put("lastMedicalVisit", "gmoDriverLastMedicalVisit");

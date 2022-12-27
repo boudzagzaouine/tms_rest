@@ -15,10 +15,14 @@ public class Address extends EmsDto implements Serializable {
 
     private long id;
     private String code;
+    private String name ;
     private String contactTel;
     private String state;
     private String country;
+
+    private Pays pays;
     private String zip;
+    private Ville ville;
     private String city;
     private String line1;
     private String line2;
@@ -50,6 +54,14 @@ public class Address extends EmsDto implements Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAddressTypeTms() {
@@ -272,6 +284,23 @@ public class Address extends EmsDto implements Serializable {
 
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
+    }
+
+
+    public Pays getPays() {
+        return pays;
+    }
+
+    public void setPays(Pays pays) {
+        this.pays = pays;
+    }
+
+    public Ville getVille() {
+        return ville;
+    }
+
+    public void setVille(Ville ville) {
+        this.ville = ville;
     }
 
     @Override

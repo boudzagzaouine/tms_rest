@@ -106,7 +106,7 @@ public class TransportServiceImpl implements TransportService, GmaoSearch {
     }
     @Override
     public String getNextVal() {
-        String value=settingService.generateCodeTransport() + transportRepository.getNextVal().get(0);
+        String value="TRANS" + transportRepository.getNextVal().get(0);
         return value;
 
 
