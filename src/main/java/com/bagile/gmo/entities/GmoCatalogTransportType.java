@@ -22,6 +22,12 @@ public class GmoCatalogTransportType extends EmsEntity{
     private BigDecimal gmoCatalogTransportAmountTva;
     private PrmVat prmvat;
 
+
+    private BigDecimal gmoCatalogTransportGroupingAmountHt;
+    private BigDecimal gmoCatalogTransportGroupingAmountTtc;
+    private BigDecimal gmoCatalogTransportGroupingAmountTva;
+    private PrmVat prmGroupingVat;
+
     private Boolean gmoCatalogTransportInternOrExterne ;
     private OwnOwner ownOwner;
 
@@ -148,6 +154,43 @@ public class GmoCatalogTransportType extends EmsEntity{
 
     public void setOwnOwner(OwnOwner ownOwner) {
         this.ownOwner = ownOwner;
+    }
+
+
+    @Column(name = "gmo_catalogtransportgroupingamountht")
+    public BigDecimal getGmoCatalogTransportGroupingAmountHt() {
+        return gmoCatalogTransportGroupingAmountHt;
+    }
+
+    public void setGmoCatalogTransportGroupingAmountHt(BigDecimal gmoCatalogTransportGroupingAmountHt) {
+        this.gmoCatalogTransportGroupingAmountHt = gmoCatalogTransportGroupingAmountHt;
+    }
+
+    @Column(name = "gmo_catalogtransportgroupingamountttc")
+    public BigDecimal getGmoCatalogTransportGroupingAmountTtc() {
+        return gmoCatalogTransportGroupingAmountTtc;
+    }
+
+    public void setGmoCatalogTransportGroupingAmountTtc(BigDecimal gmoCatalogTransportGroupingAmountTtc) {
+        this.gmoCatalogTransportGroupingAmountTtc = gmoCatalogTransportGroupingAmountTtc;
+    }
+    @Column(name = "gmo_catalogtransportgroupingamounttva")
+    public BigDecimal getGmoCatalogTransportGroupingAmountTva() {
+        return gmoCatalogTransportGroupingAmountTva;
+    }
+
+    public void setGmoCatalogTransportGroupingAmountTva(BigDecimal gmoCatalogTransportGroupingAmountTva) {
+        this.gmoCatalogTransportGroupingAmountTva = gmoCatalogTransportGroupingAmountTva;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name="gmo_groupingvatid")
+    public PrmVat getPrmGroupingVat() {
+        return prmGroupingVat;
+    }
+
+    public void setPrmGroupingVat(PrmVat prmGroupingVat) {
+        this.prmGroupingVat = prmGroupingVat;
     }
 }
 

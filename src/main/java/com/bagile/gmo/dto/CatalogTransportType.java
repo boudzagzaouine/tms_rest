@@ -9,19 +9,22 @@ public class CatalogTransportType extends EmsDto implements Serializable {
     private static final long serialVersionUID = 3467898889038526418L;
 
     private long id;
-    private Transport transport;
-    private VehicleCategory vehicleCategory;
-
     private TurnType turnType;
     private Ville villeSource ;
     private Ville villeDestination;
+    private Transport transport;
+    private VehicleCategory vehicleCategory;
     private BigDecimal amountHt;
     private BigDecimal amountTtc;
     private BigDecimal amountTva;
     private Vat vat;
+    private BigDecimal groupingAmountHt;
+    private BigDecimal groupingAmountTtc;
+    private BigDecimal groupingAmountTva;
+    private Vat groupingAVat;
 
     private Boolean interneOrExterne;
-  private Owner owner;
+    private Owner owner;
 
 
 
@@ -125,7 +128,37 @@ public class CatalogTransportType extends EmsDto implements Serializable {
         this.owner = owner;
     }
 
+    public BigDecimal getGroupingAmountHt() {
+        return groupingAmountHt;
+    }
 
+    public void setGroupingAmountHt(BigDecimal groupingAmountHt) {
+        this.groupingAmountHt = groupingAmountHt;
+    }
+
+    public BigDecimal getGroupingAmountTtc() {
+        return groupingAmountTtc;
+    }
+
+    public void setGroupingAmountTtc(BigDecimal groupingAmountTtc) {
+        this.groupingAmountTtc = groupingAmountTtc;
+    }
+
+    public BigDecimal getGroupingAmountTva() {
+        return groupingAmountTva;
+    }
+
+    public void setGroupingAmountTva(BigDecimal groupingAmountTva) {
+        this.groupingAmountTva = groupingAmountTva;
+    }
+
+    public Vat getGroupingAVat() {
+        return groupingAVat;
+    }
+
+    public void setGroupingAVat(Vat groupingAVat) {
+        this.groupingAVat = groupingAVat;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -56,11 +56,17 @@ public class CatalogTransportTypeMapper {
         trpTransport.setGmoCatalogTransportInternOrExterne (transport.getInterneOrExterne ());
 
 
+        trpTransport.setGmoCatalogTransportGroupingAmountHt (transport.getGroupingAmountHt ());
+        trpTransport.setGmoCatalogTransportGroupingAmountTtc (transport.getGroupingAmountTtc ());
+        trpTransport.setGmoCatalogTransportGroupingAmountTva (transport.getGroupingAmountTva ());
+
         trpTransport.setCreatedBy (transport.getCreatedBy ( ));
         trpTransport.setUpdatedBy (transport.getUpdatedBy ( ));
 
         if (!lazy) {
             trpTransport.setPrmvat (VatMapper.toEntity (transport.getVat ( ), true));
+            trpTransport.setPrmGroupingVat (VatMapper.toEntity (transport.getGroupingAVat ( ), true));
+
             trpTransport.setGmoVehicleCategory (VehicleCategoryMapper.toEntity (transport.getVehicleCategory ( ), true));
             trpTransport.setTrpTransport (TransportMapper.toEntity (transport.getTransport ( ), false));
             trpTransport.setGmoVilleSource (VilleMapper.toEntity (transport.getVilleSource ( ), true));
@@ -84,6 +90,10 @@ public class CatalogTransportTypeMapper {
         transport.setAmountTtc (trpTransport.getGmoCatalogTransportCategoryVehicleAmountTtc ());
         transport.setAmountTva (trpTransport.getGmoCatalogTransportCategoryVehicleAmountTva ());
         transport.setInterneOrExterne (trpTransport.getGmoCatalogTransportInternOrExterne ());
+
+        transport.setGroupingAmountHt (trpTransport.getGmoCatalogTransportGroupingAmountHt ());
+        transport.setGroupingAmountTtc (trpTransport.getGmoCatalogTransportGroupingAmountTtc ());
+        transport.setGroupingAmountTva (trpTransport.getGmoCatalogTransportGroupingAmountTva ());
 
         transport.setCreatedBy (trpTransport.getCreatedBy ());
         transport.setUpdatedBy (trpTransport.getUpdatedBy ());
