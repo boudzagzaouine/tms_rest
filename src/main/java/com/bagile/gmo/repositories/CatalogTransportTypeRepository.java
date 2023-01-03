@@ -13,7 +13,7 @@ import java.util.List;
 public interface CatalogTransportTypeRepository extends JpaRepository<GmoCatalogTransportType, Long>,
 		QuerydslPredicateExecutor<GmoCatalogTransportType> {
 
-	@Query(value="select nextval('schema_crmexpress.seq_catalog_transport_type_code')",nativeQuery = true)
+	@Query(value="select nextval('schema_tmsvoieexpress.seq_catalog_transport_type_code')",nativeQuery = true)
 	public List<BigInteger> getNextVal();
 
 }

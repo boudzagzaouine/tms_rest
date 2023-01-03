@@ -12,8 +12,8 @@ import java.util.List;
  * Created by Enissay on 03/12/2016.
  */
 public interface SupplierInvoiceRepository extends JpaRepository<InvSupplierInvoice,Long>, QuerydslPredicateExecutor<InvSupplierInvoice> {
-    @Query(value="select nextval('schema_crmexpress.seq_invoicesupplier_code')",nativeQuery = true)
+    @Query(value="select nextval('schema_tmsvoieexpress.seq_invoicesupplier_code')",nativeQuery = true)
     public List<BigInteger> getNextVal();
-    @Query(value = "select inv_supplierinvoicecode from schema_crmexpress.inv_supplierinvoice where inv_supplierinvoiceid= (select max(inv.inv_supplierinvoiceid) from schema_crmexpress.inv_supplierinvoice inv)" ,nativeQuery = true)
+    @Query(value = "select inv_supplierinvoicecode from schema_tmsvoieexpress.inv_supplierinvoice where inv_supplierinvoiceid= (select max(inv.inv_supplierinvoiceid) from schema_tmsvoieexpress.inv_supplierinvoice inv)" ,nativeQuery = true)
     public String lastCode();
 }

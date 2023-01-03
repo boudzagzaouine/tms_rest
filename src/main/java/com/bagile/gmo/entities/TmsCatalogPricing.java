@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @Table(name="tms_catalogpricing",
         uniqueConstraints ={@UniqueConstraint
                 (columnNames ={"tms_vehiclecategoryid",
-                               "tms_villesournceid","tms_villedistinationid","tms_turntypeid"})})
+                               "tms_villesournceid","tms_villedistinationid","tms_turntypeid","tms_vehicletrayid","tms_loadingtypeid"})})
 public class TmsCatalogPricing extends EmsEntity {
 
     private Long tmsCatalogPricingId;

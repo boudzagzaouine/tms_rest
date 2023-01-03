@@ -15,7 +15,7 @@ public class VehicleTrayMapper {
         map = new HashMap<>();
 
         map.put("id", "tmsVehicleTrayId");
-        map.put("code", "tmsVehicleTrayTypeCode");
+        map.put("code", "tmsVehicleTrayCode");
         map.put("description", "tmsVehicleTrayTypeDescription");
 
         map.put("creationDate", "creationDate");

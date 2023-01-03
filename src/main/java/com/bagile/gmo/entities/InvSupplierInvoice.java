@@ -56,7 +56,7 @@ public class InvSupplierInvoice extends EmsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "schema_crmexpress.inv_supplierinvoice_inv_supplierinvoiceid_seq", allocationSize = 1)
+    @SequenceGenerator(name = "seq", sequenceName = "schema_tmsvoieexpress.inv_supplierinvoice_inv_supplierinvoiceid_seq", allocationSize = 1)
     @Column(name = "inv_supplierinvoiceid", unique = true, nullable = false, precision = 10, scale = 0)
     public long getInvSupplierInvoiceId() {
         return invSupplierInvoiceId;

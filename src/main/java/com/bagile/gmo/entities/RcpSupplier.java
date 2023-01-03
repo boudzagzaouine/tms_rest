@@ -14,7 +14,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "rcp_supplier")
-// @SQLDelete(sql = "update schema_crmexpress.rcp_supplier set rcp_supplierisactive = false")
+// @SQLDelete(sql = "update schema_tmsvoieexpress.rcp_supplier set rcp_supplierisactive = false")
 // @Where(clause = "rcp_supplierisactive = true")
 public class RcpSupplier extends EmsEntity implements java.io.Serializable {
 

@@ -15,7 +15,7 @@ public class LoadingTypeMapper {
         map = new HashMap<>();
 
         map.put("id", "tmsLoadingTypeId");
-        map.put("code", "tmsLoadingTypeTypeCode");
+        map.put("code", "tmsLoadingTypeCode");
         map.put("description", "tmsLoadingTypeTypeDescription");
 
         map.put("creationDate", "creationDate");

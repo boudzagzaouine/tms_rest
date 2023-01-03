@@ -21,7 +21,7 @@ public class PrmSetting extends EmsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "schema_crmexpress.prm_setting_prm_setting_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "seq", sequenceName = "schema_tmsvoieexpress.prm_setting_prm_setting_id_seq", allocationSize = 1)
     @Column(name = "prm_setting_id", unique = true, nullable = false, precision = 10, scale = 0)
     public Long getPrmSettingId() {
         return prmSettingId;

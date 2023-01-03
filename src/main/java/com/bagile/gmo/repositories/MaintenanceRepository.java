@@ -12,11 +12,11 @@ import java.util.List;
 
 public interface MaintenanceRepository extends JpaRepository<GmoMaintenance,Long>,
         QuerydslPredicateExecutor<GmoMaintenance>{
-    @Query(value="select nextval('schema_crmexpress.seq_gmo_diesel_declaration_code')",nativeQuery = true)
+    @Query(value="select nextval('schema_tmsvoieexpress.seq_gmo_diesel_declaration_code')",nativeQuery = true)
     public List<BigInteger> getNextVal();
 
 
-    @Query(value="select  * from schema_crmexpress.gmo_maintenance m\n" +
+    @Query(value="select  * from schema_tmsvoieexpress.gmo_maintenance m\n" +
             "where m.gmo_actiontypeid =1\n" +
             "  and m.gmopatrimony_gmo_patrimonyid=8\n" +
             "  and m.gmo_maintenancestateid=4\n" +

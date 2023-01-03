@@ -1,7 +1,5 @@
 package com.bagile.gmo.dto;
 
-import com.bagile.gmo.entities.PrmPays;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -21,8 +19,8 @@ public class CatalogPricing extends EmsDto implements Serializable {
     private LoadingType loadingType;
     private BigDecimal purchaseAmountHt;
     private BigDecimal purchaseAmountTtc;
-    private BigDecimal purchaseamountTva;
-    private Vat purcahseVat;
+    private BigDecimal purchaseAmountTva;
+    private Vat purchaseVat;
 
     private BigDecimal saleAmountHt;
     private BigDecimal saleAmountTtc;
@@ -133,20 +131,20 @@ public class CatalogPricing extends EmsDto implements Serializable {
         this.purchaseAmountTtc = purchaseAmountTtc;
     }
 
-    public BigDecimal getPurchaseamountTva() {
-        return purchaseamountTva;
+    public BigDecimal getPurchaseAmountTva() {
+        return purchaseAmountTva;
     }
 
-    public void setPurchaseamountTva(BigDecimal purchaseamountTva) {
-        this.purchaseamountTva = purchaseamountTva;
+    public void setPurchaseAmountTva(BigDecimal purchaseAmountTva) {
+        this.purchaseAmountTva = purchaseAmountTva;
     }
 
-    public Vat getPurcahseVat() {
-        return purcahseVat;
+    public Vat getPurchaseVat() {
+        return purchaseVat;
     }
 
-    public void setPurcahseVat(Vat purcahseVat) {
-        this.purcahseVat = purcahseVat;
+    public void setPurchaseVat(Vat purchaseVat) {
+        this.purchaseVat = purchaseVat;
     }
 
     public BigDecimal getSaleAmountHt() {

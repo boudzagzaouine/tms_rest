@@ -16,12 +16,15 @@ public class CatalogPricingMapper {
         map = new HashMap<> ( );
 
         map.put ("id", "tmsCatalogTransportId");
+        map.put ("loadingType", "tmsLoadingType");
+
         map.put ("turnType", "tmsTurnType");
         map.put ("catalogPricing", "tmsCatalogPricing");
-        map.put ("vehicleCategory", "tmsVehicleCategory");
+        map.put ("vehicleCategory", "gmoVehicleCategory");
+        map.put ("vehicleTray", "tmsVehicleTray");
+
         map.put ("villeSource", "tmsVilleSource");
         map.put ("villeDestination", "tmsVilleDestination");
-        map.put ("interneOrExterne", "tmsCatalogTransportInternOrExterne");
         map.put ("amountTtc", "tmsCatalogTransportAmountTtc");
         map.put ("amountTva", "tmsCatalogTransportAmountTva");
         map.put ("vat", "prmvat");
@@ -52,11 +55,11 @@ public class CatalogPricingMapper {
 
         tmsCatalogPricing.setTmsCatalogPricingPurchaseAmountHt (catalogPricing.getPurchaseAmountHt ());
         tmsCatalogPricing.setTmsCatalogPricingPurchaseAmountTtc (catalogPricing.getPurchaseAmountTtc ());
-        tmsCatalogPricing.setTmsCatalogPricingPurchaseAmountTva (catalogPricing.getSaleAmountTva ());
+        tmsCatalogPricing.setTmsCatalogPricingPurchaseAmountTva (catalogPricing.getPurchaseAmountTva ());
 
 
         tmsCatalogPricing.setTmsCatalogPricingSaleAmountHt (catalogPricing.getSaleAmountHt ());
-        tmsCatalogPricing.setTmsCatalogPricingPurchaseAmountTtc (catalogPricing.getSaleAmountTtc ());
+        tmsCatalogPricing.setTmsCatalogPricingSaleAmountTtc (catalogPricing.getSaleAmountTtc ());
         tmsCatalogPricing.setTmsCatalogPricingSaleAmountTva (catalogPricing.getSaleAmountTva ());
 
         tmsCatalogPricing.setCreatedBy (catalogPricing.getCreatedBy ( ));
@@ -69,7 +72,7 @@ public class CatalogPricingMapper {
             tmsCatalogPricing.setTmsTurnType (TurnTypeMapper.toEntity (catalogPricing.getTurnType(), true));
             tmsCatalogPricing.setTmsLoadingType (LoadingTypeMapper.toEntity (catalogPricing.getLoadingType(), true));
 
-            tmsCatalogPricing.setPrmPurchaseVat (VatMapper.toEntity (catalogPricing.getPurcahseVat ( ), true));
+            tmsCatalogPricing.setPrmPurchaseVat (VatMapper.toEntity (catalogPricing.getPurchaseVat( ), true));
             tmsCatalogPricing.setPrmPricingSaleVat (VatMapper.toEntity (catalogPricing.getSaleVat ( ), true));
 
             tmsCatalogPricing.setPrmPaysSource (PaysMapper.toEntity (catalogPricing.getPaysSource ( ), true));
@@ -90,9 +93,10 @@ public class CatalogPricingMapper {
         }
         CatalogPricing catalogPricing = new CatalogPricing ( );
         catalogPricing.setId (tmsCatalogPricing.getTmsCatalogPricingId ());
+
         catalogPricing.setPurchaseAmountHt (tmsCatalogPricing.getTmsCatalogPricingPurchaseAmountHt ());
         catalogPricing.setPurchaseAmountTtc (tmsCatalogPricing.getTmsCatalogPricingPurchaseAmountTtc ());
-        catalogPricing.setPurchaseamountTva (tmsCatalogPricing.getTmsCatalogPricingPurchaseAmountTva ());
+        catalogPricing.setPurchaseAmountTva(tmsCatalogPricing.getTmsCatalogPricingPurchaseAmountTva ());
 
         catalogPricing.setSaleAmountHt (tmsCatalogPricing.getTmsCatalogPricingSaleAmountHt ());
         catalogPricing.setSaleAmountTtc (tmsCatalogPricing.getTmsCatalogPricingSaleAmountTtc ());
@@ -115,7 +119,7 @@ public class CatalogPricingMapper {
             catalogPricing.setVilleSource (VilleMapper.toDto(tmsCatalogPricing.getTmsVilleSource(), true));
             catalogPricing.setPaysDestination (PaysMapper.toDto(tmsCatalogPricing.getPrmPaysDestination(), true));
             catalogPricing.setVilleDestination (VilleMapper.toDto(tmsCatalogPricing.getTmsVilleDestination(), true));
-            catalogPricing.setPurcahseVat (VatMapper.toDto(tmsCatalogPricing.getPrmPurchaseVat(), true));
+            catalogPricing.setPurchaseVat(VatMapper.toDto(tmsCatalogPricing.getPrmPurchaseVat(), true));
             catalogPricing.setSaleVat (VatMapper.toDto(tmsCatalogPricing.getPrmPricingSaleVat(), true));
             catalogPricing.setOwner (OwnerMapper.toDto(tmsCatalogPricing.getOwnOwner(), true));
 
