@@ -1,6 +1,7 @@
 package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.AccountPricing;
+import com.bagile.gmo.dto.Maintenance;
 import com.bagile.gmo.entities.TmsAccountPricing;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
@@ -14,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -29,6 +31,19 @@ public class AccountPricingServiceImpl implements AccountPricingService {
     @Override
     public AccountPricing save(AccountPricing actionType) {
         return AccountPricingMapper.toDto(actionTypeRepository.saveAndFlush(AccountPricingMapper.toEntity(actionType, false)), false);
+    }
+
+    @Override
+    public List<AccountPricing> saveAll(List<AccountPricing> accountPricings) throws AttributesNotFound, ErrorType {
+
+        List<AccountPricing> accountPricingList = new ArrayList<>();
+
+        for (AccountPricing accountPricing : accountPricings) {
+            accountPricingList.add(save(accountPricing));
+        }
+
+        return accountPricingList;
+
     }
 
     @Override

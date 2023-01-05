@@ -64,11 +64,12 @@ public class CompanyController {
     }
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Company add(@RequestBody Company company ){return companyService.save(company);}
+    public Company add(@RequestBody Company company ) throws ErrorType, AttributesNotFound {
+        return companyService.save(company);}
     //@PreAuthorize("hasRole('BADGETYPE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Company set(@RequestBody Company company) {
+    public Company set(@RequestBody Company company) throws ErrorType, AttributesNotFound {
         return companyService.save(company);
     }
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

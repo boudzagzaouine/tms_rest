@@ -88,41 +88,9 @@ public class CmdCompany extends EmsEntity implements Serializable  {
 
     public CmdCompany(){}
 
-    public CmdCompany(long cmdCompanyId, OwnOwner ownOwner,
-                      String cmdCompanyCode) {
-        this.cmdCompanyId = cmdCompanyId;
-        this.ownOwner = ownOwner;
-        this.cmdCompanyCode = cmdCompanyCode;
-    }
 
-    public CmdCompany(long cmdCompanyId, OwnOwner ownOwner,
-                      String cmdCompanyCode, String cmdCompanySiret,
-                      String cmdCompanyComment, Date cmdCompanyCreationDate,
-                      Date cmdCompanyUpdateDate, String cmdCompanyVariable1,
-                      String cmdCompanyVariable2, String cmdCompanyVariable3,
-                      String cmdCompanyVariable4, String cmdCompanyVariable5,
-                      String cmdCompanyVariable6, String cmdCompanyVariable7,
-                      String cmdCompanyVariable8, String cmdCompanyVariable9,
-                      String cmdCompanyVariable10, Set<CmdAccount> cmdAccounts) {
-        this.cmdCompanyId = cmdCompanyId;
-        this.ownOwner = ownOwner;
-        this.cmdCompanyCode = cmdCompanyCode;
-        this.cmdCompanySiret = cmdCompanySiret;
-        this.cmdCompanyComment = cmdCompanyComment;
-        this.cmdCompanyCreationDate = cmdCompanyCreationDate;
-        this.cmdCompanyUpdateDate = cmdCompanyUpdateDate;
-        this.cmdCompanyVariable1 = cmdCompanyVariable1;
-        this.cmdCompanyVariable2 = cmdCompanyVariable2;
-        this.cmdCompanyVariable3 = cmdCompanyVariable3;
-        this.cmdCompanyVariable4 = cmdCompanyVariable4;
-        this.cmdCompanyVariable5 = cmdCompanyVariable5;
-        this.cmdCompanyVariable6 = cmdCompanyVariable6;
-        this.cmdCompanyVariable7 = cmdCompanyVariable7;
-        this.cmdCompanyVariable8 = cmdCompanyVariable8;
-        this.cmdCompanyVariable9 = cmdCompanyVariable9;
-        this.cmdCompanyVariable10 = cmdCompanyVariable10;
-        this.cmdAccounts = cmdAccounts;
-    }
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -292,7 +260,7 @@ public class CmdCompany extends EmsEntity implements Serializable  {
         this.cmdAccounts = cmdAccounts;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY ,cascade = {CascadeType.ALL} )
+    @ManyToOne()
     @JoinColumn(name = "cmd_companyaddressid")
     public AdrAddress getAdrAddress() {
         return adrAddress;

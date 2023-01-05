@@ -73,7 +73,7 @@ public class TmsTransportPlan extends EmsEntity {
     }
 
 
-    @ManyToOne()
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "tms_gmovehicleid")
     public GmoVehicle getGmoVehicle() {
         return gmoVehicle;

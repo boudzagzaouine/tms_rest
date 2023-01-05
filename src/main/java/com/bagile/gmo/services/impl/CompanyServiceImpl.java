@@ -1,5 +1,6 @@
 package com.bagile.gmo.services.impl;
 
+import com.bagile.gmo.dto.Address;
 import com.bagile.gmo.dto.Company;
 import com.bagile.gmo.entities.CmdCompany;
 import com.bagile.gmo.exceptions.AttributesNotFound;
@@ -7,14 +8,18 @@ import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.CompanyMapper;
 import com.bagile.gmo.repositories.CompanyRepository;
+import com.bagile.gmo.services.AccountPricingService;
+import com.bagile.gmo.services.AddressService;
 import com.bagile.gmo.services.CompanyService;
 import com.bagile.gmo.services.SettingService;
 import com.bagile.gmo.util.Search;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,13 +31,33 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Autowired
     private SettingService settingService;
+    @Autowired
+    private AddressService addressService;
+
+    @Autowired
+    private AccountPricingService accountPricingService;
     public CompanyServiceImpl(CompanyRepository companyRepository) {
         this.companyRepository = companyRepository;
     }
 
+
     @Override
-    public Company save(Company company) {
-        return CompanyMapper.toDto(companyRepository.saveAndFlush(CompanyMapper.toEntity(company, false)), false);
+    public Company save(Company company) throws ErrorType, AttributesNotFound {
+
+        if(company.getAddress()!=null){
+            Address address= this.addressService.save(company.getAddress());
+            company.setAddress(address);
+        }
+        Company company1 = CompanyMapper.toDto(companyRepository.saveAndFlush(CompanyMapper.toEntity(company, false)), false);
+        if(company.getId()<=0) {
+            if (company.getAccountPricingList() != null) {
+                company.getAccountPricingList().forEach(
+                        element -> element.setCompany(company1)
+                );
+                this.accountPricingService.saveAll(company.getAccountPricingList());
+            }
+        }
+        return company1;
     }
 
     @Override

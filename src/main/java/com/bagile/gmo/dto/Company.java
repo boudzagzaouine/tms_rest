@@ -2,7 +2,9 @@ package com.bagile.gmo.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 public class Company extends EmsDto implements Serializable {
@@ -47,6 +49,8 @@ public class Company extends EmsDto implements Serializable {
 
     private BigDecimal turnover; //chiffre affr
     private String fax;
+
+    private List<AccountPricing> accountPricingList = new ArrayList<>();
 
     public long getId() {
         return this.id;
@@ -190,6 +194,14 @@ public class Company extends EmsDto implements Serializable {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public List<AccountPricing> getAccountPricingList() {
+        return accountPricingList;
+    }
+
+    public void setAccountPricingList(List<AccountPricing> accountPricingList) {
+        this.accountPricingList = accountPricingList;
     }
 
     public String getName() {
