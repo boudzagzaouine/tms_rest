@@ -12,16 +12,17 @@ public class OrderTransport {
 
 	private Date date ;
 	private TurnType turnType;
-	private String  loadingType ;
-	private Account account;
+	private LoadingType  loadingType ;
+	private Company company;
 	private TurnStatus turnStatus;
 	private VehicleCategory vehicleCategory ;
+	private VehicleTray vehicleTray;
 
 	//private OrderTransportInfo orderTransportInfoAller;
 	//private OrderTransportInfo orderTransportInfoRetour;
 
-	private BigDecimal priceTTC;
-
+	private BigDecimal priceHT;
+	private BigDecimal marginRate ;
 	private Owner owner;
 
 
@@ -60,32 +61,48 @@ public class OrderTransport {
 		this.turnType = turnType;
 	}
 
-	public String getLoadingType() {
+	public LoadingType getLoadingType() {
 		return loadingType;
 	}
 
-	public void setLoadingType(String loadingType) {
+	public void setLoadingType(LoadingType loadingType) {
 		this.loadingType = loadingType;
 	}
 
-	public Account getAccount() {
-		return account;
+	public VehicleTray getVehicleTray() {
+		return vehicleTray;
 	}
 
-	public void setAccount(Account account) {
-		this.account = account;
+	public void setVehicleTray(VehicleTray vehicleTray) {
+		this.vehicleTray = vehicleTray;
+	}
+
+	public BigDecimal getMarginRate() {
+		return marginRate;
+	}
+
+	public void setMarginRate(BigDecimal marginRate) {
+		this.marginRate = marginRate;
+	}
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 
 	public VehicleCategory getVehicleCategory() {
 		return vehicleCategory;
 	}
 
-	public BigDecimal getPriceTTC() {
-		return priceTTC;
+	public BigDecimal getPriceHT() {
+		return priceHT;
 	}
 
-	public void setPriceTTC(BigDecimal priceTTC) {
-		this.priceTTC = priceTTC;
+	public void setPriceHT(BigDecimal priceHT) {
+		this.priceHT = priceHT;
 	}
 
 	public void setVehicleCategory(VehicleCategory vehicleCategory) {

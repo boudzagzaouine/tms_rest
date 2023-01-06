@@ -14,6 +14,8 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
     private Long tmsOrderTransportInfoLineId;
     private TmsOrderTransportType tmsOrderTransportType;
 
+    private CmdAccount cmdAccount;
+
     private TmsAddressContactOrderTransportInfo tmsAddressContactDeliveryInfo;
 
     private BigDecimal tmsAddressContactDeliveryInfoNumberOfPalletEnlevement;
@@ -80,6 +82,16 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
 
     public void setTmsOrderTransportType(TmsOrderTransportType tmsOrderTransportService) {
         this.tmsOrderTransportType = tmsOrderTransportService;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "cmd_accountid")
+    public CmdAccount getCmdAccount() {
+        return cmdAccount;
+    }
+
+    public void setCmdAccount(CmdAccount cmdAccount) {
+        this.cmdAccount = cmdAccount;
     }
 
     @Column(name = "tms_ordertransportinfolinecontreblenlevement")

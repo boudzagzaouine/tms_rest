@@ -33,6 +33,8 @@ public class Transport  extends EmsDto implements Serializable {
     private Boolean gmao;
     private Boolean interneOrExterne;
 
+    private List<CatalogTransportPricing> catalogTransportPricings = new ArrayList<>();
+    private List<CatalogTransportAccountPricing> catalogTransportAccountPricings = new ArrayList<>();
 
     private Owner owner;
 
@@ -72,6 +74,22 @@ public class Transport  extends EmsDto implements Serializable {
 
     public void setTransportProducts(List<TransportProduct> transportProducts) {
         this.transportProducts = transportProducts;
+    }
+
+    public List<CatalogTransportPricing> getCatalogTransportPricings() {
+        return catalogTransportPricings;
+    }
+
+    public void setCatalogTransportPricings(List<CatalogTransportPricing> catalogTransportPricings) {
+        this.catalogTransportPricings = catalogTransportPricings;
+    }
+
+    public List<CatalogTransportAccountPricing> getCatalogTransportAccountPricings() {
+        return catalogTransportAccountPricings;
+    }
+
+    public void setCatalogTransportAccountPricings(List<CatalogTransportAccountPricing> catalogTransportAccountPricings) {
+        this.catalogTransportAccountPricings = catalogTransportAccountPricings;
     }
 
     public Contact getContact() {

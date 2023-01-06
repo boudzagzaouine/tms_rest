@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public interface TransportService {
-    Transport save(Transport transport);
+    Transport save(Transport transport) throws ErrorType, AttributesNotFound;
 
     Long size() throws AttributesNotFound, ErrorType;
 

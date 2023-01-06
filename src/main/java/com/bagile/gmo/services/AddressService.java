@@ -1,7 +1,6 @@
 package com.bagile.gmo.services;
 
 import com.bagile.gmo.dto.Address;
-import com.bagile.gmo.dto.CatalogTransportType;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;

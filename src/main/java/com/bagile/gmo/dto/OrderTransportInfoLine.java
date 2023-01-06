@@ -8,6 +8,8 @@ public class OrderTransportInfoLine {
 	private long id;
 
 	private OrderTransportType orderTransportType;
+    private Account account;
+
 
 	private AddressContactOrderTransportInfo addressContactDeliveryInfo;
 	private BigDecimal numberOfPalletEnlevement ;
@@ -72,6 +74,14 @@ public class OrderTransportInfoLine {
 
 	public void setContreFactureEnlevement(Boolean contreFactureEnlevement) {
 		this.contreFactureEnlevement = contreFactureEnlevement;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public PaymentType getPaymentTypeEnlevement() {

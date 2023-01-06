@@ -79,14 +79,14 @@ public class TransportController {
     //@PreAuthorize("hasRole('BADGE_CREATE')")
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Transport add(@RequestBody Transport badge) {
+    public Transport add(@RequestBody Transport badge) throws ErrorType, AttributesNotFound {
         return transportService.save(badge);
     }
 
     //@PreAuthorize("hasRole('BADGE_EDIT')")
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Transport set(@RequestBody Transport badge) {
+    public Transport set(@RequestBody Transport badge) throws ErrorType, AttributesNotFound {
         return transportService.save(badge);
     }
 

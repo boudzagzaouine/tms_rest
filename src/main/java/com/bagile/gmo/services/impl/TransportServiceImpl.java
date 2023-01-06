@@ -1,12 +1,16 @@
 package com.bagile.gmo.services.impl;
 
+import com.bagile.gmo.dto.Company;
 import com.bagile.gmo.dto.Transport;
 import com.bagile.gmo.entities.TrpTransport;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.mapper.CompanyMapper;
 import com.bagile.gmo.mapper.TransportMapper;
 import com.bagile.gmo.repositories.TransportRepository;
+import com.bagile.gmo.services.CatalogTransportAccountPricingService;
+import com.bagile.gmo.services.CatalogTransportPricingService;
 import com.bagile.gmo.services.SettingService;
 import com.bagile.gmo.services.TransportService;
 import com.bagile.gmo.util.GmaoSearch;
@@ -25,15 +29,35 @@ public class TransportServiceImpl implements TransportService, GmaoSearch {
     private final TransportRepository transportRepository;
     @Autowired
     private SettingService settingService;
+    @Autowired
+    private CatalogTransportPricingService catalogTransportPricingService;
+    @Autowired
+    private CatalogTransportAccountPricingService catalogTransportAccountPricingService;
 
     public TransportServiceImpl(TransportRepository transportRepository) {
         this.transportRepository = transportRepository;
     }
 
     @Override
-    public Transport save(Transport transport) {
+    public Transport save(Transport transport) throws ErrorType, AttributesNotFound {
         transport.setGmao(true);
-        return TransportMapper.toDto(transportRepository.saveAndFlush(TransportMapper.toEntity(transport, false)), false);
+
+        Transport transport1 =  TransportMapper.toDto(transportRepository.saveAndFlush(TransportMapper.toEntity(transport, false)), false);
+        if(transport.getId()<=0) {
+            if (transport.getCatalogTransportPricings() != null) {
+                transport.getCatalogTransportPricings().forEach(
+                        element -> element.setTransport(transport1)
+                );
+                this.catalogTransportPricingService.saveAll(transport.getCatalogTransportPricings());
+            }
+            if (transport.getCatalogTransportAccountPricings() != null) {
+                transport.getCatalogTransportAccountPricings().forEach(
+                        element -> element.setTransport(transport1)
+                );
+                this.catalogTransportAccountPricingService.saveAll(transport.getCatalogTransportAccountPricings());
+            }
+        }
+       return transport1;
     }
 
     @Override

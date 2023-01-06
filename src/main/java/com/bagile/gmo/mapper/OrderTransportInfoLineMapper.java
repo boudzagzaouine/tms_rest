@@ -1,5 +1,6 @@
 package com.bagile.gmo.mapper;
 
+import com.bagile.gmo.dto.Account;
 import com.bagile.gmo.dto.OrderTransportInfoLine;
 import com.bagile.gmo.dto.PaymentRule;
 import com.bagile.gmo.entities.TmsOrderTransportInfoLine;
@@ -66,7 +67,7 @@ public class OrderTransportInfoLineMapper {
 
         if (!lazy) {
 
-
+            tmsOrderTransportInfoLine.setCmdAccount(AccountMapper.toEntity(orderTransportInfoLine.getAccount(), true));
             tmsOrderTransportInfoLine.setTmsAddressContactDeliveryInfo(AddressContactOrderTransportInfoMapper.toEntity(orderTransportInfoLine.getAddressContactDeliveryInfo(), true));
             tmsOrderTransportInfoLine.setTmsOrderTransportType(OrderTransportTypeMapper.toEntity(orderTransportInfoLine.getOrderTransportType(), true));
             tmsOrderTransportInfoLine.setTmsOrderTransportInfo(OrderTransportInfoMapper.toEntity(orderTransportInfoLine.getOrderTransportInfo(), true));
@@ -110,6 +111,8 @@ public class OrderTransportInfoLineMapper {
 
 
         if (!lazy) {
+
+            orderTransportInfoLine.setAccount(AccountMapper.toDto(tmsOrderTransportInfoLine.getCmdAccount(), true));
 
             orderTransportInfoLine.setAddressContactDeliveryInfo(AddressContactOrderTransportInfoMapper.toDto(tmsOrderTransportInfoLine.getTmsAddressContactDeliveryInfo(), true));
 
