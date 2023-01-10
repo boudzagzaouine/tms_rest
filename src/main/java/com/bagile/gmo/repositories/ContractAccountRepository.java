@@ -13,7 +13,7 @@ public interface ContractAccountRepository extends JpaRepository<TmsContractAcco
 		QuerydslPredicateExecutor<TmsContractAccount> {
 
 
-	@Query(value = "select nextVal('schema_tmsvoieexpress.seq_contract_account_code')", nativeQuery = true)
+	@Query(value = "select nextVal('schema_crmexpress.seq_contract_account_code')", nativeQuery = true)
 	public List<BigInteger> getNextVal();
 
 }

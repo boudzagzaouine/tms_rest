@@ -13,7 +13,7 @@ public interface SinisterRepository extends JpaRepository<GmoSinister, Long>,
 		QuerydslPredicateExecutor<GmoSinister> {
 
 
-	@Query(value = "select nextVal('schema_tmsvoieexpress.seq_sinister_code')", nativeQuery = true)
+	@Query(value = "select nextVal('schema_crmexpress.seq_sinister_code')", nativeQuery = true)
 	public List<BigInteger> getNextVal();
 
 }

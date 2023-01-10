@@ -14,7 +14,7 @@ public interface AccountRepository extends JpaRepository<CmdAccount, Long>,
 	CmdAccount findByCmdAccountCode(String cmdAccountCode);
 	CmdAccount findByCmdAccountCodeAndCmdAccountPassword(String cmdAccountCode,String cmdAccountPassword);
 
-	@Query(value = "select nextVal('schema_tmsvoieexpress.seq_account_code')", nativeQuery = true)
+	@Query(value = "select nextVal('schema_crmexpress.seq_account_code')", nativeQuery = true)
 	public List<BigInteger> getNextVal();
 
 }

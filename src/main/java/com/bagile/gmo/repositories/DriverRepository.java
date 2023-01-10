@@ -13,6 +13,6 @@ public interface DriverRepository extends JpaRepository<GmoDriver, Long>,
         QuerydslPredicateExecutor<GmoDriver> {
 
 
-    @Query(value="select nextval('schema_tmsvoieexpress.seq_driver_code')",nativeQuery = true)
+    @Query(value="select nextval('schema_crmexpress.seq_driver_code')",nativeQuery = true)
     public List<BigInteger> getNextVal();
 }

@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface PurshaseOrderRepository extends JpaRepository<RcpPurshaseOrder, Long>,
 		QuerydslPredicateExecutor<RcpPurshaseOrder> {
-	@Query(value="select nextval('schema_tmsvoieexpress.seq_purchase_order_code')",nativeQuery = true)
+	@Query(value="select nextval('schema_crmexpress.seq_purchase_order_code')",nativeQuery = true)
 	public List<BigInteger> getNextVal();
 
 }

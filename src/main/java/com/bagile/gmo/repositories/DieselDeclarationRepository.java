@@ -13,6 +13,6 @@ public interface DieselDeclarationRepository extends JpaRepository<GmoDieselDecl
 
 
 
-    @Query(value="select nextval('schema_tmsvoieexpress.seq_gmo_diseldeclaration_code')",nativeQuery = true)
+    @Query(value="select nextval('schema_crmexpress.seq_gmo_diseldeclaration_code')",nativeQuery = true)
     public List<BigInteger> getNextVal();
 }

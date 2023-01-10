@@ -58,6 +58,8 @@ public class Vehicle extends Patrimony implements Serializable {
     private Long durationInMonths ;
     private List<VehicleProduct> vehicleProducts = new ArrayList<>();
 
+    private VehicleTray vehicleTray;
+
     public Vehicle() {
     }
 
@@ -85,6 +87,14 @@ public class Vehicle extends Patrimony implements Serializable {
         this.code = code;
     }
 */
+
+    public VehicleTray getVehicleTray() {
+        return vehicleTray;
+    }
+
+    public void setVehicleTray(VehicleTray vehicleTray) {
+        this.vehicleTray = vehicleTray;
+    }
 
     public String getInterneOrExterne() {
         return interneOrExterne;

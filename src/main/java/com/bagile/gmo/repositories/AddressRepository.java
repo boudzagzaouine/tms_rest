@@ -12,7 +12,7 @@ import java.util.List;
 public interface AddressRepository extends JpaRepository<AdrAddress, Long>,
 		QuerydslPredicateExecutor<AdrAddress> {
 
-	@Query(value="select nextval('schema_tmsvoieexpress.seq_adresse_code')",nativeQuery = true)
+	@Query(value="select nextval('schema_crmexpress.seq_adresse_code')",nativeQuery = true)
 	public List<BigInteger> getNextVal();
 
 

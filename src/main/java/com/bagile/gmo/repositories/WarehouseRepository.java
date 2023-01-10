@@ -11,12 +11,12 @@ import java.util.List;
 
 public interface WarehouseRepository extends JpaRepository<WrhWarehouse, Long>,
         QuerydslPredicateExecutor<WrhWarehouse> {
-    @Query(value = "select o.own_ownercode,count(c.stk_containerid) from schema_tmsvoieexpress.own_owner o join schema_tmsvoieexpress.stk_container c on o.own_ownerid=c.stk_containerownerid join schema_tmsvoieexpress.wrh_warehouse w on c.stk_containerwarehouseid=w.wrh_warehouseid group by o.own_ownercode", nativeQuery = true)
+    @Query(value = "select o.own_ownercode,count(c.stk_containerid) from schema_crmexpress.own_owner o join schema_crmexpress.stk_container c on o.own_ownerid=c.stk_containerownerid join schema_crmexpress.wrh_warehouse w on c.stk_containerwarehouseid=w.wrh_warehouseid group by o.own_ownercode", nativeQuery = true)
     public List<Object[]> sizeContainerByOwner();
-    @Query(value = "select o.own_ownercode,count(c.stk_containerid) from schema_tmsvoieexpress.own_owner o join schema_tmsvoieexpress.stk_container c on o.own_ownerid=c.stk_containerownerid join schema_tmsvoieexpress.wrh_warehouse w on c.stk_containerwarehouseid=w.wrh_warehouseid where w.wrh_warehousecode=:code  group by o.own_ownercode", nativeQuery = true)
+    @Query(value = "select o.own_ownercode,count(c.stk_containerid) from schema_crmexpress.own_owner o join schema_crmexpress.stk_container c on o.own_ownerid=c.stk_containerownerid join schema_crmexpress.wrh_warehouse w on c.stk_containerwarehouseid=w.wrh_warehouseid where w.wrh_warehousecode=:code  group by o.own_ownercode", nativeQuery = true)
         public List<Object[]> sizeContainerByOwnerByCode(@Param("code") String code);
     public WrhWarehouse findByWrhWarehouseCode(String wrhWarehouseCode);
 
-    @Query(value = "select nextVal('schema_tmsvoieexpress.seq_warehouse_code')", nativeQuery = true)
+    @Query(value = "select nextVal('schema_crmexpress.seq_warehouse_code')", nativeQuery = true)
     Long getNextVal();
 }

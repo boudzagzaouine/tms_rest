@@ -15,7 +15,7 @@ public interface CompanyRepository extends JpaRepository<CmdCompany,Long>,
         QuerydslPredicateExecutor<CmdCompany>{
 
 
-    @Query(value = "select nextVal('schema_tmsvoieexpress.seq_company_code')", nativeQuery = true)
+    @Query(value = "select nextVal('schema_crmexpress.seq_company_code')", nativeQuery = true)
     public List<BigInteger> getNextVal();
 
 }
