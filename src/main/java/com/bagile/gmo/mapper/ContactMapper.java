@@ -68,6 +68,7 @@ public class ContactMapper {
         if (!lazy) {
             gmoContact.setOwnOwner(OwnerMapper.toEntity(contact.getOwner(), true));
             gmoContact.setCmdAccount(AccountMapper.toEntity(contact.getAccount(), true));
+            gmoContact.setTmsContactFunction(ContactFunctionMapper.toEntity(contact.getContactFunction(), true));
 
 //            prmContact.setInvInvoices(InvoiceMapper.toEntities(contact.getInvoices(), true));
 //            prmContact.setInvInvoiceArcs(InvoiceArcMapper.toEntities(contact.getInvoiceArcs(), true));
@@ -104,6 +105,7 @@ public class ContactMapper {
 
             contact.setOwner(OwnerMapper.toDto(gmoContact.getOwnOwner(), true));
             contact.setAccount(AccountMapper.toDto(gmoContact.getCmdAccount(), true));
+            contact.setContactFunction(ContactFunctionMapper.toDto(gmoContact.getTmsContactFunction(), true));
 
 //            contact.setInvoices(InvoiceMapper.toDtos(prmContact.getInvInvoices(), true));
 //            contact.setInvoiceArcs(InvoiceArcMapper.toDtos(prmContact.getInvInvoiceArcs(), true));

@@ -25,7 +25,7 @@ public class PrmCurrency extends EmsEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "schema_crmexpress.prm_currency_prm_currencyid_seq", allocationSize = 1)
+    @SequenceGenerator(name = "seq", sequenceName = "schema_tmsvoieexpress.prm_currency_prm_currencyid_seq", allocationSize = 1)
     @Column(name = "prm_currencyid", unique = true, nullable = false, precision = 10, scale = 0)
     public long getPrmCurrencyId() {
         return prmCurrencyId;

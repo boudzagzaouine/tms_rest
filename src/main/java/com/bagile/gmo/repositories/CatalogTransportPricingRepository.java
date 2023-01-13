@@ -12,7 +12,7 @@ import java.util.List;
 public interface CatalogTransportPricingRepository extends JpaRepository<TmsCatalogTransportPricing, Long>,
 		QuerydslPredicateExecutor<TmsCatalogTransportPricing> {
 
-	@Query(value="select nextval('schema_crmexpress.seq_catalog_transport_pricing_code')",nativeQuery = true)
+	@Query(value="select nextval('schema_tmsvoieexpress.seq_catalog_transport_pricing_code')",nativeQuery = true)
 	public List<BigInteger> getNextVal();
 
 }

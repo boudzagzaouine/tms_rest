@@ -24,6 +24,8 @@ public class Contact extends EmsDto implements Serializable {
 
     private Account account;
 
+    private ContactFunction contactFunction;
+
     public Contact() {
     }
 
@@ -65,6 +67,14 @@ public class Contact extends EmsDto implements Serializable {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public ContactFunction getContactFunction() {
+        return contactFunction;
+    }
+
+    public void setContactFunction(ContactFunction contactFunction) {
+        this.contactFunction = contactFunction;
     }
 
     public String getFax() {

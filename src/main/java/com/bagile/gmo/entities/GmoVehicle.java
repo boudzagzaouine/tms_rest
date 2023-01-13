@@ -65,6 +65,8 @@ public class GmoVehicle extends GmoPatrimony {
 
     private TmsVehicleTray tmsVehicleTray;
 
+    private GmoBrandVehicleType gmoBrandVehicleType;
+
   /*  @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_vehicule_id", allocationSize = 1)
@@ -176,6 +178,16 @@ public class GmoVehicle extends GmoPatrimony {
 
     public void setGmoVehicleCategory(GmoVehicleCategory gmoVehicleCategory) {
         this.gmoVehicleCategory = gmoVehicleCategory;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gmo_brandvehiculetypeid")
+    public GmoBrandVehicleType getGmoBrandVehicleType() {
+        return gmoBrandVehicleType;
+    }
+
+    public void setGmoBrandVehicleType(GmoBrandVehicleType gmoBrandVehicleType) {
+        this.gmoBrandVehicleType = gmoBrandVehicleType;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)

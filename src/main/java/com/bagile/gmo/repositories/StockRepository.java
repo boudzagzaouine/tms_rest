@@ -11,9 +11,9 @@ import java.util.List;
 public interface StockRepository extends JpaRepository<StkStock,Long>,
         QuerydslPredicateExecutor<StkStock> {
 
-    @Query(value = "select sum(stk_stockquantitybaseuom),stk_stocklot,stk_stockserialno,stk_stockdlc,stk_stockdluo,stk_stockproductdimensionid,stk_stockweight,stk_stockquality,stk_stockcolorid from schema_crmexpress.stk_stock where stk_stockactive=true and stk_stockwarehouseid=?1 and stk_stockproductid=?2 group by stk_stocklot,stk_stockserialno,stk_stockdlc,stk_stockdluo,stk_stockproductdimensionid,stk_stockweight,stk_stockquality,stk_stockcolorid",nativeQuery = true)
+    @Query(value = "select sum(stk_stockquantitybaseuom),stk_stocklot,stk_stockserialno,stk_stockdlc,stk_stockdluo,stk_stockproductdimensionid,stk_stockweight,stk_stockquality,stk_stockcolorid from schema_tmsvoieexpress.stk_stock where stk_stockactive=true and stk_stockwarehouseid=?1 and stk_stockproductid=?2 group by stk_stocklot,stk_stockserialno,stk_stockdlc,stk_stockdluo,stk_stockproductdimensionid,stk_stockweight,stk_stockquality,stk_stockcolorid",nativeQuery = true)
     public List<Object[]> getProductQuantity(long warehouseId, long productId);
 
-    @Query(value = "select sum(stk_stockquantitybaseuom),stk_stocklot,stk_stockserialno,stk_stockdlc,stk_stockdluo,stk_stockproductdimensionid,stk_stockweight,stk_stockquality,stk_stockcolorid from schema_crmexpress.stk_stock where stk_stockactive=true and stk_stockwarehouseid=?1 and stk_stockproductid=?2 and stk_stocklocationid=?3 group by stk_stocklot,stk_stockserialno,stk_stockdlc,stk_stockdluo,stk_stockproductdimensionid,stk_stockweight,stk_stockquality,stk_stockcolorid",nativeQuery = true)
+    @Query(value = "select sum(stk_stockquantitybaseuom),stk_stocklot,stk_stockserialno,stk_stockdlc,stk_stockdluo,stk_stockproductdimensionid,stk_stockweight,stk_stockquality,stk_stockcolorid from schema_tmsvoieexpress.stk_stock where stk_stockactive=true and stk_stockwarehouseid=?1 and stk_stockproductid=?2 and stk_stocklocationid=?3 group by stk_stocklot,stk_stockserialno,stk_stockdlc,stk_stockdluo,stk_stockproductdimensionid,stk_stockweight,stk_stockquality,stk_stockcolorid",nativeQuery = true)
     public List<Object[]> getProductQuantityLocation(long warehouseId,long productId,long locationId);
 }

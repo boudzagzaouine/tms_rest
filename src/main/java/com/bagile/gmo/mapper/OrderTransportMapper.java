@@ -16,9 +16,12 @@ public class  OrderTransportMapper {
         map = new HashMap<>();
 
         map.put("id", "tmsOrderTransportId");
+        map.put("code", "tmsOrderTransportCode");
+
         map.put("vehicle", "tmsVehicle");
         map.put("company", "cmdCompany");
         map.put("date", "tmsOrderTransportDate");
+        map.put("loadingType", "tmsOrderTransportLoadingType");
 
         map.put("transport", "trpTransport");
         map.put("turnType", "tmsOrderTransportType");

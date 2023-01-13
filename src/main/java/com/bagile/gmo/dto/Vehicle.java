@@ -59,6 +59,7 @@ public class Vehicle extends Patrimony implements Serializable {
     private List<VehicleProduct> vehicleProducts = new ArrayList<>();
 
     private VehicleTray vehicleTray;
+    private BrandVehicleType brandVehicleType;
 
     public Vehicle() {
     }
@@ -134,6 +135,14 @@ public class Vehicle extends Patrimony implements Serializable {
 
     public void setAquisitionDate(Date aquisitionDate) {
         this.aquisitionDate = aquisitionDate;
+    }
+
+    public BrandVehicleType getBrandVehicleType() {
+        return brandVehicleType;
+    }
+
+    public void setBrandVehicleType(BrandVehicleType brandVehicleType) {
+        this.brandVehicleType = brandVehicleType;
     }
 
     public BigDecimal getAmount() {

@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ContainerRepository extends JpaRepository<StkContainer, Long>,
         QuerydslPredicateExecutor<StkContainer> {
-    @Query(value = "select nextval('schema_crmexpress.seq_container_code')", nativeQuery = true)
+    @Query(value = "select nextval('schema_tmsvoieexpress.seq_container_code')", nativeQuery = true)
     public List<BigInteger> getNextVal();
 
     public StkContainer findByStkContainerCode(String stkContainerCode);

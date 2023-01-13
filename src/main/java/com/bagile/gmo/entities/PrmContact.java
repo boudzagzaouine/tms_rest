@@ -24,6 +24,8 @@ public class PrmContact extends EmsEntity {
 
     private CmdAccount cmdAccount ;
 
+    private TmsContactFunction tmsContactFunction;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_prm_contact_id", allocationSize = 1)
@@ -133,6 +135,16 @@ public class PrmContact extends EmsEntity {
 
     public void setOwnOwner(OwnOwner ownOwner) {
         this.ownOwner = ownOwner;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tms_contactfunctionid")
+    public TmsContactFunction getTmsContactFunction() {
+        return tmsContactFunction;
+    }
+
+    public void setTmsContactFunction(TmsContactFunction tmsContactFunction) {
+        this.tmsContactFunction = tmsContactFunction;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)

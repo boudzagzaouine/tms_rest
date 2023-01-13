@@ -1,0 +1,106 @@
+package com.bagile.gmo.controllers;
+
+import com.bagile.gmo.dto.BrandVehicleType;
+import com.bagile.gmo.exceptions.AttributesNotFound;
+import com.bagile.gmo.exceptions.ErrorType;
+import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.services.BrandVehicleTypeService;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.List;
+
+@Controller
+@RequestMapping(value = "/brandVehicleTypes")
+public class BrandVehicleTypeController {
+
+    private final BrandVehicleTypeService brandVehicleTypeService;
+
+    public BrandVehicleTypeController(BrandVehicleTypeService brandVehicleTypeService) {
+        this.brandVehicleTypeService = brandVehicleTypeService;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/list")
+    @ResponseBody
+    public List<BrandVehicleType> getAll() {
+        return brandVehicleTypeService.findAll();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/listPage")
+    @ResponseBody
+    public List<BrandVehicleType> getAll(@RequestParam int page, @RequestParam int size) {
+        return brandVehicleTypeService.findAll(page, size);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    @ResponseBody
+    public BrandVehicleType getOne(@PathVariable("id") Long id) throws IdNotFound {
+        return brandVehicleTypeService.findById(id);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/size")
+    @ResponseBody
+    public Long size() {
+        return brandVehicleTypeService.size();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/sizeSearch")
+    @ResponseBody
+    public Long size(@RequestParam String search) throws AttributesNotFound, ErrorType {
+        return brandVehicleTypeService.size(search);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/exist")
+    @ResponseBody
+    public Boolean exist(@RequestParam Long id) throws AttributesNotFound, ErrorType {
+        return brandVehicleTypeService.isExist(id);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/search")
+    @ResponseBody
+    public List<BrandVehicleType> search(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
+        return brandVehicleTypeService.find(search);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
+    @ResponseBody
+    public List<BrandVehicleType> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
+        return brandVehicleTypeService.find(search, page, size);
+
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public BrandVehicleType add(@RequestBody BrandVehicleType brandVehicleType) {
+        return brandVehicleTypeService.save(brandVehicleType);
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public BrandVehicleType set(@RequestBody BrandVehicleType brandVehicleType) {
+        return brandVehicleTypeService.save(brandVehicleType);
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public void delete(@RequestBody BrandVehicleType brandVehicleType) {
+        brandVehicleTypeService.delete(brandVehicleType);
+    }
+
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public void delete(@PathVariable Long id) {
+        brandVehicleTypeService.delete(id);
+    }
+
+
+    @RequestMapping(value = "/deleteAll", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
+        brandVehicleTypeService.deleteAll (Arrays.asList(ids));
+    }
+
+}

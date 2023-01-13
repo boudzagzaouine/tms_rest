@@ -114,6 +114,7 @@ public class VehicleMapper {
             gmoVehicle.setGmoDriver (DriverMapper.toEntity (vehicle.getDriver (), false));
             gmoVehicle.setGmoVehicleProductSet (VehicleProductMapper.toEntities (vehicle.getVehicleProducts (), false));
             gmoVehicle.setTmsVehicleTray (VehicleTrayMapper.toEntity (vehicle.getVehicleTray (), false));
+            gmoVehicle.setGmoBrandVehicleType (BrandVehicleTypeMapper.toEntity (vehicle.getBrandVehicleType (), false));
 
             //oneToOne(gmoVehicle);
            oneToMany(gmoVehicle);
@@ -181,6 +182,7 @@ public class VehicleMapper {
             vehicle.setDriver (DriverMapper.toDto (gmoVehicle.getGmoDriver (), false));
             vehicle.setVehicleProducts (VehicleProductMapper.toDtos (gmoVehicle.getGmoVehicleProductSet (), false));
             vehicle.setVehicleTray (VehicleTrayMapper.toDto (gmoVehicle.getTmsVehicleTray (), false));
+            vehicle.setBrandVehicleType (BrandVehicleTypeMapper.toDto (gmoVehicle.getGmoBrandVehicleType (), false));
 
         }
         return vehicle;

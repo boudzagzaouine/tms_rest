@@ -15,6 +15,6 @@ import java.util.List;
 
 public interface DeliveryRepository extends JpaRepository<CmdDelivery, Long>,
         QuerydslPredicateExecutor<CmdDelivery> {
-    @Query(value="select nextval('schema_crmexpress.seq_delivery_code')",nativeQuery = true)
+    @Query(value="select nextval('schema_tmsvoieexpress.seq_delivery_code')",nativeQuery = true)
     public List<BigInteger> getNextVal();
 }
