@@ -16,7 +16,6 @@ public class TransportPlanMapper {
         map = new HashMap<>();
 
         map.put("id", "tmsTransportPlanId");
-
         map.put("vehicle", "gmoVehicle");
         map.put("vehicleCategory", "gmoVehicleCategory");
         map.put("orderTransport", "tmsOrderTransport");
@@ -47,9 +46,10 @@ public class TransportPlanMapper {
         tmsTransportPlan.setTmsTransportPlanId(transportPlan.getId());
         tmsTransportPlan.setTmsTransportPlanPurchasePrice(transportPlan.getPurchasePrice());
         tmsTransportPlan.setTmsTransportPlanDate(transportPlan.getDate());
-        tmsTransportPlan.setPrmVilleSource(transportPlan.getVilleSource());
-        tmsTransportPlan.setPrmVilleDistination(transportPlan.getVilleDistination());
+
         tmsTransportPlan.setTmsTransportPlanSalePrice(transportPlan.getSalePrice());
+        tmsTransportPlan.setTmsTransportPlanMarginRate(transportPlan.getMarginRate());
+        tmsTransportPlan.setTmsTransportPlanmargineService(transportPlan.getMargineService());
 
 
         if (!lazy) {
@@ -59,8 +59,10 @@ public class TransportPlanMapper {
             tmsTransportPlan.setGmoVehicleCategory(VehicleCategoryMapper.toEntity(transportPlan.getVehicleCategory(), true));
             tmsTransportPlan.setTrpTransport(TransportMapper.toEntity(transportPlan.getTransport(), true));
             tmsTransportPlan.setTmsTurnStatus(TurnStatusMapper.toEntity(transportPlan.getTurnStatus(), true));
-//            tmsTransportPlan.setPrmVilleSource(VilleMapper.toEntity(transportPlan.getVilleSource(), true));
-//            tmsTransportPlan.setPrmVilleDistination(VilleMapper.toEntity(transportPlan.getVilleDistination(), true));
+            tmsTransportPlan.setTmsTransportPlanProductServiceSet(TransportPlanProductServiceMapper.toEntities(transportPlan.getTransportPlanProductServices(), false));
+            tmsTransportPlan.setCmdCompany(CompanyMapper.toEntity(transportPlan.getCompany(), true));
+           tmsTransportPlan.setPrmVilleSource(VilleMapper.toEntity(transportPlan.getVilleSource(), true));
+            tmsTransportPlan.setPrmVilleDistination(VilleMapper.toEntity(transportPlan.getVilleDistination(), true));
 
             oneToMany(tmsTransportPlan);
         }
@@ -88,9 +90,9 @@ public class TransportPlanMapper {
         transportPlan.setId( tmsTransportPlan.getTmsTransportPlanId());
         transportPlan.setPurchasePrice(tmsTransportPlan.getTmsTransportPlanPurchasePrice());
         transportPlan.setDate(tmsTransportPlan.getTmsTransportPlanDate());
+        transportPlan.setMarginRate(tmsTransportPlan.getTmsTransportPlanMarginRate());
+        transportPlan.setMargineService(tmsTransportPlan.getTmsTransportPlanmargineService());
 
-        transportPlan.setVilleSource(tmsTransportPlan.getPrmVilleSource());
-        transportPlan.setVilleDistination(tmsTransportPlan.getPrmVilleDistination());
 
         transportPlan.setSalePrice(tmsTransportPlan.getTmsTransportPlanSalePrice());
 
@@ -101,8 +103,11 @@ public class TransportPlanMapper {
             transportPlan.setVehicleCategory(VehicleCategoryMapper.toDto(tmsTransportPlan.getGmoVehicleCategory(), true));
             transportPlan.setTransport(TransportMapper.toDto(tmsTransportPlan.getTrpTransport(), true));
             transportPlan.setTurnStatus(TurnStatusMapper.toDto(tmsTransportPlan.getTmsTurnStatus(), true));
-//            transportPlan.setVilleSource(VilleMapper.toDto(tmsTransportPlan.getPrmVilleSource(), true));
-//            transportPlan.setVilleDistination(VilleMapper.toDto(tmsTransportPlan.getPrmVilleDistination(), true));
+            transportPlan.setTransportPlanProductServices(TransportPlanProductServiceMapper.toDtos(tmsTransportPlan.getTmsTransportPlanProductServiceSet(), false));
+            transportPlan.setCompany(CompanyMapper.toDto(tmsTransportPlan.getCmdCompany(), true));
+
+           transportPlan.setVilleSource(VilleMapper.toDto(tmsTransportPlan.getPrmVilleSource(), true));
+            transportPlan.setVilleDistination(VilleMapper.toDto(tmsTransportPlan.getPrmVilleDistination(), true));
 
 
 

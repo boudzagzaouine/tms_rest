@@ -13,13 +13,14 @@ public class TmsTransportPlan extends EmsEntity {
     private Long tmsTransportPlanId;
 
     private TmsOrderTransport tmsOrderTransport;
+    private CmdCompany cmdCompany;
     private GmoVehicle gmoVehicle;
     private GmoDriver gmoDriver;
     private GmoVehicleCategory gmoVehicleCategory;
     private TrpTransport trpTransport;
 
-    private String prmVilleSource;
-    private String prmVilleDistination;
+    private PrmVille prmVilleSource;
+    private PrmVille prmVilleDistination;
     private TmsTurnStatus tmsTurnStatus;
     private BigDecimal tmsTransportPlanPurchasePrice;
 
@@ -27,6 +28,8 @@ public class TmsTransportPlan extends EmsEntity {
 
     private  Date tmsTransportPlanDate;
 
+    private BigDecimal tmsTransportPlanMarginRate;
+    private BigDecimal tmsTransportPlanmargineService;
 
     private Set<TmsTransportPlanProductService> tmsTransportPlanProductServiceSet = new HashSet<>();
 
@@ -53,27 +56,38 @@ public class TmsTransportPlan extends EmsEntity {
         this.tmsOrderTransport = tmsOrderTransport;
     }
 
-    @Column(name = "tms_transportplanvillesource")
-    public String getPrmVilleSource() {
+    @ManyToOne()
+    @JoinColumn(name = "tms_prmvillesourceid")
+    public PrmVille getPrmVilleSource() {
         return prmVilleSource;
     }
 
-
-    public void setPrmVilleSource(String prmVilleSource) {
+    public void setPrmVilleSource(PrmVille prmVilleSource) {
         this.prmVilleSource = prmVilleSource;
     }
-    @Column(name = "tms_transportplanvilledistination")
-
-    public String getPrmVilleDistination() {
+    @ManyToOne()
+    @JoinColumn(name = "tms_prmvilledistinationid")
+    public PrmVille getPrmVilleDistination() {
         return prmVilleDistination;
     }
 
-    public void setPrmVilleDistination(String prmVilleDistination) {
+    public void setPrmVilleDistination(PrmVille prmVilleDistination) {
         this.prmVilleDistination = prmVilleDistination;
     }
 
+    @ManyToOne()
+    @JoinColumn(name = "tms_cmdcompany")
+    public CmdCompany getCmdCompany() {
+        return cmdCompany;
+    }
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    public void setCmdCompany(CmdCompany cmdCompany) {
+        this.cmdCompany = cmdCompany;
+    }
+
+
+
+    @ManyToOne()
     @JoinColumn(name = "tms_gmovehicleid")
     public GmoVehicle getGmoVehicle() {
         return gmoVehicle;
@@ -141,6 +155,24 @@ public class TmsTransportPlan extends EmsEntity {
 
     public void setTmsTransportPlanPurchasePrice(BigDecimal tmsTransportPlanPriceTTC) {
         this.tmsTransportPlanPurchasePrice = tmsTransportPlanPriceTTC;
+    }
+
+    @Column(name = "tms_transportplanmarginrate")
+    public BigDecimal getTmsTransportPlanMarginRate() {
+        return tmsTransportPlanMarginRate;
+    }
+
+    public void setTmsTransportPlanMarginRate(BigDecimal tmsTransportPlanMarginRate) {
+        this.tmsTransportPlanMarginRate = tmsTransportPlanMarginRate;
+    }
+
+    @Column(name = "tms_transportplanmarginservice")
+    public BigDecimal getTmsTransportPlanmargineService() {
+        return tmsTransportPlanmargineService;
+    }
+
+    public void setTmsTransportPlanmargineService(BigDecimal tmsTransportPlanmargineService) {
+        this.tmsTransportPlanmargineService = tmsTransportPlanmargineService;
     }
 
     @Column(name = "tms_transportplansaleprice")

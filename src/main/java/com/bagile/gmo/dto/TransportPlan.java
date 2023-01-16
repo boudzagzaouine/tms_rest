@@ -15,14 +15,17 @@ public class TransportPlan extends EmsDto implements Serializable {
     private Driver driver;
     private VehicleCategory vehicleCategory;
     private Transport  transport;
-
+ private Company company;
     private TurnStatus turnStatus;
 
     private BigDecimal purchasePrice;
     private BigDecimal salePrice;
 
-    private String villeSource;
-    private String villeDistination;
+    private BigDecimal marginRate;
+    private BigDecimal margineService;
+
+    private Ville villeSource;
+    private Ville villeDistination;
     private Date date ;
 
     private List<TransportPlanProductService> transportPlanProductServices = new ArrayList<>();
@@ -47,6 +50,30 @@ public class TransportPlan extends EmsDto implements Serializable {
         this.orderTransport = orderTransport;
     }
 
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public BigDecimal getMarginRate() {
+        return marginRate;
+    }
+
+    public void setMarginRate(BigDecimal marginRate) {
+        this.marginRate = marginRate;
+    }
+
+    public BigDecimal getMargineService() {
+        return margineService;
+    }
+
+    public void setMargineService(BigDecimal margineService) {
+        this.margineService = margineService;
+    }
+
     public Vehicle getVehicle() {
         return vehicle;
     }
@@ -63,19 +90,19 @@ public class TransportPlan extends EmsDto implements Serializable {
         this.purchasePrice = purchasePrice;
     }
 
-    public String getVilleSource() {
+    public Ville getVilleSource() {
         return villeSource;
     }
 
-    public void setVilleSource(String villeSource) {
+    public void setVilleSource(Ville villeSource) {
         this.villeSource = villeSource;
     }
 
-    public String getVilleDistination() {
+    public Ville getVilleDistination() {
         return villeDistination;
     }
 
-    public void setVilleDistination(String villeDistination) {
+    public void setVilleDistination(Ville villeDistination) {
         this.villeDistination = villeDistination;
     }
 

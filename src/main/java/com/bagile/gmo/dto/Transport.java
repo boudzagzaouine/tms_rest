@@ -92,6 +92,8 @@ public class Transport  extends EmsDto implements Serializable {
         this.catalogTransportAccountPricings = catalogTransportAccountPricings;
     }
 
+
+
     public Contact getContact() {
         return contact;
     }

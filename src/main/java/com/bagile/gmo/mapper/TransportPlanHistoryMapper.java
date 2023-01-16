@@ -16,7 +16,6 @@ public class TransportPlanHistoryMapper {
         map = new HashMap<>();
 
         map.put("id", "tmsTransportPlanHistoryId");
-
         map.put("vehicle", "gmoVehicle");
         map.put("vehicleCategory", "gmoVehicleCategory");
         map.put("orderTransport", "tmsOrderTransport");
@@ -25,6 +24,9 @@ public class TransportPlanHistoryMapper {
         map.put("transport", "trpTransport");
         map.put("turnType", "tmsTransportPlanHistoryType");
         map.put("turnStatus", "tmsTurnStatus");
+        map.put("type", "tmsTransportPlanHistoryType");
+        map.put("orderTransportRejectType", "tmsOrderTransportRejectType");
+
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdBy");
@@ -49,6 +51,9 @@ public class TransportPlanHistoryMapper {
         tmsTransportPlanHistory.setTmsTransportPlanHistoryDate(transportPlanHistory.getDate());
         tmsTransportPlanHistory.setTmsTransportPlanHistorySalePrice(transportPlanHistory.getSalePrice());
         tmsTransportPlanHistory.setTmsTransportPlanHistoryType(transportPlanHistory.getType());
+        tmsTransportPlanHistory.setTmsTransportPlanHistoryRemark(transportPlanHistory.getRemark());
+        tmsTransportPlanHistory.setTmsTransportPlanHistoryMarginRate(transportPlanHistory.getMarginRate());
+        tmsTransportPlanHistory.setTmsTransportPlanHistorymargineService(transportPlanHistory.getMargineService());
 
 
         if (!lazy) {
@@ -82,6 +87,9 @@ public class TransportPlanHistoryMapper {
 
         transportPlanHistory.setSalePrice(tmsTransportPlanHistory.getTmsTransportPlanHistorySalePrice());
         transportPlanHistory.setType(tmsTransportPlanHistory.getTmsTransportPlanHistoryType());
+        transportPlanHistory.setRemark(tmsTransportPlanHistory.getTmsTransportPlanHistoryRemark());
+        transportPlanHistory.setMargineService(tmsTransportPlanHistory.getTmsTransportPlanHistorymargineService());
+        transportPlanHistory.setMarginRate(tmsTransportPlanHistory.getTmsTransportPlanHistoryMarginRate());
 
         if (!lazy) {
             transportPlanHistory.setOrderTransport(OrderTransportMapper.toDto(tmsTransportPlanHistory.getTmsOrderTransport(), false));

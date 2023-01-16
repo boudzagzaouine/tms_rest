@@ -29,6 +29,9 @@ public class TmsTransportPlanHistory extends EmsEntity {
 
     private TmsOrderTransportRejectType tmsOrderTransportRejectType;
  private long tmsTransportPlanHistoryType ;
+    private BigDecimal tmsTransportPlanHistoryMarginRate;
+    private BigDecimal tmsTransportPlanHistorymargineService;
+ private String tmsTransportPlanHistoryRemark;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -140,6 +143,35 @@ public class TmsTransportPlanHistory extends EmsEntity {
 
     public void setTmsTransportPlanHistoryPurchasePrice(BigDecimal tmsTransportPlanHistoryPriceTTC) {
         this.tmsTransportPlanHistoryPurchasePrice = tmsTransportPlanHistoryPriceTTC;
+    }
+
+    @Column(name = "tms_transportplanhistoryremark")
+
+    public String getTmsTransportPlanHistoryRemark() {
+        return tmsTransportPlanHistoryRemark;
+    }
+
+    public void setTmsTransportPlanHistoryRemark(String tmsTransportPlanHistoryRemark) {
+        this.tmsTransportPlanHistoryRemark = tmsTransportPlanHistoryRemark;
+    }
+
+    @Column(name = "tms_transportplanhistorymarginerate")
+
+    public BigDecimal getTmsTransportPlanHistoryMarginRate() {
+        return tmsTransportPlanHistoryMarginRate;
+    }
+
+    public void setTmsTransportPlanHistoryMarginRate(BigDecimal tmsTransportPlanHistoryMarginRate) {
+        this.tmsTransportPlanHistoryMarginRate = tmsTransportPlanHistoryMarginRate;
+    }
+
+    @Column(name = "tms_transportplanhistorymargineservice")
+    public BigDecimal getTmsTransportPlanHistorymargineService() {
+        return tmsTransportPlanHistorymargineService;
+    }
+
+    public void setTmsTransportPlanHistorymargineService(BigDecimal tmsTransportPlanHistorymargineService) {
+        this.tmsTransportPlanHistorymargineService = tmsTransportPlanHistorymargineService;
     }
 
     @Column(name = "tms_transportplanhistorytype")
