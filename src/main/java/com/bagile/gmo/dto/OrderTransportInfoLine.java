@@ -1,6 +1,8 @@
 package com.bagile.gmo.dto;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class OrderTransportInfoLine {
@@ -36,6 +38,7 @@ public class OrderTransportInfoLine {
 	private OrderTransportInfo orderTransportInfo;
 	private Owner owner;
 
+	private List<OrderTransportInfoLineDocument> orderTransportInfoLineDocuments = new ArrayList();
 
 	public long getId() {
 		return id;
@@ -74,6 +77,14 @@ public class OrderTransportInfoLine {
 
 	public void setContreFactureEnlevement(Boolean contreFactureEnlevement) {
 		this.contreFactureEnlevement = contreFactureEnlevement;
+	}
+
+	public List<OrderTransportInfoLineDocument> getOrderTransportInfoLineDocuments() {
+		return orderTransportInfoLineDocuments;
+	}
+
+	public void setOrderTransportInfoLineDocuments(List<OrderTransportInfoLineDocument> orderTransportInfoLineDocuments) {
+		this.orderTransportInfoLineDocuments = orderTransportInfoLineDocuments;
 	}
 
 	public Account getAccount() {

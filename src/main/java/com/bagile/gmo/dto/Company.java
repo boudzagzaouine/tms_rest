@@ -51,6 +51,7 @@ public class Company extends EmsDto implements Serializable {
     private String fax;
 
     private List<AccountPricing> accountPricingList = new ArrayList<>();
+    private List<AccountService> accountServiceList = new ArrayList<>();
 
     public long getId() {
         return this.id;
@@ -361,6 +362,14 @@ public class Company extends EmsDto implements Serializable {
 
     public void setFax(String fax) {
         this.fax = fax;
+    }
+
+    public List<AccountService> getAccountServiceList() {
+        return accountServiceList;
+    }
+
+    public void setAccountServiceList(List<AccountService> accountServiceList) {
+        this.accountServiceList = accountServiceList;
     }
 
     @Override

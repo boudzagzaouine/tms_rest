@@ -9,10 +9,7 @@ import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.CompanyMapper;
 import com.bagile.gmo.mapper.TransportMapper;
 import com.bagile.gmo.repositories.TransportRepository;
-import com.bagile.gmo.services.CatalogTransportAccountPricingService;
-import com.bagile.gmo.services.CatalogTransportPricingService;
-import com.bagile.gmo.services.SettingService;
-import com.bagile.gmo.services.TransportService;
+import com.bagile.gmo.services.*;
 import com.bagile.gmo.util.GmaoSearch;
 import com.bagile.gmo.util.Search;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +30,8 @@ public class TransportServiceImpl implements TransportService, GmaoSearch {
     private CatalogTransportPricingService catalogTransportPricingService;
     @Autowired
     private CatalogTransportAccountPricingService catalogTransportAccountPricingService;
-
+    @Autowired
+    private TransportServiceService transportServiceService;
     public TransportServiceImpl(TransportRepository transportRepository) {
         this.transportRepository = transportRepository;
     }
@@ -55,6 +53,12 @@ public class TransportServiceImpl implements TransportService, GmaoSearch {
                         element -> element.setTransport(transport1)
                 );
                 this.catalogTransportAccountPricingService.saveAll(transport.getCatalogTransportAccountPricings());
+            }
+            if (transport.getCatalogTransportServices() != null) {
+                transport.getCatalogTransportServices().forEach(
+                        element -> element.setTransport(transport1)
+                );
+                this.transportServiceService.saveAll(transport.getCatalogTransportServices());
             }
         }
        return transport1;

@@ -6,6 +6,8 @@ import com.bagile.gmo.mapper.PaymentRuleMapper;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="tms_ordertransportinfolineinfoline")
@@ -42,7 +44,7 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
     private Long  tmsOrderTransportLineNumber ;
     private TmsOrderTransportInfo tmsOrderTransportInfo;
 
-
+  private Set<TmsOrderTransportInfoLineDocument> tmsOrderTransportInfoLineDocumentSet = new HashSet<>();
 
 
     @Id
@@ -145,6 +147,16 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
 
     public void setPrmPaymentTypeLivraison(PrmPaymentType prmPaymentTypeLivraison) {
         this.prmPaymentTypeLivraison = prmPaymentTypeLivraison;
+    }
+
+    @OneToMany(mappedBy = "tmsOrderTransportInfoLine", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+
+    public Set<TmsOrderTransportInfoLineDocument> getTmsOrderTransportInfoLineDocumentSet() {
+        return tmsOrderTransportInfoLineDocumentSet;
+    }
+
+    public void setTmsOrderTransportInfoLineDocumentSet(Set<TmsOrderTransportInfoLineDocument> tmsOrderTransportInfoLineDocumentSet) {
+        this.tmsOrderTransportInfoLineDocumentSet = tmsOrderTransportInfoLineDocumentSet;
     }
 
     @ManyToOne()

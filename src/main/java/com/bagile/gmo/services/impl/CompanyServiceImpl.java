@@ -8,10 +8,7 @@ import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.CompanyMapper;
 import com.bagile.gmo.repositories.CompanyRepository;
-import com.bagile.gmo.services.AccountPricingService;
-import com.bagile.gmo.services.AddressService;
-import com.bagile.gmo.services.CompanyService;
-import com.bagile.gmo.services.SettingService;
+import com.bagile.gmo.services.*;
 import com.bagile.gmo.util.Search;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +33,9 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Autowired
     private AccountPricingService accountPricingService;
+
+    @Autowired
+    private AccountServiceService accountServiceService;
     public CompanyServiceImpl(CompanyRepository companyRepository) {
         this.companyRepository = companyRepository;
     }
@@ -55,6 +55,13 @@ public class CompanyServiceImpl implements CompanyService {
                         element -> element.setCompany(company1)
                 );
                 this.accountPricingService.saveAll(company.getAccountPricingList());
+            }
+
+            if (company.getAccountServiceList() != null) {
+                company.getAccountServiceList().forEach(
+                        element -> element.setCompany(company1)
+                );
+                this.accountServiceService.saveAll(company.getAccountServiceList());
             }
         }
         return company1;

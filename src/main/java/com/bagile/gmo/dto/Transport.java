@@ -35,7 +35,7 @@ public class Transport  extends EmsDto implements Serializable {
 
     private List<CatalogTransportPricing> catalogTransportPricings = new ArrayList<>();
     private List<CatalogTransportAccountPricing> catalogTransportAccountPricings = new ArrayList<>();
-
+    private List<TransportService> catalogTransportServices = new ArrayList<>();
     private Owner owner;
 
     private List<TransportCategoryVehicle> transportCategorieVehicules=new ArrayList<>();
@@ -92,7 +92,13 @@ public class Transport  extends EmsDto implements Serializable {
         this.catalogTransportAccountPricings = catalogTransportAccountPricings;
     }
 
+    public List<TransportService> getCatalogTransportServices() {
+        return catalogTransportServices;
+    }
 
+    public void setCatalogTransportServices(List<TransportService> catalogTransportServices) {
+        this.catalogTransportServices = catalogTransportServices;
+    }
 
     public Contact getContact() {
         return contact;
