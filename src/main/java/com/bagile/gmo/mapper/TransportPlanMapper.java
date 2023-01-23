@@ -2,7 +2,6 @@ package com.bagile.gmo.mapper;
 
 import com.bagile.gmo.dto.TransportPlan;
 import com.bagile.gmo.entities.TmsTransportPlan;
-import com.bagile.gmo.entities.TrpTransport;
 
 import java.util.*;
 
@@ -59,7 +58,7 @@ public class TransportPlanMapper {
             tmsTransportPlan.setGmoVehicleCategory(VehicleCategoryMapper.toEntity(transportPlan.getVehicleCategory(), true));
             tmsTransportPlan.setTrpTransport(TransportMapper.toEntity(transportPlan.getTransport(), true));
             tmsTransportPlan.setTmsTurnStatus(TurnStatusMapper.toEntity(transportPlan.getTurnStatus(), true));
-            tmsTransportPlan.setTmsTransportPlanProductServiceSet(TransportPlanProductServiceMapper.toEntities(transportPlan.getTransportPlanProductServices(), false));
+            tmsTransportPlan.setTransportPlanServiceCatalogs(TransportPlanServiceCatalogMapper.toEntities(transportPlan.getTransportPlanServiceCatalogs(), false));
             tmsTransportPlan.setCmdCompany(CompanyMapper.toEntity(transportPlan.getCompany(), true));
            tmsTransportPlan.setPrmVilleSource(VilleMapper.toEntity(transportPlan.getVilleSource(), true));
             tmsTransportPlan.setPrmVilleDistination(VilleMapper.toEntity(transportPlan.getVilleDistination(), true));
@@ -72,7 +71,7 @@ public class TransportPlanMapper {
 
 
     private static void oneToMany(TmsTransportPlan tmsTransportPlan){
-        tmsTransportPlan.getTmsTransportPlanProductServiceSet().forEach(
+        tmsTransportPlan.getTransportPlanServiceCatalogs().forEach(
                 e->{
                     e.setCreationDate(new Date());
                     e.setTmsTransportPlan(tmsTransportPlan);
@@ -103,7 +102,7 @@ public class TransportPlanMapper {
             transportPlan.setVehicleCategory(VehicleCategoryMapper.toDto(tmsTransportPlan.getGmoVehicleCategory(), true));
             transportPlan.setTransport(TransportMapper.toDto(tmsTransportPlan.getTrpTransport(), true));
             transportPlan.setTurnStatus(TurnStatusMapper.toDto(tmsTransportPlan.getTmsTurnStatus(), true));
-            transportPlan.setTransportPlanProductServices(TransportPlanProductServiceMapper.toDtos(tmsTransportPlan.getTmsTransportPlanProductServiceSet(), false));
+            transportPlan.setTransportPlanServiceCatalogs(TransportPlanServiceCatalogMapper.toDtos(tmsTransportPlan.getTransportPlanServiceCatalogs(), false));
             transportPlan.setCompany(CompanyMapper.toDto(tmsTransportPlan.getCmdCompany(), true));
 
            transportPlan.setVilleSource(VilleMapper.toDto(tmsTransportPlan.getPrmVilleSource(), true));

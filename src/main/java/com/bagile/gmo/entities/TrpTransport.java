@@ -59,7 +59,6 @@ public class TrpTransport extends EmsEntity implements java.io.Serializable {
     private Set<GmoTransportCategoryVehicle> gmoTransportCategoryVehicles=new HashSet<>();
 
 
-    private Set<TmsTransportProduct> transportProducts=new HashSet<>();
 
 
     //private Set<TmsTurn> gmoTurns=new HashSet<>();
@@ -93,14 +92,7 @@ public class TrpTransport extends EmsEntity implements java.io.Serializable {
         this.adrAddress = adrAddress;
     }
 
-    @OneToMany(fetch = FetchType.LAZY,cascade={CascadeType.ALL,CascadeType.MERGE},mappedBy = "trpTransport", orphanRemoval=true)
-    public Set<TmsTransportProduct> getTransportProducts() {
-        return transportProducts;
-    }
 
-    public void setTransportProducts(Set<TmsTransportProduct> transportProducts) {
-        this.transportProducts = transportProducts;
-    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "trp_transportcontactid", nullable = false)

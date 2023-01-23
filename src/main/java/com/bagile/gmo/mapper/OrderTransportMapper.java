@@ -50,6 +50,7 @@ public class  OrderTransportMapper {
         tmsOrderTransport.setTmsOrderTransportDate(orderTransport.getDate());
         tmsOrderTransport.setTmsOrderTransportPriceHT(orderTransport.getPriceHT());
         tmsOrderTransport.setTmsOrderTransportMarginRate(orderTransport.getMarginRate());
+        tmsOrderTransport.setTmsOrderTransportMarginValue(orderTransport.getMarginValue());
 
         if (!lazy) {
             tmsOrderTransport.setCmdCompany(CompanyMapper.toEntity(orderTransport.getCompany(), true));
@@ -80,6 +81,7 @@ public class  OrderTransportMapper {
         orderTransport.setCode(tmsOrderTransport.getTmsOrderTransportCode());
         orderTransport.setPriceHT(tmsOrderTransport.getTmsOrderTransportPriceHT());
         orderTransport.setMarginRate(tmsOrderTransport.getTmsOrderTransportMarginRate());
+        orderTransport.setMarginValue(tmsOrderTransport.getTmsOrderTransportMarginValue());
 
         if (!lazy) {
             orderTransport.setTurnType(TurnTypeMapper.toDto(tmsOrderTransport.getTmsOrderTransportType(), true));

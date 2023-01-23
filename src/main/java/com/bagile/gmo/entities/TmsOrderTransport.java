@@ -28,7 +28,7 @@ public class TmsOrderTransport extends EmsEntity {
     private BigDecimal tmsOrderTransportMarginRate;
 
 
-
+    private BigDecimal tmsOrderTransportMarginValue;
 
 
 
@@ -75,9 +75,17 @@ public class TmsOrderTransport extends EmsEntity {
     public BigDecimal getTmsOrderTransportMarginRate() {
         return tmsOrderTransportMarginRate;
     }
-
     public void setTmsOrderTransportMarginRate(BigDecimal tmsOrderTransportMarginRate) {
         this.tmsOrderTransportMarginRate = tmsOrderTransportMarginRate;
+    }
+    @Column(name="tms_ordertransportmarginvalue")
+
+    public BigDecimal getTmsOrderTransportMarginValue() {
+        return tmsOrderTransportMarginValue;
+    }
+
+    public void setTmsOrderTransportMarginValue(BigDecimal tmsOrderTransportMarginValue) {
+        this.tmsOrderTransportMarginValue = tmsOrderTransportMarginValue;
     }
 
     @ManyToOne()
@@ -90,6 +98,7 @@ public class TmsOrderTransport extends EmsEntity {
     public void setTmsOrderTransportType(TmsTurnType tmsOrderTransportType) {
         this.tmsOrderTransportType = tmsOrderTransportType;
     }
+
     @ManyToOne()
     @JoinColumn(name = "tms_vehicletrayid")
     public TmsVehicleTray getTmsVehicleTray() {

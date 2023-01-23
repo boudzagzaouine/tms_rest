@@ -17,6 +17,8 @@ public class AccountServiceMapper {
 		map.put("id", "tmsAccountServiceId");
 		map.put("code", "tmsAccountServiceCode");
 		map.put("company", "cmdCompany");
+		map.put("address", "adrAddress");
+
 		map.put("product", "pdtProduct");
 		map.put("turnType", "tmsTurnType");
 		map.put("vehicleCategory", "gmoVehicleCategory");
@@ -48,6 +50,8 @@ public class AccountServiceMapper {
 
 		if(!lazy){
 			tmsAccountService.setCmdCompany(CompanyMapper.toEntity(accountService.getCompany(),true));
+			tmsAccountService.setAdrAddress(AddressMapper.toEntity(accountService.getAddress(),true));
+
 			tmsAccountService.setPdtProduct(ProductMapper.toEntity(accountService.getProduct(),true));
 			tmsAccountService.setPrmSaleVat(VatMapper.toEntity(accountService.getSaleVat(),true));
 			tmsAccountService.setOwnOwner(OwnerMapper.toEntity(accountService.getOwner(),true));
@@ -73,6 +77,8 @@ public class AccountServiceMapper {
 
 		if(!lazy){
 			accountService.setCompany(CompanyMapper.toDto(tmsAccountService.getCmdCompany(),true));
+			accountService.setAddress(AddressMapper.toDto(tmsAccountService.getAdrAddress(),true));
+
 			accountService.setProduct(ProductMapper.toDto(tmsAccountService.getPdtProduct(),true));
 				accountService.setSaleVat(VatMapper.toDto(tmsAccountService.getPrmSaleVat(),true));
 			accountService.setOwner(OwnerMapper.toDto(tmsAccountService.getOwnOwner(),true));

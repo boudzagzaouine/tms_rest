@@ -52,6 +52,7 @@ public class AddressMapper {
         map.put("variable10","adrAddressVariable10");
         map.put("addressType","addAddressType");
         map.put("account","cmdAccount");
+        map.put("company","cmdCompany");
 
     }
 

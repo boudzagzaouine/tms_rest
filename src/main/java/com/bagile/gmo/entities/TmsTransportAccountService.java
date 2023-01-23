@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "tms_transportaccount_service",
         uniqueConstraints ={@UniqueConstraint
-                (columnNames ={"tms_trptranportid","tms_cmdcompanyid","tms_productserviceid"})})
+                (columnNames ={"tms_trptranportid","tms_cmdcompanyid","tms_adraddressid","tms_productserviceid"})})
 
 public class TmsTransportAccountService extends EmsEntity {
 
@@ -16,6 +16,7 @@ public class TmsTransportAccountService extends EmsEntity {
 	private Long tmsTransportAccountServiceId;
     private TrpTransport trpTransport;
     private CmdCompany cmdCompany;
+    private AdrAddress adrAddress;
   private PdtProduct pdtProduct;
   
     private BigDecimal tmsTransportAccountServiceSaleAmountHt;
@@ -51,6 +52,16 @@ public class TmsTransportAccountService extends EmsEntity {
 
     public void setTrpTransport(TrpTransport trpTransport) {
         this.trpTransport = trpTransport;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name="tms_adraddressid")
+    public AdrAddress getAdrAddress() {
+        return adrAddress;
+    }
+
+    public void setAdrAddress(AdrAddress adrAddress) {
+        this.adrAddress = adrAddress;
     }
 
     @ManyToOne()

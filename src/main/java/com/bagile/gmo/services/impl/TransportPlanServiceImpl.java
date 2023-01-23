@@ -20,7 +20,7 @@ import java.util.List;
 
 @Service
 public class TransportPlanServiceImpl implements TransportPlanService {
-    
+
     private final TransportPlanRepository transportPlanRepository;
 
     public TransportPlanServiceImpl(TransportPlanRepository transportPlanRepository) {
@@ -121,9 +121,9 @@ public class TransportPlanServiceImpl implements TransportPlanService {
         TransportPlan transportPlan = new TransportPlan();
         List<TransportPlan> transportPlans = new ArrayList<>();
         transportPlans= TransportPlanMapper.toDtos(transportPlanRepository.findAll(Search.expression(search,TmsTransportPlan.class),(Sort.by(Sort.Direction.DESC, "tmsTransportPlanDate"))), false);
-     if(!transportPlans.isEmpty()){
-         transportPlan=transportPlans.stream().findFirst().get();
-     }
+        if(!transportPlans.isEmpty()){
+            transportPlan=transportPlans.stream().findFirst().get();
+        }
 
 
         return transportPlan;

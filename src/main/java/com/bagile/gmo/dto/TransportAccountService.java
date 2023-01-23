@@ -1,5 +1,8 @@
 package com.bagile.gmo.dto;
 
+import com.bagile.gmo.entities.AdrAddress;
+import com.bagile.gmo.mapper.AddressMapper;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -12,7 +15,7 @@ public class TransportAccountService extends EmsDto implements Serializable {
     private long id;
     private Transport transport ;
     private Company company ;
-
+ private Address address ;
    private Product product;
     private BigDecimal saleAmountHt;
     private BigDecimal saleAmountTtc;
@@ -50,6 +53,14 @@ private Owner owner;
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public BigDecimal getSaleAmountHt() {

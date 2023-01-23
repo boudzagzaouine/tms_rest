@@ -12,6 +12,8 @@ public class AccountService extends EmsDto implements Serializable {
     private long id;
     private Company company ;
 
+    private Address address;
+
    private Product product;
     private BigDecimal saleAmountHt;
     private BigDecimal saleAmountTtc;
@@ -45,6 +47,13 @@ private Owner owner;
         this.product = product;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
     public BigDecimal getSaleAmountHt() {
         return saleAmountHt;

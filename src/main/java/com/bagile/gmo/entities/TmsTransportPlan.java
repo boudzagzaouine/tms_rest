@@ -31,7 +31,7 @@ public class TmsTransportPlan extends EmsEntity {
     private BigDecimal tmsTransportPlanMarginRate;
     private BigDecimal tmsTransportPlanmargineService;
 
-    private Set<TmsTransportPlanProductService> tmsTransportPlanProductServiceSet = new HashSet<>();
+    private Set<TmsTransportPlanServiceCatalog> transportPlanServiceCatalogs = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -98,15 +98,17 @@ public class TmsTransportPlan extends EmsEntity {
     }
 
 
+
+
     @OneToMany(fetch = FetchType.LAZY,cascade={CascadeType.ALL,CascadeType.MERGE},mappedBy = "tmsTransportPlan", orphanRemoval=true)
-
-    public Set<TmsTransportPlanProductService> getTmsTransportPlanProductServiceSet() {
-        return tmsTransportPlanProductServiceSet;
+    public Set<TmsTransportPlanServiceCatalog> getTransportPlanServiceCatalogs() {
+        return transportPlanServiceCatalogs;
     }
 
-    public void setTmsTransportPlanProductServiceSet(Set<TmsTransportPlanProductService> tmsTransportPlanProductServiceSet) {
-        this.tmsTransportPlanProductServiceSet = tmsTransportPlanProductServiceSet;
+    public void setTransportPlanServiceCatalogs(Set<TmsTransportPlanServiceCatalog> transportPlanServiceCatalogs) {
+        this.transportPlanServiceCatalogs = transportPlanServiceCatalogs;
     }
+
 
     @ManyToOne()
     @JoinColumn(name = "tms_gmodriverid")

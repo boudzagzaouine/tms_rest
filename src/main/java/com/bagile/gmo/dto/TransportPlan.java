@@ -28,7 +28,7 @@ public class TransportPlan extends EmsDto implements Serializable {
     private Ville villeDistination;
     private Date date ;
 
-    private List<TransportPlanProductService> transportPlanProductServices = new ArrayList<>();
+    private List<TransportPlanServiceCatalog> transportPlanServiceCatalogs = new ArrayList<>();
 
     public TransportPlan() {
     }
@@ -154,12 +154,12 @@ public class TransportPlan extends EmsDto implements Serializable {
         this.salePrice = salePrice;
     }
 
-    public List<TransportPlanProductService> getTransportPlanProductServices() {
-        return transportPlanProductServices;
+    public List<TransportPlanServiceCatalog> getTransportPlanServiceCatalogs() {
+        return transportPlanServiceCatalogs;
     }
 
-    public void setTransportPlanProductServices(List<TransportPlanProductService> transportPlanProductServices) {
-        this.transportPlanProductServices = transportPlanProductServices;
+    public void setTransportPlanServiceCatalogs(List<TransportPlanServiceCatalog> transportPlanServiceCatalogs) {
+        this.transportPlanServiceCatalogs = transportPlanServiceCatalogs;
     }
 
     @Override

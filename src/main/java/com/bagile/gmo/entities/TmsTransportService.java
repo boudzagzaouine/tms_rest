@@ -16,6 +16,7 @@ public class TmsTransportService extends EmsEntity {
 	private Long tmsTransportServiceId;
     private TrpTransport trpTransport;
   private PdtProduct pdtProduct;
+
   
     private BigDecimal tmsTransportServiceSaleAmountHt;
     private BigDecimal tmsTransportServiceSaleAmountTtc;

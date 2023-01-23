@@ -23,6 +23,7 @@ public class OrderTransport {
 
 	private BigDecimal priceHT;
 	private BigDecimal marginRate ;
+	private BigDecimal marginValue ;
 	private Owner owner;
 
 
@@ -91,6 +92,14 @@ public class OrderTransport {
 
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+
+	public BigDecimal getMarginValue() {
+		return marginValue;
+	}
+
+	public void setMarginValue(BigDecimal marginValue) {
+		this.marginValue = marginValue;
 	}
 
 	public VehicleCategory getVehicleCategory() {

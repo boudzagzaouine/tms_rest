@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class TransportPlanProductService extends EmsDto implements Serializable {
+public class TransportPlanServiceCatalog extends EmsDto implements Serializable {
     /**
      *
      */
@@ -12,12 +12,13 @@ public class TransportPlanProductService extends EmsDto implements Serializable 
     private long id;
     private Product product;
     private Transport transport;
+
+    private Address address;
+    private Boolean invoice;
     private BigDecimal priceHT;
     private Vat vat;
     private BigDecimal priceTTC;
-
-    private TransportPlan transportPlan;
-    private Owner owner;
+private Owner owner;
     public long getId() {
         return id;
     }
@@ -74,19 +75,27 @@ public class TransportPlanProductService extends EmsDto implements Serializable 
         this.owner = owner;
     }
 
-    public TransportPlan getTransportPlan() {
-        return transportPlan;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setTransportPlan(TransportPlan transportPlan) {
-        this.transportPlan = transportPlan;
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Boolean getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Boolean invoice) {
+        this.invoice = invoice;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TransportPlanProductService badgeType = (TransportPlanProductService) o;
+        TransportPlanServiceCatalog badgeType = (TransportPlanServiceCatalog) o;
         return getId() == badgeType.getId();
     }
 
