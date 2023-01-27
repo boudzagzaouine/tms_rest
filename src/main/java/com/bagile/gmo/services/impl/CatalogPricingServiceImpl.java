@@ -157,11 +157,11 @@ public class CatalogPricingServiceImpl implements CatalogPricingService {
 
 
                 catalogPricing.setTurnType((turnTypeService.find("code:" + catalogPricingImport.getCatalogPricing_TurnType())).stream().findFirst().orElse(null));
-                catalogPricing.setPaysSource(paysService.findById(1L));
-                catalogPricing.setVilleSource(villeService.find("code:"+ catalogPricingImport.getCatalogPricing_VilleSource()).stream().findFirst().orElse(null));
-                catalogPricing.setPaysDestination(paysService.findById(1L));
-                catalogPricing.setVilleDestination(villeService.find("code:"+ catalogPricingImport.getCatalogPricing_VilleDestination()).stream().findFirst().orElse(null));
-                catalogPricing.setVehicleCategory(vehicleCategoryService.find("code:"+ catalogPricingImport.getCatalogPricing_VehicleCategory()).stream().findFirst().orElse(null));
+//                catalogPricing.setPaysSource(paysService.findById(1L));
+//                catalogPricing.setVilleSource(villeService.find("code:"+ catalogPricingImport.getCatalogPricing_VilleSource()).stream().findFirst().orElse(null));
+//                catalogPricing.setPaysDestination(paysService.findById(1L));
+//                catalogPricing.setVilleDestination(villeService.find("code:"+ catalogPricingImport.getCatalogPricing_VilleDestination()).stream().findFirst().orElse(null));
+//                catalogPricing.setVehicleCategory(vehicleCategoryService.find("code:"+ catalogPricingImport.getCatalogPricing_VehicleCategory()).stream().findFirst().orElse(null));
                 catalogPricing.setVehicleTray(vehicleTrayService.find("code:"+ catalogPricingImport.getCatalogPricing_VehicleTray()).stream().findFirst().orElse(null));
                 catalogPricing.setLoadingType(loadingTypeService.find("code:"+catalogPricingImport.getCatalogPricing_LoadingType()).stream().findFirst().orElse(null));
 

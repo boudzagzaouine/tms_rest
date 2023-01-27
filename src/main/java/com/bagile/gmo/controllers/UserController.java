@@ -72,8 +72,8 @@ public class UserController {
     //@PreAuthorize("hasAnyRole('BADGE_VIEW')")
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
-    public List<User> search(@RequestParam(value = "search") String search, @RequestParam Pageable pageable) throws AttributesNotFound, ErrorType {
-        return userService.find(search, pageable);
+    public List<User> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
+        return userService.find(search,  page, size);
     }
 
     //@PreAuthorize("hasRole('BADGE_CREATE')")

@@ -10,10 +10,8 @@ public class CatalogPricing extends EmsDto implements Serializable {
 
     private long id;
     private TurnType turnType;
-    private Pays paysSource;
-    private Ville villeSource ;
-    private Pays paysDestination;
-    private Ville villeDestination;
+
+    private Trajet trajet;
     private VehicleCategory vehicleCategory;
     private VehicleTray vehicleTray;
     private LoadingType loadingType;
@@ -50,21 +48,7 @@ public class CatalogPricing extends EmsDto implements Serializable {
         this.vehicleCategory = vehicleCategory;
     }
 
-    public Ville getVilleSource() {
-        return villeSource;
-    }
 
-    public void setVilleSource(Ville villeSource) {
-        this.villeSource = villeSource;
-    }
-
-    public Pays getPaysSource() {
-        return paysSource;
-    }
-
-    public void setPaysSource(Pays paysSource) {
-        this.paysSource = paysSource;
-    }
 
     public VehicleTray getVehicleTray() {
         return vehicleTray;
@@ -74,20 +58,12 @@ public class CatalogPricing extends EmsDto implements Serializable {
         this.vehicleTray = vehicleTray;
     }
 
-    public Pays getPaysDestination() {
-        return paysDestination;
+    public Trajet getTrajet() {
+        return trajet;
     }
 
-    public void setPaysDestination(Pays paysDestination) {
-        this.paysDestination = paysDestination;
-    }
-
-    public Ville getVilleDestination() {
-        return villeDestination;
-    }
-
-    public void setVilleDestination(Ville villeDestination) {
-        this.villeDestination = villeDestination;
+    public void setTrajet(Trajet trajet) {
+        this.trajet = trajet;
     }
 
     public TurnType getTurnType() {

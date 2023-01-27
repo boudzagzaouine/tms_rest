@@ -20,7 +20,7 @@ public interface UserService {
 
     public List<User> find(String search) throws AttributesNotFound, ErrorType;
 
-    public List<User> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType;
+    public List<User> find(String search, int page, int size) throws AttributesNotFound, ErrorType;
 
     public Long size(String search) throws AttributesNotFound, ErrorType;
 

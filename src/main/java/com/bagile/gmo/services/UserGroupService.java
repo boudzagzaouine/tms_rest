@@ -1,6 +1,8 @@
 package com.bagile.gmo.services;
 
 import com.bagile.gmo.dto.UserGroup;
+import com.bagile.gmo.dto.UserGroup;
+import com.bagile.gmo.dto.UserGroup;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
@@ -10,25 +12,28 @@ import java.util.List;
 
 public interface UserGroupService {
 
-    public UserGroup save(UserGroup userGroup);
+     UserGroup save(UserGroup userGroup);
 
-    public Long size();
 
-    public Boolean isExist(Long id);
+    Long size();
 
-    public UserGroup findById(Long id) throws IdNotFound;
+    Boolean isExist(Long id);
 
-    public List<UserGroup> find(String search) throws AttributesNotFound, ErrorType;
+    UserGroup findById(Long id) throws IdNotFound;
 
-    public List<UserGroup> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType;
+    List<UserGroup> find(String search) throws AttributesNotFound, ErrorType;
 
-    public Long size(String search) throws AttributesNotFound, ErrorType;
+    List<UserGroup> find(String search, int page, int size) throws AttributesNotFound, ErrorType;
 
-    public void delete(Long id);
+    Long size(String search) throws AttributesNotFound, ErrorType;
 
-    public void delete(UserGroup userGroup);
+    void delete(Long id);
 
-    public List<UserGroup> findAll();
+    void delete(UserGroup userGroup);
+    void deleteAll (List<Long> ids);
 
-    public List<UserGroup> findAll(Pageable pageable);
+    List<UserGroup> findAll();
+
+    List<UserGroup> findAll(int page, int size);
+
 }

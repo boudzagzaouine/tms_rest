@@ -19,10 +19,10 @@ public class TmsTransportAccountService extends EmsEntity {
     private AdrAddress adrAddress;
   private PdtProduct pdtProduct;
   
-    private BigDecimal tmsTransportAccountServiceSaleAmountHt;
-    private BigDecimal tmsTransportAccountServiceSaleAmountTtc;
-    private BigDecimal tmsTransportAccountServiceSaleAmountTva;
-    private PrmVat prmSaleVat;
+    private BigDecimal tmsTransportAccountServicePurchaseAmountHt;
+    private BigDecimal tmsTransportAccountServicePurchaseAmountTtc;
+    private BigDecimal tmsTransportAccountServicePurchaseAmountTva;
+    private PrmVat prmPurchaseVat;
 
 
 
@@ -86,39 +86,39 @@ public class TmsTransportAccountService extends EmsEntity {
     
     
     
-    @Column(name="tms_transportservicesaleamountht")
-    public BigDecimal getTmsTransportAccountServiceSaleAmountHt() {
-        return tmsTransportAccountServiceSaleAmountHt;
+    @Column(name="tms_transportservicepurcahseamountht")
+    public BigDecimal getTmsTransportAccountServicePurchaseAmountHt() {
+        return tmsTransportAccountServicePurchaseAmountHt;
     }
 
-    public void setTmsTransportAccountServiceSaleAmountHt(BigDecimal tmsTransportAccountServiceSaleAmountHt) {
-        this.tmsTransportAccountServiceSaleAmountHt = tmsTransportAccountServiceSaleAmountHt;
+    public void setTmsTransportAccountServicePurchaseAmountHt(BigDecimal tmsTransportAccountServiceSaleAmountHt) {
+        this.tmsTransportAccountServicePurchaseAmountHt = tmsTransportAccountServiceSaleAmountHt;
     }
-    @Column(name="tms_transportservicesaleamountttc")
-    public BigDecimal getTmsTransportAccountServiceSaleAmountTtc() {
-        return tmsTransportAccountServiceSaleAmountTtc;
-    }
-
-    public void setTmsTransportAccountServiceSaleAmountTtc(BigDecimal tmsTransportAccountServiceSaleAmountTtc) {
-        this.tmsTransportAccountServiceSaleAmountTtc = tmsTransportAccountServiceSaleAmountTtc;
-    }
-    @Column(name="tms_transportservicesaleamounttva")
-    public BigDecimal getTmsTransportAccountServiceSaleAmountTva() {
-        return tmsTransportAccountServiceSaleAmountTva;
+    @Column(name="tms_transportservicepurcahseamountttc")
+    public BigDecimal getTmsTransportAccountServicePurchaseAmountTtc() {
+        return tmsTransportAccountServicePurchaseAmountTtc;
     }
 
-    public void setTmsTransportAccountServiceSaleAmountTva(BigDecimal tmsTransportAccountServiceSaleAmountTva) {
-        this.tmsTransportAccountServiceSaleAmountTva = tmsTransportAccountServiceSaleAmountTva;
+    public void setTmsTransportAccountServicePurchaseAmountTtc(BigDecimal tmsTransportAccountServiceSaleAmountTtc) {
+        this.tmsTransportAccountServicePurchaseAmountTtc = tmsTransportAccountServiceSaleAmountTtc;
+    }
+    @Column(name="tms_transportservicepurchaseamounttva")
+    public BigDecimal getTmsTransportAccountServicePurchaseAmountTva() {
+        return tmsTransportAccountServicePurchaseAmountTva;
+    }
+
+    public void setTmsTransportAccountServicePurchaseAmountTva(BigDecimal tmsTransportAccountServiceSaleAmountTva) {
+        this.tmsTransportAccountServicePurchaseAmountTva = tmsTransportAccountServiceSaleAmountTva;
     }
 
     @ManyToOne()
-    @JoinColumn(name="tms_salevatid")
-    public PrmVat getPrmSaleVat() {
-        return prmSaleVat;
+    @JoinColumn(name="tms_purchasevatid")
+    public PrmVat getPrmPurchaseVat() {
+        return prmPurchaseVat;
     }
 
-    public void setPrmSaleVat(PrmVat prmSaleVat) {
-        this.prmSaleVat = prmSaleVat;
+    public void setPrmPurchaseVat(PrmVat prmSaleVat) {
+        this.prmPurchaseVat = prmSaleVat;
     }
 
 

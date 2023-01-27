@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 @Table(name="tms_catalog_transport_pricing",
         uniqueConstraints ={@UniqueConstraint
                 (columnNames ={"trp_transportid","gmo_vehiclecategoryid","tms_vehicletrayid",
-                        "prm_villesourceid","prm_villedestinationid","tms_turntypeid","tms_loadingtypeid"})})
+                        "tms_trajetid","tms_turntypeid","tms_loadingtypeid"})})
 public class TmsCatalogTransportPricing extends EmsEntity{
 
     private Long tmsCatalogTransportId;
@@ -15,10 +15,7 @@ public class TmsCatalogTransportPricing extends EmsEntity{
     private GmoVehicleCategory gmoVehicleCategory;
     private TmsVehicleTray tmsVehicleTray;
     private TmsTurnType tmsTurnType;
-    private PrmPays prmPaysSource;
-    private PrmVille tmsVilleSource ;
-    private PrmPays prmPaysDestination;
-    private PrmVille tmsVilleDestination;
+   private  TmsTrajet tmsTrajet;
     private TmsLoadingType tmsLoadingType ;
 
     private BigDecimal tmsCatalogTransportPricingPurchaseAmountHt;
@@ -80,44 +77,20 @@ public class TmsCatalogTransportPricing extends EmsEntity{
         this.tmsTurnType = tmsTurnType;
     }
 
-    @ManyToOne()
-    @JoinColumn(name = "prm_payssourceid")
-    public PrmPays getPrmPaysSource() {
-        return prmPaysSource;
-    }
 
-    public void setPrmPaysSource(PrmPays prmPaysSource) {
-        this.prmPaysSource = prmPaysSource;
-    }
-    @ManyToOne()
-    @JoinColumn(name = "prm_villesourceid")
-    public PrmVille getTmsVilleSource() {
-        return tmsVilleSource;
-    }
-
-    public void setTmsVilleSource(PrmVille tmsVilleSource) {
-        this.tmsVilleSource = tmsVilleSource;
-    }
 
     @ManyToOne()
-    @JoinColumn(name = "prm_paysdestinationid")
-    public PrmPays getPrmPaysDestination() {
-        return prmPaysDestination;
+    @JoinColumn(name = "tms_trajetid")
+    public TmsTrajet getTmsTrajet() {
+        return tmsTrajet;
     }
 
-    public void setPrmPaysDestination(PrmPays prmPaysDestination) {
-        this.prmPaysDestination = prmPaysDestination;
+    public void setTmsTrajet(TmsTrajet tmsTrajet) {
+        this.tmsTrajet = tmsTrajet;
     }
 
-    @ManyToOne()
-    @JoinColumn(name = "prm_villedestinationid")
-    public PrmVille getTmsVilleDestination() {
-        return tmsVilleDestination;
-    }
 
-    public void setTmsVilleDestination(PrmVille tmsVilleDestination) {
-        this.tmsVilleDestination = tmsVilleDestination;
-    }
+
 
     @ManyToOne()
     @JoinColumn(name = "tms_loadingtypeid")

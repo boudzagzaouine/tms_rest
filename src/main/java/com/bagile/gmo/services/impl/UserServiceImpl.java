@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<User> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
+    public List<User> find(String search,  int page, int size) throws AttributesNotFound, ErrorType {
         if (!search.trim().contains("active:false")) {
             if (!search.endsWith(",")) {
                 search += ",";
@@ -87,6 +87,8 @@ public class UserServiceImpl implements UserService {
             search += "active:true";
         }
         search += ",type:1";
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
+        Pageable pageable = PageRequest.of(page, size, sort);
         return UserMapper.toDtos(userRepository.findAll(Search.expression(search, UsrUser.class), pageable), false);
     }
 

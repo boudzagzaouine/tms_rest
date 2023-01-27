@@ -1,6 +1,7 @@
 package com.bagile.gmo.services;
 
 import com.bagile.gmo.dto.Habilitation;
+import com.bagile.gmo.dto.Habilitation;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
@@ -10,26 +11,30 @@ import java.util.List;
 
 public interface HabilitationService {
 
-    public Habilitation save(Habilitation habilitation);
-    public Habilitation save(String[] habilitation);
+    Habilitation save(String[] habilitation);
 
-    public Long size();
+    Habilitation save(Habilitation habilitation);
 
-    public Boolean isExist(Long id);
+    Long size();
 
-    public Habilitation findById(Long id) throws IdNotFound;
+    Boolean isExist(Long id);
 
-    public List<Habilitation> find(String search) throws AttributesNotFound, ErrorType;
+    Habilitation findById(Long id) throws IdNotFound;
 
-    public List<Habilitation> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType;
+    List<Habilitation> find(String search) throws AttributesNotFound, ErrorType;
 
-    public Long size(String search) throws AttributesNotFound, ErrorType;
+    List<Habilitation> find(String search, int page, int size) throws AttributesNotFound, ErrorType;
 
-    public void delete(Long id);
+    Long size(String search) throws AttributesNotFound, ErrorType;
 
-    public void delete(Habilitation habilitation);
+    void delete(Long id);
 
-    public List<Habilitation> findAll();
+    void delete(Habilitation habilitation);
+    void deleteAll (List<Long> ids);
 
-    public List<Habilitation> findAll(Pageable pageable);
+    List<Habilitation> findAll();
+
+    List<Habilitation> findAll(int page, int size);
+
+    Habilitation findOne(String search) throws AttributesNotFound, ErrorType;
 }

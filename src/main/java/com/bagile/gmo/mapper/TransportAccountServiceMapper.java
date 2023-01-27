@@ -45,9 +45,9 @@ public class TransportAccountServiceMapper {
 		TmsTransportAccountService tmsTransportAccountService = new TmsTransportAccountService();
 		tmsTransportAccountService.setTmsTransportAccountServiceId(transportAccountService.getId());
 
-		tmsTransportAccountService.setTmsTransportAccountServiceSaleAmountHt(transportAccountService.getSaleAmountHt());
-		tmsTransportAccountService.setTmsTransportAccountServiceSaleAmountTtc(transportAccountService.getSaleAmountTtc());
-		tmsTransportAccountService.setTmsTransportAccountServiceSaleAmountTva(transportAccountService.getSaleAmountTva());
+		tmsTransportAccountService.setTmsTransportAccountServicePurchaseAmountHt(transportAccountService.getPurchaseAmountHt());
+		tmsTransportAccountService.setTmsTransportAccountServicePurchaseAmountTtc(transportAccountService.getPurchaseAmountTtc());
+		tmsTransportAccountService.setTmsTransportAccountServicePurchaseAmountTva(transportAccountService.getPurchaseAmountTva());
 
 		if(!lazy){
 			tmsTransportAccountService.setCmdCompany(CompanyMapper.toEntity(transportAccountService.getCompany(),true));
@@ -55,7 +55,7 @@ public class TransportAccountServiceMapper {
 
 			tmsTransportAccountService.setTrpTransport(TransportMapper.toEntity(transportAccountService.getTransport(),true));
 			tmsTransportAccountService.setPdtProduct(ProductMapper.toEntity(transportAccountService.getProduct(),true));
-			tmsTransportAccountService.setPrmSaleVat(VatMapper.toEntity(transportAccountService.getSaleVat(),true));
+			tmsTransportAccountService.setPrmPurchaseVat(VatMapper.toEntity(transportAccountService.getPurchaseVat(),true));
 			tmsTransportAccountService.setOwnOwner(OwnerMapper.toEntity(transportAccountService.getOwner(),true));
 
 
@@ -72,9 +72,9 @@ public class TransportAccountServiceMapper {
 		TransportAccountService transportAccountService = new TransportAccountService();
 		transportAccountService.setId(tmsTransportAccountService.getTmsTransportAccountServiceId());
 
-		transportAccountService.setSaleAmountHt(tmsTransportAccountService.getTmsTransportAccountServiceSaleAmountHt());
-		transportAccountService.setSaleAmountTtc(tmsTransportAccountService.getTmsTransportAccountServiceSaleAmountTtc());
-		transportAccountService.setSaleAmountTva(tmsTransportAccountService.getTmsTransportAccountServiceSaleAmountTva());
+		transportAccountService.setPurchaseAmountHt(tmsTransportAccountService.getTmsTransportAccountServicePurchaseAmountHt());
+		transportAccountService.setPurchaseAmountTtc(tmsTransportAccountService.getTmsTransportAccountServicePurchaseAmountTtc());
+		transportAccountService.setPurchaseAmountTva(tmsTransportAccountService.getTmsTransportAccountServicePurchaseAmountTva());
 
 
 		if(!lazy){
@@ -83,7 +83,7 @@ public class TransportAccountServiceMapper {
 
 			transportAccountService.setTransport(TransportMapper.toDto(tmsTransportAccountService.getTrpTransport(),true));
 			transportAccountService.setProduct(ProductMapper.toDto(tmsTransportAccountService.getPdtProduct(),true));
-				transportAccountService.setSaleVat(VatMapper.toDto(tmsTransportAccountService.getPrmSaleVat(),true));
+				transportAccountService.setPurchaseVat(VatMapper.toDto(tmsTransportAccountService.getPrmPurchaseVat(),true));
 			transportAccountService.setOwner(OwnerMapper.toDto(tmsTransportAccountService.getOwnOwner(),true));
 
 		}

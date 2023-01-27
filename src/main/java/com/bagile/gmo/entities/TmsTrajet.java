@@ -38,7 +38,7 @@ public class TmsTrajet extends EmsEntity {
         this.tmsTrajetId = tmsTrajetId;
     }
 
-    @Column(name="tms_trajetcode")
+    @Column(name="tms_trajetcode",unique = true,nullable = false)
     public String getTmsTrajetCode() {
         return tmsTrajetCode;
     }

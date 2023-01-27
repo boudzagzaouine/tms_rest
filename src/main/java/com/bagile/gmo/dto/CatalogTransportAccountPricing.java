@@ -12,10 +12,7 @@ public class CatalogTransportAccountPricing extends EmsDto implements Serializab
     private Transport transport ;
     private Company company;
     private TurnType turnType;
-    private Pays paysSource;
-    private Ville villeSource ;
-    private Pays paysDestination;
-    private Ville villeDestination;
+   private  Trajet trajet;
     private VehicleCategory vehicleCategory;
     private VehicleTray vehicleTray;
     private LoadingType loadingType;
@@ -62,36 +59,12 @@ public class CatalogTransportAccountPricing extends EmsDto implements Serializab
         this.company = company;
     }
 
-    public Pays getPaysSource() {
-        return paysSource;
+    public Trajet getTrajet() {
+        return trajet;
     }
 
-    public void setPaysSource(Pays paysSource) {
-        this.paysSource = paysSource;
-    }
-
-    public Ville getVilleSource() {
-        return villeSource;
-    }
-
-    public void setVilleSource(Ville villeSource) {
-        this.villeSource = villeSource;
-    }
-
-    public Pays getPaysDestination() {
-        return paysDestination;
-    }
-
-    public void setPaysDestination(Pays paysDestination) {
-        this.paysDestination = paysDestination;
-    }
-
-    public Ville getVilleDestination() {
-        return villeDestination;
-    }
-
-    public void setVilleDestination(Ville villeDestination) {
-        this.villeDestination = villeDestination;
+    public void setTrajet(Trajet trajet) {
+        this.trajet = trajet;
     }
 
     public VehicleCategory getVehicleCategory() {

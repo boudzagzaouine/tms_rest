@@ -42,7 +42,7 @@ public class TrajetMapper {
 		TmsTrajet tmsTrajet = new TmsTrajet();
 		tmsTrajet.setTmsTrajetId(trajet.getId());
 
-		tmsTrajet.setTmsTrajetCode(trajet.getCode());
+		tmsTrajet.setTmsTrajetCode (trajet.getCode ( ) != null ? trajet.getCode ( ).toUpperCase ( ) : null);
 
 
 		if(!lazy){

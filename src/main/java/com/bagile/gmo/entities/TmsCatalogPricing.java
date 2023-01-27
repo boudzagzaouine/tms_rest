@@ -8,17 +8,14 @@ import java.math.BigDecimal;
 @Table(name="tms_catalogpricing",
         uniqueConstraints ={@UniqueConstraint
                 (columnNames ={"tms_vehiclecategoryid",
-                               "tms_villesournceid","tms_villedistinationid","tms_turntypeid","tms_vehicletrayid","tms_loadingtypeid"})})
+                               "tms_trajetid","tms_turntypeid","tms_vehicletrayid","tms_loadingtypeid"})})
 public class TmsCatalogPricing extends EmsEntity {
 
     private Long tmsCatalogPricingId;
     private GmoVehicleCategory gmoVehicleCategory;
     private TmsVehicleTray tmsVehicleTray;
     private TmsTurnType tmsTurnType;
-    private PrmPays prmPaysSource;
-    private PrmVille tmsVilleSource ;
-    private PrmPays prmPaysDestination;
-    private PrmVille tmsVilleDestination;
+    private  TmsTrajet tmsTrajet;
 
     private TmsLoadingType tmsLoadingType ;
     private BigDecimal tmsCatalogPricingPurchaseAmountHt;
@@ -68,16 +65,17 @@ public class TmsCatalogPricing extends EmsEntity {
         this.tmsLoadingType = tmsLoadingType;
     }
 
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_payssourceid")
-    public PrmPays getPrmPaysSource() {
-        return prmPaysSource;
+    @JoinColumn(name = "tms_trajetid")
+    public TmsTrajet getTmsTrajet() {
+        return tmsTrajet;
     }
 
-    public void setPrmPaysSource(PrmPays prmPaysSource) {
-        this.prmPaysSource = prmPaysSource;
+    public void setTmsTrajet(TmsTrajet tmsTrajet) {
+        this.tmsTrajet = tmsTrajet;
     }
+
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_vehicletrayid")
@@ -89,35 +87,7 @@ public class TmsCatalogPricing extends EmsEntity {
         this.tmsVehicleTray = tmsVehicleTray;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_villesournceid")
-    public PrmVille getTmsVilleSource() {
-        return tmsVilleSource;
-    }
 
-    public void setTmsVilleSource(PrmVille tmsVilleSource) {
-        this.tmsVilleSource = tmsVilleSource;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_paysdestinationid")
-    public PrmPays getPrmPaysDestination() {
-        return prmPaysDestination;
-    }
-
-    public void setPrmPaysDestination(PrmPays prmPaysDestination) {
-        this.prmPaysDestination = prmPaysDestination;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tms_villedistinationid")
-    public PrmVille getTmsVilleDestination() {
-        return tmsVilleDestination;
-    }
-
-    public void setTmsVilleDestination(PrmVille tmsVilleDestination) {
-        this.tmsVilleDestination = tmsVilleDestination;
-    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tms_turntypeid")

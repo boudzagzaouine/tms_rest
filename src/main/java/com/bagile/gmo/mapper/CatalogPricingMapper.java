@@ -1,8 +1,10 @@
 package com.bagile.gmo.mapper;
 
 import com.bagile.gmo.dto.CatalogPricing;
+import com.bagile.gmo.dto.Trajet;
 import com.bagile.gmo.entities.TmsCatalogPricing;
 
+import javax.xml.transform.TransformerException;
 import java.util.*;
 
 public class CatalogPricingMapper {
@@ -23,8 +25,7 @@ public class CatalogPricingMapper {
         map.put ("vehicleCategory", "gmoVehicleCategory");
         map.put ("vehicleTray", "tmsVehicleTray");
 
-        map.put ("villeSource", "tmsVilleSource");
-        map.put ("villeDestination", "tmsVilleDestination");
+        map.put ("trajet", "tmsTrajet");
         map.put ("amountTtc", "tmsCatalogTransportAmountTtc");
         map.put ("amountTva", "tmsCatalogTransportAmountTva");
         map.put ("vat", "prmvat");
@@ -75,11 +76,8 @@ public class CatalogPricingMapper {
             tmsCatalogPricing.setPrmPurchaseVat (VatMapper.toEntity (catalogPricing.getPurchaseVat( ), true));
             tmsCatalogPricing.setPrmPricingSaleVat (VatMapper.toEntity (catalogPricing.getSaleVat ( ), true));
 
-            tmsCatalogPricing.setPrmPaysSource (PaysMapper.toEntity (catalogPricing.getPaysSource ( ), true));
-            tmsCatalogPricing.setTmsVilleSource (VilleMapper.toEntity (catalogPricing.getVilleSource ( ), true));
-            tmsCatalogPricing.setPrmPaysDestination (PaysMapper.toEntity (catalogPricing.getPaysDestination ( ), true));
-            tmsCatalogPricing.setTmsVilleDestination (VilleMapper.toEntity (catalogPricing.getVilleDestination ( ), true));
-            tmsCatalogPricing.setOwnOwner (OwnerMapper.toEntity (catalogPricing.getOwner(), true));
+            tmsCatalogPricing.setTmsTrajet (TrajetMapper.toEntity (catalogPricing.getTrajet ( ), true));
+           tmsCatalogPricing.setOwnOwner (OwnerMapper.toEntity (catalogPricing.getOwner(), true));
 
         }
 
@@ -115,10 +113,7 @@ public class CatalogPricingMapper {
             catalogPricing.setTurnType (TurnTypeMapper.toDto(tmsCatalogPricing.getTmsTurnType(), true));
             catalogPricing.setLoadingType (LoadingTypeMapper.toDto(tmsCatalogPricing.getTmsLoadingType(), true));
 
-            catalogPricing.setPaysSource (PaysMapper.toDto(tmsCatalogPricing.getPrmPaysSource(), true));
-            catalogPricing.setVilleSource (VilleMapper.toDto(tmsCatalogPricing.getTmsVilleSource(), true));
-            catalogPricing.setPaysDestination (PaysMapper.toDto(tmsCatalogPricing.getPrmPaysDestination(), true));
-            catalogPricing.setVilleDestination (VilleMapper.toDto(tmsCatalogPricing.getTmsVilleDestination(), true));
+            catalogPricing.setTrajet (TrajetMapper.toDto(tmsCatalogPricing.getTmsTrajet(), true));
             catalogPricing.setPurchaseVat(VatMapper.toDto(tmsCatalogPricing.getPrmPurchaseVat(), true));
             catalogPricing.setSaleVat (VatMapper.toDto(tmsCatalogPricing.getPrmPricingSaleVat(), true));
             catalogPricing.setOwner (OwnerMapper.toDto(tmsCatalogPricing.getOwnOwner(), true));

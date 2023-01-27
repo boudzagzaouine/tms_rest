@@ -22,8 +22,7 @@ public class CatalogTransportPricingMapper {
         map.put("turnType", "tmsTurnType");
         map.put("vehicleCategory", "gmoVehicleCategory");
         map.put("vehicleTray", "tmsVehicleTray");
-        map.put("villeSource", "tmsVilleSource");
-        map.put("villeDestination", "tmsVilleDestination");
+        map.put("trajet", "tmsTrajet");
 
 
 
@@ -62,11 +61,8 @@ public class CatalogTransportPricingMapper {
             trpTransport.setGmoVehicleCategory (VehicleCategoryMapper.toEntity (transport.getVehicleCategory ( ), true));
             trpTransport.setTmsVehicleTray (VehicleTrayMapper.toEntity (transport.getVehicleTray ( ), true));
             trpTransport.setTmsTurnType (TurnTypeMapper.toEntity (transport.getTurnType ( ), true));
-            trpTransport.setPrmPaysSource (PaysMapper.toEntity (transport.getPaysSource ( ), true));
-            trpTransport.setTmsVilleSource (VilleMapper.toEntity (transport.getVilleSource ( ), true));
-            trpTransport.setPrmPaysDestination (PaysMapper.toEntity (transport.getPaysDestination ( ), true));
-            trpTransport.setTmsVilleDestination (VilleMapper.toEntity (transport.getVilleDestination ( ), true));
-            trpTransport.setTmsLoadingType (LoadingTypeMapper.toEntity (transport.getLoadingType ( ), true));
+            trpTransport.setTmsTrajet (TrajetMapper.toEntity (transport.getTrajet ( ), true));
+           trpTransport.setTmsLoadingType (LoadingTypeMapper.toEntity (transport.getLoadingType ( ), true));
             trpTransport.setPrmPurchaseVat (VatMapper.toEntity (transport.getPurchaseVat ( ), true));
             trpTransport.setOwnOwner (OwnerMapper.toEntity (transport.getOwner(), true));
 
@@ -96,11 +92,8 @@ public class CatalogTransportPricingMapper {
             transport.setTransport (TransportMapper.toDto(trpTransport.getTrpTransport(), false));
             transport.setVehicleTray (VehicleTrayMapper.toDto(trpTransport.getTmsVehicleTray(), true));
             transport.setTurnType (TurnTypeMapper.toDto(trpTransport.getTmsTurnType(), true));
-            transport.setPaysSource (PaysMapper.toDto(trpTransport.getPrmPaysSource(), true));
-            transport.setVilleSource (VilleMapper.toDto(trpTransport.getTmsVilleSource(), true));
-            transport.setPaysDestination (PaysMapper.toDto(trpTransport.getPrmPaysDestination(), true));
-            transport.setVilleDestination (VilleMapper.toDto(trpTransport.getTmsVilleDestination(), true));
-            transport.setLoadingType (LoadingTypeMapper.toDto(trpTransport.getTmsLoadingType(), true));
+            transport.setTrajet (TrajetMapper.toDto(trpTransport.getTmsTrajet(), true));
+          transport.setLoadingType (LoadingTypeMapper.toDto(trpTransport.getTmsLoadingType(), true));
             transport.setPurchaseVat (VatMapper.toDto(trpTransport.getPrmPurchaseVat(), true));
             transport.setOwner (OwnerMapper.toDto(trpTransport.getOwnOwner(), true));
 

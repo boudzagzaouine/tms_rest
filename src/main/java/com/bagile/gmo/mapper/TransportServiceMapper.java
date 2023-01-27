@@ -42,14 +42,14 @@ public class TransportServiceMapper {
 		TmsTransportService tmsTransportService = new TmsTransportService();
 		tmsTransportService.setTmsTransportServiceId(transportService.getId());
 
-		tmsTransportService.setTmsTransportServiceSaleAmountHt(transportService.getSaleAmountHt());
-		tmsTransportService.setTmsTransportServiceSaleAmountTtc(transportService.getSaleAmountTtc());
-		tmsTransportService.setTmsTransportServiceSaleAmountTva(transportService.getSaleAmountTva());
+		tmsTransportService.setTmsTransportServicePurchaseAmountHt(transportService.getPurchaseAmountHt());
+		tmsTransportService.setTmsTransportServicePurchaseAmountTtc(transportService.getPurchaseAmountTtc());
+		tmsTransportService.setTmsTransportServicePurchaseAmountTva(transportService.getPurchaseAmountTva());
 
 		if(!lazy){
 			tmsTransportService.setTrpTransport(TransportMapper.toEntity(transportService.getTransport(),true));
 			tmsTransportService.setPdtProduct(ProductMapper.toEntity(transportService.getProduct(),true));
-			tmsTransportService.setPrmSaleVat(VatMapper.toEntity(transportService.getSaleVat(),true));
+			tmsTransportService.setPrmPurchaseVat(VatMapper.toEntity(transportService.getPurchaseVat(),true));
 			tmsTransportService.setOwnOwner(OwnerMapper.toEntity(transportService.getOwner(),true));
 
 
@@ -66,15 +66,15 @@ public class TransportServiceMapper {
 		TransportService transportService = new TransportService();
 		transportService.setId(tmsTransportService.getTmsTransportServiceId());
 
-		transportService.setSaleAmountHt(tmsTransportService.getTmsTransportServiceSaleAmountHt());
-		transportService.setSaleAmountTtc(tmsTransportService.getTmsTransportServiceSaleAmountTtc());
-		transportService.setSaleAmountTva(tmsTransportService.getTmsTransportServiceSaleAmountTva());
+		transportService.setPurchaseAmountHt(tmsTransportService.getTmsTransportServicePurchaseAmountHt());
+		transportService.setPurchaseAmountTtc(tmsTransportService.getTmsTransportServicePurchaseAmountTtc());
+		transportService.setPurchaseAmountTva(tmsTransportService.getTmsTransportServicePurchaseAmountTva());
 
 
 		if(!lazy){
 			transportService.setTransport(TransportMapper.toDto(tmsTransportService.getTrpTransport(),true));
 			transportService.setProduct(ProductMapper.toDto(tmsTransportService.getPdtProduct(),true));
-				transportService.setSaleVat(VatMapper.toDto(tmsTransportService.getPrmSaleVat(),true));
+				transportService.setPurchaseVat(VatMapper.toDto(tmsTransportService.getPrmPurchaseVat(),true));
 			transportService.setOwner(OwnerMapper.toDto(tmsTransportService.getOwnOwner(),true));
 
 		}

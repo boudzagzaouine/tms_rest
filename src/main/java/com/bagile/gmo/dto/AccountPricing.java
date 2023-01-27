@@ -15,10 +15,7 @@ public class AccountPricing extends EmsDto implements Serializable {
     private Company company ;
 
     private TurnType turnType;
-    private Pays paysSource;
-    private Ville villeSource ;
-    private Pays paysDestination;
-    private Ville villeDestination;
+    private Trajet trajet;
     private VehicleCategory vehicleCategory;
     private VehicleTray vehicleTray;
     private LoadingType loadingType;
@@ -52,36 +49,12 @@ private Owner owner;
         this.turnType = turnType;
     }
 
-    public Pays getPaysSource() {
-        return paysSource;
+    public Trajet getTrajet() {
+        return trajet;
     }
 
-    public void setPaysSource(Pays paysSource) {
-        this.paysSource = paysSource;
-    }
-
-    public Ville getVilleSource() {
-        return villeSource;
-    }
-
-    public void setVilleSource(Ville villeSource) {
-        this.villeSource = villeSource;
-    }
-
-    public Pays getPaysDestination() {
-        return paysDestination;
-    }
-
-    public void setPaysDestination(Pays paysDestination) {
-        this.paysDestination = paysDestination;
-    }
-
-    public Ville getVilleDestination() {
-        return villeDestination;
-    }
-
-    public void setVilleDestination(Ville villeDestination) {
-        this.villeDestination = villeDestination;
+    public void setTrajet(Trajet trajet) {
+        this.trajet = trajet;
     }
 
     public VehicleCategory getVehicleCategory() {

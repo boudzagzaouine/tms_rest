@@ -23,8 +23,7 @@ public class AccountPricingMapper {
 		map.put("turnType", "tmsTurnType");
 		map.put("vehicleCategory", "gmoVehicleCategory");
 		map.put("vehicleTray", "tmsVehicleTray");
-		map.put("villeSource", "tmsVilleSource");
-		map.put("villeDestination", "tmsVilleDestination");
+		map.put("trajet", "tmsTrajet");
 
 
 	}
@@ -51,11 +50,8 @@ public class AccountPricingMapper {
 		if(!lazy){
 			tmsAccountPricing.setCmdCompany(CompanyMapper.toEntity(accountPricing.getCompany(),true));
 			tmsAccountPricing.setTmsTurnType(TurnTypeMapper.toEntity(accountPricing.getTurnType(),true));
-			tmsAccountPricing.setPrmPaysSource(PaysMapper.toEntity(accountPricing.getPaysSource(),true));
-			tmsAccountPricing.setTmsVilleSource(VilleMapper.toEntity(accountPricing.getVilleSource(),true));
-			tmsAccountPricing.setPrmPaysDestination(PaysMapper.toEntity(accountPricing.getPaysDestination(),true));
-			tmsAccountPricing.setTmsVilleDestination(VilleMapper.toEntity(accountPricing.getVilleDestination(),true));
-			tmsAccountPricing.setGmoVehicleCategory(VehicleCategoryMapper.toEntity(accountPricing.getVehicleCategory(),true));
+			tmsAccountPricing.setTmsTrajet(TrajetMapper.toEntity(accountPricing.getTrajet(),true));
+		    tmsAccountPricing.setGmoVehicleCategory(VehicleCategoryMapper.toEntity(accountPricing.getVehicleCategory(),true));
 			tmsAccountPricing.setTmsVehicleTray(VehicleTrayMapper.toEntity(accountPricing.getVehicleTray(),true));
 			tmsAccountPricing.setTmsLoadingType(LoadingTypeMapper.toEntity(accountPricing.getLoadingType(),true));
 			tmsAccountPricing.setPrmSaleVat(VatMapper.toEntity(accountPricing.getSaleVat(),true));
@@ -85,10 +81,7 @@ public class AccountPricingMapper {
 		if(!lazy){
 			accountPricing.setCompany(CompanyMapper.toDto(tmsAccountPricing.getCmdCompany(),true));
 			accountPricing.setTurnType(TurnTypeMapper.toDto(tmsAccountPricing.getTmsTurnType(),true));
-			accountPricing.setPaysSource(PaysMapper.toDto(tmsAccountPricing.getPrmPaysSource(),true));
-			accountPricing.setVilleSource(VilleMapper.toDto(tmsAccountPricing.getTmsVilleSource(),true));
-			accountPricing.setPaysDestination(PaysMapper.toDto(tmsAccountPricing.getPrmPaysDestination(),true));
-			accountPricing.setVilleDestination(VilleMapper.toDto(tmsAccountPricing.getTmsVilleDestination(),true));
+			accountPricing.setTrajet(TrajetMapper.toDto(tmsAccountPricing.getTmsTrajet(),true));
 			accountPricing.setVehicleCategory(VehicleCategoryMapper.toDto(tmsAccountPricing.getGmoVehicleCategory(),true));
 			accountPricing.setVehicleTray(VehicleTrayMapper.toDto(tmsAccountPricing.getTmsVehicleTray(),true));
 			accountPricing.setLoadingType(LoadingTypeMapper.toDto(tmsAccountPricing.getTmsLoadingType(),true));

@@ -13,10 +13,10 @@ public class TransportService extends EmsDto implements Serializable {
     private Transport transport ;
 
    private Product product;
-    private BigDecimal saleAmountHt;
-    private BigDecimal saleAmountTtc;
-    private BigDecimal saleAmountTva;
-    private Vat saleVat;
+    private BigDecimal purchaseAmountHt;
+    private BigDecimal purchaseAmountTtc;
+    private BigDecimal purchaseAmountTva;
+    private Vat purchaseVat;
 
 private Owner owner;
     public long getId() {
@@ -44,36 +44,36 @@ private Owner owner;
     }
 
 
-    public BigDecimal getSaleAmountHt() {
-        return saleAmountHt;
+    public BigDecimal getPurchaseAmountHt() {
+        return purchaseAmountHt;
     }
 
-    public void setSaleAmountHt(BigDecimal saleAmountHt) {
-        this.saleAmountHt = saleAmountHt;
+    public void setPurchaseAmountHt(BigDecimal purchaseAmountHt) {
+        this.purchaseAmountHt = purchaseAmountHt;
     }
 
-    public BigDecimal getSaleAmountTtc() {
-        return saleAmountTtc;
+    public BigDecimal getPurchaseAmountTtc() {
+        return purchaseAmountTtc;
     }
 
-    public void setSaleAmountTtc(BigDecimal saleAmountTtc) {
-        this.saleAmountTtc = saleAmountTtc;
+    public void setPurchaseAmountTtc(BigDecimal purchaseAmountTtc) {
+        this.purchaseAmountTtc = purchaseAmountTtc;
     }
 
-    public BigDecimal getSaleAmountTva() {
-        return saleAmountTva;
+    public BigDecimal getPurchaseAmountTva() {
+        return purchaseAmountTva;
     }
 
-    public void setSaleAmountTva(BigDecimal saleAmountTva) {
-        this.saleAmountTva = saleAmountTva;
+    public void setPurchaseAmountTva(BigDecimal purchaseAmountTva) {
+        this.purchaseAmountTva = purchaseAmountTva;
     }
 
-    public Vat getSaleVat() {
-        return saleVat;
+    public Vat getPurchaseVat() {
+        return purchaseVat;
     }
 
-    public void setSaleVat(Vat saleVat) {
-        this.saleVat = saleVat;
+    public void setPurchaseVat(Vat purchaseVat) {
+        this.purchaseVat = purchaseVat;
     }
 
     public Owner getOwner() {
