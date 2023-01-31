@@ -33,4 +33,6 @@ public interface UserService {
     public List<User> findAll(int page, int size) ;
 
     public User findByEmailAndPassowrd(String email, String password);
+
+    String getNextVal();
 }

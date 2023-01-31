@@ -46,7 +46,7 @@ public class GroupHabilitationMapper {
         usrGroupHabilitation.setUpdateDate(groupHabilitation.getUpdateDate());
 
         if (!lazy) {
-            usrGroupHabilitation.setUsrHabilitation(HabilitationMapper.toEntity(groupHabilitation.getHabilitation(), true));
+            usrGroupHabilitation.setUsrHabilitation(HabilitationMapper.toEntity(groupHabilitation.getHabilitation(), false));
             usrGroupHabilitation.setUsrUserGroup(UserGroupMapper.toEntity(groupHabilitation.getUserGroup(), true));
         }
         return usrGroupHabilitation;
@@ -64,7 +64,7 @@ public class GroupHabilitationMapper {
         groupHabilitation.setCreationDate(usrGroupHabilitation.getCreationDate());
         groupHabilitation.setUpdateDate(usrGroupHabilitation.getUpdateDate());
         if (!lazy) {
-            groupHabilitation.setHabilitation(HabilitationMapper.toDto(usrGroupHabilitation.getUsrHabilitation(), true));
+            groupHabilitation.setHabilitation(HabilitationMapper.toDto(usrGroupHabilitation.getUsrHabilitation(), false));
             groupHabilitation.setUserGroup(UserGroupMapper.toDto(usrGroupHabilitation.getUsrUserGroup(), true));
         }
         return groupHabilitation;

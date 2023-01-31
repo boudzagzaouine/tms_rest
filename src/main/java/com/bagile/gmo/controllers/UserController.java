@@ -104,4 +104,13 @@ public class UserController {
         userService.delete(id);
     }
 
+
+    @RequestMapping(method = RequestMethod.GET, value = "/nextval")
+    @ResponseBody
+    public String nextVal()
+    {
+        return  userService.getNextVal();
+    }
+
+
 }

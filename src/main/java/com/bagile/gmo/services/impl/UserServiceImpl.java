@@ -7,9 +7,11 @@ import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.UserMapper;
 import com.bagile.gmo.repositories.UserRepository;
+import com.bagile.gmo.services.SettingService;
 import com.bagile.gmo.services.UserService;
 import com.bagile.gmo.util.EmsDate;
 import com.bagile.gmo.util.Search;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -22,6 +24,10 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+
+    @Autowired
+    private SettingService settingService;
+
 
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -133,6 +139,12 @@ public class UserServiceImpl implements UserService {
     public User findByEmailAndPassowrd(String email, String password) {
         return UserMapper.toDto(userRepository.findByUsrUserEmailAndUsrUserPasswordAndUsrUserIsActive(email, password, true), false);
     }
+    @Override
+    public String getNextVal() {
+        String value="USR" + userRepository.getNextVal().get(0);
+        return value;
 
+
+    }
 
 }
