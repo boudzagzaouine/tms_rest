@@ -57,47 +57,47 @@ public class HabilitationServiceImpl implements HabilitationService {
             habilitation.setCreationDate(EmsDate.getDateNow());
              savedHabilitation = habilitationRepository.save(HabilitationMapper.toEntity(habilitation, false));
 
-            Habilitation view = new Habilitation();
-            view.setCode(habilitation.getCode().toUpperCase() + "_VIEW");
-            view.setDescription(view.getCode());
-            view.setCreationDate(habilitation.getCreationDate());
-            view.setActive(true);
-            view.setId(-1);
-            view.setHabilitation(HabilitationMapper.toDto(savedHabilitation, false));
+//            Habilitation view = new Habilitation();
+//            view.setCode(habilitation.getCode().toUpperCase() + "_VIEW");
+//            view.setDescription(view.getCode());
+//            view.setCreationDate(habilitation.getCreationDate());
+//            view.setActive(true);
+//            view.setId(-1);
+//            view.setHabilitation(HabilitationMapper.toDto(savedHabilitation, false));
 
 
-            Habilitation create = new Habilitation();
-            create.setCode(habilitation.getCode().toUpperCase() + "_CREATE");
-            create.setDescription(create.getCode());
-            create.setActive(true);
-            create.setId(-2);
-            create.setCreationDate(habilitation.getCreationDate());
-            create.setHabilitation(HabilitationMapper.toDto(savedHabilitation, false));
+//            Habilitation create = new Habilitation();
+//            create.setCode(habilitation.getCode().toUpperCase() + "_CREATE");
+//            create.setDescription(create.getCode());
+//            create.setActive(true);
+//            create.setId(-2);
+//            create.setCreationDate(habilitation.getCreationDate());
+//            create.setHabilitation(HabilitationMapper.toDto(savedHabilitation, false));
+//
+//            Habilitation edit = new Habilitation();
+//            edit.setCode(habilitation.getCode().toUpperCase() + "_EDIT");
+//            edit.setDescription(edit.getCode());
+//            edit.setActive(true);
+//            edit.setId(-3);
+//            edit.setCreationDate(habilitation.getCreationDate());
+//            edit.setHabilitation(HabilitationMapper.toDto(savedHabilitation, false));
+//
+//            Habilitation delete = new Habilitation();
+//            delete.setCode(habilitation.getCode().toUpperCase() + "_DELETE");
+//            delete.setDescription(delete.getCode());
+//
+//            delete.setActive(true);
+//            delete.setId(-4);
+//            delete.setCreationDate(habilitation.getCreationDate());
+//            delete.setHabilitation(HabilitationMapper.toDto(savedHabilitation, false));
+//
+//            Set<Habilitation> list = new HashSet<>();
+//            list.add(view);
+//            list.add(create);
+//            list.add(edit);
+//            list.add(delete);
 
-            Habilitation edit = new Habilitation();
-            edit.setCode(habilitation.getCode().toUpperCase() + "_EDIT");
-            edit.setDescription(edit.getCode());
-            edit.setActive(true);
-            edit.setId(-3);
-            edit.setCreationDate(habilitation.getCreationDate());
-            edit.setHabilitation(HabilitationMapper.toDto(savedHabilitation, false));
-
-            Habilitation delete = new Habilitation();
-            delete.setCode(habilitation.getCode().toUpperCase() + "_DELETE");
-            delete.setDescription(delete.getCode());
-
-            delete.setActive(true);
-            delete.setId(-4);
-            delete.setCreationDate(habilitation.getCreationDate());
-            delete.setHabilitation(HabilitationMapper.toDto(savedHabilitation, false));
-
-            Set<Habilitation> list = new HashSet<>();
-            list.add(view);
-            list.add(create);
-            list.add(edit);
-            list.add(delete);
-
-            habilitationRepository.saveAll(HabilitationMapper.toEntities(list, false));
+           // habilitationRepository.saveAll(HabilitationMapper.toEntities(list, false));
         }
         else {
             habilitation.setUpdateDate(EmsDate.getDateNow());

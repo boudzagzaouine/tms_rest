@@ -5,6 +5,8 @@ import com.bagile.gmo.dto.*;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.importModels.ServiceImport;
+import com.bagile.gmo.importModels.TrajetImport;
 import org.springframework.data.domain.Pageable;
 
 import java.math.BigDecimal;
@@ -34,5 +36,7 @@ public interface ProductServiceService {
 
     void delete(Product product);
     void deleteAll (List<Long> ids) throws AttributesNotFound, ErrorType;
+
+
 
 }

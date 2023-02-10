@@ -61,6 +61,13 @@ public class Vehicle extends Patrimony implements Serializable {
     private VehicleTray vehicleTray;
     private BrandVehicleType brandVehicleType;
 
+    private Double latitude;
+    private Double longitude;
+    private long disponible; //1 trajet //2 maintenance // disponible
+
+
+
+
     public Vehicle() {
     }
 
@@ -192,6 +199,8 @@ public class Vehicle extends Patrimony implements Serializable {
     public void setInsurance(Insurance insurance) {
         this.insurance = insurance;
     }
+
+
 */
     public ContractType getContractType() {
         return contractType;
@@ -216,6 +225,30 @@ public class Vehicle extends Patrimony implements Serializable {
 
     public void setRearDeck(BigDecimal rearDeck) {
         this.rearDeck = rearDeck;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public long getDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(long disponible) {
+        this.disponible = disponible;
     }
 
     public BigDecimal getDirection() {

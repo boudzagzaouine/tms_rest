@@ -50,7 +50,8 @@ public class CatalogPricingServiceImpl implements CatalogPricingService {
     @Autowired
     private VatService vatService;
 
-
+    @Autowired
+    private TrajetService trajetService;
     private final static Logger LOGGER = LoggerFactory
             .getLogger(Address.class);
     public CatalogPricingServiceImpl(CatalogPricingRepository catalogPricingRepository) {
@@ -150,37 +151,24 @@ public class CatalogPricingServiceImpl implements CatalogPricingService {
     public List<CatalogPricingImport> loadingDataImport(List<CatalogPricingImport> catalogPricingImports) throws ErrorType, AttributesNotFound, IdNotFound {
         List<CatalogPricing> catalogPricingList = new ArrayList<>();
         CatalogPricing catalogPricing = new CatalogPricing();
-  Vat purchaseVat = new Vat();
-        Vat saleVat = new Vat();
+
         for (CatalogPricingImport catalogPricingImport : catalogPricingImports) {
             try {
 
+                catalogPricing.setTrajet((trajetService.find("code:" + catalogPricingImport.getCatalogPricing_Trajet())).stream().findFirst().orElse(null));
 
                 catalogPricing.setTurnType((turnTypeService.find("code:" + catalogPricingImport.getCatalogPricing_TurnType())).stream().findFirst().orElse(null));
-//                catalogPricing.setPaysSource(paysService.findById(1L));
-//                catalogPricing.setVilleSource(villeService.find("code:"+ catalogPricingImport.getCatalogPricing_VilleSource()).stream().findFirst().orElse(null));
-//                catalogPricing.setPaysDestination(paysService.findById(1L));
-//                catalogPricing.setVilleDestination(villeService.find("code:"+ catalogPricingImport.getCatalogPricing_VilleDestination()).stream().findFirst().orElse(null));
-//                catalogPricing.setVehicleCategory(vehicleCategoryService.find("code:"+ catalogPricingImport.getCatalogPricing_VehicleCategory()).stream().findFirst().orElse(null));
+                catalogPricing.setVehicleCategory(vehicleCategoryService.find("code:"+ catalogPricingImport.getCatalogPricing_VehicleCategory()).stream().findFirst().orElse(null));
                 catalogPricing.setVehicleTray(vehicleTrayService.find("code:"+ catalogPricingImport.getCatalogPricing_VehicleTray()).stream().findFirst().orElse(null));
                 catalogPricing.setLoadingType(loadingTypeService.find("code:"+catalogPricingImport.getCatalogPricing_LoadingType()).stream().findFirst().orElse(null));
 
                 catalogPricing.setPurchaseAmountHt(new BigDecimal(catalogPricingImport.getCatalogPricing_PurchaseAmountHt()));
-                for (Vat vat:vatService.findAll()) {
 
-                    if(vat.getValue().compareTo(new  BigDecimal(catalogPricingImport.getCatalogPricing_PurchaseVat()))==0){
-                        purchaseVat=vat;
-                    }
-                    if(vat.getValue().compareTo(new  BigDecimal(catalogPricingImport.getCatalogPricing_SaleVat()))==0){
-                        saleVat=vat;
-                    }
-                }
-                catalogPricing.setPurchaseVat(purchaseVat);
-                catalogPricing.setPurchaseAmountTva((catalogPricing.getPurchaseAmountHt().divide(BigDecimal.valueOf(100))).multiply(catalogPricing.getPurchaseVat().getValue()));
+                catalogPricing.setPurchaseVat(vatService.find("value:"+new BigDecimal(catalogPricingImport.getCatalogPricing_PurchaseVat())).stream().findFirst().orElse(null));                catalogPricing.setPurchaseAmountTva((catalogPricing.getPurchaseAmountHt().divide(BigDecimal.valueOf(100))).multiply(catalogPricing.getPurchaseVat().getValue()));
                 catalogPricing.setPurchaseAmountTtc(catalogPricing.getPurchaseAmountHt().add(catalogPricing.getPurchaseAmountTva()));
 
                 catalogPricing.setSaleAmountHt(new BigDecimal(catalogPricingImport.getCatalogPricing_SaleAmountHt()));
-                catalogPricing.setSaleVat(saleVat);
+                catalogPricing.setSaleVat(vatService.find("value:"+new BigDecimal(catalogPricingImport.getCatalogPricing_SaleVat())).stream().findFirst().orElse(null));                catalogPricing.setPurchaseAmountTva((catalogPricing.getPurchaseAmountHt().divide(BigDecimal.valueOf(100))).multiply(catalogPricing.getPurchaseVat().getValue()));
                 catalogPricing.setSaleAmountTva((catalogPricing.getSaleAmountHt().divide(BigDecimal.valueOf(100))).multiply(catalogPricing.getSaleVat().getValue()));
                 catalogPricing.setSaleAmountTtc(catalogPricing.getSaleAmountHt().add(catalogPricing.getSaleAmountTva()));
 

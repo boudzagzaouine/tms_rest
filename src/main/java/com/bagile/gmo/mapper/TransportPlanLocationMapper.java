@@ -14,8 +14,10 @@ public class TransportPlanLocationMapper {
 		map = new HashMap<>();
 
 		map.put("id", "tmsTransportPlanLocationId");
-		map.put("code", "tmsTransportPlanLocationCode");
-		map.put("description", "tmsTransportPlanLocationDescription");
+		map.put("vehicleId", "tmsTransportPlanLocationvehicleId");
+		map.put("driverId", "tmsTransportPlanLocationdriverId");
+		map.put("date", "tmsTransportPlanLocationdate");
+
 	}
 
 	public static Map<String, String> getMap() {
@@ -38,6 +40,7 @@ public class TransportPlanLocationMapper {
 		tmsTransportPlanLocation.setTmsTransportPlanLocationlatitude(transportPlanLocation.getLatitude());
 		tmsTransportPlanLocation.setTmsTransportPlanLocationlongitude(transportPlanLocation.getLongitude());
 		tmsTransportPlanLocation.setTmsTransportPlanLocationdate(transportPlanLocation.getDate());
+		tmsTransportPlanLocation.setTmsTransportPlanLocationType(transportPlanLocation.getType());
 
 		if(!lazy){
 
@@ -58,6 +61,7 @@ public class TransportPlanLocationMapper {
 		transportPlanLocation.setLatitude(tmsTransportPlanLocation.getTmsTransportPlanLocationlatitude());
 		transportPlanLocation.setLongitude(tmsTransportPlanLocation.getTmsTransportPlanLocationlongitude());
 		transportPlanLocation.setDate(tmsTransportPlanLocation.getTmsTransportPlanLocationdate());
+		transportPlanLocation.setType(tmsTransportPlanLocation.getTmsTransportPlanLocationType());
 
 		if(!lazy){
 

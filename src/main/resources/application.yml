@@ -22,6 +22,9 @@ spring:
 
   jackson:
     serialization.fail-on-empty-beans: false
+  servlet:
+    multipart:
+      max-request-size: 25
 
 server:
   port: 8088

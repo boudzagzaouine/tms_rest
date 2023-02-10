@@ -36,6 +36,8 @@ public class UsrHabilitation extends EmsEntity implements java.io.Serializable, 
             0);
     private Boolean usrHabilitationActive;
 
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_usr_habilitation_id", allocationSize = 1)
@@ -65,6 +67,7 @@ public class UsrHabilitation extends EmsEntity implements java.io.Serializable, 
     public void setUsrHabilitationDescription(String usrHabilitationDescription) {
         this.usrHabilitationDescription = usrHabilitationDescription;
     }
+
 
 
     @Override

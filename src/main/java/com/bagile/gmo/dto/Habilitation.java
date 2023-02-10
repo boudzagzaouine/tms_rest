@@ -19,6 +19,8 @@ public class Habilitation extends EmsDto  implements Serializable {
     private String labelFR;
     private String LabelEN;
 
+    private long componentOrColumn ; //1 comopo  //2 column
+
     public long getId() {
         return id;
     }
@@ -57,6 +59,14 @@ public class Habilitation extends EmsDto  implements Serializable {
 
     public void setGroupHabilitations(Set<GroupHabilitation> groupHabilitations) {
         this.groupHabilitations = groupHabilitations;
+    }
+
+    public long getComponentOrColumn() {
+        return componentOrColumn;
+    }
+
+    public void setComponentOrColumn(long componentOrColumn) {
+        this.componentOrColumn = componentOrColumn;
     }
 
     public Set<Habilitation> getHabilitations() {

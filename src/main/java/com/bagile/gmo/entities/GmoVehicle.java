@@ -67,6 +67,7 @@ public class GmoVehicle extends GmoPatrimony {
 
     private GmoBrandVehicleType gmoBrandVehicleType;
 
+
   /*  @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_vehicule_id", allocationSize = 1)
@@ -124,6 +125,8 @@ public class GmoVehicle extends GmoPatrimony {
     public void setGmoVehicleInterneOrExterne(String gmoVehicleInterneOrExterne) {
         this.gmoVehicleInterneOrExterne = gmoVehicleInterneOrExterne;
     }
+
+
 
     @Column(name = "gmo_vehiculedurationinmonths")
     public Long getGmoVehicleDurationInMonths() {

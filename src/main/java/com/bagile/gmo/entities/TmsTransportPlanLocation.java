@@ -22,6 +22,7 @@ public class TmsTransportPlanLocation extends EmsEntity {
     private long tmsTransportPlanLocationdriverId ;
     private Date tmsTransportPlanLocationdate;
 
+    private String tmsTransportPlanLocationType;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -42,6 +43,16 @@ public class TmsTransportPlanLocation extends EmsEntity {
 
     public void setTmsTransportPlanLocationlatitude(double tmsTransportPlanLocationlatitude) {
         this.tmsTransportPlanLocationlatitude = tmsTransportPlanLocationlatitude;
+    }
+
+
+    @Column(name = "tms_transportplanlocationtype")
+    public String getTmsTransportPlanLocationType() {
+        return tmsTransportPlanLocationType;
+    }
+
+    public void setTmsTransportPlanLocationType(String tmsTransportPlanLocationType) {
+        this.tmsTransportPlanLocationType = tmsTransportPlanLocationType;
     }
 
     @Column(name = "tms_transportplanlocationlongtitude", nullable = false, length = 90)

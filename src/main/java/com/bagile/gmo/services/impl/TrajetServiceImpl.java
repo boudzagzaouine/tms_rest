@@ -1,19 +1,30 @@
 package com.bagile.gmo.services.impl;
 
+import com.bagile.gmo.dto.Address;
+import com.bagile.gmo.dto.CatalogTransportPricing;
 import com.bagile.gmo.dto.Trajet;
+import com.bagile.gmo.entities.PrmPays;
 import com.bagile.gmo.entities.TmsTrajet;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.importModels.CatalogTransportPricingImport;
+import com.bagile.gmo.importModels.TrajetImport;
 import com.bagile.gmo.mapper.TrajetMapper;
 import com.bagile.gmo.repositories.TrajetRepository;
+import com.bagile.gmo.services.PaysService;
 import com.bagile.gmo.services.TrajetService;
+import com.bagile.gmo.services.VilleService;
 import com.bagile.gmo.util.Search;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +34,14 @@ public class TrajetServiceImpl implements TrajetService {
     
     private final TrajetRepository trajetRepository;
 
+    @Autowired
+    private PaysService paysService;
+    @Autowired
+    private VilleService villeService;
+
+
+    private final static Logger LOGGER = LoggerFactory
+            .getLogger(Address.class);
     public TrajetServiceImpl(TrajetRepository trajetRepository) {
         this.trajetRepository = trajetRepository;
     }
@@ -121,6 +140,39 @@ public class TrajetServiceImpl implements TrajetService {
     public Trajet findOne(String search) throws AttributesNotFound, ErrorType {
         return null;
     }
+
+
+    @Override
+    public List<TrajetImport> loadingDataImport(List<TrajetImport> trajetImports) throws ErrorType, AttributesNotFound, IdNotFound {
+        List<Trajet> trajetList = new ArrayList<>();
+        Trajet trajet = new Trajet();
+
+        for (TrajetImport trajetImport : trajetImports) {
+            try {
+
+                trajet.setCode(trajetImport.getTrajet_code());
+
+
+                trajet.setPaysSource((paysService.find("id:" + 1L)).stream().findFirst().orElse(null));
+                trajet.setPaysDestination((paysService.find("id:" + 1L)).stream().findFirst().orElse(null));
+
+                trajet.setVilleSource((villeService.find("code:" + trajetImport.getTrajet_villeSource())).stream().findFirst().orElse(null));
+                trajet.setVilleDestination((villeService.find("code:" + trajetImport.getTrajet_villeDistination())).stream().findFirst().orElse(null));
+
+
+
+                trajetList.add(save(trajet));
+
+            }catch (Exception e){
+                LOGGER.error("error importing ");
+            }
+        }
+        saveAll(trajetList);
+
+        return null;
+
+    }
+
 
 }
 

@@ -4,6 +4,8 @@ import com.bagile.gmo.dto.CatalogTransportAccountPricing;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.importModels.CatalogPricingImport;
+import com.bagile.gmo.importModels.CatalogTransportAccountPricingImport;
 
 import java.util.List;
 
@@ -33,4 +35,7 @@ public interface CatalogTransportAccountPricingService {
     List<CatalogTransportAccountPricing> findAll(int page, int size);
 
     String getNextVal();
+
+    List<CatalogTransportAccountPricingImport> loadingDataImport(List<CatalogTransportAccountPricingImport> catalogTransportAccountPricingImports) throws ErrorType, AttributesNotFound, IdNotFound;
+
 }

@@ -12,6 +12,7 @@ public class TransportPlanLocation {
 	private long vehicleId ;
 	private long driverId ;
 	private Date date;
+	private String type;
 
 
 	public long getId() {
@@ -67,5 +68,13 @@ public class TransportPlanLocation {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 }

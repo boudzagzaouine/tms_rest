@@ -52,6 +52,7 @@ public class HabilitationMapper {
         usrHabilitation.setUsrHabilitationLabelEN(habilitation.getLabelEN());
 
 
+
         usrHabilitation.setCreatedBy(habilitation.getCreatedBy());
         usrHabilitation.setUpdatedBy(habilitation.getUpdatedBy());
         usrHabilitation.setCreationDate(habilitation.getCreationDate());

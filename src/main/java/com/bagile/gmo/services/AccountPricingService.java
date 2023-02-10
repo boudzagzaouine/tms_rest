@@ -5,6 +5,8 @@ import com.bagile.gmo.dto.Maintenance;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.importModels.AccountPricingImport;
+import com.bagile.gmo.importModels.CatalogPricingImport;
 
 import java.util.List;
 
@@ -34,5 +36,8 @@ public interface AccountPricingService {
     List<AccountPricing> findAll(int page, int size);
 
 	AccountPricing findOne(String search) throws AttributesNotFound, ErrorType;
+
+
+    List<AccountPricingImport> loadingDataImport(List<AccountPricingImport> accountPricingImports) throws ErrorType, AttributesNotFound, IdNotFound;
 
 }

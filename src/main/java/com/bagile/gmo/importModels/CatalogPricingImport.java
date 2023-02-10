@@ -8,10 +8,8 @@ public class CatalogPricingImport {
 
 
     private String catalogPricing_TurnType;
-    private String catalogPricing_PaysSource;
-    private String catalogPricing_VilleSource ;
-    private String catalogPricing_PaysDestination;
-    private String catalogPricing_VilleDestination;
+
+    private String catalogPricing_Trajet;
     private String catalogPricing_VehicleCategory;
     private String catalogPricing_VehicleTray;
     private String catalogPricing_LoadingType;
@@ -34,36 +32,12 @@ public class CatalogPricingImport {
         this.catalogPricing_TurnType = catalogPricing_TurnType;
     }
 
-    public String getCatalogPricing_PaysSource() {
-        return catalogPricing_PaysSource;
+    public String getCatalogPricing_Trajet() {
+        return catalogPricing_Trajet;
     }
 
-    public void setCatalogPricing_PaysSource(String catalogPricing_PaysSource) {
-        this.catalogPricing_PaysSource = catalogPricing_PaysSource;
-    }
-
-    public String getCatalogPricing_VilleSource() {
-        return catalogPricing_VilleSource;
-    }
-
-    public void setCatalogPricing_VilleSource(String catalogPricing_VilleSource) {
-        this.catalogPricing_VilleSource = catalogPricing_VilleSource;
-    }
-
-    public String getCatalogPricing_PaysDestination() {
-        return catalogPricing_PaysDestination;
-    }
-
-    public void setCatalogPricing_PaysDestination(String catalogPricing_PaysDestination) {
-        this.catalogPricing_PaysDestination = catalogPricing_PaysDestination;
-    }
-
-    public String getCatalogPricing_VilleDestination() {
-        return catalogPricing_VilleDestination;
-    }
-
-    public void setCatalogPricing_VilleDestination(String catalogPricing_VilleDestination) {
-        this.catalogPricing_VilleDestination = catalogPricing_VilleDestination;
+    public void setCatalogPricing_Trajet(String catalogPricing_Trajet) {
+        this.catalogPricing_Trajet = catalogPricing_Trajet;
     }
 
     public String getCatalogPricing_VehicleCategory() {

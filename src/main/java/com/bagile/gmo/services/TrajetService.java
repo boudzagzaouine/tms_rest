@@ -4,6 +4,8 @@ import com.bagile.gmo.dto.Trajet;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.importModels.CatalogTransportPricingImport;
+import com.bagile.gmo.importModels.TrajetImport;
 
 import java.util.List;
 
@@ -33,5 +35,7 @@ public interface TrajetService {
     List<Trajet> findAll(int page, int size);
 
 	Trajet findOne(String search) throws AttributesNotFound, ErrorType;
+    List<TrajetImport> loadingDataImport(List<TrajetImport>  trajetImports) throws ErrorType, AttributesNotFound, IdNotFound;
+
 
 }

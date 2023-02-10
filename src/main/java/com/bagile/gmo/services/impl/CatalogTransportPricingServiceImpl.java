@@ -1,19 +1,27 @@
 package com.bagile.gmo.services.impl;
 
+import com.bagile.gmo.dto.Address;
+import com.bagile.gmo.dto.CatalogTransportAccountPricing;
 import com.bagile.gmo.dto.CatalogTransportPricing;
 import com.bagile.gmo.entities.TmsCatalogTransportPricing;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.importModels.CatalogTransportAccountPricingImport;
+import com.bagile.gmo.importModels.CatalogTransportPricingImport;
 import com.bagile.gmo.mapper.CatalogTransportPricingMapper;
 import com.bagile.gmo.repositories.CatalogTransportPricingRepository;
-import com.bagile.gmo.services.CatalogTransportPricingService;
+import com.bagile.gmo.services.*;
 import com.bagile.gmo.util.Search;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +29,29 @@ import java.util.List;
 @Service
 public class CatalogTransportPricingServiceImpl implements CatalogTransportPricingService {
     private final CatalogTransportPricingRepository catalogTransportPricingRepository;
+
+    @Autowired
+    private VehicleCategoryService vehicleCategoryService;
+    @Autowired
+    private VehicleTrayService vehicleTrayService;
+
+    @Autowired
+    private LoadingTypeService loadingTypeService;
+
+    @Autowired
+    private VatService vatService;
+    @Autowired
+    private TurnTypeService turnTypeService;
+
+    @Autowired
+    private CompanyService companyService;
+    @Autowired
+    private TrajetService trajetService;
+
+    @Autowired
+    private TransportService  transportService;
+    private final static Logger LOGGER = LoggerFactory
+            .getLogger(Address.class);
     
     public CatalogTransportPricingServiceImpl(CatalogTransportPricingRepository catalogTransportPricingRepository) {
         this.catalogTransportPricingRepository = catalogTransportPricingRepository;
@@ -120,6 +151,44 @@ public class CatalogTransportPricingServiceImpl implements CatalogTransportPrici
 
 
     }
+
+    @Override
+    public List<CatalogTransportPricingImport> loadingDataImport(List<CatalogTransportPricingImport> catalogTransportPricings) throws ErrorType, AttributesNotFound, IdNotFound {
+        List<CatalogTransportPricing> catalogTransportPricingList = new ArrayList<>();
+        CatalogTransportPricing catalogTransportPricing = new CatalogTransportPricing();
+
+        for (CatalogTransportPricingImport catalogTransportPricingImport : catalogTransportPricings) {
+            try {
+
+                catalogTransportPricing.setTransport((transportService.find("name:" + catalogTransportPricingImport.getCatalogTransportPricing_Transport())).stream().findFirst().orElse(null));
+
+
+                catalogTransportPricing.setTrajet((trajetService.find("code:" + catalogTransportPricingImport.getCatalogTransportPricing_Trajet())).stream().findFirst().orElse(null));
+
+                catalogTransportPricing.setTurnType((turnTypeService.find("code:" + catalogTransportPricingImport.getCatalogTransportPricing_TurnType())).stream().findFirst().orElse(null));
+                catalogTransportPricing.setVehicleCategory(vehicleCategoryService.find("code:"+ catalogTransportPricingImport.getCatalogTransportPricing_VehicleCategory()).stream().findFirst().orElse(null));
+                catalogTransportPricing.setVehicleTray(vehicleTrayService.find("code:"+ catalogTransportPricingImport.getCatalogTransportPricing_VehicleTray()).stream().findFirst().orElse(null));
+                catalogTransportPricing.setLoadingType(loadingTypeService.find("code:"+catalogTransportPricingImport.getCatalogTransportPricing_LoadingType()).stream().findFirst().orElse(null));
+
+                catalogTransportPricing.setPurchaseAmountHt(new BigDecimal(catalogTransportPricingImport.getCatalogTransportPricing_PurchaseAmountHt()));
+                catalogTransportPricing.setPurchaseVat(vatService.find("value:"+new BigDecimal(catalogTransportPricingImport.getCatalogTransportPricing_PurchaseVat())).stream().findFirst().orElse(null));
+                catalogTransportPricing.setPurchaseAmountTva((catalogTransportPricing.getPurchaseAmountHt().divide(BigDecimal.valueOf(100))).multiply(catalogTransportPricing.getPurchaseVat().getValue()));
+                catalogTransportPricing.setPurchaseAmountTtc(catalogTransportPricing.getPurchaseAmountHt().add(catalogTransportPricing.getPurchaseAmountTva()));
+
+
+
+                catalogTransportPricingList.add(save(catalogTransportPricing));
+
+            }catch (Exception e){
+                LOGGER.error("error importing ");
+            }
+        }
+        saveAll(catalogTransportPricingList);
+
+        return null;
+
+    }
+
 
 }
 

@@ -15,7 +15,7 @@ public class VatMapper {
         map = new HashMap<> ( );
 
         map.put ("id", "prmId");
-        map.put ("value", "prmValue");
+        map.put ("value", "prmVatValue");
        
         
         map.put ("creationDate", "creationDate");

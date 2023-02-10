@@ -101,6 +101,7 @@ public class VehicleMapper {
         gmoVehicle.setGmoVehicleDurationInMonths(vehicle.getDurationInMonths());
 
 
+
         if (!lazy) {
             gmoVehicle.setGmoVehicleCategory(VehicleCategoryMapper.toEntity(vehicle.getVehicleCategory(), true));
             gmoVehicle.setGmoBadgeType(BadgeTypeMapper.toEntity(vehicle.getBadgeType(), true));
@@ -167,6 +168,7 @@ public class VehicleMapper {
 
         vehicle.setInterneOrExterne(gmoVehicle.getGmoVehicleInterneOrExterne());
         vehicle.setDurationInMonths(gmoVehicle.getGmoVehicleDurationInMonths());
+
 
 
         if (!lazy) {
