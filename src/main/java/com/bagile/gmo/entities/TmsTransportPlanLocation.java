@@ -24,6 +24,9 @@ public class TmsTransportPlanLocation extends EmsEntity {
 
     private String tmsTransportPlanLocationType;
 
+    private long accountId;
+    private String accountName ;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_transportplanlocation_id", allocationSize = 1)
@@ -64,6 +67,9 @@ public class TmsTransportPlanLocation extends EmsEntity {
     public void setTmsTransportPlanLocationlongitude(double tmsTransportPlanLocationlongitude) {
         this.tmsTransportPlanLocationlongitude = tmsTransportPlanLocationlongitude;
     }
+
+
+
     @Column(name = "tms_transportplanlocationtransportplanid", nullable = false, length = 90)
 
     public long getTmsTransportPlanLocationtransportPlanId() {
@@ -102,10 +108,23 @@ public class TmsTransportPlanLocation extends EmsEntity {
     }
 
 
+    @Column(name = "tms_transportplanlocationaccountid")
 
+    public long getAccountId() {
+        return accountId;
+    }
 
+    public void setAccountId(long accountId) {
+        this.accountId = accountId;
+    }
 
+    @Column(name = "tms_transportplanlocationaccountname")
 
+    public String getAccountName() {
+        return accountName;
+    }
 
-
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
 }

@@ -15,9 +15,14 @@ public class TransportPlanServiceCatalog extends EmsDto implements Serializable 
 
     private Address address;
     private Boolean invoice;
-    private BigDecimal priceHT;
-    private Vat vat;
-    private BigDecimal priceTTC;
+    private BigDecimal purchasePriceHT;
+    private Vat purchaseVat;
+    private BigDecimal purchasePriceTTC;
+
+    private BigDecimal salePriceHT;
+    private Vat saleVat;
+    private BigDecimal salePriceTTC;
+    private BigDecimal salePriceVat;
 private Owner owner;
     public long getId() {
         return id;
@@ -43,28 +48,60 @@ private Owner owner;
         this.transport = transport;
     }
 
-    public BigDecimal getPriceHT() {
-        return priceHT;
+    public BigDecimal getPurchasePriceHT() {
+        return purchasePriceHT;
     }
 
-    public void setPriceHT(BigDecimal priceHT) {
-        this.priceHT = priceHT;
+    public void setPurchasePriceHT(BigDecimal purchasePriceHT) {
+        this.purchasePriceHT = purchasePriceHT;
     }
 
-    public Vat getVat() {
-        return vat;
+    public BigDecimal getSalePriceVat() {
+        return salePriceVat;
     }
 
-    public void setVat(Vat vat) {
-        this.vat = vat;
+    public void setSalePriceVat(BigDecimal salePriceVat) {
+        this.salePriceVat = salePriceVat;
     }
 
-    public BigDecimal getPriceTTC() {
-        return priceTTC;
+    public Vat getPurchaseVat() {
+        return purchaseVat;
     }
 
-    public void setPriceTTC(BigDecimal priceTTC) {
-        this.priceTTC = priceTTC;
+    public void setPurchaseVat(Vat purchaseVat) {
+        this.purchaseVat = purchaseVat;
+    }
+
+    public BigDecimal getPurchasePriceTTC() {
+        return purchasePriceTTC;
+    }
+
+    public void setPurchasePriceTTC(BigDecimal purchasePriceTTC) {
+        this.purchasePriceTTC = purchasePriceTTC;
+    }
+
+    public BigDecimal getSalePriceHT() {
+        return salePriceHT;
+    }
+
+    public void setSalePriceHT(BigDecimal salePriceHT) {
+        this.salePriceHT = salePriceHT;
+    }
+
+    public Vat getSaleVat() {
+        return saleVat;
+    }
+
+    public void setSaleVat(Vat saleVat) {
+        this.saleVat = saleVat;
+    }
+
+    public BigDecimal getSalePriceTTC() {
+        return salePriceTTC;
+    }
+
+    public void setSalePriceTTC(BigDecimal salePriceTTC) {
+        this.salePriceTTC = salePriceTTC;
     }
 
     public Owner getOwner() {

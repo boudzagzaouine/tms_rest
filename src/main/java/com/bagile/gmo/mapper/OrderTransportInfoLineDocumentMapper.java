@@ -14,9 +14,9 @@ public class OrderTransportInfoLineDocumentMapper {
 	static {
 		map = new HashMap<>();
 
-		map.put("id", "gmoOrderTransportInfoLineDocumentId");
-		map.put("code", "gmoOrderTransportInfoLineDocumentCode");
-		map.put("description", "gmoOrderTransportInfoLineDocumentDescription");
+		map.put("id", "tmsOrderTransportInfoLineDocumentId");
+
+		map.put("orderTransportInfoLine", "tmsOrderTransportInfoLine");
 	}
 
 	public static Map<String, String> getMap() {

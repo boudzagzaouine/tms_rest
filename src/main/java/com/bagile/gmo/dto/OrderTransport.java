@@ -22,6 +22,10 @@ public class OrderTransport {
 	//private OrderTransportInfo orderTransportInfoRetour;
 
 	private BigDecimal priceHT;
+	private Vat vat;
+	private BigDecimal priceTTC;
+	private BigDecimal priceVat;
+
 	private BigDecimal marginRate ;
 	private BigDecimal marginValue ;
 	private Owner owner;
@@ -68,6 +72,30 @@ public class OrderTransport {
 
 	public void setLoadingType(LoadingType loadingType) {
 		this.loadingType = loadingType;
+	}
+
+	public BigDecimal getPriceVat() {
+		return priceVat;
+	}
+
+	public void setPriceVat(BigDecimal priceVat) {
+		this.priceVat = priceVat;
+	}
+
+	public Vat getVat() {
+		return vat;
+	}
+
+	public void setVat(Vat vat) {
+		this.vat = vat;
+	}
+
+	public BigDecimal getPriceTTC() {
+		return priceTTC;
+	}
+
+	public void setPriceTTC(BigDecimal priceTTC) {
+		this.priceTTC = priceTTC;
 	}
 
 	public VehicleTray getVehicleTray() {

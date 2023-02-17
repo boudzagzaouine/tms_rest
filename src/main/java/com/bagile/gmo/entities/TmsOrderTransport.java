@@ -25,6 +25,10 @@ public class TmsOrderTransport extends EmsEntity {
 
    private BigDecimal tmsOrderTransportPriceHT;
 
+   private PrmVat prmVat;
+    private BigDecimal tmsOrderTransportPriceTTC;
+    private BigDecimal tmsOrderTransportPriceVat;
+
     private BigDecimal tmsOrderTransportMarginRate;
 
 
@@ -63,6 +67,16 @@ public class TmsOrderTransport extends EmsEntity {
         this.tmsOrderTransportDate = dateDelivery;
     }
 
+    @Column(name="tms_ordertransportpricevat")
+
+    public BigDecimal getTmsOrderTransportPriceVat() {
+        return tmsOrderTransportPriceVat;
+    }
+
+    public void setTmsOrderTransportPriceVat(BigDecimal tmsOrderTransportPriceVat) {
+        this.tmsOrderTransportPriceVat = tmsOrderTransportPriceVat;
+    }
+
     @Column(name="tms_ordertransportpriceht")
     public BigDecimal getTmsOrderTransportPriceHT() {
         return tmsOrderTransportPriceHT;
@@ -71,6 +85,16 @@ public class TmsOrderTransport extends EmsEntity {
     public void setTmsOrderTransportPriceHT(BigDecimal tmsOrderTransportPriceTTC) {
         this.tmsOrderTransportPriceHT = tmsOrderTransportPriceTTC;
     }
+
+    @Column(name="tms_ordertransportpricettc")
+    public BigDecimal getTmsOrderTransportPriceTTC() {
+        return tmsOrderTransportPriceTTC;
+    }
+
+    public void setTmsOrderTransportPriceTTC(BigDecimal tmsOrderTransportPriceTTC) {
+        this.tmsOrderTransportPriceTTC = tmsOrderTransportPriceTTC;
+    }
+
     @Column(name="tms_ordertransportmarginrate")
     public BigDecimal getTmsOrderTransportMarginRate() {
         return tmsOrderTransportMarginRate;
@@ -97,6 +121,16 @@ public class TmsOrderTransport extends EmsEntity {
 
     public void setTmsOrderTransportType(TmsTurnType tmsOrderTransportType) {
         this.tmsOrderTransportType = tmsOrderTransportType;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "tms_ordertransportvatid")
+    public PrmVat getPrmVat() {
+        return prmVat;
+    }
+
+    public void setPrmVat(PrmVat prmVat) {
+        this.prmVat = prmVat;
     }
 
     @ManyToOne()

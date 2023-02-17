@@ -41,6 +41,8 @@ public class TransportPlanLocationMapper {
 		tmsTransportPlanLocation.setTmsTransportPlanLocationlongitude(transportPlanLocation.getLongitude());
 		tmsTransportPlanLocation.setTmsTransportPlanLocationdate(transportPlanLocation.getDate());
 		tmsTransportPlanLocation.setTmsTransportPlanLocationType(transportPlanLocation.getType());
+		tmsTransportPlanLocation.setAccountId(transportPlanLocation.getAccountId());
+		tmsTransportPlanLocation.setAccountName(transportPlanLocation.getAccountName());
 
 		if(!lazy){
 
@@ -62,6 +64,8 @@ public class TransportPlanLocationMapper {
 		transportPlanLocation.setLongitude(tmsTransportPlanLocation.getTmsTransportPlanLocationlongitude());
 		transportPlanLocation.setDate(tmsTransportPlanLocation.getTmsTransportPlanLocationdate());
 		transportPlanLocation.setType(tmsTransportPlanLocation.getTmsTransportPlanLocationType());
+		transportPlanLocation.setAccountId(tmsTransportPlanLocation.getAccountId());
+		transportPlanLocation.setAccountName(tmsTransportPlanLocation.getAccountName());
 
 		if(!lazy){
 

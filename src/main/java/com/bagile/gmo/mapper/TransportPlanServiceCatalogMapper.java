@@ -37,8 +37,12 @@ public class TransportPlanServiceCatalogMapper {
         }
         TmsTransportPlanServiceCatalog tmsTransporPlanService = new TmsTransportPlanServiceCatalog();
         tmsTransporPlanService.setTmsTransporPlanServiceCatalogId(transporPlanService.getId());
-        tmsTransporPlanService.setTmsTransporPlanServiceCatalogPriceHT (transporPlanService.getPriceHT ());
-        tmsTransporPlanService.setTmsTransporPlanServiceCatalogPriceTTC (transporPlanService.getPriceTTC ());
+        tmsTransporPlanService.setTmsTransporPlanServiceCatalogPurchasePriceHT (transporPlanService.getPurchasePriceHT ());
+        tmsTransporPlanService.setTmsTransporPlanServiceCatalogPurchasePriceTTC (transporPlanService.getPurchasePriceTTC ());
+        tmsTransporPlanService.setTmsTransporPlanServiceCatalogSalePriceHT (transporPlanService.getSalePriceHT ());
+        tmsTransporPlanService.setTmsTransporPlanServiceCatalogSalePriceTTC (transporPlanService.getSalePriceTTC ());
+        tmsTransporPlanService.setTmsTransporPlanServiceCatalogSalePriceVat (transporPlanService.getSalePriceVat ());
+
         tmsTransporPlanService.setTmsTransporPlanServiceCatalogPInvoice (transporPlanService.getInvoice ());
 
         tmsTransporPlanService.setCreatedBy(transporPlanService.getCreatedBy());
@@ -49,7 +53,9 @@ public class TransportPlanServiceCatalogMapper {
           if(!lazy){
               tmsTransporPlanService.setTrpTransport(TransportMapper.toEntity(transporPlanService.getTransport(),true));
               tmsTransporPlanService.setPdtProduct(ProductMapper.toEntity(transporPlanService.getProduct(),true));
-              tmsTransporPlanService.setPrmVat(VatMapper.toEntity(transporPlanService.getVat(),true));
+              tmsTransporPlanService.setPrmPurchaseVat(VatMapper.toEntity(transporPlanService.getPurchaseVat(),true));
+              tmsTransporPlanService.setPrmSaleVat(VatMapper.toEntity(transporPlanService.getSaleVat(),true));
+
               tmsTransporPlanService.setAdrAddress(AddressMapper.toEntity(transporPlanService.getAddress(),true));
 
               tmsTransporPlanService.setOwnOwner(OwnerMapper.toEntity(transporPlanService.getOwner(),true));
@@ -68,14 +74,21 @@ public class TransportPlanServiceCatalogMapper {
         }
         TransportPlanServiceCatalog transporPlanService = new TransportPlanServiceCatalog();
         transporPlanService.setId(tmsTransporPlanService.getTmsTransporPlanServiceCatalogId());
-        transporPlanService.setPriceHT(tmsTransporPlanService.getTmsTransporPlanServiceCatalogPriceHT());
-        transporPlanService.setPriceTTC (tmsTransporPlanService.getTmsTransporPlanServiceCatalogPriceTTC ());
+        transporPlanService.setPurchasePriceHT(tmsTransporPlanService.getTmsTransporPlanServiceCatalogPurchasePriceHT());
+        transporPlanService.setPurchasePriceTTC (tmsTransporPlanService.getTmsTransporPlanServiceCatalogPurchasePriceTTC ());
+        transporPlanService.setSalePriceHT(tmsTransporPlanService.getTmsTransporPlanServiceCatalogSalePriceHT());
+        transporPlanService.setSalePriceTTC (tmsTransporPlanService.getTmsTransporPlanServiceCatalogSalePriceTTC ());
+        transporPlanService.setSalePriceVat (tmsTransporPlanService.getTmsTransporPlanServiceCatalogSalePriceVat ());
+        transporPlanService.setSalePriceVat (tmsTransporPlanService.getTmsTransporPlanServiceCatalogSalePriceVat ());
+
         transporPlanService.setInvoice (tmsTransporPlanService.getTmsTransporPlanServiceCatalogPInvoice ());
 
  if(!lazy){
      transporPlanService.setTransport(TransportMapper.toDto(tmsTransporPlanService.getTrpTransport(),true));
      transporPlanService.setProduct(ProductMapper.toDto(tmsTransporPlanService.getPdtProduct(),true));
-     transporPlanService.setVat(VatMapper.toDto(tmsTransporPlanService.getPrmVat(),true));
+     transporPlanService.setPurchaseVat(VatMapper.toDto(tmsTransporPlanService.getPrmPurchaseVat(),true));
+     transporPlanService.setSaleVat(VatMapper.toDto(tmsTransporPlanService.getPrmSaleVat(),true));
+
      transporPlanService.setAddress(AddressMapper.toDto(tmsTransporPlanService.getAdrAddress(),true));
 
      transporPlanService.setOwner(OwnerMapper.toDto(tmsTransporPlanService.getOwnOwner(),true));

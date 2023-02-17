@@ -50,6 +50,10 @@ public class TransportPlanMapper {
         tmsTransportPlan.setTmsTransportPlanMarginRate(transportPlan.getMarginRate());
         tmsTransportPlan.setTmsTransportPlanmargineService(transportPlan.getMargineService());
 
+        tmsTransportPlan.setTotalPriceHT(transportPlan.getTotalPriceHT());
+        tmsTransportPlan.setTotalPriceTTC(transportPlan.getTotalPriceTTC());
+        tmsTransportPlan.setTotalPriceVAT(transportPlan.getTotalPriceVat());
+
 
         if (!lazy) {
             tmsTransportPlan.setTmsOrderTransport(OrderTransportMapper.toEntity(transportPlan.getOrderTransport(), false));
@@ -91,9 +95,12 @@ public class TransportPlanMapper {
         transportPlan.setDate(tmsTransportPlan.getTmsTransportPlanDate());
         transportPlan.setMarginRate(tmsTransportPlan.getTmsTransportPlanMarginRate());
         transportPlan.setMargineService(tmsTransportPlan.getTmsTransportPlanmargineService());
-
-
         transportPlan.setSalePrice(tmsTransportPlan.getTmsTransportPlanSalePrice());
+
+        transportPlan.setTotalPriceHT(tmsTransportPlan.getTotalPriceHT());
+        transportPlan.setTotalPriceTTC(tmsTransportPlan.getTotalPriceTTC());
+        transportPlan.setTotalPriceVat(tmsTransportPlan.getTotalPriceVAT());
+
 
         if (!lazy) {
             transportPlan.setOrderTransport(OrderTransportMapper.toDto(tmsTransportPlan.getTmsOrderTransport(), false));

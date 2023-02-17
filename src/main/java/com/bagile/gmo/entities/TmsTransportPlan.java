@@ -31,6 +31,11 @@ public class TmsTransportPlan extends EmsEntity {
     private BigDecimal tmsTransportPlanMarginRate;
     private BigDecimal tmsTransportPlanmargineService;
 
+
+    private BigDecimal totalPriceHT;
+    private BigDecimal totalPriceTTC;
+    private BigDecimal totalPriceVAT;
+
     private Set<TmsTransportPlanServiceCatalog> transportPlanServiceCatalogs = new HashSet<>();
 
     @Id
@@ -166,6 +171,35 @@ public class TmsTransportPlan extends EmsEntity {
 
     public void setTmsTransportPlanMarginRate(BigDecimal tmsTransportPlanMarginRate) {
         this.tmsTransportPlanMarginRate = tmsTransportPlanMarginRate;
+    }
+
+    @Column(name = "tms_transportplantotalpriceht")
+
+    public BigDecimal getTotalPriceHT() {
+        return totalPriceHT;
+    }
+
+    public void setTotalPriceHT(BigDecimal totalPriceHT) {
+        this.totalPriceHT = totalPriceHT;
+    }
+    @Column(name = "tms_transportplantotalpricettc")
+
+    public BigDecimal getTotalPriceTTC() {
+        return totalPriceTTC;
+    }
+
+    public void setTotalPriceTTC(BigDecimal totalPriceTTC) {
+        this.totalPriceTTC = totalPriceTTC;
+    }
+
+    @Column(name = "tms_transportplantotalpricevat")
+
+    public BigDecimal getTotalPriceVAT() {
+        return totalPriceVAT;
+    }
+
+    public void setTotalPriceVAT(BigDecimal totalPriceVAT) {
+        this.totalPriceVAT = totalPriceVAT;
     }
 
     @Column(name = "tms_transportplanmarginservice")

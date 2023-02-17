@@ -24,9 +24,15 @@ public class TransportPlan extends EmsDto implements Serializable {
     private BigDecimal marginRate;
     private BigDecimal margineService;
 
+
     private Ville villeSource;
     private Ville villeDistination;
     private Date date ;
+
+    private BigDecimal totalPriceHT;
+    private BigDecimal totalPriceTTC;
+    private BigDecimal totalPriceVat;
+
 
     private List<TransportPlanServiceCatalog> transportPlanServiceCatalogs = new ArrayList<>();
 
@@ -84,6 +90,30 @@ public class TransportPlan extends EmsDto implements Serializable {
 
     public BigDecimal getPurchasePrice() {
         return purchasePrice;
+    }
+
+    public BigDecimal getTotalPriceHT() {
+        return totalPriceHT;
+    }
+
+    public void setTotalPriceHT(BigDecimal totalPriceHT) {
+        this.totalPriceHT = totalPriceHT;
+    }
+
+    public BigDecimal getTotalPriceTTC() {
+        return totalPriceTTC;
+    }
+
+    public void setTotalPriceTTC(BigDecimal totalPriceTTC) {
+        this.totalPriceTTC = totalPriceTTC;
+    }
+
+    public BigDecimal getTotalPriceVat() {
+        return totalPriceVat;
+    }
+
+    public void setTotalPriceVat(BigDecimal totalPriceVat) {
+        this.totalPriceVat = totalPriceVat;
     }
 
     public void setPurchasePrice(BigDecimal purchasePrice) {
