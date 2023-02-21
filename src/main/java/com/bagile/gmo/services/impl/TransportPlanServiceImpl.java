@@ -7,24 +7,42 @@ import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.TransportPlanMapper;
 import com.bagile.gmo.repositories.TransportPlanRepository;
+import com.bagile.gmo.services.MaintenanceService;
 import com.bagile.gmo.services.TransportPlanService;
 import com.bagile.gmo.util.Search;
+import net.sf.jasperreports.engine.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
+import javax.sql.DataSource;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Service
 public class TransportPlanServiceImpl implements TransportPlanService {
 
     private final TransportPlanRepository transportPlanRepository;
+    private final DataSource dataSource;
 
-    public TransportPlanServiceImpl(TransportPlanRepository transportPlanRepository) {
+    private final static Logger LOGGER = LoggerFactory
+            .getLogger(MaintenanceService.class);
+
+    public TransportPlanServiceImpl(TransportPlanRepository transportPlanRepository, DataSource dataSource) {
         this.transportPlanRepository = transportPlanRepository;
+        this.dataSource = dataSource;
     }
 
     @Override
@@ -134,6 +152,40 @@ public class TransportPlanServiceImpl implements TransportPlanService {
 
         return TransportPlanMapper.toDtos(transportPlanRepository.findAll(Search.expression(search,TmsTransportPlan.class),(Sort.by(Sort.Direction.DESC, "tmsTransportPlanDate"))), false);
 
+
+    }
+
+    @Override
+    public  byte[] exportInvoiceState(String search) throws ErrorType, AttributesNotFound {
+
+        try {
+            //dynamic parameters required for report
+            Map<String, Object> empParams = new HashMap<>();
+            empParams.put("id", search);
+
+
+            JasperPrint empReport =
+                    JasperFillManager.fillReport
+                            (
+                                    JasperCompileManager.compileReport(
+                                            ResourceUtils.getFile("classpath:reports"+
+                                                    File.separator+"InvoiceStateReport.jrxml")
+                                                    .getAbsolutePath()) // path of the jasper report
+                                    , empParams // dynamic parameters
+                                    , dataSource.getConnection()
+                            );
+
+            HttpHeaders headers = new HttpHeaders();
+            //set the PDF format
+            headers.setContentType(MediaType.APPLICATION_PDF);
+            headers.setContentDispositionFormData("filename", "invocieState.pdf");
+            //create the report in PDF format
+            return JasperExportManager.exportReportToPdf(empReport);
+
+        } catch(Exception e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
 
     }
 

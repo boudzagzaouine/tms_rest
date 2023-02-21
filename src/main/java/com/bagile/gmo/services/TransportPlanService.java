@@ -4,6 +4,7 @@ import com.bagile.gmo.dto.TransportPlan;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -37,5 +38,8 @@ public interface TransportPlanService {
 
     TransportPlan getLastPriceTransport(String search)  throws ErrorType, AttributesNotFound;
     List<TransportPlan> getLastPriceTransports(String search)  throws ErrorType, AttributesNotFound;
+
+    byte[] exportInvoiceState(String search)  throws ErrorType, AttributesNotFound;
+
 
 }

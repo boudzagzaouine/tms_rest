@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InvoiceStateReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e1810813-0b66-4fe7-b2af-85b25b47637f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="alternativeRowColor" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue() %2 == 0)]]></conditionExpression>
+			<style backcolor="#DFE5FF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="Services" uuid="ab8133f2-9f2f-460d-8747-6a3151bf0386">
+		<parameter name="id" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT tms_transporplanservicecatalogid,
+tms_transporplanservicecatalogsalepriceht,
+tms_transporplanservicecatalogsalepricettc,
+tms_transporplanservicecatalogpurcahsepricevat,
+
+pdt_productcode,
+pdt_productdesc
+
+FROM schema_tmsvoieexpress.tms_transporplanservicecatalog
+left join schema_tmsvoieexpress.tms_transportplan ON
+tms_transportplan.tms_transportplanid=tms_transporplanservicecatalog.tms_transportplanid
+left join schema_tmsvoieexpress.pdt_product ON pdt_productid=tms_pdtproductid
+where tms_transporplanservicecatalog.tms_transportplanid = ($P{id})]]>
+		</queryString>
+		<field name="tms_transporplanservicecatalogid" class="java.lang.Long"/>
+		<field name="tms_transporplanservicecatalogsalepriceht" class="java.math.BigDecimal"/>
+		<field name="tms_transporplanservicecatalogsalepricettc" class="java.math.BigDecimal"/>
+		<field name="tms_transporplanservicecatalogpurcahsepricevat" class="java.math.BigDecimal"/>
+		<field name="pdt_productcode" class="java.lang.String"/>
+		<field name="pdt_productdesc" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="total" uuid="8bcd9565-e466-4b93-b8b6-34441bb802d2">
+		<parameter name="id" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+  sum(tms_transportplantotalpriceht) as HT,
+  sum(tms_transportplantotalpricettc) as TTC,
+  sum(tms_transportplantotalpricevat) as VAT
+	FROM schema_tmsvoieexpress.tms_transportplan
+	where tms_transportplan.tms_transportplanid in ($P!{id})]]>
+		</queryString>
+		<field name="ht" class="java.math.BigDecimal"/>
+		<field name="ttc" class="java.math.BigDecimal"/>
+		<field name="vat" class="java.math.BigDecimal"/>
+	</subDataset>
+	<parameter name="id" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT tms_transportplanid,
+cmd_companyname,
+adr_addressline1,
+tms_ordertransportcode,
+tms_ordertransportdate,
+cmd_companytelephone,
+cat.gmo_vehiclecategorycode,
+ttype.tms_turntypecode,
+ltype.tms_loadingtypecode,
+ citysrc.prm_villecode  as  source,
+citydist.prm_villecode  as  distination,
+tms_transportplandate, tms_transportplanpricettc,
+tms_transportplansaleprice,
+tms_transportplanmarginrate,
+tms_transportplanmarginservice,
+ot.tms_ordertransportpriceht,
+ot.tms_ordertransportpricevat,
+tms_transportplantotalpriceht,
+tms_transportplantotalpricettc,
+tms_transportplantotalpricevat
+
+FROM schema_tmsvoieexpress.tms_transportplan
+LEFT JOIN schema_tmsvoieexpress.prm_ville citysrc ON
+citysrc.prm_villeid=tms_transportplan.tms_prmvillesourceid
+LEFT JOIN schema_tmsvoieexpress.prm_ville citydist ON
+citydist.prm_villeid=tms_transportplan.tms_prmvilledistinationid
+LEFT JOIN schema_tmsvoieexpress.tms_ordertransport ot ON ot.tms_ordertransportid=tms_transportplan.tms_ordertransportid
+LEFT JOIN schema_tmsvoieexpress.tms_lodingtype ltype ON ltype.tms_loadingtypeid=ot.tms_loadingtypeid
+LEFT JOIN schema_tmsvoieexpress.tms_turntype ttype ON ttype.tms_turntypeid=ot.tms_ordertransporttypeid
+LEFT JOIN schema_tmsvoieexpress.gmo_vehiclecategory cat ON cat.gmo_vehiclecategoryid=ot.tms_vehiclecategoryid
+LEFT JOIN schema_tmsvoieexpress.cmd_company  ON cmd_company.cmd_companyid=ot.cmd_companyid
+LEFT JOIN schema_tmsvoieexpress.adr_address addr ON
+addr.adr_addressid=cmd_company.cmd_companyaddressid
+where tms_transportplanid in ($P!{id})]]>
+	</queryString>
+	<field name="tms_transportplanid" class="java.lang.Long"/>
+	<field name="cmd_companyname" class="java.lang.String"/>
+	<field name="adr_addressline1" class="java.lang.String"/>
+	<field name="tms_ordertransportcode" class="java.lang.String"/>
+	<field name="tms_ordertransportdate" class="java.sql.Timestamp"/>
+	<field name="cmd_companytelephone" class="java.lang.String"/>
+	<field name="gmo_vehiclecategorycode" class="java.lang.String"/>
+	<field name="tms_turntypecode" class="java.lang.String"/>
+	<field name="tms_loadingtypecode" class="java.lang.String"/>
+	<field name="source" class="java.lang.String"/>
+	<field name="distination" class="java.lang.String"/>
+	<field name="tms_transportplandate" class="java.sql.Timestamp"/>
+	<field name="tms_transportplanpricettc" class="java.math.BigDecimal"/>
+	<field name="tms_transportplansaleprice" class="java.math.BigDecimal"/>
+	<field name="tms_transportplanmarginrate" class="java.math.BigDecimal"/>
+	<field name="tms_transportplanmarginservice" class="java.math.BigDecimal"/>
+	<field name="tms_ordertransportpriceht" class="java.math.BigDecimal"/>
+	<field name="tms_ordertransportpricevat" class="java.math.BigDecimal"/>
+	<field name="tms_transportplantotalpriceht" class="java.math.BigDecimal"/>
+	<field name="tms_transportplantotalpricettc" class="java.math.BigDecimal"/>
+	<field name="tms_transportplantotalpricevat" class="java.math.BigDecimal"/>
+	<variable name="totalHT" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{tms_transportplantotalpriceht}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="totalTVA" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{tms_transportplantotalpricevat}]]></variableExpression>
+	</variable>
+	<variable name="totalTTC" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{tms_transportplantotalpricettc}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<group name="orderTransport">
+		<groupExpression><![CDATA[$F{tms_transportplanid}]]></groupExpression>
+		<groupHeader>
+			<band height="217">
+				<staticText>
+					<reportElement mode="Opaque" x="13" y="12" width="132" height="17" forecolor="#0D3964" backcolor="#FFFFFF" uuid="b99514ac-8520-4966-8349-5df3cbde8897"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Segoe UI" size="11" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Ordre Transport]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement isPrintRepeatedValues="false" x="353" y="8" width="73" height="20" forecolor="#000000" uuid="1735cfbe-e6be-404c-ba68-4d6a464e6f90"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Verdana" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{source}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement isPrintRepeatedValues="false" x="438" y="8" width="80" height="20" forecolor="#000000" uuid="42fc785d-f724-4e7c-aebf-0e075daed6fc"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Verdana" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{distination}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement isPrintRepeatedValues="false" x="131" y="8" width="89" height="20" forecolor="#000000" uuid="e3725101-e556-40c3-b4f3-570e4976c253"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Verdana" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tms_ordertransportcode}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement isPrintRepeatedValues="false" x="426" y="8" width="12" height="20" forecolor="#000000" uuid="c26620a4-52c4-4293-a900-404f48287766"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Verdana" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[-]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement isPrintRepeatedValues="false" x="131" y="28" width="89" height="20" forecolor="#000000" uuid="a67d6717-d8b6-4d63-9cd5-e0e816a9907f"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Verdana" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tms_loadingtypecode}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement isPrintRepeatedValues="false" x="131" y="49" width="89" height="20" forecolor="#000000" uuid="3a53ac0a-c0be-4829-b4fc-4958615c65db"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Verdana" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tms_turntypecode}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="table_TH" mode="Opaque" x="1" y="94" width="130" height="17" forecolor="#FFFFFF" backcolor="#1F60A0" uuid="7823b1b8-755d-4623-886e-17c436561c05"/>
+					<box>
+						<pen lineColor="#FFFFFF"/>
+						<topPen lineColor="#FFFFFF"/>
+						<leftPen lineColor="#FFFFFF"/>
+						<bottomPen lineColor="#FFFFFF"/>
+						<rightPen lineColor="#FFFFFF"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Verdana"/>
+					</textElement>
+					<text><![CDATA[Type]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table_TH" mode="Opaque" x="131" y="94" width="137" height="17" forecolor="#FFFFFF" backcolor="#1F60A0" uuid="0d35034a-81ac-4305-bb0b-b7e708ba56e1"/>
+					<box>
+						<pen lineColor="#FFFFFF"/>
+						<topPen lineColor="#FFFFFF"/>
+						<leftPen lineColor="#FFFFFF"/>
+						<bottomPen lineColor="#FFFFFF"/>
+						<rightPen lineColor="#FFFFFF"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Verdana"/>
+					</textElement>
+					<text><![CDATA[Désignation]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table_TH" mode="Opaque" x="398" y="94" width="130" height="17" forecolor="#FFFFFF" backcolor="#1F60A0" uuid="b55acb89-3eaa-4744-b179-1e5fd435a82d"/>
+					<box>
+						<pen lineColor="#FFFFFF"/>
+						<topPen lineColor="#FFFFFF"/>
+						<leftPen lineColor="#FFFFFF"/>
+						<bottomPen lineColor="#FFFFFF"/>
+						<rightPen lineColor="#FFFFFF"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Verdana"/>
+					</textElement>
+					<text><![CDATA[Taux TVA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table_TH" mode="Opaque" x="268" y="94" width="130" height="17" forecolor="#FFFFFF" backcolor="#1F60A0" uuid="20fb46a0-1033-4aed-8768-fd76fcb3133e"/>
+					<box>
+						<pen lineColor="#FFFFFF"/>
+						<topPen lineColor="#FFFFFF"/>
+						<leftPen lineColor="#FFFFFF"/>
+						<bottomPen lineColor="#FFFFFF"/>
+						<rightPen lineColor="#FFFFFF"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Verdana"/>
+					</textElement>
+					<text><![CDATA[Montant HT]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="131" y="111" width="137" height="20" backcolor="#EFF1F3" uuid="0b259b3c-f34d-4532-b992-f5bb864c4a0c"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Verdana"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{gmo_vehiclecategorycode}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="1" y="111" width="130" height="20" backcolor="#EFF1F3" uuid="ad1fd549-45ad-4887-8fa8-9207499b2ac9"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Verdana"/>
+					</textElement>
+					<text><![CDATA[Transport]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="268" y="111" width="130" height="20" backcolor="#EFF1F3" uuid="93ae9f3d-f3a8-4705-b02e-d04c31d939d3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Verdana"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tms_ordertransportpriceht}]]></textFieldExpression>
+				</textField>
+				<componentElement>
+					<reportElement key="table 2" style="alternativeRowColor" mode="Opaque" x="1" y="139" width="527" height="51" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="3232fb00-42e4-4931-af1f-f0bb37e57a0d"/>
+					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="Services" uuid="9810f691-23fa-4545-a4d7-13a49536bf97">
+							<datasetParameter name="id">
+								<datasetParameterExpression><![CDATA[$F{tms_transportplanid}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+						<jr:column width="130" uuid="85868a57-2730-4f02-a678-769b232ce35f">
+							<jr:columnHeader height="18" rowSpan="1">
+								<staticText>
+									<reportElement style="table_TH" mode="Opaque" x="0" y="0" width="130" height="17" forecolor="#FFFFFF" backcolor="#1F60A0" uuid="578b91cd-95cf-43c6-ac26-7895c6933710"/>
+									<box>
+										<pen lineColor="#FFFFFF"/>
+										<topPen lineColor="#FFFFFF"/>
+										<leftPen lineColor="#FFFFFF"/>
+										<bottomPen lineColor="#FFFFFF"/>
+										<rightPen lineColor="#FFFFFF"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Verdana"/>
+									</textElement>
+									<text><![CDATA[Type]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell height="17" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="130" height="17" backcolor="#C8DFFA" uuid="f74bd63f-a775-4fd1-8d63-f9e79496b1a6"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Verdana"/>
+									</textElement>
+									<text><![CDATA[Service]]></text>
+								</staticText>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="137" uuid="4751aa52-2697-4401-b27c-ad3c131fcf1f">
+							<jr:columnHeader height="18" rowSpan="1">
+								<staticText>
+									<reportElement style="table_TH" mode="Opaque" x="0" y="0" width="137" height="17" forecolor="#FFFFFF" backcolor="#1F60A0" uuid="332b0274-3cd6-44af-95e9-45452206e50f"/>
+									<box>
+										<pen lineColor="#FFFFFF"/>
+										<topPen lineColor="#FFFFFF"/>
+										<leftPen lineColor="#FFFFFF"/>
+										<bottomPen lineColor="#FFFFFF"/>
+										<rightPen lineColor="#FFFFFF"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Verdana"/>
+									</textElement>
+									<text><![CDATA[Désignation]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell height="17" rowSpan="1">
+								<textField isBlankWhenNull="true">
+									<reportElement style="alternativeRowColor" mode="Opaque" x="0" y="0" width="137" height="17" backcolor="#FFFFFF" uuid="2908d37d-0b2e-4d55-9581-e64f14c65464"/>
+									<box>
+										<pen lineColor="#FFFFFF"/>
+										<topPen lineColor="#FFFFFF"/>
+										<leftPen lineColor="#FFFFFF"/>
+										<bottomPen lineColor="#FFFFFF"/>
+										<rightPen lineColor="#FFFFFF"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Verdana"/>
+										<paragraph lineSpacing="Double"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{pdt_productdesc}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="130" uuid="9613feed-3178-4218-b00c-c690b4b21f1f">
+							<jr:columnHeader height="18" rowSpan="1">
+								<staticText>
+									<reportElement style="table_TH" mode="Opaque" x="0" y="0" width="130" height="17" forecolor="#FFFFFF" backcolor="#1F60A0" uuid="23a215bd-1ec6-4d21-a486-7638f7611653"/>
+									<box>
+										<pen lineColor="#FFFFFF"/>
+										<topPen lineColor="#FFFFFF"/>
+										<leftPen lineColor="#FFFFFF"/>
+										<bottomPen lineColor="#FFFFFF"/>
+										<rightPen lineColor="#FFFFFF"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Verdana"/>
+									</textElement>
+									<text><![CDATA[Montant HT]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell height="17" rowSpan="1">
+								<textField isBlankWhenNull="true">
+									<reportElement style="alternativeRowColor" mode="Opaque" x="0" y="0" width="130" height="17" backcolor="#FFFFFF" uuid="e3b940cb-9dae-4791-ab80-a5ad8f7e9dac"/>
+									<box>
+										<pen lineColor="#FFFFFF"/>
+										<topPen lineColor="#FFFFFF"/>
+										<leftPen lineColor="#FFFFFF"/>
+										<bottomPen lineColor="#FFFFFF"/>
+										<rightPen lineColor="#FFFFFF"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Verdana"/>
+										<paragraph lineSpacing="Double"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{tms_transporplanservicecatalogsalepriceht}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="130" uuid="b3bd1073-40b8-4a09-92af-bf013ba3b61b">
+							<jr:columnHeader height="18" rowSpan="1">
+								<staticText>
+									<reportElement style="table_TH" mode="Opaque" x="0" y="0" width="130" height="17" forecolor="#FFFFFF" backcolor="#1F60A0" uuid="c08ec757-caef-436e-b4fd-e997c20f8137"/>
+									<box>
+										<pen lineColor="#FFFFFF"/>
+										<topPen lineColor="#FFFFFF"/>
+										<leftPen lineColor="#FFFFFF"/>
+										<bottomPen lineColor="#FFFFFF"/>
+										<rightPen lineColor="#FFFFFF"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Verdana"/>
+									</textElement>
+									<text><![CDATA[Taux TVA]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell height="17" rowSpan="1">
+								<textField isBlankWhenNull="true">
+									<reportElement style="alternativeRowColor" mode="Opaque" x="0" y="0" width="130" height="17" backcolor="#FFFFFF" uuid="eea07c63-7066-4b85-b01f-3286e7e9ada1"/>
+									<box>
+										<pen lineColor="#FFFFFF"/>
+										<topPen lineColor="#FFFFFF"/>
+										<leftPen lineColor="#FFFFFF"/>
+										<bottomPen lineColor="#FFFFFF"/>
+										<rightPen lineColor="#FFFFFF"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Verdana"/>
+										<paragraph lineSpacing="Double"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{tms_transporplanservicecatalogpurcahsepricevat}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:table>
+				</componentElement>
+				<staticText>
+					<reportElement mode="Opaque" x="323" y="9" width="40" height="17" forecolor="#0D3964" backcolor="#FFFFFF" uuid="003843e7-cdf2-485a-9841-4437b0a5a98a"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Segoe UI" size="11" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Trajet]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="13" y="31" width="116" height="17" forecolor="#0D3964" backcolor="#FFFFFF" uuid="eaec96fd-1840-495b-92ad-fc13249915af"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Segoe UI" size="11" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Type Chargement]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="14" y="49" width="97" height="17" forecolor="#0D3964" backcolor="#FFFFFF" uuid="58a95f86-3a57-4caf-8acc-bd19eabd9331"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Segoe UI" size="11" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Type]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="398" y="111" width="130" height="20" backcolor="#EFF1F3" uuid="3851e56e-1fca-47f7-b798-594b7d534e3f"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Verdana"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tms_ordertransportpricevat}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="189" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="1" width="112" height="78" uuid="60fc3e25-74a3-4bbf-bdac-6bb12d123d9d"/>
+				<imageExpression><![CDATA["E:\\Integrateur\\Projet\\Tms-VoieExpress\\web\\src\\assets\\img\\voie.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="375" y="1" width="153" height="20" forecolor="#1F60A0" uuid="283fec54-c075-41f1-b664-3fda9829da15"/>
+				<textElement>
+					<font size="15" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[LA VOIE EXPRESS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="375" y="21" width="164" height="36" uuid="b1920750-863a-4d84-8165-e9e1f700cd27"/>
+				<textElement>
+					<font fontName="Segoe UI" size="10" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[19, Rue Ibnou Koutia Ain Sebaâ, Casablanca, Maroc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="13" y="104" width="123" height="31" forecolor="#1F60A0" backcolor="#FFFFFF" uuid="20d5d274-9c59-4909-a17e-ace52a530f8f"/>
+				<textElement>
+					<font fontName="Verdana" size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[FACTURER  À]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="135" y="104" width="172" height="20" forecolor="#000000" uuid="df1add56-008e-4f1e-a4f0-1c3e4fc025ca"/>
+				<textElement>
+					<font fontName="Verdana" size="10" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cmd_companyname}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="134" y="122" width="173" height="50" forecolor="#000000" uuid="a4768b2f-02d1-4da4-a56f-f26c4f933002"/>
+				<textElement>
+					<font fontName="Verdana" size="10" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{adr_addressline1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="317" y="104" width="68" height="20" uuid="e0bb7b6c-8d65-4896-aa17-add11f6e6431"/>
+				<textElement>
+					<font fontName="Verdana" size="10" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Téléphone :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="385" y="104" width="100" height="20" forecolor="#000000" uuid="d92f8a77-a9c7-4b39-9bea-9e480e20eb57"/>
+				<textElement>
+					<font fontName="Verdana" size="10" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cmd_companytelephone}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnFooter>
+		<band height="43" splitType="Stretch"/>
+	</columnFooter>
+	<summary>
+		<band height="167" splitType="Stretch">
+			<staticText>
+				<reportElement style="table_TH" mode="Opaque" x="280" y="40" width="130" height="17" forecolor="#000000" backcolor="#CCCCCC" uuid="5fcc5f86-604c-40e9-a89c-2019a51be0e4"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Total HT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TH" mode="Opaque" x="280" y="57" width="130" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="1cd2acbb-136e-4433-92fa-ccd662717652"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Total TVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TH" mode="Opaque" x="280" y="74" width="130" height="17" forecolor="#FFFFFF" backcolor="#1F60A0" uuid="b9c14b71-8508-4b6e-baef-65a5877c5c5d"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Total TTC]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="410" y="40" width="129" height="17" forecolor="#FFFFFF" backcolor="#1F60A0" uuid="7bf84036-2295-498c-97fc-7891e8a4d5c8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{totalHT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="410" y="57" width="129" height="17" forecolor="#FFFFFF" backcolor="#1F60A0" uuid="8fd877c7-7bb3-41e0-a301-1c52b476e215"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{totalTVA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="410" y="74" width="129" height="17" forecolor="#FFFFFF" backcolor="#0D3964" uuid="503582e7-7b60-48c4-b080-e2990c4802b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{totalTTC}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

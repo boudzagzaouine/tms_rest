@@ -5,10 +5,16 @@ import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.services.TransportPlanService;
+import org.apache.tomcat.util.http.fileupload.FileUploadBase;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 
@@ -120,5 +126,20 @@ public class TransportPlanController {
     @ResponseBody
     public List<TransportPlan> getLastPriceTransports(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
         return transportPlanService.getLastPriceTransports(search);
+    }
+
+//    @RequestMapping(method = RequestMethod.GET, value = "/exportInvoiceState")
+//    @ResponseBody
+//    public ResponseEntity<byte[]> exportInvoiceState(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
+//        return transportPlanService.exportInvoiceState(search);
+//    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/exportInvoiceState")
+    @ResponseBody
+    public ResponseEntity<Resource> exportInvoiceState(@RequestParam(value = "search")String search) throws ErrorType, AttributesNotFound {
+        byte[] responseEntity = transportPlanService.exportInvoiceState(search);
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new ByteArrayResource(responseEntity));
     }
 }
