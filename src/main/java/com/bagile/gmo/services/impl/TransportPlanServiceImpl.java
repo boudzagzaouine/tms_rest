@@ -25,6 +25,7 @@ import org.springframework.util.ResourceUtils;
 
 import javax.sql.DataSource;
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -162,15 +163,15 @@ public class TransportPlanServiceImpl implements TransportPlanService {
             //dynamic parameters required for report
             Map<String, Object> empParams = new HashMap<>();
             empParams.put("id", search);
+            String invoiceStateTemplatePath = "/reports/InvoiceStateReport.jrxml";
+            final InputStream reportInputStream= getClass().getResourceAsStream(invoiceStateTemplatePath);
 
 
             JasperPrint empReport =
                     JasperFillManager.fillReport
                             (
                                     JasperCompileManager.compileReport(
-                                            ResourceUtils.getFile("classpath:reports"+
-                                                    File.separator+"InvoiceStateReport.jrxml")
-                                                    .getAbsolutePath()) // path of the jasper report
+                                            reportInputStream )
                                     , empParams // dynamic parameters
                                     , dataSource.getConnection()
                             );

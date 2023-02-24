@@ -9,10 +9,9 @@ public class Agency  extends EmsDto {
     private long id;
     private String code;
     private String description;
-    private Date creationDate;
+
     private Address address;
-    private Date updateDate;
-    private Warehouse warehouse;
+
 
     public long getId() {
         return id;
@@ -63,11 +62,5 @@ public class Agency  extends EmsDto {
     }
 
 
-    public Warehouse getWarehouse() {
-        return warehouse;
-    }
 
-    public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
-    }
 }

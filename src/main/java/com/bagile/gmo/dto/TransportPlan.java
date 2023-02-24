@@ -27,7 +27,8 @@ public class TransportPlan extends EmsDto implements Serializable {
 
     private Ville villeSource;
     private Ville villeDistination;
-    private Date date ;
+    private Date dateDepart;
+    private Date dateValidate;
 
     private BigDecimal totalPriceHT;
     private BigDecimal totalPriceTTC;
@@ -70,6 +71,14 @@ public class TransportPlan extends EmsDto implements Serializable {
 
     public void setMarginRate(BigDecimal marginRate) {
         this.marginRate = marginRate;
+    }
+
+    public Date getDateValidate() {
+        return dateValidate;
+    }
+
+    public void setDateValidate(Date dateValidate) {
+        this.dateValidate = dateValidate;
     }
 
     public BigDecimal getMargineService() {
@@ -144,12 +153,12 @@ public class TransportPlan extends EmsDto implements Serializable {
         this.driver = driver;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDateDepart() {
+        return dateDepart;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateDepart(Date dateDepart) {
+        this.dateDepart = dateDepart;
     }
 
     public VehicleCategory getVehicleCategory() {

@@ -26,7 +26,8 @@ public class TmsTransportPlan extends EmsEntity {
 
     private BigDecimal tmsTransportPlanSalePrice;
 
-    private  Date tmsTransportPlanDate;
+    private  Date tmsTransportPlanDateDepart;
+    private  Date tmsTransportPlanDateValidate;
 
     private BigDecimal tmsTransportPlanMarginRate;
     private BigDecimal tmsTransportPlanmargineService;
@@ -220,13 +221,22 @@ public class TmsTransportPlan extends EmsEntity {
         this.tmsTransportPlanSalePrice = tmsTransportPlanSalePrice;
     }
 
-    @Column(name = "tms_transportplandate")
+    @Column(name = "tms_transportplandatedepart")
 
-    public Date getTmsTransportPlanDate() {
-        return tmsTransportPlanDate;
+    public Date getTmsTransportPlanDateDepart() {
+        return tmsTransportPlanDateDepart;
     }
 
-    public void setTmsTransportPlanDate(Date tmsTransportPlanDate) {
-        this.tmsTransportPlanDate = tmsTransportPlanDate;
+    public void setTmsTransportPlanDateDepart(Date tmsTransportPlanDate) {
+        this.tmsTransportPlanDateDepart = tmsTransportPlanDate;
+    }
+    @Column(name = "tms_transportplandatevalidate")
+
+    public Date getTmsTransportPlanDateValidate() {
+        return tmsTransportPlanDateValidate;
+    }
+
+    public void setTmsTransportPlanDateValidate(Date tmsTransportPlanDateValidate) {
+        this.tmsTransportPlanDateValidate = tmsTransportPlanDateValidate;
     }
 }

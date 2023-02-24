@@ -20,6 +20,7 @@ public class TransportPlanMapper {
         map.put("orderTransport", "tmsOrderTransport");
         map.put("villeSource", "prmVilleSource");
         map.put("villeDistination", "prmVilleDistination");
+        map.put("dateDepart", "tmsTransportPlanDateDepart");
         map.put("transport", "trpTransport");
         map.put("turnType", "tmsTransportPlanType");
         map.put("turnStatus", "tmsTurnStatus");
@@ -44,7 +45,8 @@ public class TransportPlanMapper {
         TmsTransportPlan tmsTransportPlan = new TmsTransportPlan();
         tmsTransportPlan.setTmsTransportPlanId(transportPlan.getId());
         tmsTransportPlan.setTmsTransportPlanPurchasePrice(transportPlan.getPurchasePrice());
-        tmsTransportPlan.setTmsTransportPlanDate(transportPlan.getDate());
+        tmsTransportPlan.setTmsTransportPlanDateDepart(transportPlan.getDateDepart());
+        tmsTransportPlan.setTmsTransportPlanDateValidate(transportPlan.getDateValidate());
 
         tmsTransportPlan.setTmsTransportPlanSalePrice(transportPlan.getSalePrice());
         tmsTransportPlan.setTmsTransportPlanMarginRate(transportPlan.getMarginRate());
@@ -92,7 +94,9 @@ public class TransportPlanMapper {
         TransportPlan transportPlan = new TransportPlan();
         transportPlan.setId( tmsTransportPlan.getTmsTransportPlanId());
         transportPlan.setPurchasePrice(tmsTransportPlan.getTmsTransportPlanPurchasePrice());
-        transportPlan.setDate(tmsTransportPlan.getTmsTransportPlanDate());
+        transportPlan.setDateDepart(tmsTransportPlan.getTmsTransportPlanDateDepart());
+        transportPlan.setDateValidate(tmsTransportPlan.getTmsTransportPlanDateValidate());
+
         transportPlan.setMarginRate(tmsTransportPlan.getTmsTransportPlanMarginRate());
         transportPlan.setMargineService(tmsTransportPlan.getTmsTransportPlanmargineService());
         transportPlan.setSalePrice(tmsTransportPlan.getTmsTransportPlanSalePrice());
