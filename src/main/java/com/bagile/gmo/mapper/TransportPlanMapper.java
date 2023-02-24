@@ -19,6 +19,8 @@ public class TransportPlanMapper {
         map.put("vehicleCategory", "gmoVehicleCategory");
         map.put("orderTransport", "tmsOrderTransport");
         map.put("villeSource", "prmVilleSource");
+        map.put("driver", "gmoDriver");
+
         map.put("villeDistination", "prmVilleDistination");
         map.put("dateDepart", "tmsTransportPlanDateDepart");
         map.put("transport", "trpTransport");
