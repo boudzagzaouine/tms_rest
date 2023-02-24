@@ -1,5 +1,6 @@
 package com.bagile.gmo.mapper;
 
+import com.bagile.gmo.dto.Driver;
 import com.bagile.gmo.dto.User;
 import com.bagile.gmo.entities.UsrUser;
 
@@ -70,6 +71,8 @@ public class UserMapper {
         if (!lazy) {
             usrUser.setUsrUserGroup(UserGroupMapper.toEntity(user.getUserGroup(), false));
             usrUser.setOwnOwner(OwnerMapper.toEntity(user.getOwner(), true));
+            usrUser.setGmoDriver(DriverMapper.toEntity(user.getDriver(), true));
+
         }
         return usrUser;
     }
@@ -98,6 +101,8 @@ public class UserMapper {
         user.setEmail(usrUser.getUsrUserEmail());
         user.setType(usrUser.getUsrUserType());
         if (!lazy) {
+            user.setDriver(DriverMapper.toDto(usrUser.getGmoDriver(), false));
+
             user.setUserGroup(UserGroupMapper.toDto(usrUser.getUsrUserGroup(), false));
             user.setOwner(OwnerMapper.toDto(usrUser.getOwnOwner(), true));
         }

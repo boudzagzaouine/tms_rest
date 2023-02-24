@@ -24,6 +24,8 @@ public class User extends EmsDto implements Serializable {
     private Boolean commercial;
     private String columns;
 
+    private Driver driver;
+
     public String getName() {
         return name;
     }
@@ -136,6 +138,14 @@ public class User extends EmsDto implements Serializable {
 
     public void setCommercial(Boolean commercial) {
         this.commercial = commercial;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
     }
 
     /**

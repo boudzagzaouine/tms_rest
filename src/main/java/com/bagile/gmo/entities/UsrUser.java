@@ -50,6 +50,8 @@ public class UsrUser extends EmsEntity implements Serializable {
     private Long usrUserType;
     private String userUserColumns;
 
+    private GmoDriver gmoDriver;
+
     public UsrUser() {
     }
 
@@ -82,8 +84,19 @@ public class UsrUser extends EmsEntity implements Serializable {
         return this.usrUserGroup;
     }
 
+
     public void setUsrUserGroup(UsrUserGroup usrUsergroup) {
         this.usrUserGroup = usrUsergroup;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usr_gmodriverid")
+    public GmoDriver getGmoDriver() {
+        return gmoDriver;
+    }
+
+    public void setGmoDriver(GmoDriver gmoDriver) {
+        this.gmoDriver = gmoDriver;
     }
 
     @Column(name = "usr_usercode", nullable = false, length = 30)
