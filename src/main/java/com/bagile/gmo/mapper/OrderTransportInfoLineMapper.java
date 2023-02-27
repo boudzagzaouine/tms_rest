@@ -62,6 +62,8 @@ public class OrderTransportInfoLineMapper {
         tmsOrderTransportInfoLine.setTmsOrderTransportContreFactureLivraison(orderTransportInfoLine.getContreFactureLivraison());
 
         tmsOrderTransportInfoLine.setTmsOrderTransportLineNumber(orderTransportInfoLine.getLineNumber());
+        tmsOrderTransportInfoLine.setTmsPaymentAmountEnlevement(orderTransportInfoLine.getPaymentAmountEnlevement());
+        tmsOrderTransportInfoLine.setTmsPaymentAmountLivraison(orderTransportInfoLine.getPaymentAmountLivraison());
 
 
 
@@ -110,7 +112,7 @@ public class OrderTransportInfoLineMapper {
         orderTransportInfoLine.setCapacityEnlevement(tmsOrderTransportInfoLine.getTmsOrderTransportCapacityEnlevement());
        orderTransportInfoLine.setCommentEnlevement(tmsOrderTransportInfoLine.getTmsOrderTransportCommentEnlevement());
         orderTransportInfoLine.setContreBlEnlevement(tmsOrderTransportInfoLine.getTmsOrderTransportContreBlEnlevement());
-        orderTransportInfoLine.setContreFactureLivraison(tmsOrderTransportInfoLine.getTmsOrderTransportContreFactureLivraison());
+        orderTransportInfoLine.setContreFactureEnlevement(tmsOrderTransportInfoLine.getTmsOrderTransportContreFactureEnlevement());
 
         orderTransportInfoLine.setNumberOfPalletLivraison(tmsOrderTransportInfoLine.getTmsAddressContactDeliveryInfoNumberOfPalletLivraison());
         orderTransportInfoLine.setWeightLivraison(tmsOrderTransportInfoLine.getTmsOrderTransportWeightLivraison());
@@ -120,6 +122,9 @@ public class OrderTransportInfoLineMapper {
         orderTransportInfoLine.setContreFactureLivraison(tmsOrderTransportInfoLine.getTmsOrderTransportContreFactureLivraison());
 
         orderTransportInfoLine.setLineNumber(tmsOrderTransportInfoLine.getTmsOrderTransportLineNumber());
+        orderTransportInfoLine.setPaymentAmountEnlevement(tmsOrderTransportInfoLine.getTmsPaymentAmountEnlevement());
+        orderTransportInfoLine.setPaymentAmountLivraison(tmsOrderTransportInfoLine.getTmsPaymentAmountLivraison());
+
 
 
         if (!lazy) {

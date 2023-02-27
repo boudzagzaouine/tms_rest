@@ -5,6 +5,9 @@ import java.util.Date;
 public class OrderTransportInfoLineDocument {
 
 	private long id;
+	private String contreType  ; // BL ou FACTURE
+	private long type ; // 1 Enlevement . 2 Livraison . 3 Enlevement/Livraison
+	private long numero;
 	private byte[] file;
 	private String fileType;
 	private String fileName;
@@ -21,6 +24,29 @@ public class OrderTransportInfoLineDocument {
 		this.id = id;
 	}
 
+	public String getContreType() {
+		return contreType;
+	}
+
+	public void setContreType(String contreType) {
+		this.contreType = contreType;
+	}
+
+	public long getType() {
+		return type;
+	}
+
+	public void setType(long type) {
+		this.type = type;
+	}
+
+	public long getNumero() {
+		return numero;
+	}
+
+	public void setNumero(long numero) {
+		this.numero = numero;
+	}
 
 	public byte[] getFile() {
 		return file;

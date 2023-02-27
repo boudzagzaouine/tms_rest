@@ -11,7 +11,10 @@ public class TmsOrderTransportInfoLineDocument extends EmsEntity {
 	private static final long serialVersionUID = 2773120607426017439L;
 
 	private Long tmsOrderTransportInfoLineDocumentId;
-    
+
+    private String tmsOrderTransportInfoLineDocumentContreType  ; // BL ou FACTURE
+    private long tmsOrderTransportInfoLineDocumentType ; // 1 Enlevement . 2 Livraison . 3 Enlevement/Livraison
+    private long tmsOrderTransportInfoLineDocumentNumero;
     private byte[] tmsOrderTransportInfoLineDocumentFile;
 
     private String tmsOrderTransportInfoLineDocumentFileType;
@@ -44,6 +47,35 @@ public class TmsOrderTransportInfoLineDocument extends EmsEntity {
 
     public void setTmsOrderTransportInfoLineDocumentFileType(String tmsOrderTransportInfoLineDocumentFileType) {
         this.tmsOrderTransportInfoLineDocumentFileType = tmsOrderTransportInfoLineDocumentFileType;
+    }
+
+    @Column(name = "tms_ordertransportinfolinedocumentcontretype")
+
+    public String getTmsOrderTransportInfoLineDocumentContreType() {
+        return tmsOrderTransportInfoLineDocumentContreType;
+    }
+
+    public void setTmsOrderTransportInfoLineDocumentContreType(String tmsOrderTransportInfoLineDocumentContreType) {
+        this.tmsOrderTransportInfoLineDocumentContreType = tmsOrderTransportInfoLineDocumentContreType;
+    }
+    @Column(name = "tms_ordertransportinfolinedocumenttype")
+
+    public long getTmsOrderTransportInfoLineDocumentType() {
+        return tmsOrderTransportInfoLineDocumentType;
+    }
+
+    public void setTmsOrderTransportInfoLineDocumentType(long tmsOrderTransportInfoLineDocumentType) {
+        this.tmsOrderTransportInfoLineDocumentType = tmsOrderTransportInfoLineDocumentType;
+    }
+
+    @Column(name = "tms_ordertransportinfolinedocumentnumero")
+
+    public long getTmsOrderTransportInfoLineDocumentNumero() {
+        return tmsOrderTransportInfoLineDocumentNumero;
+    }
+
+    public void setTmsOrderTransportInfoLineDocumentNumero(long tmsOrderTransportInfoLineDocumentNumero) {
+        this.tmsOrderTransportInfoLineDocumentNumero = tmsOrderTransportInfoLineDocumentNumero;
     }
 
     @Column(name = "tms_ordertransportinfolinedocumentfile")

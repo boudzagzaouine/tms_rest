@@ -17,6 +17,9 @@ public class OrderTransportInfoLineDocumentMapper {
 		map.put("id", "tmsOrderTransportInfoLineDocumentId");
 
 		map.put("orderTransportInfoLine", "tmsOrderTransportInfoLine");
+		map.put("contreType", "tmsOrderTransportInfoLineDocumentContreType");
+		map.put("type", "tmsOrderTransportInfoLineDocumentType");
+
 	}
 
 	public static Map<String, String> getMap() {
@@ -38,6 +41,10 @@ public class OrderTransportInfoLineDocumentMapper {
 		gmoOrderTransportInfoLineDocument.setTmsOrderTransportInfoLineDocumentDate(orderTransportInfoLineDocument.getDate());
 		gmoOrderTransportInfoLineDocument.setTmsOrderTransportInfoLineDocumentFileType(orderTransportInfoLineDocument.getFileType());
 
+		gmoOrderTransportInfoLineDocument.setTmsOrderTransportInfoLineDocumentContreType(orderTransportInfoLineDocument.getContreType());
+		gmoOrderTransportInfoLineDocument.setTmsOrderTransportInfoLineDocumentType(orderTransportInfoLineDocument.getType());
+		gmoOrderTransportInfoLineDocument.setTmsOrderTransportInfoLineDocumentNumero(orderTransportInfoLineDocument.getNumero());
+
 
 		if(!lazy){
 			gmoOrderTransportInfoLineDocument.setOwnOwner(OwnerMapper.toEntity(orderTransportInfoLineDocument.getOwner(),true));
@@ -58,6 +65,10 @@ public class OrderTransportInfoLineDocumentMapper {
 		orderTransportInfoLineDocument.setFileName(gmoOrderTransportInfoLineDocument.getTmsOrderTransportInfoLineDocumentDesignation());
 		orderTransportInfoLineDocument.setDate(gmoOrderTransportInfoLineDocument.getTmsOrderTransportInfoLineDocumentDate());
 		orderTransportInfoLineDocument.setFileType(gmoOrderTransportInfoLineDocument.getTmsOrderTransportInfoLineDocumentFileType());
+
+		orderTransportInfoLineDocument.setContreType(gmoOrderTransportInfoLineDocument.getTmsOrderTransportInfoLineDocumentContreType());
+		orderTransportInfoLineDocument.setType(gmoOrderTransportInfoLineDocument.getTmsOrderTransportInfoLineDocumentType());
+		orderTransportInfoLineDocument.setNumero(gmoOrderTransportInfoLineDocument.getTmsOrderTransportInfoLineDocumentNumero());
 
 		if(!lazy){
 			orderTransportInfoLineDocument.setOrderTransportInfoLine(OrderTransportInfoLineMapper.toDto(gmoOrderTransportInfoLineDocument.getTmsOrderTransportInfoLine(),true));

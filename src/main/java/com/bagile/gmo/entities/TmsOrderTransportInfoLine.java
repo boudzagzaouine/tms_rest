@@ -27,6 +27,7 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
     private Boolean  tmsOrderTransportContreBlEnlevement;
     private Boolean  tmsOrderTransportContreFactureEnlevement;
     private PrmPaymentType prmPaymentTypeEnlevement;
+    private BigDecimal tmsPaymentAmountEnlevement;
 
 
     private TmsAddressContactOrderTransportInfo tmsAddressContactDeliveryInfoLivraison;
@@ -38,6 +39,7 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
     private Boolean  tmsOrderTransportContreBlLivraison;
     private Boolean  tmsOrderTransportContreFactureLivraison;
     private PrmPaymentType prmPaymentTypeLivraison;
+    private BigDecimal tmsPaymentAmountLivraison;
 
     private TmsTurnStatus tmsTurnStatus;
 
@@ -73,6 +75,25 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
 
     public void setTmsAddressContactDeliveryInfoNumberOfPalletLivraison(BigDecimal tmsAddressContactDeliveryInfoNumberOfPalletLivraison) {
         this.tmsAddressContactDeliveryInfoNumberOfPalletLivraison = tmsAddressContactDeliveryInfoNumberOfPalletLivraison;
+    }
+
+    @Column(name = "tms_ordertransportinfolinepaymentamountenlevement")
+    public BigDecimal getTmsPaymentAmountEnlevement() {
+        return tmsPaymentAmountEnlevement;
+    }
+
+    public void setTmsPaymentAmountEnlevement(BigDecimal tmsPaymentAmountEnlevement) {
+        this.tmsPaymentAmountEnlevement = tmsPaymentAmountEnlevement;
+    }
+
+    @Column(name = "tms_ordertransportinfolinepaymentamountlivraison")
+
+    public BigDecimal getTmsPaymentAmountLivraison() {
+        return tmsPaymentAmountLivraison;
+    }
+
+    public void setTmsPaymentAmountLivraison(BigDecimal tmsPaymentAmountLivraison) {
+        this.tmsPaymentAmountLivraison = tmsPaymentAmountLivraison;
     }
 
     @ManyToOne()

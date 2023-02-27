@@ -22,6 +22,7 @@ public class OrderTransportInfoLine {
 	private Boolean contreBlEnlevement ;
 	private Boolean contreFactureEnlevement;
 	private PaymentType  paymentTypeEnlevement;
+	private BigDecimal paymentAmountEnlevement;
 
 
 	private BigDecimal numberOfPalletLivraison ;
@@ -32,6 +33,8 @@ public class OrderTransportInfoLine {
 	private Boolean contreBlLivraison ;
 	private Boolean contreFactureLivraison;
 	private PaymentType  paymentTypeLivraison;
+	private BigDecimal paymentAmountLivraison;
+
 	private TurnStatus turnStatus;
 
 	private Long lineNumber;
@@ -85,6 +88,22 @@ public class OrderTransportInfoLine {
 
 	public void setOrderTransportInfoLineDocuments(List<OrderTransportInfoLineDocument> orderTransportInfoLineDocuments) {
 		this.orderTransportInfoLineDocuments = orderTransportInfoLineDocuments;
+	}
+
+	public BigDecimal getPaymentAmountEnlevement() {
+		return paymentAmountEnlevement;
+	}
+
+	public void setPaymentAmountEnlevement(BigDecimal paymentAmountEnlevement) {
+		this.paymentAmountEnlevement = paymentAmountEnlevement;
+	}
+
+	public BigDecimal getPaymentAmountLivraison() {
+		return paymentAmountLivraison;
+	}
+
+	public void setPaymentAmountLivraison(BigDecimal paymentAmountLivraison) {
+		this.paymentAmountLivraison = paymentAmountLivraison;
 	}
 
 	public Account getAccount() {
