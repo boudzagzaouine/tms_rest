@@ -14,7 +14,7 @@ public class TmsOrderTransportInfoLineDocument extends EmsEntity {
 
     private String tmsOrderTransportInfoLineDocumentContreType  ; // BL ou FACTURE
     private long tmsOrderTransportInfoLineDocumentType ; // 1 Enlevement . 2 Livraison . 3 Enlevement/Livraison
-    private long tmsOrderTransportInfoLineDocumentNumero;
+    private String tmsOrderTransportInfoLineDocumentNumero;
     private byte[] tmsOrderTransportInfoLineDocumentFile;
 
     private String tmsOrderTransportInfoLineDocumentFileType;
@@ -70,11 +70,11 @@ public class TmsOrderTransportInfoLineDocument extends EmsEntity {
 
     @Column(name = "tms_ordertransportinfolinedocumentnumero")
 
-    public long getTmsOrderTransportInfoLineDocumentNumero() {
+    public String getTmsOrderTransportInfoLineDocumentNumero() {
         return tmsOrderTransportInfoLineDocumentNumero;
     }
 
-    public void setTmsOrderTransportInfoLineDocumentNumero(long tmsOrderTransportInfoLineDocumentNumero) {
+    public void setTmsOrderTransportInfoLineDocumentNumero(String tmsOrderTransportInfoLineDocumentNumero) {
         this.tmsOrderTransportInfoLineDocumentNumero = tmsOrderTransportInfoLineDocumentNumero;
     }
 

@@ -7,7 +7,7 @@ public class OrderTransportInfoLineDocument {
 	private long id;
 	private String contreType  ; // BL ou FACTURE
 	private long type ; // 1 Enlevement . 2 Livraison . 3 Enlevement/Livraison
-	private long numero;
+	private String numero;
 	private byte[] file;
 	private String fileType;
 	private String fileName;
@@ -40,11 +40,11 @@ public class OrderTransportInfoLineDocument {
 		this.type = type;
 	}
 
-	public long getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(long numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
