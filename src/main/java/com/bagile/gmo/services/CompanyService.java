@@ -2,10 +2,13 @@ package com.bagile.gmo.services;
 
 import com.bagile.gmo.dto.Company;
 import com.bagile.gmo.dto.Company;
+import com.bagile.gmo.dto.Trajet;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 
+import com.bagile.gmo.importModels.CompanyImport;
+import com.bagile.gmo.importModels.TrajetImport;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +17,8 @@ import java.util.List;
 public interface CompanyService {
 
     Company save(Company company) throws ErrorType, AttributesNotFound;
+
+    List<Company> saveAll(List<Company> companies) throws AttributesNotFound, ErrorType;
 
     Long size();
 
@@ -36,4 +41,7 @@ public interface CompanyService {
     List<Company> findAll(int page, int size);
 
     String getNextVal();
+
+    List<CompanyImport> loadingDataImport(List<CompanyImport>  companyImports) throws ErrorType, AttributesNotFound, IdNotFound;
+
 }

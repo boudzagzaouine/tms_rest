@@ -37,6 +37,9 @@ public class DataExchangeController {
 
     @Autowired
     private TrajetService trajetService;
+
+    @Autowired
+    private CompanyService companyService;
     public DataExchangeController() {
 
     }
@@ -80,6 +83,13 @@ public class DataExchangeController {
     @ResponseBody
     public List<TrajetImport> saveTrajets(@RequestBody List<TrajetImport> trajetImports) throws IdNotFound, ErrorType, AttributesNotFound {
         return  trajetService.loadingDataImport(trajetImports);
+
+    }
+
+    @RequestMapping(value = "/updateCompanies", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<CompanyImport> saveCompanys(@RequestBody List<CompanyImport> companyImports) throws IdNotFound, ErrorType, AttributesNotFound {
+        return  companyService.loadingDataImport(companyImports);
 
     }
 

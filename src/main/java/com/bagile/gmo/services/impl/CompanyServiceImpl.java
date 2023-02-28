@@ -2,15 +2,20 @@ package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.Address;
 import com.bagile.gmo.dto.Company;
+import com.bagile.gmo.dto.Trajet;
 import com.bagile.gmo.entities.CmdCompany;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.importModels.CompanyImport;
+import com.bagile.gmo.importModels.TrajetImport;
 import com.bagile.gmo.mapper.CompanyMapper;
 import com.bagile.gmo.repositories.CompanyRepository;
 import com.bagile.gmo.services.*;
 import com.bagile.gmo.util.Search;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +23,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,11 +42,18 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Autowired
     private AccountServiceService accountServiceService;
+
+    @Autowired
+    private PaysService paysService ;
+    @Autowired
+    private VilleService villeService ;
+
     public CompanyServiceImpl(CompanyRepository companyRepository) {
         this.companyRepository = companyRepository;
     }
 
-
+    private final static Logger LOGGER = LoggerFactory
+            .getLogger(Address.class);
     @Override
     public Company save(Company company) throws ErrorType, AttributesNotFound {
 
@@ -65,6 +78,19 @@ public class CompanyServiceImpl implements CompanyService {
             }
         }
         return company1;
+    }
+
+    @Override
+    public List<Company> saveAll(List<Company> companies) throws AttributesNotFound, ErrorType {
+
+        List<Company> companyList = new ArrayList<>();
+
+        for (Company company : companies) {
+            companyList.add(save(company));
+        }
+
+        return companyList;
+
     }
 
     @Override
@@ -144,6 +170,46 @@ public class CompanyServiceImpl implements CompanyService {
     public String getNextVal() {
         String value="CMP" + companyRepository.getNextVal().get(0);
         return value;
+    }
+
+
+    @Override
+    public List<CompanyImport> loadingDataImport(List<CompanyImport> companyImports) throws ErrorType, AttributesNotFound, IdNotFound {
+        List<Company> companyList = new ArrayList<>();
+        Company company = new Company();
+
+        for (CompanyImport companyImport : companyImports) {
+            try {
+
+                company =(find("code:" + companyImport.getCompany_code())).stream().findFirst().orElse(null);
+
+                Address  address = new Address();
+                address.setLine1(companyImport.getCompany_line1_address());
+                address.setLine2(companyImport.getCompany_line2_address());
+                address.setName(companyImport.getCompany_name());
+                address.setZip(companyImport.getCompany_zip_address());
+                address.setPays((paysService.find("code:" + companyImport.getCompany_country_address())).stream().findFirst().orElse(null));
+                address.setVille((villeService.find("code:" + companyImport.getCompany_city_address())).stream().findFirst().orElse(null));
+                address.setAddressType(2L);
+                Address address1 = addressService.save(address);
+
+
+                company.setAddress(address1);
+                company.setFiscalIdentifier(companyImport.getCompany_fiscalIdentifier());
+                company.setTelephone(companyImport.getCompany_telephone());
+                company.setCommonIdentifierOfCompany(companyImport.getCompany_commonIdentifierOfCompany());
+
+
+                companyList.add(save(company));
+
+            }catch (Exception e){
+                LOGGER.error("error importing ");
+            }
+        }
+        saveAll(companyList);
+
+        return null;
+
     }
 
 }
