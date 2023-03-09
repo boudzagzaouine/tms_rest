@@ -19,7 +19,7 @@ public class Address extends EmsDto implements Serializable {
     private String contactTel;
     private String state;
     private String country;
-
+ private Boolean delivery ;
     private Pays pays;
     private String zip;
     private Ville ville;
@@ -42,6 +42,8 @@ public class Address extends EmsDto implements Serializable {
     private Long addressType;
  private Owner owner;
  private Account account ;
+ private Company company;
+ private Transport transport;
 
    private String  addressTypeTms;
 
@@ -96,6 +98,22 @@ public class Address extends EmsDto implements Serializable {
         this.country = country;
     }
 
+    public Transport getTransport() {
+        return transport;
+    }
+
+    public void setTransport(Transport transport) {
+        this.transport = transport;
+    }
+
+    public Boolean getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(Boolean delivery) {
+        this.delivery = delivery;
+    }
+
     public String getCode() {
         return this.code;
     }
@@ -110,6 +128,14 @@ public class Address extends EmsDto implements Serializable {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public String getVariable1() {

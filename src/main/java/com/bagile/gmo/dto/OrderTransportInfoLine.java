@@ -2,6 +2,7 @@ package com.bagile.gmo.dto;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,8 +13,9 @@ public class OrderTransportInfoLine {
 	private OrderTransportType orderTransportType;
     private Account account;
 
-
-	private AddressContactOrderTransportInfo addressContactDeliveryInfo;
+    private Address address;
+	private Contact contact;
+	//private AddressContactOrderTransportInfo addressContactDeliveryInfo;
 	private BigDecimal numberOfPalletEnlevement ;
 	private BigDecimal weightEnlevement ;
 	private BigDecimal capacityEnlevement;
@@ -23,6 +25,7 @@ public class OrderTransportInfoLine {
 	private Boolean contreFactureEnlevement;
 	private PaymentType  paymentTypeEnlevement;
 	private BigDecimal paymentAmountEnlevement;
+	private Date dateEnlevement;
 
 
 	private BigDecimal numberOfPalletLivraison ;
@@ -34,6 +37,7 @@ public class OrderTransportInfoLine {
 	private Boolean contreFactureLivraison;
 	private PaymentType  paymentTypeLivraison;
 	private BigDecimal paymentAmountLivraison;
+	private Date dateLivraison;
 
 	private TurnStatus turnStatus;
 
@@ -74,6 +78,14 @@ public class OrderTransportInfoLine {
 		this.contreBlEnlevement = contreBlEnlevement;
 	}
 
+	public Date getDateLivraison() {
+		return dateLivraison;
+	}
+
+	public void setDateLivraison(Date dateLivraison) {
+		this.dateLivraison = dateLivraison;
+	}
+
 	public Boolean getContreFactureEnlevement() {
 		return contreFactureEnlevement;
 	}
@@ -88,6 +100,14 @@ public class OrderTransportInfoLine {
 
 	public void setOrderTransportInfoLineDocuments(List<OrderTransportInfoLineDocument> orderTransportInfoLineDocuments) {
 		this.orderTransportInfoLineDocuments = orderTransportInfoLineDocuments;
+	}
+
+	public Date getDateEnlevement() {
+		return dateEnlevement;
+	}
+
+	public void setDateEnlevement(Date dateEnlevement) {
+		this.dateEnlevement = dateEnlevement;
 	}
 
 	public BigDecimal getPaymentAmountEnlevement() {
@@ -145,13 +165,29 @@ public class OrderTransportInfoLine {
 	public void setPaymentTypeLivraison(PaymentType paymentTypeLivraison) {
 		this.paymentTypeLivraison = paymentTypeLivraison;
 	}
-
-	public AddressContactOrderTransportInfo getAddressContactDeliveryInfo() {
+/*
+public AddressContactOrderTransportInfo getAddressContactDeliveryInfo() {
 		return addressContactDeliveryInfo;
 	}
 
 	public void setAddressContactDeliveryInfo(AddressContactOrderTransportInfo addressContactDeliveryInfo) {
 		this.addressContactDeliveryInfo = addressContactDeliveryInfo;
+	}*/
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public Contact getContact() {
+		return contact;
+	}
+
+	public void setContact(Contact contact) {
+		this.contact = contact;
 	}
 
 	public BigDecimal getWeightEnlevement() {

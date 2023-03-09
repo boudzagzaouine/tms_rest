@@ -26,6 +26,7 @@ public class TransportPlanHistoryMapper {
         map.put("turnStatus", "tmsTurnStatus");
         map.put("type", "tmsTransportPlanHistoryType");
         map.put("orderTransportRejectType", "tmsOrderTransportRejectType");
+        map.put("trajet", "tmsTrajet");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -63,9 +64,10 @@ public class TransportPlanHistoryMapper {
             tmsTransportPlanHistory.setGmoVehicleCategory(VehicleCategoryMapper.toEntity(transportPlanHistory.getVehicleCategory(), true));
             tmsTransportPlanHistory.setTrpTransport(TransportMapper.toEntity(transportPlanHistory.getTransport(), true));
             tmsTransportPlanHistory.setTmsTurnStatus(TurnStatusMapper.toEntity(transportPlanHistory.getTurnStatus(), true));
-        tmsTransportPlanHistory.setPrmVilleSource(VilleMapper.toEntity(transportPlanHistory.getVilleSource(), true));
-           tmsTransportPlanHistory.setPrmVilleDistination(VilleMapper.toEntity(transportPlanHistory.getVilleDistination(), true));
+//        tmsTransportPlanHistory.setPrmVilleSource(VilleMapper.toEntity(transportPlanHistory.getVilleSource(), true));
+//           tmsTransportPlanHistory.setPrmVilleDistination(VilleMapper.toEntity(transportPlanHistory.getVilleDistination(), true));
             tmsTransportPlanHistory.setTmsOrderTransportRejectType(OrderTransportRejectTypeMapper.toEntity(transportPlanHistory.getOrderTransportRejectType(), true));
+            tmsTransportPlanHistory.setTmsTrajet(TrajetMapper.toEntity(transportPlanHistory.getTrajet(), true));
 
         }
         return tmsTransportPlanHistory;
@@ -98,9 +100,10 @@ public class TransportPlanHistoryMapper {
             transportPlanHistory.setVehicleCategory(VehicleCategoryMapper.toDto(tmsTransportPlanHistory.getGmoVehicleCategory(), true));
             transportPlanHistory.setTransport(TransportMapper.toDto(tmsTransportPlanHistory.getTrpTransport(), true));
             transportPlanHistory.setTurnStatus(TurnStatusMapper.toDto(tmsTransportPlanHistory.getTmsTurnStatus(), true));
-          transportPlanHistory.setVilleSource(VilleMapper.toDto(tmsTransportPlanHistory.getPrmVilleSource(), true));
-           transportPlanHistory.setVilleDistination(VilleMapper.toDto(tmsTransportPlanHistory.getPrmVilleDistination(), true));
+//          transportPlanHistory.setVilleSource(VilleMapper.toDto(tmsTransportPlanHistory.getPrmVilleSource(), true));
+//           transportPlanHistory.setVilleDistination(VilleMapper.toDto(tmsTransportPlanHistory.getPrmVilleDistination(), true));
             transportPlanHistory.setOrderTransportRejectType(OrderTransportRejectTypeMapper.toDto(tmsTransportPlanHistory.getTmsOrderTransportRejectType(), true));
+            transportPlanHistory.setTrajet(TrajetMapper.toDto(tmsTransportPlanHistory.getTmsTrajet(), true));
 
 
 

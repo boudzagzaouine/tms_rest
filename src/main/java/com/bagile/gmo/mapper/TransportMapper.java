@@ -1,6 +1,8 @@
 package com.bagile.gmo.mapper;
 
 import com.bagile.gmo.dto.Transport;
+import com.bagile.gmo.entities.AdrAddress;
+import com.bagile.gmo.entities.PrmContact;
 import com.bagile.gmo.entities.TrpTransport;
 
 import java.util.*;
@@ -53,12 +55,18 @@ public class TransportMapper {
         trpTransport.setTrpTransportGmao (transport.getGmao ( ));
         trpTransport.setTrpTransportInterneOrExterne (transport.getInterneOrExterne ( ));
 
+        trpTransport.setTrpTransportFactureTransport(transport.getFactureTransport ( ));
+        trpTransport.setTrpTransportFactureService (transport.getFactureService ( ));
+
         trpTransport.setCreatedBy (transport.getCreatedBy ( ));
         trpTransport.setUpdatedBy (transport.getUpdatedBy ( ));
 
         if (!lazy) {
-            trpTransport.setAdrAddress (AddressMapper.toEntity (transport.getAddress ( ), false));
-            trpTransport.setPrmContact (ContactMapper.toEntity (transport.getContact ( ), true));
+            AdrAddress adrAddress = AddressMapper.toEntity(transport.getAddress(), false);
+            trpTransport.setAdrAddress(adrAddress);
+
+            PrmContact prmContact = ContactMapper.toEntity(transport.getContact(), false);
+            trpTransport.setPrmContact(prmContact);
 
             trpTransport.setGmoTransportCategoryVehicles (TransportCategoryVehicleMapper.toEntities (transport.getTransportCategorieVehicules ( ), true));
             trpTransport.setOwnOwner (OwnerMapper.toEntity (transport.getOwner ( ), true));
@@ -88,13 +96,17 @@ public class TransportMapper {
         transport.setGmao (trpTransport.getTrpTransportGmao ());
         transport.setInterneOrExterne (trpTransport.getTrpTransportInterneOrExterne ());
 
+        transport.setFactureTransport (trpTransport.getTrpTransportFactureTransport ());
+        transport.setFactureService (trpTransport.getTrpTransportFactureService ());
+
         transport.setCreatedBy (trpTransport.getCreatedBy ());
         transport.setUpdatedBy (trpTransport.getUpdatedBy ());
         transport.setCreationDate (trpTransport.getCreationDate ());
         transport.setUpdateDate (trpTransport.getUpdateDate ());
 
         if (!lazy) {
-            transport.setAddress (AddressMapper.toDto(trpTransport.getAdrAddress(), false));
+            transport.setAddress(AddressMapper.toDto(trpTransport.getAdrAddress(), false));
+
             transport.setTransportCategorieVehicules (TransportCategoryVehicleMapper.toDtos(trpTransport.getGmoTransportCategoryVehicles(), true));
             transport.setOwner (OwnerMapper.toDto(trpTransport.getOwnOwner(), true));
             transport.setContact (ContactMapper.toDto(trpTransport.getPrmContact(), true));

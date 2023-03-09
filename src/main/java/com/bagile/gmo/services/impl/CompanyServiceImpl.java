@@ -2,18 +2,15 @@ package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.Address;
 import com.bagile.gmo.dto.Company;
-import com.bagile.gmo.dto.Trajet;
 import com.bagile.gmo.entities.CmdCompany;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.importModels.CompanyImport;
-import com.bagile.gmo.importModels.TrajetImport;
 import com.bagile.gmo.mapper.CompanyMapper;
 import com.bagile.gmo.repositories.CompanyRepository;
 import com.bagile.gmo.services.*;
 import com.bagile.gmo.util.Search;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +18,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +37,7 @@ public class CompanyServiceImpl implements CompanyService {
     private AccountPricingService accountPricingService;
 
     @Autowired
-    private AccountServiceService accountServiceService;
+    private AccountPricingServiceService accountServiceService;
 
     @Autowired
     private PaysService paysService ;
@@ -54,13 +50,10 @@ public class CompanyServiceImpl implements CompanyService {
 
     private final static Logger LOGGER = LoggerFactory
             .getLogger(Address.class);
+
+    //@Transactional()
     @Override
     public Company save(Company company) throws ErrorType, AttributesNotFound {
-
-        if(company.getAddress()!=null){
-            Address address= this.addressService.save(company.getAddress());
-            company.setAddress(address);
-        }
         Company company1 = CompanyMapper.toDto(companyRepository.saveAndFlush(CompanyMapper.toEntity(company, false)), false);
         if(company.getId()<=0) {
             if (company.getAccountPricingList() != null) {
@@ -181,15 +174,16 @@ public class CompanyServiceImpl implements CompanyService {
         for (CompanyImport companyImport : companyImports) {
             try {
 
-                company =(find("code:" + companyImport.getCompany_code())).stream().findFirst().orElse(null);
+                company =(find("code:" + companyImport.getCompany_code())).stream().findFirst().orElse(new Company());
 
                 Address  address = new Address();
                 address.setLine1(companyImport.getCompany_line1_address());
                 address.setLine2(companyImport.getCompany_line2_address());
                 address.setName(companyImport.getCompany_name());
+                address.setCode(companyImport.getCompany_name());
                 address.setZip(companyImport.getCompany_zip_address());
-                address.setPays((paysService.find("code:" + companyImport.getCompany_country_address())).stream().findFirst().orElse(null));
-                address.setVille((villeService.find("code:" + companyImport.getCompany_city_address())).stream().findFirst().orElse(null));
+                address.setPays((paysService.find("code~" + companyImport.getCompany_country_address())).stream().findFirst().orElse(null));
+                address.setVille((villeService.find("code~" + companyImport.getCompany_city_address())).stream().findFirst().orElse(null));
                 address.setAddressType(2L);
                 Address address1 = addressService.save(address);
 

@@ -162,6 +162,7 @@ public class AddressServiceImpl implements AddressService {
                 address.setVille((villeService.find("code~" + addressDelivery.getAddress_delivery_city())).stream().findFirst().orElse(null));
                 address.setPays(paysService.findById(1L));
                 address.setAddressType(1L);
+                address.setDelivery(true);
                 addressList.add(save(address));
 
             }catch (Exception e){

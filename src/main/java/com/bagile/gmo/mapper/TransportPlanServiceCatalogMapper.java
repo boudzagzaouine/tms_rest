@@ -56,7 +56,7 @@ public class TransportPlanServiceCatalogMapper {
               tmsTransporPlanService.setPrmPurchaseVat(VatMapper.toEntity(transporPlanService.getPurchaseVat(),true));
               tmsTransporPlanService.setPrmSaleVat(VatMapper.toEntity(transporPlanService.getSaleVat(),true));
 
-              tmsTransporPlanService.setAdrAddress(AddressMapper.toEntity(transporPlanService.getAddress(),true));
+              tmsTransporPlanService.setCmdAccount(AccountMapper.toEntity(transporPlanService.getAccount(),true));
 
               tmsTransporPlanService.setOwnOwner(OwnerMapper.toEntity(transporPlanService.getOwner(),true));
           }
@@ -89,7 +89,7 @@ public class TransportPlanServiceCatalogMapper {
      transporPlanService.setPurchaseVat(VatMapper.toDto(tmsTransporPlanService.getPrmPurchaseVat(),true));
      transporPlanService.setSaleVat(VatMapper.toDto(tmsTransporPlanService.getPrmSaleVat(),true));
 
-     transporPlanService.setAddress(AddressMapper.toDto(tmsTransporPlanService.getAdrAddress(),true));
+     transporPlanService.setAccount(AccountMapper.toDto(tmsTransporPlanService.getCmdAccount(),true));
 
      transporPlanService.setOwner(OwnerMapper.toDto(tmsTransporPlanService.getOwnOwner(),true));
  }

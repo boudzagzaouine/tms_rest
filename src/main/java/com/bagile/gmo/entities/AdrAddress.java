@@ -67,6 +67,7 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
     @Max(999999999)
     private Long addAddressType; // 2: facture  / 1:  livraison
 
+    private Boolean addAddressDelivery ;
     @Size(max = 255)
     private String adrAddressVariable1;
     @Size(max = 255)
@@ -91,7 +92,8 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
 
    private String  adrAddressAddressTypeTms;
     private CmdAccount cmdAccount;
-
+    private CmdCompany cmdCompany;
+    private TrpTransport trpTransport;
     private Double adrAddressLatitude;
     private Double adrAddressLongitude;
 
@@ -130,8 +132,10 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
     }
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "adr_addressaccountid")
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "adr_addressaccountid")
+@OneToOne
+@JoinColumn(name = "adr_addressaccountid", referencedColumnName = "cmd_accountid")
     public CmdAccount getCmdAccount() {
         return cmdAccount;
     }
@@ -140,6 +144,28 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
         this.cmdAccount = cmdAccount;
     }
 
+
+    @OneToOne
+    @JoinColumn(name = "adr_addresscompanyid", referencedColumnName = "cmd_companyid")
+    public CmdCompany getCmdCompany() {
+        return cmdCompany;
+    }
+
+
+    public void setCmdCompany(CmdCompany cmdCompany) {
+
+        this.cmdCompany = cmdCompany;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "adr_addresstransportid", referencedColumnName = "trp_transportid")
+    public TrpTransport getTrpTransport() {
+        return trpTransport;
+    }
+
+    public void setTrpTransport(TrpTransport trpTransport) {
+        this.trpTransport = trpTransport;
+    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "adr_addressvilleid")
@@ -176,8 +202,21 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
         return adrAddressName;
     }
 
+
+
+
     public void setAdrAddressName(String adrAddressName) {
         this.adrAddressName = adrAddressName;
+    }
+
+    @Column(name = "adr_addressdelivery")
+
+    public Boolean getAddAddressDelivery() {
+        return addAddressDelivery;
+    }
+
+    public void setAddAddressDelivery(Boolean addAddressDelivery) {
+        this.addAddressDelivery = addAddressDelivery;
     }
 
     @Column(name = "adr_addresscontacttel", length = 20)

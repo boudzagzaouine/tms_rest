@@ -8,9 +8,9 @@ public class OrderTransportInfoLineDocument {
 	private String contreType  ; // BL ou FACTURE
 	private long type ; // 1 Enlevement . 2 Livraison . 3 Enlevement/Livraison
 	private String numero;
-	private byte[] file;
-	private String fileType;
-	private String fileName;
+//	private byte[] file;
+//	private String fileType;
+//	private String fileName;
 	private Date date;
 	private OrderTransportInfoLine orderTransportInfoLine;
 
@@ -48,21 +48,21 @@ public class OrderTransportInfoLineDocument {
 		this.numero = numero;
 	}
 
-	public byte[] getFile() {
-		return file;
-	}
-
-	public void setFile(byte[] file) {
-		this.file = file;
-	}
-
-	public String getFileName() {
-		return fileName;
-	}
-
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
+//	public byte[] getFile() {
+//		return file;
+//	}
+//
+//	public void setFile(byte[] file) {
+//		this.file = file;
+//	}
+//
+//	public String getFileName() {
+//		return fileName;
+//	}
+//
+//	public void setFileName(String fileName) {
+//		this.fileName = fileName;
+//	}
 
 	public Date getDate() {
 		return date;
@@ -80,13 +80,13 @@ public class OrderTransportInfoLineDocument {
 		this.owner = owner;
 	}
 
-	public String getFileType() {
-		return fileType;
-	}
-
-	public void setFileType(String fileType) {
-		this.fileType = fileType;
-	}
+//	public String getFileType() {
+//		return fileType;
+//	}
+//
+//	public void setFileType(String fileType) {
+//		this.fileType = fileType;
+//	}
 
 	public OrderTransportInfoLine getOrderTransportInfoLine() {
 		return orderTransportInfoLine;

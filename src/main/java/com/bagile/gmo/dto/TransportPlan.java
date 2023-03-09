@@ -15,7 +15,7 @@ public class TransportPlan extends EmsDto implements Serializable {
     private Driver driver;
     private VehicleCategory vehicleCategory;
     private Transport  transport;
- private Company company;
+ private Account account;
     private TurnStatus turnStatus;
 
     private BigDecimal purchasePrice;
@@ -24,7 +24,7 @@ public class TransportPlan extends EmsDto implements Serializable {
     private BigDecimal marginRate;
     private BigDecimal margineService;
 
-
+private Trajet trajet;
     private Ville villeSource;
     private Ville villeDistination;
     private Date dateDepart;
@@ -57,12 +57,20 @@ public class TransportPlan extends EmsDto implements Serializable {
         this.orderTransport = orderTransport;
     }
 
-    public Company getCompany() {
-        return company;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public Trajet getTrajet() {
+        return trajet;
+    }
+
+    public void setTrajet(Trajet trajet) {
+        this.trajet = trajet;
     }
 
     public BigDecimal getMarginRate() {

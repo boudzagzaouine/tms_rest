@@ -23,6 +23,7 @@ public class OrderTransportInfoMapper {
         map.put("dateDelivery", "dateDelivery");
         map.put("orderTransport", "tmsOrderTransport");
         map.put("turnStatus", "tmsTurnStatus");
+        map.put("trajet", "tmsTrajet");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -75,6 +76,7 @@ public class OrderTransportInfoMapper {
 
             tmsOrderTransportInfo.setPrmVilleSource(VilleMapper.toEntity(orderTransportInfo.getVilleSource(), true));
             tmsOrderTransportInfo.setPrmVilleDistination(VilleMapper.toEntity(orderTransportInfo.getVilleDistination(), true));
+            tmsOrderTransportInfo.setTmsTrajet(TrajetMapper.toEntity(orderTransportInfo.getTrajet(), true));
 
 
 
@@ -157,6 +159,7 @@ public class OrderTransportInfoMapper {
             orderTransportInfo.setOrderTransport(OrderTransportMapper.toDto(tmsOrderTransportInfo.getTmsOrderTransport(), true));
             orderTransportInfo.setVilleSource(VilleMapper.toDto(tmsOrderTransportInfo.getPrmVilleSource(), true));
             orderTransportInfo.setVilleDistination(VilleMapper.toDto(tmsOrderTransportInfo.getPrmVilleDistination(), true));
+            orderTransportInfo.setTrajet(TrajetMapper.toDto(tmsOrderTransportInfo.getTmsTrajet(), true));
 
 
         }

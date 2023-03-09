@@ -77,7 +77,7 @@ public class Account extends EmsDto implements Serializable, Comparable<Account>
 
 
     private List<Planning> plannings= new ArrayList<>();
-    private List<Address> addresses= new ArrayList<>();
+  //  private List<Address> addresses= new ArrayList<>();
     private List<Contact> contacts= new ArrayList<>();
 
   private Date deliveryDate ;
@@ -93,13 +93,13 @@ public class Account extends EmsDto implements Serializable, Comparable<Account>
         this.plannings = plannings;
     }
 
-    public List<Address> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
-    }
+//    public List<Address> getAddresses() {
+//        return addresses;
+//    }
+//
+//    public void setAddresses(List<Address> addresses) {
+//        this.addresses = addresses;
+//    }
 
     public List<Contact> getContacts() {
         return contacts;

@@ -6,6 +6,7 @@ package com.bagile.gmo.mapper;
 
 
 import com.bagile.gmo.dto.Company;
+import com.bagile.gmo.entities.AdrAddress;
 import com.bagile.gmo.entities.CmdCompany;
 
 import java.util.*;
@@ -103,7 +104,7 @@ public class CompanyMapper {
         company.setTurnover(cmdCompany.getCmdCompanyTurnover());
         if (!lazy) {
             company.setOwner(OwnerMapper.toDto(cmdCompany.getOwnOwner(), true));
-            company.setAddress(AddressMapper.toDto(cmdCompany.getAdrAddress(), true));
+            company.setAddress(AddressMapper.toDto(cmdCompany.getAdrAddress(), false));
             //company.setAccounts(AccountMapper.toDtos(cmdCompany.getCmdAccounts(), true));
             company.setActivityArea(ActivityAreaMapper.toDto(cmdCompany.getCmdActivityArea(), true));
 
@@ -152,7 +153,10 @@ public class CompanyMapper {
         if (!lazy) {
             //cmdCompany.setCmdAccounts(AccountMapper.toEntities(company.getCards(), true));
             cmdCompany.setOwnOwner(OwnerMapper.toEntity(company.getOwner(), true));
-            cmdCompany.setAdrAddress(AddressMapper.toEntity(company.getAddress(), true));
+            AdrAddress adrAddress = AddressMapper.toEntity(company.getAddress(), false);
+            cmdCompany.setAdrAddress(adrAddress);
+
+
             cmdCompany.setCmdActivityArea(ActivityAreaMapper.toEntity(company.getActivityArea(), true));
 
         }

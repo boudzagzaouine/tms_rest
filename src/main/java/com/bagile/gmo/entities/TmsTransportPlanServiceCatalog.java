@@ -13,7 +13,7 @@ public class TmsTransportPlanServiceCatalog extends EmsEntity {
 	private Long tmsTransporPlanServiceCatalogId;
     private PdtProduct pdtProduct;
     private TrpTransport TrpTransport;
-    private AdrAddress adrAddress;
+    private CmdAccount cmdAccount;
     private Boolean tmsTransporPlanServiceCatalogPInvoice ;
     private BigDecimal tmsTransporPlanServiceCatalogPurchasePriceHT;
     private PrmVat prmPurchaseVat;
@@ -58,15 +58,19 @@ public class TmsTransportPlanServiceCatalog extends EmsEntity {
     public void setTrpTransport(TrpTransport trpTransport) {
         TrpTransport = trpTransport;
     }
+
     @ManyToOne()
-    @JoinColumn(name = "tms_adraddressid")
-    public AdrAddress getAdrAddress() {
-        return adrAddress;
+    @JoinColumn(name = "tms_cmdAccountid")
+    public CmdAccount getCmdAccount() {
+        return cmdAccount;
     }
 
-    public void setAdrAddress(AdrAddress adrAddress) {
-        this.adrAddress = adrAddress;
+    public void setCmdAccount(CmdAccount cmdAccount) {
+        this.cmdAccount = cmdAccount;
     }
+
+
+
 
     @Column(name = "tms_transporplanservicecataloginvoice")
     public Boolean getTmsTransporPlanServiceCatalogPInvoice() {

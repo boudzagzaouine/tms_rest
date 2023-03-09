@@ -21,8 +21,9 @@ public class TransportPlanHistory extends EmsDto implements Serializable {
     private TurnStatus turnStatus;
     private BigDecimal purchasePrice;
     private BigDecimal salePrice;
-    private Ville villeSource;
-    private Ville villeDistination;
+    private Trajet trajet;
+//    private Ville villeSource;
+//    private Ville villeDistination;
     private Date date ;
     private OrderTransportRejectType orderTransportRejectType;
     private long type ; //1 = rejeter(prestataire) // 2=refus (voie)
@@ -73,6 +74,14 @@ public class TransportPlanHistory extends EmsDto implements Serializable {
         this.margineService = margineService;
     }
 
+    public Trajet getTrajet() {
+        return trajet;
+    }
+
+    public void setTrajet(Trajet trajet) {
+        this.trajet = trajet;
+    }
+
     public String getRemark() {
         return remark;
     }
@@ -89,18 +98,20 @@ public class TransportPlanHistory extends EmsDto implements Serializable {
         this.purchasePrice = purchasePrice;
     }
 
-    public Ville getVilleSource() {
-        return villeSource;
-    }
-
-    public void setVilleSource(Ville villeSource) {
-        this.villeSource = villeSource;
-    }
-
-    public void setVilleDistination(Ville villeDistination) {
-        this.villeDistination = villeDistination;
-    }
-
+//    public Ville getVilleSource() {
+//        return villeSource;
+//    }
+//
+//    public void setVilleSource(Ville villeSource) {
+//        this.villeSource = villeSource;
+//    }
+//
+//    public void setVilleDistination(Ville villeDistination) {
+//        this.villeDistination = villeDistination;
+//    }
+//    public Ville getVilleDistination() {
+//        return villeDistination;
+//    }
     public long getType() {
         return type;
     }
@@ -117,9 +128,7 @@ public class TransportPlanHistory extends EmsDto implements Serializable {
         this.orderTransportRejectType = orderTransportRejectType;
     }
 
-    public Ville getVilleDistination() {
-        return villeDistination;
-    }
+
 
     public Driver getDriver() {
         return driver;

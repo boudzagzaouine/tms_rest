@@ -13,8 +13,8 @@ public class TmsOrderTransport extends EmsEntity {
     private Date tmsOrderTransportDate;
     private TmsTurnType tmsOrderTransportType;
     private TmsLoadingType  tmsOrderTransportLoadingType;
-    private CmdCompany cmdCompany;
-
+    private CmdAccount cmdAccount;
+    private PrmContact prmContact;
     private TmsTurnStatus tmsTurnStatus;
     private GmoVehicleCategory gmoVehicleCategory ;
     private TmsVehicleTray tmsVehicleTray;
@@ -124,6 +124,16 @@ public class TmsOrderTransport extends EmsEntity {
     }
 
     @ManyToOne()
+    @JoinColumn(name = "tms_ordertransportcontactid")
+    public PrmContact getPrmContact() {
+        return prmContact;
+    }
+
+    public void setPrmContact(PrmContact prmContact) {
+        this.prmContact = prmContact;
+    }
+
+    @ManyToOne()
     @JoinColumn(name = "tms_ordertransportvatid")
     public PrmVat getPrmVat() {
         return prmVat;
@@ -200,12 +210,12 @@ public class TmsOrderTransport extends EmsEntity {
     }
 
     @ManyToOne()
-    @JoinColumn(name = "cmd_companyid")
-    public CmdCompany getCmdCompany() {
-        return cmdCompany;
+    @JoinColumn(name = "cmd_ordertransportaccountid")
+    public CmdAccount getCmdAccount() {
+        return cmdAccount;
     }
 
-    public void setCmdCompany(CmdCompany cmdCompany) {
-        this.cmdCompany = cmdCompany;
+    public void setCmdAccount(CmdAccount cmdAccount) {
+        this.cmdAccount = cmdAccount;
     }
 }

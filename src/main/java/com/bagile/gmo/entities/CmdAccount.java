@@ -91,7 +91,7 @@ public class CmdAccount extends EmsDto implements Serializable{
 
     private Set<TmsPlanning> tmsPlannings = new HashSet<> ();
 
-    private Set<AdrAddress> adrAddresses = new HashSet<> ();
+  //  private Set<AdrAddress> adrAddresses = new HashSet<> ();
     private Set<PrmContact> prmContacts = new HashSet<> ();
 
     private BigDecimal cmdAccountLatitude;
@@ -140,15 +140,16 @@ public class CmdAccount extends EmsDto implements Serializable{
     }
 
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "cmd_accountdeliveryaddressid")
+
+    @OneToOne(cascade = {CascadeType.ALL} , mappedBy = "cmdAccount")
     public AdrAddress getAdrAddressByCmdAccountDeliveryAddressId() {
         return this.adrAddressByCmdAccountDeliveryAddressId;
     }
 
-    public void setAdrAddressByCmdAccountDeliveryAddressId(
-            AdrAddress adrAddressByCmdAccountDeliveryAddressId) {
+    public void setAdrAddressByCmdAccountDeliveryAddressId(AdrAddress adrAddressByCmdAccountDeliveryAddressId) {
         this.adrAddressByCmdAccountDeliveryAddressId = adrAddressByCmdAccountDeliveryAddressId;
+        if(this.adrAddressByCmdAccountDeliveryAddressId != null)
+            this.adrAddressByCmdAccountDeliveryAddressId.setCmdAccount(this);
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -412,14 +413,14 @@ public class CmdAccount extends EmsDto implements Serializable{
         return tmsPlannings;
     }
 
-    @OneToMany(fetch = FetchType.LAZY,cascade={CascadeType.ALL,CascadeType.MERGE},mappedBy = "cmdAccount", orphanRemoval=true)
-    public Set<AdrAddress> getAdrAddresses() {
-        return adrAddresses;
-    }
-
-    public void setAdrAddresses(Set<AdrAddress> adrAddresses) {
-        this.adrAddresses = adrAddresses;
-    }
+//    @OneToMany(fetch = FetchType.LAZY,cascade={CascadeType.ALL,CascadeType.MERGE},mappedBy = "cmdAccount", orphanRemoval=true)
+//    public Set<AdrAddress> getAdrAddresses() {
+//        return adrAddresses;
+//    }
+//
+//    public void setAdrAddresses(Set<AdrAddress> adrAddresses) {
+//        this.adrAddresses = adrAddresses;
+//    }
 
     @OneToMany(fetch = FetchType.LAZY,cascade={CascadeType.ALL,CascadeType.MERGE},mappedBy = "cmdAccount", orphanRemoval=true)
     public Set<PrmContact> getPrmContacts() {

@@ -4,6 +4,7 @@
 package com.bagile.gmo.mapper;
 
 import com.bagile.gmo.dto.Account;
+import com.bagile.gmo.entities.AdrAddress;
 import com.bagile.gmo.entities.CmdAccount;
 import org.elasticsearch.cluster.metadata.AliasAction;
 
@@ -108,7 +109,7 @@ public class AccountMapper {
             account.setTransport(TransportMapper.toDto(cmdAccount.getTrpTransport(), true));
             account.setDeliveryAddress(AddressMapper.toDto(cmdAccount.getAdrAddressByCmdAccountDeliveryAddressId(), false));
             account.setPlannings(PlanningMapper.toDtos(cmdAccount.getTmsPlannings(), false));
-            account.setAddresses(AddressMapper.toDtos(cmdAccount.getAdrAddresses(), false));
+//            account.setAddresses(AddressMapper.toDtos(cmdAccount.getAdrAddresses(), false));
             account.setContacts(ContactMapper.toDtos(cmdAccount.getPrmContacts(), false));
 
         }
@@ -160,9 +161,11 @@ public class AccountMapper {
             cmdAccount.setPrmContact(ContactMapper.toEntity(account.getContact(), lazy));
             cmdAccount.setOwnOwner(OwnerMapper.toEntity(account.getOwner(), lazy));
             cmdAccount.setTrpTransport(TransportMapper.toEntity(account.getTransport(), lazy));
-            cmdAccount.setAdrAddressByCmdAccountDeliveryAddressId(AddressMapper.toEntity(account.getDeliveryAddress(), lazy));
+            AdrAddress adrAddress = AddressMapper.toEntity(account.getDeliveryAddress(), false);
+            cmdAccount.setAdrAddressByCmdAccountDeliveryAddressId(adrAddress);
+//            cmdAccount.setAdrAddressByCmdAccountDeliveryAddressId(AddressMapper.toEntity(account.getDeliveryAddress(), lazy));
             cmdAccount.setTmsPlannings(PlanningMapper.toEntities(account.getPlannings(), lazy));
-            cmdAccount.setAdrAddresses(AddressMapper.toEntities(account.getAddresses(), lazy));
+           // cmdAccount.setAdrAddresses(AddressMapper.toEntities(account.getAddresses(), lazy));
             cmdAccount.setPrmContacts(ContactMapper.toEntities(account.getContacts(), lazy));
 
             oneToMany(cmdAccount);
@@ -179,12 +182,12 @@ public class AccountMapper {
         );
 
 
-        cmdAccount.getAdrAddresses().forEach(
-                e->{
-                    e.setCreationDate(new Date());
-                    e.setCmdAccount(cmdAccount);
-                }
-        );
+//        cmdAccount.getAdrAddresses().forEach(
+//                e->{
+//                    e.setCreationDate(new Date());
+//                    e.setCmdAccount(cmdAccount);
+//                }
+//        );
 
 
 
@@ -192,6 +195,8 @@ public class AccountMapper {
                 e->{
                     e.setCreationDate(new Date());
                     e.setCmdAccount(cmdAccount);
+                    e.setAdrAddress(cmdAccount.getAdrAddressByCmdAccountDeliveryAddressId());
+
                 }
         );
 

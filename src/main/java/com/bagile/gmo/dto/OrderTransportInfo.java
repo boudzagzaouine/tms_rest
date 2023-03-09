@@ -35,6 +35,8 @@ public class OrderTransportInfo {
 	private OrderTransport orderTransport;
 	private Owner owner;
 
+	private Trajet trajet;
+
 	private Ville villeSource ;
 	private Ville villeDistination;
 
@@ -67,6 +69,14 @@ public class OrderTransportInfo {
 
 	public void setPackageDetails(List<PackageDetail> packageDetails) {
 		this.packageDetails = packageDetails;
+	}
+
+	public Trajet getTrajet() {
+		return trajet;
+	}
+
+	public void setTrajet(Trajet trajet) {
+		this.trajet = trajet;
 	}
 
 	public BigDecimal getNumberKm() {

@@ -217,7 +217,7 @@ public class UsrUser extends EmsEntity implements Serializable {
     }
 
     @Size()
-    @Column(name = "usr_usercolumns")
+    @Column(name = "usr_gmocolumns")
     public String getUserUserColumns() {
         return userUserColumns;
     }

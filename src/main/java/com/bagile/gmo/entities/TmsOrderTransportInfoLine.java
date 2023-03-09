@@ -1,11 +1,14 @@
 
 package com.bagile.gmo.entities;
 
+import com.bagile.gmo.dto.Address;
+import com.bagile.gmo.dto.Contact;
 import com.bagile.gmo.dto.PaymentType;
 import com.bagile.gmo.mapper.PaymentRuleMapper;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,7 +21,9 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
 
     private CmdAccount cmdAccount;
 
-    private TmsAddressContactOrderTransportInfo tmsAddressContactDeliveryInfo;
+    private AdrAddress adrAddress;
+    private PrmContact prmContact;
+    //private TmsAddressContactOrderTransportInfo tmsAddressContactDeliveryInfo;
 
     private BigDecimal tmsAddressContactDeliveryInfoNumberOfPalletEnlevement;
     private BigDecimal tmsOrderTransportWeightEnlevement ;
@@ -28,6 +33,7 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
     private Boolean  tmsOrderTransportContreFactureEnlevement;
     private PrmPaymentType prmPaymentTypeEnlevement;
     private BigDecimal tmsPaymentAmountEnlevement;
+    private Date tmsOrderTransportDateEnlevement;
 
 
     private TmsAddressContactOrderTransportInfo tmsAddressContactDeliveryInfoLivraison;
@@ -40,6 +46,7 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
     private Boolean  tmsOrderTransportContreFactureLivraison;
     private PrmPaymentType prmPaymentTypeLivraison;
     private BigDecimal tmsPaymentAmountLivraison;
+    private Date  tmsOrderTransportDateLivraison;
 
     private TmsTurnStatus tmsTurnStatus;
 
@@ -84,6 +91,26 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
 
     public void setTmsPaymentAmountEnlevement(BigDecimal tmsPaymentAmountEnlevement) {
         this.tmsPaymentAmountEnlevement = tmsPaymentAmountEnlevement;
+    }
+
+    @Column(name = "tms_ordertransportinfolinedateenlevement")
+
+    public Date getTmsOrderTransportDateEnlevement() {
+        return tmsOrderTransportDateEnlevement;
+    }
+
+    public void setTmsOrderTransportDateEnlevement(Date tmsOrderTransportDateEnlevement) {
+        this.tmsOrderTransportDateEnlevement = tmsOrderTransportDateEnlevement;
+    }
+
+    @Column(name = "tms_ordertransportinfolinedatelivraison")
+
+    public Date getTmsOrderTransportDateLivraison() {
+        return tmsOrderTransportDateLivraison;
+    }
+
+    public void setTmsOrderTransportDateLivraison(Date tmsOrderTransportDateLivraison) {
+        this.tmsOrderTransportDateLivraison = tmsOrderTransportDateLivraison;
     }
 
     @Column(name = "tms_ordertransportinfolinepaymentamountlivraison")
@@ -200,27 +227,45 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
         this.tmsOrderTransportInfo = tmsOrderTransportInfo;
     }
 
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "tmsAddressContactOrderTransportName", column = @Column(name = "tms_infoenlevementname")),
-            @AttributeOverride(name = "tmsAddressContactOrderTransportTel1", column = @Column(name = "tms_infoenlevementtel1")),
-            @AttributeOverride(name = "tmsAddressContactOrderTransportEmail", column = @Column(name = "tms_infoenlevementemail")),
-            @AttributeOverride(name = "tmsAddressContactOrderTransportCompany", column = @Column(name = "tms_infoenlevementcompany")),
-            @AttributeOverride(name = "tmsAddressContactOrderTransportLine1", column = @Column(name = "tms_infoenlevementline")),
-            @AttributeOverride(name = "tmsAddressContactOrderTransportCity", column = @Column(name = "tms_infoenlevementcity")),
-            @AttributeOverride(name = "tmsAddressContactOrderTransportZip", column = @Column(name = "tms_infoenlevementzip")),
-            @AttributeOverride(name = "tmsAddressContactOrderTransportCountry", column = @Column(name = "tms_infoenlevementcountry")),
-            @AttributeOverride(name = "tmsAddressContactOrderTransportDate", column = @Column(name = "tms_infoenlevementdate")),
-            @AttributeOverride(name = "tmsAddressContactOrderTransportLatitude", column = @Column(name = "tms_infoenlevementlatitude")),
-            @AttributeOverride(name = "tmsAddressContactOrderTransportLongitude", column = @Column(name = "tms_infoenlevementlongitude")),
-    })
-    public TmsAddressContactOrderTransportInfo getTmsAddressContactDeliveryInfo() {
-        return tmsAddressContactDeliveryInfo;
+    @ManyToOne()
+    @JoinColumn(name = "tms_ordertransportinfolineid")
+    public AdrAddress getAdrAddress() {
+        return adrAddress;
     }
 
-    public void setTmsAddressContactDeliveryInfo(TmsAddressContactOrderTransportInfo tmsAddressContactDeliveryInfoEnlevement) {
-        this.tmsAddressContactDeliveryInfo = tmsAddressContactDeliveryInfoEnlevement;
+    public void setAdrAddress(AdrAddress adrAddress) {
+        this.adrAddress = adrAddress;
     }
+
+    public PrmContact getPrmContact() {
+        return prmContact;
+    }
+
+    public void setPrmContact(PrmContact prmContact) {
+        this.prmContact = prmContact;
+    }
+
+    //    @Embedded
+//    @AttributeOverrides({
+//            @AttributeOverride(name = "tmsAddressContactOrderTransportName", column = @Column(name = "tms_infoenlevementname")),
+//            @AttributeOverride(name = "tmsAddressContactOrderTransportTel1", column = @Column(name = "tms_infoenlevementtel1")),
+//            @AttributeOverride(name = "tmsAddressContactOrderTransportEmail", column = @Column(name = "tms_infoenlevementemail")),
+//            @AttributeOverride(name = "tmsAddressContactOrderTransportCompany", column = @Column(name = "tms_infoenlevementcompany")),
+//            @AttributeOverride(name = "tmsAddressContactOrderTransportLine1", column = @Column(name = "tms_infoenlevementline")),
+//            @AttributeOverride(name = "tmsAddressContactOrderTransportCity", column = @Column(name = "tms_infoenlevementcity")),
+//            @AttributeOverride(name = "tmsAddressContactOrderTransportZip", column = @Column(name = "tms_infoenlevementzip")),
+//            @AttributeOverride(name = "tmsAddressContactOrderTransportCountry", column = @Column(name = "tms_infoenlevementcountry")),
+//            @AttributeOverride(name = "tmsAddressContactOrderTransportDate", column = @Column(name = "tms_infoenlevementdate")),
+//            @AttributeOverride(name = "tmsAddressContactOrderTransportLatitude", column = @Column(name = "tms_infoenlevementlatitude")),
+//            @AttributeOverride(name = "tmsAddressContactOrderTransportLongitude", column = @Column(name = "tms_infoenlevementlongitude")),
+//    })
+//    public TmsAddressContactOrderTransportInfo getTmsAddressContactDeliveryInfo() {
+//        return tmsAddressContactDeliveryInfo;
+//    }
+//
+//    public void setTmsAddressContactDeliveryInfo(TmsAddressContactOrderTransportInfo tmsAddressContactDeliveryInfoEnlevement) {
+//        this.tmsAddressContactDeliveryInfo = tmsAddressContactDeliveryInfoEnlevement;
+//    }
 
     @Column(name = "tms_ordertransportinfolineweightenlevement")
     public BigDecimal getTmsOrderTransportWeightEnlevement() {

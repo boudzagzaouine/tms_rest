@@ -13,7 +13,7 @@ public class TransportPlanServiceCatalog extends EmsDto implements Serializable 
     private Product product;
     private Transport transport;
 
-    private Address address;
+    private Account account;
     private Boolean invoice;
     private BigDecimal purchasePriceHT;
     private Vat purchaseVat;
@@ -112,12 +112,12 @@ private Owner owner;
         this.owner = owner;
     }
 
-    public Address getAddress() {
-        return address;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public Boolean getInvoice() {

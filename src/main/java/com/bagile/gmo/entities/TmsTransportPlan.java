@@ -13,14 +13,15 @@ public class TmsTransportPlan extends EmsEntity {
     private Long tmsTransportPlanId;
 
     private TmsOrderTransport tmsOrderTransport;
-    private CmdCompany cmdCompany;
+    private CmdAccount cmdAccount;
     private GmoVehicle gmoVehicle;
     private GmoDriver gmoDriver;
     private GmoVehicleCategory gmoVehicleCategory;
     private TrpTransport trpTransport;
 
-    private PrmVille prmVilleSource;
-    private PrmVille prmVilleDistination;
+    private TmsTrajet tmsTrajet;
+//    private PrmVille prmVilleSource;
+//    private PrmVille prmVilleDistination;
     private TmsTurnStatus tmsTurnStatus;
     private BigDecimal tmsTransportPlanPurchasePrice;
 
@@ -62,34 +63,45 @@ public class TmsTransportPlan extends EmsEntity {
         this.tmsOrderTransport = tmsOrderTransport;
     }
 
+//    @ManyToOne()
+//    @JoinColumn(name = "tms_prmvillesourceid")
+//    public PrmVille getPrmVilleSource() {
+//        return prmVilleSource;
+//    }
+//
+//    public void setPrmVilleSource(PrmVille prmVilleSource) {
+//        this.prmVilleSource = prmVilleSource;
+//    }
+//    @ManyToOne()
+//    @JoinColumn(name = "tms_prmvilledistinationid")
+//    public PrmVille getPrmVilleDistination() {
+//        return prmVilleDistination;
+//    }
+//
+//    public void setPrmVilleDistination(PrmVille prmVilleDistination) {
+//        this.prmVilleDistination = prmVilleDistination;
+//    }
     @ManyToOne()
-    @JoinColumn(name = "tms_prmvillesourceid")
-    public PrmVille getPrmVilleSource() {
-        return prmVilleSource;
+    @JoinColumn(name = "tms_transportplantrajetid")
+
+    public TmsTrajet getTmsTrajet() {
+        return tmsTrajet;
     }
 
-    public void setPrmVilleSource(PrmVille prmVilleSource) {
-        this.prmVilleSource = prmVilleSource;
-    }
-    @ManyToOne()
-    @JoinColumn(name = "tms_prmvilledistinationid")
-    public PrmVille getPrmVilleDistination() {
-        return prmVilleDistination;
-    }
-
-    public void setPrmVilleDistination(PrmVille prmVilleDistination) {
-        this.prmVilleDistination = prmVilleDistination;
+    public void setTmsTrajet(TmsTrajet tmsTrajet) {
+        this.tmsTrajet = tmsTrajet;
     }
 
     @ManyToOne()
-    @JoinColumn(name = "tms_cmdcompany")
-    public CmdCompany getCmdCompany() {
-        return cmdCompany;
+    @JoinColumn(name = "tms_cmdaccount")
+    public CmdAccount getCmdAccount() {
+        return cmdAccount;
     }
 
-    public void setCmdCompany(CmdCompany cmdCompany) {
-        this.cmdCompany = cmdCompany;
+    public void setCmdAccount(CmdAccount cmdAccount) {
+        this.cmdAccount = cmdAccount;
     }
+
 
 
 

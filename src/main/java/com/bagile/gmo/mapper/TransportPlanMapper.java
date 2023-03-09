@@ -20,6 +20,7 @@ public class TransportPlanMapper {
         map.put("orderTransport", "tmsOrderTransport");
         map.put("villeSource", "prmVilleSource");
         map.put("driver", "gmoDriver");
+        map.put("trajet", "tmsTrajet");
 
         map.put("villeDistination", "prmVilleDistination");
         map.put("dateDepart", "tmsTransportPlanDateDepart");
@@ -67,9 +68,10 @@ public class TransportPlanMapper {
             tmsTransportPlan.setTrpTransport(TransportMapper.toEntity(transportPlan.getTransport(), true));
             tmsTransportPlan.setTmsTurnStatus(TurnStatusMapper.toEntity(transportPlan.getTurnStatus(), true));
             tmsTransportPlan.setTransportPlanServiceCatalogs(TransportPlanServiceCatalogMapper.toEntities(transportPlan.getTransportPlanServiceCatalogs(), false));
-            tmsTransportPlan.setCmdCompany(CompanyMapper.toEntity(transportPlan.getCompany(), true));
-           tmsTransportPlan.setPrmVilleSource(VilleMapper.toEntity(transportPlan.getVilleSource(), true));
-            tmsTransportPlan.setPrmVilleDistination(VilleMapper.toEntity(transportPlan.getVilleDistination(), true));
+            tmsTransportPlan.setCmdAccount(AccountMapper.toEntity(transportPlan.getAccount(), true));
+           //tmsTransportPlan.setPrmVilleSource(VilleMapper.toEntity(transportPlan.getVilleSource(), true));
+           // tmsTransportPlan.setPrmVilleDistination(VilleMapper.toEntity(transportPlan.getVilleDistination(), true));
+             tmsTransportPlan.setTmsTrajet(TrajetMapper.toEntity(transportPlan.getTrajet(), true));
 
             oneToMany(tmsTransportPlan);
         }
@@ -116,11 +118,12 @@ public class TransportPlanMapper {
             transportPlan.setTransport(TransportMapper.toDto(tmsTransportPlan.getTrpTransport(), true));
             transportPlan.setTurnStatus(TurnStatusMapper.toDto(tmsTransportPlan.getTmsTurnStatus(), true));
             transportPlan.setTransportPlanServiceCatalogs(TransportPlanServiceCatalogMapper.toDtos(tmsTransportPlan.getTransportPlanServiceCatalogs(), false));
-            transportPlan.setCompany(CompanyMapper.toDto(tmsTransportPlan.getCmdCompany(), true));
+            transportPlan.setAccount(AccountMapper.toDto(tmsTransportPlan.getCmdAccount(), true));
 
-           transportPlan.setVilleSource(VilleMapper.toDto(tmsTransportPlan.getPrmVilleSource(), true));
-            transportPlan.setVilleDistination(VilleMapper.toDto(tmsTransportPlan.getPrmVilleDistination(), true));
+//           transportPlan.setVilleSource(VilleMapper.toDto(tmsTransportPlan.getPrmVilleSource(), true));
+//            transportPlan.setVilleDistination(VilleMapper.toDto(tmsTransportPlan.getPrmVilleDistination(), true));
 
+            transportPlan.setTrajet(TrajetMapper.toDto(tmsTransportPlan.getTmsTrajet(), true));
 
 
         }

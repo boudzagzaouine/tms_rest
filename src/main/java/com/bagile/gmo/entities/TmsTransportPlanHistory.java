@@ -17,9 +17,9 @@ public class TmsTransportPlanHistory extends EmsEntity {
     private GmoDriver gmoDriver;
     private GmoVehicleCategory gmoVehicleCategory;
     private TrpTransport trpTransport;
-
-    private PrmVille prmVilleSource;
-    private PrmVille prmVilleDistination;
+private TmsTrajet tmsTrajet;
+//    private PrmVille prmVilleSource;
+//    private PrmVille prmVilleDistination;
     private TmsTurnStatus tmsTurnStatus;
     private BigDecimal tmsTransportPlanHistoryPurchasePrice;
 
@@ -56,24 +56,34 @@ public class TmsTransportPlanHistory extends EmsEntity {
         this.tmsOrderTransport = tmsOrderTransport;
     }
 
-    @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "tms_prmvillesourceid")
-    public PrmVille getPrmVilleSource() {
-        return prmVilleSource;
+//    @ManyToOne(cascade=CascadeType.ALL)
+//    @JoinColumn(name = "tms_prmvillesourceid")
+//    public PrmVille getPrmVilleSource() {
+//        return prmVilleSource;
+//    }
+//
+//    public void setPrmVilleSource(PrmVille prmVilleSource) {
+//        this.prmVilleSource = prmVilleSource;
+//    }
+//
+//    @ManyToOne(cascade=CascadeType.ALL)
+//    @JoinColumn(name = "tms_prmvilledistinationid")
+//    public PrmVille getPrmVilleDistination() {
+//        return prmVilleDistination;
+//    }
+//
+//    public void setPrmVilleDistination(PrmVille prmVilleDistination) {
+//        this.prmVilleDistination = prmVilleDistination;
+//    }
+
+    @ManyToOne()
+    @JoinColumn(name = "tms_transportplanhistorytrajetid")
+    public TmsTrajet getTmsTrajet() {
+        return tmsTrajet;
     }
 
-    public void setPrmVilleSource(PrmVille prmVilleSource) {
-        this.prmVilleSource = prmVilleSource;
-    }
-
-    @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "tms_prmvilledistinationid")
-    public PrmVille getPrmVilleDistination() {
-        return prmVilleDistination;
-    }
-
-    public void setPrmVilleDistination(PrmVille prmVilleDistination) {
-        this.prmVilleDistination = prmVilleDistination;
+    public void setTmsTrajet(TmsTrajet tmsTrajet) {
+        this.tmsTrajet = tmsTrajet;
     }
 
     @ManyToOne(cascade=CascadeType.ALL)

@@ -18,7 +18,7 @@ public class TransportAccountServiceMapper {
 		map.put("code", "tmsTransportAccountServiceCode");
 		map.put("transport", "trpTransport");
 		map.put("company", "cmdCompany");
-		map.put("address", "adrAddress");
+		map.put("account", "cmdAccount");
 
 		map.put("product", "pdtProduct");
 		map.put("turnType", "tmsTurnType");
@@ -51,7 +51,7 @@ public class TransportAccountServiceMapper {
 
 		if(!lazy){
 			tmsTransportAccountService.setCmdCompany(CompanyMapper.toEntity(transportAccountService.getCompany(),true));
-			tmsTransportAccountService.setAdrAddress(AddressMapper.toEntity(transportAccountService.getAddress(),true));
+			tmsTransportAccountService.setCmdAccount(AccountMapper.toEntity(transportAccountService.getAccount(),true));
 
 			tmsTransportAccountService.setTrpTransport(TransportMapper.toEntity(transportAccountService.getTransport(),true));
 			tmsTransportAccountService.setPdtProduct(ProductMapper.toEntity(transportAccountService.getProduct(),true));
@@ -79,7 +79,7 @@ public class TransportAccountServiceMapper {
 
 		if(!lazy){
 			transportAccountService.setCompany(CompanyMapper.toDto(tmsTransportAccountService.getCmdCompany(),true));
-			transportAccountService.setAddress(AddressMapper.toDto(tmsTransportAccountService.getAdrAddress(),true));
+			transportAccountService.setAccount(AccountMapper.toDto(tmsTransportAccountService.getCmdAccount(),true));
 
 			transportAccountService.setTransport(TransportMapper.toDto(tmsTransportAccountService.getTrpTransport(),true));
 			transportAccountService.setProduct(ProductMapper.toDto(tmsTransportAccountService.getPdtProduct(),true));

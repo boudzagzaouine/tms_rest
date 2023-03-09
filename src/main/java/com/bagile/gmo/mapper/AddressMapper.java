@@ -51,6 +51,8 @@ public class AddressMapper {
         map.put("variable9","adrAddressVariable9");
         map.put("variable10","adrAddressVariable10");
         map.put("addressType","addAddressType");
+        map.put("delivery","addAddressDelivery");
+
         map.put("account","cmdAccount");
         map.put("company","cmdCompany");
 
@@ -89,6 +91,7 @@ public class AddressMapper {
         address.setVariable10(adrAddress.getAdrAddressVariable10());
         address.setAddressType(adrAddress.getAddAddressType());
         address.setAddressTypeTms(adrAddress.getAdrAddressAddressTypeTms());
+        address.setDelivery(adrAddress.getAddAddressDelivery());
 
 
         address.setLatitude(adrAddress.getAdrAddressLatitude());
@@ -97,6 +100,9 @@ public class AddressMapper {
         if (!lazy) {
             address.setOwner(OwnerMapper.toDto(adrAddress.getOwnOwner(), true));
             address.setAccount(AccountMapper.toDto(adrAddress.getCmdAccount(), true));
+            address.setCompany(CompanyMapper.toDto(adrAddress.getCmdCompany(), true));
+            address.setTransport(TransportMapper.toDto(adrAddress.getTrpTransport(), true));
+
             address.setVille(VilleMapper.toDto(adrAddress.getPrmVille(), true));
             address.setPays(PaysMapper.toDto(adrAddress.getPrmPays(), true));
 
@@ -154,6 +160,7 @@ public class AddressMapper {
         adrAddress.setAdrAddressVariable10(address.getVariable10());
         adrAddress.setAddAddressType(address.getAddressType());
         adrAddress.setAdrAddressAddressTypeTms(address.getAddressTypeTms());
+        adrAddress.setAddAddressDelivery(address.getDelivery());
 
         adrAddress.setAdrAddressLatitude(address.getLatitude());
         adrAddress.setAdrAddressLongitude(address.getLongitude());
@@ -161,6 +168,9 @@ public class AddressMapper {
         if (!lazy) {
             adrAddress.setOwnOwner(OwnerMapper.toEntity(address.getOwner(), true));
             adrAddress.setCmdAccount(AccountMapper.toEntity(address.getAccount(), true));
+            adrAddress.setCmdCompany(CompanyMapper.toEntity(address.getCompany(), true));
+            adrAddress.setTrpTransport(TransportMapper.toEntity(address.getTransport(), true));
+
             adrAddress.setPrmPays(PaysMapper.toEntity(address.getPays(), true));
             adrAddress.setPrmVille(VilleMapper.toEntity(address.getVille(), true));
 

@@ -32,7 +32,8 @@ public class Transport  extends EmsDto implements Serializable {
     private Boolean active;
     private Boolean gmao;
     private Boolean interneOrExterne;
-
+    private Boolean factureTransport;
+private Boolean factureService;
     private List<CatalogTransportPricing> catalogTransportPricings = new ArrayList<>();
     private List<CatalogTransportAccountPricing> catalogTransportAccountPricings = new ArrayList<>();
     private List<TransportService> catalogTransportServices = new ArrayList<>();
@@ -276,6 +277,21 @@ public class Transport  extends EmsDto implements Serializable {
         this.transportCategorieVehicules = transportCategorieVehicules;
     }
 
+    public Boolean getFactureTransport() {
+        return factureTransport;
+    }
+
+    public void setFactureTransport(Boolean factureTransport) {
+        this.factureTransport = factureTransport;
+    }
+
+    public Boolean getFactureService() {
+        return factureService;
+    }
+
+    public void setFactureService(Boolean factureService) {
+        this.factureService = factureService;
+    }
 
     public List<Turn> getTurns() {
         return turns;

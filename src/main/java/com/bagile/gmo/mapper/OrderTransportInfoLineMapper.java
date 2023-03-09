@@ -65,13 +65,19 @@ public class OrderTransportInfoLineMapper {
         tmsOrderTransportInfoLine.setTmsPaymentAmountEnlevement(orderTransportInfoLine.getPaymentAmountEnlevement());
         tmsOrderTransportInfoLine.setTmsPaymentAmountLivraison(orderTransportInfoLine.getPaymentAmountLivraison());
 
+        tmsOrderTransportInfoLine.setTmsOrderTransportDateEnlevement(orderTransportInfoLine.getDateEnlevement());
+        tmsOrderTransportInfoLine.setTmsOrderTransportDateLivraison(orderTransportInfoLine.getDateLivraison());
+
 
 
 
         if (!lazy) {
 
             tmsOrderTransportInfoLine.setCmdAccount(AccountMapper.toEntity(orderTransportInfoLine.getAccount(), true));
-            tmsOrderTransportInfoLine.setTmsAddressContactDeliveryInfo(AddressContactOrderTransportInfoMapper.toEntity(orderTransportInfoLine.getAddressContactDeliveryInfo(), true));
+           // tmsOrderTransportInfoLine.setTmsAddressContactDeliveryInfo(AddressContactOrderTransportInfoMapper.toEntity(orderTransportInfoLine.getAddressContactDeliveryInfo(), true));
+            tmsOrderTransportInfoLine.setAdrAddress(AddressMapper.toEntity(orderTransportInfoLine.getAddress(), false));
+            tmsOrderTransportInfoLine.setPrmContact(ContactMapper.toEntity(orderTransportInfoLine.getContact(), false));
+
             tmsOrderTransportInfoLine.setTmsOrderTransportType(OrderTransportTypeMapper.toEntity(orderTransportInfoLine.getOrderTransportType(), true));
             tmsOrderTransportInfoLine.setTmsOrderTransportInfo(OrderTransportInfoMapper.toEntity(orderTransportInfoLine.getOrderTransportInfo(), true));
             tmsOrderTransportInfoLine.setTmsTurnStatus(TurnStatusMapper.toEntity(orderTransportInfoLine.getTurnStatus(), true));
@@ -125,13 +131,18 @@ public class OrderTransportInfoLineMapper {
         orderTransportInfoLine.setPaymentAmountEnlevement(tmsOrderTransportInfoLine.getTmsPaymentAmountEnlevement());
         orderTransportInfoLine.setPaymentAmountLivraison(tmsOrderTransportInfoLine.getTmsPaymentAmountLivraison());
 
+        orderTransportInfoLine.setDateEnlevement(tmsOrderTransportInfoLine.getTmsOrderTransportDateEnlevement());
+        orderTransportInfoLine.setDateLivraison(tmsOrderTransportInfoLine.getTmsOrderTransportDateLivraison());
+
 
 
         if (!lazy) {
 
             orderTransportInfoLine.setAccount(AccountMapper.toDto(tmsOrderTransportInfoLine.getCmdAccount(), true));
 
-            orderTransportInfoLine.setAddressContactDeliveryInfo(AddressContactOrderTransportInfoMapper.toDto(tmsOrderTransportInfoLine.getTmsAddressContactDeliveryInfo(), true));
+//            orderTransportInfoLine.setAddressContactDeliveryInfo(AddressContactOrderTransportInfoMapper.toDto(tmsOrderTransportInfoLine.getTmsAddressContactDeliveryInfo(), true));
+            orderTransportInfoLine.setAddress(AddressMapper.toDto(tmsOrderTransportInfoLine.getAdrAddress(), false));
+            orderTransportInfoLine.setContact(ContactMapper.toDto(tmsOrderTransportInfoLine.getPrmContact(), false));
 
             orderTransportInfoLine.setOrderTransportType(OrderTransportTypeMapper.toDto(tmsOrderTransportInfoLine.getTmsOrderTransportType(), true));
 

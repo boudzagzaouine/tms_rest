@@ -24,6 +24,8 @@ public class PrmContact extends EmsEntity {
 
     private CmdAccount cmdAccount ;
 
+    private TrpTransport trpTransport;
+    private AdrAddress adrAddress;
     private TmsContactFunction tmsContactFunction;
 
     @Id
@@ -112,6 +114,26 @@ public class PrmContact extends EmsEntity {
     }
     public void setPrmContactComment(String prmContactComment) {
         this.prmContactComment = prmContactComment;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "prm_contacttransportid", referencedColumnName = "trp_transportid")
+    public TrpTransport getTrpTransport() {
+        return trpTransport;
+    }
+
+    public void setTrpTransport(TrpTransport trpTransport) {
+        this.trpTransport = trpTransport;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="prm_contactaddressid")
+    public AdrAddress getAdrAddress() {
+        return adrAddress;
+    }
+
+    public void setAdrAddress(AdrAddress adrAddress) {
+        this.adrAddress = adrAddress;
     }
 
     @Column(name = "prm_contactactive")

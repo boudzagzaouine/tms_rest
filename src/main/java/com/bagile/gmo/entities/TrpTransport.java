@@ -66,6 +66,10 @@ public class TrpTransport extends EmsEntity implements java.io.Serializable {
   private OwnOwner ownOwner;
 
   private Boolean trpTransportGmao;
+    private Boolean trpTransportFactureTransport;
+    private Boolean trpTransportFactureService;
+
+
     public TrpTransport() {
     }
 
@@ -82,26 +86,28 @@ public class TrpTransport extends EmsEntity implements java.io.Serializable {
     }
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "trp_transportaddressid")
+    @OneToOne(cascade = {CascadeType.ALL} , mappedBy = "trpTransport")
     public AdrAddress getAdrAddress() {
         return adrAddress;
     }
 
     public void setAdrAddress(AdrAddress adrAddress) {
         this.adrAddress = adrAddress;
+        if(this.adrAddress != null)
+            this.adrAddress.setTrpTransport(this);
     }
 
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "trp_transportcontactid", nullable = false)
+    @OneToOne(cascade = {CascadeType.ALL} , mappedBy = "trpTransport")
     public PrmContact getPrmContact() {
         return prmContact;
     }
 
     public void setPrmContact(PrmContact prmContact) {
         this.prmContact = prmContact;
+        if(this.prmContact != null)
+            this.prmContact.setTrpTransport(this);
     }
 
     @Column(name = "trp_transportisactive", nullable = false)
@@ -110,6 +116,25 @@ public class TrpTransport extends EmsEntity implements java.io.Serializable {
     }
     public void setTrpTransportIsActive(Boolean trpTransportIsActive) {
         this.trpTransportIsActive = trpTransportIsActive;
+    }
+
+    @Column(name = "trp_transportfacturetransport")
+
+    public Boolean getTrpTransportFactureTransport() {
+        return trpTransportFactureTransport;
+    }
+
+    public void setTrpTransportFactureTransport(Boolean trpTransportFactureTransport) {
+        this.trpTransportFactureTransport = trpTransportFactureTransport;
+    }
+
+    @Column(name = "trp_transportfactureservice")
+    public Boolean getTrpTransportFactureService() {
+        return trpTransportFactureService;
+    }
+
+    public void setTrpTransportFactureService(Boolean trpTransportFactureService) {
+        this.trpTransportFactureService = trpTransportFactureService;
     }
 
     @Column(name = "trp_transportcode", unique = true, nullable = false, length = 30)

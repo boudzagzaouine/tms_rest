@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class AccountService extends EmsDto implements Serializable {
+public class AccountPricingService extends EmsDto implements Serializable {
     /**
      *
      */
@@ -12,7 +12,7 @@ public class AccountService extends EmsDto implements Serializable {
     private long id;
     private Company company ;
 
-    private Address address;
+    private Account account;
 
    private Product product;
     private BigDecimal saleAmountHt;
@@ -47,12 +47,12 @@ private Owner owner;
         this.product = product;
     }
 
-    public Address getAddress() {
-        return address;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public BigDecimal getSaleAmountHt() {
@@ -99,7 +99,7 @@ private Owner owner;
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AccountService badgeType = (AccountService) o;
+        AccountPricingService badgeType = (AccountPricingService) o;
         return getId() == badgeType.getId();
     }
 

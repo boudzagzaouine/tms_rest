@@ -13,7 +13,8 @@ public class OrderTransport {
 	private Date date ;
 	private TurnType turnType;
 	private LoadingType  loadingType ;
-	private Company company;
+	private Account account;
+	private Contact contact;
 	private TurnStatus turnStatus;
 	private VehicleCategory vehicleCategory ;
 	private VehicleTray vehicleTray;
@@ -56,6 +57,14 @@ public class OrderTransport {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public Contact getContact() {
+		return contact;
+	}
+
+	public void setContact(Contact contact) {
+		this.contact = contact;
 	}
 
 	public TurnType getTurnType() {
@@ -114,12 +123,12 @@ public class OrderTransport {
 		this.marginRate = marginRate;
 	}
 
-	public Company getCompany() {
-		return company;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setCompany(Company company) {
-		this.company = company;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public BigDecimal getMarginValue() {

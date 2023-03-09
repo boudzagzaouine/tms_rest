@@ -35,6 +35,8 @@ public class TmsOrderTransportInfo extends EmsEntity {
 
     private BigDecimal tmsOrderTransportInfoNumberOfPallet;
     private TmsOrderTransport tmsOrderTransport;
+
+    private TmsTrajet tmsTrajet;
     private PrmVille prmVilleSource;
     private PrmVille prmVilleDistination;
     private Date tmsOrderTransportInfoDate;
@@ -65,6 +67,15 @@ public class TmsOrderTransportInfo extends EmsEntity {
 
     public void setTmsOrderTransport(TmsOrderTransport tmsOrderTransport) {
         this.tmsOrderTransport = tmsOrderTransport;
+    }
+    @ManyToOne()
+    @JoinColumn(name = "tms_ordertransportinfotrajetid")
+    public TmsTrajet getTmsTrajet() {
+        return tmsTrajet;
+    }
+
+    public void setTmsTrajet(TmsTrajet tmsTrajet) {
+        this.tmsTrajet = tmsTrajet;
     }
 
     @ManyToOne()

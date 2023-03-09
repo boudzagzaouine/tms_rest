@@ -12,7 +12,7 @@ public class TransportAccountService extends EmsDto implements Serializable {
     private long id;
     private Transport transport ;
     private Company company ;
- private Address address ;
+ private Account account ;
    private Product product;
     private BigDecimal purchaseAmountHt;
     private BigDecimal purchaseAmountTtc;
@@ -52,12 +52,12 @@ private Owner owner;
         this.company = company;
     }
 
-    public Address getAddress() {
-        return address;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public BigDecimal getPurchaseAmountHt() {

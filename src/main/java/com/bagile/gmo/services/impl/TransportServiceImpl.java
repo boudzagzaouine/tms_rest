@@ -39,6 +39,12 @@ public class TransportServiceImpl implements TransportService, GmaoSearch {
     @Override
     public Transport save(Transport transport) throws ErrorType, AttributesNotFound {
         transport.setGmao(true);
+        if(transport.getActive()==null){
+            transport.setActive(false);
+        }
+        if(transport.getInterneOrExterne()==null){
+            transport.setInterneOrExterne(false);
+        }
 
         Transport transport1 =  TransportMapper.toDto(transportRepository.saveAndFlush(TransportMapper.toEntity(transport, false)), false);
         if(transport.getId()<=0) {

@@ -2,6 +2,7 @@ package com.bagile.gmo.mapper;
 
 
 import com.bagile.gmo.dto.Contact;
+import com.bagile.gmo.dto.Transport;
 import com.bagile.gmo.entities.PrmContact;
 
 import java.util.*;
@@ -26,6 +27,7 @@ public class ContactMapper {
         map.put("comment", "prmContactComment");
         map.put("active","prmContactActive");
         map.put("account","cmdAccount");
+        map.put("address","adrAddress");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -69,6 +71,8 @@ public class ContactMapper {
             gmoContact.setOwnOwner(OwnerMapper.toEntity(contact.getOwner(), true));
             gmoContact.setCmdAccount(AccountMapper.toEntity(contact.getAccount(), true));
             gmoContact.setTmsContactFunction(ContactFunctionMapper.toEntity(contact.getContactFunction(), true));
+            gmoContact.setTrpTransport(TransportMapper.toEntity(contact.getTransport(), true));
+            gmoContact.setAdrAddress(AddressMapper.toEntity(contact.getAddress(), true));
 
 //            prmContact.setInvInvoices(InvoiceMapper.toEntities(contact.getInvoices(), true));
 //            prmContact.setInvInvoiceArcs(InvoiceArcMapper.toEntities(contact.getInvoiceArcs(), true));
@@ -106,6 +110,8 @@ public class ContactMapper {
             contact.setOwner(OwnerMapper.toDto(gmoContact.getOwnOwner(), true));
             contact.setAccount(AccountMapper.toDto(gmoContact.getCmdAccount(), true));
             contact.setContactFunction(ContactFunctionMapper.toDto(gmoContact.getTmsContactFunction(), true));
+            contact.setTransport(TransportMapper.toDto(gmoContact.getTrpTransport(), true));
+            contact.setAddress(AddressMapper.toDto(gmoContact.getAdrAddress(), true));
 
 //            contact.setInvoices(InvoiceMapper.toDtos(prmContact.getInvInvoices(), true));
 //            contact.setInvoiceArcs(InvoiceArcMapper.toDtos(prmContact.getInvInvoiceArcs(), true));
