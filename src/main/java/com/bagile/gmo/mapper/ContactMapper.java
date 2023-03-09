@@ -61,6 +61,7 @@ public class ContactMapper {
         gmoContact.setPrmContactEmail(contact.getEmail());
          gmoContact.setPrmContactComment(contact.getComment());
         gmoContact.setPrmContactActive(contact.getActive());
+        gmoContact.setTmsContactDelivery(contact.getDelivery());
 
 
         gmoContact.setCreatedBy(contact.getCreatedBy());
@@ -100,6 +101,7 @@ public class ContactMapper {
         contact.setEmail(gmoContact.getPrmContactEmail());
         contact.setComment(gmoContact.getPrmContactComment());
         contact.setActive(gmoContact.isPrmContactActive());
+        contact.setDelivery(gmoContact.getTmsContactDelivery());
 
         contact.setCreatedBy(gmoContact.getCreatedBy());
         contact.setUpdatedBy(gmoContact.getUpdatedBy());

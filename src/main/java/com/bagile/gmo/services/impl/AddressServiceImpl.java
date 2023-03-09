@@ -159,11 +159,15 @@ public class AddressServiceImpl implements AddressService {
                 address.setLine1(addressDelivery.getAddress_delivery_line1());
                 address.setLine2(addressDelivery.getAddress_delivery_line2());
                 address.setZip(addressDelivery.getAddress_delivery_zip());
+
                 address.setVille((villeService.find("code~" + addressDelivery.getAddress_delivery_city())).stream().findFirst().orElse(null));
                 address.setPays(paysService.findById(1L));
                 address.setAddressType(1L);
                 address.setDelivery(true);
+                address.setLatitude(address.getVille().getLatitude());
+                address.setLongitude(address.getVille().getLongitude());
                 addressList.add(save(address));
+
 
             }catch (Exception e){
                 LOGGER.error("error importing "+ addressDelivery.getAddress_delivery_line1());

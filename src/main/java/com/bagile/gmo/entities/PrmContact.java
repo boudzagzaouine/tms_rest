@@ -1,5 +1,6 @@
 package com.bagile.gmo.entities;
 
+
 import javax.persistence.*;
 
 @Entity
@@ -27,6 +28,8 @@ public class PrmContact extends EmsEntity {
     private TrpTransport trpTransport;
     private AdrAddress adrAddress;
     private TmsContactFunction tmsContactFunction;
+
+    private Boolean tmsContactDelivery;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -81,6 +84,16 @@ public class PrmContact extends EmsEntity {
 
     public void setPrmContactTel2(String prmContactTel2) {
         this.prmContactTel2 = prmContactTel2;
+    }
+
+    @Column(name = "prm_contactdelivery")
+
+    public Boolean getTmsContactDelivery() {
+        return tmsContactDelivery;
+    }
+
+    public void setTmsContactDelivery(Boolean tmsContactDelivery) {
+        this.tmsContactDelivery = tmsContactDelivery;
     }
 
     @Column(name = "prm_contactfax")

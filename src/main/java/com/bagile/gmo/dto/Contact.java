@@ -28,6 +28,7 @@ public class Contact extends EmsDto implements Serializable {
     private ContactFunction contactFunction;
 
     private Address address;
+    private Boolean delivery ;
     public Contact() {
     }
 
@@ -53,6 +54,14 @@ public class Contact extends EmsDto implements Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Boolean getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(Boolean delivery) {
+        this.delivery = delivery;
     }
 
     public String getName() {
