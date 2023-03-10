@@ -2,6 +2,7 @@ package com.bagile.gmo.services;
 
 
 import com.bagile.gmo.dto.Contact;
+import com.bagile.gmo.dto.Contact;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
@@ -11,9 +12,9 @@ import java.util.List;
 
 public interface ContactService {
 
-    Contact save(Contact contact);
+    Contact save(Contact contact) throws ErrorType, AttributesNotFound;
 
-    Long size();
+    Long size() throws AttributesNotFound, ErrorType;
 
     Boolean isExist(Long id);
 
@@ -23,17 +24,15 @@ public interface ContactService {
 
     List<Contact> find(String search, int page, int size) throws AttributesNotFound, ErrorType;
 
-    Contact findOne(String search) throws AttributesNotFound, ErrorType;
-
     Long size(String search) throws AttributesNotFound, ErrorType;
 
-    void delete(long id) throws IdNotFound;
+    void delete(Long id);
 
     void delete(Contact contact);
+    void deleteAll (List<Long> ids);
 
     List<Contact> findAll() throws AttributesNotFound, ErrorType;
 
     List<Contact> findAll(int page, int size) throws AttributesNotFound, ErrorType;
     String getNextVal();
-
 }

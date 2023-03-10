@@ -5,12 +5,27 @@ package com.bagile.gmo.util;
  */
 public interface AddActive {
     default String addActiveToSearch(String search) {
-        if (!search.trim().contains("active:false")) {
-            if (!search.endsWith(",")) {
-                search += ",";
+
+//        if (!search.trim().contains("active:false")) {
+//            if (!search.endsWith(",")) {
+//                search += ",";
+//            }
+//            search += "active:true";
+//        }else {
+//            search += "active:true";
+//        }
+//        return search;
+        if(!search.equalsIgnoreCase("")){
+            if ( !search.trim().contains("active:false")) {
+                if (!search.endsWith(",")) {
+                    search += ",";
+                }
+                search += "active:true";
             }
+        }else {
             search += "active:true";
         }
+
         return search;
     }
 }

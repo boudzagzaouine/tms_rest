@@ -76,7 +76,7 @@ public class OrderTransportInfoMapper {
 
             tmsOrderTransportInfo.setPrmVilleSource(VilleMapper.toEntity(orderTransportInfo.getVilleSource(), true));
             tmsOrderTransportInfo.setPrmVilleDistination(VilleMapper.toEntity(orderTransportInfo.getVilleDistination(), true));
-            tmsOrderTransportInfo.setTmsTrajet(TrajetMapper.toEntity(orderTransportInfo.getTrajet(), true));
+            tmsOrderTransportInfo.setTmsTrajet(TrajetMapper.toEntity(orderTransportInfo.getTrajet(), false));
 
 
 
@@ -159,7 +159,7 @@ public class OrderTransportInfoMapper {
             orderTransportInfo.setOrderTransport(OrderTransportMapper.toDto(tmsOrderTransportInfo.getTmsOrderTransport(), true));
             orderTransportInfo.setVilleSource(VilleMapper.toDto(tmsOrderTransportInfo.getPrmVilleSource(), true));
             orderTransportInfo.setVilleDistination(VilleMapper.toDto(tmsOrderTransportInfo.getPrmVilleDistination(), true));
-            orderTransportInfo.setTrajet(TrajetMapper.toDto(tmsOrderTransportInfo.getTmsTrajet(), true));
+            orderTransportInfo.setTrajet(TrajetMapper.toDto(tmsOrderTransportInfo.getTmsTrajet(), false));
 
 
         }

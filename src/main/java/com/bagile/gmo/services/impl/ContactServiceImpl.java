@@ -1,14 +1,18 @@
 package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.Contact;
+import com.bagile.gmo.dto.Contact;
+import com.bagile.gmo.entities.PrmContact;
 import com.bagile.gmo.entities.PrmContact;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.ContactMapper;
+import com.bagile.gmo.mapper.ContactMapper;
 import com.bagile.gmo.repositories.ContactRepository;
 import com.bagile.gmo.services.ContactService;
 import com.bagile.gmo.services.SettingService;
+import com.bagile.gmo.util.AddActive;
 import com.bagile.gmo.util.EmsDate;
 import com.bagile.gmo.util.Search;
 import org.slf4j.Logger;
@@ -23,7 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class ContactServiceImpl implements ContactService {
+public class ContactServiceImpl implements ContactService, AddActive {
 
     private final ContactRepository contactRepository;
     //@Autowired
@@ -49,25 +53,18 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public Long size() {
-        try {
-            return size ("");
-        } catch (AttributesNotFound attributesNotFound) {
-            ////attributesNotFound.printStackTrace();
-        } catch (ErrorType errorType) {
-            //e.printStackTrace();
-        }
-        return 0L;
+    public Long size() throws AttributesNotFound, ErrorType {
+        return contactRepository.count(Search.expression(addActiveToSearch(""), PrmContact.class));
     }
 
     @Override
     public Boolean isExist(Long id) {
-        return contactRepository.existsById (id);
+        return contactRepository.existsById(id);
     }
 
     @Override
     public Contact findById(Long id) throws IdNotFound {
-        return ContactMapper.toDto (contactRepository.findById (id).orElseThrow (() -> new IdNotFound (id)), false);
+        return ContactMapper.toDto(contactRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
     }
 
     @Override
@@ -75,13 +72,7 @@ public class ContactServiceImpl implements ContactService {
         if (search.equals("")){
             return findAll ();
         }
-        if (!search.trim ( ).contains ("active:false")) {
-            if (!search.endsWith (",")) {
-                search += ",";
-            }
-            search += "active:true";
-        }
-        return ContactMapper.toDtos (contactRepository.findAll (Search.expression (search, PrmContact.class)), false);
+        return ContactMapper.toDtos(contactRepository.findAll(Search.expression(addActiveToSearch(search), PrmContact.class)), false);
     }
 
     @Override
@@ -89,21 +80,9 @@ public class ContactServiceImpl implements ContactService {
         if (search.equals("")){
             return findAll (page, size);
         }
-        if (!search.trim ( ).contains ("active:false")) {
-            if (!search.endsWith (",")) {
-                search += ",";
-            }
-            search += "active:true";
-        }
-        Sort sort = Sort.by (Sort.Direction.DESC, "updateDate");
-        Pageable pageable = PageRequest.of (page, size, sort);
-        return ContactMapper.toDtos (contactRepository.findAll (Search.expression (search, PrmContact.class), pageable), false);
-    }
-
-    @Override
-    public Contact findOne(String search) throws AttributesNotFound, ErrorType {
-        return ContactMapper.toDto (contactRepository.findOne (Search.expression (search, PrmContact.class)).orElseThrow (() -> new AttributesNotFound (search)), false);
-
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
+        Pageable pageable = PageRequest.of(page, size, sort);
+        return ContactMapper.toDtos(contactRepository.findAll(Search.expression(addActiveToSearch(search), PrmContact.class), pageable), false);
     }
 
     @Override
@@ -111,40 +90,36 @@ public class ContactServiceImpl implements ContactService {
         if (search.equals("")){
             return size ();
         }
-        if (!search.trim ( ).contains ("active:false")) {
-            if (!search.endsWith (",")) {
-                search += ",";
-            }
-            search += "active:true";
-        }
-        return contactRepository.count (Search.expression (search, PrmContact.class));
+        return contactRepository.count(Search.expression(addActiveToSearch(""), PrmContact.class));
     }
 
     @Override
-    public void delete(long id) throws IdNotFound {
-        LOGGER.info ("delete Contact");
-        PrmContact gmoContact = contactRepository.findById (id).orElseThrow (() -> new IdNotFound (id));
-        gmoContact.setPrmContactActive (false);
-        contactRepository.saveAndFlush (gmoContact);
+    public void delete(Long id) {
+        contactRepository.deleteById(id);
     }
 
     @Override
     public void delete(Contact contact) {
-        LOGGER.info ("delete Contact");
-        contact.setActive (false);
-        contactRepository.saveAndFlush (ContactMapper.toEntity (contact, false));
+        contactRepository.delete(ContactMapper.toEntity(contact, false));
     }
 
     @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            contactRepository.deleteById(id);        }
+    }
+    @Override
     public List<Contact> findAll() throws AttributesNotFound, ErrorType {
-        return find ("");
+        return ContactMapper.toDtos(contactRepository.findAll(Search.expression(addActiveToSearch(""), PrmContact.class)), false);
     }
 
     @Override
     public List<Contact> findAll(int page, int size) throws AttributesNotFound, ErrorType {
-        return find ("", page, size);
+        Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
+        Pageable pageable = PageRequest.of(page, size, sort);
+        return ContactMapper.toDtos(contactRepository.findAll(Search.expression(addActiveToSearch(""), PrmContact.class),pageable), false);
     }
-
     @Override
     public String getNextVal() {
         String value=settingService.generateCodeContact() + contactRepository.getNextVal().get(0);

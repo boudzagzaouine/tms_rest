@@ -28,6 +28,7 @@ public class ContactMapper {
         map.put("active","prmContactActive");
         map.put("account","cmdAccount");
         map.put("address","adrAddress");
+        map.put("delivery","tmsContactDelivery");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
