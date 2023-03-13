@@ -6,8 +6,9 @@ public class OrderTransportInfoLineDocument {
 
 	private long id;
 	private String contreType  ; // BL ou FACTURE
-	private long type ; // 1 Enlevement . 2 Livraison . 3 Enlevement/Livraison
+	private long type ; // 1 Enlevement . 2 Livraison
 	private String numero;
+	private OrderTransportDocumentType orderTransportDocumentType;
 //	private byte[] file;
 //	private String fileType;
 //	private String fileName;
@@ -38,6 +39,14 @@ public class OrderTransportInfoLineDocument {
 
 	public void setType(long type) {
 		this.type = type;
+	}
+
+	public OrderTransportDocumentType getOrderTransportDocumentType() {
+		return orderTransportDocumentType;
+	}
+
+	public void setOrderTransportDocumentType(OrderTransportDocumentType orderTransportDocumentType) {
+		this.orderTransportDocumentType = orderTransportDocumentType;
 	}
 
 	public String getNumero() {

@@ -49,6 +49,7 @@ public class OrderTransportInfoLineDocumentMapper {
 		if(!lazy){
 			gmoOrderTransportInfoLineDocument.setOwnOwner(OwnerMapper.toEntity(orderTransportInfoLineDocument.getOwner(),true));
 			gmoOrderTransportInfoLineDocument.setTmsOrderTransportInfoLine(OrderTransportInfoLineMapper.toEntity(orderTransportInfoLineDocument.getOrderTransportInfoLine(),true));
+			gmoOrderTransportInfoLineDocument.setTmsOrderTransportInfoLineDocumentDocumentType(OrderTransportDocumentTypeMapper.toEntity(orderTransportInfoLineDocument.getOrderTransportDocumentType(),true));
 
 
 		}
@@ -71,6 +72,7 @@ public class OrderTransportInfoLineDocumentMapper {
 
 		if(!lazy){
 			orderTransportInfoLineDocument.setOrderTransportInfoLine(OrderTransportInfoLineMapper.toDto(gmoOrderTransportInfoLineDocument.getTmsOrderTransportInfoLine(),true));
+			orderTransportInfoLineDocument.setOrderTransportDocumentType(OrderTransportDocumentTypeMapper.toDto(gmoOrderTransportInfoLineDocument.getTmsOrderTransportInfoLineDocumentDocumentType(),true));
 
 			orderTransportInfoLineDocument.setOwner(OwnerMapper.toDto(gmoOrderTransportInfoLineDocument.getOwnOwner(),true));
 

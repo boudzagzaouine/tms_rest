@@ -84,7 +84,7 @@ public class OrderTransportInfoLineMapper {
             tmsOrderTransportInfoLine.setPrmPaymentTypeEnlevement(PaymentTypeMapper.toEntity(orderTransportInfoLine.getPaymentTypeEnlevement(), true));
             tmsOrderTransportInfoLine.setPrmPaymentTypeLivraison(PaymentTypeMapper.toEntity(orderTransportInfoLine.getPaymentTypeLivraison(), true));
 
-            tmsOrderTransportInfoLine.setTmsOrderTransportInfoLineDocumentSet(OrderTransportInfoLineDocumentMapper.toEntities(orderTransportInfoLine.getOrderTransportInfoLineDocuments(), true));
+            tmsOrderTransportInfoLine.setTmsOrderTransportInfoLineDocumentSet(OrderTransportInfoLineDocumentMapper.toEntities(orderTransportInfoLine.getOrderTransportInfoLineDocuments(), false));
             oneToMany(tmsOrderTransportInfoLine);
 
 
@@ -150,7 +150,7 @@ public class OrderTransportInfoLineMapper {
             orderTransportInfoLine.setTurnStatus(TurnStatusMapper.toDto(tmsOrderTransportInfoLine.getTmsTurnStatus(), true));
             orderTransportInfoLine.setPaymentTypeEnlevement(PaymentTypeMapper.toDto(tmsOrderTransportInfoLine.getPrmPaymentTypeEnlevement(), true));
             orderTransportInfoLine.setPaymentTypeLivraison(PaymentTypeMapper.toDto(tmsOrderTransportInfoLine.getPrmPaymentTypeLivraison(), true));
-            orderTransportInfoLine.setOrderTransportInfoLineDocuments(OrderTransportInfoLineDocumentMapper.toDtos(tmsOrderTransportInfoLine.getTmsOrderTransportInfoLineDocumentSet(), true));
+            orderTransportInfoLine.setOrderTransportInfoLineDocuments(OrderTransportInfoLineDocumentMapper.toDtos(tmsOrderTransportInfoLine.getTmsOrderTransportInfoLineDocumentSet(), false));
 
         }
         return orderTransportInfoLine;
