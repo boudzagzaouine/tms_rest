@@ -19,6 +19,7 @@ public class TmsOrderTransport extends EmsEntity {
     private GmoVehicleCategory gmoVehicleCategory ;
     private TmsVehicleTray tmsVehicleTray;
 
+    private TmsTrajet tmsTrajet;
   // private TmsOrderTransportInfo tmsOrderTransportInfoAller;
    //private TmsOrderTransportInfo tmsOrderTransportInfoRetour;
 
@@ -121,6 +122,16 @@ public class TmsOrderTransport extends EmsEntity {
 
     public void setTmsOrderTransportType(TmsTurnType tmsOrderTransportType) {
         this.tmsOrderTransportType = tmsOrderTransportType;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "tms_ordertransportTrajetid")
+    public TmsTrajet getTmsTrajet() {
+        return tmsTrajet;
+    }
+
+    public void setTmsTrajet(TmsTrajet tmsTrajet) {
+        this.tmsTrajet = tmsTrajet;
     }
 
     @ManyToOne()

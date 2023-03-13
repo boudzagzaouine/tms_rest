@@ -64,6 +64,7 @@ public class  OrderTransportMapper {
             tmsOrderTransport.setTmsVehicleTray(VehicleTrayMapper.toEntity(orderTransport.getVehicleTray(), true));
             tmsOrderTransport.setPrmVat(VatMapper.toEntity(orderTransport.getVat(), true));
             tmsOrderTransport.setPrmContact(ContactMapper.toEntity(orderTransport.getContact(), true));
+            tmsOrderTransport.setTmsTrajet(TrajetMapper.toEntity(orderTransport.getTrajet(), true));
 
 //           tmsOrderTransport.setTmsOrderTransportInfoAller(OrderTransportInfoMapper.toEntity(orderTransport.getOrderTransportInfoAller(), false));
          //  tmsOrderTransport.setTmsOrderTransportInfoRetour(OrderTransportInfoMapper.toEntity(orderTransport.getOrderTransportInfoRetour(), false));
@@ -100,6 +101,7 @@ public class  OrderTransportMapper {
             orderTransport.setVehicleTray(VehicleTrayMapper.toDto(tmsOrderTransport.getTmsVehicleTray(), true));
             orderTransport.setVat(VatMapper.toDto(tmsOrderTransport.getPrmVat(), true));
             orderTransport.setContact(ContactMapper.toDto(tmsOrderTransport.getPrmContact(), true));
+            orderTransport.setTrajet(TrajetMapper.toDto(tmsOrderTransport.getTmsTrajet(), true));
 
           // orderTransport.setOrderTransportInfoAller(OrderTransportInfoMapper.toDto(tmsOrderTransport.getTmsOrderTransportInfoAller(), false));
            //orderTransport.setOrderTransportInfoRetour(OrderTransportInfoMapper.toDto(tmsOrderTransport.getTmsOrderTransportInfoRetour(), false));

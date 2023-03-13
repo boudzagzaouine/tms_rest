@@ -19,6 +19,7 @@ public class OrderTransport {
 	private VehicleCategory vehicleCategory ;
 	private VehicleTray vehicleTray;
 
+	private Trajet trajet;
 	//private OrderTransportInfo orderTransportInfoAller;
 	//private OrderTransportInfo orderTransportInfoRetour;
 
@@ -49,6 +50,14 @@ public class OrderTransport {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Trajet getTrajet() {
+		return trajet;
+	}
+
+	public void setTrajet(Trajet trajet) {
+		this.trajet = trajet;
 	}
 
 	public Date getDate() {
