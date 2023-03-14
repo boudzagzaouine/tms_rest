@@ -55,6 +55,8 @@ public class TransportPlanMapper {
         tmsTransportPlan.setTmsTransportPlanMarginRate(transportPlan.getMarginRate());
         tmsTransportPlan.setTmsTransportPlanmargineService(transportPlan.getMargineService());
 
+        tmsTransportPlan.setTmsTransportPlanPurchasePriceNegotiated(transportPlan.getPurchasePriceNegotiated());
+
         tmsTransportPlan.setTotalPriceHT(transportPlan.getTotalPriceHT());
         tmsTransportPlan.setTotalPriceTTC(transportPlan.getTotalPriceTTC());
         tmsTransportPlan.setTotalPriceVAT(transportPlan.getTotalPriceVat());
@@ -104,6 +106,8 @@ public class TransportPlanMapper {
         transportPlan.setMarginRate(tmsTransportPlan.getTmsTransportPlanMarginRate());
         transportPlan.setMargineService(tmsTransportPlan.getTmsTransportPlanmargineService());
         transportPlan.setSalePrice(tmsTransportPlan.getTmsTransportPlanSalePrice());
+
+        transportPlan.setPurchasePriceNegotiated(tmsTransportPlan.getTmsTransportPlanPurchasePriceNegotiated());
 
         transportPlan.setTotalPriceHT(tmsTransportPlan.getTotalPriceHT());
         transportPlan.setTotalPriceTTC(tmsTransportPlan.getTotalPriceTTC());

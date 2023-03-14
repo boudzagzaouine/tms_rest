@@ -24,6 +24,7 @@ public class TmsTransportPlan extends EmsEntity {
 //    private PrmVille prmVilleDistination;
     private TmsTurnStatus tmsTurnStatus;
     private BigDecimal tmsTransportPlanPurchasePrice;
+    private BigDecimal tmsTransportPlanPurchasePriceNegotiated;
 
     private BigDecimal tmsTransportPlanSalePrice;
 
@@ -184,6 +185,15 @@ public class TmsTransportPlan extends EmsEntity {
 
     public void setTmsTransportPlanMarginRate(BigDecimal tmsTransportPlanMarginRate) {
         this.tmsTransportPlanMarginRate = tmsTransportPlanMarginRate;
+    }
+
+    @Column(name = "tms_transportplanpurchasepricenegotiated")
+    public BigDecimal getTmsTransportPlanPurchasePriceNegotiated() {
+        return tmsTransportPlanPurchasePriceNegotiated;
+    }
+
+    public void setTmsTransportPlanPurchasePriceNegotiated(BigDecimal tmsTransportPlanPurchasePriceNegotiated) {
+        this.tmsTransportPlanPurchasePriceNegotiated = tmsTransportPlanPurchasePriceNegotiated;
     }
 
     @Column(name = "tms_transportplantotalpriceht")

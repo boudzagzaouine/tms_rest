@@ -19,6 +19,8 @@ public class TransportPlan extends EmsDto implements Serializable {
     private TurnStatus turnStatus;
 
     private BigDecimal purchasePrice;
+
+    private BigDecimal purchasePriceNegotiated;
     private BigDecimal salePrice;
 
     private BigDecimal marginRate;
@@ -71,6 +73,14 @@ private Trajet trajet;
 
     public void setTrajet(Trajet trajet) {
         this.trajet = trajet;
+    }
+
+    public BigDecimal getPurchasePriceNegotiated() {
+        return purchasePriceNegotiated;
+    }
+
+    public void setPurchasePriceNegotiated(BigDecimal purchasePriceNegotiated) {
+        this.purchasePriceNegotiated = purchasePriceNegotiated;
     }
 
     public BigDecimal getMarginRate() {
