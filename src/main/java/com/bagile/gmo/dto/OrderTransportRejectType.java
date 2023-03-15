@@ -5,8 +5,8 @@ public class OrderTransportRejectType {
 	private long id;
 	private String code;
 	private String description;
-	private long type ;//1 = rejeter(prestataire) // 2=refus (voie) ;
- private Owner owner;
+	private long type ;//1 = rejeter(prestataire) // 2=refus (voie)  // 3 client & transport;
+    private Owner owner;
 
 
 	public long getId() {

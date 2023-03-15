@@ -21,6 +21,7 @@ public class TransportPlan extends EmsDto implements Serializable {
     private BigDecimal purchasePrice;
 
     private BigDecimal purchasePriceNegotiated;
+    private String  remark ;
     private BigDecimal salePrice;
 
     private BigDecimal marginRate;
@@ -81,6 +82,14 @@ private Trajet trajet;
 
     public void setPurchasePriceNegotiated(BigDecimal purchasePriceNegotiated) {
         this.purchasePriceNegotiated = purchasePriceNegotiated;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public BigDecimal getMarginRate() {

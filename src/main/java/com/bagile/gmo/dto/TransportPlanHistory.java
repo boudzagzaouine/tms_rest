@@ -14,9 +14,12 @@ public class TransportPlanHistory extends EmsDto implements Serializable {
     private long id;
 
     private OrderTransport orderTransport;
+
+    private TransportPlan transportPlan;
     private Vehicle vehicle ;
     private Driver driver;
     private VehicleCategory vehicleCategory;
+    private Account account;
     private Transport  transport;
     private TurnStatus turnStatus;
     private BigDecimal purchasePrice;
@@ -26,7 +29,7 @@ public class TransportPlanHistory extends EmsDto implements Serializable {
 //    private Ville villeDistination;
     private Date date ;
     private OrderTransportRejectType orderTransportRejectType;
-    private long type ; //1 = rejeter(prestataire) // 2=refus (voie)
+    private long type ; //1 = rejeter(prestataire) // 2=refus (voie) ; //3 annuler
     private String remark;
     private BigDecimal marginRate;
     private BigDecimal margineService;
@@ -66,8 +69,24 @@ public class TransportPlanHistory extends EmsDto implements Serializable {
         this.marginRate = marginRate;
     }
 
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
     public BigDecimal getMargineService() {
         return margineService;
+    }
+
+    public TransportPlan getTransportPlan() {
+        return transportPlan;
+    }
+
+    public void setTransportPlan(TransportPlan transportPlan) {
+        this.transportPlan = transportPlan;
     }
 
     public void setMargineService(BigDecimal margineService) {

@@ -156,16 +156,15 @@ where tms_transporplanservicecatalog.tms_transportplanid = ($P{id})]]>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT tms_transportplanid,
-cmd_companyname,
+cmd_accountname,
 adr_addressline1,
 tms_ordertransportcode,
 tms_ordertransportdate,
-cmd_companytelephone,
+cmd_accounttelephone,
 cat.gmo_vehiclecategorycode,
 ttype.tms_turntypecode,
 ltype.tms_loadingtypecode,
- citysrc.prm_villecode  as  source,
-citydist.prm_villecode  as  distination,
+ trjt.tms_trajetcode  as  trajet,
 tms_transportplandate, tms_transportplanpricettc,
 tms_transportplansaleprice,
 tms_transportplanmarginrate,
@@ -177,30 +176,27 @@ tms_transportplantotalpricettc,
 tms_transportplantotalpricevat
 
 FROM schema_tmsvoieexpress.tms_transportplan
-LEFT JOIN schema_tmsvoieexpress.prm_ville citysrc ON
-citysrc.prm_villeid=tms_transportplan.tms_prmvillesourceid
-LEFT JOIN schema_tmsvoieexpress.prm_ville citydist ON
-citydist.prm_villeid=tms_transportplan.tms_prmvilledistinationid
+LEFT JOIN schema_tmsvoieexpress.tms_trajet trjt ON
+trjt.tms_trajetid=tms_transportplan.tms_transportplantrajetid
 LEFT JOIN schema_tmsvoieexpress.tms_ordertransport ot ON ot.tms_ordertransportid=tms_transportplan.tms_ordertransportid
 LEFT JOIN schema_tmsvoieexpress.tms_lodingtype ltype ON ltype.tms_loadingtypeid=ot.tms_loadingtypeid
 LEFT JOIN schema_tmsvoieexpress.tms_turntype ttype ON ttype.tms_turntypeid=ot.tms_ordertransporttypeid
 LEFT JOIN schema_tmsvoieexpress.gmo_vehiclecategory cat ON cat.gmo_vehiclecategoryid=ot.tms_vehiclecategoryid
-LEFT JOIN schema_tmsvoieexpress.cmd_company  ON cmd_company.cmd_companyid=ot.cmd_companyid
+LEFT JOIN schema_tmsvoieexpress.cmd_account  ON cmd_account.cmd_accountid=ot.cmd_ordertransportaccountid
 LEFT JOIN schema_tmsvoieexpress.adr_address addr ON
-addr.adr_addressid=cmd_company.cmd_companyaddressid
+addr.adr_addressaccountid=cmd_account.cmd_accountid
 where tms_transportplanid in ($P!{id})]]>
 	</queryString>
 	<field name="tms_transportplanid" class="java.lang.Long"/>
-	<field name="cmd_companyname" class="java.lang.String"/>
+	<field name="cmd_accountname" class="java.lang.String"/>
 	<field name="adr_addressline1" class="java.lang.String"/>
 	<field name="tms_ordertransportcode" class="java.lang.String"/>
 	<field name="tms_ordertransportdate" class="java.sql.Timestamp"/>
-	<field name="cmd_companytelephone" class="java.lang.String"/>
+	<field name="cmd_accounttelephone" class="java.lang.String"/>
 	<field name="gmo_vehiclecategorycode" class="java.lang.String"/>
 	<field name="tms_turntypecode" class="java.lang.String"/>
 	<field name="tms_loadingtypecode" class="java.lang.String"/>
-	<field name="source" class="java.lang.String"/>
-	<field name="distination" class="java.lang.String"/>
+	<field name="trajet" class="java.lang.String"/>
 	<field name="tms_transportplandate" class="java.sql.Timestamp"/>
 	<field name="tms_transportplanpricettc" class="java.math.BigDecimal"/>
 	<field name="tms_transportplansaleprice" class="java.math.BigDecimal"/>
@@ -233,42 +229,21 @@ where tms_transportplanid in ($P!{id})]]>
 					</textElement>
 					<text><![CDATA[Ordre Transport]]></text>
 				</staticText>
-				<textField isBlankWhenNull="true">
-					<reportElement isPrintRepeatedValues="false" x="353" y="8" width="73" height="20" forecolor="#000000" uuid="1735cfbe-e6be-404c-ba68-4d6a464e6f90"/>
-					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font fontName="Verdana" size="9" isBold="false" isItalic="false"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{source}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement isPrintRepeatedValues="false" x="438" y="8" width="80" height="20" forecolor="#000000" uuid="42fc785d-f724-4e7c-aebf-0e075daed6fc"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Verdana" size="9" isBold="false" isItalic="false"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{distination}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
+				<textField evaluationTime="Report" isBlankWhenNull="true">
 					<reportElement isPrintRepeatedValues="false" x="131" y="8" width="89" height="20" forecolor="#000000" uuid="e3725101-e556-40c3-b4f3-570e4976c253"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font fontName="Verdana" size="9" isBold="false" isItalic="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{tms_ordertransportcode}]]></textFieldExpression>
 				</textField>
-				<staticText>
-					<reportElement isPrintRepeatedValues="false" x="426" y="8" width="12" height="20" forecolor="#000000" uuid="c26620a4-52c4-4293-a900-404f48287766"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Verdana" size="9" isBold="false" isItalic="false"/>
-					</textElement>
-					<text><![CDATA[-]]></text>
-				</staticText>
-				<textField isBlankWhenNull="true">
+				<textField evaluationTime="Report" isBlankWhenNull="false">
 					<reportElement isPrintRepeatedValues="false" x="131" y="28" width="89" height="20" forecolor="#000000" uuid="a67d6717-d8b6-4d63-9cd5-e0e816a9907f"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font fontName="Verdana" size="9" isBold="false" isItalic="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{tms_loadingtypecode}]]></textFieldExpression>
 				</textField>
-				<textField isBlankWhenNull="true">
+				<textField evaluationTime="Report" isBlankWhenNull="false">
 					<reportElement isPrintRepeatedValues="false" x="131" y="49" width="89" height="20" forecolor="#000000" uuid="3a53ac0a-c0be-4829-b4fc-4958615c65db"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font fontName="Verdana" size="9" isBold="false" isItalic="false"/>
@@ -523,6 +498,13 @@ where tms_transportplanid in ($P!{id})]]>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{tms_ordertransportpricevat}]]></textFieldExpression>
 				</textField>
+				<textField evaluationTime="Report" isBlankWhenNull="false">
+					<reportElement isPrintRepeatedValues="false" x="363" y="8" width="192" height="20" forecolor="#000000" uuid="6f45cc30-6868-40d2-8954-97302eaac913"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Verdana" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{trajet}]]></textFieldExpression>
+				</textField>
 			</band>
 		</groupHeader>
 	</group>
@@ -561,7 +543,7 @@ where tms_transportplanid in ($P!{id})]]>
 				<textElement>
 					<font fontName="Verdana" size="10" isBold="false" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{cmd_companyname}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cmd_accountname}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="134" y="122" width="173" height="50" forecolor="#000000" uuid="a4768b2f-02d1-4da4-a56f-f26c4f933002"/>
@@ -582,7 +564,7 @@ where tms_transportplanid in ($P!{id})]]>
 				<textElement>
 					<font fontName="Verdana" size="10" isBold="false" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{cmd_companytelephone}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cmd_accounttelephone}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

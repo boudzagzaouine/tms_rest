@@ -161,7 +161,12 @@ public class CriteriaPredicate {
             } else if (criteria.getOperation().equalsIgnoreCase("<")) {
                 return path.loe(valueLong);
             } else if (criteria.getOperation().equalsIgnoreCase("!")) {
-                return path.ne(valueLong);
+                String[] split = criteria.getValue().toString().split(";");
+                ArrayList<Long> numbers = new ArrayList<Long>();
+                for (int i = 0; i < split.length; i++) {
+                    numbers.add(Long.valueOf(split[i]));
+                }
+                return path.notIn(numbers);
             }
         }
         System.out.println(criteria.getKey() + type.getTypeName() + criteria.getValue().toString() + " Not found");

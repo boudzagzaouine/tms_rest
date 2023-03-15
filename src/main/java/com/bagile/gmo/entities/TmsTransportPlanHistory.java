@@ -13,9 +13,11 @@ public class TmsTransportPlanHistory extends EmsEntity {
     private Long tmsTransportPlanHistoryId;
 
     private TmsOrderTransport tmsOrderTransport;
+    private TmsTransportPlan tmsTransportPlan;
     private GmoVehicle gmoVehicle;
     private GmoDriver gmoDriver;
     private GmoVehicleCategory gmoVehicleCategory;
+    private CmdAccount cmdAccount;
     private TrpTransport trpTransport;
 private TmsTrajet tmsTrajet;
 //    private PrmVille prmVilleSource;
@@ -82,8 +84,30 @@ private TmsTrajet tmsTrajet;
         return tmsTrajet;
     }
 
+
+
     public void setTmsTrajet(TmsTrajet tmsTrajet) {
         this.tmsTrajet = tmsTrajet;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "tms_transportplanhistoryaccountid")
+    public CmdAccount getCmdAccount() {
+        return cmdAccount;
+    }
+
+    public void setCmdAccount(CmdAccount cmdAccount) {
+        this.cmdAccount = cmdAccount;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "tms_transportplanhistorytransportplanid")
+    public TmsTransportPlan getTmsTransportPlan() {
+        return tmsTransportPlan;
+    }
+
+    public void setTmsTransportPlan(TmsTransportPlan tmsTransportPlan) {
+        this.tmsTransportPlan = tmsTransportPlan;
     }
 
     @ManyToOne(cascade=CascadeType.ALL)

@@ -68,6 +68,8 @@ public class TransportPlanHistoryMapper {
 //           tmsTransportPlanHistory.setPrmVilleDistination(VilleMapper.toEntity(transportPlanHistory.getVilleDistination(), true));
             tmsTransportPlanHistory.setTmsOrderTransportRejectType(OrderTransportRejectTypeMapper.toEntity(transportPlanHistory.getOrderTransportRejectType(), true));
             tmsTransportPlanHistory.setTmsTrajet(TrajetMapper.toEntity(transportPlanHistory.getTrajet(), true));
+            tmsTransportPlanHistory.setTmsTransportPlan(TransportPlanMapper.toEntity(transportPlanHistory.getTransportPlan(), true));
+            tmsTransportPlanHistory.setCmdAccount(AccountMapper.toEntity(transportPlanHistory.getAccount(), true));
 
         }
         return tmsTransportPlanHistory;
@@ -104,6 +106,8 @@ public class TransportPlanHistoryMapper {
 //           transportPlanHistory.setVilleDistination(VilleMapper.toDto(tmsTransportPlanHistory.getPrmVilleDistination(), true));
             transportPlanHistory.setOrderTransportRejectType(OrderTransportRejectTypeMapper.toDto(tmsTransportPlanHistory.getTmsOrderTransportRejectType(), true));
             transportPlanHistory.setTrajet(TrajetMapper.toDto(tmsTransportPlanHistory.getTmsTrajet(), true));
+            transportPlanHistory.setTransportPlan(TransportPlanMapper.toDto(tmsTransportPlanHistory.getTmsTransportPlan(), true));
+            transportPlanHistory.setAccount(AccountMapper.toDto(tmsTransportPlanHistory.getCmdAccount(), true));
 
 
 

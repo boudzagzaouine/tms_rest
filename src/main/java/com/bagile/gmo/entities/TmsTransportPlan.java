@@ -26,6 +26,8 @@ public class TmsTransportPlan extends EmsEntity {
     private BigDecimal tmsTransportPlanPurchasePrice;
     private BigDecimal tmsTransportPlanPurchasePriceNegotiated;
 
+    private String tmsTransportPlanRemark;
+
     private BigDecimal tmsTransportPlanSalePrice;
 
     private  Date tmsTransportPlanDateDepart;
@@ -185,6 +187,16 @@ public class TmsTransportPlan extends EmsEntity {
 
     public void setTmsTransportPlanMarginRate(BigDecimal tmsTransportPlanMarginRate) {
         this.tmsTransportPlanMarginRate = tmsTransportPlanMarginRate;
+    }
+
+    @Column(name = "tms_transportplanremark")
+
+    public String getTmsTransportPlanRemark() {
+        return tmsTransportPlanRemark;
+    }
+
+    public void setTmsTransportPlanRemark(String tmsTransportPlanRemark) {
+        this.tmsTransportPlanRemark = tmsTransportPlanRemark;
     }
 
     @Column(name = "tms_transportplanpurchasepricenegotiated")
