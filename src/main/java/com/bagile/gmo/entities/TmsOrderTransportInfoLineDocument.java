@@ -2,6 +2,8 @@ package com.bagile.gmo.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -25,6 +27,7 @@ public class TmsOrderTransportInfoLineDocument extends EmsEntity {
 
    private TmsOrderTransportInfoLine tmsOrderTransportInfoLine;
 
+   private Set<TmsOrderTransportDocument> tmsOrderTransportDocumentSet = new HashSet<>();
 
     private OwnOwner ownOwner;
 
@@ -104,6 +107,15 @@ public class TmsOrderTransportInfoLineDocument extends EmsEntity {
 
     public void setTmsOrderTransportInfoLineDocumentDate(Date tmsOrderTransportInfoLineDocumentDate) {
         this.tmsOrderTransportInfoLineDocumentDate = tmsOrderTransportInfoLineDocumentDate;
+    }
+
+    @OneToMany(mappedBy = "tmsOrderTransportInfoLineDocument", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    public Set<TmsOrderTransportDocument> getTmsOrderTransportDocumentSet() {
+        return tmsOrderTransportDocumentSet;
+    }
+
+    public void setTmsOrderTransportDocumentSet(Set<TmsOrderTransportDocument> tmsOrderTransportDocumentSet) {
+        this.tmsOrderTransportDocumentSet = tmsOrderTransportDocumentSet;
     }
 
     @ManyToOne()

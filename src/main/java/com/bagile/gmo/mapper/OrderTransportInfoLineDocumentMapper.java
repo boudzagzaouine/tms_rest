@@ -1,6 +1,7 @@
 package com.bagile.gmo.mapper;
 
 import com.bagile.gmo.dto.OrderTransportInfoLineDocument;
+import com.bagile.gmo.entities.TmsOrderTransportInfoLine;
 import com.bagile.gmo.entities.TmsOrderTransportInfoLineDocument;
 
 import java.util.*;
@@ -50,11 +51,22 @@ public class OrderTransportInfoLineDocumentMapper {
 			gmoOrderTransportInfoLineDocument.setOwnOwner(OwnerMapper.toEntity(orderTransportInfoLineDocument.getOwner(),true));
 			gmoOrderTransportInfoLineDocument.setTmsOrderTransportInfoLine(OrderTransportInfoLineMapper.toEntity(orderTransportInfoLineDocument.getOrderTransportInfoLine(),true));
 			gmoOrderTransportInfoLineDocument.setTmsOrderTransportInfoLineDocumentDocumentType(OrderTransportDocumentTypeMapper.toEntity(orderTransportInfoLineDocument.getOrderTransportDocumentType(),true));
+			gmoOrderTransportInfoLineDocument.setTmsOrderTransportDocumentSet(OrderTransportDocumentMapper.toEntities(orderTransportInfoLineDocument.getOrderTransportDocumentList(),true));
 
+ oneToMany(gmoOrderTransportInfoLineDocument);
 
 		}
 		return gmoOrderTransportInfoLineDocument;
 	}
+	private static void oneToMany(TmsOrderTransportInfoLineDocument tmsOrderTransportInfoLineDocument){
+		tmsOrderTransportInfoLineDocument.getTmsOrderTransportDocumentSet().forEach(
+				e->{
+					if(0>=e.getTmsOrderDocumentId())
+						e.setTmsOrderDocumentId(0L);
+					e.setCreationDate(new Date());
+					e.setTmsOrderTransportInfoLineDocument(tmsOrderTransportInfoLineDocument);
+				}
+		);}
 
 	public static OrderTransportInfoLineDocument toDto(TmsOrderTransportInfoLineDocument gmoOrderTransportInfoLineDocument, boolean lazy) {
 		if (null == gmoOrderTransportInfoLineDocument) {
@@ -75,6 +87,7 @@ public class OrderTransportInfoLineDocumentMapper {
 			orderTransportInfoLineDocument.setOrderTransportDocumentType(OrderTransportDocumentTypeMapper.toDto(gmoOrderTransportInfoLineDocument.getTmsOrderTransportInfoLineDocumentDocumentType(),true));
 
 			orderTransportInfoLineDocument.setOwner(OwnerMapper.toDto(gmoOrderTransportInfoLineDocument.getOwnOwner(),true));
+			orderTransportInfoLineDocument.setOrderTransportDocumentList(OrderTransportDocumentMapper.toDtos(gmoOrderTransportInfoLineDocument.getTmsOrderTransportDocumentSet(),true));
 
 		}
 		return orderTransportInfoLineDocument;

@@ -120,7 +120,7 @@ private TmsTrajet tmsTrajet;
         this.gmoVehicle = gmoVehicle;
     }
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "tms_ordertransportrejecttypeid")
     public TmsOrderTransportRejectType getTmsOrderTransportRejectType() {
         return tmsOrderTransportRejectType;

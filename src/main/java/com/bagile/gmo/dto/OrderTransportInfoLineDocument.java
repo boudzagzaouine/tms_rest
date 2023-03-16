@@ -1,6 +1,8 @@
 package com.bagile.gmo.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class OrderTransportInfoLineDocument {
 
@@ -15,6 +17,7 @@ public class OrderTransportInfoLineDocument {
 	private Date date;
 	private OrderTransportInfoLine orderTransportInfoLine;
 
+	private List<OrderTransportDocument> orderTransportDocumentList = new ArrayList<>();
  private Owner owner;
 
 
@@ -47,6 +50,14 @@ public class OrderTransportInfoLineDocument {
 
 	public void setOrderTransportDocumentType(OrderTransportDocumentType orderTransportDocumentType) {
 		this.orderTransportDocumentType = orderTransportDocumentType;
+	}
+
+	public List<OrderTransportDocument> getOrderTransportDocumentList() {
+		return orderTransportDocumentList;
+	}
+
+	public void setOrderTransportDocumentList(List<OrderTransportDocument> orderTransportDocumentList) {
+		this.orderTransportDocumentList = orderTransportDocumentList;
 	}
 
 	public String getNumero() {
