@@ -3,6 +3,8 @@ package com.bagile.gmo.entities;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="tms_ordertransport")
@@ -11,6 +13,12 @@ public class TmsOrderTransport extends EmsEntity {
     private Long tmsOrderTransportId;
     private String tmsOrderTransportCode;
     private Date tmsOrderTransportDate;
+
+    private TmsPackagingType tmsOrderTransportPackagingType;
+    private Boolean tmsOrderTransportConsignment;
+    private String tmsOrderTransportPort; // payé  , du
+    private String tmsOrderTransportPalletResponsibility ; //true prestataire /false client
+    private TmsMarchandiseType tmsOrderTransportMarchandiseType;
     private TmsTurnType tmsOrderTransportType;
     private TmsLoadingType  tmsOrderTransportLoadingType;
     private CmdAccount cmdAccount;
@@ -22,6 +30,7 @@ public class TmsOrderTransport extends EmsEntity {
     private TmsTrajet tmsTrajet;
   // private TmsOrderTransportInfo tmsOrderTransportInfoAller;
    //private TmsOrderTransportInfo tmsOrderTransportInfoRetour;
+  private Set<TmsTransportPlanServiceCatalog> orderTransportServiceCatalogs = new HashSet<>();
 
 
    private BigDecimal tmsOrderTransportPriceHT;
@@ -36,6 +45,9 @@ public class TmsOrderTransport extends EmsEntity {
     private BigDecimal tmsOrderTransportMarginValue;
 
 
+    private BigDecimal tmsOrderTransportTotalPriceHT;
+    private BigDecimal tmsOrderTransportTotalPriceVat;
+    private BigDecimal tmsOrderTransportTotalPriceTTC;
 
 
     @Id
@@ -78,6 +90,15 @@ public class TmsOrderTransport extends EmsEntity {
         this.tmsOrderTransportPriceVat = tmsOrderTransportPriceVat;
     }
 
+    @OneToMany(fetch = FetchType.LAZY,cascade={CascadeType.ALL,CascadeType.MERGE},mappedBy = "tmsOrderTransport", orphanRemoval=true)
+    public Set<TmsTransportPlanServiceCatalog> getOrderTransportServiceCatalogs() {
+        return orderTransportServiceCatalogs;
+    }
+
+    public void setOrderTransportServiceCatalogs(Set<TmsTransportPlanServiceCatalog> transportPlanServiceCatalogs) {
+        this.orderTransportServiceCatalogs = transportPlanServiceCatalogs;
+    }
+
     @Column(name="tms_ordertransportpriceht")
     public BigDecimal getTmsOrderTransportPriceHT() {
         return tmsOrderTransportPriceHT;
@@ -85,6 +106,34 @@ public class TmsOrderTransport extends EmsEntity {
 
     public void setTmsOrderTransportPriceHT(BigDecimal tmsOrderTransportPriceTTC) {
         this.tmsOrderTransportPriceHT = tmsOrderTransportPriceTTC;
+    }
+
+    @Column(name="tms_ordertransporttotalpriceht")
+
+    public BigDecimal getTmsOrderTransportTotalPriceHT() {
+        return tmsOrderTransportTotalPriceHT;
+    }
+
+    public void setTmsOrderTransportTotalPriceHT(BigDecimal tmsOrderTransportTotalPriceHT) {
+        this.tmsOrderTransportTotalPriceHT = tmsOrderTransportTotalPriceHT;
+    }
+    @Column(name="tms_ordertransporttotalpricevat")
+
+    public BigDecimal getTmsOrderTransportTotalPriceVat() {
+        return tmsOrderTransportTotalPriceVat;
+    }
+
+    public void setTmsOrderTransportTotalPriceVat(BigDecimal tmsOrderTransportTotalPriceVat) {
+        this.tmsOrderTransportTotalPriceVat = tmsOrderTransportTotalPriceVat;
+    }
+    @Column(name="tms_ordertransporttotalpricettc")
+
+    public BigDecimal getTmsOrderTransportTotalPriceTTC() {
+        return tmsOrderTransportTotalPriceTTC;
+    }
+
+    public void setTmsOrderTransportTotalPriceTTC(BigDecimal tmsOrderTransportTotalPriceTTC) {
+        this.tmsOrderTransportTotalPriceTTC = tmsOrderTransportTotalPriceTTC;
     }
 
     @Column(name="tms_ordertransportpricettc")
@@ -112,6 +161,57 @@ public class TmsOrderTransport extends EmsEntity {
     public void setTmsOrderTransportMarginValue(BigDecimal tmsOrderTransportMarginValue) {
         this.tmsOrderTransportMarginValue = tmsOrderTransportMarginValue;
     }
+
+    @ManyToOne()
+    @JoinColumn(name="tms_ordertransportpackagingtypeid")
+    public TmsPackagingType getTmsOrderTransportPackagingType() {
+        return tmsOrderTransportPackagingType;
+    }
+
+    public void setTmsOrderTransportPackagingType(TmsPackagingType tmsOrderTransportPackagingType) {
+        this.tmsOrderTransportPackagingType = tmsOrderTransportPackagingType;
+    }
+
+    @Column(name="tms_ordertransportconsignment")
+    public Boolean getTmsOrderTransportConsignment() {
+        return tmsOrderTransportConsignment;
+    }
+
+    public void setTmsOrderTransportConsignment(Boolean tmsOrderTransportConsignment) {
+        this.tmsOrderTransportConsignment = tmsOrderTransportConsignment;
+    }
+    @Column(name="tms_ordertransportport")
+
+    public String getTmsOrderTransportPort() {
+        return tmsOrderTransportPort;
+    }
+
+    public void setTmsOrderTransportPort(String tmsOrderTransportPort) {
+        this.tmsOrderTransportPort = tmsOrderTransportPort;
+    }
+
+    @Column(name="tms_ordertransportpalletresponsibility")
+
+    public String getTmsOrderTransportPalletResponsibility() {
+        return tmsOrderTransportPalletResponsibility;
+    }
+
+    public void setTmsOrderTransportPalletResponsibility(String tmsOrderTransportPalletResponsibility) {
+        this.tmsOrderTransportPalletResponsibility = tmsOrderTransportPalletResponsibility;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name="tms_ordertransportmarchandisetypeid")
+    public TmsMarchandiseType getTmsOrderTransportMarchandiseType() {
+        return tmsOrderTransportMarchandiseType;
+    }
+
+    public void setTmsOrderTransportMarchandiseType(TmsMarchandiseType tmsOrderTransportMarchandiseType) {
+        this.tmsOrderTransportMarchandiseType = tmsOrderTransportMarchandiseType;
+    }
+
+
+
 
     @ManyToOne()
  @JoinColumn(name = "tms_ordertransportTypeid")

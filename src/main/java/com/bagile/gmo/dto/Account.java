@@ -22,6 +22,8 @@ public class Account extends EmsDto implements Serializable, Comparable<Account>
 
     private String name;
 
+    private String codeName;
+
     private String telephone ;
 
     private String email;
@@ -181,6 +183,9 @@ public class Account extends EmsDto implements Serializable, Comparable<Account>
         this.active = active;
     }
 
+    public String getCodeName() {
+        return this.code +" - "+this.name;
+    }
 
     public Address getDeliveryAddress() {
         return deliveryAddress;

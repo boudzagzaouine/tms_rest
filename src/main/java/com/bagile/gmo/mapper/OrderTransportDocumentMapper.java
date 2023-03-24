@@ -16,6 +16,7 @@ public class OrderTransportDocumentMapper {
         map.put("fileType", "tmsOrderTransportDocumentFileType");
         map.put("fileName", "tmsOrderTransportDocumentFileName");
         map.put("file", "tmsOrderTransportDocumentFile");
+        map.put("orderTransportInfoLineDocument", "tmsOrderTransportInfoLineDocument");
 
     }
 

@@ -55,6 +55,15 @@ public class  OrderTransportMapper {
         tmsOrderTransport.setTmsOrderTransportMarginRate(orderTransport.getMarginRate());
         tmsOrderTransport.setTmsOrderTransportMarginValue(orderTransport.getMarginValue());
 
+        tmsOrderTransport.setTmsOrderTransportConsignment(orderTransport.getConsignment());
+        tmsOrderTransport.setTmsOrderTransportPort(orderTransport.getPort());
+        tmsOrderTransport.setTmsOrderTransportPalletResponsibility(orderTransport.getPalletResponsibility());
+
+        tmsOrderTransport.setTmsOrderTransportTotalPriceHT(orderTransport.getTotalPriceHT());
+        tmsOrderTransport.setTmsOrderTransportTotalPriceTTC(orderTransport.getTotalPriceTTC());
+        tmsOrderTransport.setTmsOrderTransportTotalPriceVat(orderTransport.getTotalPriceVat());
+
+
         if (!lazy) {
             tmsOrderTransport.setCmdAccount(AccountMapper.toEntity(orderTransport.getAccount(), true));
             tmsOrderTransport.setTmsOrderTransportType(TurnTypeMapper.toEntity(orderTransport.getTurnType(), true));
@@ -64,17 +73,29 @@ public class  OrderTransportMapper {
             tmsOrderTransport.setTmsVehicleTray(VehicleTrayMapper.toEntity(orderTransport.getVehicleTray(), true));
             tmsOrderTransport.setPrmVat(VatMapper.toEntity(orderTransport.getVat(), true));
             tmsOrderTransport.setPrmContact(ContactMapper.toEntity(orderTransport.getContact(), true));
-            tmsOrderTransport.setTmsTrajet(TrajetMapper.toEntity(orderTransport.getTrajet(), true));
+            tmsOrderTransport.setTmsTrajet(TrajetMapper.toEntity(orderTransport.getTrajet(), false));
+            tmsOrderTransport.setTmsOrderTransportPackagingType(PackagingTypeMapper.toEntity(orderTransport.getPackagingType(), true));
+            tmsOrderTransport.setTmsOrderTransportMarchandiseType(MarchandiseTypeMapper.toEntity(orderTransport.getMarchandiseType(), true));
+            tmsOrderTransport.setOrderTransportServiceCatalogs(TransportPlanServiceCatalogMapper.toEntities(orderTransport.getOrderTransportServiceCatalogs(), false));
 
 //           tmsOrderTransport.setTmsOrderTransportInfoAller(OrderTransportInfoMapper.toEntity(orderTransport.getOrderTransportInfoAller(), false));
          //  tmsOrderTransport.setTmsOrderTransportInfoRetour(OrderTransportInfoMapper.toEntity(orderTransport.getOrderTransportInfoRetour(), false));
-
+  oneToMany(tmsOrderTransport);
         }
         return tmsOrderTransport;
 
     }
 
+    private static void oneToMany(TmsOrderTransport tmsOrderTransport){
+        tmsOrderTransport.getOrderTransportServiceCatalogs().forEach(
+                e->{
+                    e.setCreationDate(new Date());
+                    e.setTmsOrderTransport(tmsOrderTransport);
+                }
+        );
 
+
+    }
 
 
     public static OrderTransport toDto(TmsOrderTransport tmsOrderTransport, boolean lazy) {
@@ -92,6 +113,14 @@ public class  OrderTransportMapper {
         orderTransport.setMarginRate(tmsOrderTransport.getTmsOrderTransportMarginRate());
         orderTransport.setMarginValue(tmsOrderTransport.getTmsOrderTransportMarginValue());
 
+        orderTransport.setConsignment(tmsOrderTransport.getTmsOrderTransportConsignment());
+        orderTransport.setPort(tmsOrderTransport.getTmsOrderTransportPort());
+        orderTransport.setPalletResponsibility(tmsOrderTransport.getTmsOrderTransportPalletResponsibility());
+
+        orderTransport.setTotalPriceHT(tmsOrderTransport.getTmsOrderTransportTotalPriceHT());
+        orderTransport.setTotalPriceTTC(tmsOrderTransport.getTmsOrderTransportTotalPriceTTC());
+        orderTransport.setTotalPriceVat(tmsOrderTransport.getTmsOrderTransportTotalPriceVat());
+
         if (!lazy) {
             orderTransport.setTurnType(TurnTypeMapper.toDto(tmsOrderTransport.getTmsOrderTransportType(), true));
             orderTransport.setTurnStatus(TurnStatusMapper.toDto(tmsOrderTransport.getTmsTurnStatus(), true));
@@ -101,7 +130,10 @@ public class  OrderTransportMapper {
             orderTransport.setVehicleTray(VehicleTrayMapper.toDto(tmsOrderTransport.getTmsVehicleTray(), true));
             orderTransport.setVat(VatMapper.toDto(tmsOrderTransport.getPrmVat(), true));
             orderTransport.setContact(ContactMapper.toDto(tmsOrderTransport.getPrmContact(), true));
-            orderTransport.setTrajet(TrajetMapper.toDto(tmsOrderTransport.getTmsTrajet(), true));
+            orderTransport.setTrajet(TrajetMapper.toDto(tmsOrderTransport.getTmsTrajet(), false));
+            orderTransport.setPackagingType(PackagingTypeMapper.toDto(tmsOrderTransport.getTmsOrderTransportPackagingType(), true));
+            orderTransport.setMarchandiseType(MarchandiseTypeMapper.toDto(tmsOrderTransport.getTmsOrderTransportMarchandiseType(), true));
+            orderTransport.setOrderTransportServiceCatalogs(TransportPlanServiceCatalogMapper.toDtos(tmsOrderTransport.getOrderTransportServiceCatalogs(), false));
 
           // orderTransport.setOrderTransportInfoAller(OrderTransportInfoMapper.toDto(tmsOrderTransport.getTmsOrderTransportInfoAller(), false));
            //orderTransport.setOrderTransportInfoRetour(OrderTransportInfoMapper.toDto(tmsOrderTransport.getTmsOrderTransportInfoRetour(), false));

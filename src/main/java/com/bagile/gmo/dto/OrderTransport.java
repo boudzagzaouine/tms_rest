@@ -1,7 +1,9 @@
 package com.bagile.gmo.dto;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class OrderTransport {
@@ -10,6 +12,11 @@ public class OrderTransport {
 	private String code;
 	private String description;
 
+	private  PackagingType packagingType;
+	private Boolean consignment;
+	private String port; // payé  , du
+	private String palletResponsibility ; //true prestataire /false client
+    private MarchandiseType marchandiseType;
 	private Date date ;
 	private TurnType turnType;
 	private LoadingType  loadingType ;
@@ -30,7 +37,13 @@ public class OrderTransport {
 
 	private BigDecimal marginRate ;
 	private BigDecimal marginValue ;
+
+	private BigDecimal totalPriceHT;
+	private BigDecimal totalPriceVat;
+	private BigDecimal totalPriceTTC;
+
 	private Owner owner;
+	private List<TransportPlanServiceCatalog> orderTransportServiceCatalogs = new ArrayList<>();
 
 
 	public long getId() {
@@ -68,12 +81,84 @@ public class OrderTransport {
 		this.date = date;
 	}
 
+	public BigDecimal getTotalPriceHT() {
+		return totalPriceHT;
+	}
+
+	public void setTotalPriceHT(BigDecimal totalPriceHT) {
+		this.totalPriceHT = totalPriceHT;
+	}
+
+	public BigDecimal getTotalPriceVat() {
+		return totalPriceVat;
+	}
+
+	public void setTotalPriceVat(BigDecimal totalPriceVat) {
+		this.totalPriceVat = totalPriceVat;
+	}
+
+	public BigDecimal getTotalPriceTTC() {
+		return totalPriceTTC;
+	}
+
+	public void setTotalPriceTTC(BigDecimal totalPriceTTC) {
+		this.totalPriceTTC = totalPriceTTC;
+	}
+
 	public Contact getContact() {
 		return contact;
 	}
 
 	public void setContact(Contact contact) {
 		this.contact = contact;
+	}
+
+	public PackagingType getPackagingType() {
+		return packagingType;
+	}
+
+	public List<TransportPlanServiceCatalog> getOrderTransportServiceCatalogs() {
+		return orderTransportServiceCatalogs;
+	}
+
+	public void setOrderTransportServiceCatalogs(List<TransportPlanServiceCatalog> orderTransportServiceCatalogs) {
+		this.orderTransportServiceCatalogs = orderTransportServiceCatalogs;
+	}
+
+	public void setPackagingType(PackagingType packagingType) {
+		this.packagingType = packagingType;
+	}
+
+	public Boolean getConsignment() {
+		return consignment;
+	}
+
+	public void setConsignment(Boolean consignment) {
+		this.consignment = consignment;
+	}
+
+	public String getPort() {
+		return port;
+	}
+
+	public void setPort(String port) {
+		this.port = port;
+	}
+
+	public String getPalletResponsibility() {
+		return palletResponsibility;
+	}
+
+	public void setPalletResponsibility(String palletResponsibility) {
+		this.palletResponsibility = palletResponsibility;
+	}
+
+	public MarchandiseType getMarchandiseType() {
+		return marchandiseType;
+	}
+
+	public void setMarchandiseType(MarchandiseType marchandiseType) {
+		this.marchandiseType = marchandiseType;
 	}
 
 	public TurnType getTurnType() {

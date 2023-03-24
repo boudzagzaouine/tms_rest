@@ -26,6 +26,7 @@ public class TmsTransportPlanServiceCatalog extends EmsEntity {
 
     private OwnOwner ownOwner;
     private TmsTransportPlan tmsTransportPlan;
+    private TmsOrderTransport tmsOrderTransport;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -158,9 +159,15 @@ public class TmsTransportPlanServiceCatalog extends EmsEntity {
         this.tmsTransportPlan = tmsTransportPlan;
     }
 
+    @ManyToOne()
+    @JoinColumn(name = "tms_ordertransportid")
+    public TmsOrderTransport getTmsOrderTransport() {
+        return tmsOrderTransport;
+    }
 
-
-
+    public void setTmsOrderTransport(TmsOrderTransport tmsOrderTransport) {
+        this.tmsOrderTransport = tmsOrderTransport;
+    }
 
     @ManyToOne()
     @JoinColumn(name="gmo_ownownerid")
