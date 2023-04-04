@@ -41,7 +41,7 @@ public class TmsTransportPlan extends EmsEntity {
     private BigDecimal totalPriceTTC;
     private BigDecimal totalPriceVAT;
 
-    private Set<TmsTransportPlanServiceCatalog> transportPlanServiceCatalogs = new HashSet<>();
+   // private Set<TmsTransportPlanServiceCatalog> transportPlanServiceCatalogs = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -121,14 +121,14 @@ public class TmsTransportPlan extends EmsEntity {
 
 
 
-    @OneToMany(fetch = FetchType.LAZY,cascade={CascadeType.ALL,CascadeType.MERGE},mappedBy = "tmsTransportPlan", orphanRemoval=true)
-    public Set<TmsTransportPlanServiceCatalog> getTransportPlanServiceCatalogs() {
-        return transportPlanServiceCatalogs;
-    }
-
-    public void setTransportPlanServiceCatalogs(Set<TmsTransportPlanServiceCatalog> transportPlanServiceCatalogs) {
-        this.transportPlanServiceCatalogs = transportPlanServiceCatalogs;
-    }
+//    @OneToMany(fetch = FetchType.LAZY,cascade={CascadeType.ALL,CascadeType.MERGE},mappedBy = "tmsTransportPlan", orphanRemoval=true)
+//    public Set<TmsTransportPlanServiceCatalog> getTransportPlanServiceCatalogs() {
+//        return transportPlanServiceCatalogs;
+//    }
+//
+//    public void setTransportPlanServiceCatalogs(Set<TmsTransportPlanServiceCatalog> transportPlanServiceCatalogs) {
+//        this.transportPlanServiceCatalogs = transportPlanServiceCatalogs;
+//    }
 
 
     @ManyToOne()

@@ -22,6 +22,8 @@ public class VehicleCategory extends EmsDto implements Serializable {
     private BigDecimal totalWeight;
     private Owner owner;
  private BigDecimal priceKm ;
+
+ private List<VehicleCategoryTray> vehicleCategoryTrays = new ArrayList<>();
     public VehicleCategory() {
     }
 
@@ -47,6 +49,14 @@ public class VehicleCategory extends EmsDto implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<VehicleCategoryTray> getVehicleCategoryTrays() {
+        return vehicleCategoryTrays;
+    }
+
+    public void setVehicleCategoryTrays(List<VehicleCategoryTray> vehicleCategoryTrays) {
+        this.vehicleCategoryTrays = vehicleCategoryTrays;
     }
 
     public BigDecimal getLength() {

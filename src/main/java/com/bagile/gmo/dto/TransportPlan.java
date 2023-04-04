@@ -38,7 +38,7 @@ private Trajet trajet;
     private BigDecimal totalPriceVat;
 
 
-    private List<TransportPlanServiceCatalog> transportPlanServiceCatalogs = new ArrayList<>();
+   // private List<TransportPlanServiceCatalog> transportPlanServiceCatalogs = new ArrayList<>();
 
     public TransportPlan() {
     }
@@ -220,13 +220,13 @@ private Trajet trajet;
         this.salePrice = salePrice;
     }
 
-    public List<TransportPlanServiceCatalog> getTransportPlanServiceCatalogs() {
-        return transportPlanServiceCatalogs;
-    }
-
-    public void setTransportPlanServiceCatalogs(List<TransportPlanServiceCatalog> transportPlanServiceCatalogs) {
-        this.transportPlanServiceCatalogs = transportPlanServiceCatalogs;
-    }
+//    public List<TransportPlanServiceCatalog> getTransportPlanServiceCatalogs() {
+//        return transportPlanServiceCatalogs;
+//    }
+//
+//    public void setTransportPlanServiceCatalogs(List<TransportPlanServiceCatalog> transportPlanServiceCatalogs) {
+//        this.transportPlanServiceCatalogs = transportPlanServiceCatalogs;
+//    }
 
     @Override
     public boolean equals(Object o) {

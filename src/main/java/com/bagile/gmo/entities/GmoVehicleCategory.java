@@ -2,6 +2,8 @@ package com.bagile.gmo.entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="gmo_vehiclecategory")
@@ -23,6 +25,9 @@ public class GmoVehicleCategory  extends EmsEntity {
   private OwnOwner ownOwner;
 
   private BigDecimal gmoVehicleCategoryPriceKm ;
+
+  private Set<TmsVehicleCategoryTray>  tmsVehicleCategoryTrays =  new HashSet<>();
+
     public GmoVehicleCategory() {
     }
 
@@ -94,6 +99,16 @@ public class GmoVehicleCategory  extends EmsEntity {
     public void setGmoVehicleCategoryWidth(BigDecimal gmoVehicleCategoryWidth) {
         this.gmoVehicleCategoryWidth = gmoVehicleCategoryWidth;
     }
+
+    @OneToMany(fetch = FetchType.LAZY,cascade={CascadeType.ALL,CascadeType.MERGE},mappedBy = "gmoVehicleCategory", orphanRemoval=true)
+    public Set<TmsVehicleCategoryTray> getTmsVehicleCategoryTrays() {
+        return tmsVehicleCategoryTrays;
+    }
+
+    public void setTmsVehicleCategoryTrays(Set<TmsVehicleCategoryTray> tmsVehicleCategoryTrays) {
+        this.tmsVehicleCategoryTrays = tmsVehicleCategoryTrays;
+    }
+
     @Column(name = "gmo_vehiclecategoryheight")
     public BigDecimal getGmoVehicleCategoriyheight() {
         return gmoVehicleCategoriyheight;

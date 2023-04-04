@@ -65,10 +65,23 @@ public class VehicleCategoryMapper {
         gmoVehicleCategory.setUpdateDate(vehicle.getUpdateDate());
 
         if(!lazy){
+            gmoVehicleCategory.setTmsVehicleCategoryTrays(VehicleCategoryTrayMapper.toEntities(vehicle.getVehicleCategoryTrays(),false));
 
             gmoVehicleCategory.setOwnOwner(OwnerMapper.toEntity(vehicle.getOwner(),true));
+        oneToMany(gmoVehicleCategory);
         }
             return gmoVehicleCategory;
+
+    }
+
+    private static void oneToMany(GmoVehicleCategory gmoVehicleCategory){
+        gmoVehicleCategory.getTmsVehicleCategoryTrays().forEach(
+                e->{
+                    e.setCreationDate(new Date());
+                    e.setGmoVehicleCategory(gmoVehicleCategory);
+                }
+        );
+
 
     }
 
@@ -97,10 +110,14 @@ public class VehicleCategoryMapper {
 
 if(!lazy){
     vehicle.setOwner(OwnerMapper.toDto(gmoVehicleCategory.getOwnOwner(),true));
+
+    vehicle.setVehicleCategoryTrays(VehicleCategoryTrayMapper.toDtos(gmoVehicleCategory.getTmsVehicleCategoryTrays(),false));
+
 }
             return vehicle;
 
     }
+
 
 
 

@@ -49,6 +49,7 @@ public class TmsOrderTransport extends EmsEntity {
     private BigDecimal tmsOrderTransportTotalPriceVat;
     private BigDecimal tmsOrderTransportTotalPriceTTC;
 
+    private Set<TmsOrderTransportAccompaniment> tmsOrderTransportAccompaniments = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -98,6 +99,17 @@ public class TmsOrderTransport extends EmsEntity {
     public void setOrderTransportServiceCatalogs(Set<TmsTransportPlanServiceCatalog> transportPlanServiceCatalogs) {
         this.orderTransportServiceCatalogs = transportPlanServiceCatalogs;
     }
+
+    @OneToMany(fetch = FetchType.LAZY,cascade={CascadeType.ALL},mappedBy = "tmsOrderTransport", orphanRemoval=true)
+    public Set<TmsOrderTransportAccompaniment> getTmsOrderTransportAccompaniments() {
+        return tmsOrderTransportAccompaniments;
+    }
+
+    public void setTmsOrderTransportAccompaniments(Set<TmsOrderTransportAccompaniment> tmsOrderTransportAccompaniments) {
+        this.tmsOrderTransportAccompaniments = tmsOrderTransportAccompaniments;
+    }
+
+
 
     @Column(name="tms_ordertransportpriceht")
     public BigDecimal getTmsOrderTransportPriceHT() {

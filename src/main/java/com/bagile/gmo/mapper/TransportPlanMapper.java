@@ -70,29 +70,29 @@ public class TransportPlanMapper {
             tmsTransportPlan.setGmoVehicleCategory(VehicleCategoryMapper.toEntity(transportPlan.getVehicleCategory(), true));
             tmsTransportPlan.setTrpTransport(TransportMapper.toEntity(transportPlan.getTransport(), true));
             tmsTransportPlan.setTmsTurnStatus(TurnStatusMapper.toEntity(transportPlan.getTurnStatus(), true));
-            tmsTransportPlan.setTransportPlanServiceCatalogs(TransportPlanServiceCatalogMapper.toEntities(transportPlan.getTransportPlanServiceCatalogs(), false));
+           // tmsTransportPlan.setTransportPlanServiceCatalogs(TransportPlanServiceCatalogMapper.toEntities(transportPlan.getTransportPlanServiceCatalogs(), false));
             tmsTransportPlan.setCmdAccount(AccountMapper.toEntity(transportPlan.getAccount(), true));
            //tmsTransportPlan.setPrmVilleSource(VilleMapper.toEntity(transportPlan.getVilleSource(), true));
            // tmsTransportPlan.setPrmVilleDistination(VilleMapper.toEntity(transportPlan.getVilleDistination(), true));
              tmsTransportPlan.setTmsTrajet(TrajetMapper.toEntity(transportPlan.getTrajet(), true));
 
-            oneToMany(tmsTransportPlan);
+            //oneToMany(tmsTransportPlan);
         }
         return tmsTransportPlan;
 
     }
 
 
-    private static void oneToMany(TmsTransportPlan tmsTransportPlan){
-        tmsTransportPlan.getTransportPlanServiceCatalogs().forEach(
-                e->{
-                    e.setCreationDate(new Date());
-                    e.setTmsTransportPlan(tmsTransportPlan);
-                }
-        );
-
-
-    }
+//    private static void oneToMany(TmsTransportPlan tmsTransportPlan){
+//        tmsTransportPlan.getTransportPlanServiceCatalogs().forEach(
+//                e->{
+//                    e.setCreationDate(new Date());
+//                    e.setTmsTransportPlan(tmsTransportPlan);
+//                }
+//        );
+//
+//
+//    }
 
     public static TransportPlan toDto(TmsTransportPlan tmsTransportPlan, boolean lazy) {
         if (null == tmsTransportPlan) {
@@ -123,7 +123,7 @@ public class TransportPlanMapper {
             transportPlan.setVehicleCategory(VehicleCategoryMapper.toDto(tmsTransportPlan.getGmoVehicleCategory(), true));
             transportPlan.setTransport(TransportMapper.toDto(tmsTransportPlan.getTrpTransport(), true));
             transportPlan.setTurnStatus(TurnStatusMapper.toDto(tmsTransportPlan.getTmsTurnStatus(), true));
-            transportPlan.setTransportPlanServiceCatalogs(TransportPlanServiceCatalogMapper.toDtos(tmsTransportPlan.getTransportPlanServiceCatalogs(), false));
+           // transportPlan.setTransportPlanServiceCatalogs(TransportPlanServiceCatalogMapper.toDtos(tmsTransportPlan.getTransportPlanServiceCatalogs(), false));
             transportPlan.setAccount(AccountMapper.toDto(tmsTransportPlan.getCmdAccount(), true));
 
 //           transportPlan.setVilleSource(VilleMapper.toDto(tmsTransportPlan.getPrmVilleSource(), true));

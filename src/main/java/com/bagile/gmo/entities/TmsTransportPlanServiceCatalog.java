@@ -25,7 +25,6 @@ public class TmsTransportPlanServiceCatalog extends EmsEntity {
     private BigDecimal tmsTransporPlanServiceCatalogSalePriceVat;
 
     private OwnOwner ownOwner;
-    private TmsTransportPlan tmsTransportPlan;
     private TmsOrderTransport tmsOrderTransport;
 
     @Id
@@ -149,15 +148,7 @@ public class TmsTransportPlanServiceCatalog extends EmsEntity {
         this.tmsTransporPlanServiceCatalogSalePriceTTC = tmsTransporPlanServiceCatalogSalePriceTTC;
     }
 
-    @ManyToOne()
-    @JoinColumn(name = "tms_transportplanid")
-    public TmsTransportPlan getTmsTransportPlan() {
-        return tmsTransportPlan;
-    }
 
-    public void setTmsTransportPlan(TmsTransportPlan tmsTransportPlan) {
-        this.tmsTransportPlan = tmsTransportPlan;
-    }
 
     @ManyToOne()
     @JoinColumn(name = "tms_ordertransportid")

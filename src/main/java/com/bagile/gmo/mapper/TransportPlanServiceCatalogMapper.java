@@ -59,6 +59,9 @@ public class TransportPlanServiceCatalogMapper {
               tmsTransporPlanService.setCmdAccount(AccountMapper.toEntity(transporPlanService.getAccount(),true));
 
               tmsTransporPlanService.setOwnOwner(OwnerMapper.toEntity(transporPlanService.getOwner(),true));
+
+              tmsTransporPlanService.setTmsOrderTransport(OrderTransportMapper.toEntity(transporPlanService.getOrderTransport(),true));
+
           }
 
         return tmsTransporPlanService;
@@ -92,6 +95,9 @@ public class TransportPlanServiceCatalogMapper {
      transporPlanService.setAccount(AccountMapper.toDto(tmsTransporPlanService.getCmdAccount(),true));
 
      transporPlanService.setOwner(OwnerMapper.toDto(tmsTransporPlanService.getOwnOwner(),true));
+
+     transporPlanService.setOrderTransport(OrderTransportMapper.toDto(tmsTransporPlanService.getTmsOrderTransport(),true));
+
  }
         return transporPlanService;
 

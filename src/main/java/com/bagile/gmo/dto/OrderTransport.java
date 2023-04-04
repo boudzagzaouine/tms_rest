@@ -44,6 +44,7 @@ public class OrderTransport {
 
 	private Owner owner;
 	private List<TransportPlanServiceCatalog> orderTransportServiceCatalogs = new ArrayList<>();
+	private List<OrderTransportAccompaniment> orderTransportAccompaniments = new ArrayList<>();
 
 
 	public long getId() {
@@ -143,6 +144,14 @@ public class OrderTransport {
 
 	public void setPort(String port) {
 		this.port = port;
+	}
+
+	public List<OrderTransportAccompaniment> getOrderTransportAccompaniments() {
+		return orderTransportAccompaniments;
+	}
+
+	public void setOrderTransportAccompaniments(List<OrderTransportAccompaniment> orderTransportAccompaniments) {
+		this.orderTransportAccompaniments = orderTransportAccompaniments;
 	}
 
 	public String getPalletResponsibility() {

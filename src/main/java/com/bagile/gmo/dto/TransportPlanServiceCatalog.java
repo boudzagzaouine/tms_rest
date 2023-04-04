@@ -25,7 +25,6 @@ public class TransportPlanServiceCatalog extends EmsDto implements Serializable 
     private BigDecimal salePriceVat;
 private Owner owner;
 
-private TransportPlan transportPlan;
 private OrderTransport orderTransport;
     public long getId() {
         return id;
@@ -67,13 +66,7 @@ private OrderTransport orderTransport;
         this.salePriceVat = salePriceVat;
     }
 
-    public TransportPlan getTransportPlan() {
-        return transportPlan;
-    }
 
-    public void setTransportPlan(TransportPlan transportPlan) {
-        this.transportPlan = transportPlan;
-    }
 
     public OrderTransport getOrderTransport() {
         return orderTransport;
