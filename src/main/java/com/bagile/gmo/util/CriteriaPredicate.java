@@ -77,7 +77,7 @@ public class CriteriaPredicate {
         } catch (ClassNotFoundException e) {
             //e.printStackTrace();
         }
-        System.out.println(criteria.getKey() + type.getTypeName() +criteria.getValue().toString() + " searching");
+        System.out.println(criteria.getKey() + type.getTypeName() + criteria.getValue().toString() + " searching");
 
 
         if (Boolean.TYPE == type || Boolean.class == type) {
@@ -121,7 +121,10 @@ public class CriteriaPredicate {
         if (String.class == type) {
             StringPath path = entityPath.getString(criteria.getKey());
             if (criteria.getOperation().equalsIgnoreCase(":")) {
-                return path.lower().eq(criteria.getValue().toString().toLowerCase());
+                if (criteria.getValue().toString().toLowerCase().equals("null"))
+                    return path.isNull().or(path.isEmpty());
+                else
+                    return path.lower().eq(criteria.getValue().toString().toLowerCase());
             }
             if (criteria.getOperation().equalsIgnoreCase("~")) {
                 return path.lower().like("%" + criteria.getValue().toString().toLowerCase() + "%");
@@ -132,6 +135,12 @@ public class CriteriaPredicate {
             if (criteria.getOperation().equalsIgnoreCase("<")) {
                 return path.lower().in(criteria.getValue().toString().toLowerCase().split(";"));
             }
+            if (criteria.getOperation().equalsIgnoreCase("<")) {
+                return path.lower().in(criteria.getValue().toString().toLowerCase().split(";"));
+            }
+//            if (criteria.getOperation().equalsIgnoreCase("|")) {
+//                return path.isNull().or(path.isEmpty());
+//            }
             if (criteria.getOperation().equalsIgnoreCase("^")) {
                 String[] split = criteria.getValue().toString().split(";");
                 ArrayList<String> strings = new ArrayList<String>();
@@ -139,6 +148,13 @@ public class CriteriaPredicate {
                     strings.add(String.valueOf(split[i]));
                 }
                 return path.in(strings);
+            } else if (criteria.getOperation().equalsIgnoreCase("!")) {
+                String[] split = criteria.getValue().toString().split(";");
+                ArrayList<String> strings = new ArrayList<String>();
+                for (int i = 0; i < split.length; i++) {
+                    strings.add(String.valueOf(split[i]));
+                }
+                return path.notIn(strings);
             }
 
         }
@@ -152,8 +168,7 @@ public class CriteriaPredicate {
                     numbers.add(Long.valueOf(split[i]));
                 }
                 return path.in(numbers);
-            }
-            else if (criteria.getOperation().equalsIgnoreCase("!")) {
+            } else if (criteria.getOperation().equalsIgnoreCase("!")) {
                 String[] split = criteria.getValue().toString().split(";");
                 ArrayList<Long> numbers = new ArrayList<Long>();
                 for (int i = 0; i < split.length; i++) {
@@ -163,11 +178,14 @@ public class CriteriaPredicate {
             } else {
                 Long valueLong = Long.parseLong(criteria.getValue().toString());
                 if (criteria.getOperation().equalsIgnoreCase(":")) {
+
                     return path.eq(valueLong);
                 } else if (criteria.getOperation().equalsIgnoreCase(">")) {
                     return path.goe(valueLong);
                 } else if (criteria.getOperation().equalsIgnoreCase("<")) {
                     return path.loe(valueLong);
+                } else if (criteria.getOperation().equalsIgnoreCase("#")) {
+                    return path.isNull();
                 }
             }
         }

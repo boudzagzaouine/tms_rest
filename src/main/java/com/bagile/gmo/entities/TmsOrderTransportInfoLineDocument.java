@@ -28,7 +28,7 @@ public class TmsOrderTransportInfoLineDocument extends EmsEntity {
    private TmsOrderTransportInfoLine tmsOrderTransportInfoLine;
 
    private Set<TmsOrderTransportDocument> tmsOrderTransportDocumentSet = new HashSet<>();
-
+  private TmsTurnStatus tmsTurnStatus;
     private OwnOwner ownOwner;
 
     @Id
@@ -126,6 +126,16 @@ public class TmsOrderTransportInfoLineDocument extends EmsEntity {
 
     public void setTmsOrderTransportInfoLine(TmsOrderTransportInfoLine tmsOrderTransportInfoLine) {
         this.tmsOrderTransportInfoLine = tmsOrderTransportInfoLine;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name="tms_turnstatusid")
+    public TmsTurnStatus getTmsTurnStatus() {
+        return tmsTurnStatus;
+    }
+
+    public void setTmsTurnStatus(TmsTurnStatus tmsTurnStatus) {
+        this.tmsTurnStatus = tmsTurnStatus;
     }
 
     @ManyToOne()

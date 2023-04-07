@@ -53,6 +53,7 @@ public class AccountMapper {
         map.put("wholesale", "cmdAccountWholesale ");
         map.put("bankAccounts", "prmBankAccounts ");
 
+
     }
 
     public static Map<String, String> getMap() {
