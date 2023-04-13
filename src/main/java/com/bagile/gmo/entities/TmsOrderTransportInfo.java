@@ -29,7 +29,7 @@ public class TmsOrderTransportInfo extends EmsEntity {
 
     private TmsTurnStatus tmsTurnStatus;
 
-    private String tmsOrderTransportInfoType ;
+    private int tmsOrderTransportInfoType ;
 
     private Boolean tmsOrderTransportInfoTrajetUnique;
 
@@ -187,13 +187,13 @@ public class TmsOrderTransportInfo extends EmsEntity {
     }
 
     @Column(name="tms_ordertransportinfotype")
-    public String getTmsOrderTransportInfoType() {
+    public int getTmsOrderTransportInfoType() {
         return tmsOrderTransportInfoType;
     }
 
 
 
-    public void setTmsOrderTransportInfoType(String tmsOrderTransportInfoType) {
+    public void setTmsOrderTransportInfoType(int tmsOrderTransportInfoType) {
         this.tmsOrderTransportInfoType = tmsOrderTransportInfoType;
     }
     @Column(name="tms_ordertransportinfonumberkm")

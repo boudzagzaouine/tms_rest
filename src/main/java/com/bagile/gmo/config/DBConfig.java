@@ -19,9 +19,9 @@ public class DBConfig {
 		dataSourceBuilder.username("postgres");
 		dataSourceBuilder.password("BAgSin0$2017");*/
 
-	        dataSourceBuilder.url("jdbc:postgresql://localhost:5432/emsdb");
+	        dataSourceBuilder.url("jdbc:postgresql://localhost:5433/emsdb");
 	        dataSourceBuilder.username("postgres");
-	        dataSourceBuilder.password("password");
+	        dataSourceBuilder.password("passroot");
 
 
 

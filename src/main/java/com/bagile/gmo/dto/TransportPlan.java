@@ -37,6 +37,11 @@ private Trajet trajet;
     private BigDecimal totalPriceTTC;
     private BigDecimal totalPriceVat;
 
+    private Date dateArriver;
+    private Date dateCommancerChargement;
+    private Date dateCommancerDechargement;
+    private Date dateFinDechargement;
+    private Date dateFinChargement;
 
    // private List<TransportPlanServiceCatalog> transportPlanServiceCatalogs = new ArrayList<>();
 
@@ -162,6 +167,46 @@ private Trajet trajet;
 
     public void setVilleSource(Ville villeSource) {
         this.villeSource = villeSource;
+    }
+
+    public Date getDateArriver() {
+        return dateArriver;
+    }
+
+    public void setDateArriver(Date dateArriver) {
+        this.dateArriver = dateArriver;
+    }
+
+    public Date getDateCommancerChargement() {
+        return dateCommancerChargement;
+    }
+
+    public void setDateCommancerChargement(Date dateCommancerChargement) {
+        this.dateCommancerChargement = dateCommancerChargement;
+    }
+
+    public Date getDateCommancerDechargement() {
+        return dateCommancerDechargement;
+    }
+
+    public void setDateCommancerDechargement(Date dateCommancerDechargement) {
+        this.dateCommancerDechargement = dateCommancerDechargement;
+    }
+
+    public Date getDateFinDechargement() {
+        return dateFinDechargement;
+    }
+
+    public void setDateFinDechargement(Date dateFinDechargement) {
+        this.dateFinDechargement = dateFinDechargement;
+    }
+
+    public Date getDateFinChargement() {
+        return dateFinChargement;
+    }
+
+    public void setDateFinChargement(Date dateFinChargement) {
+        this.dateFinChargement = dateFinChargement;
     }
 
     public Ville getVilleDistination() {

@@ -23,7 +23,7 @@ public class OrderTransportInfo {
 	private BigDecimal weightTotal ;
 	private BigDecimal capacityTotal;
 
-	private String  type ; //Aller || retour
+	private int  type ; // 1 Aller || 2 retour
 	private BigDecimal  priceTTC;
 
 	private TurnStatus turnStatus;
@@ -223,11 +223,11 @@ public class OrderTransportInfo {
 		this.orderTransport = orderTransport;
 	}
 
-	public String getType() {
+	public int getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 
