@@ -18,7 +18,7 @@ public class OrderTransportInfoLineDocumentMapper {
 		map.put("id", "tmsOrderTransportInfoLineDocumentId");
 		map.put("orderTransportInfoLine", "tmsOrderTransportInfoLine");
 
-		map.put("turnStatus", "tmsTurnStatus");
+		map.put("documentStatus", "tmsDocumentStatus");
 		map.put("contreType", "tmsOrderTransportInfoLineDocumentContreType");
 		map.put("type", "tmsOrderTransportInfoLineDocumentType");
 

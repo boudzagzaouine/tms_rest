@@ -19,7 +19,7 @@ public class OrderTransportInfoLineDocument {
 
 	private List<OrderTransportDocument> orderTransportDocumentList = new ArrayList<>();
  private Owner owner;
- private TurnStatus turnStatus;
+ private int  documentStatus;
 
 
 	public long getId() {
@@ -61,12 +61,12 @@ public class OrderTransportInfoLineDocument {
 		this.orderTransportDocumentList = orderTransportDocumentList;
 	}
 
-	public TurnStatus getTurnStatus() {
-		return turnStatus;
+	public int getDocumentStatus() {
+		return documentStatus;
 	}
 
-	public void setTurnStatus(TurnStatus turnStatus) {
-		this.turnStatus = turnStatus;
+	public void setDocumentStatus(int documentStatus) {
+		this.documentStatus = documentStatus;
 	}
 
 	public String getNumero() {
