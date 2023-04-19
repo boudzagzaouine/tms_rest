@@ -41,7 +41,7 @@ public class OrderTransportInfoLineDocumentMapper {
 //		gmoOrderTransportInfoLineDocument.setTmsOrderTransportInfoLineDocumentFile(orderTransportInfoLineDocument.getFile());
 //		gmoOrderTransportInfoLineDocument.setTmsOrderTransportInfoLineDocumentDesignation(orderTransportInfoLineDocument.getFileName());
 		gmoOrderTransportInfoLineDocument.setTmsOrderTransportInfoLineDocumentDate(orderTransportInfoLineDocument.getDate());
-//		gmoOrderTransportInfoLineDocument.setTmsOrderTransportInfoLineDocumentFileType(orderTransportInfoLineDocument.getFileType());
+		gmoOrderTransportInfoLineDocument.setTmsDocumentStatus(orderTransportInfoLineDocument.getDocumentStatus());
 
 		gmoOrderTransportInfoLineDocument.setTmsOrderTransportInfoLineDocumentContreType(orderTransportInfoLineDocument.getContreType());
 		gmoOrderTransportInfoLineDocument.setTmsOrderTransportInfoLineDocumentType(orderTransportInfoLineDocument.getType());
@@ -78,7 +78,7 @@ public class OrderTransportInfoLineDocumentMapper {
 //		orderTransportInfoLineDocument.setFile(gmoOrderTransportInfoLineDocument.getTmsOrderTransportInfoLineDocumentFile());
 //		orderTransportInfoLineDocument.setFileName(gmoOrderTransportInfoLineDocument.getTmsOrderTransportInfoLineDocumentDesignation());
 		orderTransportInfoLineDocument.setDate(gmoOrderTransportInfoLineDocument.getTmsOrderTransportInfoLineDocumentDate());
-//		orderTransportInfoLineDocument.setFileType(gmoOrderTransportInfoLineDocument.getTmsOrderTransportInfoLineDocumentFileType());
+		orderTransportInfoLineDocument.setDocumentStatus(gmoOrderTransportInfoLineDocument.getTmsDocumentStatus());
        orderTransportInfoLineDocument.setContreType(gmoOrderTransportInfoLineDocument.getTmsOrderTransportInfoLineDocumentContreType());
 		orderTransportInfoLineDocument.setType(gmoOrderTransportInfoLineDocument.getTmsOrderTransportInfoLineDocumentType());
 		orderTransportInfoLineDocument.setNumero(gmoOrderTransportInfoLineDocument.getTmsOrderTransportInfoLineDocumentNumero());

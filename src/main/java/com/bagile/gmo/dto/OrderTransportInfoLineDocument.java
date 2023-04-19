@@ -19,7 +19,7 @@ public class OrderTransportInfoLineDocument {
 
 	private List<OrderTransportDocument> orderTransportDocumentList = new ArrayList<>();
  private Owner owner;
- private int  documentStatus;
+ private int  documentStatus; //1 fourni  2// non fourni
 
 
 	public long getId() {
