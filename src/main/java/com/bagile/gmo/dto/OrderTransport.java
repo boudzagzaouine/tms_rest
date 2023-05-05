@@ -38,6 +38,11 @@ public class OrderTransport {
 	private BigDecimal marginRate ;
 	private BigDecimal marginValue ;
 
+	private BigDecimal totalServiceHT;
+	private BigDecimal totalServiceVat;
+	private BigDecimal totalServiceTTC;
+
+
 	private BigDecimal totalPriceHT;
 	private BigDecimal totalPriceVat;
 	private BigDecimal totalPriceTTC;
@@ -104,6 +109,30 @@ public class OrderTransport {
 
 	public void setTotalPriceTTC(BigDecimal totalPriceTTC) {
 		this.totalPriceTTC = totalPriceTTC;
+	}
+
+	public BigDecimal getTotalServiceHT() {
+		return totalServiceHT;
+	}
+
+	public void setTotalServiceHT(BigDecimal totalServiceHT) {
+		this.totalServiceHT = totalServiceHT;
+	}
+
+	public BigDecimal getTotalServiceVat() {
+		return totalServiceVat;
+	}
+
+	public void setTotalServiceVat(BigDecimal totalServiceVat) {
+		this.totalServiceVat = totalServiceVat;
+	}
+
+	public BigDecimal getTotalServiceTTC() {
+		return totalServiceTTC;
+	}
+
+	public void setTotalServiceTTC(BigDecimal totalServiceTTC) {
+		this.totalServiceTTC = totalServiceTTC;
 	}
 
 	public Contact getContact() {

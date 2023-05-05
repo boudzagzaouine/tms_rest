@@ -64,6 +64,10 @@ public class  OrderTransportMapper {
         tmsOrderTransport.setTmsOrderTransportTotalPriceVat(orderTransport.getTotalPriceVat());
 
 
+        tmsOrderTransport.setTmsOrderTransportTotalServiceHT(orderTransport.getTotalServiceHT());
+        tmsOrderTransport.setTmsOrderTransportTotalServiceTTC(orderTransport.getTotalServiceTTC());
+        tmsOrderTransport.setTmsOrderTransportTotalServiceVat(orderTransport.getTotalServiceVat());
+
         if (!lazy) {
             tmsOrderTransport.setCmdAccount(AccountMapper.toEntity(orderTransport.getAccount(), true));
             tmsOrderTransport.setTmsOrderTransportType(TurnTypeMapper.toEntity(orderTransport.getTurnType(), true));
@@ -123,6 +127,10 @@ public class  OrderTransportMapper {
         orderTransport.setConsignment(tmsOrderTransport.getTmsOrderTransportConsignment());
         orderTransport.setPort(tmsOrderTransport.getTmsOrderTransportPort());
         orderTransport.setPalletResponsibility(tmsOrderTransport.getTmsOrderTransportPalletResponsibility());
+
+        orderTransport.setTotalServiceHT(tmsOrderTransport.getTmsOrderTransportTotalServiceHT());
+        orderTransport.setTotalServiceTTC(tmsOrderTransport.getTmsOrderTransportTotalServiceTTC());
+        orderTransport.setTotalServiceVat(tmsOrderTransport.getTmsOrderTransportTotalServiceVat());
 
         orderTransport.setTotalPriceHT(tmsOrderTransport.getTmsOrderTransportTotalPriceHT());
         orderTransport.setTotalPriceTTC(tmsOrderTransport.getTmsOrderTransportTotalPriceTTC());

@@ -23,6 +23,17 @@ public class TmsTransportPlanServiceCatalog extends EmsEntity {
     private PrmVat prmSaleVat;
     private BigDecimal tmsTransporPlanServiceCatalogSalePriceTTC;
     private BigDecimal tmsTransporPlanServiceCatalogSalePriceVat;
+  private Long tmsTransporPlanServiceCatalogQuantity;
+
+
+    private BigDecimal tmsTransporPlanServiceCatalogTotalPurchasePriceHT;
+    private BigDecimal prmTotalPurchaseVat;
+    private BigDecimal tmsTransporPlanServiceCatalogTotalPurchasePriceTTC;
+
+    private BigDecimal tmsTransporPlanServiceCatalogTotalSalePriceHT;
+    private BigDecimal tmsTransporPlanServiceCatalogTotalSalePriceTTC;
+    private BigDecimal tmsTransporPlanServiceCatalogTotalSalePriceVat;
+
 
     private OwnOwner ownOwner;
     private TmsOrderTransport tmsOrderTransport;
@@ -81,6 +92,11 @@ public class TmsTransportPlanServiceCatalog extends EmsEntity {
         this.tmsTransporPlanServiceCatalogPInvoice = tmsTransporPlanServiceCatalogPInvoice;
     }
 
+
+
+
+
+
     @Column(name = "tms_transporplanservicecatalogpurcahsepriceht")
     public BigDecimal getTmsTransporPlanServiceCatalogPurchasePriceHT() {
         return tmsTransporPlanServiceCatalogPurchasePriceHT;
@@ -90,7 +106,46 @@ public class TmsTransportPlanServiceCatalog extends EmsEntity {
         this.tmsTransporPlanServiceCatalogPurchasePriceHT = tmsTransporPlanServiceCatalogPurchasePriceHT;
     }
 
-    @Column(name = "tms_transporplanservicecatalogpurcahsepricevat")
+    @Column(name = "tms_transporplanservicecatalogtotalpurcahsepriceht")
+
+    public BigDecimal getTmsTransporPlanServiceCatalogTotalPurchasePriceHT() {
+        return tmsTransporPlanServiceCatalogTotalPurchasePriceHT;
+    }
+
+    public void setTmsTransporPlanServiceCatalogTotalPurchasePriceHT(BigDecimal tmsTransporPlanServiceCatalogTotalPurchasePriceHT) {
+        this.tmsTransporPlanServiceCatalogTotalPurchasePriceHT = tmsTransporPlanServiceCatalogTotalPurchasePriceHT;
+    }
+
+    @Column(name = "tms_transporplanservicecatalogtotalpurcahsepricevat")
+
+    public BigDecimal getPrmTotalPurchaseVat() {
+        return prmTotalPurchaseVat;
+    }
+
+    public void setPrmTotalPurchaseVat(BigDecimal prmTotalPurchaseVat) {
+        this.prmTotalPurchaseVat = prmTotalPurchaseVat;
+    }
+
+    @Column(name = "tms_transporplanservicecatalogtotalpurcahsepricettc")
+
+    public BigDecimal getTmsTransporPlanServiceCatalogTotalPurchasePriceTTC() {
+        return tmsTransporPlanServiceCatalogTotalPurchasePriceTTC;
+    }
+
+    public void setTmsTransporPlanServiceCatalogTotalPurchasePriceTTC(BigDecimal tmsTransporPlanServiceCatalogTotalPurchasePriceTTC) {
+        this.tmsTransporPlanServiceCatalogTotalPurchasePriceTTC = tmsTransporPlanServiceCatalogTotalPurchasePriceTTC;
+    }
+
+    @Column(name = "tms_transporplanservicecatalogquantity")
+    public Long getTmsTransporPlanServiceCatalogQuantity() {
+        return tmsTransporPlanServiceCatalogQuantity;
+    }
+
+    public void setTmsTransporPlanServiceCatalogQuantity(Long tmsTransporPlanServiceCatalogQuantity) {
+        this.tmsTransporPlanServiceCatalogQuantity = tmsTransporPlanServiceCatalogQuantity;
+    }
+
+    @Column(name = "tms_transporplanservicecatalogsalepricevat")
 
     public BigDecimal getTmsTransporPlanServiceCatalogSalePriceVat() {
         return tmsTransporPlanServiceCatalogSalePriceVat;
@@ -98,6 +153,35 @@ public class TmsTransportPlanServiceCatalog extends EmsEntity {
 
     public void setTmsTransporPlanServiceCatalogSalePriceVat(BigDecimal tmsTransporPlanServiceCatalogSalePriceVat) {
         this.tmsTransporPlanServiceCatalogSalePriceVat = tmsTransporPlanServiceCatalogSalePriceVat;
+    }
+
+    @Column(name = "tms_transporplanservicecatalogtotalsalepriceht")
+    public BigDecimal getTmsTransporPlanServiceCatalogTotalSalePriceHT() {
+        return tmsTransporPlanServiceCatalogTotalSalePriceHT;
+    }
+
+    public void setTmsTransporPlanServiceCatalogTotalSalePriceHT(BigDecimal tmsTransporPlanServiceCatalogTotalSalePriceHT) {
+        this.tmsTransporPlanServiceCatalogTotalSalePriceHT = tmsTransporPlanServiceCatalogTotalSalePriceHT;
+    }
+
+    @Column(name = "tms_transporplanservicecatalogtotalsalepricettc")
+
+    public BigDecimal getTmsTransporPlanServiceCatalogTotalSalePriceTTC() {
+        return tmsTransporPlanServiceCatalogTotalSalePriceTTC;
+    }
+
+    public void setTmsTransporPlanServiceCatalogTotalSalePriceTTC(BigDecimal tmsTransporPlanServiceCatalogTotalSalePriceTTC) {
+        this.tmsTransporPlanServiceCatalogTotalSalePriceTTC = tmsTransporPlanServiceCatalogTotalSalePriceTTC;
+    }
+
+    @Column(name = "tms_transporplanservicecatalogtotalsalepricevat")
+
+    public BigDecimal getTmsTransporPlanServiceCatalogTotalSalePriceVat() {
+        return tmsTransporPlanServiceCatalogTotalSalePriceVat;
+    }
+
+    public void setTmsTransporPlanServiceCatalogTotalSalePriceVat(BigDecimal tmsTransporPlanServiceCatalogTotalSalePriceVat) {
+        this.tmsTransporPlanServiceCatalogTotalSalePriceVat = tmsTransporPlanServiceCatalogTotalSalePriceVat;
     }
 
     @ManyToOne()

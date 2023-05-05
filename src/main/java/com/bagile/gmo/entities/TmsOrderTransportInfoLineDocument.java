@@ -15,7 +15,7 @@ public class TmsOrderTransportInfoLineDocument extends EmsEntity {
 	private Long tmsOrderTransportInfoLineDocumentId;
 
     private String tmsOrderTransportInfoLineDocumentContreType  ; // BL ou FACTURE
-    private long tmsOrderTransportInfoLineDocumentType ; // 1 Enlevement . 2 Livraison . 3 Enlevement/Livraison
+    private Long tmsOrderTransportInfoLineDocumentType ; // 1 Enlevement . 2 Livraison . 3 Enlevement/Livraison
     private String tmsOrderTransportInfoLineDocumentNumero;
     private  TmsOrderTransportDocumentType tmsOrderTransportInfoLineDocumentDocumentType;
 
@@ -28,7 +28,7 @@ public class TmsOrderTransportInfoLineDocument extends EmsEntity {
    private TmsOrderTransportInfoLine tmsOrderTransportInfoLine;
 
    private Set<TmsOrderTransportDocument> tmsOrderTransportDocumentSet = new HashSet<>();
-  private int  tmsDocumentStatus;
+  private Long  tmsDocumentStatus;
     private OwnOwner ownOwner;
 
     @Id
@@ -65,11 +65,11 @@ public class TmsOrderTransportInfoLineDocument extends EmsEntity {
     }
     @Column(name = "tms_ordertransportinfolinedocumenttype")
 
-    public long getTmsOrderTransportInfoLineDocumentType() {
+    public Long getTmsOrderTransportInfoLineDocumentType() {
         return tmsOrderTransportInfoLineDocumentType;
     }
 
-    public void setTmsOrderTransportInfoLineDocumentType(long tmsOrderTransportInfoLineDocumentType) {
+    public void setTmsOrderTransportInfoLineDocumentType(Long tmsOrderTransportInfoLineDocumentType) {
         this.tmsOrderTransportInfoLineDocumentType = tmsOrderTransportInfoLineDocumentType;
     }
 
@@ -110,10 +110,10 @@ public class TmsOrderTransportInfoLineDocument extends EmsEntity {
     }
 
     @Column(name = "tms_documentstatus")
-    public int getTmsDocumentStatus() {
+    public Long getTmsDocumentStatus() {
         return tmsDocumentStatus;
     }
-    public void setTmsDocumentStatus(int tmsDocumentStatus) {
+    public void setTmsDocumentStatus(Long tmsDocumentStatus) {
         this.tmsDocumentStatus = tmsDocumentStatus;
     }
 

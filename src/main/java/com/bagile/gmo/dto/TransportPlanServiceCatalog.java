@@ -18,11 +18,20 @@ public class TransportPlanServiceCatalog extends EmsDto implements Serializable 
     private BigDecimal purchasePriceHT;
     private Vat purchaseVat;
     private BigDecimal purchasePriceTTC;
-
+  private Long quantity ;
     private BigDecimal salePriceHT;
     private Vat saleVat;
     private BigDecimal salePriceTTC;
     private BigDecimal salePriceVat;
+
+    private BigDecimal totalSalePriceHT;
+    private BigDecimal totalSalePriceTTC;
+    private BigDecimal totalSalePriceVat;
+
+    private BigDecimal totalPurchasePriceHT;
+    private BigDecimal totalPurchaseVat;
+    private BigDecimal totalPurchasePriceTTC;
+
 private Owner owner;
 
 private OrderTransport orderTransport;
@@ -44,6 +53,62 @@ private OrderTransport orderTransport;
 
     public Transport getTransport() {
         return transport;
+    }
+
+    public BigDecimal getTotalSalePriceHT() {
+        return totalSalePriceHT;
+    }
+
+    public void setTotalSalePriceHT(BigDecimal totalSalePriceHT) {
+        this.totalSalePriceHT = totalSalePriceHT;
+    }
+
+    public BigDecimal getTotalSalePriceTTC() {
+        return totalSalePriceTTC;
+    }
+
+    public void setTotalSalePriceTTC(BigDecimal totalSalePriceTTC) {
+        this.totalSalePriceTTC = totalSalePriceTTC;
+    }
+
+    public Long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public BigDecimal getTotalPurchasePriceHT() {
+        return totalPurchasePriceHT;
+    }
+
+    public void setTotalPurchasePriceHT(BigDecimal totalPurchasePriceHT) {
+        this.totalPurchasePriceHT = totalPurchasePriceHT;
+    }
+
+    public BigDecimal getTotalPurchaseVat() {
+        return totalPurchaseVat;
+    }
+
+    public void setTotalPurchaseVat(BigDecimal totalPurchaseVat) {
+        this.totalPurchaseVat = totalPurchaseVat;
+    }
+
+    public BigDecimal getTotalPurchasePriceTTC() {
+        return totalPurchasePriceTTC;
+    }
+
+    public void setTotalPurchasePriceTTC(BigDecimal totalPurchasePriceTTC) {
+        this.totalPurchasePriceTTC = totalPurchasePriceTTC;
+    }
+
+    public BigDecimal getTotalSalePriceVat() {
+        return totalSalePriceVat;
+    }
+
+    public void setTotalSalePriceVat(BigDecimal totalSalePriceVat) {
+        this.totalSalePriceVat = totalSalePriceVat;
     }
 
     public void setTransport(Transport transport) {

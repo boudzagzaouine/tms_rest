@@ -44,10 +44,15 @@ public class TmsOrderTransport extends EmsEntity {
 
     private BigDecimal tmsOrderTransportMarginValue;
 
+    private BigDecimal tmsOrderTransportTotalServiceHT;
+    private BigDecimal tmsOrderTransportTotalServiceVat;
+    private BigDecimal tmsOrderTransportTotalServiceTTC;
 
     private BigDecimal tmsOrderTransportTotalPriceHT;
     private BigDecimal tmsOrderTransportTotalPriceVat;
     private BigDecimal tmsOrderTransportTotalPriceTTC;
+
+
 
     private Set<TmsOrderTransportAccompaniment> tmsOrderTransportAccompaniments = new HashSet<>();
 
@@ -111,6 +116,8 @@ public class TmsOrderTransport extends EmsEntity {
 
 
 
+
+
     @Column(name="tms_ordertransportpriceht")
     public BigDecimal getTmsOrderTransportPriceHT() {
         return tmsOrderTransportPriceHT;
@@ -118,6 +125,34 @@ public class TmsOrderTransport extends EmsEntity {
 
     public void setTmsOrderTransportPriceHT(BigDecimal tmsOrderTransportPriceTTC) {
         this.tmsOrderTransportPriceHT = tmsOrderTransportPriceTTC;
+    }
+    @Column(name="tms_ordertransporttotalserviceht")
+
+    public BigDecimal getTmsOrderTransportTotalServiceHT() {
+        return tmsOrderTransportTotalServiceHT;
+    }
+
+    public void setTmsOrderTransportTotalServiceHT(BigDecimal tmsOrderTransportTotalServiceHT) {
+        this.tmsOrderTransportTotalServiceHT = tmsOrderTransportTotalServiceHT;
+    }
+    @Column(name="tms_ordertransporttotalservicevat")
+
+    public BigDecimal getTmsOrderTransportTotalServiceVat() {
+        return tmsOrderTransportTotalServiceVat;
+    }
+
+    public void setTmsOrderTransportTotalServiceVat(BigDecimal tmsOrderTransportTotalServiceVat) {
+        this.tmsOrderTransportTotalServiceVat = tmsOrderTransportTotalServiceVat;
+    }
+
+    @Column(name="tms_ordertransporttotalservicettc")
+
+    public BigDecimal getTmsOrderTransportTotalServiceTTC() {
+        return tmsOrderTransportTotalServiceTTC;
+    }
+
+    public void setTmsOrderTransportTotalServiceTTC(BigDecimal tmsOrderTransportTotalServiceTTC) {
+        this.tmsOrderTransportTotalServiceTTC = tmsOrderTransportTotalServiceTTC;
     }
 
     @Column(name="tms_ordertransporttotalpriceht")

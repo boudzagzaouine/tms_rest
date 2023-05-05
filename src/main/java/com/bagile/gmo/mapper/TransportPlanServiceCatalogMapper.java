@@ -44,6 +44,18 @@ public class TransportPlanServiceCatalogMapper {
         tmsTransporPlanService.setTmsTransporPlanServiceCatalogSalePriceVat (transporPlanService.getSalePriceVat ());
 
         tmsTransporPlanService.setTmsTransporPlanServiceCatalogPInvoice (transporPlanService.getInvoice ());
+        tmsTransporPlanService.setTmsTransporPlanServiceCatalogQuantity (transporPlanService.getQuantity ());
+
+        tmsTransporPlanService.setTmsTransporPlanServiceCatalogTotalPurchasePriceHT (transporPlanService.getTotalPurchasePriceHT ());
+        tmsTransporPlanService.setTmsTransporPlanServiceCatalogTotalPurchasePriceTTC (transporPlanService.getTotalPurchasePriceTTC ());
+        tmsTransporPlanService.setPrmTotalPurchaseVat (transporPlanService.getTotalPurchaseVat ());
+
+
+        tmsTransporPlanService.setTmsTransporPlanServiceCatalogTotalSalePriceHT (transporPlanService.getTotalSalePriceHT ());
+        tmsTransporPlanService.setTmsTransporPlanServiceCatalogTotalSalePriceTTC (transporPlanService.getTotalSalePriceTTC ());
+        tmsTransporPlanService.setTmsTransporPlanServiceCatalogTotalSalePriceVat (transporPlanService.getTotalSalePriceVat ());
+
+
 
         tmsTransporPlanService.setCreatedBy(transporPlanService.getCreatedBy());
         tmsTransporPlanService.setUpdatedBy(transporPlanService.getUpdatedBy());
@@ -85,10 +97,20 @@ public class TransportPlanServiceCatalogMapper {
         transporPlanService.setSalePriceVat (tmsTransporPlanService.getTmsTransporPlanServiceCatalogSalePriceVat ());
 
         transporPlanService.setInvoice (tmsTransporPlanService.getTmsTransporPlanServiceCatalogPInvoice ());
+        transporPlanService.setQuantity (tmsTransporPlanService.getTmsTransporPlanServiceCatalogQuantity ());
 
- if(!lazy){
+        transporPlanService.setTotalPurchasePriceHT (tmsTransporPlanService.getTmsTransporPlanServiceCatalogTotalPurchasePriceHT ());
+        transporPlanService.setTotalPurchasePriceTTC (tmsTransporPlanService.getTmsTransporPlanServiceCatalogTotalPurchasePriceTTC ());
+        transporPlanService.setTotalPurchaseVat (tmsTransporPlanService.getPrmTotalPurchaseVat ());
+
+
+        transporPlanService.setTotalSalePriceHT (tmsTransporPlanService.getTmsTransporPlanServiceCatalogTotalSalePriceHT ());
+        transporPlanService.setTotalSalePriceTTC (tmsTransporPlanService.getTmsTransporPlanServiceCatalogTotalSalePriceTTC ());
+        transporPlanService.setTotalSalePriceVat (tmsTransporPlanService.getTmsTransporPlanServiceCatalogTotalSalePriceVat ());
+
+        if(!lazy){
      transporPlanService.setTransport(TransportMapper.toDto(tmsTransporPlanService.getTrpTransport(),true));
-     transporPlanService.setProduct(ProductMapper.toDto(tmsTransporPlanService.getPdtProduct(),true));
+     transporPlanService.setProduct(ProductMapper.toDto(tmsTransporPlanService.getPdtProduct(),false));
      transporPlanService.setPurchaseVat(VatMapper.toDto(tmsTransporPlanService.getPrmPurchaseVat(),true));
      transporPlanService.setSaleVat(VatMapper.toDto(tmsTransporPlanService.getPrmSaleVat(),true));
 

@@ -8,7 +8,7 @@ public class OrderTransportInfoLineDocument {
 
 	private long id;
 	private String contreType  ; // BL ou FACTURE
-	private long type ; // 1 Enlevement . 2 Livraison
+	private Long type ; // 1 Enlevement . 2 Livraison
 	private String numero;
 	private OrderTransportDocumentType orderTransportDocumentType;
 //	private byte[] file;
@@ -19,7 +19,7 @@ public class OrderTransportInfoLineDocument {
 
 	private List<OrderTransportDocument> orderTransportDocumentList = new ArrayList<>();
  private Owner owner;
- private int  documentStatus; //1 fourni  2// non fourni
+ private Long  documentStatus; //1 fourni  2// non fourni
 
 
 	public long getId() {
@@ -37,11 +37,11 @@ public class OrderTransportInfoLineDocument {
 		this.contreType = contreType;
 	}
 
-	public long getType() {
+	public Long getType() {
 		return type;
 	}
 
-	public void setType(long type) {
+	public void setType(Long type) {
 		this.type = type;
 	}
 
@@ -61,11 +61,11 @@ public class OrderTransportInfoLineDocument {
 		this.orderTransportDocumentList = orderTransportDocumentList;
 	}
 
-	public int getDocumentStatus() {
+	public Long getDocumentStatus() {
 		return documentStatus;
 	}
 
-	public void setDocumentStatus(int documentStatus) {
+	public void setDocumentStatus(Long documentStatus) {
 		this.documentStatus = documentStatus;
 	}
 
