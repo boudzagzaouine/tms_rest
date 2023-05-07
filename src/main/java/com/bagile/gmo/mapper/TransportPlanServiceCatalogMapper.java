@@ -39,6 +39,8 @@ public class TransportPlanServiceCatalogMapper {
         tmsTransporPlanService.setTmsTransporPlanServiceCatalogId(transporPlanService.getId());
         tmsTransporPlanService.setTmsTransporPlanServiceCatalogPurchasePriceHT (transporPlanService.getPurchasePriceHT ());
         tmsTransporPlanService.setTmsTransporPlanServiceCatalogPurchasePriceTTC (transporPlanService.getPurchasePriceTTC ());
+        tmsTransporPlanService.setTmsTransporPlanServiceCatalogPurchasePriceVat(transporPlanService.getPurchasePriceVat ());
+
         tmsTransporPlanService.setTmsTransporPlanServiceCatalogSalePriceHT (transporPlanService.getSalePriceHT ());
         tmsTransporPlanService.setTmsTransporPlanServiceCatalogSalePriceTTC (transporPlanService.getSalePriceTTC ());
         tmsTransporPlanService.setTmsTransporPlanServiceCatalogSalePriceVat (transporPlanService.getSalePriceVat ());
@@ -91,6 +93,8 @@ public class TransportPlanServiceCatalogMapper {
         transporPlanService.setId(tmsTransporPlanService.getTmsTransporPlanServiceCatalogId());
         transporPlanService.setPurchasePriceHT(tmsTransporPlanService.getTmsTransporPlanServiceCatalogPurchasePriceHT());
         transporPlanService.setPurchasePriceTTC (tmsTransporPlanService.getTmsTransporPlanServiceCatalogPurchasePriceTTC ());
+        transporPlanService.setPurchasePriceVat (tmsTransporPlanService.getTmsTransporPlanServiceCatalogPurchasePriceVat ());
+
         transporPlanService.setSalePriceHT(tmsTransporPlanService.getTmsTransporPlanServiceCatalogSalePriceHT());
         transporPlanService.setSalePriceTTC (tmsTransporPlanService.getTmsTransporPlanServiceCatalogSalePriceTTC ());
         transporPlanService.setSalePriceVat (tmsTransporPlanService.getTmsTransporPlanServiceCatalogSalePriceVat ());

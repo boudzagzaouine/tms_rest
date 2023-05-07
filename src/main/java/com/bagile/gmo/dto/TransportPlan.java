@@ -19,8 +19,13 @@ public class TransportPlan extends EmsDto implements Serializable {
     private TurnStatus turnStatus;
 
     private BigDecimal purchasePrice;
-
     private BigDecimal purchasePriceNegotiated;
+    private Vat purchaseVat;
+
+    private BigDecimal purchasePriceTtc;
+    private BigDecimal purchasePriceVat;
+
+
     private String  remark ;
     private BigDecimal salePrice;
 
@@ -36,6 +41,10 @@ private Trajet trajet;
     private BigDecimal totalPriceHT;
     private BigDecimal totalPriceTTC;
     private BigDecimal totalPriceVat;
+
+    private BigDecimal totalServiceHT;
+    private BigDecimal totalServiceTTC;
+    private BigDecimal totalServiceVat;
 
     private Date dateArriver;
     private Date dateCommancerChargement;
@@ -129,6 +138,30 @@ private Trajet trajet;
         this.vehicle = vehicle;
     }
 
+    public Vat getPurchaseVat() {
+        return purchaseVat;
+    }
+
+    public void setPurchaseVat(Vat purchaseVat) {
+        this.purchaseVat = purchaseVat;
+    }
+
+    public BigDecimal getPurchasePriceTtc() {
+        return purchasePriceTtc;
+    }
+
+    public void setPurchasePriceTtc(BigDecimal purchasePriceTtc) {
+        this.purchasePriceTtc = purchasePriceTtc;
+    }
+
+    public BigDecimal getPurchasePriceVat() {
+        return purchasePriceVat;
+    }
+
+    public void setPurchasePriceVat(BigDecimal purchasePriceVat) {
+        this.purchasePriceVat = purchasePriceVat;
+    }
+
     public BigDecimal getPurchasePrice() {
         return purchasePrice;
     }
@@ -151,6 +184,30 @@ private Trajet trajet;
 
     public BigDecimal getTotalPriceVat() {
         return totalPriceVat;
+    }
+
+    public BigDecimal getTotalServiceHT() {
+        return totalServiceHT;
+    }
+
+    public void setTotalServiceHT(BigDecimal totalServiceHT) {
+        this.totalServiceHT = totalServiceHT;
+    }
+
+    public BigDecimal getTotalServiceTTC() {
+        return totalServiceTTC;
+    }
+
+    public void setTotalServiceTTC(BigDecimal totalServiceTTC) {
+        this.totalServiceTTC = totalServiceTTC;
+    }
+
+    public BigDecimal getTotalServiceVat() {
+        return totalServiceVat;
+    }
+
+    public void setTotalServiceVat(BigDecimal totalServiceVat) {
+        this.totalServiceVat = totalServiceVat;
     }
 
     public void setTotalPriceVat(BigDecimal totalPriceVat) {

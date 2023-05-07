@@ -48,6 +48,9 @@ public class TransportPlanMapper {
         TmsTransportPlan tmsTransportPlan = new TmsTransportPlan();
         tmsTransportPlan.setTmsTransportPlanId(transportPlan.getId());
         tmsTransportPlan.setTmsTransportPlanPurchasePrice(transportPlan.getPurchasePrice());
+        tmsTransportPlan.setTmsTransportPlanPurchasePriceTtc(transportPlan.getPurchasePriceTtc());
+        tmsTransportPlan.setTmsTransportPlanPurchasePriceVat(transportPlan.getPurchasePriceVat());
+
         tmsTransportPlan.setTmsTransportPlanDateDepart(transportPlan.getDateDepart());
         tmsTransportPlan.setTmsTransportPlanDateValidate(transportPlan.getDateValidate());
 
@@ -58,9 +61,13 @@ public class TransportPlanMapper {
         tmsTransportPlan.setTmsTransportPlanPurchasePriceNegotiated(transportPlan.getPurchasePriceNegotiated());
         tmsTransportPlan.setTmsTransportPlanRemark(transportPlan.getRemark());
 
-        tmsTransportPlan.setTotalPriceHT(transportPlan.getTotalPriceHT());
-        tmsTransportPlan.setTotalPriceTTC(transportPlan.getTotalPriceTTC());
-        tmsTransportPlan.setTotalPriceVAT(transportPlan.getTotalPriceVat());
+        tmsTransportPlan.setTmsTransportPlanTotalPriceHT(transportPlan.getTotalPriceHT());
+        tmsTransportPlan.setTmsTransportPlanTotalPriceTTC(transportPlan.getTotalPriceTTC());
+        tmsTransportPlan.setTmsTransportPlanTotalPriceVAT(transportPlan.getTotalPriceVat());
+
+        tmsTransportPlan.setTmsTransportPlanTotalServiceHT(transportPlan.getTotalServiceHT());
+        tmsTransportPlan.setTmsTransportPlanTotalServiceTTC(transportPlan.getTotalServiceTTC());
+        tmsTransportPlan.setTmsTransportPlanTotalServiceVAT(transportPlan.getTotalServiceVat());
 
         tmsTransportPlan.setTmsTransportPlanDateArriver(transportPlan.getDateArriver());
         tmsTransportPlan.setTmsTransportPlanDateCommancerChargement(transportPlan.getDateCommancerChargement());
@@ -83,6 +90,8 @@ public class TransportPlanMapper {
            //tmsTransportPlan.setPrmVilleSource(VilleMapper.toEntity(transportPlan.getVilleSource(), true));
            // tmsTransportPlan.setPrmVilleDistination(VilleMapper.toEntity(transportPlan.getVilleDistination(), true));
              tmsTransportPlan.setTmsTrajet(TrajetMapper.toEntity(transportPlan.getTrajet(), true));
+            tmsTransportPlan.setTmsTransportPlanPurchaseVat(VatMapper.toEntity(transportPlan.getPurchaseVat(), true));
+
 
             //oneToMany(tmsTransportPlan);
         }
@@ -109,6 +118,9 @@ public class TransportPlanMapper {
         TransportPlan transportPlan = new TransportPlan();
         transportPlan.setId( tmsTransportPlan.getTmsTransportPlanId());
         transportPlan.setPurchasePrice(tmsTransportPlan.getTmsTransportPlanPurchasePrice());
+        transportPlan.setPurchasePriceTtc(tmsTransportPlan.getTmsTransportPlanPurchasePriceTtc());
+        transportPlan.setPurchasePriceVat(tmsTransportPlan.getTmsTransportPlanPurchasePriceVat());
+
         transportPlan.setDateDepart(tmsTransportPlan.getTmsTransportPlanDateDepart());
         transportPlan.setDateValidate(tmsTransportPlan.getTmsTransportPlanDateValidate());
 
@@ -119,10 +131,13 @@ public class TransportPlanMapper {
         transportPlan.setPurchasePriceNegotiated(tmsTransportPlan.getTmsTransportPlanPurchasePriceNegotiated());
         transportPlan.setRemark(tmsTransportPlan.getTmsTransportPlanRemark());
 
-        transportPlan.setTotalPriceHT(tmsTransportPlan.getTotalPriceHT());
-        transportPlan.setTotalPriceTTC(tmsTransportPlan.getTotalPriceTTC());
-        transportPlan.setTotalPriceVat(tmsTransportPlan.getTotalPriceVAT());
+        transportPlan.setTotalPriceHT(tmsTransportPlan.getTmsTransportPlanTotalPriceHT());
+        transportPlan.setTotalPriceTTC(tmsTransportPlan.getTmsTransportPlanTotalPriceTTC());
+        transportPlan.setTotalPriceVat(tmsTransportPlan.getTmsTransportPlanTotalPriceVAT());
 
+        transportPlan.setTotalServiceHT(tmsTransportPlan.getTmsTransportPlanTotalServiceHT());
+        transportPlan.setTotalServiceTTC(tmsTransportPlan.getTmsTransportPlanTotalServiceTTC());
+        transportPlan.setTotalServiceVat(tmsTransportPlan.getTmsTransportPlanTotalServiceVAT());
 
         transportPlan.setDateArriver(tmsTransportPlan.getTmsTransportPlanDateArriver());
         transportPlan.setDateCommancerChargement(tmsTransportPlan.getTmsTransportPlanDateCommancerChargement());
@@ -140,6 +155,7 @@ public class TransportPlanMapper {
             transportPlan.setTurnStatus(TurnStatusMapper.toDto(tmsTransportPlan.getTmsTurnStatus(), true));
            // transportPlan.setTransportPlanServiceCatalogs(TransportPlanServiceCatalogMapper.toDtos(tmsTransportPlan.getTransportPlanServiceCatalogs(), false));
             transportPlan.setAccount(AccountMapper.toDto(tmsTransportPlan.getCmdAccount(), true));
+            transportPlan.setPurchaseVat(VatMapper.toDto(tmsTransportPlan.getTmsTransportPlanPurchaseVat(), true));
 
 //           transportPlan.setVilleSource(VilleMapper.toDto(tmsTransportPlan.getPrmVilleSource(), true));
 //            transportPlan.setVilleDistination(VilleMapper.toDto(tmsTransportPlan.getPrmVilleDistination(), true));

@@ -18,6 +18,7 @@ public class TransportPlanServiceCatalog extends EmsDto implements Serializable 
     private BigDecimal purchasePriceHT;
     private Vat purchaseVat;
     private BigDecimal purchasePriceTTC;
+    private BigDecimal purchasePriceVat;
   private Long quantity ;
     private BigDecimal salePriceHT;
     private Vat saleVat;
@@ -69,6 +70,14 @@ private OrderTransport orderTransport;
 
     public void setTotalSalePriceTTC(BigDecimal totalSalePriceTTC) {
         this.totalSalePriceTTC = totalSalePriceTTC;
+    }
+
+    public BigDecimal getPurchasePriceVat() {
+        return purchasePriceVat;
+    }
+
+    public void setPurchasePriceVat(BigDecimal purchasePriceVat) {
+        this.purchasePriceVat = purchasePriceVat;
     }
 
     public Long getQuantity() {
