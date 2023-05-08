@@ -29,7 +29,7 @@ public class TmsTransportPlanServiceCatalog extends EmsEntity {
 
 
     private BigDecimal tmsTransporPlanServiceCatalogTotalPurchasePriceHT;
-    private BigDecimal prmTotalPurchaseVat;
+    private BigDecimal tmsTransporPlanServiceCatalogTotalPurchasePriceVat;
     private BigDecimal tmsTransporPlanServiceCatalogTotalPurchasePriceTTC;
 
     private BigDecimal tmsTransporPlanServiceCatalogTotalSalePriceHT;
@@ -120,12 +120,12 @@ public class TmsTransportPlanServiceCatalog extends EmsEntity {
 
     @Column(name = "tms_transporplanservicecatalogtotalpurcahsepricevat")
 
-    public BigDecimal getPrmTotalPurchaseVat() {
-        return prmTotalPurchaseVat;
+    public BigDecimal getTmsTransporPlanServiceCatalogTotalPurchasePriceVat() {
+        return tmsTransporPlanServiceCatalogTotalPurchasePriceVat;
     }
 
-    public void setPrmTotalPurchaseVat(BigDecimal prmTotalPurchaseVat) {
-        this.prmTotalPurchaseVat = prmTotalPurchaseVat;
+    public void setTmsTransporPlanServiceCatalogTotalPurchasePriceVat(BigDecimal prmTotalPurchaseVat) {
+        this.tmsTransporPlanServiceCatalogTotalPurchasePriceVat = prmTotalPurchaseVat;
     }
 
     @Column(name = "tms_transporplanservicecatalogtotalpurcahsepricettc")

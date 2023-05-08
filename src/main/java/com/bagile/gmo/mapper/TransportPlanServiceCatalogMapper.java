@@ -50,7 +50,7 @@ public class TransportPlanServiceCatalogMapper {
 
         tmsTransporPlanService.setTmsTransporPlanServiceCatalogTotalPurchasePriceHT (transporPlanService.getTotalPurchasePriceHT ());
         tmsTransporPlanService.setTmsTransporPlanServiceCatalogTotalPurchasePriceTTC (transporPlanService.getTotalPurchasePriceTTC ());
-        tmsTransporPlanService.setPrmTotalPurchaseVat (transporPlanService.getTotalPurchaseVat ());
+        tmsTransporPlanService.setTmsTransporPlanServiceCatalogTotalPurchasePriceVat(transporPlanService.getTotalPurchasePriceVat());
 
 
         tmsTransporPlanService.setTmsTransporPlanServiceCatalogTotalSalePriceHT (transporPlanService.getTotalSalePriceHT ());
@@ -105,7 +105,7 @@ public class TransportPlanServiceCatalogMapper {
 
         transporPlanService.setTotalPurchasePriceHT (tmsTransporPlanService.getTmsTransporPlanServiceCatalogTotalPurchasePriceHT ());
         transporPlanService.setTotalPurchasePriceTTC (tmsTransporPlanService.getTmsTransporPlanServiceCatalogTotalPurchasePriceTTC ());
-        transporPlanService.setTotalPurchaseVat (tmsTransporPlanService.getPrmTotalPurchaseVat ());
+        transporPlanService.setTotalPurchasePriceVat(tmsTransporPlanService.getTmsTransporPlanServiceCatalogTotalPurchasePriceVat());
 
 
         transporPlanService.setTotalSalePriceHT (tmsTransporPlanService.getTmsTransporPlanServiceCatalogTotalSalePriceHT ());

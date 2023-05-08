@@ -41,6 +41,8 @@ private String carte;
     private BigDecimal salary ;
     private Date dateOfAssignment ;
 
+
+
     public Driver() {
     }
 
