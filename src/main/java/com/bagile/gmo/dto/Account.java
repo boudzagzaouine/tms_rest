@@ -22,7 +22,7 @@ public class Account extends EmsDto implements Serializable, Comparable<Account>
 
     private String name;
 
-//    private String codeName;
+  private String codeName;
 
     private String telephone ;
 

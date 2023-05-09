@@ -24,6 +24,7 @@ private String carte;
     private String name;
     private String surname ;
     private String tele1;
+    private String codeName;
     private String fax ;
     private String type;
     private  String email;
@@ -223,6 +224,11 @@ private String carte;
     public void setDateOfAssignment(Date dateOfAssignment) {
         this.dateOfAssignment = dateOfAssignment;
     }
+
+    public String getCodeName() {
+        return this.code +" - "+this.name;    }
+
+
 
     @Override
     public boolean equals(Object o) {
