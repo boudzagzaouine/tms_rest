@@ -45,12 +45,13 @@ public class TmsDashboardRepository {
         query.setParameter(3,dateFin);
         return (BigDecimal) query.getSingleResult();
     }
-    public BigDecimal Drivermileage(long driverId,Date dateDepart, Date dateFin)
+    public BigDecimal Drivermileage(long driverId,long trajetId,Date dateDepart, Date dateFin)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.driver_total_mileage(?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.driver_total_mileage(?,?,?,?)");
         query.setParameter(1,driverId);
-        query.setParameter(2,dateDepart);
-        query.setParameter(3,dateFin);
+        query.setParameter(2,trajetId);
+        query.setParameter(3,dateDepart);
+        query.setParameter(4,dateFin);
         return (BigDecimal) query.getSingleResult();
     }
     public BigDecimal AvgDurationTrajet(long driverId,long operationId,long trajetId,Date dateDepart, Date dateFin)

@@ -8,7 +8,7 @@ import java.util.Date;
 
 public interface TmsDashboardService {
     BigDecimal getVehiclemileage(long vehicleId,long categoryId, Date dateDepart, Date dateFin);
-    BigDecimal getdrivermileage(long driverId, Date dateDepart, Date dateFin);
+    BigDecimal getdrivermileage(long driverId,long trajetId,  Date dateDepart, Date dateFin);
     BigDecimal getVehicleNumberTrajets(long vehicleId,long categoryId, Date dateDepart, Date dateFin);
     BigDecimal getDriverNumberTrajets(long driverId, Date dateDepart, Date dateFin);
     BigDecimal getAvgdurationtrajet(long driverId,long operationId,long trajetId, Date dateDepart, Date dateFin);

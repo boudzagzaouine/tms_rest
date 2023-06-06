@@ -41,8 +41,8 @@ public class TmsDashboardServiceImpl implements TmsDashboardService {
     }
 
     @Override
-    public BigDecimal getdrivermileage(long driverId,Date dateDepart, Date dateFin) {
-        return tmsDashboardRepository.Drivermileage(driverId,dateDepart,dateFin);
+    public BigDecimal getdrivermileage(long driverId,long trajetId,Date dateDepart, Date dateFin) {
+        return tmsDashboardRepository.Drivermileage(driverId,trajetId,dateDepart,dateFin);
     }
 
     @Override

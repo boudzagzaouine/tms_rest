@@ -30,12 +30,12 @@ public class TmsDashboardController {
         return tmsDashboardService.getVehiclemileage(vehicleId,categoryId, date1, date2);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/mileagevdriver")
+    @RequestMapping(method = RequestMethod.GET, value = "/mileagedriver")
     @ResponseBody
-    public BigDecimal getMileageDriver(@RequestParam Long driverId,  @RequestParam String dateDepart, @RequestParam String dateFin) throws IdNotFound, ParseException, ParseException {
+    public BigDecimal getMileageDriver(@RequestParam Long driverId,@RequestParam Long trajetId,  @RequestParam String dateDepart, @RequestParam String dateFin) throws IdNotFound, ParseException, ParseException {
         Date date1 = new SimpleDateFormat("yyyy/MM/dd").parse(dateDepart);
         Date date2 = new SimpleDateFormat("yyyy/MM/dd").parse(dateFin);
-        return tmsDashboardService.getdrivermileage(driverId, date1, date2);
+        return tmsDashboardService.getdrivermileage(driverId,trajetId, date1, date2);
     }
     @RequestMapping(method = RequestMethod.GET, value = "/durationtrajet")
     @ResponseBody
