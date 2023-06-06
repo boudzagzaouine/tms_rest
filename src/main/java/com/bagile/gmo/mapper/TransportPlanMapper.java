@@ -69,15 +69,6 @@ public class TransportPlanMapper {
         tmsTransportPlan.setTmsTransportPlanTotalServiceTTC(transportPlan.getTotalServiceTTC());
         tmsTransportPlan.setTmsTransportPlanTotalServiceVAT(transportPlan.getTotalServiceVat());
 
-        tmsTransportPlan.setTmsTransportPlanDateArriver(transportPlan.getDateArriver());
-        tmsTransportPlan.setTmsTransportPlanDateCommancerChargement(transportPlan.getDateCommancerChargement());
-        tmsTransportPlan.setTmsTransportPlanDateCommancerDechargement(transportPlan.getDateCommancerDechargement());
-        tmsTransportPlan.setTmsTransportPlanDateFinChargement(transportPlan.getDateFinChargement());
-        tmsTransportPlan.setTmsTransportPlanDateFinDechargement(transportPlan.getDateFinDechargement());
-
-
-
-
         if (!lazy) {
             tmsTransportPlan.setTmsOrderTransport(OrderTransportMapper.toEntity(transportPlan.getOrderTransport(), false));
             tmsTransportPlan.setGmoVehicle(VehicleMapper.toEntity(transportPlan.getVehicle(), true));
@@ -138,13 +129,6 @@ public class TransportPlanMapper {
         transportPlan.setTotalServiceHT(tmsTransportPlan.getTmsTransportPlanTotalServiceHT());
         transportPlan.setTotalServiceTTC(tmsTransportPlan.getTmsTransportPlanTotalServiceTTC());
         transportPlan.setTotalServiceVat(tmsTransportPlan.getTmsTransportPlanTotalServiceVAT());
-
-        transportPlan.setDateArriver(tmsTransportPlan.getTmsTransportPlanDateArriver());
-        transportPlan.setDateCommancerChargement(tmsTransportPlan.getTmsTransportPlanDateCommancerChargement());
-        transportPlan.setDateCommancerDechargement(tmsTransportPlan.getTmsTransportPlanDateCommancerDechargement());
-        transportPlan.setDateFinDechargement(tmsTransportPlan.getTmsTransportPlanDateFinDechargement());
-        transportPlan.setDateFinChargement(tmsTransportPlan.getTmsTransportPlanDateFinChargement());
-
 
         if (!lazy) {
             transportPlan.setOrderTransport(OrderTransportMapper.toDto(tmsTransportPlan.getTmsOrderTransport(), false));

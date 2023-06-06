@@ -51,7 +51,7 @@ public class  OrderTransportMapper {
         tmsOrderTransport.setTmsOrderTransportPriceHT(orderTransport.getPriceHT());
         tmsOrderTransport.setTmsOrderTransportPriceTTC(orderTransport.getPriceTTC());
         tmsOrderTransport.setTmsOrderTransportPriceVat(orderTransport.getPriceVat());
-
+        tmsOrderTransport.setTmsOrderTransportNumberKm(orderTransport.getNumberKm());
         tmsOrderTransport.setTmsOrderTransportMarginRate(orderTransport.getMarginRate());
         tmsOrderTransport.setTmsOrderTransportMarginValue(orderTransport.getMarginValue());
 
@@ -117,6 +117,7 @@ public class  OrderTransportMapper {
         orderTransport.setId( tmsOrderTransport.getTmsOrderTransportId());
         orderTransport.setDate(tmsOrderTransport.getTmsOrderTransportDate());
         orderTransport.setCode(tmsOrderTransport.getTmsOrderTransportCode());
+        orderTransport.setNumberKm(tmsOrderTransport.getTmsOrderTransportNumberKm());
         orderTransport.setPriceHT(tmsOrderTransport.getTmsOrderTransportPriceHT());
         orderTransport.setPriceTTC(tmsOrderTransport.getTmsOrderTransportPriceTTC());
         orderTransport.setPriceVat(tmsOrderTransport.getTmsOrderTransportPriceVat());

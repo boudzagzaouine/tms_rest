@@ -30,6 +30,12 @@ public class OrderTransportInfoLineMapper {
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdBy");
         map.put("updatedBy", "updatedBy");
+        map.put("dateArriver", "tmsOrderTranspotInfoLineDateArriver");
+        map.put("dateCommancerChargement", "tmsOrderTranspotInfoLineDateCommancerChargement");
+        map.put("dateCommancerDechargement", "tmsOrderTranspotInfoLineDateCommancerDechargement");
+        map.put("dateFinChargement", "tmsOrderTranspotInfoLineDateFinChargement");
+        map.put("dateFinDechargement", "tmsOrderTranspotInfoLineDateFinDechargement");
+
     }
 
     public static Map<String, String> getMap() {
@@ -67,8 +73,11 @@ public class OrderTransportInfoLineMapper {
 
         tmsOrderTransportInfoLine.setTmsOrderTransportDateEnlevement(orderTransportInfoLine.getDateEnlevement());
         tmsOrderTransportInfoLine.setTmsOrderTransportDateLivraison(orderTransportInfoLine.getDateLivraison());
-
-
+        tmsOrderTransportInfoLine.setTmsOrderTranspotInfoLineDateArriver(orderTransportInfoLine.getDateArriver());
+        tmsOrderTransportInfoLine.setTmsOrderTranspotInfoLineDateCommancerChargement(orderTransportInfoLine.getDateCommancerChargement());
+        tmsOrderTransportInfoLine.setTmsOrderTranspotInfoLineDateFinChargement(orderTransportInfoLine.getDateFinChargement());
+        tmsOrderTransportInfoLine.setTmsOrderTranspotInfoLineDateCommancerDechargement(orderTransportInfoLine.getDateCommancerDechargement());
+        tmsOrderTransportInfoLine.setTmsOrderTranspotInfoLineDateFinDechargement(orderTransportInfoLine.getDateFinDechargement());
 
 
         if (!lazy) {
@@ -133,7 +142,11 @@ public class OrderTransportInfoLineMapper {
 
         orderTransportInfoLine.setDateEnlevement(tmsOrderTransportInfoLine.getTmsOrderTransportDateEnlevement());
         orderTransportInfoLine.setDateLivraison(tmsOrderTransportInfoLine.getTmsOrderTransportDateLivraison());
-
+        orderTransportInfoLine.setDateArriver(tmsOrderTransportInfoLine.getTmsOrderTranspotInfoLineDateArriver());
+        orderTransportInfoLine.setDateCommancerChargement(tmsOrderTransportInfoLine.getTmsOrderTranspotInfoLineDateCommancerChargement());
+        orderTransportInfoLine.setDateCommancerDechargement(tmsOrderTransportInfoLine.getTmsOrderTranspotInfoLineDateCommancerDechargement());
+        orderTransportInfoLine.setDateFinChargement(tmsOrderTransportInfoLine.getTmsOrderTranspotInfoLineDateFinChargement());
+        orderTransportInfoLine.setDateFinDechargement(tmsOrderTransportInfoLine.getTmsOrderTranspotInfoLineDateFinDechargement());
 
 
         if (!lazy) {

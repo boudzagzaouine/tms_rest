@@ -46,11 +46,6 @@ public class TmsTransportPlan extends EmsEntity {
     private BigDecimal tmsTransportPlanTotalServiceTTC;
     private BigDecimal tmsTransportPlanTotalServiceVAT;
 
-    private Date tmsTransportPlanDateArriver;
-    private Date tmsTransportPlanDateCommancerChargement;
-    private Date tmsTransportPlanDateCommancerDechargement;
-    private Date tmsTransportPlanDateFinDechargement;
-    private Date tmsTransportPlanDateFinChargement;
 
    // private Set<TmsTransportPlanServiceCatalog> transportPlanServiceCatalogs = new HashSet<>();
 
@@ -230,54 +225,6 @@ public class TmsTransportPlan extends EmsEntity {
         this.tmsTransportPlanMarginRate = tmsTransportPlanMarginRate;
     }
 
-    @Column(name = "tms_transportplandatearriver")
-    public Date getTmsTransportPlanDateArriver() {
-        return tmsTransportPlanDateArriver;
-    }
-
-    public void setTmsTransportPlanDateArriver(Date tmsTransportPlanDateArriver) {
-        this.tmsTransportPlanDateArriver = tmsTransportPlanDateArriver;
-    }
-
-    @Column(name = "tms_transportplandatecommancerchargement")
-
-    public Date getTmsTransportPlanDateCommancerChargement() {
-        return tmsTransportPlanDateCommancerChargement;
-    }
-
-    public void setTmsTransportPlanDateCommancerChargement(Date tmsTransportPlanDateCommancerChargement) {
-        this.tmsTransportPlanDateCommancerChargement = tmsTransportPlanDateCommancerChargement;
-    }
-
-    @Column(name = "tms_transportplandatecommancerdechargement")
-
-    public Date getTmsTransportPlanDateCommancerDechargement() {
-        return tmsTransportPlanDateCommancerDechargement;
-    }
-
-    public void setTmsTransportPlanDateCommancerDechargement(Date tmsTransportPlanDateCommancerDechargement) {
-        this.tmsTransportPlanDateCommancerDechargement = tmsTransportPlanDateCommancerDechargement;
-    }
-
-    @Column(name = "tms_transportplandatefindechargement")
-
-    public Date getTmsTransportPlanDateFinDechargement() {
-        return tmsTransportPlanDateFinDechargement;
-    }
-
-    public void setTmsTransportPlanDateFinDechargement(Date tmsTransportPlanDateFinDechargement) {
-        this.tmsTransportPlanDateFinDechargement = tmsTransportPlanDateFinDechargement;
-    }
-
-    @Column(name = "tms_transportplandatefinchargement")
-
-    public Date getTmsTransportPlanDateFinChargement() {
-        return tmsTransportPlanDateFinChargement;
-    }
-
-    public void setTmsTransportPlanDateFinChargement(Date tmsTransportPlanDateFinChargement) {
-        this.tmsTransportPlanDateFinChargement = tmsTransportPlanDateFinChargement;
-    }
 
     @Column(name = "tms_transportplanremark")
 
