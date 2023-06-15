@@ -27,8 +27,9 @@ public class TransportPlanHistoryMapper {
         map.put("type", "tmsTransportPlanHistoryType");
         map.put("orderTransportRejectType", "tmsOrderTransportRejectType");
         map.put("trajet", "tmsTrajet");
-
-        map.put("creationDate", "creationDate");
+        map.put("rejectDate", "tmsTransportPlanRejectDate");
+        map.put("refusDate", "tmsTransportPlanRefusDate");
+        map.put("cancelDate", "tmsTransportPlanCancelDate");
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdBy");
         map.put("updatedBy", "updatedBy");
@@ -55,7 +56,6 @@ public class TransportPlanHistoryMapper {
         tmsTransportPlanHistory.setTmsTransportPlanHistoryRemark(transportPlanHistory.getRemark());
         tmsTransportPlanHistory.setTmsTransportPlanHistoryMarginRate(transportPlanHistory.getMarginRate());
         tmsTransportPlanHistory.setTmsTransportPlanHistorymargineService(transportPlanHistory.getMargineService());
-
 
         if (!lazy) {
             tmsTransportPlanHistory.setTmsOrderTransport(OrderTransportMapper.toEntity(transportPlanHistory.getOrderTransport(), false));

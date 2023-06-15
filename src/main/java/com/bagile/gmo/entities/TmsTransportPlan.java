@@ -32,6 +32,8 @@ public class TmsTransportPlan extends EmsEntity {
     private BigDecimal tmsTransportPlanSalePrice;
 
     private  Date tmsTransportPlanDateDepart;
+    private  Date tmsTransportPlanDateFinir;
+
     private  Date tmsTransportPlanDateValidate;
 
     private BigDecimal tmsTransportPlanMarginRate;
@@ -100,7 +102,14 @@ public class TmsTransportPlan extends EmsEntity {
     public void setTmsTrajet(TmsTrajet tmsTrajet) {
         this.tmsTrajet = tmsTrajet;
     }
+    @Column(name = "tms_transportplandatefinir")
+    public Date getTmsTransportPlanDateFinir() {
+        return tmsTransportPlanDateFinir;
+    }
 
+    public void setTmsTransportPlanDateFinir(Date tmsTransportPlanDateFinir) {
+        this.tmsTransportPlanDateFinir = tmsTransportPlanDateFinir;
+    }
     @ManyToOne()
     @JoinColumn(name = "tms_cmdaccount")
     public CmdAccount getCmdAccount() {

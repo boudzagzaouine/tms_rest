@@ -15,6 +15,8 @@ public abstract class GmoPatrimony extends EmsEntity {
     private GmoMaintenancePlan gmoMaintenancePlan;
     private String gmoPatrimonyCode;
 
+    private String gmoRegistrationNumber;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_gmo_patrimony_id", allocationSize = 1)
@@ -27,6 +29,15 @@ public abstract class GmoPatrimony extends EmsEntity {
         this.gmoPatrimonyId = gmoPatrimonyId;
     }
 
+    @Column(name = "gmo_vehiculeregistrationnumber", unique = true, nullable = false, length = 90)
+
+    public String getGmoRegistrationNumber() {
+        return gmoRegistrationNumber;
+    }
+
+    public void setGmoRegistrationNumber(String gmoRegistrationNumber) {
+        this.gmoRegistrationNumber = gmoRegistrationNumber;
+    }
     @Column(name = "gmo_patrimonycode", unique = true, nullable = false, length = 90)
     public String getGmoPatrimonyCode() {
         return gmoPatrimonyCode;

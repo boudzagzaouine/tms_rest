@@ -20,8 +20,7 @@ public class PatrimonyMapper {
 
 		map.put("id", "gmoPatrimonyId");
 		map.put("code", "gmoPatrimonyCode");
-
-
+		map.put("registrationnumber", "gmoRegistrationNumber");
 	}
 
 	public static Map<String, String> getMap() {

@@ -36,6 +36,8 @@ public class TransportPlan extends EmsDto implements Serializable {
     private Ville villeSource;
     private Ville villeDistination;
     private Date dateDepart;
+
+    private Date dateFinir;
     private Date dateValidate;
 
     private BigDecimal totalPriceHT;
@@ -53,6 +55,14 @@ public class TransportPlan extends EmsDto implements Serializable {
     public TransportPlan() {
     }
 
+
+    public Date getDateFinir() {
+        return dateFinir;
+    }
+
+    public void setDateFinir(Date dateFinir) {
+        this.dateFinir = dateFinir;
+    }
 
     public long getId() {
         return id;

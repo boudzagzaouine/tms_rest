@@ -20,6 +20,15 @@ public abstract class Patrimony extends EmsDto {
 	private long id ;
 	private String code;
 
+	public String getRegistrationNumber() {
+		return registrationNumber;
+	}
+
+	public void setRegistrationNumber(String registrationNumber) {
+		this.registrationNumber = registrationNumber;
+	}
+
+	private String registrationNumber;
 	private MaintenancePlan maintenancePlan;
 
 
