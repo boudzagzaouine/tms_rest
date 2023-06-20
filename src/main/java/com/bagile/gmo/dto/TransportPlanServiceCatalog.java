@@ -2,6 +2,7 @@ package com.bagile.gmo.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Objects;
 
 public class TransportPlanServiceCatalog extends EmsDto implements Serializable {
@@ -20,6 +21,16 @@ public class TransportPlanServiceCatalog extends EmsDto implements Serializable 
     private BigDecimal purchasePriceTTC;
     private BigDecimal purchasePriceVat;
   private Long quantity ;
+
+    public Date getDateService() {
+        return dateService;
+    }
+
+    public void setDateService(Date dateService) {
+        this.dateService = dateService;
+    }
+
+    private Date dateService;
     private BigDecimal salePriceHT;
     private Vat saleVat;
     private BigDecimal salePriceTTC;
