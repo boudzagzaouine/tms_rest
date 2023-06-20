@@ -34,7 +34,7 @@ public class TmsOrderTransport extends EmsEntity {
 
 
    private BigDecimal tmsOrderTransportPriceHT;
-
+    private BigDecimal tmsOrderTransportNumberKm;
    private PrmVat prmVat;
     private BigDecimal tmsOrderTransportPriceTTC;
     private BigDecimal tmsOrderTransportPriceVat;
@@ -68,6 +68,13 @@ public class TmsOrderTransport extends EmsEntity {
         this.tmsOrderTransportId = tmsOrderTransportId;
     }
 
+    @Column(name="tms_ordertransportnumberkm")
+    public BigDecimal getTmsOrderTransportNumberKm() {
+        return tmsOrderTransportNumberKm;
+    }
+    public void setTmsOrderTransportNumberKm(BigDecimal tmsOrderTransportNumberKm) {
+        this.tmsOrderTransportNumberKm = tmsOrderTransportNumberKm;
+    }
     @Column(name = "tms_ordertransportcode",nullable = false)
     public String getTmsOrderTransportCode() {
         return tmsOrderTransportCode;

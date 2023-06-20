@@ -44,6 +44,52 @@ public class OrderTransportInfoLine {
 	private Long lineNumber;
 	private OrderTransportInfo orderTransportInfo;
 	private Owner owner;
+	private Date dateArriver;
+	private Date dateCommancerChargement;
+	private Date dateCommancerDechargement;
+	private Date dateFinDechargement;
+	private Date dateFinChargement;
+
+
+	public Date getDateArriver() {
+		return dateArriver;
+	}
+
+	public void setDateArriver(Date dateArriver) {
+		this.dateArriver = dateArriver;
+	}
+
+	public Date getDateCommancerChargement() {
+		return dateCommancerChargement;
+	}
+
+	public void setDateCommancerChargement(Date dateCommancerChargement) {
+		this.dateCommancerChargement = dateCommancerChargement;
+	}
+
+	public Date getDateCommancerDechargement() {
+		return dateCommancerDechargement;
+	}
+
+	public void setDateCommancerDechargement(Date dateCommancerDechargement) {
+		this.dateCommancerDechargement = dateCommancerDechargement;
+	}
+
+	public Date getDateFinDechargement() {
+		return dateFinDechargement;
+	}
+
+	public void setDateFinDechargement(Date dateFinDechargement) {
+		this.dateFinDechargement = dateFinDechargement;
+	}
+
+	public Date getDateFinChargement() {
+		return dateFinChargement;
+	}
+
+	public void setDateFinChargement(Date dateFinChargement) {
+		this.dateFinChargement = dateFinChargement;
+	}
 
 	private List<OrderTransportInfoLineDocument> orderTransportInfoLineDocuments = new ArrayList();
 

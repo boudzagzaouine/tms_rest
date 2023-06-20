@@ -29,6 +29,7 @@ private TmsTrajet tmsTrajet;
 
     private  Date tmsTransportPlanHistoryDate;
 
+
     private TmsOrderTransportRejectType tmsOrderTransportRejectType;
  private long tmsTransportPlanHistoryType ;
     private BigDecimal tmsTransportPlanHistoryMarginRate;

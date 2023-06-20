@@ -24,7 +24,11 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
     private AdrAddress adrAddress;
     private PrmContact prmContact;
     //private TmsAddressContactOrderTransportInfo tmsAddressContactDeliveryInfo;
-
+    private Date tmsOrderTranspotInfoLineDateArriver;
+    private Date tmsOrderTranspotInfoLineDateCommancerChargement;
+    private Date tmsOrderTranspotInfoLineDateCommancerDechargement;
+    private Date tmsOrderTranspotInfoLineDateFinDechargement;
+    private Date tmsOrderTranspotInfoLineDateFinChargement;
     private BigDecimal tmsAddressContactDeliveryInfoNumberOfPalletEnlevement;
     private BigDecimal tmsOrderTransportWeightEnlevement ;
     private BigDecimal tmsOrderTransportCapacityEnlevement;
@@ -52,9 +56,7 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
 
     private Long  tmsOrderTransportLineNumber ;
     private TmsOrderTransportInfo tmsOrderTransportInfo;
-
   private Set<TmsOrderTransportInfoLineDocument> tmsOrderTransportInfoLineDocumentSet = new HashSet<>();
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -67,6 +69,48 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
     public void setTmsOrderTransportInfoLineId(Long tmsOrderTransportInfoLineId) {
         this.tmsOrderTransportInfoLineId = tmsOrderTransportInfoLineId;
     }
+    @Column(name = "tms_ordertransportinfolinedatearriver")
+    public Date getTmsOrderTranspotInfoLineDateArriver() {
+        return tmsOrderTranspotInfoLineDateArriver;
+    }
+
+    public void setTmsOrderTranspotInfoLineDateArriver(Date tmsOrderTranspotInfoLineDateArriver) {
+        this.tmsOrderTranspotInfoLineDateArriver = tmsOrderTranspotInfoLineDateArriver;
+    }
+    @Column(name = "tms_ordertransportinfolinedatecommancerchargement")
+
+    public Date getTmsOrderTranspotInfoLineDateCommancerChargement() {
+        return tmsOrderTranspotInfoLineDateCommancerChargement;
+    }
+
+    public void setTmsOrderTranspotInfoLineDateCommancerChargement(Date tmsOrderTranspotInfoLineDateCommancerChargement) {
+        this.tmsOrderTranspotInfoLineDateCommancerChargement = tmsOrderTranspotInfoLineDateCommancerChargement;
+    }
+    @Column(name = "tms_ordertransportinfolinedatecommancerdechargement")
+    public Date getTmsOrderTranspotInfoLineDateCommancerDechargement() {
+        return tmsOrderTranspotInfoLineDateCommancerDechargement;
+    }
+
+    public void setTmsOrderTranspotInfoLineDateCommancerDechargement(Date tmsOrderTranspotInfoLineDateCommancerDechargement) {
+        this.tmsOrderTranspotInfoLineDateCommancerDechargement = tmsOrderTranspotInfoLineDateCommancerDechargement;
+    }
+    @Column(name = "tms_ordertransportinfolinedatefindechargement")
+    public Date getTmsOrderTranspotInfoLineDateFinDechargement() {
+        return tmsOrderTranspotInfoLineDateFinDechargement;
+    }
+
+    public void setTmsOrderTranspotInfoLineDateFinDechargement(Date tmsOrderTranspotInfoLineDateFinDechargement) {
+        this.tmsOrderTranspotInfoLineDateFinDechargement = tmsOrderTranspotInfoLineDateFinDechargement;
+    }
+    @Column(name = "tms_ordertransportinfolinedatefinchargement")
+    public Date getTmsOrderTranspotInfoLineDateFinChargement() {
+        return tmsOrderTranspotInfoLineDateFinChargement;
+    }
+
+    public void setTmsOrderTranspotInfoLineDateFinChargement(Date tmsOrderTranspotInfoLineDateFinChargement) {
+        this.tmsOrderTranspotInfoLineDateFinChargement = tmsOrderTranspotInfoLineDateFinChargement;
+    }
+
     @Column(name = "tms_ordertransportinfolinenimberofpalletenlevement")
     public BigDecimal getTmsAddressContactDeliveryInfoNumberOfPalletEnlevement() {
         return tmsAddressContactDeliveryInfoNumberOfPalletEnlevement;
@@ -236,7 +280,8 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
     public void setAdrAddress(AdrAddress adrAddress) {
         this.adrAddress = adrAddress;
     }
-
+    @ManyToOne
+    @JoinColumn(name = "tms_contactid")
     public PrmContact getPrmContact() {
         return prmContact;
     }

@@ -24,6 +24,7 @@ public class TransportPlanMapper {
 
         map.put("villeDistination", "prmVilleDistination");
         map.put("dateDepart", "tmsTransportPlanDateDepart");
+        map.put("dateFinir", "tmsTransportPlanDateFinir");
         map.put("transport", "trpTransport");
         map.put("turnType", "tmsTransportPlanType");
         map.put("turnStatus", "tmsTurnStatus");
@@ -50,7 +51,7 @@ public class TransportPlanMapper {
         tmsTransportPlan.setTmsTransportPlanPurchasePrice(transportPlan.getPurchasePrice());
         tmsTransportPlan.setTmsTransportPlanPurchasePriceTtc(transportPlan.getPurchasePriceTtc());
         tmsTransportPlan.setTmsTransportPlanPurchasePriceVat(transportPlan.getPurchasePriceVat());
-
+        tmsTransportPlan.setTmsTransportPlanDateFinir(transportPlan.getDateFinir());
         tmsTransportPlan.setTmsTransportPlanDateDepart(transportPlan.getDateDepart());
         tmsTransportPlan.setTmsTransportPlanDateValidate(transportPlan.getDateValidate());
 
@@ -68,15 +69,6 @@ public class TransportPlanMapper {
         tmsTransportPlan.setTmsTransportPlanTotalServiceHT(transportPlan.getTotalServiceHT());
         tmsTransportPlan.setTmsTransportPlanTotalServiceTTC(transportPlan.getTotalServiceTTC());
         tmsTransportPlan.setTmsTransportPlanTotalServiceVAT(transportPlan.getTotalServiceVat());
-
-        tmsTransportPlan.setTmsTransportPlanDateArriver(transportPlan.getDateArriver());
-        tmsTransportPlan.setTmsTransportPlanDateCommancerChargement(transportPlan.getDateCommancerChargement());
-        tmsTransportPlan.setTmsTransportPlanDateCommancerDechargement(transportPlan.getDateCommancerDechargement());
-        tmsTransportPlan.setTmsTransportPlanDateFinChargement(transportPlan.getDateFinChargement());
-        tmsTransportPlan.setTmsTransportPlanDateFinDechargement(transportPlan.getDateFinDechargement());
-
-
-
 
         if (!lazy) {
             tmsTransportPlan.setTmsOrderTransport(OrderTransportMapper.toEntity(transportPlan.getOrderTransport(), false));
@@ -123,7 +115,7 @@ public class TransportPlanMapper {
 
         transportPlan.setDateDepart(tmsTransportPlan.getTmsTransportPlanDateDepart());
         transportPlan.setDateValidate(tmsTransportPlan.getTmsTransportPlanDateValidate());
-
+        tmsTransportPlan.setTmsTransportPlanDateFinir(tmsTransportPlan.getTmsTransportPlanDateFinir());
         transportPlan.setMarginRate(tmsTransportPlan.getTmsTransportPlanMarginRate());
         transportPlan.setMargineService(tmsTransportPlan.getTmsTransportPlanmargineService());
         transportPlan.setSalePrice(tmsTransportPlan.getTmsTransportPlanSalePrice());
@@ -138,13 +130,6 @@ public class TransportPlanMapper {
         transportPlan.setTotalServiceHT(tmsTransportPlan.getTmsTransportPlanTotalServiceHT());
         transportPlan.setTotalServiceTTC(tmsTransportPlan.getTmsTransportPlanTotalServiceTTC());
         transportPlan.setTotalServiceVat(tmsTransportPlan.getTmsTransportPlanTotalServiceVAT());
-
-        transportPlan.setDateArriver(tmsTransportPlan.getTmsTransportPlanDateArriver());
-        transportPlan.setDateCommancerChargement(tmsTransportPlan.getTmsTransportPlanDateCommancerChargement());
-        transportPlan.setDateCommancerDechargement(tmsTransportPlan.getTmsTransportPlanDateCommancerDechargement());
-        transportPlan.setDateFinDechargement(tmsTransportPlan.getTmsTransportPlanDateFinDechargement());
-        transportPlan.setDateFinChargement(tmsTransportPlan.getTmsTransportPlanDateFinChargement());
-
 
         if (!lazy) {
             transportPlan.setOrderTransport(OrderTransportMapper.toDto(tmsTransportPlan.getTmsOrderTransport(), false));

@@ -28,11 +28,13 @@ public class TransportPlanHistory extends EmsDto implements Serializable {
 //    private Ville villeSource;
 //    private Ville villeDistination;
     private Date date ;
+
     private OrderTransportRejectType orderTransportRejectType;
     private long type ; //1 = rejeter(prestataire) // 2=refus (voie) ; //3 annuler
     private String remark;
     private BigDecimal marginRate;
     private BigDecimal margineService;
+
     public TransportPlanHistory() {
     }
 

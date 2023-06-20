@@ -14,9 +14,19 @@ public class OrderTransport {
 
 	private  PackagingType packagingType;
 	private Boolean consignment;
+	private  BigDecimal numberKm;
 	private String port; // payé  , du
 	private String palletResponsibility ; //true prestataire /false client
     private MarchandiseType marchandiseType;
+
+	public BigDecimal getNumberKm() {
+		return numberKm;
+	}
+
+	public void setNumberKm(BigDecimal numberKm) {
+		this.numberKm = numberKm;
+	}
+
 	private Date date ;
 	private TurnType turnType;
 	private LoadingType  loadingType ;
