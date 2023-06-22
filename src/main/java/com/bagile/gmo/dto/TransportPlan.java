@@ -37,7 +37,6 @@ public class TransportPlan extends EmsDto implements Serializable {
     private Ville villeDistination;
     private Date dateDepart;
 
-    private Date dateFinir;
     private Date dateValidate;
 
     private BigDecimal totalPriceHT;
@@ -47,10 +46,9 @@ public class TransportPlan extends EmsDto implements Serializable {
     private BigDecimal totalServiceHT;
     private BigDecimal totalServiceTTC;
     private BigDecimal totalServiceVat;
+    private  Date dateFinir;
 
-
-
-   // private List<TransportPlanServiceCatalog> transportPlanServiceCatalogs = new ArrayList<>();
+// private List<TransportPlanServiceCatalog> transportPlanServiceCatalogs = new ArrayList<>();
 
     public TransportPlan() {
     }

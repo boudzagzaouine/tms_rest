@@ -21,7 +21,7 @@ public class TmsDashboardController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/mileagevehicle")
     @ResponseBody
-    public BigDecimal getMileageVehicle(@RequestParam(required = false) String vehicleId,@RequestParam(required = false) String trajetId, @RequestParam(required = false) String categoryId, @RequestParam(required = false) String dateDepart,
+    public BigDecimal getMileageVehicle(@RequestParam(required = false) String vehicleId,@RequestParam(required = false) String trajetId, @RequestParam(required = false) String categoryId,@RequestParam(required = false) String marqueId,@RequestParam(required = false) String senioritymode, @RequestParam(required = false) String dateDepart,
                                         @RequestParam(required = false) String dateFin) throws IdNotFound, ParseException, ParseException {
         if (dateDepart == null) {
             LocalDate oneYearAgo = LocalDate.now().minusYears(1);
@@ -32,7 +32,7 @@ public class TmsDashboardController {
             dateFin = currentDate.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
         }
 
-        return tmsDashboardService.getVehiclemileage(vehicleId,trajetId,categoryId, dateDepart, dateFin);
+        return tmsDashboardService.getVehiclemileage(vehicleId,trajetId,categoryId,marqueId,senioritymode, dateDepart, dateFin);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/mileagedriver")
@@ -65,7 +65,7 @@ public class TmsDashboardController {
     }
     @RequestMapping(method = RequestMethod.GET, value = "/durationtrajetvehicle")
     @ResponseBody
-    public BigDecimal getAvgDurationTrajetVehicle(@RequestParam(required = false) String vehicleId,@RequestParam(required = false) String trajetId,@RequestParam(required = false) String categoryId, @RequestParam(required = false) String dateDepart, @RequestParam(required = false) String dateFin) throws IdNotFound, ParseException, ParseException {
+    public BigDecimal getAvgDurationTrajetVehicle(@RequestParam(required = false) String vehicleId,@RequestParam(required = false) String trajetId,@RequestParam(required = false) String categoryId,@RequestParam(required = false) String marqueId,@RequestParam(required = false) String senioritymode, @RequestParam(required = false) String dateDepart, @RequestParam(required = false) String dateFin) throws IdNotFound, ParseException, ParseException {
         if (dateDepart == null) {
             LocalDate oneYearAgo = LocalDate.now().minusYears(1);
             dateDepart = oneYearAgo.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
@@ -75,7 +75,7 @@ public class TmsDashboardController {
             dateFin = currentDate.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
         }
 
-        return tmsDashboardService.getAvgdurationtrajetVehicle(vehicleId,trajetId,categoryId, dateDepart, dateFin);
+        return tmsDashboardService.getAvgdurationtrajetVehicle(vehicleId,trajetId,categoryId,marqueId, senioritymode, dateDepart, dateFin);
     }
     @RequestMapping(method = RequestMethod.GET, value = "/durationtrajetattent")
     @ResponseBody
@@ -93,7 +93,7 @@ public class TmsDashboardController {
     }
     @RequestMapping(method = RequestMethod.GET, value = "/durationtrajetattentvehicle")
     @ResponseBody
-    public BigDecimal getAvgDurationAttenteTrajetVehicle(@RequestParam(required = false) String vehicleId,@RequestParam String trajetId,@RequestParam String categoryId, @RequestParam(required = false) String dateDepart, @RequestParam(required = false) String dateFin) throws IdNotFound, ParseException, ParseException {
+    public BigDecimal getAvgDurationAttenteTrajetVehicle(@RequestParam(required = false) String vehicleId,@RequestParam String trajetId,@RequestParam String categoryId,@RequestParam(required = false) String marqueId,@RequestParam(required = false) String senioritymode, @RequestParam(required = false) String dateDepart, @RequestParam(required = false) String dateFin) throws IdNotFound, ParseException, ParseException {
         if (dateDepart == null) {
             LocalDate oneYearAgo = LocalDate.now().minusYears(1);
             dateDepart = oneYearAgo.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
@@ -103,11 +103,11 @@ public class TmsDashboardController {
             dateFin = currentDate.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
         }
 
-        return tmsDashboardService.getAvgdurationtrajetAttentVehicle(vehicleId,trajetId,categoryId, dateDepart, dateFin);
+        return tmsDashboardService.getAvgdurationtrajetAttentVehicle(vehicleId,trajetId,categoryId,marqueId, senioritymode, dateDepart, dateFin);
     }
     @RequestMapping(method = RequestMethod.GET, value = "/numbertrajetsvehicle")
     @ResponseBody
-    public BigDecimal getNumeberTrajetVehicle(@RequestParam(required = false) String vehicleId, @RequestParam(required = false) String trajetId,@RequestParam(required = false) String categoryId, @RequestParam(required = false) String dateDepart, @RequestParam(required = false) String dateFin) throws IdNotFound, ParseException, ParseException {
+    public BigDecimal getNumeberTrajetVehicle(@RequestParam(required = false) String vehicleId, @RequestParam(required = false) String trajetId,@RequestParam(required = false) String categoryId,@RequestParam(required = false) String marqueId,@RequestParam(required = false) String senioritymode, @RequestParam(required = false) String dateDepart, @RequestParam(required = false) String dateFin) throws IdNotFound, ParseException, ParseException {
         if (dateDepart == null) {
             LocalDate oneYearAgo = LocalDate.now().minusYears(1);
             dateDepart = oneYearAgo.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
@@ -117,7 +117,7 @@ public class TmsDashboardController {
             dateFin = currentDate.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
         }
 
-        return tmsDashboardService.getVehicleNumberTrajets(vehicleId,trajetId,categoryId, dateDepart, dateFin);
+        return tmsDashboardService.getVehicleNumberTrajets(vehicleId,trajetId,categoryId,marqueId,senioritymode, dateDepart, dateFin);
     }
     @RequestMapping(method = RequestMethod.GET, value = "/avgdurationoperationtrajet")
     @ResponseBody
@@ -135,7 +135,7 @@ public class TmsDashboardController {
     }
     @RequestMapping(method = RequestMethod.GET, value = "/avgdurationoperationtrajetvehicle")
     @ResponseBody
-    public BigDecimal getAvgDurationOperationTrajetVehicle(@RequestParam(required = false) String vehicleId, @RequestParam(required = false) String trajetId, @RequestParam(required = false) String categoryId, @RequestParam(required = false) String dateDepart, @RequestParam(required = false) String dateFin) throws IdNotFound, ParseException, ParseException {
+    public BigDecimal getAvgDurationOperationTrajetVehicle(@RequestParam(required = false) String vehicleId, @RequestParam(required = false) String trajetId, @RequestParam(required = false) String categoryId, @RequestParam(required = false) String marqueId,@RequestParam(required = false) String senioritymode, @RequestParam(required = false) String dateDepart, @RequestParam(required = false) String dateFin) throws IdNotFound, ParseException, ParseException {
         if (dateDepart == null) {
             LocalDate oneYearAgo = LocalDate.now().minusYears(1);
             dateDepart = oneYearAgo.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
@@ -145,7 +145,7 @@ public class TmsDashboardController {
             dateFin = currentDate.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
         }
     
-        return tmsDashboardService.getAvgDurationOperationTrajetVehicle(vehicleId, trajetId,categoryId,dateDepart,dateFin);
+        return tmsDashboardService.getAvgDurationOperationTrajetVehicle(vehicleId, trajetId,categoryId,marqueId,senioritymode, dateDepart,dateFin);
     }
     @RequestMapping(method = RequestMethod.GET, value = "/numbertrajetsdriver")
     @ResponseBody

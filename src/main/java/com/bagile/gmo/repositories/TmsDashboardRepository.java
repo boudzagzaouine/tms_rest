@@ -16,32 +16,36 @@ public class TmsDashboardRepository {
     //public BigDecimal avg(String vehicleId,String CategoryId, String dateDepart,String dateFin);
     @PersistenceContext(unitName="entityManagerFactory")
     EntityManager em;
-    public BigDecimal Vehiclemileage(String vehicleId,String trajetId,String categoryId, String dateDepart, String dateFin)
+    public BigDecimal Vehiclemileage(String vehicleId,String trajetId,String categoryId,String marqueId ,String senioritymode, String dateDepart, String dateFin)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.vehicle_total_mileage(?,?,?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.total_mileage_vehicle(?,?,?,?,?,?,?)");
         query.setParameter(1,vehicleId);
         query.setParameter(2,trajetId);
         query.setParameter(3,categoryId);
-        query.setParameter(4,dateDepart);
-        query.setParameter(5,dateFin);
+        query.setParameter(4, marqueId);
+        query.setParameter(5, senioritymode);
+        query.setParameter(6,dateDepart);
+        query.setParameter(7,dateFin);
         return (BigDecimal) query.getSingleResult();
     }
 
-    public BigDecimal numberTrajetsVehicle(String vehicleId,String trajetId,String categoryId, String dateDepart, String dateFin)
+    public BigDecimal numberTrajetsVehicle(String vehicleId,String trajetId,String categoryId,String marqueId,String senioritymode, String dateDepart, String dateFin)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.number_trajets_vehicle(?,?,?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.number_trajetvehicle(?,?,?,?,?,?,?)");
         query.setParameter(1,vehicleId);
         query.setParameter(2,trajetId);
         query.setParameter(3,categoryId);
-        query.setParameter(4,dateDepart);
-        query.setParameter(5,dateFin);
+        query.setParameter(4, marqueId);
+        query.setParameter(5, senioritymode);
+        query.setParameter(6,dateDepart);
+        query.setParameter(7,dateFin);
         return (BigDecimal) query.getSingleResult();
     }
 
     public BigDecimal numberTrajetsDriver(String driverId,String trajetId,String dateDepart, String dateFin)
     {
 
-        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.number_trajets_driver(?,?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.number_trajetdriver(?,?,?,?)");
         query.setParameter(1,driverId);
         query.setParameter(2,trajetId);
         query.setParameter(3,dateDepart);
@@ -51,7 +55,7 @@ public class TmsDashboardRepository {
     }
     public BigDecimal Drivermileage(String driverId,String trajetId,String dateDepart, String dateFin)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.driver_total_mileage(?,?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.total_mileage_driver(?,?,?,?)");
         query.setParameter(1,driverId);
         query.setParameter(2,trajetId);
         query.setParameter(3,dateDepart);
@@ -61,60 +65,66 @@ public class TmsDashboardRepository {
     public BigDecimal AvgDurationTrajet(String driverId,String trajetId,String dateDepart, String dateFin)
     {
 
-        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.avg_duree_trajet(?,?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.avg_duree_trajet_driver(?,?,?,?)");
         query.setParameter(1,driverId);
         query.setParameter(2,trajetId);
         query.setParameter(3,dateDepart);
         query.setParameter(4,dateFin);
         return (BigDecimal) query.getSingleResult();
     }
-    public BigDecimal AvgDurationTrajetVehicle(String vehicleId,String trajetId,String categoryId ,String dateDepart, String dateFin)
+    public BigDecimal AvgDurationTrajetVehicle(String vehicleId,String trajetId,String categoryId,String marqueId,String senioritymode ,String dateDepart, String dateFin)
     {
 
-        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.avg_duree_trajet_vehicle(?,?,?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.avg_duree_trajet_vehicle(?,?,?,?,?,?,?)");
         query.setParameter(1, vehicleId);
         query.setParameter(2, trajetId);
         query.setParameter(3, categoryId);
-        query.setParameter(4,dateDepart);
-        query.setParameter(5,dateFin);
+        query.setParameter(4, marqueId);
+        query.setParameter(5, senioritymode);
+        query.setParameter(6,dateDepart);
+        query.setParameter(7,dateFin);
         return (BigDecimal) query.getSingleResult();
     }
     public BigDecimal AvgDurationTrajetAttent(String driverId,String trajetId,String dateDepart, String dateFin)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.avg_duree_trajet_attent(?,?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.avg_duree_trajet_attentdriver(?,?,?,?)");
         query.setParameter(1,driverId);
         query.setParameter(2,trajetId);
         query.setParameter(3,dateDepart);
         query.setParameter(4,dateFin);
         return (BigDecimal) query.getSingleResult();
     }
-    public BigDecimal AvgDurationTrajetAttentvehicle(String vehicleId,String trajetId,String categoryId ,String dateDepart, String dateFin)
+    public BigDecimal AvgDurationTrajetAttentvehicle(String vehicleId,String trajetId,String categoryId,String marqueId ,String senioritymode, String dateDepart, String dateFin)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.avg_duree_trajet_attent_vehicle(?,?,?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.avg_duree_trajet_attentvehicle(?,?,?,?,?,?,?)");
         query.setParameter(1, vehicleId);
         query.setParameter(2, trajetId);
         query.setParameter(3, categoryId);
-        query.setParameter(4,dateDepart);
-        query.setParameter(5,dateFin);
+        query.setParameter(4, marqueId);
+        query.setParameter(5, senioritymode);
+        query.setParameter(6,dateDepart);
+        query.setParameter(7,dateFin);
         return (BigDecimal) query.getSingleResult();
     }
     public BigDecimal AvgDurationOperationTrajet(String driverId,String trajetId, String dateDepart, String dateFin)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.avg_duration_operation_trajet(?,?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.avg_duration_operation_trajetdriver(?,?,?,?)");
         query.setParameter(1, driverId);
         query.setParameter(2, trajetId);
         query.setParameter(3,dateDepart);
         query.setParameter(4,dateFin);
         return (BigDecimal) query.getSingleResult();
     }
-    public BigDecimal AvgDurationOperationTrajetVehicle(String vehicleId,String trajetId,String categoryId ,String dateDepart, String dateFin)
+    public BigDecimal AvgDurationOperationTrajetVehicle(String vehicleId,String trajetId,String categoryId,String marqueId ,String senioritymode, String dateDepart, String dateFin)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.avg_duration_operation_trajet_vehicle(?,?,?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.avg_duration_operation_trajetvehicle(?,?,?,?,?,?,?)");
         query.setParameter(1, vehicleId);
         query.setParameter(2, trajetId);
         query.setParameter(3, categoryId);
-        query.setParameter(4,dateDepart);
-        query.setParameter(5,dateFin);
+        query.setParameter(4, marqueId);
+        query.setParameter(5, senioritymode);
+        query.setParameter(6,dateDepart);
+        query.setParameter(7,dateFin);
         return (BigDecimal) query.getSingleResult();
     }
     public BigDecimal refused_transportplan(String transportId,String dateDepart,String dateFin)
@@ -127,7 +137,7 @@ public class TmsDashboardRepository {
     }
     public BigDecimal valider_transportplan(String transportId,String dateDepart,String dateFin)
     {
-        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.transportplanvalider(?,?,?)");
+        Query query = em.createNativeQuery("SELECT * FROM schema_tmsvoieexpress.transportplan_validé(?,?,?)");
         query.setParameter(1,transportId);
         query.setParameter(2,dateDepart);
         query.setParameter(3,dateFin);

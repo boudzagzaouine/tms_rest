@@ -15,13 +15,13 @@ public class TmsDashboardServiceImpl implements TmsDashboardService {
     }
 
     @Override
-    public BigDecimal getVehiclemileage(String vehicleId,String trajetId,String categoryId ,String dateDepart, String dateFin) {
-        return tmsDashboardRepository.Vehiclemileage(vehicleId, trajetId,categoryId,dateDepart,dateFin);
+    public BigDecimal getVehiclemileage(String vehicleId,String trajetId,String categoryId ,String marqueId,String senioritymode, String dateDepart, String dateFin) {
+        return tmsDashboardRepository.Vehiclemileage(vehicleId, trajetId,categoryId,marqueId,senioritymode,dateDepart,dateFin);
     }
 
     @Override
-    public BigDecimal getVehicleNumberTrajets(String vehicleId,String trajetId, String categoryId, String dateDepart, String dateFin) {
-        return tmsDashboardRepository.numberTrajetsVehicle(vehicleId, trajetId,categoryId,dateDepart,dateFin);
+    public BigDecimal getVehicleNumberTrajets(String vehicleId,String trajetId, String categoryId,String marqueId,String senioritymode, String dateDepart, String dateFin) {
+        return tmsDashboardRepository.numberTrajetsVehicle(vehicleId, trajetId,categoryId,marqueId,senioritymode,dateDepart,dateFin);
     }
 
     @Override
@@ -50,18 +50,18 @@ public class TmsDashboardServiceImpl implements TmsDashboardService {
     }
 
     @Override
-    public BigDecimal getAvgDurationOperationTrajetVehicle(String vehicleId, String trajetId, String categoryId, String dateDepart, String dateFin) {
-        return tmsDashboardRepository.AvgDurationOperationTrajetVehicle(vehicleId,trajetId,categoryId,dateDepart,dateFin);
+    public BigDecimal getAvgDurationOperationTrajetVehicle(String vehicleId, String trajetId, String categoryId,String marqueId,String senioritymode, String dateDepart, String dateFin) {
+        return tmsDashboardRepository.AvgDurationOperationTrajetVehicle(vehicleId,trajetId,categoryId,marqueId,senioritymode, dateDepart,dateFin);
     }
 
     @Override
-    public BigDecimal getAvgdurationtrajetAttentVehicle(String vehicleId, String trajetId, String categoryId, String dateDepart, String dateFin) {
-        return tmsDashboardRepository.AvgDurationTrajetAttentvehicle(vehicleId,trajetId,categoryId,dateDepart,dateFin);
+    public BigDecimal getAvgdurationtrajetAttentVehicle(String vehicleId, String trajetId, String categoryId, String marqueId,String senioritymode, String dateDepart, String dateFin) {
+        return tmsDashboardRepository.AvgDurationTrajetAttentvehicle(vehicleId,trajetId,categoryId,marqueId,senioritymode, dateDepart,dateFin);
     }
 
     @Override
-    public BigDecimal getAvgdurationtrajetVehicle(String vehicleId, String trajetId, String categoryId, String dateDepart, String dateFin) {
-        return tmsDashboardRepository.AvgDurationTrajetVehicle(vehicleId,trajetId,categoryId,dateDepart,dateFin);
+    public BigDecimal getAvgdurationtrajetVehicle(String vehicleId, String trajetId, String categoryId,String marqueId,String senioritymode, String dateDepart, String dateFin) {
+        return tmsDashboardRepository.AvgDurationTrajetVehicle(vehicleId,trajetId,categoryId,marqueId,senioritymode,dateDepart,dateFin);
     }
 
     @Override
