@@ -2,6 +2,7 @@ package com.bagile.gmo.entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 
 
 @Entity
@@ -27,6 +28,7 @@ public class TmsTransportPlanServiceCatalog extends EmsEntity {
     private BigDecimal tmsTransporPlanServiceCatalogSalePriceVat;
   private Long tmsTransporPlanServiceCatalogQuantity;
 
+    private Date tmsTransporPlanServiceCatalogDateService;
 
     private BigDecimal tmsTransporPlanServiceCatalogTotalPurchasePriceHT;
     private BigDecimal tmsTransporPlanServiceCatalogTotalPurchasePriceVat;
@@ -94,10 +96,14 @@ public class TmsTransportPlanServiceCatalog extends EmsEntity {
         this.tmsTransporPlanServiceCatalogPInvoice = tmsTransporPlanServiceCatalogPInvoice;
     }
 
+    @Column(name = "tms_transporplanservicecatalogdateservice")
+    public Date getTmsTransporPlanServiceCatalogDateService() {
+        return tmsTransporPlanServiceCatalogDateService;
+    }
 
-
-
-
+    public void setTmsTransporPlanServiceCatalogDateService(Date tmsTransporPlanServiceCatalogDateService) {
+        this.tmsTransporPlanServiceCatalogDateService = tmsTransporPlanServiceCatalogDateService;
+    }
 
     @Column(name = "tms_transporplanservicecatalogpurcahsepriceht")
     public BigDecimal getTmsTransporPlanServiceCatalogPurchasePriceHT() {

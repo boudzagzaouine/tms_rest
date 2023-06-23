@@ -22,7 +22,7 @@ public class Account extends EmsDto implements Serializable, Comparable<Account>
 
     private String name;
 
-  private String codeName;
+    private String codeName;
 
     private String telephone ;
 
@@ -118,6 +118,7 @@ public class Account extends EmsDto implements Serializable, Comparable<Account>
     public void setName(String name) {
         this.name = name;
     }
+
 
     public long getId() {
         return this.id;
