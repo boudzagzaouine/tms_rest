@@ -50,6 +50,9 @@ public class OrderTransportInfoLine {
 	private Date dateFinDechargement;
 	private Date dateFinChargement;
 
+	private BigDecimal priceHT;
+	private Vat vat ;
+	private BigDecimal priceTTC;
 
 	public Date getDateArriver() {
 		return dateArriver;
@@ -106,6 +109,30 @@ public class OrderTransportInfoLine {
 
 	public void setOrderTransportType(OrderTransportType orderTransportType) {
 		this.orderTransportType = orderTransportType;
+	}
+
+	public BigDecimal getPriceHT() {
+		return priceHT;
+	}
+
+	public void setPriceHT(BigDecimal priceHT) {
+		this.priceHT = priceHT;
+	}
+
+	public Vat getVat() {
+		return vat;
+	}
+
+	public void setVat(Vat vat) {
+		this.vat = vat;
+	}
+
+	public BigDecimal getPriceTTC() {
+		return priceTTC;
+	}
+
+	public void setPriceTTC(BigDecimal priceTTC) {
+		this.priceTTC = priceTTC;
 	}
 
 	public TurnStatus getTurnStatus() {

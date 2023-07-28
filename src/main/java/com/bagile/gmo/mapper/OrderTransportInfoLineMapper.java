@@ -79,6 +79,9 @@ public class OrderTransportInfoLineMapper {
         tmsOrderTransportInfoLine.setTmsOrderTranspotInfoLineDateCommancerDechargement(orderTransportInfoLine.getDateCommancerDechargement());
         tmsOrderTransportInfoLine.setTmsOrderTranspotInfoLineDateFinDechargement(orderTransportInfoLine.getDateFinDechargement());
 
+        tmsOrderTransportInfoLine.setTmsOrderTransportLinePriceHT(orderTransportInfoLine.getPriceHT());
+        tmsOrderTransportInfoLine.setTmsOrderTransportLinePriceTTC(orderTransportInfoLine.getPriceTTC());
+
 
         if (!lazy) {
 
@@ -92,8 +95,9 @@ public class OrderTransportInfoLineMapper {
             tmsOrderTransportInfoLine.setTmsTurnStatus(TurnStatusMapper.toEntity(orderTransportInfoLine.getTurnStatus(), true));
             tmsOrderTransportInfoLine.setPrmPaymentTypeEnlevement(PaymentTypeMapper.toEntity(orderTransportInfoLine.getPaymentTypeEnlevement(), true));
             tmsOrderTransportInfoLine.setPrmPaymentTypeLivraison(PaymentTypeMapper.toEntity(orderTransportInfoLine.getPaymentTypeLivraison(), true));
-
             tmsOrderTransportInfoLine.setTmsOrderTransportInfoLineDocumentSet(OrderTransportInfoLineDocumentMapper.toEntities(orderTransportInfoLine.getOrderTransportInfoLineDocuments(), false));
+
+            tmsOrderTransportInfoLine.setTmsOrderTransportLineVat(VatMapper.toEntity(orderTransportInfoLine.getVat(), false));
             oneToMany(tmsOrderTransportInfoLine);
 
 
@@ -148,6 +152,9 @@ public class OrderTransportInfoLineMapper {
         orderTransportInfoLine.setDateFinChargement(tmsOrderTransportInfoLine.getTmsOrderTranspotInfoLineDateFinChargement());
         orderTransportInfoLine.setDateFinDechargement(tmsOrderTransportInfoLine.getTmsOrderTranspotInfoLineDateFinDechargement());
 
+        orderTransportInfoLine.setPriceHT(tmsOrderTransportInfoLine.getTmsOrderTransportLinePriceHT());
+        orderTransportInfoLine.setPriceTTC(tmsOrderTransportInfoLine.getTmsOrderTransportLinePriceTTC());
+
 
         if (!lazy) {
 
@@ -164,6 +171,8 @@ public class OrderTransportInfoLineMapper {
             orderTransportInfoLine.setPaymentTypeEnlevement(PaymentTypeMapper.toDto(tmsOrderTransportInfoLine.getPrmPaymentTypeEnlevement(), true));
             orderTransportInfoLine.setPaymentTypeLivraison(PaymentTypeMapper.toDto(tmsOrderTransportInfoLine.getPrmPaymentTypeLivraison(), true));
             orderTransportInfoLine.setOrderTransportInfoLineDocuments(OrderTransportInfoLineDocumentMapper.toDtos(tmsOrderTransportInfoLine.getTmsOrderTransportInfoLineDocumentSet(), false));
+
+            orderTransportInfoLine.setVat(VatMapper.toDto(tmsOrderTransportInfoLine.getTmsOrderTransportLineVat(), false));
 
         }
         return orderTransportInfoLine;
