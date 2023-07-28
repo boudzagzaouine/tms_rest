@@ -128,7 +128,7 @@ public class AccountPricingServiceImpl implements AccountPricingService {
     public void deleteAll(List<Long> ids) {
 
         for (Long id : ids) {
-            actionTypeRepository.deleteById(id);        }
+            actionTypeRepository.deleteById(id); }
     }
 
 

@@ -17,6 +17,7 @@ public class AgencyMapper {
         map.put("id", "usrAgencyId");
         map.put("code", "usrAgencyCode");
         map.put("description", "usrAgencyDescription");
+        map.put("zone", "usrAgencyZone");
 
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
@@ -48,6 +49,7 @@ public class AgencyMapper {
 
           if(!lazy){
               usrAgency.setAdrAddress(AddressMapper.toEntity(agency.getAddress(),true));
+              usrAgency.setUsrAgencyZone(ZoneMapper.toEntity(agency.getZone(),true));
           }
 
         return usrAgency;
@@ -65,6 +67,7 @@ public class AgencyMapper {
 
  if(!lazy){
       agency.setAddress(AddressMapper.toDto(usrAgency.getAdrAddress(),true));
+      agency.setZone(ZoneMapper.toDto(usrAgency.getUsrAgencyZone(),true));
  }
         return agency;
 

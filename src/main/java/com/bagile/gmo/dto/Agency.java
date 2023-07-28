@@ -1,5 +1,7 @@
 package com.bagile.gmo.dto;
 
+import com.bagile.gmo.entities.GmoZone;
+
 import java.util.Date;
 
 /**
@@ -9,6 +11,8 @@ public class Agency  extends EmsDto {
     private long id;
     private String code;
     private String description;
+    private Zone zone;
+
 
     private Address address;
 
@@ -27,6 +31,13 @@ public class Agency  extends EmsDto {
 
     public void setCode(String code) {
         this.code = code;
+    }
+    public Zone getZone() {
+        return zone;
+    }
+
+    public void setZone(Zone zone) {
+        this.zone = zone;
     }
 
     public String getDescription() {

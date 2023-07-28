@@ -21,7 +21,7 @@ public class UsrAgency extends EmsEntity implements Serializable {
     @NotNull
     private String usrAgencyCode;
     private String usrAgencyDescription;
-
+    private  GmoZone usrAgencyZone;
     private AdrAddress adrAddress;
 
 
@@ -45,7 +45,15 @@ public class UsrAgency extends EmsEntity implements Serializable {
     public void setUsrAgencyCode(String usrAgencyCode) {
         this.usrAgencyCode = usrAgencyCode;
     }
+    @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @JoinColumn(name = "usr_agencyzone")
+    public GmoZone getUsrAgencyZone() {
+        return usrAgencyZone;
+    }
 
+    public void setUsrAgencyZone(GmoZone usrAgencyZone) {
+        this.usrAgencyZone = usrAgencyZone;
+    }
     @Column(name = "usr_agencydescription", length = 150)
     public String getUsrAgencyDescription() {
         return usrAgencyDescription;
