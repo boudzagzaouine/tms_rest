@@ -45,6 +45,7 @@ public class OrderTransport {
 	private BigDecimal priceTTC;
 	private BigDecimal priceVat;
 
+	private Boolean groupageUnique;
 	private BigDecimal marginRate ;
 	private BigDecimal marginValue ;
 
@@ -95,6 +96,14 @@ public class OrderTransport {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public Boolean getGroupageUnique() {
+		return groupageUnique;
+	}
+
+	public void setGroupageUnique(Boolean groupageUnique) {
+		this.groupageUnique = groupageUnique;
 	}
 
 	public BigDecimal getTotalPriceHT() {

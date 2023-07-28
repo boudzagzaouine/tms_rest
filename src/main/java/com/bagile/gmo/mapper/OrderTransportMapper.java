@@ -68,6 +68,8 @@ public class  OrderTransportMapper {
         tmsOrderTransport.setTmsOrderTransportTotalServiceTTC(orderTransport.getTotalServiceTTC());
         tmsOrderTransport.setTmsOrderTransportTotalServiceVat(orderTransport.getTotalServiceVat());
 
+        tmsOrderTransport.setTmsOrderTransportGroupageUnique(orderTransport.getGroupageUnique());
+
         if (!lazy) {
             tmsOrderTransport.setCmdAccount(AccountMapper.toEntity(orderTransport.getAccount(), true));
             tmsOrderTransport.setTmsOrderTransportType(TurnTypeMapper.toEntity(orderTransport.getTurnType(), true));
@@ -136,6 +138,8 @@ public class  OrderTransportMapper {
         orderTransport.setTotalPriceHT(tmsOrderTransport.getTmsOrderTransportTotalPriceHT());
         orderTransport.setTotalPriceTTC(tmsOrderTransport.getTmsOrderTransportTotalPriceTTC());
         orderTransport.setTotalPriceVat(tmsOrderTransport.getTmsOrderTransportTotalPriceVat());
+
+        orderTransport.setGroupageUnique(tmsOrderTransport.getTmsOrderTransportGroupageUnique());
 
         if (!lazy) {
             orderTransport.setTurnType(TurnTypeMapper.toDto(tmsOrderTransport.getTmsOrderTransportType(), true));

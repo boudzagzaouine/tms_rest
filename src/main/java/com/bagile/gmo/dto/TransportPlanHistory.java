@@ -30,7 +30,7 @@ public class TransportPlanHistory extends EmsDto implements Serializable {
     private Date date ;
 
     private OrderTransportRejectType orderTransportRejectType;
-    private long type ; //1 = rejeter(prestataire) // 2=refus (voie) ; //3 annuler
+    private long type ; //1 = rejeter(prestataire) // 2=refus (voie) ; //3 annuler //4 en attente
     private String remark;
     private BigDecimal marginRate;
     private BigDecimal margineService;

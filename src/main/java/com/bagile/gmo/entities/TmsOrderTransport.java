@@ -52,6 +52,7 @@ public class TmsOrderTransport extends EmsEntity {
     private BigDecimal tmsOrderTransportTotalPriceVat;
     private BigDecimal tmsOrderTransportTotalPriceTTC;
 
+    private Boolean tmsOrderTransportGroupageUnique;
 
 
     private Set<TmsOrderTransportAccompaniment> tmsOrderTransportAccompaniments = new HashSet<>();
@@ -83,6 +84,19 @@ public class TmsOrderTransport extends EmsEntity {
     public void setTmsOrderTransportCode(String tmsOrderTransportCode) {
         this.tmsOrderTransportCode = tmsOrderTransportCode;
     }
+
+    @Column(name = "tms_ordertransportgroupageunique")
+    public Boolean getTmsOrderTransportGroupageUnique() {
+        return tmsOrderTransportGroupageUnique;
+    }
+
+    public void setTmsOrderTransportGroupageUnique(Boolean tmsOrderTransportGroupageUnique) {
+        this.tmsOrderTransportGroupageUnique = tmsOrderTransportGroupageUnique;
+    }
+
+
+
+
 
     @Column(name="tms_ordertransportdate")
     public Date getTmsOrderTransportDate() {

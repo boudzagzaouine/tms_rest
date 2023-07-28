@@ -56,7 +56,12 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
 
     private Long  tmsOrderTransportLineNumber ;
     private TmsOrderTransportInfo tmsOrderTransportInfo;
-  private Set<TmsOrderTransportInfoLineDocument> tmsOrderTransportInfoLineDocumentSet = new HashSet<>();
+
+    private  BigDecimal tmsOrderTransportLinePriceHT;
+    private PrmVat tmsOrderTransportLineVat;
+    private  BigDecimal tmsOrderTransportLinePriceTTC;
+
+    private Set<TmsOrderTransportInfoLineDocument> tmsOrderTransportInfoLineDocumentSet = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -109,6 +114,37 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
 
     public void setTmsOrderTranspotInfoLineDateFinChargement(Date tmsOrderTranspotInfoLineDateFinChargement) {
         this.tmsOrderTranspotInfoLineDateFinChargement = tmsOrderTranspotInfoLineDateFinChargement;
+    }
+
+    @Column(name = "tms_ordertransportinfolinedpriceht")
+
+    public BigDecimal getTmsOrderTransportLinePriceHT() {
+        return tmsOrderTransportLinePriceHT;
+    }
+
+    public void setTmsOrderTransportLinePriceHT(BigDecimal tmsOrderTransportLinePriceHT) {
+        this.tmsOrderTransportLinePriceHT = tmsOrderTransportLinePriceHT;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "tms_ordertrasnportinfolinevatid")
+    public PrmVat getTmsOrderTransportLineVat() {
+        return tmsOrderTransportLineVat;
+    }
+
+
+    public void setTmsOrderTransportLineVat(PrmVat tmsOrderTransportLineVat) {
+        this.tmsOrderTransportLineVat = tmsOrderTransportLineVat;
+    }
+
+    @Column(name = "tms_ordertransportinfolinedpricettc")
+
+    public BigDecimal getTmsOrderTransportLinePriceTTC() {
+        return tmsOrderTransportLinePriceTTC;
+    }
+
+    public void setTmsOrderTransportLinePriceTTC(BigDecimal tmsOrderTransportLinePriceTTC) {
+        this.tmsOrderTransportLinePriceTTC = tmsOrderTransportLinePriceTTC;
     }
 
     @Column(name = "tms_ordertransportinfolinenimberofpalletenlevement")
