@@ -43,7 +43,7 @@ public class UsrAgency extends EmsEntity implements Serializable {
         this.usrAgencyCode = usrAgencyCode;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne
     @JoinColumn(name = "usr_agencyzoneid")
     public GmoZone getUsrAgencyZone() {
         return usrAgencyZone;
@@ -62,7 +62,7 @@ public class UsrAgency extends EmsEntity implements Serializable {
         this.usrAgencyDescription = usrAgencyDescription;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne
     @JoinColumn(name = "usr_agencyresponsableid")
     public UsrUser getUsrAgencyResponsable() {
         return usrAgencyResponsable;
