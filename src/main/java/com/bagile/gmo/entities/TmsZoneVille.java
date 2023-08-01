@@ -12,10 +12,10 @@ public class TmsZoneVille extends EmsEntity implements Serializable {
     private Long zoneVilleId;
 
 
-    private PrmVille tmsVille;
+    private PrmVille prmVille;
 
 
-    private  GmoZone tmsZone;
+    private  GmoZone gmoZone;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -28,27 +28,25 @@ public class TmsZoneVille extends EmsEntity implements Serializable {
     public void setZoneVilleId(Long zoneVilleId) {
         this.zoneVilleId = zoneVilleId;
     }
+    @ManyToOne
+    @JoinColumn(name = "tms_villeid")
+    public PrmVille getPrmVille() {
+        return prmVille;
+    }
+
+    public void setPrmVille(PrmVille prmVille) {
+        this.prmVille = prmVille;
+    }
 
     @ManyToOne
-    @JoinColumn(name = "tms_ville")
-    public PrmVille getTmsVille() {
-        return tmsVille;
+    @JoinColumn(name = "tms_zoneid")
+    public GmoZone getGmoZone() {
+        return gmoZone;
     }
 
-    public void setTmsVille(PrmVille tmsVille) {
-        this.tmsVille = tmsVille;
+    public void setGmoZone(GmoZone gmoZone) {
+        this.gmoZone = gmoZone;
     }
-
-    @ManyToOne
-    @JoinColumn(name = "tms_zone")
-    public GmoZone getTmsZone() {
-        return tmsZone;
-    }
-
-    public void setTmsZone(GmoZone tmsZone) {
-        this.tmsZone = tmsZone;
-    }
-
 
 
 }

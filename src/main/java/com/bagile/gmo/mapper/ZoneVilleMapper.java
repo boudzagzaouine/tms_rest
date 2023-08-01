@@ -21,8 +21,8 @@ public class ZoneVilleMapper {
         map = new HashMap<>();
 
         map.put("id", "zoneVilleId");
-        map.put("zone", "tmsZone");
-        map.put("ville", "tmsVille");
+        map.put("zone", "gmoZone");
+        map.put("ville", "prmVille");
 
     }
     public static Map<String, String> getMap() {
@@ -42,8 +42,8 @@ public class ZoneVilleMapper {
 
         if(!lazy) {
 
-            tmsZoneVille.setTmsZone(ZoneMapper.toEntity(zoneVille.getZone(),true));
-            tmsZoneVille.setTmsVille(VilleMapper.toEntity(zoneVille.getVille(),true));
+            tmsZoneVille.setGmoZone(ZoneMapper.toEntity(zoneVille.getZone(),true));
+            tmsZoneVille.setPrmVille(VilleMapper.toEntity(zoneVille.getVille(),true));
 
         }
 
@@ -60,8 +60,8 @@ public class ZoneVilleMapper {
 
         if(!lazy){
 
-            zoneVille.setZone(ZoneMapper.toDto(tmsZoneVille.getTmsZone(),true));
-            zoneVille.setVille(VilleMapper.toDto(tmsZoneVille.getTmsVille(),true));
+            zoneVille.setZone(ZoneMapper.toDto(tmsZoneVille.getGmoZone(),true));
+            zoneVille.setVille(VilleMapper.toDto(tmsZoneVille.getPrmVille(),true));
 
         }
 

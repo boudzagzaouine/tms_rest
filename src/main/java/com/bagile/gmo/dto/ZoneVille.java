@@ -9,7 +9,7 @@ public class ZoneVille extends EmsDto implements Serializable {
 
     private long id;
     private Zone zone;
-    private Ville Ville;
+    private Ville ville;
     public long getId() {
         return id;
     }
@@ -27,11 +27,10 @@ public class ZoneVille extends EmsDto implements Serializable {
     }
 
     public Ville getVille() {
-        return Ville;
+        return ville;
     }
 
     public void setVille(Ville ville) {
-        Ville = ville;
+        this.ville = ville;
     }
-
 }
