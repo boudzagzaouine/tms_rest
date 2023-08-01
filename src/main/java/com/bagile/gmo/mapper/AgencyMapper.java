@@ -15,7 +15,7 @@ public class AgencyMapper {
         map.put("code", "usrAgencyCode");
         map.put("description", "usrAgencyDescription");
         map.put("zone", "usrAgencyZone");
-        map.put("user", "usrAgencyUser");
+        map.put("responsable", "usrAgencyResponsable");
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdBy");

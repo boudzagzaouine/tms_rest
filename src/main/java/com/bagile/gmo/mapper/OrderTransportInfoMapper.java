@@ -23,6 +23,9 @@ public class OrderTransportInfoMapper {
         map.put("dateDelivery", "dateDelivery");
         map.put("orderTransport", "tmsOrderTransport");
         map.put("turnStatus", "tmsTurnStatus");
+        map.put("villeSource", "prmVilleSource");
+        map.put("villeDestination", "prmVilleDistination");
+
         map.put("trajet", "tmsTrajet");
 
         map.put("creationDate", "creationDate");
