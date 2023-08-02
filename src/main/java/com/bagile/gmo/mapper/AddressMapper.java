@@ -54,6 +54,7 @@ public class AddressMapper {
         map.put("delivery","addAddressDelivery");
 
         map.put("account","cmdAccount");
+        map.put("ville","prmVille");
         map.put("company","cmdCompany");
 
     }
