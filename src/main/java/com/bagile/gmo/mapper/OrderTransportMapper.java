@@ -23,6 +23,7 @@ public class  OrderTransportMapper {
         map.put("date", "tmsOrderTransportDate");
         map.put("loadingType", "tmsOrderTransportLoadingType");
         map.put("trajet", "tmsTrajet");
+        map.put("user", "usrUser");
 
         map.put("transport", "trpTransport");
         map.put("turnType", "tmsOrderTransportType");
@@ -85,6 +86,7 @@ public class  OrderTransportMapper {
             tmsOrderTransport.setTmsOrderTransportMarchandiseType(MarchandiseTypeMapper.toEntity(orderTransport.getMarchandiseType(), true));
             tmsOrderTransport.setOrderTransportServiceCatalogs(TransportPlanServiceCatalogMapper.toEntities(orderTransport.getOrderTransportServiceCatalogs(), false));
             tmsOrderTransport.setTmsOrderTransportAccompaniments(OrderTransportAccompanimentMapper.toEntities(orderTransport.getOrderTransportAccompaniments(), false));
+            tmsOrderTransport.setUsrUser(UserMapper.toEntity(orderTransport.getUser(), false));
 
 //           tmsOrderTransport.setTmsOrderTransportInfoAller(OrderTransportInfoMapper.toEntity(orderTransport.getOrderTransportInfoAller(), false));
          //  tmsOrderTransport.setTmsOrderTransportInfoRetour(OrderTransportInfoMapper.toEntity(orderTransport.getOrderTransportInfoRetour(), false));
@@ -156,6 +158,7 @@ public class  OrderTransportMapper {
             orderTransport.setMarchandiseType(MarchandiseTypeMapper.toDto(tmsOrderTransport.getTmsOrderTransportMarchandiseType(), true));
             orderTransport.setOrderTransportServiceCatalogs(TransportPlanServiceCatalogMapper.toDtos(tmsOrderTransport.getOrderTransportServiceCatalogs(), false));
             orderTransport.setOrderTransportAccompaniments(OrderTransportAccompanimentMapper.toDtos(tmsOrderTransport.getTmsOrderTransportAccompaniments(), false));
+            orderTransport.setUser(UserMapper.toDto(tmsOrderTransport.getUsrUser(), false));
 
           // orderTransport.setOrderTransportInfoAller(OrderTransportInfoMapper.toDto(tmsOrderTransport.getTmsOrderTransportInfoAller(), false));
            //orderTransport.setOrderTransportInfoRetour(OrderTransportInfoMapper.toDto(tmsOrderTransport.getTmsOrderTransportInfoRetour(), false));

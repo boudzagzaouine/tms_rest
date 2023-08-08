@@ -62,6 +62,7 @@ public class OrderTransport {
 	private List<TransportPlanServiceCatalog> orderTransportServiceCatalogs = new ArrayList<>();
 	private List<OrderTransportAccompaniment> orderTransportAccompaniments = new ArrayList<>();
 
+	private User user;
 
 	public long getId() {
 		return id;
@@ -88,6 +89,14 @@ public class OrderTransport {
 
 	public void setTrajet(Trajet trajet) {
 		this.trajet = trajet;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Date getDate() {

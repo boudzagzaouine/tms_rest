@@ -133,7 +133,7 @@ public class TransportPlanMapper {
         transportPlan.setDateFinir(tmsTransportPlan.getTmsTransportPlanDateFinir());
         if (!lazy) {
             transportPlan.setOrderTransport(OrderTransportMapper.toDto(tmsTransportPlan.getTmsOrderTransport(), false));
-            transportPlan.setVehicle(VehicleMapper.toDto(tmsTransportPlan.getGmoVehicle(), true));
+            transportPlan.setVehicle(VehicleMapper.toDto(tmsTransportPlan.getGmoVehicle(), false));
             transportPlan.setDriver(DriverMapper.toDto(tmsTransportPlan.getGmoDriver(), true));
             transportPlan.setVehicleCategory(VehicleCategoryMapper.toDto(tmsTransportPlan.getGmoVehicleCategory(), true));
             transportPlan.setTransport(TransportMapper.toDto(tmsTransportPlan.getTrpTransport(), true));

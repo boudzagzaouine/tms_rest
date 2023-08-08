@@ -161,7 +161,7 @@ public class CriteriaPredicate {
         if (Long.TYPE == type || Long.class == type || Integer.TYPE == type || Integer.class == type || Short.class == type || Short.TYPE == type) {
             NumberPath<Long> path = entityPath.getNumber(criteria.getKey(),
                     Long.class);
-            if (criteria.getOperation().equals("^")) {
+            if (criteria.getOperation().equals("?")) {
                 String[] split = criteria.getValue().toString().split(";");
                 ArrayList<Long> numbers = new ArrayList<Long>();
                 for (int i = 0; i < split.length; i++) {

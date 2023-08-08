@@ -57,6 +57,8 @@ public class TmsOrderTransport extends EmsEntity {
 
     private Set<TmsOrderTransportAccompaniment> tmsOrderTransportAccompaniments = new HashSet<>();
 
+    private UsrUser usrUser;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "seq_tms_ordertransport_id", allocationSize = 1)
@@ -290,6 +292,16 @@ public class TmsOrderTransport extends EmsEntity {
 
     public void setTmsOrderTransportType(TmsTurnType tmsOrderTransportType) {
         this.tmsOrderTransportType = tmsOrderTransportType;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "tms_ordertransportuserid")
+    public UsrUser getUsrUser() {
+        return usrUser;
+    }
+
+    public void setUsrUser(UsrUser usrUser) {
+        this.usrUser = usrUser;
     }
 
     @ManyToOne()
