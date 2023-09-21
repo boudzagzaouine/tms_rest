@@ -23,7 +23,7 @@ public interface OrderTransportDocumentService {
     Long size(String search) throws AttributesNotFound, ErrorType;
 
     void delete(Long id);
-
+    List<OrderTransportDocument> saveAll(List<OrderTransportDocument> orderTransportDocuments)throws ErrorType, IdNotFound, AttributesNotFound;
     void delete(OrderTransportDocument orderDocument);
     void deleteAll(List<Long> ids);
     List<OrderTransportDocument> findAll();

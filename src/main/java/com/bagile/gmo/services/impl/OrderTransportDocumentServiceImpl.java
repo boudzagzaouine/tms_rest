@@ -8,12 +8,14 @@ import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.OrderTransportDocumentMapper;
 import com.bagile.gmo.repositories.OrderTransportDocumentRepository;
 import com.bagile.gmo.services.OrderTransportDocumentService;
+import com.bagile.gmo.util.EmsDate;
 import com.bagile.gmo.util.Search;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -95,7 +97,13 @@ public class OrderTransportDocumentServiceImpl implements OrderTransportDocument
     public List<OrderTransportDocument> findAll() {
         return OrderTransportDocumentMapper.toDtos(orderTransportDocumentRepository.findAll(), false);
     }
-
+    public List<OrderTransportDocument> saveAll(List<OrderTransportDocument> orderTransportDocuments) throws ErrorType, IdNotFound, AttributesNotFound {
+        List<OrderTransportDocument> orderTransportDocumentsList = new ArrayList<>();
+        for (OrderTransportDocument orderTransportDocument : orderTransportDocuments){
+             OrderTransportDocumentMapper.toDto(orderTransportDocumentRepository.saveAndFlush(OrderTransportDocumentMapper.toEntity(orderTransportDocument, false)), false);
+        }
+        return orderTransportDocumentsList;
+    }
     @Override
     public List<OrderTransportDocument> findAll(int page, int size) {
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");

@@ -95,7 +95,11 @@ public class OrderTransportDocumentController {
     public void delete(@PathVariable Long id) {
         orderTransportDocumentService.delete(id);
     }
-
+    @RequestMapping(value = "/saveAll", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<OrderTransportDocument> addAll(@RequestBody List<OrderTransportDocument> orderTransportDocuments  ) throws ErrorType, IdNotFound, AttributesNotFound{
+        return orderTransportDocumentService.saveAll(orderTransportDocuments);
+    }
 
     @RequestMapping(value = "/deleteAll", method = RequestMethod.DELETE)
     @ResponseBody
