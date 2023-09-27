@@ -60,6 +60,7 @@ public class Vehicle extends Patrimony implements Serializable {
 
     private VehicleTray vehicleTray;
     private BrandVehicleType brandVehicleType;
+    private String codeRegistrationNumber; // local
 
     private Double latitude;
     private Double longitude;
@@ -79,6 +80,11 @@ public class Vehicle extends Patrimony implements Serializable {
         this.id = id;
     }
 */
+
+    public String getCodeRegistrationNumber() {
+        return this.getCode() +" - "+this.registrationNumber;
+    }
+
     public String getRegistrationNumber() {
         return registrationNumber;
     }

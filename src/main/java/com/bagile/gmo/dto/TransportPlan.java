@@ -12,7 +12,11 @@ public class TransportPlan extends EmsDto implements Serializable {
 
     private OrderTransport orderTransport;
     private Vehicle vehicle ;
+    private String vehicleExterne;
+
     private Driver driver;
+    private String driverExterne;
+
     private VehicleCategory vehicleCategory;
     private Transport  transport;
     private Account account;
@@ -76,6 +80,22 @@ public class TransportPlan extends EmsDto implements Serializable {
 
     public void setOrderTransport(OrderTransport orderTransport) {
         this.orderTransport = orderTransport;
+    }
+
+    public String getVehicleExterne() {
+        return vehicleExterne;
+    }
+
+    public void setVehicleExterne(String vehicleExterne) {
+        this.vehicleExterne = vehicleExterne;
+    }
+
+    public String getDriverExterne() {
+        return driverExterne;
+    }
+
+    public void setDriverExterne(String driverExterne) {
+        this.driverExterne = driverExterne;
     }
 
     public Account getAccount() {

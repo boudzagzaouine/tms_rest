@@ -117,7 +117,7 @@ public class TmsOrderTransportInfoLineDocument extends EmsEntity {
         this.tmsDocumentStatus = tmsDocumentStatus;
     }
 
-    @OneToMany(mappedBy = "tmsOrderTransportInfoLineDocument", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "tmsOrderTransportInfoLineDocument", cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
     public Set<TmsOrderTransportDocument> getTmsOrderTransportDocumentSet() {
         return tmsOrderTransportDocumentSet;
     }

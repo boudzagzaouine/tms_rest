@@ -26,6 +26,8 @@ public class TransportPlanMapper {
         map.put("dateDepart", "tmsTransportPlanDateDepart");
         map.put("dateFinir", "tmsTransportPlanDateFinir");
         map.put("transport", "trpTransport");
+        map.put("account", "cmdAccount");
+
         map.put("turnType", "tmsTransportPlanType");
         map.put("turnStatus", "tmsTurnStatus");
         map.put("creationDate", "creationDate");
@@ -70,6 +72,10 @@ public class TransportPlanMapper {
         tmsTransportPlan.setTmsTransportPlanTotalServiceTTC(transportPlan.getTotalServiceTTC());
         tmsTransportPlan.setTmsTransportPlanTotalServiceVAT(transportPlan.getTotalServiceVat());
         tmsTransportPlan.setTmsTransportPlanDateFinir(transportPlan.getDateFinir());
+
+        tmsTransportPlan.setGmoDriverExterne(transportPlan.getDriverExterne());
+        tmsTransportPlan.setGmoVehicleExterne(transportPlan.getVehicleExterne());
+
         if (!lazy) {
             tmsTransportPlan.setTmsOrderTransport(OrderTransportMapper.toEntity(transportPlan.getOrderTransport(), false));
             tmsTransportPlan.setGmoVehicle(VehicleMapper.toEntity(transportPlan.getVehicle(), true));
@@ -131,6 +137,10 @@ public class TransportPlanMapper {
         transportPlan.setTotalServiceTTC(tmsTransportPlan.getTmsTransportPlanTotalServiceTTC());
         transportPlan.setTotalServiceVat(tmsTransportPlan.getTmsTransportPlanTotalServiceVAT());
         transportPlan.setDateFinir(tmsTransportPlan.getTmsTransportPlanDateFinir());
+
+        transportPlan.setDriverExterne(tmsTransportPlan.getGmoDriverExterne());
+        transportPlan.setVehicleExterne(tmsTransportPlan.getGmoVehicleExterne());
+
         if (!lazy) {
             transportPlan.setOrderTransport(OrderTransportMapper.toDto(tmsTransportPlan.getTmsOrderTransport(), false));
             transportPlan.setVehicle(VehicleMapper.toDto(tmsTransportPlan.getGmoVehicle(), false));

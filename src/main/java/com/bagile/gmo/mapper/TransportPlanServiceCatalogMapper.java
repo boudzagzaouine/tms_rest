@@ -76,6 +76,7 @@ public class TransportPlanServiceCatalogMapper {
               tmsTransporPlanService.setOwnOwner(OwnerMapper.toEntity(transporPlanService.getOwner(),true));
 
               tmsTransporPlanService.setTmsOrderTransport(OrderTransportMapper.toEntity(transporPlanService.getOrderTransport(),true));
+              tmsTransporPlanService.setAdrAddress(AddressMapper.toEntity(transporPlanService.getAddress(),true));
 
           }
 
@@ -126,7 +127,9 @@ public class TransportPlanServiceCatalogMapper {
 
      transporPlanService.setOrderTransport(OrderTransportMapper.toDto(tmsTransporPlanService.getTmsOrderTransport(),true));
 
- }
+            transporPlanService.setAddress(AddressMapper.toDto(tmsTransporPlanService.getAdrAddress(),true));
+
+        }
         return transporPlanService;
 
     }

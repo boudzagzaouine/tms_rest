@@ -13,7 +13,10 @@ public class TmsTransportPlan extends EmsEntity {
     private TmsOrderTransport tmsOrderTransport;
     private CmdAccount cmdAccount;
     private GmoVehicle gmoVehicle;
+    private String gmoVehicleExterne;
     private GmoDriver gmoDriver;
+    private String gmoDriverExterne;
+
     private GmoVehicleCategory gmoVehicleCategory;
     private TrpTransport trpTransport;
 
@@ -110,6 +113,25 @@ public class TmsTransportPlan extends EmsEntity {
     public void setTmsTransportPlanDateFinir(Date tmsTransportPlanDateFinir) {
         this.tmsTransportPlanDateFinir = tmsTransportPlanDateFinir;
     }
+
+    @Column(name = "tms_transportplanvehicleexterne")
+    public String getGmoVehicleExterne() {
+        return gmoVehicleExterne;
+    }
+
+    public void setGmoVehicleExterne(String gmoVehicleExterne) {
+        this.gmoVehicleExterne = gmoVehicleExterne;
+    }
+
+    @Column(name = "tms_transportplandriverexterne")
+    public String getGmoDriverExterne() {
+        return gmoDriverExterne;
+    }
+
+    public void setGmoDriverExterne(String gmoDriverExterne) {
+        this.gmoDriverExterne = gmoDriverExterne;
+    }
+
     @ManyToOne()
     @JoinColumn(name = "tms_cmdaccount")
     public CmdAccount getCmdAccount() {

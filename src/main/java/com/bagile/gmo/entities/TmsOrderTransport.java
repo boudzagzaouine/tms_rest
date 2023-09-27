@@ -78,7 +78,7 @@ public class TmsOrderTransport extends EmsEntity {
     public void setTmsOrderTransportNumberKm(BigDecimal tmsOrderTransportNumberKm) {
         this.tmsOrderTransportNumberKm = tmsOrderTransportNumberKm;
     }
-    @Column(name = "tms_ordertransportcode",nullable = false)
+    @Column(name = "tms_ordertransportcode",unique = true,nullable = false)
     public String getTmsOrderTransportCode() {
         return tmsOrderTransportCode;
     }

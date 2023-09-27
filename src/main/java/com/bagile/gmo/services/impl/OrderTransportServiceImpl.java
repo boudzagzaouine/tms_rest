@@ -1,26 +1,33 @@
 package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.OrderTransport;
+import com.bagile.gmo.dto.OrderTransportInfo;
 import com.bagile.gmo.entities.TmsOrderTransport;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.OrderTransportMapper;
 import com.bagile.gmo.repositories.OrderTransportRepository;
+import com.bagile.gmo.services.OrderTransportInfoService;
 import com.bagile.gmo.services.OrderTransportService;
 import com.bagile.gmo.util.Search;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
 public class OrderTransportServiceImpl implements OrderTransportService {
     
     private final OrderTransportRepository orderDeliveryRepository;
+
+    @Autowired
+    private OrderTransportInfoService orderTransportInfoService;
 
     public OrderTransportServiceImpl(OrderTransportRepository orderDeliveryRepository) {
         this.orderDeliveryRepository = orderDeliveryRepository;
@@ -74,7 +81,16 @@ public class OrderTransportServiceImpl implements OrderTransportService {
 
     @Override
     public void delete(Long id) {
-        orderDeliveryRepository.deleteById(id);
+        try {
+           List<Long> orderTransportInfos =orderTransportInfoService.find("orderTransport.id:"+id).stream().map(m-> m.getId()).collect(Collectors.toList());
+            orderTransportInfoService.deleteAll(orderTransportInfos);
+            orderDeliveryRepository.deleteById(id);
+
+        } catch (AttributesNotFound e) {
+            throw new RuntimeException(e);
+        } catch (ErrorType e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -87,7 +103,7 @@ public class OrderTransportServiceImpl implements OrderTransportService {
     public void deleteAll(List<Long> ids) {
 
         for (Long id : ids) {
-            orderDeliveryRepository.deleteById(id);        }
+            delete(id);        }
     }
 
 

@@ -15,6 +15,7 @@ public class TransportPlanServiceCatalog extends EmsDto implements Serializable 
     private Transport transport;
 
     private Account account;
+    private Address address;
     private Boolean invoice;
     private BigDecimal purchasePriceHT;
     private Vat purchaseVat;
@@ -65,6 +66,14 @@ private OrderTransport orderTransport;
 
     public Transport getTransport() {
         return transport;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public BigDecimal getTotalSalePriceHT() {

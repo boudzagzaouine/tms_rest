@@ -1,5 +1,6 @@
 package com.bagile.gmo.services.impl;
 
+import com.bagile.gmo.dto.Address;
 import com.bagile.gmo.dto.Company;
 import com.bagile.gmo.dto.Transport;
 import com.bagile.gmo.entities.TrpTransport;
@@ -32,6 +33,9 @@ public class TransportServiceImpl implements TransportService, GmaoSearch {
     private CatalogTransportAccountPricingService catalogTransportAccountPricingService;
     @Autowired
     private TransportServiceService transportServiceService;
+
+    @Autowired
+    private AddressService addressService;
     public TransportServiceImpl(TransportRepository transportRepository) {
         this.transportRepository = transportRepository;
     }
@@ -45,6 +49,11 @@ public class TransportServiceImpl implements TransportService, GmaoSearch {
         if(transport.getInterneOrExterne()==null){
             transport.setInterneOrExterne(false);
         }
+
+//        if(transport.getAddress().getLine1()!=null){
+//           Address address= addressService.save(transport.getAddress());
+//            transport.setAddress(address);
+//        }
 
         Transport transport1 =  TransportMapper.toDto(transportRepository.saveAndFlush(TransportMapper.toEntity(transport, false)), false);
         if(transport.getId()<=0) {
