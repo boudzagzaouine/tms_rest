@@ -53,6 +53,7 @@ public class OrderTransportInfoLine {
 	private BigDecimal priceHT;
 	private Vat vat ;
 	private BigDecimal priceTTC;
+//	private List<OrderTransportInfoLineDocument> orderTransportInfoLineDocuments = new ArrayList();
 
 	public Date getDateArriver() {
 		return dateArriver;
@@ -94,7 +95,6 @@ public class OrderTransportInfoLine {
 		this.dateFinChargement = dateFinChargement;
 	}
 
-	private List<OrderTransportInfoLineDocument> orderTransportInfoLineDocuments = new ArrayList();
 
 	public long getId() {
 		return id;
@@ -167,13 +167,13 @@ public class OrderTransportInfoLine {
 		this.contreFactureEnlevement = contreFactureEnlevement;
 	}
 
-	public List<OrderTransportInfoLineDocument> getOrderTransportInfoLineDocuments() {
-		return orderTransportInfoLineDocuments;
-	}
+	//public List<OrderTransportInfoLineDocument> getOrderTransportInfoLineDocuments() {
+//		return orderTransportInfoLineDocuments;
+//	}
 
-	public void setOrderTransportInfoLineDocuments(List<OrderTransportInfoLineDocument> orderTransportInfoLineDocuments) {
-		this.orderTransportInfoLineDocuments = orderTransportInfoLineDocuments;
-	}
+//	public void setOrderTransportInfoLineDocuments(List<OrderTransportInfoLineDocument> orderTransportInfoLineDocuments) {
+//		this.orderTransportInfoLineDocuments = orderTransportInfoLineDocuments;
+//	}
 
 	public Date getDateEnlevement() {
 		return dateEnlevement;

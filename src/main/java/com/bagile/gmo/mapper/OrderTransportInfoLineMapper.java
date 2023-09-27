@@ -95,10 +95,10 @@ public class OrderTransportInfoLineMapper {
             tmsOrderTransportInfoLine.setTmsTurnStatus(TurnStatusMapper.toEntity(orderTransportInfoLine.getTurnStatus(), true));
             tmsOrderTransportInfoLine.setPrmPaymentTypeEnlevement(PaymentTypeMapper.toEntity(orderTransportInfoLine.getPaymentTypeEnlevement(), true));
             tmsOrderTransportInfoLine.setPrmPaymentTypeLivraison(PaymentTypeMapper.toEntity(orderTransportInfoLine.getPaymentTypeLivraison(), true));
-            tmsOrderTransportInfoLine.setTmsOrderTransportInfoLineDocumentSet(OrderTransportInfoLineDocumentMapper.toEntities(orderTransportInfoLine.getOrderTransportInfoLineDocuments(), false));
+            //tmsOrderTransportInfoLine.setTmsOrderTransportInfoLineDocumentSet(OrderTransportInfoLineDocumentMapper.toEntities(orderTransportInfoLine.getOrderTransportInfoLineDocuments(), false));
 
             tmsOrderTransportInfoLine.setTmsOrderTransportLineVat(VatMapper.toEntity(orderTransportInfoLine.getVat(), false));
-            oneToMany(tmsOrderTransportInfoLine);
+           // oneToMany(tmsOrderTransportInfoLine);
 
 
 
@@ -108,15 +108,15 @@ public class OrderTransportInfoLineMapper {
 
     }
 
-    private static void oneToMany(TmsOrderTransportInfoLine tmsOrderTransportInfoLine){
-        tmsOrderTransportInfoLine.getTmsOrderTransportInfoLineDocumentSet().forEach(
-                e->{
-                    if(0>=e.getTmsOrderTransportInfoLineDocumentId())
-                        e.setTmsOrderTransportInfoLineDocumentId(0L);
-                    e.setCreationDate(new Date());
-                    e.setTmsOrderTransportInfoLine(tmsOrderTransportInfoLine);
-                }
-        );}
+    //private static void oneToMany(TmsOrderTransportInfoLine tmsOrderTransportInfoLine){
+      //  tmsOrderTransportInfoLine.getTmsOrderTransportInfoLineDocumentSet().forEach(
+         //       e->{
+           //         if(0>=e.getTmsOrderTransportInfoLineDocumentId())
+           //             e.setTmsOrderTransportInfoLineDocumentId(0L);
+             //       e.setCreationDate(new Date());
+               //     e.setTmsOrderTransportInfoLine(tmsOrderTransportInfoLine);
+                //}
+        //);}
 
 
     public static OrderTransportInfoLine toDto(TmsOrderTransportInfoLine tmsOrderTransportInfoLine, boolean lazy) {
@@ -170,7 +170,7 @@ public class OrderTransportInfoLineMapper {
             orderTransportInfoLine.setTurnStatus(TurnStatusMapper.toDto(tmsOrderTransportInfoLine.getTmsTurnStatus(), true));
             orderTransportInfoLine.setPaymentTypeEnlevement(PaymentTypeMapper.toDto(tmsOrderTransportInfoLine.getPrmPaymentTypeEnlevement(), true));
             orderTransportInfoLine.setPaymentTypeLivraison(PaymentTypeMapper.toDto(tmsOrderTransportInfoLine.getPrmPaymentTypeLivraison(), true));
-            orderTransportInfoLine.setOrderTransportInfoLineDocuments(OrderTransportInfoLineDocumentMapper.toDtos(tmsOrderTransportInfoLine.getTmsOrderTransportInfoLineDocumentSet(), false));
+         //   orderTransportInfoLine.setOrderTransportInfoLineDocuments(OrderTransportInfoLineDocumentMapper.toDtos(tmsOrderTransportInfoLine.getTmsOrderTransportInfoLineDocumentSet(), false));
 
             orderTransportInfoLine.setVat(VatMapper.toDto(tmsOrderTransportInfoLine.getTmsOrderTransportLineVat(), false));
 

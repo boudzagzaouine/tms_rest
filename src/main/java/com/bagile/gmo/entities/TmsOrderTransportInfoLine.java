@@ -61,7 +61,7 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
     private PrmVat tmsOrderTransportLineVat;
     private  BigDecimal tmsOrderTransportLinePriceTTC;
 
-    private Set<TmsOrderTransportInfoLineDocument> tmsOrderTransportInfoLineDocumentSet = new HashSet<>();
+    //private Set<TmsOrderTransportInfoLineDocument> tmsOrderTransportInfoLineDocumentSet = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -277,15 +277,15 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
         this.prmPaymentTypeLivraison = prmPaymentTypeLivraison;
     }
 
-    @OneToMany(mappedBy = "tmsOrderTransportInfoLine", cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+   // @OneToMany(mappedBy = "tmsOrderTransportInfoLine", cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
 
-    public Set<TmsOrderTransportInfoLineDocument> getTmsOrderTransportInfoLineDocumentSet() {
-        return tmsOrderTransportInfoLineDocumentSet;
-    }
+    //public Set<TmsOrderTransportInfoLineDocument> getTmsOrderTransportInfoLineDocumentSet() {
+      //  return tmsOrderTransportInfoLineDocumentSet;
+    //}
 
-    public void setTmsOrderTransportInfoLineDocumentSet(Set<TmsOrderTransportInfoLineDocument> tmsOrderTransportInfoLineDocumentSet) {
-        this.tmsOrderTransportInfoLineDocumentSet = tmsOrderTransportInfoLineDocumentSet;
-    }
+    //public void setTmsOrderTransportInfoLineDocumentSet(Set<TmsOrderTransportInfoLineDocument> tmsOrderTransportInfoLineDocumentSet) {
+      //  this.tmsOrderTransportInfoLineDocumentSet = tmsOrderTransportInfoLineDocumentSet;
+    //}
 
     @ManyToOne()
     @JoinColumn(name = "tms_turnstatusid")
