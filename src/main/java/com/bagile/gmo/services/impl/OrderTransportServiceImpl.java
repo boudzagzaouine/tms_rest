@@ -1,15 +1,13 @@
 package com.bagile.gmo.services.impl;
 
-import com.bagile.gmo.dto.OrderTransport;
-import com.bagile.gmo.dto.OrderTransportInfo;
+import com.bagile.gmo.dto.*;
 import com.bagile.gmo.entities.TmsOrderTransport;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.OrderTransportMapper;
 import com.bagile.gmo.repositories.OrderTransportRepository;
-import com.bagile.gmo.services.OrderTransportInfoService;
-import com.bagile.gmo.services.OrderTransportService;
+import com.bagile.gmo.services.*;
 import com.bagile.gmo.util.Search;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -28,7 +26,12 @@ public class OrderTransportServiceImpl implements OrderTransportService {
 
     @Autowired
     private OrderTransportInfoService orderTransportInfoService;
-
+    @Autowired
+    private OrderTransportInfoLineService orderTransportInfoLineService;
+    @Autowired
+    private OrderTransportInfoLineDocumentService orderTransportInfoLineDocumentService;
+    @Autowired
+    private OrderTransportDocumentService orderTransportDocumentService;
     public OrderTransportServiceImpl(OrderTransportRepository orderDeliveryRepository) {
         this.orderDeliveryRepository = orderDeliveryRepository;
     }
@@ -60,6 +63,71 @@ public class OrderTransportServiceImpl implements OrderTransportService {
         }
         return OrderTransportMapper.toDtos(orderDeliveryRepository.findAll(Search.expression(search, TmsOrderTransport.class)), false);
     }
+
+    @Override
+    public OrderTransport getOrderTransport(String search) throws AttributesNotFound, ErrorType {
+      List<OrderTransport> orderTransports =  OrderTransportMapper.toDtos(orderDeliveryRepository.findAll(Search.expression(search, TmsOrderTransport.class)), false);
+      OrderTransport orderTransport = orderTransports.get(0);
+        List<OrderTransportInfo> orderTransportInfos=orderTransportInfoService.find("orderTransport.id:"+orderTransport.getId());
+
+             if(orderTransportInfos.size()>0)   {
+
+                 orderTransport.setOrderTransportInfos(orderTransportInfos);
+
+                 orderTransport.getOrderTransportInfos().forEach(info->{
+                     try {
+                          List<OrderTransportInfoLine> orderTransportInfoLines=orderTransportInfoLineService.find("orderTransportInfo.id:"+info.getId());
+                         orderTransportInfoLines.forEach(line->{
+                             try {
+                                 List<OrderTransportInfoLineDocument> orderTransportInfoLineDocuments=orderTransportInfoLineDocumentService.find("orderTransportInfoLine.id:"+line.getId());
+
+
+                                 orderTransportInfoLineDocuments.forEach(document-> {
+
+                                     try {
+                                         List<OrderTransportDocument> orderTransportDocuments=orderTransportDocumentService.find("orderTransportInfoLineDocument.id:"+document.getId());
+
+                                         document.setOrderTransportDocumentList(orderTransportDocuments);
+
+                                     } catch (AttributesNotFound e) {
+                                         throw new RuntimeException(e);
+                                     } catch (ErrorType e) {
+                                         throw new RuntimeException(e);
+                                     }
+
+
+                                 });
+
+                                 line.setOrderTransportInfoLineDocuments(orderTransportInfoLineDocuments);
+
+                                 } catch (AttributesNotFound e) {
+                                 throw new RuntimeException(e);
+                             } catch (ErrorType e) {
+                                 throw new RuntimeException(e);
+                             }
+
+
+                         });
+
+
+                         info.setOrderTransportInfoLines(orderTransportInfoLines);
+
+
+                     } catch (AttributesNotFound e) {
+                         throw new RuntimeException(e);
+                     } catch (ErrorType e) {
+                         throw new RuntimeException(e);
+                     }
+
+                 });
+
+             }
+
+
+
+        return orderTransport;
+    }
+
 
     @Override
     public List<OrderTransport> find(String search, int page, int size) throws AttributesNotFound, ErrorType {

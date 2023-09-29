@@ -20,7 +20,7 @@ public class TmsOrderTransportInfo extends EmsEntity {
     private TmsAddressContactOrderTransportInfo tmsAddressContactOrderTransportInitial;
     private TmsAddressContactOrderTransportInfo tmsAddressContactOrderTransportFinal;
 
-    private Set<TmsOrderTransportInfoLine> tmsOrderTransportInfoLines=new HashSet<>();
+    //private Set<TmsOrderTransportInfoLine> tmsOrderTransportInfoLines=new HashSet<>();
 
     private BigDecimal tmsOrderTransportInfoWeight;
     private BigDecimal tmsOrderTransportInfoCapacity;
@@ -129,7 +129,7 @@ public class TmsOrderTransportInfo extends EmsEntity {
     }
 
 
-
+/*
     @OneToMany(mappedBy = "tmsOrderTransportInfo",cascade =CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
     public Set<TmsOrderTransportInfoLine> getTmsOrderTransportInfoLines() {
         return tmsOrderTransportInfoLines;
@@ -137,7 +137,7 @@ public class TmsOrderTransportInfo extends EmsEntity {
 
     public void setTmsOrderTransportInfoLines(Set<TmsOrderTransportInfoLine> tmsOrderTransportInfoLines) {
         this.tmsOrderTransportInfoLines = tmsOrderTransportInfoLines;
-    }
+    }*/
 
     @Embedded
     @AttributeOverrides({

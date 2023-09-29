@@ -61,6 +61,7 @@ public class OrderTransport {
 	private Owner owner;
 	private List<TransportPlanServiceCatalog> orderTransportServiceCatalogs = new ArrayList<>();
 	private List<OrderTransportAccompaniment> orderTransportAccompaniments = new ArrayList<>();
+	private List<OrderTransportInfo> orderTransportInfos = new ArrayList<>();;
 
 	private User user;
 
@@ -89,6 +90,14 @@ public class OrderTransport {
 
 	public void setTrajet(Trajet trajet) {
 		this.trajet = trajet;
+	}
+
+	public List<OrderTransportInfo> getOrderTransportInfos() {
+		return orderTransportInfos;
+	}
+
+	public void setOrderTransportInfos(List<OrderTransportInfo> orderTransportInfos) {
+		this.orderTransportInfos = orderTransportInfos;
 	}
 
 	public User getUser() {

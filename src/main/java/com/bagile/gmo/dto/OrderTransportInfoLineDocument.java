@@ -54,11 +54,10 @@ public class OrderTransportInfoLineDocument {
 	}
 
 	public List<OrderTransportDocument> getOrderTransportDocumentList() {
-		return orderTransportDocumentList;
-	}
+	return orderTransportDocumentList;	}
 
 	public void setOrderTransportDocumentList(List<OrderTransportDocument> orderTransportDocumentList) {
-		this.orderTransportDocumentList = orderTransportDocumentList;
+	this.orderTransportDocumentList = orderTransportDocumentList;
 	}
 
 	public Long getDocumentStatus() {

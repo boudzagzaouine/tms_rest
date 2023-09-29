@@ -27,7 +27,7 @@ public class TmsOrderTransportInfoLineDocument extends EmsEntity {
 
    private TmsOrderTransportInfoLine tmsOrderTransportInfoLine;
 
-   private Set<TmsOrderTransportDocument> tmsOrderTransportDocumentSet = new HashSet<>();
+    // private Set<TmsOrderTransportDocument> tmsOrderTransportDocumentSet = new HashSet<>();
   private Long  tmsDocumentStatus;
     private OwnOwner ownOwner;
 
@@ -117,14 +117,14 @@ public class TmsOrderTransportInfoLineDocument extends EmsEntity {
         this.tmsDocumentStatus = tmsDocumentStatus;
     }
 
-    @OneToMany(mappedBy = "tmsOrderTransportInfoLineDocument", cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
-    public Set<TmsOrderTransportDocument> getTmsOrderTransportDocumentSet() {
-        return tmsOrderTransportDocumentSet;
-    }
+    //@OneToMany(mappedBy = "tmsOrderTransportInfoLineDocument", cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+    // public Set<TmsOrderTransportDocument> getTmsOrderTransportDocumentSet() {
+    //      return tmsOrderTransportDocumentSet;
+    // }
 
-    public void setTmsOrderTransportDocumentSet(Set<TmsOrderTransportDocument> tmsOrderTransportDocumentSet) {
-        this.tmsOrderTransportDocumentSet = tmsOrderTransportDocumentSet;
-    }
+    //  public void setTmsOrderTransportDocumentSet(Set<TmsOrderTransportDocument> tmsOrderTransportDocumentSet) {
+        //      this.tmsOrderTransportDocumentSet = tmsOrderTransportDocumentSet;
+        //  }
 
     @ManyToOne()
     @JoinColumn(name="tms_ordertransportinfolineid")

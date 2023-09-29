@@ -18,6 +18,8 @@ public interface OrderTransportService {
 
     List<OrderTransport> find(String search) throws AttributesNotFound, ErrorType;
 
+   OrderTransport getOrderTransport(String search) throws AttributesNotFound, ErrorType;
+
     List<OrderTransport> find(String search, int page, int size) throws AttributesNotFound, ErrorType;
 
     Long size(String search) throws AttributesNotFound, ErrorType;

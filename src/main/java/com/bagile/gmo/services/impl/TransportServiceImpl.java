@@ -62,6 +62,7 @@ public class TransportServiceImpl implements TransportService, GmaoSearch {
                         element -> element.setTransport(transport1)
                 );
                 this.catalogTransportPricingService.saveAll(transport.getCatalogTransportPricings());
+
             }
             if (transport.getCatalogTransportAccountPricings() != null) {
                 transport.getCatalogTransportAccountPricings().forEach(

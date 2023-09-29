@@ -1,5 +1,6 @@
 package com.bagile.gmo.services.impl;
 
+import com.bagile.gmo.dto.CatalogTransportPricing;
 import com.bagile.gmo.dto.OrderTransportInfoLineDocument;
 import com.bagile.gmo.entities.TmsOrderTransportInfoLineDocument;
 import com.bagile.gmo.exceptions.AttributesNotFound;
@@ -8,13 +9,16 @@ import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.OrderTransportInfoLineDocumentMapper;
 import com.bagile.gmo.repositories.OrderTransportInfoLineDocumentRepository;
 import com.bagile.gmo.services.DocumentService;
+import com.bagile.gmo.services.OrderTransportDocumentService;
 import com.bagile.gmo.services.OrderTransportInfoLineDocumentService;
 import com.bagile.gmo.util.Search;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,15 +27,49 @@ public class OrderTransportInfoLineDocumentServiceImpl implements OrderTransport
 
     private final OrderTransportInfoLineDocumentRepository orderTransportInfoLineDocumentRepository;
 
+    @Autowired
+    private OrderTransportDocumentService orderTransportDocumentService;
+
     public OrderTransportInfoLineDocumentServiceImpl(OrderTransportInfoLineDocumentRepository orderTransportInfoLineDocumentRepository) {
         this.orderTransportInfoLineDocumentRepository = orderTransportInfoLineDocumentRepository;
     }
 
     @Override
     public OrderTransportInfoLineDocument save(OrderTransportInfoLineDocument orderTransportInfoLineDocument) {
-        return OrderTransportInfoLineDocumentMapper.toDto(orderTransportInfoLineDocumentRepository.saveAndFlush(OrderTransportInfoLineDocumentMapper.toEntity(orderTransportInfoLineDocument, false)), false);
+           OrderTransportInfoLineDocument infoLineDocument = OrderTransportInfoLineDocumentMapper.toDto(orderTransportInfoLineDocumentRepository.saveAndFlush(OrderTransportInfoLineDocumentMapper.toEntity(orderTransportInfoLineDocument, false)), false);
+
+
+        if(orderTransportInfoLineDocument.getOrderTransportDocumentList().size()>0) {
+            orderTransportInfoLineDocument.getOrderTransportDocumentList().forEach(document -> {
+                document.setOrderTransportInfoLineDocument(infoLineDocument);
+            });
+
+            try {
+                this.orderTransportDocumentService.saveAll(   orderTransportInfoLineDocument.getOrderTransportDocumentList());
+            } catch (ErrorType e) {
+                throw new RuntimeException(e);
+            } catch (IdNotFound e) {
+                throw new RuntimeException(e);
+            } catch (AttributesNotFound e) {
+                throw new RuntimeException(e);
+            }
+
+        }
+        return infoLineDocument;
     }
 
+    @Override
+    public List<OrderTransportInfoLineDocument> saveAll(List<OrderTransportInfoLineDocument> orderTransportInfoLineDocuments) throws AttributesNotFound, ErrorType {
+
+        List<OrderTransportInfoLineDocument> orderTransportInfoLineDocumentList = new ArrayList<>();
+
+        for (OrderTransportInfoLineDocument orderTransportInfoLineDocument : orderTransportInfoLineDocuments) {
+            orderTransportInfoLineDocumentList.add(save(orderTransportInfoLineDocument));
+        }
+
+        return orderTransportInfoLineDocumentList;
+
+    }
     @Override
     public Long size() {
         return orderTransportInfoLineDocumentRepository.count();

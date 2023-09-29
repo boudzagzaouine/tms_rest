@@ -31,13 +31,25 @@ public class OrderTransportInfoServiceImpl implements OrderTransportInfoService 
 
     @Override
     public OrderTransportInfo save(OrderTransportInfo orderTransportInfo) throws ErrorType, AttributesNotFound {
-       if(orderTransportInfo.getOrderTransportInfoLines()==null) {
+      OrderTransportInfo transportInfo =  OrderTransportInfoMapper.toDto(orderTransportInfoRepository.saveAndFlush(OrderTransportInfoMapper.toEntity(orderTransportInfo, false)), false);
+        if (orderTransportInfo.getOrderTransportInfoLines().size() > 0) {
+
+            orderTransportInfo.getOrderTransportInfoLines().forEach(line -> {
+                line.setOrderTransportInfo(transportInfo);
+            });
+
+
+      this.orderTransportInfoLineService.saveAll(orderTransportInfo.getOrderTransportInfoLines());
+    }
+      /* if(orderTransportInfo.getOrderTransportInfoLines()==null) {
            List<OrderTransportInfoLine> orderTransportInfoLines = this.orderTransportInfoLineService.find("orderTransportInfo.id:" + orderTransportInfo.getId());
            if (orderTransportInfoLines.size() > 0) {
                orderTransportInfo.setOrderTransportInfoLines(orderTransportInfoLines);
            }
        }
-        return OrderTransportInfoMapper.toDto(orderTransportInfoRepository.saveAndFlush(OrderTransportInfoMapper.toEntity(orderTransportInfo, false)), false);
+        */
+
+        return transportInfo;
     }
 
     @Override

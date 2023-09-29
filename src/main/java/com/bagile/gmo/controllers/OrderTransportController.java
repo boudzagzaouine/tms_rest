@@ -64,6 +64,12 @@ public class OrderTransportController {
         return orderDeliveryService.find(search);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/getOrderTransport")
+    @ResponseBody
+    public OrderTransport getOrderTransport(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
+        return orderDeliveryService.getOrderTransport(search);
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "/searchPage")
     @ResponseBody
     public List<OrderTransport> search(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {

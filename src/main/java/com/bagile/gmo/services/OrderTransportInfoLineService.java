@@ -1,5 +1,6 @@
 package com.bagile.gmo.services;
 
+import com.bagile.gmo.dto.OrderTransportInfo;
 import com.bagile.gmo.dto.OrderTransportInfoLine;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
@@ -9,6 +10,7 @@ import java.util.List;
 
 public interface OrderTransportInfoLineService {
     OrderTransportInfoLine save(OrderTransportInfoLine orderTransportInfoLine);
+    List<OrderTransportInfoLine> saveAll(List<OrderTransportInfoLine> orderTransportInfoLines) throws AttributesNotFound, ErrorType;
 
     Long size();
 

@@ -15,8 +15,6 @@ public class TransportPlanServiceCatalogMapper {
         map = new HashMap<>();
 
         map.put("id", "tmsTransporPlanServiceId");
-
-
         map.put("creationDate", "creationDate");
         map.put("updateDate", "updateDate");
         map.put("createdBy", "createdBy");

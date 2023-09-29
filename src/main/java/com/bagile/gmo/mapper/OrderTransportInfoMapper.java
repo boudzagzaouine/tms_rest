@@ -73,7 +73,7 @@ public class OrderTransportInfoMapper {
             tmsOrderTransportInfo.setTmsAddressContactOrderTransportInitial(AddressContactOrderTransportInfoMapper.toEntity(orderTransportInfo.getAddressContactInitial(), true));
             tmsOrderTransportInfo.setTmsAddressContactOrderTransportFinal(AddressContactOrderTransportInfoMapper.toEntity(orderTransportInfo.getAddressContactFinal(), true));
             tmsOrderTransportInfo.setTmsOrderTransportInfoPackagingType(PackagingTypeMapper.toEntity(orderTransportInfo.getPackagingType(), true));
-            tmsOrderTransportInfo.setTmsOrderTransportInfoLines(OrderTransportInfoLineMapper.toEntities(orderTransportInfo.getOrderTransportInfoLines(), false));
+          //  tmsOrderTransportInfo.setTmsOrderTransportInfoLines(OrderTransportInfoLineMapper.toEntities(orderTransportInfo.getOrderTransportInfoLines(), false));
             tmsOrderTransportInfo.setTmsOrderTransport(OrderTransportMapper.toEntity(orderTransportInfo.getOrderTransport(), true));
             tmsOrderTransportInfo.setTmsTurnStatus(TurnStatusMapper.toEntity(orderTransportInfo.getTurnStatus(), true));
 
@@ -106,7 +106,7 @@ public class OrderTransportInfoMapper {
             );
         }
 
-
+/*
         if(null !=tmsOrderTransportInfo.getTmsOrderTransportInfoLines()){
             tmsOrderTransportInfo.getTmsOrderTransportInfoLines().forEach(
                     tmsPackageLigne -> {
@@ -120,7 +120,7 @@ public class OrderTransportInfoMapper {
                         tmsPackageLigne.setTmsOrderTransportInfo(tmsOrderTransportInfo);
                     }
             );
-        }
+        }*/
 
 
     }
@@ -156,7 +156,7 @@ public class OrderTransportInfoMapper {
             orderTransportInfo.setAddressContactFinal(AddressContactOrderTransportInfoMapper.toDto(tmsOrderTransportInfo.getTmsAddressContactOrderTransportFinal(), true));
 
             orderTransportInfo.setPackagingType(PackagingTypeMapper.toDto(tmsOrderTransportInfo.getTmsOrderTransportInfoPackagingType(), true));
-            orderTransportInfo.setOrderTransportInfoLines(OrderTransportInfoLineMapper.toDtos(tmsOrderTransportInfo.getTmsOrderTransportInfoLines(), false));
+           // orderTransportInfo.setOrderTransportInfoLines(OrderTransportInfoLineMapper.toDtos(tmsOrderTransportInfo.getTmsOrderTransportInfoLines(), false));
             orderTransportInfo.setTurnStatus(TurnStatusMapper.toDto(tmsOrderTransportInfo.getTmsTurnStatus(), true));
 
             orderTransportInfo.setOrderTransport(OrderTransportMapper.toDto(tmsOrderTransportInfo.getTmsOrderTransport(), true));
