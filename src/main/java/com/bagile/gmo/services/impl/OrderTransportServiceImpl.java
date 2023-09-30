@@ -70,6 +70,7 @@ public class OrderTransportServiceImpl implements OrderTransportService {
       OrderTransport orderTransport = orderTransports.get(0);
         List<OrderTransportInfo> orderTransportInfos=orderTransportInfoService.find("orderTransport.id:"+orderTransport.getId());
 
+
              if(orderTransportInfos.size()>0)   {
 
                  orderTransport.setOrderTransportInfos(orderTransportInfos);
@@ -124,6 +125,19 @@ public class OrderTransportServiceImpl implements OrderTransportService {
              }
 
 
+
+             if(orderTransport.getLoadingType().getId()==1){
+                 if(orderTransport.getTurnType().getId()==1 || orderTransport.getTurnType().getId()==3) {
+                     orderTransport.setOrderTransportInfoAller(orderTransportInfos.stream().filter(f -> f.getType() == 1).collect(Collectors.toList()).stream().findFirst().get());
+                 }if(orderTransport.getTurnType().getId()==2 || orderTransport.getTurnType().getId()==3) {
+
+                     orderTransport.setOrderTransportInfoRetour(orderTransportInfos.stream().filter(f -> f.getType() == 2).collect(Collectors.toList()).stream().findFirst().get());
+                 }
+             }else if (orderTransport.getLoadingType().getId()==2){
+
+                 orderTransport.setOrderTransportInfoAller(orderTransportInfos.get(0));
+
+             }
 
         return orderTransport;
     }

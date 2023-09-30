@@ -37,8 +37,7 @@ public class OrderTransport {
 	private VehicleTray vehicleTray;
 
 	private Trajet trajet;
-	//private OrderTransportInfo orderTransportInfoAller;
-	//private OrderTransportInfo orderTransportInfoRetour;
+
 
 	private BigDecimal priceHT;
 	private Vat vat;
@@ -62,7 +61,8 @@ public class OrderTransport {
 	private List<TransportPlanServiceCatalog> orderTransportServiceCatalogs = new ArrayList<>();
 	private List<OrderTransportAccompaniment> orderTransportAccompaniments = new ArrayList<>();
 	private List<OrderTransportInfo> orderTransportInfos = new ArrayList<>();;
-
+	private OrderTransportInfo orderTransportInfoAller;
+	private OrderTransportInfo orderTransportInfoRetour;
 	private User user;
 
 	public long getId() {
@@ -98,6 +98,22 @@ public class OrderTransport {
 
 	public void setOrderTransportInfos(List<OrderTransportInfo> orderTransportInfos) {
 		this.orderTransportInfos = orderTransportInfos;
+	}
+
+	public OrderTransportInfo getOrderTransportInfoAller() {
+		return orderTransportInfoAller;
+	}
+
+	public void setOrderTransportInfoAller(OrderTransportInfo orderTransportInfoAller) {
+		this.orderTransportInfoAller = orderTransportInfoAller;
+	}
+
+	public OrderTransportInfo getOrderTransportInfoRetour() {
+		return orderTransportInfoRetour;
+	}
+
+	public void setOrderTransportInfoRetour(OrderTransportInfo orderTransportInfoRetour) {
+		this.orderTransportInfoRetour = orderTransportInfoRetour;
 	}
 
 	public User getUser() {
