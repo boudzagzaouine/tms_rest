@@ -18,7 +18,7 @@ public class OrderTransportInfo {
 	private AddressContactOrderTransportInfo addressContactInitial;
 	private AddressContactOrderTransportInfo addressContactFinal;
 
-    private List<OrderTransportInfoLine> orderTransportInfoLines ;
+    private List<OrderTransportInfoLine> orderTransportInfoLines = new ArrayList<>() ;
 
 	private BigDecimal weightTotal ;
 	private BigDecimal capacityTotal;
