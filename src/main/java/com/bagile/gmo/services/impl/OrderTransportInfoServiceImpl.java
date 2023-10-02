@@ -11,6 +11,7 @@ import com.bagile.gmo.repositories.OrderTransportInfoRepository;
 import com.bagile.gmo.services.OrderTransportInfoLineService;
 import com.bagile.gmo.services.OrderTransportInfoService;
 import com.bagile.gmo.util.Search;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -24,6 +25,7 @@ public class OrderTransportInfoServiceImpl implements OrderTransportInfoService 
     
     private final OrderTransportInfoRepository orderTransportInfoRepository;
     private final OrderTransportInfoLineService orderTransportInfoLineService;
+
     public OrderTransportInfoServiceImpl(OrderTransportInfoRepository orderTransportInfoRepository, OrderTransportInfoLineService orderTransportInfoLineService) {
         this.orderTransportInfoRepository = orderTransportInfoRepository;
         this.orderTransportInfoLineService = orderTransportInfoLineService;
@@ -108,7 +110,10 @@ public class OrderTransportInfoServiceImpl implements OrderTransportInfoService 
     public void deleteAll(List<Long> ids) {
 
         for (Long id : ids) {
-            orderTransportInfoRepository.deleteById(id);        }
+
+
+            orderTransportInfoRepository.deleteById(id);
+        }
     }
 
 
