@@ -82,7 +82,7 @@ public class OrderTransportServiceImpl implements OrderTransportService {
                              try {
                                  List<OrderTransportInfoLineDocument> orderTransportInfoLineDocuments=orderTransportInfoLineDocumentService.find("orderTransportInfoLine.id:"+line.getId());
 
-
+                             /*
                                  orderTransportInfoLineDocuments.forEach(document-> {
 
                                      try {
@@ -97,7 +97,7 @@ public class OrderTransportServiceImpl implements OrderTransportService {
                                      }
 
 
-                                 });
+                                 });*/
 
                                  line.setOrderTransportInfoLineDocuments(orderTransportInfoLineDocuments);
 

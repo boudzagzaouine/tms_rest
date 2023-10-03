@@ -60,7 +60,7 @@ public class OrderTransport {
 	private Owner owner;
 	private List<TransportPlanServiceCatalog> orderTransportServiceCatalogs = new ArrayList<>();
 	private List<OrderTransportAccompaniment> orderTransportAccompaniments = new ArrayList<>();
-	private List<OrderTransportInfo> orderTransportInfos = new ArrayList<>();;
+	private List<OrderTransportInfo> orderTransportInfos = new ArrayList<>();
 	private OrderTransportInfo orderTransportInfoAller;
 	private OrderTransportInfo orderTransportInfoRetour;
 	private User user;
