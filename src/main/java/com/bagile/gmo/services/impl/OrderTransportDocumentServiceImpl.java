@@ -10,13 +10,18 @@ import com.bagile.gmo.repositories.OrderTransportDocumentRepository;
 import com.bagile.gmo.services.OrderTransportDocumentService;
 import com.bagile.gmo.util.EmsDate;
 import com.bagile.gmo.util.Search;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -73,6 +78,21 @@ public class OrderTransportDocumentServiceImpl implements OrderTransportDocument
         }
         return orderTransportDocumentRepository.count(Search.expression(search, TmsOrderTransportDocument.class));
     }
+    @Value("${image.upload.path}") // Configure the file upload path in application.properties
+    private String uploadPath;
+    @Override
+    public String saveImage(OrderTransportDocument orderTransportDocument) {
+        String fileName = orderTransportDocument.getFileName();
+        String imagePath = Paths.get(uploadPath, fileName).toString();
+
+        try {
+            Files.write(Paths.get(imagePath), orderTransportDocument.getFile());
+            return imagePath;
+        } catch (IOException e) {
+            // Handle the exception
+            throw new RuntimeException("Failed to save image.");
+        }
+    }
 
     @Override
     public void delete(Long id) {
@@ -97,6 +117,8 @@ public class OrderTransportDocumentServiceImpl implements OrderTransportDocument
     public List<OrderTransportDocument> findAll() {
         return OrderTransportDocumentMapper.toDtos(orderTransportDocumentRepository.findAll(), false);
     }
+
+
     public List<OrderTransportDocument> saveAll(List<OrderTransportDocument> orderTransportDocuments) throws ErrorType, IdNotFound, AttributesNotFound {
         List<OrderTransportDocument> orderTransportDocumentsList = new ArrayList<>();
         for (OrderTransportDocument orderTransportDocument : orderTransportDocuments){

@@ -44,15 +44,8 @@ public class SettingMapper {
         setting.setId(prmSetting.getPrmSettingId());
         setting.setCode(prmSetting.getPrmSettingCode());
         setting.setValue(prmSetting.getPrmSettingValue());
-        setting.setPos(prmSetting.getPrmSettingPos());
-        setting.setCrm(prmSetting.getPrmSettingCrm());
-        setting.setGestCo(prmSetting.getPrmSettingGestCo());
-        setting.setUpdatedBy(prmSetting.getUpdatedBy());
-        setting.setCreatedBy(prmSetting.getCreatedBy());
         setting.setDescription(prmSetting.getPrmSettingDescription());
-        if (!lazy) {
-            setting.setOrganisation(OrganisationMapper.toDto(prmSetting.getOrgOrganisation(), true));
-        }
+
         return setting;
     }
 
@@ -64,15 +57,8 @@ public class SettingMapper {
         prmSetting.setPrmSettingId(setting.getId());
         prmSetting.setPrmSettingCode(setting.getCode());
         prmSetting.setPrmSettingValue(setting.getValue());
-        prmSetting.setPrmSettingPos(setting.getPos());
-        prmSetting.setPrmSettingGestCo(setting.getGestCo());
-        prmSetting.setPrmSettingCrm(setting.getCrm());
-        prmSetting.setUpdatedBy(setting.getUpdatedBy());
-        prmSetting.setCreatedBy(setting.getCreatedBy());
         prmSetting.setPrmSettingDescription(setting.getDescription());
-        if (!lazy) {
-            prmSetting.setOrgOrganisation(OrganisationMapper.toEntity(setting.getOrganisation(), false));
-        }
+
         return prmSetting;
     }
 

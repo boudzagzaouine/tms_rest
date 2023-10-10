@@ -8,8 +8,12 @@ public class TmsOrderTransportDocument extends EmsEntity{
     private static final long serialVersionUID = 2773120607426017439L;
     private Long tmsOrderTransportDocumentId;
     private byte[] tmsOrderTransportDocumentFile;
-    private String tmsOrderTransportDocumentFileType;
     private String tmsOrderTransportDocumentFileName;
+    private String tmsOrderTransportDocumentFileType;
+
+
+
+    private String tmsOrderTransportDocumentFilePath;
    private TmsOrderTransportInfoLineDocument tmsOrderTransportInfoLineDocument;
 
 
@@ -25,23 +29,30 @@ public class TmsOrderTransportDocument extends EmsEntity{
     public void setTmsOrderDocumentId(Long tmsOrderTransportDocumentId) {
         this.tmsOrderTransportDocumentId = tmsOrderTransportDocumentId;
     }
+    @Column(name = "tms_ordertransportdocumentfiletype")
+    public String getTmsOrderTransportDocumentFileType() {
+        return tmsOrderTransportDocumentFileType;
+    }
+
+    public void setTmsOrderTransportDocumentFileType(String tmsOrderTransportDocumentFileType) {
+        this.tmsOrderTransportDocumentFileType = tmsOrderTransportDocumentFileType;
+    }
+    @Column(name = "tms_ordertransportdocumentfilepath")
+    public String getTmsOrderDocumentFilePath() {
+        return tmsOrderTransportDocumentFilePath;
+    }
+
+    public void setTmsOrderDocumentFilePath(String tmsOrderTransportDocumentFileName) {
+        this.tmsOrderTransportDocumentFilePath = tmsOrderTransportDocumentFileName;
+    }
 
     @Column(name = "tms_ordertransportdocumentfilename")
     public String getTmsOrderDocumentFileName() {
         return tmsOrderTransportDocumentFileName;
     }
 
-    public void setTmsOrderDocumentFileName(String tmsOrderTransportDocumentFileName) {
-        this.tmsOrderTransportDocumentFileName = tmsOrderTransportDocumentFileName;
-    }
-
-    @Column(name = "tms_ordertransportdocumentfiletype")
-    public String getTmsOrderDocumentFileType() {
-        return tmsOrderTransportDocumentFileType;
-    }
-
-    public void setTmsOrderDocumentFileType(String tmsOrderTransportDocumentFileType) {
-        this.tmsOrderTransportDocumentFileType = tmsOrderTransportDocumentFileType;
+    public void setTmsOrderDocumentFileName(String tmsOrderTransportDocumentFileType) {
+        this.tmsOrderTransportDocumentFileName = tmsOrderTransportDocumentFileType;
     }
 
     @Column(name = "tms_ordertransportdocumentfile")

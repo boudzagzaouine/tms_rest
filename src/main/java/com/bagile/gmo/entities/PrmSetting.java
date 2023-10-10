@@ -13,10 +13,6 @@ public class PrmSetting extends EmsEntity {
     private Long prmSettingId;
     private String prmSettingCode;
     private String prmSettingValue;
-    private OrgOrganisation orgOrganisation;
-    private Boolean prmSettingGestCo;
-    private Boolean prmSettingCrm;
-    private Boolean prmSettingPos;
     private String prmSettingDescription;
 
     @Id
@@ -47,43 +43,6 @@ public class PrmSetting extends EmsEntity {
 
     public void setPrmSettingValue(String prmSettingValue) {
         this.prmSettingValue = prmSettingValue;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prm_settingorganisationid")
-    public OrgOrganisation getOrgOrganisation() {
-        return orgOrganisation;
-    }
-
-    public void setOrgOrganisation(OrgOrganisation orgOrganisation) {
-        this.orgOrganisation = orgOrganisation;
-    }
-
-    @Column(name = "prm_settinggestco")
-    public Boolean getPrmSettingGestCo() {
-        return prmSettingGestCo;
-    }
-
-    public void setPrmSettingGestCo(Boolean prmSettingGestCo) {
-        this.prmSettingGestCo = prmSettingGestCo;
-    }
-
-    @Column(name = "prm_settingcrm")
-    public Boolean getPrmSettingCrm() {
-        return prmSettingCrm;
-    }
-
-    public void setPrmSettingCrm(Boolean prmSettingCrm) {
-        this.prmSettingCrm = prmSettingCrm;
-    }
-
-    @Column(name = "prm_settingpos")
-    public Boolean getPrmSettingPos() {
-        return prmSettingPos;
-    }
-
-    public void setPrmSettingPos(Boolean prmSettingPos) {
-        this.prmSettingPos = prmSettingPos;
     }
 
     @Column(name = "prm_settingdescription")

@@ -31,6 +31,10 @@ server:
   port: 8088
   servlet:
     context-path: /tms-rest
+# File upload path
+image:
+  upload:
+    path: /Users/Dev/Desktop/images
 
 
 #logging:

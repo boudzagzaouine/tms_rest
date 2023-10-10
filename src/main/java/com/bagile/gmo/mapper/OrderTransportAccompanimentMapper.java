@@ -17,7 +17,7 @@ public class OrderTransportAccompanimentMapper {
         map.put ("id", "gmoNotificationId");
         map.put ("code", "gmoNotificationCode");
         map.put ("email", "gmoNotificationEmail");
-
+        map.put("orderTransport","tmsordertrasnportid");
         map.put ("creationDate", "creationDate");
         map.put ("updateDate", "updateDate");
         map.put ("createdBy", "createdBy");

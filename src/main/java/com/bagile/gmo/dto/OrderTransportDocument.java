@@ -3,8 +3,12 @@ package com.bagile.gmo.dto;
 public class OrderTransportDocument {
     private long id;
     private byte[] file;
-    private String fileType;
     private String fileName;
+    private String fileType;
+    private String filePath;
+
+
+
     private  OrderTransportInfoLineDocument orderTransportInfoLineDocument;
 
     public OrderTransportInfoLineDocument getOrderTransportInfoLineDocument() {
@@ -22,7 +26,13 @@ public class OrderTransportDocument {
     public void setId(long id) {
         this.id = id;
     }
+    public String getFileType() {
+        return fileType;
+    }
 
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
+    }
     public byte[] getFile() {
         return file;
     }
@@ -31,19 +41,19 @@ public class OrderTransportDocument {
         this.file = file;
     }
 
-    public String getFileType() {
-        return fileType;
-    }
-
-    public void setFileType(String fileType) {
-        this.fileType = fileType;
-    }
-
     public String getFileName() {
         return fileName;
     }
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String fileName) {
+        this.filePath = fileName;
     }
 }

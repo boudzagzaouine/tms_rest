@@ -33,10 +33,11 @@ public class OrderTransportDocumentMapper {
             return null;
         }
         TmsOrderTransportDocument tmsOrderTransportDocument = new TmsOrderTransportDocument();
-        tmsOrderTransportDocument.setTmsOrderDocumentFile(orderDocument.getFile());
+       tmsOrderTransportDocument.setTmsOrderDocumentFile(orderDocument.getFile());
         tmsOrderTransportDocument.setTmsOrderDocumentId(orderDocument.getId());
+        tmsOrderTransportDocument.setTmsOrderDocumentFilePath(orderDocument.getFilePath());
         tmsOrderTransportDocument.setTmsOrderDocumentFileName(orderDocument.getFileName());
-        tmsOrderTransportDocument.setTmsOrderDocumentFileType(orderDocument.getFileType());
+        tmsOrderTransportDocument.setTmsOrderTransportDocumentFileType(orderDocument.getFileType());
 
         if(!lazy){
             tmsOrderTransportDocument.setTmsOrderTransportInfoLineDocument(OrderTransportInfoLineDocumentMapper.toEntity(orderDocument.getOrderTransportInfoLineDocument(),true));
@@ -52,9 +53,9 @@ public class OrderTransportDocumentMapper {
         OrderTransportDocument orderDocument = new OrderTransportDocument();
         orderDocument.setId(tmsOrderTransportDocument.getTmsOrderDocumentId());
         orderDocument.setFile(tmsOrderTransportDocument.getTmsOrderDocumentFile());
+        orderDocument.setFilePath(tmsOrderTransportDocument.getTmsOrderDocumentFilePath());
         orderDocument.setFileName(tmsOrderTransportDocument.getTmsOrderDocumentFileName());
-        orderDocument.setFileType(tmsOrderTransportDocument.getTmsOrderDocumentFileType());
-
+orderDocument.setFileType(tmsOrderTransportDocument.getTmsOrderTransportDocumentFileType());
         if(!lazy){
             orderDocument.setOrderTransportInfoLineDocument(OrderTransportInfoLineDocumentMapper.toDto(tmsOrderTransportDocument.getTmsOrderTransportInfoLineDocument(),true));
 

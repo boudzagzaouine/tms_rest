@@ -5,14 +5,10 @@ import com.bagile.gmo.entities.EmsEntity;
 /**
  * Created by adadi on 6/8/2016.
  */
-public class Setting  extends EmsDto {
+public class Setting {
     private long id;
     private String code;
     private String value;
-    private Organisation organisation;
-    private Boolean pos;
-    private Boolean gestCo;
-    private Boolean crm;
     private String description;
 
 
@@ -40,37 +36,6 @@ public class Setting  extends EmsDto {
         this.value = value;
     }
 
-    public Organisation getOrganisation() {
-        return organisation;
-    }
-
-    public void setOrganisation(Organisation organisation) {
-        this.organisation = organisation;
-    }
-
-    public Boolean getPos() {
-        return pos;
-    }
-
-    public void setPos(Boolean pos) {
-        this.pos = pos;
-    }
-
-    public Boolean getGestCo() {
-        return gestCo;
-    }
-
-    public void setGestCo(Boolean gestCo) {
-        this.gestCo = gestCo;
-    }
-
-    public Boolean getCrm() {
-        return crm;
-    }
-
-    public void setCrm(Boolean crm) {
-        this.crm = crm;
-    }
 
     public String getDescription() {
         return description;
