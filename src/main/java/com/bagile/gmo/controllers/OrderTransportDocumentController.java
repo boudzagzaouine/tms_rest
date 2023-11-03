@@ -56,15 +56,6 @@ public class OrderTransportDocumentController {
         return orderTransportDocumentService.findAll(page, size);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/imagepath")
-    @ResponseBody
-    public byte[] getImageByteFromPath(@RequestParam String path ) throws IOException {
-
-        byte[] imageData = FileManagement.readFile(path);
-
-        return imageData;
-    }
-
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
     public OrderTransportDocument getOne(@PathVariable("id") Long id) throws IdNotFound {
@@ -139,7 +130,14 @@ public class OrderTransportDocumentController {
     public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
         orderTransportDocumentService.deleteAll(Arrays.asList(ids));
     }
+    @RequestMapping(method = RequestMethod.GET, value = "/imagepath")
+    @ResponseBody
+    public byte[] getImageByteFromPath(@RequestParam String path) throws IOException {
 
+        byte[] imageData = FileManagement.readFile(path);
+
+        return imageData;
+    }
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public ResponseEntity<String> uploadPhoto(@RequestBody OrderTransportDocument orderTransportDocument) {
 
