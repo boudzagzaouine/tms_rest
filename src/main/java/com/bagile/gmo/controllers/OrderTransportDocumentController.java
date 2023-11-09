@@ -134,10 +134,9 @@ public class OrderTransportDocumentController {
     @ResponseBody
     public byte[] getImageByteFromPath(@RequestParam String path) throws IOException {
 
-        byte[] imageData = FileManagement.readFile(path);
-
-        return imageData;
+        return FileManagement.readFile(path);
     }
+
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public ResponseEntity<String> uploadPhoto(@RequestBody OrderTransportDocument orderTransportDocument) {
 
@@ -146,10 +145,12 @@ public class OrderTransportDocumentController {
                     .findById(orderTransportDocument.getOrderTransportInfoLineDocument().getId());
             OrderTransportInfoLine orderTransportInfoLine = orderTransportInfoLineService
                     .findById(orderTransportInfoLineDocument.getOrderTransportInfoLine().getId());
-            OrderTransportInfo orderTransportInfo = orderTransportInfoService.findById(orderTransportInfoLine.getOrderTransportInfo().getId());
-            OrderTransport orderTransport = orderTransportService.findById(orderTransportInfo.getOrderTransport().getId());
+            OrderTransportInfo orderTransportInfo = orderTransportInfoService
+                    .findById(orderTransportInfoLine.getOrderTransportInfo().getId());
+            OrderTransport orderTransport = orderTransportService
+                    .findById(orderTransportInfo.getOrderTransport().getId());
 
-            OrderTransportDocument orderTransportDocument1 = add(orderTransportDocument);
+            OrderTransportDocument orderTransportDocument1 = set(orderTransportDocument);
             Setting setting = settingService.findById(1L);
             Path directory = FileManagement.createDirectory(orderTransport.getCode() + "/" + orderTransportInfoLineDocument.getNumero(), setting.getValue());
             String name = String.valueOf(orderTransportDocument1.getId()) + "." + orderTransportDocument1.getFileType();

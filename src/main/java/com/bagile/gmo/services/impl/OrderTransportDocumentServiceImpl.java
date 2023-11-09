@@ -78,22 +78,6 @@ public class OrderTransportDocumentServiceImpl implements OrderTransportDocument
         }
         return orderTransportDocumentRepository.count(Search.expression(search, TmsOrderTransportDocument.class));
     }
-    @Value("${image.upload.path}") // Configure the file upload path in application.properties
-    private String uploadPath;
-    @Override
-    public String saveImage(OrderTransportDocument orderTransportDocument) {
-        String fileName = orderTransportDocument.getFileName();
-        String imagePath = Paths.get(uploadPath, fileName).toString();
-
-        try {
-            Files.write(Paths.get(imagePath), orderTransportDocument.getFile());
-            return imagePath;
-        } catch (IOException e) {
-            // Handle the exception
-            throw new RuntimeException("Failed to save image.");
-        }
-    }
-
     @Override
     public void delete(Long id) {
         orderTransportDocumentRepository.deleteById(id);

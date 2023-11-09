@@ -23,7 +23,7 @@ import java.util.List;
 
 @Service
 public class OrderTransportInfoLineServiceImpl implements OrderTransportInfoLineService {
-    
+
     private final OrderTransportInfoLineRepository orderTransportInfoLineRepository;
     @Autowired
     private OrderTransportInfoLineDocumentService orderTransportInfoLineDocumentService;
@@ -35,10 +35,10 @@ public class OrderTransportInfoLineServiceImpl implements OrderTransportInfoLine
 
     @Override
     public OrderTransportInfoLine save(OrderTransportInfoLine orderTransportInfoLine) {
-        OrderTransportInfoLine orderTransportInfoLine1 =    OrderTransportInfoLineMapper.toDto(orderTransportInfoLineRepository.saveAndFlush(OrderTransportInfoLineMapper.toEntity(orderTransportInfoLine, false)), false);
+        OrderTransportInfoLine orderTransportInfoLine1 = OrderTransportInfoLineMapper.toDto(orderTransportInfoLineRepository.saveAndFlush(OrderTransportInfoLineMapper.toEntity(orderTransportInfoLine, false)), false);
 
-        if(orderTransportInfoLine.getOrderTransportInfoLineDocuments().size()>0){
-            orderTransportInfoLine.getOrderTransportInfoLineDocuments().forEach(document->{
+        if (orderTransportInfoLine.getOrderTransportInfoLineDocuments().size() > 0) {
+            orderTransportInfoLine.getOrderTransportInfoLineDocuments().forEach(document -> {
                 document.setOrderTransportInfoLine(orderTransportInfoLine1);
             });
 
@@ -84,16 +84,16 @@ public class OrderTransportInfoLineServiceImpl implements OrderTransportInfoLine
 
     @Override
     public List<OrderTransportInfoLine> find(String search) throws AttributesNotFound, ErrorType {
-        if (search.equals("")){
-            return findAll ();
+        if (search.equals("")) {
+            return findAll();
         }
         return OrderTransportInfoLineMapper.toDtos(orderTransportInfoLineRepository.findAll(Search.expression(search, TmsOrderTransportInfoLine.class)), false);
     }
 
     @Override
     public List<OrderTransportInfoLine> find(String search, int page, int size) throws AttributesNotFound, ErrorType {
-        if (search.equals("")){
-            return findAll (page, size);
+        if (search.equals("")) {
+            return findAll(page, size);
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "updateDate");
         Pageable pageable = PageRequest.of(page, size, sort);
@@ -102,8 +102,8 @@ public class OrderTransportInfoLineServiceImpl implements OrderTransportInfoLine
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
-        if (search.equals("")){
-            return size ();
+        if (search.equals("")) {
+            return size();
         }
         return orderTransportInfoLineRepository.count(Search.expression(search, TmsOrderTransportInfoLine.class));
     }
@@ -123,7 +123,8 @@ public class OrderTransportInfoLineServiceImpl implements OrderTransportInfoLine
     public void deleteAll(List<Long> ids) {
 
         for (Long id : ids) {
-            orderTransportInfoLineRepository.deleteById(id);        }
+            orderTransportInfoLineRepository.deleteById(id);
+        }
     }
 
 

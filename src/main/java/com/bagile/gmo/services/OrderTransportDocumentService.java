@@ -21,7 +21,6 @@ public interface OrderTransportDocumentService {
     List<OrderTransportDocument> find(String search, int page, int size) throws AttributesNotFound, ErrorType;
 
     Long size(String search) throws AttributesNotFound, ErrorType;
-     String saveImage(OrderTransportDocument orderTransportDocument) ;
     void delete(Long id);
     List<OrderTransportDocument> saveAll(List<OrderTransportDocument> orderTransportDocuments)throws ErrorType, IdNotFound, AttributesNotFound;
     void delete(OrderTransportDocument orderDocument);
