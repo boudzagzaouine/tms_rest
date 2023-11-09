@@ -49,7 +49,7 @@ public class OrderTransportInfoLineDocumentServiceImpl implements OrderTransport
         OrderTransportInfoLineDocument infoLineDocument = OrderTransportInfoLineDocumentMapper.toDto(orderTransportInfoLineDocumentRepository.saveAndFlush(OrderTransportInfoLineDocumentMapper.toEntity(orderTransportInfoLineDocument, false)), false);
         List<OrderTransportDocument> orderTransportDocumentList = orderTransportInfoLineDocument.getOrderTransportDocumentList();
         if (!orderTransportDocumentList.isEmpty()) {
-            infoLineDocument.setDocumentStatus(2L);
+            infoLineDocument.setDocumentStatus(1L);
             OrderTransportInfoLineDocumentMapper.toDto(orderTransportInfoLineDocumentRepository.saveAndFlush(OrderTransportInfoLineDocumentMapper.toEntity(orderTransportInfoLineDocument, false)), false);
             try {
                 for (OrderTransportDocument orderTransportDocument : orderTransportInfoLineDocument.getOrderTransportDocumentList()) {
