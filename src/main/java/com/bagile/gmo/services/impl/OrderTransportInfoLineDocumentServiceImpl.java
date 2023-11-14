@@ -5,7 +5,9 @@ import com.bagile.gmo.entities.TmsOrderTransportInfoLineDocument;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.mapper.OrderTransportDocumentMapper;
 import com.bagile.gmo.mapper.OrderTransportInfoLineDocumentMapper;
+import com.bagile.gmo.repositories.OrderTransportDocumentRepository;
 import com.bagile.gmo.repositories.OrderTransportInfoLineDocumentRepository;
 import com.bagile.gmo.services.*;
 import com.bagile.gmo.util.FileManagement;
@@ -32,10 +34,12 @@ public class OrderTransportInfoLineDocumentServiceImpl implements OrderTransport
     private final OrderTransportDocumentService orderTransportDocumentService;
 
     public OrderTransportInfoLineDocumentServiceImpl(OrderTransportInfoLineDocumentRepository orderTransportInfoLineDocumentRepository,
-                                                     @Lazy SettingService settingService, OrderTransportInfoLineService orderTransportInfoLineService,
+                                                     @Lazy SettingService settingService,
+                                                     @Lazy OrderTransportInfoLineService orderTransportInfoLineService,
                                                      @Lazy OrderTransportInfoService orderTransportInfoService,
                                                      @Lazy OrderTransportService orderTransportService,
-                                                     @Lazy OrderTransportDocumentService orderTransportDocumentService) {
+                                                     @Lazy OrderTransportDocumentService orderTransportDocumentService,
+                                                     OrderTransportDocumentRepository orderTransportDocumentRepository) {
         this.orderTransportInfoLineDocumentRepository = orderTransportInfoLineDocumentRepository;
         this.settingService = settingService;
         this.orderTransportInfoLineService = orderTransportInfoLineService;
@@ -73,6 +77,7 @@ public class OrderTransportInfoLineDocumentServiceImpl implements OrderTransport
                     imagePath = imagePath.replace("\\", "/");
                     orderTransportDocument.setFilePath(imagePath);
                     orderTransportDocument.setFile(null);
+                    //  OrderTransportDocumentMapper.toDto(orderTransportDocumentRepository.saveAndFlush(OrderTransportDocumentMapper.toEntity(orderTransportDocument, false)), false);
 
                     orderTransportDocumentService.save(orderTransportDocument);
                 }
