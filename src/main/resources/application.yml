@@ -9,15 +9,14 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
-    show-sql: true
+    show-sql: false
     generate-ddl: true
     database: postgresql
     properties:
       hibernate:
         enable_lazy_load_no_trans=true:
         default_schema: schema_tmsvoieexpress
-        format_sql: true
-        generate_statistics: false
+
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
   jackson:

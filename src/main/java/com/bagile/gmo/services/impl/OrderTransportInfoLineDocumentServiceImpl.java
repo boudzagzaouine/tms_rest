@@ -51,37 +51,33 @@ public class OrderTransportInfoLineDocumentServiceImpl implements OrderTransport
     @Override
     public OrderTransportInfoLineDocument save(OrderTransportInfoLineDocument orderTransportInfoLineDocument) {
         OrderTransportInfoLineDocument infoLineDocument = OrderTransportInfoLineDocumentMapper.toDto(orderTransportInfoLineDocumentRepository.saveAndFlush(OrderTransportInfoLineDocumentMapper.toEntity(orderTransportInfoLineDocument, false)), false);
-        List<OrderTransportDocument> orderTransportDocumentList = orderTransportInfoLineDocument.getOrderTransportDocumentList();
-        if (!orderTransportDocumentList.isEmpty()) {
-            infoLineDocument.setDocumentStatus(1L);
-            OrderTransportInfoLineDocumentMapper.toDto(orderTransportInfoLineDocumentRepository.saveAndFlush(OrderTransportInfoLineDocumentMapper.toEntity(orderTransportInfoLineDocument, false)), false);
+        infoLineDocument.getOrderTransportDocumentList().addAll(orderTransportInfoLineDocument.getOrderTransportDocumentList());
+        if (!infoLineDocument.getOrderTransportDocumentList().isEmpty()) {
             try {
-                for (OrderTransportDocument orderTransportDocument : orderTransportInfoLineDocument.getOrderTransportDocumentList()) {
-                    orderTransportDocument.setOrderTransportInfoLineDocument(infoLineDocument);
+                infoLineDocument.setDocumentStatus(1L);
+                OrderTransportInfoLineDocumentMapper.toDto(orderTransportInfoLineDocumentRepository.saveAndFlush(OrderTransportInfoLineDocumentMapper.toEntity(infoLineDocument, false)), false);
+                for (OrderTransportDocument orderTransportDocument : infoLineDocument.getOrderTransportDocumentList()) {
+
                     OrderTransportInfoLine orderTransportInfoLine = orderTransportInfoLineService
-                            .findById(orderTransportInfoLineDocument.getOrderTransportInfoLine().getId());
+                            .findById(infoLineDocument.getOrderTransportInfoLine().getId());
                     OrderTransportInfo orderTransportInfo = orderTransportInfoService
                             .findById(orderTransportInfoLine.getOrderTransportInfo().getId());
                     OrderTransport orderTransport = orderTransportService
                             .findById(orderTransportInfo.getOrderTransport().getId());
 
-                    //  OrderTransportDocument orderTransportDocument1 = orderTransportDocumentService.save(orderTransportDocument);
                     Setting setting = settingService.findById(1L);
-                    Path directory = FileManagement.createDirectory(orderTransport.getCode() + "/" + orderTransportInfoLineDocument.getNumero(), setting.getValue());
-                    //   String name = String.valueOf(orderTransportDocument1.getId()) + "." + orderTransportDocument1.getFileType();
-                    //  orderTransportDocument1.setFileName(name);
+                    Path directory = FileManagement.createDirectory(orderTransport.getCode() + "/" + infoLineDocument.getNumero(), setting.getValue());
                     String imagePath = directory.resolve(orderTransportDocument.getFileName()).toString();
 
                     if (orderTransportDocument.getFile() != null)
                         FileManagement.createFileFromByte(imagePath, orderTransportDocument.getFile());
                     imagePath = imagePath.replace("\\", "/");
+                    orderTransportDocument.setOrderTransportInfoLineDocument(infoLineDocument);
                     orderTransportDocument.setFilePath(imagePath);
                     orderTransportDocument.setFile(null);
-                    //  OrderTransportDocumentMapper.toDto(orderTransportDocumentRepository.saveAndFlush(OrderTransportDocumentMapper.toEntity(orderTransportDocument, false)), false);
 
                     orderTransportDocumentService.save(orderTransportDocument);
                 }
-                //  this.orderTransportDocumentService.saveAll(orderTransportInfoLineDocument.getOrderTransportDocumentList());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
@@ -115,7 +116,8 @@ public class OrderTransportDocumentController {
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) throws IOException {
+
         orderTransportDocumentService.delete(id);
     }
 
@@ -130,13 +132,19 @@ public class OrderTransportDocumentController {
     public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
         orderTransportDocumentService.deleteAll(Arrays.asList(ids));
     }
+
     @RequestMapping(method = RequestMethod.GET, value = "/imagepath")
     @ResponseBody
     public byte[] getImageByteFromPath(@RequestParam String path) throws IOException {
 
         return FileManagement.readFile(path);
     }
+    @RequestMapping(method = RequestMethod.GET, value = "/deleteimagebypath")
+    @ResponseBody
+    public void deleteImageByPath(@RequestParam String path) throws IOException {
 
+        FileManagement.delete(Paths.get(path));
+    }
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public ResponseEntity<String> uploadPhoto(@RequestBody OrderTransportDocument orderTransportDocument) {
 
@@ -153,12 +161,10 @@ public class OrderTransportDocumentController {
             OrderTransportDocument orderTransportDocument1 = set(orderTransportDocument);
             Setting setting = settingService.findById(1L);
             Path directory = FileManagement.createDirectory(orderTransport.getCode() + "/" + orderTransportInfoLineDocument.getNumero(), setting.getValue());
-            String name = String.valueOf(orderTransportDocument1.getId()) + "." + orderTransportDocument1.getFileType();
-            orderTransportDocument1.setFileName(name);
             String imagePath = directory.resolve(orderTransportDocument1.getFileName()).toString();
-
             FileManagement.createFileFromByte(imagePath, orderTransportDocument1.getFile());
             imagePath = imagePath.replace("\\", "/");
+            orderTransportDocument1.setOrderTransportInfoLineDocument(orderTransportInfoLineDocument);
             orderTransportDocument1.setFilePath(imagePath);
             orderTransportDocument1.setFile(null);
 
