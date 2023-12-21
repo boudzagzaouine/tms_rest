@@ -11,8 +11,6 @@ public class TmsOrderTransportDocument extends EmsEntity{
     private String tmsOrderTransportDocumentFileName;
     private String tmsOrderTransportDocumentFileType;
 
-
-
     private String tmsOrderTransportDocumentFilePath;
    private TmsOrderTransportInfoLineDocument tmsOrderTransportInfoLineDocument;
 

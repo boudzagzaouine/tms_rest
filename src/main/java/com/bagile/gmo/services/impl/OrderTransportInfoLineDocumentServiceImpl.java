@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -141,13 +142,19 @@ public class OrderTransportInfoLineDocumentServiceImpl implements OrderTransport
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Long id) throws ErrorType, AttributesNotFound {
+
+        List<OrderTransportDocument> orderTransportDocuments = orderTransportDocumentService.find("orderTransportInfoLineDocument.id:" + id);
+        List<Long> ids = orderTransportDocuments.stream().map(OrderTransportDocument::getId).collect(Collectors.toList());
+        orderTransportDocumentService.deleteAll(ids);
         orderTransportInfoLineDocumentRepository.deleteById(id);
+
     }
 
     @Override
-    public void delete(OrderTransportInfoLineDocument orderTransportInfoLineDocument) {
+    public void delete(OrderTransportInfoLineDocument orderTransportInfoLineDocument) throws ErrorType, AttributesNotFound {
         orderTransportInfoLineDocumentRepository.delete(OrderTransportInfoLineDocumentMapper.toEntity(orderTransportInfoLineDocument, false));
+
     }
 
 

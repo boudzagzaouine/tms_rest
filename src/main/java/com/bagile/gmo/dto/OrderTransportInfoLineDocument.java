@@ -6,75 +6,73 @@ import java.util.List;
 
 public class OrderTransportInfoLineDocument {
 
-	private long id;
-	private String contreType  ; // BL ou FACTURE
-	private Long type ; // 1 Enlevement . 2 Livraison
-	private String numero;
-	private OrderTransportDocumentType orderTransportDocumentType;
-//	private byte[] file;
-//	private String fileType;
-//	private String fileName;
-	private Date date;
-	private OrderTransportInfoLine orderTransportInfoLine;
-
-	private List<OrderTransportDocument> orderTransportDocumentList = new ArrayList<>();
- private Owner owner;
- private Long  documentStatus; //1 fourni  2// non fourni
+    private long id;
+    private String contreType; // BL ou FACTURE
+    private Long type; // 1 Enlevement . 2 Livraison
+    private String numero;
+    private OrderTransportDocumentType orderTransportDocumentType;
+    private Date date;
+    private OrderTransportInfoLine orderTransportInfoLine;
+    private List<OrderTransportDocument> orderTransportDocumentList = new ArrayList<>();
+    private Owner owner;
+    private Long documentStatus; //1 fourni  2// non fourni
 
 
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public String getContreType() {
-		return contreType;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public void setContreType(String contreType) {
-		this.contreType = contreType;
-	}
+    public String getContreType() {
+        return contreType;
+    }
 
-	public Long getType() {
-		return type;
-	}
+    public void setContreType(String contreType) {
+        this.contreType = contreType;
+    }
 
-	public void setType(Long type) {
-		this.type = type;
-	}
+    public Long getType() {
+        return type;
+    }
 
-	public OrderTransportDocumentType getOrderTransportDocumentType() {
-		return orderTransportDocumentType;
-	}
+    public void setType(Long type) {
+        this.type = type;
+    }
 
-	public void setOrderTransportDocumentType(OrderTransportDocumentType orderTransportDocumentType) {
-		this.orderTransportDocumentType = orderTransportDocumentType;
-	}
+    public OrderTransportDocumentType getOrderTransportDocumentType() {
+        return orderTransportDocumentType;
+    }
 
-	public List<OrderTransportDocument> getOrderTransportDocumentList() {
-	return orderTransportDocumentList;	}
+    public void setOrderTransportDocumentType(OrderTransportDocumentType orderTransportDocumentType) {
+        this.orderTransportDocumentType = orderTransportDocumentType;
+    }
 
-	public void setOrderTransportDocumentList(List<OrderTransportDocument> orderTransportDocumentList) {
-	this.orderTransportDocumentList = orderTransportDocumentList;
-	}
+    public List<OrderTransportDocument> getOrderTransportDocumentList() {
+        return orderTransportDocumentList;
+    }
 
-	public Long getDocumentStatus() {
-		return documentStatus;
-	}
+    public void setOrderTransportDocumentList(List<OrderTransportDocument> orderTransportDocumentList) {
+        this.orderTransportDocumentList = orderTransportDocumentList;
+    }
 
-	public void setDocumentStatus(Long documentStatus) {
-		this.documentStatus = documentStatus;
-	}
+    public Long getDocumentStatus() {
+        return documentStatus;
+    }
 
-	public String getNumero() {
-		return numero;
-	}
+    public void setDocumentStatus(Long documentStatus) {
+        this.documentStatus = documentStatus;
+    }
 
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
 
 //	public byte[] getFile() {
 //		return file;
@@ -92,21 +90,21 @@ public class OrderTransportInfoLineDocument {
 //		this.fileName = fileName;
 //	}
 
-	public Date getDate() {
-		return date;
-	}
+    public Date getDate() {
+        return date;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-	public Owner getOwner() {
-		return owner;
-	}
+    public Owner getOwner() {
+        return owner;
+    }
 
-	public void setOwner(Owner owner) {
-		this.owner = owner;
-	}
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
 
 //	public String getFileType() {
 //		return fileType;
@@ -116,11 +114,11 @@ public class OrderTransportInfoLineDocument {
 //		this.fileType = fileType;
 //	}
 
-	public OrderTransportInfoLine getOrderTransportInfoLine() {
-		return orderTransportInfoLine;
-	}
+    public OrderTransportInfoLine getOrderTransportInfoLine() {
+        return orderTransportInfoLine;
+    }
 
-	public void setOrderTransportInfoLine(OrderTransportInfoLine orderTransportInfoLine) {
-		this.orderTransportInfoLine = orderTransportInfoLine;
-	}
+    public void setOrderTransportInfoLine(OrderTransportInfoLine orderTransportInfoLine) {
+        this.orderTransportInfoLine = orderTransportInfoLine;
+    }
 }

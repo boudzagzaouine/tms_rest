@@ -161,7 +161,7 @@ public class OrderTransportDocumentController {
             OrderTransportDocument orderTransportDocument1 = set(orderTransportDocument);
             Setting setting = settingService.findById(1L);
             Path directory = FileManagement.createDirectory(orderTransport.getCode() + "/" + orderTransportInfoLineDocument.getNumero(), setting.getValue());
-            String imagePath = directory.resolve(orderTransportDocument1.getFileName()).toString();
+            String imagePath = directory.resolve(orderTransportDocument1.getFileName())+"."+orderTransportDocument1.getFileType();
             FileManagement.createFileFromByte(imagePath, orderTransportDocument1.getFile());
             imagePath = imagePath.replace("\\", "/");
             orderTransportDocument1.setOrderTransportInfoLineDocument(orderTransportInfoLineDocument);

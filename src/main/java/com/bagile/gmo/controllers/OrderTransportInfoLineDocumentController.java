@@ -83,7 +83,7 @@ public class OrderTransportInfoLineDocumentController {
     //@PreAuthorize("hasRole('BADGETYPE_DELETE')")
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@RequestBody OrderTransportInfoLineDocument orderTransportInfoLineDocument) {
+    public void delete(@RequestBody OrderTransportInfoLineDocument orderTransportInfoLineDocument) throws ErrorType, AttributesNotFound {
 
         orderTransportInfoLineDocumentService.delete(orderTransportInfoLineDocument);
     }
@@ -91,7 +91,7 @@ public class OrderTransportInfoLineDocumentController {
     //@PreAuthorize("hasRole('BADGETYPE_DELETE')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) throws ErrorType, AttributesNotFound {
         orderTransportInfoLineDocumentService.delete(id);
     }
 
