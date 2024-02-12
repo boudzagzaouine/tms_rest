@@ -8,9 +8,15 @@ public class TransportPlanLocation {
 
 	private double latitude ;
 	private double longitude ;
-	private long transportPlanId ;
-	private long vehicleId ;
-	private long driverId ;
+	private TransportPlan transportPlanId ;
+
+	private OrderTransport orderTransportId ;
+	private OrderTransportInfo orderTransportInfoId ;
+
+	private OrderTransportInfoLine orderTransportInfoLineId ;
+
+	private Vehicle vehicleId ;
+	private Driver driverId ;
 	private Date date;
 	private String type;
 
@@ -40,27 +46,51 @@ public class TransportPlanLocation {
 		this.longitude = longitude;
 	}
 
-	public long getTransportPlanId() {
+	public TransportPlan getTransportPlanId() {
 		return transportPlanId;
 	}
 
-	public void setTransportPlanId(long transportPlanId) {
+	public void setTransportPlanId(TransportPlan transportPlanId) {
 		this.transportPlanId = transportPlanId;
 	}
 
-	public long getVehicleId() {
+	public Vehicle getVehicleId() {
 		return vehicleId;
 	}
 
-	public void setVehicleId(long vehicleId) {
+	public void setVehicleId(Vehicle vehicleId) {
 		this.vehicleId = vehicleId;
 	}
 
-	public long getDriverId() {
+	public OrderTransportInfo getOrderTransportInfoId() {
+		return orderTransportInfoId;
+	}
+
+	public void setOrderTransportInfoId(OrderTransportInfo orderTransportInfoId) {
+		this.orderTransportInfoId = orderTransportInfoId;
+	}
+
+	public OrderTransport getOrderTransportId() {
+		return orderTransportId;
+	}
+
+	public void setOrderTransportId(OrderTransport orderTransportId) {
+		this.orderTransportId = orderTransportId;
+	}
+
+	public OrderTransportInfoLine getOrderTransportInfoLineId() {
+		return orderTransportInfoLineId;
+	}
+
+	public void setOrderTransportInfoLineId(OrderTransportInfoLine orderTransportInfoLineId) {
+		this.orderTransportInfoLineId = orderTransportInfoLineId;
+	}
+
+	public Driver getDriverId() {
 		return driverId;
 	}
 
-	public void setDriverId(long driverId) {
+	public void setDriverId(Driver driverId) {
 		this.driverId = driverId;
 	}
 
