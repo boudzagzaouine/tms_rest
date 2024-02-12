@@ -8,7 +8,7 @@ import com.bagile.gmo.exceptions.IdNotFound;
 import java.util.List;
 
 public interface TransportPlanLocationService {
-    TransportPlanLocation save(TransportPlanLocation transportPlanLocation);
+    TransportPlanLocation save(TransportPlanLocation transportPlanLocation) throws IdNotFound;
 
     Long size();
 

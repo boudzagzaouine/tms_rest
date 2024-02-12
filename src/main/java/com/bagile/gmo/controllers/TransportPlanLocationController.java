@@ -73,13 +73,13 @@ public class TransportPlanLocationController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public TransportPlanLocation add(@RequestBody TransportPlanLocation transportPlanLocaltion) {
+    public TransportPlanLocation add(@RequestBody TransportPlanLocation transportPlanLocaltion) throws IdNotFound {
         return transportPlanLocaltionService.save(transportPlanLocaltion);
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public TransportPlanLocation set(@RequestBody TransportPlanLocation transportPlanLocaltion) {
+    public TransportPlanLocation set(@RequestBody TransportPlanLocation transportPlanLocaltion) throws IdNotFound {
         return transportPlanLocaltionService.save(transportPlanLocaltion);
     }
 

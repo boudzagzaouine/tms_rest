@@ -8,15 +8,15 @@ public class TransportPlanLocation {
 
 	private double latitude ;
 	private double longitude ;
-	private TransportPlan transportPlanId ;
+	private TransportPlan transportPlan;
 
-	private OrderTransport orderTransportId ;
-	private OrderTransportInfo orderTransportInfoId ;
+	private OrderTransport orderTransport;
+	private OrderTransportInfo orderTransportInfo;
 
-	private OrderTransportInfoLine orderTransportInfoLineId ;
+	private OrderTransportInfoLine orderTransportInfoLine;
 
-	private Vehicle vehicleId ;
-	private Driver driverId ;
+	private Vehicle vehicle;
+	private Driver driver;
 	private Date date;
 	private String type;
 
@@ -46,52 +46,52 @@ public class TransportPlanLocation {
 		this.longitude = longitude;
 	}
 
-	public TransportPlan getTransportPlanId() {
-		return transportPlanId;
+	public TransportPlan getTransportPlan() {
+		return transportPlan;
 	}
 
-	public void setTransportPlanId(TransportPlan transportPlanId) {
-		this.transportPlanId = transportPlanId;
+	public void setTransportPlan(TransportPlan transportPlan) {
+		this.transportPlan = transportPlan;
 	}
 
-	public Vehicle getVehicleId() {
-		return vehicleId;
+	public Vehicle getVehicle() {
+		return vehicle;
 	}
 
-	public void setVehicleId(Vehicle vehicleId) {
-		this.vehicleId = vehicleId;
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
 	}
 
-	public OrderTransportInfo getOrderTransportInfoId() {
-		return orderTransportInfoId;
+	public OrderTransportInfo getOrderTransportInfo() {
+		return orderTransportInfo;
 	}
 
-	public void setOrderTransportInfoId(OrderTransportInfo orderTransportInfoId) {
-		this.orderTransportInfoId = orderTransportInfoId;
+	public void setOrderTransportInfo(OrderTransportInfo orderTransportInfo) {
+		this.orderTransportInfo = orderTransportInfo;
 	}
 
-	public OrderTransport getOrderTransportId() {
-		return orderTransportId;
+	public OrderTransport getOrderTransport() {
+		return orderTransport;
 	}
 
-	public void setOrderTransportId(OrderTransport orderTransportId) {
-		this.orderTransportId = orderTransportId;
+	public void setOrderTransport(OrderTransport orderTransport) {
+		this.orderTransport = orderTransport;
 	}
 
-	public OrderTransportInfoLine getOrderTransportInfoLineId() {
-		return orderTransportInfoLineId;
+	public OrderTransportInfoLine getOrderTransportInfoLine() {
+		return orderTransportInfoLine;
 	}
 
-	public void setOrderTransportInfoLineId(OrderTransportInfoLine orderTransportInfoLineId) {
-		this.orderTransportInfoLineId = orderTransportInfoLineId;
+	public void setOrderTransportInfoLine(OrderTransportInfoLine orderTransportInfoLine) {
+		this.orderTransportInfoLine = orderTransportInfoLine;
 	}
 
-	public Driver getDriverId() {
-		return driverId;
+	public Driver getDriver() {
+		return driver;
 	}
 
-	public void setDriverId(Driver driverId) {
-		this.driverId = driverId;
+	public void setDriver(Driver driver) {
+		this.driver = driver;
 	}
 
 	public Date getDate() {

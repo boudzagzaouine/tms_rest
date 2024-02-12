@@ -7,8 +7,9 @@ import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.TransportPlanLocationMapper;
 import com.bagile.gmo.repositories.TransportPlanLocationRepository;
-import com.bagile.gmo.services.TransportPlanLocationService;
+import com.bagile.gmo.services.*;
 import com.bagile.gmo.util.Search;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -22,12 +23,40 @@ public class TransportPlanLocationServiceImpl implements TransportPlanLocationSe
     
     private final TransportPlanLocationRepository transportPlanLocationRepository;
 
+
+    @Autowired
+    private TransportPlanService transportPlanService;
+    @Autowired
+    private OrderTransportService orderTransportService;
+
+    @Autowired
+    private OrderTransportInfoService orderTransportInfoService;
+    @Autowired
+    private OrderTransportInfoLineService orderTransportInfoLineService;
+
+    @Autowired
+    private VehicleService vehicleService;
+
+    @Autowired
+    private DriverService driverService;
+
+
+
     public TransportPlanLocationServiceImpl(TransportPlanLocationRepository transportPlanLocationRepository) {
         this.transportPlanLocationRepository = transportPlanLocationRepository;
     }
 
     @Override
-    public TransportPlanLocation save(TransportPlanLocation transportPlanLocation) {
+    public TransportPlanLocation save(TransportPlanLocation transportPlanLocation) throws IdNotFound {
+
+        transportPlanLocation.setTransportPlan(transportPlanService.findById(transportPlanLocation.getTransportPlan().getId()));
+        transportPlanLocation.setOrderTransport(orderTransportService.findById(transportPlanLocation.getOrderTransport().getId()));
+        transportPlanLocation.setOrderTransportInfo(orderTransportInfoService.findById(transportPlanLocation.getOrderTransportInfo().getId()));
+        transportPlanLocation.setOrderTransportInfoLine(orderTransportInfoLineService.findById(transportPlanLocation.getOrderTransportInfoLine().getId()));
+        transportPlanLocation.setVehicle(vehicleService.findById(transportPlanLocation.getVehicle().getId()));
+        transportPlanLocation.setDriver(driverService.findById(transportPlanLocation.getDriver().getId()));
+
+
         return TransportPlanLocationMapper.toDto(transportPlanLocationRepository.saveAndFlush(TransportPlanLocationMapper.toEntity(transportPlanLocation, false)), false);
     }
 
