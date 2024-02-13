@@ -49,13 +49,13 @@ public class TransportPlanLocationServiceImpl implements TransportPlanLocationSe
     @Override
     public TransportPlanLocation save(TransportPlanLocation transportPlanLocation) throws IdNotFound {
 
-        transportPlanLocation.setTransportPlan(transportPlanService.findById(transportPlanLocation.getTransportPlan().getId()));
+     /*   transportPlanLocation.setTransportPlan(transportPlanService.findById(transportPlanLocation.getTransportPlan().getId()));
         transportPlanLocation.setOrderTransport(orderTransportService.findById(transportPlanLocation.getOrderTransport().getId()));
         transportPlanLocation.setOrderTransportInfo(orderTransportInfoService.findById(transportPlanLocation.getOrderTransportInfo().getId()));
         transportPlanLocation.setOrderTransportInfoLine(orderTransportInfoLineService.findById(transportPlanLocation.getOrderTransportInfoLine().getId()));
         transportPlanLocation.setVehicle(vehicleService.findById(transportPlanLocation.getVehicle().getId()));
         transportPlanLocation.setDriver(driverService.findById(transportPlanLocation.getDriver().getId()));
-
+*/
 
         return TransportPlanLocationMapper.toDto(transportPlanLocationRepository.saveAndFlush(TransportPlanLocationMapper.toEntity(transportPlanLocation, false)), false);
     }

@@ -18,15 +18,15 @@ public class TmsTransportPlanLocation extends EmsEntity {
 	private Long tmsTransportPlanLocationId;
     private double tmsTransportPlanLocationlatitude ;
     private double tmsTransportPlanLocationlongitude ;
-    private TmsTransportPlan tmsTransportPlanLocationtransportPlanId ;
-    private TmsOrderTransport tmsTransportPlanLocationOrderTransportId ;
+    private long tmsTransportPlanLocationtransportPlanId ;
+    private long tmsTransportPlanLocationOrderTransportId ;
 
-    private TmsOrderTransportInfo tmsTransportPlanLocationOrderTransportInfoId ;
+    private long tmsTransportPlanLocationOrderTransportInfoId ;
 
-    private TmsOrderTransportInfoLine tmsTransportPlanLocationOrderTransportInfoLineID ;
+    private long tmsTransportPlanLocationOrderTransportInfoLineID ;
 
-    private GmoVehicle tmsTransportPlanLocationvehicleId ;
-    private GmoDriver tmsTransportPlanLocationdriverId ;
+    private long tmsTransportPlanLocationvehicleId ;
+    private long tmsTransportPlanLocationdriverId ;
     private Date tmsTransportPlanLocationdate;
 
     private String tmsTransportPlanLocationType;
@@ -76,54 +76,54 @@ public class TmsTransportPlanLocation extends EmsEntity {
     }
 
 
-    @ManyToOne()
+    //@ManyToOne()
     @JoinColumn(name = "tms_transportplanlocationtransportplanid")
-    public TmsTransportPlan getTmsTransportPlanLocationtransportPlanId() {
+    public long getTmsTransportPlanLocationtransportPlanId() {
         return tmsTransportPlanLocationtransportPlanId;
     }
 
-    public void setTmsTransportPlanLocationtransportPlanId(TmsTransportPlan tmsTransportPlanLocationtransportPlanId) {
+    public void setTmsTransportPlanLocationtransportPlanId(long tmsTransportPlanLocationtransportPlanId) {
         this.tmsTransportPlanLocationtransportPlanId = tmsTransportPlanLocationtransportPlanId;
     }
 
 
-    @ManyToOne()
+   // @ManyToOne()
     @JoinColumn(name = "tms_transportplanlocationordertransportid")
-    public TmsOrderTransport getTmsTransportPlanLocationOrderTransportId() {
+    public long getTmsTransportPlanLocationOrderTransportId() {
         return tmsTransportPlanLocationOrderTransportId;
     }
 
-    public void setTmsTransportPlanLocationOrderTransportId(TmsOrderTransport tmsTransportPlanLocationOrderTransportId) {
+    public void setTmsTransportPlanLocationOrderTransportId(long tmsTransportPlanLocationOrderTransportId) {
         this.tmsTransportPlanLocationOrderTransportId = tmsTransportPlanLocationOrderTransportId;
     }
 
-    @ManyToOne()
+    //@ManyToOne()
     @JoinColumn(name = "tms_transportplanlocationordertransportinfoid")
-    public TmsOrderTransportInfo getTmsTransportPlanLocationOrderTransportInfoId() {
+    public long getTmsTransportPlanLocationOrderTransportInfoId() {
         return tmsTransportPlanLocationOrderTransportInfoId;
     }
 
-    public void setTmsTransportPlanLocationOrderTransportInfoId(TmsOrderTransportInfo tmsTransportPlanLocationOrderTransportInfoId) {
+    public void setTmsTransportPlanLocationOrderTransportInfoId(long tmsTransportPlanLocationOrderTransportInfoId) {
         this.tmsTransportPlanLocationOrderTransportInfoId = tmsTransportPlanLocationOrderTransportInfoId;
     }
 
-    @ManyToOne()
+    //@ManyToOne()
     @JoinColumn(name = "tms_transportplanlocationordertransportinfolineid")
-    public TmsOrderTransportInfoLine getTmsTransportPlanLocationOrderTransportInfoLineID() {
+    public long getTmsTransportPlanLocationOrderTransportInfoLineID() {
         return tmsTransportPlanLocationOrderTransportInfoLineID;
     }
 
-    public void setTmsTransportPlanLocationOrderTransportInfoLineID(TmsOrderTransportInfoLine tmsTransportPlanLocationOrderTransportInfoLineID) {
+    public void setTmsTransportPlanLocationOrderTransportInfoLineID(long tmsTransportPlanLocationOrderTransportInfoLineID) {
         this.tmsTransportPlanLocationOrderTransportInfoLineID = tmsTransportPlanLocationOrderTransportInfoLineID;
     }
 
-    @ManyToOne()
+    //@ManyToOne()
     @JoinColumn(name = "tms_transportplanlocationvehicleid")
-    public GmoVehicle getTmsTransportPlanLocationvehicleId() {
+    public long getTmsTransportPlanLocationvehicleId() {
         return tmsTransportPlanLocationvehicleId;
     }
 
-    public void setTmsTransportPlanLocationvehicleId(GmoVehicle tmsTransportPlanLocationvehicleId) {
+    public void setTmsTransportPlanLocationvehicleId(long tmsTransportPlanLocationvehicleId) {
         this.tmsTransportPlanLocationvehicleId = tmsTransportPlanLocationvehicleId;
     }
 
@@ -131,19 +131,15 @@ public class TmsTransportPlanLocation extends EmsEntity {
 
 
 
-    @ManyToOne()
+   // @ManyToOne()
     @JoinColumn(name = "tms_transportplanlocationdriverid")
-    public GmoDriver getTmsTransportPlanLocationdriverId() {
+    public long getTmsTransportPlanLocationdriverId() {
         return tmsTransportPlanLocationdriverId;
     }
 
-    public void setTmsTransportPlanLocationdriverId(GmoDriver tmsTransportPlanLocationdriverId) {
+    public void setTmsTransportPlanLocationdriverId(long tmsTransportPlanLocationdriverId) {
         this.tmsTransportPlanLocationdriverId = tmsTransportPlanLocationdriverId;
     }
-
-
-
-
 
     @Column(name = "tms_transportplanlocationdate", nullable = false, length = 90)
 
