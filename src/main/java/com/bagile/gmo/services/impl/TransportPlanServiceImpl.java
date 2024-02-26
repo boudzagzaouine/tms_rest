@@ -1,18 +1,19 @@
 package com.bagile.gmo.services.impl;
 
-import com.bagile.gmo.dto.TransportPlan;
+import com.bagile.gmo.dto.*;
 import com.bagile.gmo.entities.TmsTransportPlan;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.TransportPlanMapper;
 import com.bagile.gmo.repositories.TransportPlanRepository;
-import com.bagile.gmo.services.MaintenanceService;
-import com.bagile.gmo.services.TransportPlanService;
+import com.bagile.gmo.services.*;
 import com.bagile.gmo.util.Search;
 import net.sf.jasperreports.engine.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -38,8 +39,20 @@ public class TransportPlanServiceImpl implements TransportPlanService {
     private final TransportPlanRepository transportPlanRepository;
     private final DataSource dataSource;
 
+
     private final static Logger LOGGER = LoggerFactory
             .getLogger(MaintenanceService.class);
+
+    @Autowired
+    private OrderTransportInfoService orderTransportInfoService;
+
+    @Autowired
+    private OrderTransportInfoLineService orderTransportInfoLineService;
+
+
+    @Autowired
+    private TransportPlanLocationService transportPlanLocationService;
+
 
     public TransportPlanServiceImpl(TransportPlanRepository transportPlanRepository, DataSource dataSource) {
         this.transportPlanRepository = transportPlanRepository;
@@ -187,6 +200,63 @@ public class TransportPlanServiceImpl implements TransportPlanService {
             LOGGER.error(e.getMessage(), e);
             return null;
         }
+
+    }
+
+    @Override
+    public List<TransportPlan> getItineraries(String search) throws ErrorType, AttributesNotFound {
+
+       List<TransportPlan> transportPlans = find(search);
+
+       transportPlans.forEach(transportPlan -> {
+
+           try {
+               transportPlan.getOrderTransport().setOrderTransportInfos(orderTransportInfoService.find("orderTransport.id:"+transportPlan.getOrderTransport().getId()));
+
+               transportPlan.getOrderTransport().getOrderTransportInfos().forEach(info -> {
+                   try {
+                       info.setOrderTransportInfoLines(orderTransportInfoLineService.find("orderTransportInfo.id:"+info.getId()));
+
+                   } catch (AttributesNotFound e) {
+                       throw new RuntimeException(e);
+                   } catch (ErrorType e) {
+                       throw new RuntimeException(e);
+                   }
+               });
+
+      /*         TransportPlanLocation transportPlanLocation=   transportPlanLocationService.find("orderTransport.id:"+transportPlan.getOrderTransport().getId()).get(0);
+               if(transportPlanLocation.getId()>0){
+                   OrderTransportInfoLine orderTransportInfoLine = new OrderTransportInfoLine();
+                   Address address = new Address();
+//                   address.setLatitude(transportPlanLocation.getLatitude());
+//                   address.setLongitude(transportPlanLocation.getLongitude());
+
+                   address.setLatitude(33.80026065115837);
+                   address.setLongitude(-6.060294108419388);
+
+                   orderTransportInfoLine.setAddress(address);
+orderTransportInfoLine.setDate(transportPlanLocation.getDate());
+                   transportPlan.getOrderTransport().getOrderTransportInfos().get(0).getOrderTransportInfoLines().add(orderTransportInfoLine);
+
+               }
+*/
+
+
+
+           } catch (AttributesNotFound e) {
+               throw new RuntimeException(e);
+           } catch (ErrorType e) {
+               throw new RuntimeException(e);
+           }
+
+
+       });
+
+
+
+
+
+       return transportPlans;
 
     }
 

@@ -81,6 +81,7 @@ public class OrderTransportInfoLineMapper {
 
         tmsOrderTransportInfoLine.setTmsOrderTransportLinePriceHT(orderTransportInfoLine.getPriceHT());
         tmsOrderTransportInfoLine.setTmsOrderTransportLinePriceTTC(orderTransportInfoLine.getPriceTTC());
+        tmsOrderTransportInfoLine.setTmsOrderTransportCloseDate(orderTransportInfoLine.getCloseDate());
 
 
         if (!lazy) {
@@ -154,6 +155,7 @@ public class OrderTransportInfoLineMapper {
 
         orderTransportInfoLine.setPriceHT(tmsOrderTransportInfoLine.getTmsOrderTransportLinePriceHT());
         orderTransportInfoLine.setPriceTTC(tmsOrderTransportInfoLine.getTmsOrderTransportLinePriceTTC());
+        orderTransportInfoLine.setCloseDate(tmsOrderTransportInfoLine.getTmsOrderTransportCloseDate());
 
 
         if (!lazy) {

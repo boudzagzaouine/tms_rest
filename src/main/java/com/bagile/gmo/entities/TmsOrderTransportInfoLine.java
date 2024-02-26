@@ -51,6 +51,7 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
     private PrmPaymentType prmPaymentTypeLivraison;
     private BigDecimal tmsPaymentAmountLivraison;
     private Date  tmsOrderTransportDateLivraison;
+    private Date  tmsOrderTransportCloseDate;
 
     private TmsTurnStatus tmsTurnStatus;
 
@@ -192,6 +193,18 @@ public class TmsOrderTransportInfoLine extends EmsEntity {
     public void setTmsOrderTransportDateLivraison(Date tmsOrderTransportDateLivraison) {
         this.tmsOrderTransportDateLivraison = tmsOrderTransportDateLivraison;
     }
+
+    @Column(name = "tms_ordertransportinfolineclosedate")
+    public Date getTmsOrderTransportCloseDate() {
+        return tmsOrderTransportCloseDate;
+    }
+
+    public void setTmsOrderTransportCloseDate(Date tmsOrderTransportCloseDate) {
+        this.tmsOrderTransportCloseDate = tmsOrderTransportCloseDate;
+    }
+
+
+
 
     @Column(name = "tms_ordertransportinfolinepaymentamountlivraison")
 

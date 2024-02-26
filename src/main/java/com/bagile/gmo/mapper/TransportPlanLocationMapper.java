@@ -15,9 +15,10 @@ public class TransportPlanLocationMapper {
         map = new HashMap<>();
 
         map.put("id", "tmsTransportPlanLocationId");
-        map.put("vehicleId", "tmsTransportPlanLocationvehicleId");
-        map.put("driverId", "tmsTransportPlanLocationdriverId");
+        map.put("vehicle", "tmsTransportPlanLocationvehicle");
+        map.put("driver", "tmsTransportPlanLocationdriver");
         map.put("date", "tmsTransportPlanLocationdate");
+        map.put("orderTransport", "tmsTransportPlanLocationOrderTransport");
 
     }
 
@@ -49,6 +50,12 @@ public class TransportPlanLocationMapper {
         tmsTransportPlanLocation.setAccountName(transportPlanLocation.getAccountName());
 
         if (!lazy) {
+            tmsTransportPlanLocation.setTmsTransportPlanLocationtransportPlan(TransportPlanMapper.toEntity(transportPlanLocation.getTransportPlan(),true));
+            tmsTransportPlanLocation.setTmsTransportPlanLocationOrderTransport(OrderTransportMapper.toEntity(transportPlanLocation.getOrderTransport(),true));
+            tmsTransportPlanLocation.setTmsTransportPlanLocationOrderTransportInfo(OrderTransportInfoMapper.toEntity(transportPlanLocation.getOrderTransportInfo(),true));
+            tmsTransportPlanLocation.setTmsTransportPlanLocationOrderTransportInfoLine(OrderTransportInfoLineMapper.toEntity(transportPlanLocation.getOrderTransportInfoLine(),true));
+            tmsTransportPlanLocation.setTmsTransportPlanLocationDriver(DriverMapper.toEntity(transportPlanLocation.getDriver(),true));
+            tmsTransportPlanLocation.setTmsTransportPlanLocationVehicle(VehicleMapper.toEntity(transportPlanLocation.getVehicle(),true));
 
 
         }
@@ -77,6 +84,12 @@ public class TransportPlanLocationMapper {
 
         if (!lazy) {
 
+            transportPlanLocation.setTransportPlan(TransportPlanMapper.toDto(tmsTransportPlanLocation.getTmsTransportPlanLocationtransportPlan(), false));
+            transportPlanLocation.setOrderTransport(OrderTransportMapper.toDto(tmsTransportPlanLocation.getTmsTransportPlanLocationOrderTransport(), false));
+            transportPlanLocation.setOrderTransportInfo(OrderTransportInfoMapper.toDto(tmsTransportPlanLocation.getTmsTransportPlanLocationOrderTransportInfo(), false));
+            transportPlanLocation.setOrderTransportInfoLine(OrderTransportInfoLineMapper.toDto(tmsTransportPlanLocation.getTmsTransportPlanLocationOrderTransportInfoLine(), false));
+            transportPlanLocation.setDriver(DriverMapper.toDto(tmsTransportPlanLocation.getTmsTransportPlanLocationDriver(), false));
+            transportPlanLocation.setVehicle(VehicleMapper.toDto(tmsTransportPlanLocation.getTmsTransportPlanLocationVehicle(), false));
 
         }
         return transportPlanLocation;

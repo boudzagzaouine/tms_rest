@@ -51,6 +51,10 @@ public class TmsTransportPlan extends EmsEntity {
     private BigDecimal tmsTransportPlanTotalServiceTTC;
     private BigDecimal tmsTransportPlanTotalServiceVAT;
 
+    private Double tmsTransportPlanlatitude=0.0 ;
+    private Double tmsTransportPlanlongitude =0.0;
+
+
 
    // private Set<TmsTransportPlanServiceCatalog> transportPlanServiceCatalogs = new HashSet<>();
 
@@ -126,6 +130,25 @@ public class TmsTransportPlan extends EmsEntity {
     @Column(name = "tms_transportplandriverexterne")
     public String getGmoDriverExterne() {
         return gmoDriverExterne;
+    }
+
+
+    @Column(name = "tms_transportplanlocationlatitude")
+    public Double getTmsTransportPlanlatitude() {
+        return tmsTransportPlanlatitude;
+    }
+
+    public void setTmsTransportPlanlatitude(Double tmsTransportPlanlatitude) {
+        this.tmsTransportPlanlatitude = tmsTransportPlanlatitude;
+    }
+
+    @Column(name = "tms_transportplanlocationlontitude")
+    public Double getTmsTransportPlanlongitude() {
+        return tmsTransportPlanlongitude;
+    }
+
+    public void setTmsTransportPlanlongitude(Double tmsTransportPlanlongitude) {
+        this.tmsTransportPlanlongitude = tmsTransportPlanlongitude;
     }
 
     public void setGmoDriverExterne(String gmoDriverExterne) {

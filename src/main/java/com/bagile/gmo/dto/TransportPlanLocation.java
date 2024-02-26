@@ -8,7 +8,7 @@ public class TransportPlanLocation {
 
     private double latitude;
     private double longitude;
-/*	private TransportPlan transportPlan;
+	private TransportPlan transportPlan;
 
 	private OrderTransport orderTransport;
 	private OrderTransportInfo orderTransportInfo;
@@ -16,7 +16,7 @@ public class TransportPlanLocation {
 	private OrderTransportInfoLine orderTransportInfoLine;
 
 	private Vehicle vehicle;
-	private Driver driver;*/
+	private Driver driver;
     private long transportPlanId;
 
     private long orderTransportId;
@@ -33,6 +33,8 @@ public class TransportPlanLocation {
 
     private long accountId;
     private String accountName;
+
+
 
     public long getId() {
         return id;
@@ -121,6 +123,54 @@ public class TransportPlanLocation {
 
     public void setOrderTransportInfoLineId(long orderTransportInfoLineId) {
         this.orderTransportInfoLineId = orderTransportInfoLineId;
+    }
+
+    public TransportPlan getTransportPlan() {
+        return transportPlan;
+    }
+
+    public void setTransportPlan(TransportPlan transportPlan) {
+        this.transportPlan = transportPlan;
+    }
+
+    public OrderTransport getOrderTransport() {
+        return orderTransport;
+    }
+
+    public void setOrderTransport(OrderTransport orderTransport) {
+        this.orderTransport = orderTransport;
+    }
+
+    public OrderTransportInfo getOrderTransportInfo() {
+        return orderTransportInfo;
+    }
+
+    public void setOrderTransportInfo(OrderTransportInfo orderTransportInfo) {
+        this.orderTransportInfo = orderTransportInfo;
+    }
+
+    public OrderTransportInfoLine getOrderTransportInfoLine() {
+        return orderTransportInfoLine;
+    }
+
+    public void setOrderTransportInfoLine(OrderTransportInfoLine orderTransportInfoLine) {
+        this.orderTransportInfoLine = orderTransportInfoLine;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
     }
 
     public long getVehicleId() {

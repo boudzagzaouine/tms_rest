@@ -142,4 +142,11 @@ public class TransportPlanController {
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(new ByteArrayResource(responseEntity));
     }
+
+
+    @RequestMapping(method = RequestMethod.GET, value = "/getItineraries")
+    @ResponseBody
+    public List<TransportPlan> getItineraries(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
+        return transportPlanService.getItineraries(search);
+    }
 }

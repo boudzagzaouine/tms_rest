@@ -1,5 +1,6 @@
 package com.bagile.gmo.services.impl;
 
+import com.bagile.gmo.dto.TransportPlan;
 import com.bagile.gmo.dto.TransportPlanLocation;
 import com.bagile.gmo.entities.TmsTransportPlanLocation;
 import com.bagile.gmo.exceptions.AttributesNotFound;
@@ -49,13 +50,30 @@ public class TransportPlanLocationServiceImpl implements TransportPlanLocationSe
     @Override
     public TransportPlanLocation save(TransportPlanLocation transportPlanLocation) throws IdNotFound {
 
-     /*   transportPlanLocation.setTransportPlan(transportPlanService.findById(transportPlanLocation.getTransportPlan().getId()));
-        transportPlanLocation.setOrderTransport(orderTransportService.findById(transportPlanLocation.getOrderTransport().getId()));
-        transportPlanLocation.setOrderTransportInfo(orderTransportInfoService.findById(transportPlanLocation.getOrderTransportInfo().getId()));
-        transportPlanLocation.setOrderTransportInfoLine(orderTransportInfoLineService.findById(transportPlanLocation.getOrderTransportInfoLine().getId()));
-        transportPlanLocation.setVehicle(vehicleService.findById(transportPlanLocation.getVehicle().getId()));
-        transportPlanLocation.setDriver(driverService.findById(transportPlanLocation.getDriver().getId()));
-*/
+        if(transportPlanLocation.getTransportPlanId()>0){
+            TransportPlan transportPlan =transportPlanService.findById(transportPlanLocation.getTransportPlanId());
+            transportPlanLocation.setTransportPlan(transportPlan);
+
+            transportPlan.setLatitude(transportPlanLocation.getLatitude());
+            transportPlan.setLongitude(transportPlanLocation.getLongitude());
+            transportPlanService.save(transportPlan);
+        }
+        if(transportPlanLocation.getOrderTransportId()>0) {
+            transportPlanLocation.setOrderTransport(orderTransportService.findById(transportPlanLocation.getOrderTransportId()));
+        }
+        if(transportPlanLocation.getOrderTransportInfoId()>0) {
+                transportPlanLocation.setOrderTransportInfo(orderTransportInfoService.findById(transportPlanLocation.getOrderTransportInfoId()));
+            }
+         if(transportPlanLocation.getOrderTransportInfoLineId()>0) {
+                    transportPlanLocation.setOrderTransportInfoLine(orderTransportInfoLineService.findById(transportPlanLocation.getOrderTransportInfoLineId()));
+                }
+         if(transportPlanLocation.getVehicleId()>0) {
+          transportPlanLocation.setVehicle(vehicleService.findById(transportPlanLocation.getVehicleId()));
+                    }
+          if(transportPlanLocation.getDriverId()>0) {
+              transportPlanLocation.setDriver(driverService.findById(transportPlanLocation.getDriverId()));
+                        }
+
 
         return TransportPlanLocationMapper.toDto(transportPlanLocationRepository.saveAndFlush(TransportPlanLocationMapper.toEntity(transportPlanLocation, false)), false);
     }

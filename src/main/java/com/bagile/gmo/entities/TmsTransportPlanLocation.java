@@ -1,12 +1,7 @@
 package com.bagile.gmo.entities;
 
-import com.bagile.gmo.dto.TransportPlan;
-import com.bagile.gmo.entities.EmsEntity;
-
 import javax.persistence.*;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 
 @Entity
@@ -27,6 +22,19 @@ public class TmsTransportPlanLocation extends EmsEntity {
 
     private long tmsTransportPlanLocationvehicleId ;
     private long tmsTransportPlanLocationdriverId ;
+
+
+
+    private TmsTransportPlan tmsTransportPlanLocationtransportPlan ;
+    private TmsOrderTransport tmsTransportPlanLocationOrderTransport ;
+
+    private TmsOrderTransportInfo tmsTransportPlanLocationOrderTransportInfo;
+
+    private TmsOrderTransportInfoLine tmsTransportPlanLocationOrderTransportInfoLine ;
+
+    private GmoVehicle tmsTransportPlanLocationVehicle;
+    private GmoDriver tmsTransportPlanLocationDriver;
+
     private Date tmsTransportPlanLocationdate;
 
     private String tmsTransportPlanLocationType;
@@ -77,7 +85,7 @@ public class TmsTransportPlanLocation extends EmsEntity {
 
 
     //@ManyToOne()
-    @JoinColumn(name = "tms_transportplanlocationtransportplanid")
+    @Column(name = "tms_transportplanlocationtransportplanid")
     public long getTmsTransportPlanLocationtransportPlanId() {
         return tmsTransportPlanLocationtransportPlanId;
     }
@@ -88,7 +96,7 @@ public class TmsTransportPlanLocation extends EmsEntity {
 
 
    // @ManyToOne()
-    @JoinColumn(name = "tms_transportplanlocationordertransportid")
+    @Column(name = "tms_transportplanlocationordertransportid")
     public long getTmsTransportPlanLocationOrderTransportId() {
         return tmsTransportPlanLocationOrderTransportId;
     }
@@ -98,7 +106,7 @@ public class TmsTransportPlanLocation extends EmsEntity {
     }
 
     //@ManyToOne()
-    @JoinColumn(name = "tms_transportplanlocationordertransportinfoid")
+    @Column(name = "tms_transportplanlocationordertransportinfoid")
     public long getTmsTransportPlanLocationOrderTransportInfoId() {
         return tmsTransportPlanLocationOrderTransportInfoId;
     }
@@ -108,7 +116,7 @@ public class TmsTransportPlanLocation extends EmsEntity {
     }
 
     //@ManyToOne()
-    @JoinColumn(name = "tms_transportplanlocationordertransportinfolineid")
+    @Column(name = "tms_transportplanlocationordertransportinfolineid")
     public long getTmsTransportPlanLocationOrderTransportInfoLineID() {
         return tmsTransportPlanLocationOrderTransportInfoLineID;
     }
@@ -118,7 +126,7 @@ public class TmsTransportPlanLocation extends EmsEntity {
     }
 
     //@ManyToOne()
-    @JoinColumn(name = "tms_transportplanlocationvehicleid")
+    @Column(name = "tms_transportplanlocationvehicleid")
     public long getTmsTransportPlanLocationvehicleId() {
         return tmsTransportPlanLocationvehicleId;
     }
@@ -132,7 +140,7 @@ public class TmsTransportPlanLocation extends EmsEntity {
 
 
    // @ManyToOne()
-    @JoinColumn(name = "tms_transportplanlocationdriverid")
+    @Column(name = "tms_transportplanlocationdriverid")
     public long getTmsTransportPlanLocationdriverId() {
         return tmsTransportPlanLocationdriverId;
     }
@@ -171,4 +179,69 @@ public class TmsTransportPlanLocation extends EmsEntity {
     public void setAccountName(String accountName) {
         this.accountName = accountName;
     }
+
+
+    @ManyToOne()
+    @JoinColumn(name = "tms_transportplanlocationtransportplan")
+    public TmsTransportPlan getTmsTransportPlanLocationtransportPlan() {
+        return tmsTransportPlanLocationtransportPlan;
+    }
+
+    public void setTmsTransportPlanLocationtransportPlan(TmsTransportPlan tmsTransportPlanLocationtransportPlan) {
+        this.tmsTransportPlanLocationtransportPlan = tmsTransportPlanLocationtransportPlan;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "tms_transportplanlocationordertransport")
+    public TmsOrderTransport getTmsTransportPlanLocationOrderTransport() {
+        return tmsTransportPlanLocationOrderTransport;
+    }
+
+    public void setTmsTransportPlanLocationOrderTransport(TmsOrderTransport tmsTransportPlanLocationOrderTransport) {
+        this.tmsTransportPlanLocationOrderTransport = tmsTransportPlanLocationOrderTransport;
+    }
+
+
+    @ManyToOne()
+    @JoinColumn(name = "tms_transportplanlocationordertransportinfo")
+    public TmsOrderTransportInfo getTmsTransportPlanLocationOrderTransportInfo() {
+        return tmsTransportPlanLocationOrderTransportInfo;
+    }
+
+    public void setTmsTransportPlanLocationOrderTransportInfo(TmsOrderTransportInfo tmsTransportPlanLocationOrderTransportInfo) {
+        this.tmsTransportPlanLocationOrderTransportInfo = tmsTransportPlanLocationOrderTransportInfo;
+    }
+
+
+    @ManyToOne()
+    @JoinColumn(name = "tms_transportplanlocationordertransportinfoline")
+    public TmsOrderTransportInfoLine getTmsTransportPlanLocationOrderTransportInfoLine() {
+        return tmsTransportPlanLocationOrderTransportInfoLine;
+    }
+
+    public void setTmsTransportPlanLocationOrderTransportInfoLine(TmsOrderTransportInfoLine tmsTransportPlanLocationOrderTransportInfoLine) {
+        this.tmsTransportPlanLocationOrderTransportInfoLine = tmsTransportPlanLocationOrderTransportInfoLine;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "tms_transportplanlocationvehicle")
+    public GmoVehicle getTmsTransportPlanLocationVehicle() {
+        return tmsTransportPlanLocationVehicle;
+    }
+
+    public void setTmsTransportPlanLocationVehicle(GmoVehicle tmsTransportPlanLocationvehicle) {
+        this.tmsTransportPlanLocationVehicle = tmsTransportPlanLocationvehicle;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "tms_transportplanlocationdriver")
+    public GmoDriver getTmsTransportPlanLocationDriver() {
+        return tmsTransportPlanLocationDriver;
+    }
+
+    public void setTmsTransportPlanLocationDriver(GmoDriver tmsTransportPlanLocationdriver) {
+        this.tmsTransportPlanLocationDriver = tmsTransportPlanLocationdriver;
+    }
 }
+
+

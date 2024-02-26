@@ -42,4 +42,8 @@ public interface TransportPlanService {
     byte[] exportInvoiceState(String search)  throws ErrorType, AttributesNotFound;
 
 
+    List<TransportPlan> getItineraries(String search)  throws ErrorType, AttributesNotFound;
+
+
+
 }

@@ -49,11 +49,14 @@ public class OrderTransportInfoLine {
 	private Date dateCommancerDechargement;
 	private Date dateFinDechargement;
 	private Date dateFinChargement;
+	private Date closeDate;
 
 	private BigDecimal priceHT;
 	private Vat vat ;
 	private BigDecimal priceTTC;
 	private List<OrderTransportInfoLineDocument> orderTransportInfoLineDocuments = new ArrayList();
+
+	private Date date; // local
 
 	public Date getDateArriver() {
 		return dateArriver;
@@ -69,6 +72,14 @@ public class OrderTransportInfoLine {
 
 	public void setDateCommancerChargement(Date dateCommancerChargement) {
 		this.dateCommancerChargement = dateCommancerChargement;
+	}
+
+	public Date getCloseDate() {
+		return closeDate;
+	}
+
+	public void setCloseDate(Date closeDate) {
+		this.closeDate = closeDate;
 	}
 
 	public Date getDateCommancerDechargement() {
@@ -353,6 +364,14 @@ public AddressContactOrderTransportInfo getAddressContactDeliveryInfo() {
 		this.owner = owner;
 	}
 
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -365,4 +384,8 @@ public AddressContactOrderTransportInfo getAddressContactDeliveryInfo() {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+
+
+
+
 }

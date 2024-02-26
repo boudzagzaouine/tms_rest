@@ -76,6 +76,10 @@ public class TransportPlanMapper {
         tmsTransportPlan.setGmoDriverExterne(transportPlan.getDriverExterne());
         tmsTransportPlan.setGmoVehicleExterne(transportPlan.getVehicleExterne());
 
+        tmsTransportPlan.setTmsTransportPlanlatitude(transportPlan.getLatitude());
+        tmsTransportPlan.setTmsTransportPlanlongitude(transportPlan.getLongitude());
+
+
         if (!lazy) {
             tmsTransportPlan.setTmsOrderTransport(OrderTransportMapper.toEntity(transportPlan.getOrderTransport(), false));
             tmsTransportPlan.setGmoVehicle(VehicleMapper.toEntity(transportPlan.getVehicle(), true));
@@ -140,6 +144,10 @@ public class TransportPlanMapper {
 
         transportPlan.setDriverExterne(tmsTransportPlan.getGmoDriverExterne());
         transportPlan.setVehicleExterne(tmsTransportPlan.getGmoVehicleExterne());
+
+        transportPlan.setLatitude(tmsTransportPlan.getTmsTransportPlanlatitude());
+        transportPlan.setLongitude(tmsTransportPlan.getTmsTransportPlanlongitude());
+
 
         if (!lazy) {
             transportPlan.setOrderTransport(OrderTransportMapper.toDto(tmsTransportPlan.getTmsOrderTransport(), false));
