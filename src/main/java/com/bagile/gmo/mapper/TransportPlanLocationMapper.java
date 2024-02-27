@@ -40,8 +40,8 @@ public class TransportPlanLocationMapper {
         tmsTransportPlanLocation.setTmsTransportPlanLocationOrderTransportId(transportPlanLocation.getOrderTransportId());
         tmsTransportPlanLocation.setTmsTransportPlanLocationOrderTransportInfoId(transportPlanLocation.getOrderTransportInfoId());
         tmsTransportPlanLocation.setTmsTransportPlanLocationOrderTransportInfoLineID(transportPlanLocation.getOrderTransportInfoLineId());
-        tmsTransportPlanLocation.setTmsTransportPlanLocationvehicleId(tmsTransportPlanLocation.getTmsTransportPlanLocationvehicleId());
-        tmsTransportPlanLocation.setTmsTransportPlanLocationdriverId(tmsTransportPlanLocation.getTmsTransportPlanLocationdriverId());
+        tmsTransportPlanLocation.setTmsTransportPlanLocationvehicleId(transportPlanLocation.getVehicleId());
+        tmsTransportPlanLocation.setTmsTransportPlanLocationdriverId(transportPlanLocation.getDriverId());
         tmsTransportPlanLocation.setTmsTransportPlanLocationlatitude(transportPlanLocation.getLatitude());
         tmsTransportPlanLocation.setTmsTransportPlanLocationlongitude(transportPlanLocation.getLongitude());
         tmsTransportPlanLocation.setTmsTransportPlanLocationdate(transportPlanLocation.getDate());
