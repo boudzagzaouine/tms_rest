@@ -17,21 +17,21 @@ public class TransportPlanLocation {
 
 	private Vehicle vehicle;
 	private Driver driver;
-    private long transportPlanId;
+    private Long transportPlanId;
 
-    private long orderTransportId;
-    private long orderTransportInfoId;
+    private Long orderTransportId;
+    private Long orderTransportInfoId;
 
-    private long orderTransportInfoLineId;
+    private Long orderTransportInfoLineId;
 
-    private long vehicleId;
-    private long driverId;
+    private Long vehicleId;
+    private Long driverId;
 
 
     private Date date;
     private String type;
 
-    private long accountId;
+    private Long accountId;
     private String accountName;
 
 
@@ -77,11 +77,11 @@ public class TransportPlanLocation {
         this.type = type;
     }
 
-    public long getAccountId() {
+    public Long getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(long accountId) {
+    public void setAccountId(Long accountId) {
         this.accountId = accountId;
     }
 
@@ -93,35 +93,35 @@ public class TransportPlanLocation {
         this.accountName = accountName;
     }
 
-    public long getTransportPlanId() {
+    public Long getTransportPlanId() {
         return transportPlanId;
     }
 
-    public void setTransportPlanId(long transportPlanId) {
+    public void setTransportPlanId(Long transportPlanId) {
         this.transportPlanId = transportPlanId;
     }
 
-    public long getOrderTransportId() {
+    public Long getOrderTransportId() {
         return orderTransportId;
     }
 
-    public void setOrderTransportId(long orderTransportId) {
+    public void setOrderTransportId(Long orderTransportId) {
         this.orderTransportId = orderTransportId;
     }
 
-    public long getOrderTransportInfoId() {
+    public Long getOrderTransportInfoId() {
         return orderTransportInfoId;
     }
 
-    public void setOrderTransportInfoId(long orderTransportInfoId) {
+    public void setOrderTransportInfoId(Long orderTransportInfoId) {
         this.orderTransportInfoId = orderTransportInfoId;
     }
 
-    public long getOrderTransportInfoLineId() {
+    public Long getOrderTransportInfoLineId() {
         return orderTransportInfoLineId;
     }
 
-    public void setOrderTransportInfoLineId(long orderTransportInfoLineId) {
+    public void setOrderTransportInfoLineId(Long orderTransportInfoLineId) {
         this.orderTransportInfoLineId = orderTransportInfoLineId;
     }
 
@@ -173,11 +173,11 @@ public class TransportPlanLocation {
         this.driver = driver;
     }
 
-    public long getVehicleId() {
+    public Long getVehicleId() {
         return vehicleId;
     }
 
-    public void setVehicleId(long vehicleId) {
+    public void setVehicleId(Long vehicleId) {
         this.vehicleId = vehicleId;
     }
 

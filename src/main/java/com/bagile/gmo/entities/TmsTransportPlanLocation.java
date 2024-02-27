@@ -13,15 +13,15 @@ public class TmsTransportPlanLocation extends EmsEntity {
 	private Long tmsTransportPlanLocationId;
     private double tmsTransportPlanLocationlatitude ;
     private double tmsTransportPlanLocationlongitude ;
-    private long tmsTransportPlanLocationtransportPlanId ;
-    private long tmsTransportPlanLocationOrderTransportId ;
+    private Long tmsTransportPlanLocationtransportPlanId ;
+    private Long tmsTransportPlanLocationOrderTransportId ;
 
-    private long tmsTransportPlanLocationOrderTransportInfoId ;
+    private Long tmsTransportPlanLocationOrderTransportInfoId ;
 
-    private long tmsTransportPlanLocationOrderTransportInfoLineID ;
+    private Long tmsTransportPlanLocationOrderTransportInfoLineID ;
 
-    private long tmsTransportPlanLocationvehicleId ;
-    private long tmsTransportPlanLocationdriverId ;
+    private Long tmsTransportPlanLocationvehicleId ;
+    private Long tmsTransportPlanLocationdriverId ;
 
 
 
@@ -39,7 +39,7 @@ public class TmsTransportPlanLocation extends EmsEntity {
 
     private String tmsTransportPlanLocationType;
 
-    private long accountId;
+    private Long accountId;
     private String accountName ;
 
     @Id
@@ -86,52 +86,52 @@ public class TmsTransportPlanLocation extends EmsEntity {
 
     //@ManyToOne()
     @Column(name = "tms_transportplanlocationtransportplanid")
-    public long getTmsTransportPlanLocationtransportPlanId() {
+    public Long getTmsTransportPlanLocationtransportPlanId() {
         return tmsTransportPlanLocationtransportPlanId;
     }
 
-    public void setTmsTransportPlanLocationtransportPlanId(long tmsTransportPlanLocationtransportPlanId) {
+    public void setTmsTransportPlanLocationtransportPlanId(Long tmsTransportPlanLocationtransportPlanId) {
         this.tmsTransportPlanLocationtransportPlanId = tmsTransportPlanLocationtransportPlanId;
     }
 
 
    // @ManyToOne()
     @Column(name = "tms_transportplanlocationordertransportid")
-    public long getTmsTransportPlanLocationOrderTransportId() {
+    public Long getTmsTransportPlanLocationOrderTransportId() {
         return tmsTransportPlanLocationOrderTransportId;
     }
 
-    public void setTmsTransportPlanLocationOrderTransportId(long tmsTransportPlanLocationOrderTransportId) {
+    public void setTmsTransportPlanLocationOrderTransportId(Long tmsTransportPlanLocationOrderTransportId) {
         this.tmsTransportPlanLocationOrderTransportId = tmsTransportPlanLocationOrderTransportId;
     }
 
     //@ManyToOne()
     @Column(name = "tms_transportplanlocationordertransportinfoid")
-    public long getTmsTransportPlanLocationOrderTransportInfoId() {
+    public Long getTmsTransportPlanLocationOrderTransportInfoId() {
         return tmsTransportPlanLocationOrderTransportInfoId;
     }
 
-    public void setTmsTransportPlanLocationOrderTransportInfoId(long tmsTransportPlanLocationOrderTransportInfoId) {
+    public void setTmsTransportPlanLocationOrderTransportInfoId(Long tmsTransportPlanLocationOrderTransportInfoId) {
         this.tmsTransportPlanLocationOrderTransportInfoId = tmsTransportPlanLocationOrderTransportInfoId;
     }
 
     //@ManyToOne()
     @Column(name = "tms_transportplanlocationordertransportinfolineid")
-    public long getTmsTransportPlanLocationOrderTransportInfoLineID() {
+    public Long getTmsTransportPlanLocationOrderTransportInfoLineID() {
         return tmsTransportPlanLocationOrderTransportInfoLineID;
     }
 
-    public void setTmsTransportPlanLocationOrderTransportInfoLineID(long tmsTransportPlanLocationOrderTransportInfoLineID) {
+    public void setTmsTransportPlanLocationOrderTransportInfoLineID(Long tmsTransportPlanLocationOrderTransportInfoLineID) {
         this.tmsTransportPlanLocationOrderTransportInfoLineID = tmsTransportPlanLocationOrderTransportInfoLineID;
     }
 
     //@ManyToOne()
     @Column(name = "tms_transportplanlocationvehicleid")
-    public long getTmsTransportPlanLocationvehicleId() {
+    public Long getTmsTransportPlanLocationvehicleId() {
         return tmsTransportPlanLocationvehicleId;
     }
 
-    public void setTmsTransportPlanLocationvehicleId(long tmsTransportPlanLocationvehicleId) {
+    public void setTmsTransportPlanLocationvehicleId(Long tmsTransportPlanLocationvehicleId) {
         this.tmsTransportPlanLocationvehicleId = tmsTransportPlanLocationvehicleId;
     }
 
@@ -141,11 +141,11 @@ public class TmsTransportPlanLocation extends EmsEntity {
 
    // @ManyToOne()
     @Column(name = "tms_transportplanlocationdriverid")
-    public long getTmsTransportPlanLocationdriverId() {
+    public Long getTmsTransportPlanLocationdriverId() {
         return tmsTransportPlanLocationdriverId;
     }
 
-    public void setTmsTransportPlanLocationdriverId(long tmsTransportPlanLocationdriverId) {
+    public void setTmsTransportPlanLocationdriverId(Long tmsTransportPlanLocationdriverId) {
         this.tmsTransportPlanLocationdriverId = tmsTransportPlanLocationdriverId;
     }
 
@@ -162,11 +162,11 @@ public class TmsTransportPlanLocation extends EmsEntity {
 
     @Column(name = "tms_transportplanlocationaccountid")
 
-    public long getAccountId() {
+    public Long getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(long accountId) {
+    public void setAccountId(Long accountId) {
         this.accountId = accountId;
     }
 
