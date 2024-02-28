@@ -35,7 +35,7 @@ public class TmsTransportPlan extends EmsEntity {
     private BigDecimal tmsTransportPlanSalePrice;
 
     private  Date tmsTransportPlanDateDepart;
-    private  Date tmsTransportPlanDateFinir;
+    private  Date tmsTransportPlanCloseDate;
 
     private  Date tmsTransportPlanDateValidate;
 
@@ -109,13 +109,14 @@ public class TmsTransportPlan extends EmsEntity {
     public void setTmsTrajet(TmsTrajet tmsTrajet) {
         this.tmsTrajet = tmsTrajet;
     }
-    @Column(name = "tms_transportplandatefinir")
-    public Date getTmsTransportPlanDateFinir() {
-        return tmsTransportPlanDateFinir;
+
+    @Column(name = "tms_transportplanclosedate")
+    public Date getTmsTransportPlanCloseDate() {
+        return tmsTransportPlanCloseDate;
     }
 
-    public void setTmsTransportPlanDateFinir(Date tmsTransportPlanDateFinir) {
-        this.tmsTransportPlanDateFinir = tmsTransportPlanDateFinir;
+    public void setTmsTransportPlanCloseDate(Date tmsTransportPlanCloseDate) {
+        this.tmsTransportPlanCloseDate = tmsTransportPlanCloseDate;
     }
 
     @Column(name = "tms_transportplanvehicleexterne")

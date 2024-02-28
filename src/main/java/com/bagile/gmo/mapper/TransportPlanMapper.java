@@ -53,7 +53,7 @@ public class TransportPlanMapper {
         tmsTransportPlan.setTmsTransportPlanPurchasePrice(transportPlan.getPurchasePrice());
         tmsTransportPlan.setTmsTransportPlanPurchasePriceTtc(transportPlan.getPurchasePriceTtc());
         tmsTransportPlan.setTmsTransportPlanPurchasePriceVat(transportPlan.getPurchasePriceVat());
-        tmsTransportPlan.setTmsTransportPlanDateFinir(transportPlan.getDateFinir());
+        tmsTransportPlan.setTmsTransportPlanCloseDate(transportPlan.getCloseDate());
         tmsTransportPlan.setTmsTransportPlanDateDepart(transportPlan.getDateDepart());
         tmsTransportPlan.setTmsTransportPlanDateValidate(transportPlan.getDateValidate());
 
@@ -71,7 +71,6 @@ public class TransportPlanMapper {
         tmsTransportPlan.setTmsTransportPlanTotalServiceHT(transportPlan.getTotalServiceHT());
         tmsTransportPlan.setTmsTransportPlanTotalServiceTTC(transportPlan.getTotalServiceTTC());
         tmsTransportPlan.setTmsTransportPlanTotalServiceVAT(transportPlan.getTotalServiceVat());
-        tmsTransportPlan.setTmsTransportPlanDateFinir(transportPlan.getDateFinir());
 
         tmsTransportPlan.setGmoDriverExterne(transportPlan.getDriverExterne());
         tmsTransportPlan.setGmoVehicleExterne(transportPlan.getVehicleExterne());
@@ -125,7 +124,7 @@ public class TransportPlanMapper {
 
         transportPlan.setDateDepart(tmsTransportPlan.getTmsTransportPlanDateDepart());
         transportPlan.setDateValidate(tmsTransportPlan.getTmsTransportPlanDateValidate());
-        tmsTransportPlan.setTmsTransportPlanDateFinir(tmsTransportPlan.getTmsTransportPlanDateFinir());
+        transportPlan.setCloseDate(tmsTransportPlan.getTmsTransportPlanCloseDate());
         transportPlan.setMarginRate(tmsTransportPlan.getTmsTransportPlanMarginRate());
         transportPlan.setMargineService(tmsTransportPlan.getTmsTransportPlanmargineService());
         transportPlan.setSalePrice(tmsTransportPlan.getTmsTransportPlanSalePrice());
@@ -140,7 +139,6 @@ public class TransportPlanMapper {
         transportPlan.setTotalServiceHT(tmsTransportPlan.getTmsTransportPlanTotalServiceHT());
         transportPlan.setTotalServiceTTC(tmsTransportPlan.getTmsTransportPlanTotalServiceTTC());
         transportPlan.setTotalServiceVat(tmsTransportPlan.getTmsTransportPlanTotalServiceVAT());
-        transportPlan.setDateFinir(tmsTransportPlan.getTmsTransportPlanDateFinir());
 
         transportPlan.setDriverExterne(tmsTransportPlan.getGmoDriverExterne());
         transportPlan.setVehicleExterne(tmsTransportPlan.getGmoVehicleExterne());

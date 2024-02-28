@@ -50,7 +50,7 @@ public class TransportPlanLocationServiceImpl implements TransportPlanLocationSe
     @Override
     public TransportPlanLocation save(TransportPlanLocation transportPlanLocation) throws IdNotFound {
 
-        if(transportPlanLocation.getTransportPlanId()>0){
+        if(transportPlanLocation.getTransportPlanId()!=null){
             TransportPlan transportPlan =transportPlanService.findById(transportPlanLocation.getTransportPlanId());
             transportPlanLocation.setTransportPlan(transportPlan);
 
@@ -58,19 +58,19 @@ public class TransportPlanLocationServiceImpl implements TransportPlanLocationSe
             transportPlan.setLongitude(transportPlanLocation.getLongitude());
             transportPlanService.save(transportPlan);
         }
-        if(transportPlanLocation.getOrderTransportId()>0) {
+        if(transportPlanLocation.getOrderTransportId()!=null) {
             transportPlanLocation.setOrderTransport(orderTransportService.findById(transportPlanLocation.getOrderTransportId()));
         }
-        if(transportPlanLocation.getOrderTransportInfoId()>0) {
+        if(transportPlanLocation.getOrderTransportInfoId()!=null) {
                 transportPlanLocation.setOrderTransportInfo(orderTransportInfoService.findById(transportPlanLocation.getOrderTransportInfoId()));
             }
-         if(transportPlanLocation.getOrderTransportInfoLineId()>0) {
+         if(transportPlanLocation.getOrderTransportInfoLineId()!=null) {
                     transportPlanLocation.setOrderTransportInfoLine(orderTransportInfoLineService.findById(transportPlanLocation.getOrderTransportInfoLineId()));
                 }
-         if(transportPlanLocation.getVehicleId()>0) {
+         if(transportPlanLocation.getVehicleId()!=null) {
           transportPlanLocation.setVehicle(vehicleService.findById(transportPlanLocation.getVehicleId()));
                     }
-          if(transportPlanLocation.getDriverId()>0) {
+          if(transportPlanLocation.getDriverId()!=null) {
               transportPlanLocation.setDriver(driverService.findById(transportPlanLocation.getDriverId()));
                         }
 

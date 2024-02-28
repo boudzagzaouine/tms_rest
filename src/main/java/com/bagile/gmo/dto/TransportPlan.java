@@ -50,7 +50,7 @@ public class TransportPlan extends EmsDto implements Serializable {
     private BigDecimal totalServiceHT;
     private BigDecimal totalServiceTTC;
     private BigDecimal totalServiceVat;
-    private  Date dateFinir;
+    private  Date closeDate;
 
     private Double latitude;
     private Double longitude;
@@ -60,12 +60,12 @@ public class TransportPlan extends EmsDto implements Serializable {
     }
 
 
-    public Date getDateFinir() {
-        return dateFinir;
+    public Date getCloseDate() {
+        return closeDate;
     }
 
-    public void setDateFinir(Date dateFinir) {
-        this.dateFinir = dateFinir;
+    public void setCloseDate(Date closeDate) {
+        this.closeDate = closeDate;
     }
 
     public long getId() {

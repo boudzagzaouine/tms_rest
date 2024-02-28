@@ -8,15 +8,15 @@ public class TransportPlanLocation {
 
     private double latitude;
     private double longitude;
-	private TransportPlan transportPlan;
+    private TransportPlan transportPlan;
 
-	private OrderTransport orderTransport;
-	private OrderTransportInfo orderTransportInfo;
+    private OrderTransport orderTransport;
+    private OrderTransportInfo orderTransportInfo;
 
-	private OrderTransportInfoLine orderTransportInfoLine;
+    private OrderTransportInfoLine orderTransportInfoLine;
 
-	private Vehicle vehicle;
-	private Driver driver;
+    private Vehicle vehicle;
+    private Driver driver;
     private Long transportPlanId;
 
     private Long orderTransportId;
@@ -33,7 +33,6 @@ public class TransportPlanLocation {
 
     private Long accountId;
     private String accountName;
-
 
 
     public long getId() {
@@ -181,11 +180,11 @@ public class TransportPlanLocation {
         this.vehicleId = vehicleId;
     }
 
-    public long getDriverId() {
+    public Long getDriverId() {
         return driverId;
     }
 
-    public void setDriverId(long driverId) {
+    public void setDriverId(Long driverId) {
         this.driverId = driverId;
     }
 }
