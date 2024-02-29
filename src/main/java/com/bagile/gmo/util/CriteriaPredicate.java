@@ -123,6 +123,8 @@ public class CriteriaPredicate {
             if (criteria.getOperation().equalsIgnoreCase(":")) {
                 if (criteria.getValue().toString().toLowerCase().equals("null"))
                     return path.isNull().or(path.isEmpty());
+                if (criteria.getValue().toString().toLowerCase().equals("notnull"))
+                    return path.isNull().or(path.isNotEmpty());
                 else
                     return path.lower().eq(criteria.getValue().toString().toLowerCase());
             }

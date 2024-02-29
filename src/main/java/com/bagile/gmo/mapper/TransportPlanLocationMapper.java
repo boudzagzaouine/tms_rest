@@ -20,6 +20,7 @@ public class TransportPlanLocationMapper {
         map.put("date", "tmsTransportPlanLocationdate");
         map.put("orderTransport", "tmsTransportPlanLocationOrderTransport");
         map.put("orderTransportInfoLine", "tmsTransportPlanLocationOrderTransportInfoLine");
+        map.put("type", "tmsTransportPlanLocationType");
 
     }
 
