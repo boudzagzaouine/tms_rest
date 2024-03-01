@@ -6,10 +6,11 @@ import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import org.springframework.http.ResponseEntity;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface TransportPlanService {
-    TransportPlan save(TransportPlan transportPlan);
+    TransportPlan save(TransportPlan transportPlan) throws IdNotFound, ErrorType, IOException, AttributesNotFound;
 
     Long size();
 

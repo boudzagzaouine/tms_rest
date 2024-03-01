@@ -21,6 +21,7 @@ public class TransportPlanLocationMapper {
         map.put("orderTransport", "tmsTransportPlanLocationOrderTransport");
         map.put("orderTransportInfoLine", "tmsTransportPlanLocationOrderTransportInfoLine");
         map.put("type", "tmsTransportPlanLocationType");
+        map.put("transportPlan", "tmsTransportPlanLocationtransportPlan");
 
     }
 

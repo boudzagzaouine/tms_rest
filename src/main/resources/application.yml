@@ -20,7 +20,8 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
   jackson:
-    serialization.fail-on-empty-beans: false
+    serialization:
+      fail-on-empty-beans: false
   servlet:
     multipart:
       max-request-size: 25

@@ -67,6 +67,10 @@ public class GmoVehicle extends GmoPatrimony {
 
     private GmoBrandVehicleType gmoBrandVehicleType;
 
+    private Long gmoVehicleDisponible;
+
+    private String gmoVehicleLastPointCity;
+    private Date gmoVehiclelLastPointDate;
 
   /*  @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
@@ -115,6 +119,34 @@ public class GmoVehicle extends GmoPatrimony {
 
     public void setGmoVehicleValueTechnicalvisit(BigDecimal gmoVehicleValueTechnicalvisit) {
         this.gmoVehicleValueTechnicalvisit = gmoVehicleValueTechnicalvisit;
+    }
+
+    @Column(name = "gmo_vehiculedisponible")
+    public Long getGmoVehicleDisponible() {
+        return gmoVehicleDisponible;
+    }
+    public void setGmoVehicleDisponible(Long gmoVehicleDisponible) {
+        this.gmoVehicleDisponible = gmoVehicleDisponible;
+    }
+
+    @Column(name = "gmo_vehiculelastpointcity")
+
+    public String getGmoVehicleLastPointCity() {
+        return gmoVehicleLastPointCity;
+    }
+
+    public void setGmoVehicleLastPointCity(String gmoVehicleLastPointCity) {
+        this.gmoVehicleLastPointCity = gmoVehicleLastPointCity;
+    }
+
+    @Column(name = "gmo_vehiculelastpointdate")
+
+    public Date getGmoVehiclelLastPointDate() {
+        return gmoVehiclelLastPointDate;
+    }
+
+    public void setGmoVehiclelLastPointDate(Date gmoVehiclelLastPointDate) {
+        this.gmoVehiclelLastPointDate = gmoVehiclelLastPointDate;
     }
 
     @Column(name = "gmo_vehiculeinterneorexterne")

@@ -5,10 +5,11 @@ import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface TransportPlanLocationService {
-    TransportPlanLocation save(TransportPlanLocation transportPlanLocation) throws IdNotFound;
+    TransportPlanLocation save(TransportPlanLocation transportPlanLocation) throws IdNotFound, ErrorType, IOException, AttributesNotFound;
 
     Long size();
 

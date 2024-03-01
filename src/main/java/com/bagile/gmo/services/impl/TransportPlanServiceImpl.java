@@ -26,11 +26,9 @@ import org.springframework.util.ResourceUtils;
 
 import javax.sql.DataSource;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Service
@@ -52,7 +50,8 @@ public class TransportPlanServiceImpl implements TransportPlanService {
 
     @Autowired
     private TransportPlanLocationService transportPlanLocationService;
-
+    @Autowired
+    private VehicleService vehicleService;
 
     public TransportPlanServiceImpl(TransportPlanRepository transportPlanRepository, DataSource dataSource) {
         this.transportPlanRepository = transportPlanRepository;
@@ -60,7 +59,24 @@ public class TransportPlanServiceImpl implements TransportPlanService {
     }
 
     @Override
-    public TransportPlan save(TransportPlan transportPlan) {
+    public TransportPlan save(TransportPlan transportPlan) throws IdNotFound, ErrorType, IOException, AttributesNotFound {
+
+
+        if(transportPlan.getTurnStatus().getId()==3){
+            Vehicle vehicle =vehicleService.findById(transportPlan.getVehicle().getId());
+            vehicle.setDisponible(4L); // 4 disponible
+            vehicle.setLastPointCity(transportPlan.getTrajet().getVilleDestination().getCode());
+            vehicle.setLastPointDate(new Date());
+            vehicleService.save(vehicle);
+        }
+        if(transportPlan.getTurnStatus().getId()==5){
+            Vehicle vehicle =vehicleService.findById(transportPlan.getVehicle().getId());
+            vehicle.setDisponible(1L); // 1 Trajet
+            vehicle.setLastPointCity(transportPlan.getTrajet().getVilleSource().getCode());
+            vehicle.setLastPointDate(new Date());
+            vehicleService.save(vehicle);
+        }
+
         return TransportPlanMapper.toDto(transportPlanRepository.saveAndFlush(TransportPlanMapper.toEntity(transportPlan, false)), false);
     }
 

@@ -64,8 +64,9 @@ public class Vehicle extends Patrimony implements Serializable {
 
     private Double latitude;
     private Double longitude;
-    private long disponible; //1 trajet //2 maintenance // disponible
-
+    private Long disponible; //1 trajet //2 panne //3 maintenance // 4 disponible //
+    private String lastPointCity;
+    private Date lastPointDate;
 
 
 
@@ -101,6 +102,22 @@ public class Vehicle extends Patrimony implements Serializable {
         this.code = code;
     }
 */
+
+    public String getLastPointCity() {
+        return lastPointCity;
+    }
+
+    public void setLastPointCity(String lastPointCity) {
+        this.lastPointCity = lastPointCity;
+    }
+
+    public Date getLastPointDate() {
+        return lastPointDate;
+    }
+
+    public void setLastPointDate(Date lastPointDate) {
+        this.lastPointDate = lastPointDate;
+    }
 
     public VehicleTray getVehicleTray() {
         return vehicleTray;
@@ -249,11 +266,11 @@ public class Vehicle extends Patrimony implements Serializable {
         this.longitude = longitude;
     }
 
-    public long getDisponible() {
+    public Long getDisponible() {
         return disponible;
     }
 
-    public void setDisponible(long disponible) {
+    public void setDisponible(Long disponible) {
         this.disponible = disponible;
     }
 

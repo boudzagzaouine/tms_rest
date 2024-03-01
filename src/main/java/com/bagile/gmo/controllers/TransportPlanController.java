@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
@@ -79,13 +80,13 @@ public class TransportPlanController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public TransportPlan add(@RequestBody TransportPlan transportPlan) {
+    public TransportPlan add(@RequestBody TransportPlan transportPlan) throws IdNotFound, ErrorType, IOException, AttributesNotFound {
         return transportPlanService.save(transportPlan);
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public TransportPlan set(@RequestBody TransportPlan transportPlan) {
+    public TransportPlan set(@RequestBody TransportPlan transportPlan) throws IdNotFound, ErrorType, IOException, AttributesNotFound {
         return transportPlanService.save(transportPlan);
     }
 

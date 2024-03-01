@@ -100,6 +100,9 @@ public class VehicleMapper {
         gmoVehicle.setGmoVehicledateDriver(vehicle.getDateDriver());
         gmoVehicle.setGmoVehicleInterneOrExterne(vehicle.getInterneOrExterne());
         gmoVehicle.setGmoVehicleDurationInMonths(vehicle.getDurationInMonths());
+        gmoVehicle.setGmoVehicleDisponible(vehicle.getDisponible());
+        gmoVehicle.setGmoVehicleLastPointCity(vehicle.getLastPointCity());
+        gmoVehicle.setGmoVehiclelLastPointDate(vehicle.getLastPointDate());
 
 
 
@@ -169,6 +172,9 @@ public class VehicleMapper {
 
         vehicle.setInterneOrExterne(gmoVehicle.getGmoVehicleInterneOrExterne());
         vehicle.setDurationInMonths(gmoVehicle.getGmoVehicleDurationInMonths());
+        vehicle.setDisponible(gmoVehicle.getGmoVehicleDisponible());
+        vehicle.setLastPointCity(gmoVehicle.getGmoVehicleLastPointCity());
+        vehicle.setLastPointDate(gmoVehicle.getGmoVehiclelLastPointDate());
 
 
 

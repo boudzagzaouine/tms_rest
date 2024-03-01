@@ -1,7 +1,9 @@
 package com.bagile.gmo.services.impl;
 
+import com.bagile.gmo.dto.OrderTransportInfoLine;
 import com.bagile.gmo.dto.TransportPlan;
 import com.bagile.gmo.dto.TransportPlanLocation;
+import com.bagile.gmo.dto.Vehicle;
 import com.bagile.gmo.entities.TmsTransportPlanLocation;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
@@ -16,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -48,7 +51,7 @@ public class TransportPlanLocationServiceImpl implements TransportPlanLocationSe
     }
 
     @Override
-    public TransportPlanLocation save(TransportPlanLocation transportPlanLocation) throws IdNotFound {
+    public TransportPlanLocation save(TransportPlanLocation transportPlanLocation) throws IdNotFound, ErrorType, IOException, AttributesNotFound {
 
         if(transportPlanLocation.getTransportPlanId()!=null){
             TransportPlan transportPlan =transportPlanService.findById(transportPlanLocation.getTransportPlanId());
@@ -58,6 +61,7 @@ public class TransportPlanLocationServiceImpl implements TransportPlanLocationSe
             transportPlan.setLongitude(transportPlanLocation.getLongitude());
             transportPlanService.save(transportPlan);
         }
+
         if(transportPlanLocation.getOrderTransportId()!=null) {
             transportPlanLocation.setOrderTransport(orderTransportService.findById(transportPlanLocation.getOrderTransportId()));
         }
@@ -66,7 +70,14 @@ public class TransportPlanLocationServiceImpl implements TransportPlanLocationSe
             }
          if(transportPlanLocation.getOrderTransportInfoLineId()!=null) {
                     transportPlanLocation.setOrderTransportInfoLine(orderTransportInfoLineService.findById(transportPlanLocation.getOrderTransportInfoLineId()));
-                }
+                  Vehicle vehicle = vehicleService.findById(transportPlanLocation.getVehicleId());
+
+                  vehicle.setLastPointCity(transportPlanLocation.getOrderTransportInfoLine().getAddress().getVille().getCode());
+                  vehicle.setLastPointDate(transportPlanLocation.getDate());
+                  vehicleService.save(vehicle);
+
+
+         }
          if(transportPlanLocation.getVehicleId()!=null) {
           transportPlanLocation.setVehicle(vehicleService.findById(transportPlanLocation.getVehicleId()));
                     }
