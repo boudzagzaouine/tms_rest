@@ -115,7 +115,12 @@ public class UserServiceImpl implements UserService {
          userRepository.findById(id);
 
     }
+    @Override
+    public void deleteAll(List<Long> ids) {
 
+        for (Long id : ids) {
+            userRepository.deleteById(id);        }
+    }
     @Override
     public void delete(User user) {
         user.setActive(false);

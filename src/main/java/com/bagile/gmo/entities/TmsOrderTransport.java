@@ -12,6 +12,10 @@ public class TmsOrderTransport extends EmsEntity {
 
     private Long tmsOrderTransportId;
     private String tmsOrderTransportCode;
+
+    private String tmsOrderTransportDescription;
+
+
     private Date tmsOrderTransportDate;
 
     private TmsPackagingType tmsOrderTransportPackagingType;
@@ -85,6 +89,16 @@ public class TmsOrderTransport extends EmsEntity {
 
     public void setTmsOrderTransportCode(String tmsOrderTransportCode) {
         this.tmsOrderTransportCode = tmsOrderTransportCode;
+    }
+
+
+    @Column(name="tms_ordertransportdescription")
+    public String getTmsOrderTransportDescription() {
+        return tmsOrderTransportDescription;
+    }
+
+    public void setTmsOrderTransportDescription(String tmsOrderTransportDescription) {
+        this.tmsOrderTransportDescription = tmsOrderTransportDescription;
     }
 
     @Column(name = "tms_ordertransportgroupageunique")

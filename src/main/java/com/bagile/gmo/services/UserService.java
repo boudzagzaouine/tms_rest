@@ -25,7 +25,7 @@ public interface UserService {
     public Long size(String search) throws AttributesNotFound, ErrorType;
 
     public void delete(Long id) ;
-
+    void deleteAll (List<Long> ids);
     public void delete(User user);
 
     public List<User> findAll();

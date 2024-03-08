@@ -31,6 +31,7 @@ public interface PaymentTypeService {
     void delete(Long id);
 
     void delete(PaymentType paymentType);
+    void deleteAll(List<Long> ids);
 
     List<PaymentType> findAll() throws AttributesNotFound, ErrorType;
 

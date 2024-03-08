@@ -260,15 +260,25 @@ public class CmdCompany extends EmsEntity implements Serializable  {
         this.cmdAccounts = cmdAccounts;
     }
 
-    @OneToOne(cascade = {CascadeType.ALL} , mappedBy = "cmdCompany")
+//    @OneToOne(cascade = CascadeType.ALL , mappedBy = "cmdCompany")
+//    public AdrAddress getAdrAddress() {
+//        return adrAddress;
+//    }
+//
+//    public void setAdrAddress(AdrAddress adrAddress) {
+//        this.adrAddress = adrAddress;
+//        if(this.adrAddress != null)
+//        this.adrAddress.setCmdCompany(this);
+//    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cmd_companyaddressid")
     public AdrAddress getAdrAddress() {
         return adrAddress;
     }
 
     public void setAdrAddress(AdrAddress adrAddress) {
         this.adrAddress = adrAddress;
-        if(this.adrAddress != null)
-        this.adrAddress.setCmdCompany(this);
     }
 
     @Column(name = "cmd_companyname", length = 50, nullable = false)

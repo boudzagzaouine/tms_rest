@@ -18,6 +18,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,9 @@ public class CompanyServiceImpl implements CompanyService {
     @Autowired
     private VilleService villeService ;
 
+    @Autowired
+    private OwnerService ownerService;
+
     public CompanyServiceImpl(CompanyRepository companyRepository) {
         this.companyRepository = companyRepository;
     }
@@ -54,7 +58,12 @@ public class CompanyServiceImpl implements CompanyService {
     //@Transactional()
     @Override
     public Company save(Company company) throws ErrorType, AttributesNotFound {
+        if(company.getAddress().getName()!=null) {
+           Address address= addressService.save(company.getAddress());
+            company.setAddress(address);
+        }
         Company company1 = CompanyMapper.toDto(companyRepository.saveAndFlush(CompanyMapper.toEntity(company, false)), false);
+
         if(company.getId()<=0) {
             if (company.getAccountPricingList() != null) {
                 company.getAccountPricingList().forEach(
@@ -187,17 +196,20 @@ public class CompanyServiceImpl implements CompanyService {
                 address.setAddressType(2L);
                 Address address1 = addressService.save(address);
 
+                company.setCode(companyImport.getCompany_code());
+                company.setName(companyImport.getCompany_name());
 
                 company.setAddress(address1);
                 company.setFiscalIdentifier(companyImport.getCompany_fiscalIdentifier());
                 company.setTelephone(companyImport.getCompany_telephone());
                 company.setCommonIdentifierOfCompany(companyImport.getCompany_commonIdentifierOfCompany());
+                company.setOwner(ownerService.findById(1L));
 
 
                 companyList.add(save(company));
 
             }catch (Exception e){
-                LOGGER.error("error importing ");
+                LOGGER.error(e.getMessage());
             }
         }
         saveAll(companyList);

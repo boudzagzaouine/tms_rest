@@ -156,8 +156,8 @@ public class TrajetServiceImpl implements TrajetService {
                 trajet.setPaysSource((paysService.find("id:" + 1L)).stream().findFirst().orElse(null));
                 trajet.setPaysDestination((paysService.find("id:" + 1L)).stream().findFirst().orElse(null));
 
-                trajet.setVilleSource((villeService.find("code:" + trajetImport.getTrajet_villeSource())).stream().findFirst().orElse(null));
-                trajet.setVilleDestination((villeService.find("code:" + trajetImport.getTrajet_villeDistination())).stream().findFirst().orElse(null));
+                trajet.setVilleSource((villeService.find("code~" + trajetImport.getTrajet_villeSource())).stream().findFirst().orElse(null));
+                trajet.setVilleDestination((villeService.find("code~" + trajetImport.getTrajet_villeDistination())).stream().findFirst().orElse(null));
 
 
 

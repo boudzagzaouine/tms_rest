@@ -16,7 +16,7 @@ public class Vehicle extends Patrimony implements Serializable {
     private static final long serialVersionUID = 6072929769333595397L;
    // private long id;
     private String registrationNumber;
-    //private String code;
+    private String code;
     private Date technicalVisit;
     private BigDecimal valueTechnicalVisit;
     private Date creationDate;
@@ -68,7 +68,15 @@ public class Vehicle extends Patrimony implements Serializable {
     private String lastPointCity;
     private Date lastPointDate;
 
+    @Override
+    public String getCode() {
+        return code;
+    }
 
+    @Override
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     public Vehicle() {
     }

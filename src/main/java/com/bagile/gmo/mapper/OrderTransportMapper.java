@@ -49,6 +49,8 @@ public class  OrderTransportMapper {
         TmsOrderTransport tmsOrderTransport = new TmsOrderTransport();
         tmsOrderTransport.setTmsOrderTransportId(orderTransport.getId());
         tmsOrderTransport.setTmsOrderTransportCode(orderTransport.getCode());
+        tmsOrderTransport.setTmsOrderTransportDescription(orderTransport.getDescription());
+
         tmsOrderTransport.setTmsOrderTransportDate(orderTransport.getDate());
         tmsOrderTransport.setTmsOrderTransportPriceHT(orderTransport.getPriceHT());
         tmsOrderTransport.setTmsOrderTransportPriceTTC(orderTransport.getPriceTTC());
@@ -122,6 +124,9 @@ public class  OrderTransportMapper {
         orderTransport.setId( tmsOrderTransport.getTmsOrderTransportId());
         orderTransport.setDate(tmsOrderTransport.getTmsOrderTransportDate());
         orderTransport.setCode(tmsOrderTransport.getTmsOrderTransportCode());
+        orderTransport.setDescription(tmsOrderTransport.getTmsOrderTransportDescription());
+
+
         orderTransport.setNumberKm(tmsOrderTransport.getTmsOrderTransportNumberKm());
         orderTransport.setPriceHT(tmsOrderTransport.getTmsOrderTransportPriceHT());
         orderTransport.setPriceTTC(tmsOrderTransport.getTmsOrderTransportPriceTTC());

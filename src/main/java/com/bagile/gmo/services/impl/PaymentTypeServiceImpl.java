@@ -126,7 +126,12 @@ public class PaymentTypeServiceImpl implements PaymentTypeService, AddActive {
         LOGGER.info("delete PaymentType");
         paymentTypeRepository.delete(PaymentTypeMapper.toEntity(paymentType, false));
     }
+    @Override
+    public void deleteAll(List<Long> ids) {
 
+        for (Long id : ids) {
+            paymentTypeRepository.deleteById(id);        }
+    }
     @Override
     public List<PaymentType> findAll() throws AttributesNotFound, ErrorType {
         return find("");

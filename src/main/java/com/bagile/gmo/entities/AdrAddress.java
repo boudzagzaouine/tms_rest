@@ -23,7 +23,7 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
     private OwnOwner ownOwner;
 
   //  @NotNull
-    @Size(max = 30)
+    @Size(max = 100)
     private String adrAddressCode;
 
     @Size(max = 200)
@@ -33,24 +33,24 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
     private String adrAddressContactTel;
 
 
-    @Size(max = 50)
+    @Size(max = 255)
     private String adrAddressLine1;
 
-    @Size(max = 50)
+    @Size(max = 255)
     private String adrAdressLine2;
 
     @Size(max = 10)
     private String adrAddressZip;
 
-    @Size(max = 50)
+    @Size(max = 200)
     private String adrAddressCity;
 
     private  PrmVille prmVille;
 
-    @Size(max = 50)
+    @Size(max = 200)
     private String adrAddressState;
 
-    @Size(max = 50)
+    @Size(max = 200)
     private String adrAddressCountry;
 
     private PrmPays prmPays ;
@@ -92,7 +92,7 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
 
    private String  adrAddressAddressTypeTms;
     private CmdAccount cmdAccount;
-    private CmdCompany cmdCompany;
+   // private CmdCompany cmdCompany;
     private TrpTransport trpTransport;
     private Double adrAddressLatitude;
     private Double adrAddressLongitude;
@@ -145,17 +145,17 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
     }
 
 
-    @OneToOne
-    @JoinColumn(name = "adr_addresscompanyid", referencedColumnName = "cmd_companyid")
-    public CmdCompany getCmdCompany() {
-        return cmdCompany;
-    }
-
-
-    public void setCmdCompany(CmdCompany cmdCompany) {
-
-        this.cmdCompany = cmdCompany;
-    }
+//    @OneToOne
+//    @JoinColumn(name = "adr_addresscompanyid", referencedColumnName = "cmd_companyid")
+//    public CmdCompany getCmdCompany() {
+//        return cmdCompany;
+//    }
+//
+//
+//    public void setCmdCompany(CmdCompany cmdCompany) {
+//
+//        this.cmdCompany = cmdCompany;
+//    }
 
     @OneToOne
     @JoinColumn(name = "adr_addresstransportid", referencedColumnName = "trp_transportid")
@@ -237,8 +237,8 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
     public void setAdrAddressAddressTypeTms(String adrAddressAddressTypeTms) {
         this.adrAddressAddressTypeTms = adrAddressAddressTypeTms;
     }
-
-    @Column(name = "adr_addressline1", length = 200)
+//    columnDefinition = "NVARCHAR(MAX)"
+    @Column(name = "adr_addressline1",  length = 200)
     public String getAdrAddressLine1() {
         return this.adrAddressLine1;
     }
@@ -247,7 +247,7 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
         this.adrAddressLine1 = adrAddressLine1;
     }
 
-    @Column(name = "adr_adressline2", length = 50)
+    @Column(name = "adr_adressline2",   length = 200)
     public String getAdrAdressLine2() {
         return this.adrAdressLine2;
     }
@@ -265,7 +265,7 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
         this.adrAddressZip = adrAddressZip;
     }
 
-    @Column(name = "adr_addresscity", length = 50)
+    @Column(name = "adr_addresscity")
     public String getAdrAddressCity() {
         return this.adrAddressCity;
     }
@@ -274,7 +274,7 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
         this.adrAddressCity = adrAddressCity;
     }
 
-    @Column(name = "adr_addressstate", length = 50)
+    @Column(name = "adr_addressstate")
     public String getAdrAddressState() {
         return this.adrAddressState;
     }
@@ -283,7 +283,7 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
         this.adrAddressState = adrAddressState;
     }
 
-    @Column(name = "adr_addresscountry", length = 50)
+    @Column(name = "adr_addresscountry")
     public String getAdrAddressCountry() {
         return this.adrAddressCountry;
     }

@@ -146,7 +146,9 @@ public class OrderTransportInfoLineDocumentServiceImpl implements OrderTransport
 
         List<OrderTransportDocument> orderTransportDocuments = orderTransportDocumentService.find("orderTransportInfoLineDocument.id:" + id);
         List<Long> ids = orderTransportDocuments.stream().map(OrderTransportDocument::getId).collect(Collectors.toList());
-        orderTransportDocumentService.deleteAll(ids);
+        if(ids.size()>0) {
+            orderTransportDocumentService.deleteAll(ids);
+        }
         orderTransportInfoLineDocumentRepository.deleteById(id);
 
     }

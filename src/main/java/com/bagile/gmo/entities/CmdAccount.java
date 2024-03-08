@@ -150,6 +150,7 @@ public class CmdAccount extends EmsDto implements Serializable{
         this.adrAddressByCmdAccountDeliveryAddressId = adrAddressByCmdAccountDeliveryAddressId;
         if(this.adrAddressByCmdAccountDeliveryAddressId != null)
             this.adrAddressByCmdAccountDeliveryAddressId.setCmdAccount(this);
+
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
