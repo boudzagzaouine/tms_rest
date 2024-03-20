@@ -153,7 +153,7 @@ public class CompanyMapper {
         if (!lazy) {
             //cmdCompany.setCmdAccounts(AccountMapper.toEntities(company.getCards(), true));
             cmdCompany.setOwnOwner(OwnerMapper.toEntity(company.getOwner(), true));
-            cmdCompany.setAdrAddress(AddressMapper.toEntity(company.getAddress(), true));
+            cmdCompany.setAdrAddress(AddressMapper.toEntity(company.getAddress(), false));
 
 
 //            AdrAddress adrAddress = AddressMapper.toEntity(company.getAddress(), false);

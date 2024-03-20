@@ -58,7 +58,8 @@ public class CompanyServiceImpl implements CompanyService {
     //@Transactional()
     @Override
     public Company save(Company company) throws ErrorType, AttributesNotFound {
-        if(company.getAddress().getName()!=null) {
+
+        if(!(company.getAddress().getId()>0)) {
            Address address= addressService.save(company.getAddress());
             company.setAddress(address);
         }
@@ -202,6 +203,7 @@ public class CompanyServiceImpl implements CompanyService {
                 company.setAddress(address1);
                 company.setFiscalIdentifier(companyImport.getCompany_fiscalIdentifier());
                 company.setTelephone(companyImport.getCompany_telephone());
+                company.setTradeRegister(companyImport.getCompany_tradeRegister());
                 company.setCommonIdentifierOfCompany(companyImport.getCompany_commonIdentifierOfCompany());
                 company.setOwner(ownerService.findById(1L));
 
