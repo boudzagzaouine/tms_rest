@@ -1,6 +1,8 @@
 package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.Account;
+import com.bagile.gmo.dto.Address;
+import com.bagile.gmo.dto.Company;
 import com.bagile.gmo.entities.CmdAccount;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
@@ -8,6 +10,7 @@ import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.AccountMapper;
 import com.bagile.gmo.repositories.AccountRepository;
 import com.bagile.gmo.services.AccountService;
+import com.bagile.gmo.services.AddressService;
 import com.bagile.gmo.services.SettingService;
 import com.bagile.gmo.util.Search;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,9 @@ import java.util.List;
 public class AccountServiceImpl implements AccountService {
 
     private final AccountRepository accountRepository;
+
+    @Autowired
+    private AddressService addressService;
     @Autowired
     private SettingService settingService;
     public AccountServiceImpl(AccountRepository accountRepository) {
@@ -31,6 +37,12 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account save(Account account) {
+
+        if(!(account.getDeliveryAddress().getId()>0)) {
+
+            Address address= addressService.save(account.getDeliveryAddress());
+            account.setDeliveryAddress(address);
+        }
         return AccountMapper.toDto(accountRepository.saveAndFlush(AccountMapper.toEntity(account, false)), false);
     }
 
@@ -81,8 +93,17 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Long id) throws IdNotFound, ErrorType, AttributesNotFound {
+
+
+        Account account=  find("id:"+id).stream().findFirst().orElse(null);
         accountRepository.deleteById(id);
+        if(account!=null) {
+            if (account.getDeliveryAddress() != null) {
+                addressService.delete(account.getDeliveryAddress().getId());
+            }
+        }
+
     }
 
     @Override
@@ -90,6 +111,18 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.delete(AccountMapper.toEntity(account, false));
     }
 
+
+
+    @Override
+    public void deleteAll(List<Long> ids) throws IdNotFound, ErrorType, AttributesNotFound {
+
+        for (Long id : ids) {
+            delete(id);
+
+
+        }
+
+    }
     @Override
     public Account findOne(String search) throws AttributesNotFound, ErrorType {
         return null;

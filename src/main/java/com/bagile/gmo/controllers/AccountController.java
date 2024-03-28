@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -86,8 +87,14 @@ public class AccountController {
     }
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) throws IdNotFound, ErrorType, AttributesNotFound {
         accountService.delete(id);
+    }
+
+    @RequestMapping(value = "/deleteAll", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteAll(@RequestParam(value = "ids") Long[] ids) throws IdNotFound, ErrorType, AttributesNotFound {
+        accountService.deleteAll (Arrays.asList(ids));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/nextval")

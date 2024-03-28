@@ -26,10 +26,10 @@ public interface AccountService {
 
     Long size(String search) throws AttributesNotFound, ErrorType;
 
-    void delete(Long id);
+    void delete(Long id) throws IdNotFound, ErrorType, AttributesNotFound;
 
     void delete(Account account);
-
+    void deleteAll (List<Long> ids) throws IdNotFound, ErrorType, AttributesNotFound;
     Account findOne(String search) throws AttributesNotFound, ErrorType;
 
     List<Account> findAll() ;

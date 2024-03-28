@@ -161,11 +161,12 @@ public class AccountMapper {
             cmdAccount.setPrmContact(ContactMapper.toEntity(account.getContact(), lazy));
             cmdAccount.setOwnOwner(OwnerMapper.toEntity(account.getOwner(), lazy));
             cmdAccount.setTrpTransport(TransportMapper.toEntity(account.getTransport(), lazy));
-            AdrAddress adrAddress = AddressMapper.toEntity(account.getDeliveryAddress(), false);
-            cmdAccount.setAdrAddressByCmdAccountDeliveryAddressId(adrAddress);
+            cmdAccount.setAdrAddressByCmdAccountDeliveryAddressId(AddressMapper.toEntity(account.getDeliveryAddress(), lazy));
+           // AdrAddress adrAddress = AddressMapper.toEntity(account.getDeliveryAddress(), false);
+           // cmdAccount.setAdrAddressByCmdAccountDeliveryAddressId(adrAddress);
 //            cmdAccount.setAdrAddressByCmdAccountDeliveryAddressId(AddressMapper.toEntity(account.getDeliveryAddress(), lazy));
             cmdAccount.setTmsPlannings(PlanningMapper.toEntities(account.getPlannings(), lazy));
-           // cmdAccount.setAdrAddresses(AddressMapper.toEntities(account.getAddresses(), lazy));
+
             cmdAccount.setPrmContacts(ContactMapper.toEntities(account.getContacts(), lazy));
 
             oneToMany(cmdAccount);

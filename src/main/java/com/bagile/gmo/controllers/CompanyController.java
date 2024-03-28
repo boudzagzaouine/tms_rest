@@ -81,14 +81,14 @@ public class CompanyController {
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) throws IdNotFound, ErrorType, AttributesNotFound {
         companyService.delete(id);
     }
 
 
     @RequestMapping(value = "/deleteAll", method = RequestMethod.DELETE)
     @ResponseBody
-    public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
+    public void deleteAll(@RequestParam(value = "ids") Long[] ids) throws IdNotFound, ErrorType, AttributesNotFound {
         companyService.deleteAll (Arrays.asList(ids));
     }
 

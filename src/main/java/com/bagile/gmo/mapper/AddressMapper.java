@@ -100,7 +100,7 @@ public class AddressMapper {
 
         if (!lazy) {
             address.setOwner(OwnerMapper.toDto(adrAddress.getOwnOwner(), true));
-            address.setAccount(AccountMapper.toDto(adrAddress.getCmdAccount(), true));
+            //address.setAccount(AccountMapper.toDto(adrAddress.getCmdAccount(), true));
           //  address.setCompany(CompanyMapper.toDto(adrAddress.getCmdCompany(), true));
             address.setTransport(TransportMapper.toDto(adrAddress.getTrpTransport(), true));
 
@@ -168,7 +168,7 @@ public class AddressMapper {
 
         if (!lazy) {
             adrAddress.setOwnOwner(OwnerMapper.toEntity(address.getOwner(), true));
-            adrAddress.setCmdAccount(AccountMapper.toEntity(address.getAccount(), true));
+           // adrAddress.setCmdAccount(AccountMapper.toEntity(address.getAccount(), true));
            // adrAddress.setCmdCompany(CompanyMapper.toEntity(address.getCompany(), true));
             adrAddress.setTrpTransport(TransportMapper.toEntity(address.getTransport(), true));
 

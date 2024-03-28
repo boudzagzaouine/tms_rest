@@ -107,7 +107,7 @@ public class ContactServiceImpl implements ContactService, AddActive {
     public void deleteAll(List<Long> ids) {
 
         for (Long id : ids) {
-            contactRepository.deleteById(id);        }
+            delete(id);        }
     }
     @Override
     public List<Contact> findAll() throws AttributesNotFound, ErrorType {

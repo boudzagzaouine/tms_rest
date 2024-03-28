@@ -80,7 +80,12 @@ public class VatServiceImpl implements VatService {
     public void delete(Vat vat) {
         vatRepository.delete(VatMapper.toEntity(vat, false));
     }
+    @Override
+    public void deleteAll(List<Long> ids) {
 
+        for (Long id : ids) {
+            vatRepository.deleteById(id);        }
+    }
     @Override
     public List<Vat> findAll() {
         return VatMapper.toDtos(vatRepository.findAll(), false);

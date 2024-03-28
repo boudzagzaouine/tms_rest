@@ -1,5 +1,6 @@
 package com.bagile.gmo.services.impl;
 
+import com.bagile.gmo.dto.Account;
 import com.bagile.gmo.dto.Address;
 import com.bagile.gmo.dto.Company;
 import com.bagile.gmo.entities.CmdCompany;
@@ -138,8 +139,17 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Long id) throws IdNotFound, ErrorType, AttributesNotFound {
+
+
+        Company company=  find("id:"+id).stream().findFirst().orElse(null);
         companyRepository.deleteById(id);
+        if(company!=null) {
+            if (company.getAddress() != null) {
+                addressService.delete(company.getAddress().getId());
+            }
+        }
+
     }
 
     @Override
@@ -149,10 +159,10 @@ public class CompanyServiceImpl implements CompanyService {
 
 
     @Override
-    public void deleteAll(List<Long> ids) {
+    public void deleteAll(List<Long> ids) throws IdNotFound, ErrorType, AttributesNotFound {
 
         for (Long id : ids) {
-            companyRepository.deleteById(id);        }
+            delete(id);        }
     }
 
 

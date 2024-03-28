@@ -32,10 +32,10 @@ public interface CompanyService {
 
     Long size(String search) throws AttributesNotFound, ErrorType;
 
-    void delete(Long id);
+    void delete(Long id) throws IdNotFound, ErrorType, AttributesNotFound;
 
     void delete(Company company);
-    void deleteAll (List<Long> ids);
+    void deleteAll (List<Long> ids) throws IdNotFound, ErrorType, AttributesNotFound;
     List<Company> findAll();
 
     List<Company> findAll(int page, int size);

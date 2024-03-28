@@ -27,6 +27,8 @@ public interface VatService {
 
     void delete(Vat vat);
 
+    void deleteAll (List<Long> ids);
+
     List<Vat> findAll();
 
     List<Vat> findAll(int page, int size);

@@ -1,5 +1,7 @@
 package com.bagile.gmo.entities;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -141,15 +143,17 @@ public class CmdAccount extends EmsDto implements Serializable{
 
 
 
-    @OneToOne(cascade = {CascadeType.ALL} , mappedBy = "cmdAccount")
+  //  @OneToOne(cascade = {CascadeType.ALL} , mappedBy = "cmdAccount")
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "cmd_accountaddressdeliveryid")
     public AdrAddress getAdrAddressByCmdAccountDeliveryAddressId() {
         return this.adrAddressByCmdAccountDeliveryAddressId;
     }
 
     public void setAdrAddressByCmdAccountDeliveryAddressId(AdrAddress adrAddressByCmdAccountDeliveryAddressId) {
         this.adrAddressByCmdAccountDeliveryAddressId = adrAddressByCmdAccountDeliveryAddressId;
-        if(this.adrAddressByCmdAccountDeliveryAddressId != null)
-            this.adrAddressByCmdAccountDeliveryAddressId.setCmdAccount(this);
+//        if(this.adrAddressByCmdAccountDeliveryAddressId != null)
+//            this.adrAddressByCmdAccountDeliveryAddressId.setCmdAccount(this);
 
     }
 

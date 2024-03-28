@@ -91,7 +91,7 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
 
 
    private String  adrAddressAddressTypeTms;
-    private CmdAccount cmdAccount;
+   // private CmdAccount cmdAccount;
    // private CmdCompany cmdCompany;
     private TrpTransport trpTransport;
     private Double adrAddressLatitude;
@@ -134,15 +134,15 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
 
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "adr_addressaccountid")
-@OneToOne
-@JoinColumn(name = "adr_addressaccountid", referencedColumnName = "cmd_accountid")
-    public CmdAccount getCmdAccount() {
-        return cmdAccount;
-    }
-
-    public void setCmdAccount(CmdAccount cmdAccount) {
-        this.cmdAccount = cmdAccount;
-    }
+//@OneToOne
+//@JoinColumn(name = "adr_addressaccountid", referencedColumnName = "cmd_accountid")
+//    public CmdAccount getCmdAccount() {
+//        return cmdAccount;
+//    }
+//
+//    public void setCmdAccount(CmdAccount cmdAccount) {
+//        this.cmdAccount = cmdAccount;
+//    }
 
 
 //    @OneToOne
