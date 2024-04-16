@@ -45,7 +45,7 @@ public class OrderTransportAccompanimentMapper {
 
         if (!lazy) {
             tmsOrderTransportAccompaniment.setOwnOwner(OwnerMapper.toEntity(orderTransportAccompaniment.getOwner(), true));
-            tmsOrderTransportAccompaniment.setTmsVehicleAccompaniment(VehicleAccompanimentMapper.toEntity(orderTransportAccompaniment.getVehicleAccompaniment(), true));
+            tmsOrderTransportAccompaniment.setTmsVehicleAccompaniment(VehicleAccompanimentMapper.toEntity(orderTransportAccompaniment.getVehicleAccompaniment(), false));
             tmsOrderTransportAccompaniment.setTmsOrderTransport(OrderTransportMapper.toEntity(orderTransportAccompaniment.getOrderTransport(), true));
 
         }
@@ -70,7 +70,7 @@ public class OrderTransportAccompanimentMapper {
         if (!lazy) {
             orderTransportAccompaniment.setOwner(OwnerMapper.toDto(tmsOrderTransportAccompaniment.getOwnOwner(), true));
             orderTransportAccompaniment.setOrderTransport(OrderTransportMapper.toDto(tmsOrderTransportAccompaniment.getTmsOrderTransport(), true));
-            orderTransportAccompaniment.setVehicleAccompaniment(VehicleAccompanimentMapper.toDto(tmsOrderTransportAccompaniment.getTmsVehicleAccompaniment(), true));
+            orderTransportAccompaniment.setVehicleAccompaniment(VehicleAccompanimentMapper.toDto(tmsOrderTransportAccompaniment.getTmsVehicleAccompaniment(), false));
 
         }
         return orderTransportAccompaniment;

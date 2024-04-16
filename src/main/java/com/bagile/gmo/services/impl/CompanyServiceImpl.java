@@ -194,7 +194,7 @@ public class CompanyServiceImpl implements CompanyService {
         for (CompanyImport companyImport : companyImports) {
             try {
 
-                company =(find("code:" + companyImport.getCompany_code())).stream().findFirst().orElse(new Company());
+               // company =(find("code:" + companyImport.getCompany_code())).stream().findFirst().orElse(new Company());
 
                 Address  address = new Address();
                 address.setLine1(companyImport.getCompany_line1_address());
