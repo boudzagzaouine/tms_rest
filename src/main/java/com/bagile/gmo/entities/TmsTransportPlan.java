@@ -35,6 +35,7 @@ public class TmsTransportPlan extends EmsEntity {
     private BigDecimal tmsTransportPlanSalePrice;
 
     private  Date tmsTransportPlanDateDepart;
+    private  Date tmsTransportPlanDateDepartDriver;
     private  Date tmsTransportPlanCloseDate;
 
     private  Date tmsTransportPlanDateValidate;
@@ -375,7 +376,6 @@ public class TmsTransportPlan extends EmsEntity {
     }
 
     @Column(name = "tms_transportplandatedepart")
-
     public Date getTmsTransportPlanDateDepart() {
         return tmsTransportPlanDateDepart;
     }
@@ -383,6 +383,16 @@ public class TmsTransportPlan extends EmsEntity {
     public void setTmsTransportPlanDateDepart(Date tmsTransportPlanDate) {
         this.tmsTransportPlanDateDepart = tmsTransportPlanDate;
     }
+
+    @Column(name = "tms_transportplandatedepartdriver")
+    public Date getTmsTransportPlanDateDepartDriver() {
+        return tmsTransportPlanDateDepartDriver;
+    }
+
+    public void setTmsTransportPlanDateDepartDriver(Date tmsTransportPlanDateDepartDriver) {
+        this.tmsTransportPlanDateDepartDriver = tmsTransportPlanDateDepartDriver;
+    }
+
     @Column(name = "tms_transportplandatevalidate")
 
     public Date getTmsTransportPlanDateValidate() {

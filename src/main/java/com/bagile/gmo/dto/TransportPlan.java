@@ -40,6 +40,7 @@ public class TransportPlan extends EmsDto implements Serializable {
     private Ville villeSource;
     private Ville villeDistination;
     private Date dateDepart;
+    private Date dateDepartDriver;
 
     private Date dateValidate;
 
@@ -59,6 +60,13 @@ public class TransportPlan extends EmsDto implements Serializable {
     public TransportPlan() {
     }
 
+    public Date getDateDepartDriver() {
+        return dateDepartDriver;
+    }
+
+    public void setDateDepartDriver(Date dateDepartDriver) {
+        this.dateDepartDriver = dateDepartDriver;
+    }
 
     public Date getCloseDate() {
         return closeDate;

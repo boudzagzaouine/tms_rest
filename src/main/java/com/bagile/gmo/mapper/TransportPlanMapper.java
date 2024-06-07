@@ -71,6 +71,7 @@ public class TransportPlanMapper {
         tmsTransportPlan.setTmsTransportPlanTotalServiceHT(transportPlan.getTotalServiceHT());
         tmsTransportPlan.setTmsTransportPlanTotalServiceTTC(transportPlan.getTotalServiceTTC());
         tmsTransportPlan.setTmsTransportPlanTotalServiceVAT(transportPlan.getTotalServiceVat());
+        tmsTransportPlan.setTmsTransportPlanDateDepartDriver(transportPlan.getDateDepartDriver());
 
         tmsTransportPlan.setGmoDriverExterne(transportPlan.getDriverExterne());
         tmsTransportPlan.setGmoVehicleExterne(transportPlan.getVehicleExterne());
@@ -86,11 +87,11 @@ public class TransportPlanMapper {
             tmsTransportPlan.setGmoVehicleCategory(VehicleCategoryMapper.toEntity(transportPlan.getVehicleCategory(), true));
             tmsTransportPlan.setTrpTransport(TransportMapper.toEntity(transportPlan.getTransport(), true));
             tmsTransportPlan.setTmsTurnStatus(TurnStatusMapper.toEntity(transportPlan.getTurnStatus(), true));
-           // tmsTransportPlan.setTransportPlanServiceCatalogs(TransportPlanServiceCatalogMapper.toEntities(transportPlan.getTransportPlanServiceCatalogs(), false));
+            // tmsTransportPlan.setTransportPlanServiceCatalogs(TransportPlanServiceCatalogMapper.toEntities(transportPlan.getTransportPlanServiceCatalogs(), false));
             tmsTransportPlan.setCmdAccount(AccountMapper.toEntity(transportPlan.getAccount(), true));
-           //tmsTransportPlan.setPrmVilleSource(VilleMapper.toEntity(transportPlan.getVilleSource(), true));
-           // tmsTransportPlan.setPrmVilleDistination(VilleMapper.toEntity(transportPlan.getVilleDistination(), true));
-             tmsTransportPlan.setTmsTrajet(TrajetMapper.toEntity(transportPlan.getTrajet(), false));
+            //tmsTransportPlan.setPrmVilleSource(VilleMapper.toEntity(transportPlan.getVilleSource(), true));
+            // tmsTransportPlan.setPrmVilleDistination(VilleMapper.toEntity(transportPlan.getVilleDistination(), true));
+            tmsTransportPlan.setTmsTrajet(TrajetMapper.toEntity(transportPlan.getTrajet(), false));
             tmsTransportPlan.setTmsTransportPlanPurchaseVat(VatMapper.toEntity(transportPlan.getPurchaseVat(), true));
 
 
@@ -117,10 +118,11 @@ public class TransportPlanMapper {
             return null;
         }
         TransportPlan transportPlan = new TransportPlan();
-        transportPlan.setId( tmsTransportPlan.getTmsTransportPlanId());
+        transportPlan.setId(tmsTransportPlan.getTmsTransportPlanId());
         transportPlan.setPurchasePrice(tmsTransportPlan.getTmsTransportPlanPurchasePrice());
         transportPlan.setPurchasePriceTtc(tmsTransportPlan.getTmsTransportPlanPurchasePriceTtc());
         transportPlan.setPurchasePriceVat(tmsTransportPlan.getTmsTransportPlanPurchasePriceVat());
+        transportPlan.setDateDepartDriver(tmsTransportPlan.getTmsTransportPlanDateDepartDriver());
 
         transportPlan.setDateDepart(tmsTransportPlan.getTmsTransportPlanDateDepart());
         transportPlan.setDateValidate(tmsTransportPlan.getTmsTransportPlanDateValidate());
@@ -154,7 +156,7 @@ public class TransportPlanMapper {
             transportPlan.setVehicleCategory(VehicleCategoryMapper.toDto(tmsTransportPlan.getGmoVehicleCategory(), true));
             transportPlan.setTransport(TransportMapper.toDto(tmsTransportPlan.getTrpTransport(), true));
             transportPlan.setTurnStatus(TurnStatusMapper.toDto(tmsTransportPlan.getTmsTurnStatus(), true));
-           // transportPlan.setTransportPlanServiceCatalogs(TransportPlanServiceCatalogMapper.toDtos(tmsTransportPlan.getTransportPlanServiceCatalogs(), false));
+            // transportPlan.setTransportPlanServiceCatalogs(TransportPlanServiceCatalogMapper.toDtos(tmsTransportPlan.getTransportPlanServiceCatalogs(), false));
             transportPlan.setAccount(AccountMapper.toDto(tmsTransportPlan.getCmdAccount(), true));
             transportPlan.setPurchaseVat(VatMapper.toDto(tmsTransportPlan.getTmsTransportPlanPurchaseVat(), true));
 
@@ -168,7 +170,6 @@ public class TransportPlanMapper {
         return transportPlan;
 
     }
-
 
 
     public static List<TransportPlan> toDtos(Iterable<? extends TmsTransportPlan> tmsTransportPlans, boolean lazy) {

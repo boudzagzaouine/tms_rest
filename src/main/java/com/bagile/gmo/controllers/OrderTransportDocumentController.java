@@ -6,6 +6,7 @@ import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.services.*;
 import com.bagile.gmo.util.FileManagement;
+import javassist.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -149,14 +150,37 @@ public class OrderTransportDocumentController {
     public ResponseEntity<String> uploadPhoto(@RequestBody OrderTransportDocument orderTransportDocument) {
 
         try {
+            if (orderTransportDocument == null || orderTransportDocument.getOrderTransportInfoLineDocument() == null) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid request.");
+            }
+
             OrderTransportInfoLineDocument orderTransportInfoLineDocument = orderTransportInfoLineDocumentService
                     .findById(orderTransportDocument.getOrderTransportInfoLineDocument().getId());
+
+            if (orderTransportInfoLineDocument == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Ordertransportinfoline document not found.");
+            }
+
             OrderTransportInfoLine orderTransportInfoLine = orderTransportInfoLineService
                     .findById(orderTransportInfoLineDocument.getOrderTransportInfoLine().getId());
+
+            if (orderTransportInfoLine == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Ordertransportinfo line not found.");
+            }
+
             OrderTransportInfo orderTransportInfo = orderTransportInfoService
                     .findById(orderTransportInfoLine.getOrderTransportInfo().getId());
+
+            if (orderTransportInfo == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Ordertransportinfo not found.");
+            }
+
             OrderTransport orderTransport = orderTransportService
                     .findById(orderTransportInfo.getOrderTransport().getId());
+
+            if (orderTransport == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Ordertransportnot found.");
+            }
 
             OrderTransportDocument orderTransportDocument1 = set(orderTransportDocument);
             Setting setting = settingService.findById(1L);
@@ -171,10 +195,13 @@ public class OrderTransportDocumentController {
             set(orderTransportDocument1);
 
             return ResponseEntity.status(HttpStatus.CREATED).body("Photo uploaded successfully.");
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload photo due to IO error.");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload photo.");
         }
-
     }
+
+
 
 }
