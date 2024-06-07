@@ -154,6 +154,31 @@ public class OrderTransportInfoLineDocumentServiceImpl implements OrderTransport
     }
 
     @Override
+    public void deleteByOtInfoLine(List<Long> otInfoLineIds) {
+
+
+        List<Long> orderTransportInfoLineDocuments = new ArrayList<>();
+
+        otInfoLineIds.forEach(f->{
+            try {
+                orderTransportInfoLineDocuments.addAll(find("orderTransportInfoLine.id:"+f).stream().map(m-> m.getId()).collect(Collectors.toList()));
+            } catch (AttributesNotFound e) {
+                throw new RuntimeException(e);
+            } catch (ErrorType e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        if(orderTransportInfoLineDocuments.size()>0){
+           orderTransportDocumentService.deleteByInfoLineDocument(orderTransportInfoLineDocuments);
+        }
+
+        deleteAll(orderTransportInfoLineDocuments);
+
+
+    }
+
+    @Override
     public void delete(OrderTransportInfoLineDocument orderTransportInfoLineDocument) throws ErrorType, AttributesNotFound {
         orderTransportInfoLineDocumentRepository.delete(OrderTransportInfoLineDocumentMapper.toEntity(orderTransportInfoLineDocument, false));
 

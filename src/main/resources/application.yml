@@ -16,7 +16,6 @@ spring:
       hibernate:
         enable_lazy_load_no_trans=true:
         default_schema: schema_tmsvoieexpress
-
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
   jackson:

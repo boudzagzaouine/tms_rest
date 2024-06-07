@@ -26,6 +26,8 @@ public interface OrderTransportInfoService {
 
     void delete(Long id);
 
+    void deleteByOT(Long id) throws ErrorType, AttributesNotFound;
+
     void delete(OrderTransportInfo orderTransportInfo);
     void deleteAll (List<Long> ids);
 

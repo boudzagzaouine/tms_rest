@@ -29,6 +29,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -61,21 +62,22 @@ public class TransportPlanServiceImpl implements TransportPlanService {
     @Override
     public TransportPlan save(TransportPlan transportPlan) throws IdNotFound, ErrorType, IOException, AttributesNotFound {
 
-
-        if(transportPlan.getTurnStatus().getId()==3){
-            Vehicle vehicle =vehicleService.findById(transportPlan.getVehicle().getId());
-            vehicle.setDisponible(4L); // 4 disponible
-            vehicle.setLastPointCity(transportPlan.getTrajet().getVilleDestination().getCode());
-            vehicle.setLastPointDate(new Date());
-            vehicleService.save(vehicle);
-        }
-        if(transportPlan.getTurnStatus().getId()==5){
-            Vehicle vehicle =vehicleService.findById(transportPlan.getVehicle().getId());
-            vehicle.setDisponible(1L); // 1 Trajet
-            vehicle.setLastPointCity(transportPlan.getTrajet().getVilleSource().getCode());
-            vehicle.setLastPointDate(new Date());
-            vehicleService.save(vehicle);
-        }
+if(transportPlan.getTransport().getInterneOrExterne()) {
+    Vehicle vehicle = vehicleService.findById(transportPlan.getVehicle().getId());
+    if(vehicle.getId()>0){
+    if (transportPlan.getTurnStatus().getId() == 3) //3fermer
+    {
+        vehicle.setDisponible(4L); // 4 disponible
+    }
+    if (transportPlan.getTurnStatus().getId() >=5) // 5 enCour
+    {
+        vehicle.setDisponible(1L); // 1 Trajet
+    }
+    vehicle.setLastPointCity(transportPlan.getTrajet().getVilleSource().getCode());
+    vehicle.setLastPointDate(new Date());
+    vehicleService.save(vehicle);
+    }
+}
 
         return TransportPlanMapper.toDto(transportPlanRepository.saveAndFlush(TransportPlanMapper.toEntity(transportPlan, false)), false);
     }
@@ -124,6 +126,16 @@ public class TransportPlanServiceImpl implements TransportPlanService {
     @Override
     public void delete(Long id) {
         transportPlanRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteByOt(Long otId) throws ErrorType, AttributesNotFound {
+        List<Long> transportPlans = new ArrayList<>();
+
+
+                transportPlans.addAll( find("orderTransport.id:"+otId).stream().map(m-> m.getId()).collect(Collectors.toList()));
+
+               deleteAll(transportPlans);
     }
 
     @Override
@@ -220,9 +232,9 @@ public class TransportPlanServiceImpl implements TransportPlanService {
     }
 
     @Override
-    public List<TransportPlan> getItineraries(String search) throws ErrorType, AttributesNotFound {
+    public List<TransportPlan> getItineraries(String search,int page, int size) throws ErrorType, AttributesNotFound {
 
-       List<TransportPlan> transportPlans = find(search);
+       List<TransportPlan> transportPlans = find(search,page,size);
 
        transportPlans.forEach(transportPlan -> {
 

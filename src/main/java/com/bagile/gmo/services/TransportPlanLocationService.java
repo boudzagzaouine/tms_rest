@@ -15,6 +15,8 @@ public interface TransportPlanLocationService {
 
     Boolean isExist(Long id);
 
+
+
     TransportPlanLocation findById(Long id) throws IdNotFound;
 
     List<TransportPlanLocation> find(String search) throws AttributesNotFound, ErrorType;
@@ -24,6 +26,7 @@ public interface TransportPlanLocationService {
     Long size(String search) throws AttributesNotFound, ErrorType;
 
     void delete(Long id);
+    void deleteByOt(Long otId) throws ErrorType, AttributesNotFound;
 
     void delete(TransportPlanLocation transportPlanLocation);
     void deleteAll (List<Long> ids);

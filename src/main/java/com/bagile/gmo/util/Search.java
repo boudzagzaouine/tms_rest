@@ -6,6 +6,7 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -19,6 +20,9 @@ import java.util.regex.Pattern;
 public class Search {
     private Search() {
     }
+
+
+
 
     public static String getField(String name, String search) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchFieldException {
         String field = "";
@@ -48,7 +52,8 @@ public class Search {
             Method method = cls.getDeclaredMethod("getField", String.class);
             field = (String) method.invoke(null, str);
             cls = Class.forName("com.bagile.gmo.dto." + name);
-            Class<?> type = cls.getDeclaredField(str).getType();
+            String finalStr = str;
+            Class<?> type = Arrays.stream(cls.getDeclaredFields()).map(field1 -> field1.getName()).anyMatch(s -> s.equals(finalStr)) ?  cls.getDeclaredField(str).getType() : cls.getSuperclass().getDeclaredField(str).getType();
             if (type.getTypeName().toString().equals("java.util.Set")) {
                 ParameterizedType parameterizedType = (ParameterizedType) cls.getDeclaredField(str).getGenericType();
                 type = (Class<?>) parameterizedType.getActualTypeArguments()[0];
@@ -81,6 +86,16 @@ public class Search {
         }
         return "";
     }
+
+
+
+
+
+
+
+
+
+
 
 
     public static String getFieldDto(String name, String search) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchFieldException {

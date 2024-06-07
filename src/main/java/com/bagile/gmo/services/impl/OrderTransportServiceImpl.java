@@ -32,6 +32,15 @@ public class OrderTransportServiceImpl implements OrderTransportService {
     private OrderTransportInfoLineDocumentService orderTransportInfoLineDocumentService;
     @Autowired
     private OrderTransportDocumentService orderTransportDocumentService;
+
+    @Autowired
+    private TransportPlanHistoryService transportPlanHistoryService;
+
+
+    @Autowired
+    private TransportPlanService transportPlanService;
+    @Autowired
+    private TransportPlanLocationService transportPlanLocationService;
     public OrderTransportServiceImpl(OrderTransportRepository orderTransportRepository) {
         this.orderTransportRepository = orderTransportRepository;
     }
@@ -164,61 +173,19 @@ public class OrderTransportServiceImpl implements OrderTransportService {
     @Override
     public void delete(Long id) {
         try {
-           List<Long> orderTransportInfos =orderTransportInfoService.find("orderTransport.id:"+id).stream().map(m-> m.getId()).collect(Collectors.toList());
-
-           if(orderTransportInfos.size()>0){
-
-               orderTransportInfos.forEach(orderTI->{
-                   try {
-                       List<Long> orderTransportInfoLines =orderTransportInfoLineService.find("orderTransportInfo.id:"+orderTI).stream().map(m-> m.getId()).collect(Collectors.toList());
-
-                       if(orderTransportInfoLines.size()>0){
-                       orderTransportInfoLines.forEach(orderTIL-> {
-                           try {
-                               List<Long> orderTransportInfoLineDocuments =orderTransportInfoLineDocumentService.find("orderTransportInfoLine.id:"+orderTIL).stream().map(m-> m.getId()).collect(Collectors.toList());
-                               if(orderTransportInfoLineDocuments.size()>0){
-                               orderTransportInfoLineDocuments.forEach(orderTILD->{
-
-                                   try {
-                                       List<Long> orderTransportDocuments =orderTransportDocumentService.find("orderTransportInfoLineDocument.id:"+orderTILD).stream().map(m-> m.getId()).collect(Collectors.toList());
-                                       if(orderTransportDocuments.size()>0) {
-                                           orderTransportDocumentService.deleteAll(orderTransportDocuments);
-                                       }
 
 
-                                   } catch (AttributesNotFound e) {
-                                       throw new RuntimeException(e);
-                                   } catch (ErrorType e) {
-                                       throw new RuntimeException(e);
-                                   }
+            transportPlanLocationService.deleteByOt(id);
 
+            orderTransportInfoService.deleteByOT(id);
 
-                               });
-                            orderTransportInfoLineDocumentService.deleteAll(orderTransportInfoLineDocuments);
-                           }
+            transportPlanHistoryService.deleteByOt(id);
 
-                           } catch (AttributesNotFound e) {
-                               throw new RuntimeException(e);
-                           } catch (ErrorType e) {
-                               throw new RuntimeException(e);
-                           }
+            transportPlanService.deleteByOt(id);
 
-
-                       });
-                       orderTransportInfoLineService.deleteAll(orderTransportInfoLines);
-                   }
-                   } catch (AttributesNotFound e) {
-                       throw new RuntimeException(e);
-                   } catch (ErrorType e) {
-                       throw new RuntimeException(e);
-                   }
-
-               });
-
-           }
-        //   List<Long> orderTransportInfoLine =orderTransportInfoLineService.find("orderTransportInfo.id:"+id).stream().map(m-> m.getId()).collect(Collectors.toList());
-            orderTransportInfoService.deleteAll(orderTransportInfos);
             orderTransportRepository.deleteById(id);
+
+
 
         } catch (AttributesNotFound e) {
             throw new RuntimeException(e);

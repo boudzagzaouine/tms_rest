@@ -8,6 +8,8 @@ import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.OrderTransportInfoMapper;
 import com.bagile.gmo.repositories.OrderTransportInfoRepository;
+import com.bagile.gmo.services.OrderTransportDocumentService;
+import com.bagile.gmo.services.OrderTransportInfoLineDocumentService;
 import com.bagile.gmo.services.OrderTransportInfoLineService;
 import com.bagile.gmo.services.OrderTransportInfoService;
 import com.bagile.gmo.util.Search;
@@ -18,6 +20,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -25,6 +28,12 @@ public class OrderTransportInfoServiceImpl implements OrderTransportInfoService 
     
     private final OrderTransportInfoRepository orderTransportInfoRepository;
     private final OrderTransportInfoLineService orderTransportInfoLineService;
+
+
+    @Autowired
+    private OrderTransportInfoLineDocumentService orderTransportInfoLineDocumentService;
+    @Autowired
+    private OrderTransportDocumentService orderTransportDocumentService;
 
     public OrderTransportInfoServiceImpl(OrderTransportInfoRepository orderTransportInfoRepository, OrderTransportInfoLineService orderTransportInfoLineService) {
         this.orderTransportInfoRepository = orderTransportInfoRepository;
@@ -98,6 +107,17 @@ public class OrderTransportInfoServiceImpl implements OrderTransportInfoService 
     @Override
     public void delete(Long id) {
         orderTransportInfoRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteByOT(Long idOT) throws ErrorType, AttributesNotFound {
+        List<Long> orderTransportInfos =find("orderTransport.id:"+idOT).stream().map(m-> m.getId()).collect(Collectors.toList());
+
+        if(orderTransportInfos.size()>0){
+            orderTransportInfoLineService.deleteByOtInfo(orderTransportInfos);
+        }
+        deleteAll(orderTransportInfos);
+
     }
 
     @Override

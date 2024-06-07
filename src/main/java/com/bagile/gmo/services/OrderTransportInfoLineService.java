@@ -25,6 +25,7 @@ public interface OrderTransportInfoLineService {
     Long size(String search) throws AttributesNotFound, ErrorType;
 
     void delete(Long id);
+    void deleteByOtInfo(List<Long> infos);
 
     void delete(OrderTransportInfoLine orderTransportInfoLine);
     void deleteAll (List<Long> ids);

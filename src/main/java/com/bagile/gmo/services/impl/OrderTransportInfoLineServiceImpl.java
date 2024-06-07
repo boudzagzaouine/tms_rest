@@ -2,12 +2,15 @@ package com.bagile.gmo.services.impl;
 
 import com.bagile.gmo.dto.OrderTransportInfoLine;
 import com.bagile.gmo.dto.OrderTransportInfoLineDocument;
+import com.bagile.gmo.dto.TransportPlan;
+import com.bagile.gmo.dto.Vehicle;
 import com.bagile.gmo.entities.TmsOrderTransportInfoLine;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.OrderTransportInfoLineMapper;
 import com.bagile.gmo.repositories.OrderTransportInfoLineRepository;
+import com.bagile.gmo.services.OrderTransportDocumentService;
 import com.bagile.gmo.services.OrderTransportInfoLineDocumentService;
 import com.bagile.gmo.services.OrderTransportInfoLineService;
 import com.bagile.gmo.util.Search;
@@ -18,7 +21,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -27,6 +32,9 @@ public class OrderTransportInfoLineServiceImpl implements OrderTransportInfoLine
     private final OrderTransportInfoLineRepository orderTransportInfoLineRepository;
     @Autowired
     private OrderTransportInfoLineDocumentService orderTransportInfoLineDocumentService;
+    @Autowired
+    private OrderTransportDocumentService  orderTransportDocumentService;
+
 
 
     public OrderTransportInfoLineServiceImpl(OrderTransportInfoLineRepository orderTransportInfoLineRepository) {
@@ -36,6 +44,8 @@ public class OrderTransportInfoLineServiceImpl implements OrderTransportInfoLine
     @Override
     public OrderTransportInfoLine save(OrderTransportInfoLine orderTransportInfoLine) {
         OrderTransportInfoLine orderTransportInfoLine1 = OrderTransportInfoLineMapper.toDto(orderTransportInfoLineRepository.saveAndFlush(OrderTransportInfoLineMapper.toEntity(orderTransportInfoLine, false)), false);
+
+
 
         if (orderTransportInfoLine.getOrderTransportInfoLineDocuments().size() > 0) {
             orderTransportInfoLine.getOrderTransportInfoLineDocuments().forEach(document -> {
@@ -111,6 +121,30 @@ public class OrderTransportInfoLineServiceImpl implements OrderTransportInfoLine
     @Override
     public void delete(Long id) {
         orderTransportInfoLineRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteByOtInfo(List<Long> infos) {
+        List<Long> orderTransportInfoLines = new ArrayList<>();
+
+        infos.forEach(f->{
+            try {
+                orderTransportInfoLines.addAll(find("orderTransportInfo.id:"+f).stream().map(m-> m.getId()).collect(Collectors.toList()));
+            } catch (AttributesNotFound e) {
+                throw new RuntimeException(e);
+            } catch (ErrorType e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        if(orderTransportInfoLines.size()>0){
+            orderTransportInfoLineDocumentService.deleteByOtInfoLine(orderTransportInfoLines);
+        }
+
+       deleteAll(orderTransportInfoLines);
+
+
+
     }
 
     @Override

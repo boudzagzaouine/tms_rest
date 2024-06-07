@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -133,6 +134,16 @@ public class TransportPlanLocationServiceImpl implements TransportPlanLocationSe
     @Override
     public void delete(Long id) {
         transportPlanLocationRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteByOt(Long otId) throws ErrorType, AttributesNotFound {
+
+        List <Long>transportPlanLocations=find("orderTransport.id:"+otId).stream().map(m-> m.getId()).collect(Collectors.toList());;
+        if(transportPlanLocations.size()>0){
+
+            deleteAll(transportPlanLocations);
+        }
     }
 
     @Override

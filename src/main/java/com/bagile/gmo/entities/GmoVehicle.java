@@ -16,7 +16,9 @@ public class GmoVehicle extends GmoPatrimony {
 	private static final long serialVersionUID = 612360418697069780L;
 
 	//private Long gmoVehicleId;
-    private String gmoRegistrationNumber;
+
+
+    //private String gmoRegistrationNumber;
     private Date gmoVehicleTechnicalVisit;
     private BigDecimal gmoVehicleValueTechnicalvisit;
     private GmoVehicleCategory gmoVehicleCategory;
@@ -84,14 +86,14 @@ public class GmoVehicle extends GmoPatrimony {
         this.gmoVehicleId = gmoVehicleId;
     }*/
 
-    @Column(name = "gmo_vehiculeregistrationnumber")
-    public String getGmoRegistrationNumber() {
-        return gmoRegistrationNumber;
-    }
-
-    public void setGmoRegistrationNumber(String gmoRegistrationNumber) {
-        this.gmoRegistrationNumber = gmoRegistrationNumber;
-    }
+//    @Column(name = "gmo_vehiculeregistrationnumber")
+//    public String getGmoRegistrationNumber() {
+//        return gmoRegistrationNumber;
+//    }
+//
+//    public void setGmoRegistrationNumber(String gmoRegistrationNumber) {
+//        this.gmoRegistrationNumber = gmoRegistrationNumber;
+//    }
 
   /*  @Column(name = "gmo_vehiculecode", unique = true, nullable = false, length = 90)
     public String getGmoPatrimonyCode() {

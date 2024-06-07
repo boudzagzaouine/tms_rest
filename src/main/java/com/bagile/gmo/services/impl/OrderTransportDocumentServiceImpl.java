@@ -8,8 +8,10 @@ import com.bagile.gmo.exceptions.IdNotFound;
 import com.bagile.gmo.mapper.OrderTransportDocumentMapper;
 import com.bagile.gmo.repositories.OrderTransportDocumentRepository;
 import com.bagile.gmo.services.OrderTransportDocumentService;
+import com.bagile.gmo.services.OrderTransportInfoLineDocumentService;
 import com.bagile.gmo.util.EmsDate;
 import com.bagile.gmo.util.Search;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,12 +24,16 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 
 @Service
 public class OrderTransportDocumentServiceImpl implements OrderTransportDocumentService {
     
     private final OrderTransportDocumentRepository orderTransportDocumentRepository;
+
+    @Autowired
+    private OrderTransportInfoLineDocumentService orderTransportInfoLineDocumentService;
 
     public OrderTransportDocumentServiceImpl(OrderTransportDocumentRepository orderTransportDocumentRepository) {
         this.orderTransportDocumentRepository = orderTransportDocumentRepository;
@@ -81,6 +87,32 @@ public class OrderTransportDocumentServiceImpl implements OrderTransportDocument
     @Override
     public void delete(Long id) {
         orderTransportDocumentRepository.deleteById(id);
+    }
+
+
+
+    @Override
+    public void deleteByInfoLineDocument(List<Long> infoLineDocuments) {
+
+
+        List<Long> orderTransportDocuments = new ArrayList<>();
+
+        infoLineDocuments.forEach(f->{
+            try {
+                orderTransportDocuments.addAll(find("orderTransportInfoLineDocument.id:"+f).stream().map(m-> m.getId()).collect(Collectors.toList()));
+            } catch (AttributesNotFound e) {
+                throw new RuntimeException(e);
+            } catch (ErrorType e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+
+
+        deleteAll(orderTransportDocuments);
+
+
+
     }
 
     @Override

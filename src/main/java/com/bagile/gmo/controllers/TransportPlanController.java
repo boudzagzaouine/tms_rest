@@ -144,7 +144,7 @@ public class TransportPlanController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/getItineraries")
     @ResponseBody
-    public List<TransportPlan> getItineraries(@RequestParam(value = "search") String search) throws AttributesNotFound, ErrorType {
-        return transportPlanService.getItineraries(search);
+    public List<TransportPlan> getItineraries(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
+        return transportPlanService.getItineraries(search, page,  size);
     }
 }

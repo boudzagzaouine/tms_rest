@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -73,13 +74,13 @@ public class OrderTransportInfoLineController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public OrderTransportInfoLine add(@RequestBody OrderTransportInfoLine orderDeliveryType) {
+    public OrderTransportInfoLine add(@RequestBody OrderTransportInfoLine orderDeliveryType) throws ErrorType, IdNotFound, IOException, AttributesNotFound {
         return orderTransportInfoLineService.save(orderDeliveryType);
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public OrderTransportInfoLine set(@RequestBody OrderTransportInfoLine orderDeliveryType) {
+    public OrderTransportInfoLine set(@RequestBody OrderTransportInfoLine orderDeliveryType) throws ErrorType, IdNotFound, IOException, AttributesNotFound {
         return orderTransportInfoLineService.save(orderDeliveryType);
     }
 

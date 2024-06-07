@@ -23,7 +23,7 @@ public interface TransportPlanHistoryService {
     Long size(String search) throws AttributesNotFound, ErrorType;
 
     void delete(Long id);
-
+    void deleteByOt(Long otId) throws ErrorType, AttributesNotFound;
     void delete(TransportPlanHistory transportPlanHistory);
     void deleteAll (List<Long> ids);
 

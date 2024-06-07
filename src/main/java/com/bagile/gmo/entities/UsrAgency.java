@@ -73,7 +73,7 @@ public class UsrAgency extends EmsEntity implements Serializable {
     }
 
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usr_agencyaddressid")
     public AdrAddress getAdrAddress() {
         return adrAddress;

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -76,6 +77,17 @@ public class TransportPlanHistoryServiceImpl implements TransportPlanHistoryServ
     @Override
     public void delete(Long id) {
         transportPlanHistoryRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteByOt(Long otId) throws ErrorType, AttributesNotFound {
+        List<Long> history =find("orderTransport.id:"+ otId).stream().map(m-> m.getId()).collect(Collectors.toList());
+
+        if(history.size()>0){
+            deleteAll(history);
+
+        }
+
     }
 
     @Override

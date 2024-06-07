@@ -25,6 +25,9 @@ public class CriteriaPredicate {
         this.criteria = criteria;
     }
 
+
+
+
     public Type getType(String key, Class<?> entityClass) throws NoSuchFieldException, ClassNotFoundException {
         if (!key.contains(".")) {
             Type type = entityClass.getDeclaredField(key).getType();
@@ -39,8 +42,11 @@ public class CriteriaPredicate {
         String[] keys = key.split("\\.");
         for (int i = 0; i < keys.length - 1; i++) {
             if (null != entityClass) {
-                field = entityClass.getDeclaredField(keys[i]);
-            }
+                try {
+                    field = entityClass.getDeclaredField(keys[i]);
+                } catch (NoSuchFieldException e) {
+                    field = entityClass.getSuperclass().getDeclaredField(keys[i]);
+                }            }
             if (null != field) {
 
                 Class classe = field.getType();
@@ -50,10 +56,12 @@ public class CriteriaPredicate {
                         ParameterizedType parameterizedType = (ParameterizedType) entityClass.getDeclaredField(keys[i]).getGenericType();
                         classe = (Class) parameterizedType.getActualTypeArguments()[0];
                     }
-                    declaredField = classe.getDeclaredField(keys[i + 1]);
-                    if (null != declaredField) {
-                        type = classe.getDeclaredField(keys[i + 1]).getType();
+                    try {
+                        declaredField = classe.getDeclaredField(keys[i + 1]);
+                    } catch (NoSuchFieldException e) {
+                        declaredField = classe.getSuperclass().getDeclaredField(keys[i + 1]);
                     }
+                    type = declaredField.getType();
                 }
                 entityClass = classe;
 

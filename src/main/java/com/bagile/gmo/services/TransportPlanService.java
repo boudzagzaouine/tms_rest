@@ -25,6 +25,7 @@ public interface TransportPlanService {
     Long size(String search) throws AttributesNotFound, ErrorType;
 
     void delete(Long id);
+    void deleteByOt(Long otId) throws ErrorType, AttributesNotFound;
 
     void delete(TransportPlan transportPlan);
     void deleteAll (List<Long> ids);
@@ -43,7 +44,7 @@ public interface TransportPlanService {
     byte[] exportInvoiceState(String search)  throws ErrorType, AttributesNotFound;
 
 
-    List<TransportPlan> getItineraries(String search)  throws ErrorType, AttributesNotFound;
+    List<TransportPlan> getItineraries(String search,int page, int size)  throws ErrorType, AttributesNotFound;
 
 
 
