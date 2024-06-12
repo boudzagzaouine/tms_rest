@@ -35,7 +35,7 @@ public interface TrajetService {
     List<Trajet> findAll(int page, int size);
 
 	Trajet findOne(String search) throws AttributesNotFound, ErrorType;
-    List<TrajetImport> loadingDataImport(List<TrajetImport>  trajetImports) throws ErrorType, AttributesNotFound, IdNotFound;
+    List<Trajet> loadingDataImport(List<TrajetImport>  trajetImports) throws ErrorType, AttributesNotFound, IdNotFound;
 
 
 }

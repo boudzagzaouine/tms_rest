@@ -187,14 +187,14 @@ public class CompanyServiceImpl implements CompanyService {
 
 
     @Override
-    public List<CompanyImport> loadingDataImport(List<CompanyImport> companyImports) throws ErrorType, AttributesNotFound, IdNotFound {
+    public List<Company> loadingDataImport(List<CompanyImport> companyImports) throws ErrorType, AttributesNotFound, IdNotFound {
         List<Company> companyList = new ArrayList<>();
+        List<Company> companyAdd = new ArrayList<>();
         Company company = new Company();
 
         for (CompanyImport companyImport : companyImports) {
-            try {
 
-               // company =(find("code:" + companyImport.getCompany_code())).stream().findFirst().orElse(new Company());
+                company =(find("code:" + companyImport.getCompany_code())).stream().findFirst().orElse(new Company());
 
                 Address  address = new Address();
                 address.setLine1(companyImport.getCompany_line1_address());
@@ -220,13 +220,13 @@ public class CompanyServiceImpl implements CompanyService {
 
                 companyList.add(save(company));
 
-            }catch (Exception e){
-                LOGGER.error(e.getMessage());
-            }
-        }
-        saveAll(companyList);
 
-        return null;
+        }
+           companyAdd = saveAll(companyList);
+
+
+        return     companyAdd;
+
 
     }
 

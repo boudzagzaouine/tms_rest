@@ -1,5 +1,7 @@
 package com.bagile.gmo.controllers;
 
+import com.bagile.gmo.dto.Company;
+import com.bagile.gmo.dto.Trajet;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
@@ -79,14 +81,14 @@ public class DataExchangeController {
 
     @RequestMapping(value = "/saveTrajets", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<TrajetImport> saveTrajets(@RequestBody List<TrajetImport> trajetImports) throws IdNotFound, ErrorType, AttributesNotFound {
+    public List<Trajet> saveTrajets(@RequestBody List<TrajetImport> trajetImports) throws IdNotFound, ErrorType, AttributesNotFound {
         return  trajetService.loadingDataImport(trajetImports);
 
     }
 
     @RequestMapping(value = "/updateCompanies", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<CompanyImport> saveCompanys(@RequestBody List<CompanyImport> companyImports) throws IdNotFound, ErrorType, AttributesNotFound {
+    public List<Company> saveCompanys(@RequestBody List<CompanyImport> companyImports) throws IdNotFound, ErrorType, AttributesNotFound {
         return  companyService.loadingDataImport(companyImports);
 
     }

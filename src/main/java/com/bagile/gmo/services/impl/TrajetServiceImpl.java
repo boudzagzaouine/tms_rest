@@ -143,24 +143,21 @@ public class TrajetServiceImpl implements TrajetService {
 
 
     @Override
-    public List<TrajetImport> loadingDataImport(List<TrajetImport> trajetImports) throws ErrorType, AttributesNotFound, IdNotFound {
+    public List<Trajet> loadingDataImport(List<TrajetImport> trajetImports) throws ErrorType, AttributesNotFound, IdNotFound {
         List<Trajet> trajetList = new ArrayList<>();
+        List<Trajet> trajetAddList = new ArrayList<>();
+
         Trajet trajet = new Trajet();
 
         for (TrajetImport trajetImport : trajetImports) {
             try {
 
                 trajet.setCode(trajetImport.getTrajet_code());
-
-
+                
                 trajet.setPaysSource((paysService.find("id:" + 1L)).stream().findFirst().orElse(null));
                 trajet.setPaysDestination((paysService.find("id:" + 1L)).stream().findFirst().orElse(null));
-
                 trajet.setVilleSource((villeService.find("code~" + trajetImport.getTrajet_villeSource())).stream().findFirst().orElse(null));
                 trajet.setVilleDestination((villeService.find("code~" + trajetImport.getTrajet_villeDistination())).stream().findFirst().orElse(null));
-
-
-
                 trajetList.add(save(trajet));
 
             }catch (Exception e){

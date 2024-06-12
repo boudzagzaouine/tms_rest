@@ -42,6 +42,6 @@ public interface CompanyService {
 
     String getNextVal();
 
-    List<CompanyImport> loadingDataImport(List<CompanyImport>  companyImports) throws ErrorType, AttributesNotFound, IdNotFound;
+    List<Company> loadingDataImport(List<CompanyImport>  companyImports) throws ErrorType, AttributesNotFound, IdNotFound;
 
 }
