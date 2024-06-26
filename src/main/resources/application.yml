@@ -27,7 +27,7 @@ spring:
       max-file-size: 10
 
 server:
-  port: 8088
+  port: 8087
   servlet:
     context-path: /tms-rest
 

@@ -26,6 +26,11 @@ public class GmoVehicleCategory  extends EmsEntity {
 
   private BigDecimal gmoVehicleCategoryPriceKm ;
 
+    private byte[] gmoVehicleCategoryFile;
+
+    private String gmoVehicleCategoryFileType;
+    private String gmoVehicleCategoryFileName;
+
   private Set<TmsVehicleCategoryTray>  tmsVehicleCategoryTrays =  new HashSet<>();
 
     public GmoVehicleCategory() {
@@ -61,6 +66,36 @@ public class GmoVehicleCategory  extends EmsEntity {
     public void setGmoVehicleCategoryDescription(String gmoVehicleCategoryConsumption) {
         this.gmoVehicleCategoryDescription = gmoVehicleCategoryConsumption;
     }
+
+
+    @Column(name = "gmo_vehiclecategoryfile")
+    public byte[] getGmoVehicleCategoryFile() {
+        return gmoVehicleCategoryFile;
+    }
+
+    public void setGmoVehicleCategoryFile(byte[] gmoVehicleCategoryFile) {
+        this.gmoVehicleCategoryFile = gmoVehicleCategoryFile;
+    }
+    @Column(name = "gmo_vehiclecategoryfiletype")
+    public String getGmoVehicleCategoryFileType() {
+        return gmoVehicleCategoryFileType;
+    }
+
+    public void setGmoVehicleCategoryFileType(String gmoVehicleCategoryFileType) {
+        this.gmoVehicleCategoryFileType = gmoVehicleCategoryFileType;
+    }
+
+    @Column(name = "gmo_vehiclecategoryfilename")
+    public String getGmoVehicleCategoryFileName() {
+        return gmoVehicleCategoryFileName;
+    }
+
+    public void setGmoVehicleCategoryFileName(String gmoVehicleCategoryFileName) {
+        this.gmoVehicleCategoryFileName = gmoVehicleCategoryFileName;
+    }
+
+
+
 
     @Column(name = "gmo_vehiclecategorypricekm")
 

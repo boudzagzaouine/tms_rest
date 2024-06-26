@@ -19,6 +19,8 @@ public class AccountPricingMapper {
 		map.put("id", "tmsAccountPricingId");
 		map.put("code", "tmsAccountPricingCode");
 		map.put("company", "cmdCompany");
+		map.put("account", "cmdAccount");
+
 		map.put("loadingType", "tmsLoadingType");
 		map.put("turnType", "tmsTurnType");
 		map.put("vehicleCategory", "gmoVehicleCategory");
@@ -56,6 +58,7 @@ public class AccountPricingMapper {
 			tmsAccountPricing.setTmsLoadingType(LoadingTypeMapper.toEntity(accountPricing.getLoadingType(),true));
 			tmsAccountPricing.setPrmSaleVat(VatMapper.toEntity(accountPricing.getSaleVat(),true));
 
+			tmsAccountPricing.setCmdAccount(AccountMapper.toEntity(accountPricing.getAccount(),true));
 
 			tmsAccountPricing.setOwnOwner(OwnerMapper.toEntity(accountPricing.getOwner(),true));
 
@@ -86,6 +89,8 @@ public class AccountPricingMapper {
 			accountPricing.setVehicleTray(VehicleTrayMapper.toDto(tmsAccountPricing.getTmsVehicleTray(),true));
 			accountPricing.setLoadingType(LoadingTypeMapper.toDto(tmsAccountPricing.getTmsLoadingType(),true));
 			accountPricing.setSaleVat(VatMapper.toDto(tmsAccountPricing.getPrmSaleVat(),true));
+
+			accountPricing.setAccount(AccountMapper.toDto(tmsAccountPricing.getCmdAccount(),true));
 
 
 			accountPricing.setOwner(OwnerMapper.toDto(tmsAccountPricing.getOwnOwner(),true));

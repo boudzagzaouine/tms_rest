@@ -59,6 +59,11 @@ public class VehicleCategoryMapper {
 
         gmoVehicleCategory.setGmoVehicleCategoryPriceKm (vehicle.getPriceKm ());
 
+        gmoVehicleCategory.setGmoVehicleCategoryFile(vehicle.getFile());
+        gmoVehicleCategory.setGmoVehicleCategoryFileType(vehicle.getFileType());
+        gmoVehicleCategory.setGmoVehicleCategoryFileName(vehicle.getFileName());
+
+
         gmoVehicleCategory.setCreatedBy(vehicle.getCreatedBy());
         gmoVehicleCategory.setUpdatedBy(vehicle.getUpdatedBy());
         gmoVehicleCategory.setCreationDate(vehicle.getCreationDate());
@@ -102,6 +107,11 @@ public class VehicleCategoryMapper {
         vehicle.setHeight (gmoVehicleCategory.getGmoVehicleCategoriyheight ());
 
         vehicle.setPriceKm (gmoVehicleCategory.getGmoVehicleCategoryPriceKm ());
+
+        vehicle.setFile (gmoVehicleCategory.getGmoVehicleCategoryFile ());
+        vehicle.setFileName (gmoVehicleCategory.getGmoVehicleCategoryFileName ());
+        vehicle.setFileType (gmoVehicleCategory.getGmoVehicleCategoryFileType ());
+
 
         vehicle.setCreatedBy(gmoVehicleCategory.getCreatedBy());
         vehicle.setUpdatedBy(gmoVehicleCategory.getUpdatedBy());

@@ -13,6 +13,7 @@ public class AccountPricing extends EmsDto implements Serializable {
     private static final long serialVersionUID = -134482768077497935L;
     private long id;
     private Company company ;
+    private Account account;
 
     private TurnType turnType;
     private Trajet trajet;
@@ -119,6 +120,15 @@ private Owner owner;
 
     public void setOwner(Owner owner) {
         this.owner = owner;
+    }
+
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     @Override

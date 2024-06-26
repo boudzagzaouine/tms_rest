@@ -10,7 +10,7 @@ import java.util.Set;
 @Table(name = "tms_account_pricing",
         uniqueConstraints ={@UniqueConstraint
                 (columnNames ={"tms_cmdcompanyid","tms_vehiclecategoryid",
-                        "tms_trajetid","tms_turntypeid","tms_vehicletrayid","tms_loadingtypeid"})})
+                        "tms_trajetid","tms_turntypeid","tms_vehicletrayid","tms_loadingtypeid","tms_cmdaccountid"})})
 
 public class TmsAccountPricing extends EmsEntity {
 
@@ -19,6 +19,7 @@ public class TmsAccountPricing extends EmsEntity {
 	private Long tmsAccountPricingId;
     private CmdCompany cmdCompany;
 
+    private CmdAccount cmdAccount;
     private GmoVehicleCategory gmoVehicleCategory;
     private TmsVehicleTray tmsVehicleTray;
     private TmsTurnType tmsTurnType;
@@ -58,8 +59,15 @@ public class TmsAccountPricing extends EmsEntity {
         this.cmdCompany = cmdCompany;
     }
 
+    @ManyToOne()
+    @JoinColumn(name="tms_cmdaccountid")
+    public CmdAccount getCmdAccount() {
+        return cmdAccount;
+    }
 
-
+    public void setCmdAccount(CmdAccount cmdAccount) {
+        this.cmdAccount = cmdAccount;
+    }
 
     @ManyToOne()
     @JoinColumn(name="tms_vehiclecategoryid")

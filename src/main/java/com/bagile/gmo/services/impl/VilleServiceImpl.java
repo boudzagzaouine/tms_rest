@@ -68,6 +68,14 @@ public class VilleServiceImpl implements VilleService {
     }
 
     @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            villeRepository.deleteById(id);        }
+    }
+
+
+    @Override
     public List<Ville> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
         if (search.equals("")){
             return findAll (pageable);

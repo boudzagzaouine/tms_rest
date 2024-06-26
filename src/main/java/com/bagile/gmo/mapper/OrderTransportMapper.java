@@ -19,7 +19,7 @@ public class  OrderTransportMapper {
         map.put("code", "tmsOrderTransportCode");
 
         map.put("vehicle", "tmsVehicle");
-        map.put("company", "cmdCompany");
+        map.put("account", "cmdAccount");
         map.put("date", "tmsOrderTransportDate");
         map.put("loadingType", "tmsOrderTransportLoadingType");
         map.put("trajet", "tmsTrajet");

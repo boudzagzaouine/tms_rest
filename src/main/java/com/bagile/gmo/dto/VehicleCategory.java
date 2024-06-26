@@ -23,6 +23,10 @@ public class VehicleCategory extends EmsDto implements Serializable {
     private Owner owner;
  private BigDecimal priceKm ;
 
+    private byte[] file;
+    private String fileType;
+    private String fileName;
+
  private List<VehicleCategoryTray> vehicleCategoryTrays = new ArrayList<>();
     public VehicleCategory() {
     }
@@ -57,6 +61,30 @@ public class VehicleCategory extends EmsDto implements Serializable {
 
     public void setVehicleCategoryTrays(List<VehicleCategoryTray> vehicleCategoryTrays) {
         this.vehicleCategoryTrays = vehicleCategoryTrays;
+    }
+
+    public byte[] getFile() {
+        return file;
+    }
+
+    public void setFile(byte[] file) {
+        this.file = file;
+    }
+
+    public String getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public BigDecimal getLength() {

@@ -21,6 +21,7 @@ public interface VilleService {
     List<Ville> find(String search) throws AttributesNotFound, ErrorType;
 
     List<Ville> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType;
+    void deleteAll (List<Long> ids);
 
     Long size(String search) throws AttributesNotFound, ErrorType;
 

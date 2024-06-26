@@ -16,7 +16,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -61,16 +66,35 @@ public class PaysServiceImpl implements PaysService {
 
     @Override
     public List<Pays> find(String search) throws AttributesNotFound, ErrorType {
+        if (search.equals("")){
+            return findAll ();
+        }
         return PaysMapper.toDtos(paysRepository.findAll(Search.expression(search, PrmPays.class)), false);
     }
 
+
+    @Override
+    public void deleteAll(List<Long> ids) {
+
+        for (Long id : ids) {
+            paysRepository.deleteById(id);        }
+    }
+
+
+
     @Override
     public List<Pays> find(String search, Pageable pageable) throws AttributesNotFound, ErrorType {
+        if (search.equals("")){
+            return findAll (pageable);
+        }
         return PaysMapper.toDtos(paysRepository.findAll(Search.expression(search, PrmPays.class), pageable), false);
     }
 
     @Override
     public Long size(String search) throws AttributesNotFound, ErrorType {
+        if (search.equals("")){
+            return size ();
+        }
         return paysRepository.count(Search.expression(search, PrmPays.class));
     }
 

@@ -14,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -111,4 +112,14 @@ public class VilleController {
     public void delete(@PathVariable Long id) {
         villeService.delete(id);
     }
+
+
+    @RequestMapping(value = "/deleteAll", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteAll(@RequestParam(value = "ids") Long[] ids) {
+        villeService.deleteAll (Arrays.asList(ids));
+    }
+
+
+
 }

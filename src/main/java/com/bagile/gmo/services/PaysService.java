@@ -27,6 +27,7 @@ public interface PaysService {
     void delete(Long id);
 
     void delete(Pays pays);
+    void deleteAll (List<Long> ids);
 
     List<Pays> findAll() throws AttributesNotFound, ErrorType;
 
