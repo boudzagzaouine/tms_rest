@@ -38,8 +38,8 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Account save(Account account) {
 
-        if(!(account.getDeliveryAddress().getId()>0)) {
-
+        //if(!(account.getDeliveryAddress().getId()>0)) {
+        if((account.getDeliveryAddress().getLine1())!=null) {
             Address address= addressService.save(account.getDeliveryAddress());
             account.setDeliveryAddress(address);
         }

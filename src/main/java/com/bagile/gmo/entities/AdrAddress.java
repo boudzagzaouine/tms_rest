@@ -33,10 +33,10 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
     private String adrAddressContactTel;
 
 
-    @Size(max = 255)
+
     private String adrAddressLine1;
 
-    @Size(max = 255)
+
     private String adrAdressLine2;
 
     @Size(max = 10)
@@ -238,7 +238,7 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
         this.adrAddressAddressTypeTms = adrAddressAddressTypeTms;
     }
 //    columnDefinition = "NVARCHAR(MAX)"
-    @Column(name = "adr_addressline1",  length = 200)
+    @Column(name = "adr_addressline1",  columnDefinition = "NVARCHAR(MAX)")
     public String getAdrAddressLine1() {
         return this.adrAddressLine1;
     }
@@ -247,7 +247,7 @@ public class AdrAddress extends EmsEntity implements java.io.Serializable {
         this.adrAddressLine1 = adrAddressLine1;
     }
 
-    @Column(name = "adr_adressline2",   length = 200)
+    @Column(name = "adr_adressline2",   columnDefinition = "NVARCHAR(MAX)")
     public String getAdrAdressLine2() {
         return this.adrAdressLine2;
     }

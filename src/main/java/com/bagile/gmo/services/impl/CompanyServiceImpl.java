@@ -60,8 +60,10 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public Company save(Company company) throws ErrorType, AttributesNotFound {
 
-        if(!(company.getAddress().getId()>0)) {
-           Address address= addressService.save(company.getAddress());
+        //if(!(company.getAddress().getId()>0)) {
+        if((company.getAddress().getLine1())!=null) {
+
+            Address address= addressService.save(company.getAddress());
             company.setAddress(address);
         }
         Company company1 = CompanyMapper.toDto(companyRepository.saveAndFlush(CompanyMapper.toEntity(company, false)), false);
