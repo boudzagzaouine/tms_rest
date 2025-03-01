@@ -10,26 +10,25 @@ import javax.sql.DataSource;
 public class DBConfig {
 
     @Bean
-	public DataSource dataSource() {
-	        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-	        dataSourceBuilder.driverClassName("org.postgresql.Driver");
+    public DataSource dataSource() {
+        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+        dataSourceBuilder.driverClassName("org.postgresql.Driver");
 
-					dataSourceBuilder.url("jdbc:postgresql://localhost:5432/emsdb");
-		dataSourceBuilder.username("postgres");
-		dataSourceBuilder.password("password");
+        dataSourceBuilder.url("jdbc:postgresql://localhost:5432/emsdb");
+        dataSourceBuilder.username("postgres");
+        dataSourceBuilder.password("postgres");
 
 		/*dataSourceBuilder.url("jdbc:postgresql://51.75.250.118:5432/emsdb");
 		dataSourceBuilder.username("postgres");
 		dataSourceBuilder.password("BAgSin0$2017");*/
         //postgrestms
-		//password$AGILE
+        //password$AGILE
 //	        dataSourceBuilder.url("jdbc:postgresql://192.168.162.72:5432/emsdb");
 //	        dataSourceBuilder.username("postgrestms");
 //	        dataSourceBuilder.password("password$AGILE");
 
 
+        return dataSourceBuilder.build();
 
-	        return dataSourceBuilder.build();
-
-	}
+    }
 }

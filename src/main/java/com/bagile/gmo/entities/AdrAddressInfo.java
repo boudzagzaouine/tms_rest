@@ -2,10 +2,14 @@ package com.bagile.gmo.entities;
 
 
 import javax.persistence.Embeddable;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 
 @Embeddable
+@Table(name = "adr_addressinfo")
 public class AdrAddressInfo {
+    private static final long serialVersionUID = -3249779645949658793L;
+    private long adrAddressInfoId;
 
     private String adrAddressLine1;
 

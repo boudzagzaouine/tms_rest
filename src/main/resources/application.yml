@@ -9,28 +9,27 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
-    show-sql: false
     generate-ddl: true
     database: postgresql
     properties:
       hibernate:
-        enable_lazy_load_no_trans=true:
+        enable_lazy_load_no_trans: true
         default_schema: schema_tmsvoieexpress
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
   jackson:
     serialization:
       fail-on-empty-beans: false
+
   servlet:
     multipart:
-      max-request-size: 25
-      max-file-size: 10
+      max-request-size: 25MB
+      max-file-size: 10MB
 
 server:
-  port: 8087
+  port: 8080
   servlet:
     context-path: /tms-rest
-
 
 
 #logging:

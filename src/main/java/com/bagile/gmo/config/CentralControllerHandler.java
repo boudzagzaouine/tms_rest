@@ -105,6 +105,6 @@ public class CentralControllerHandler {
     @ExceptionHandler({Exception.class})
     public ResponseEntity<Exception> handleException(Exception pe) {
         LOGGER.error(pe.getMessage(),pe);
-        return new ResponseEntity<>(pe, HttpStatus.SEE_OTHER);
+        return new ResponseEntity<Exception>(pe, HttpStatus.SEE_OTHER);
     }
 }

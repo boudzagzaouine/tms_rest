@@ -21,15 +21,15 @@ public class UsrUser extends EmsEntity implements Serializable {
     private static final long serialVersionUID = -3952175616242893842L;
 
     private Long usrUserId;
-    @NotNull
+  //  //@NotNull
     private OwnOwner ownOwner;
-    @NotNull
+   // //@NotNull
     private UsrUserGroup usrUserGroup;
     @Size(max = 30)
-    @NotNull
+    //@NotNull
     private String usrUserCode;
     @Size(max = 100)
-    @NotNull
+    //@NotNull
     private String usrUserPassword;
     @Size(max = 50)
     private String usrUserName;
