@@ -26,6 +26,9 @@ spring:
       max-request-size: 25MB
       max-file-size: 10MB
 
+  main:
+    allow-bean-definition-overriding: true
+
 server:
   port: 8080
   servlet:

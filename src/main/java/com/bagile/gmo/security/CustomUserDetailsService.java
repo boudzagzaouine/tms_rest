@@ -1,64 +1,46 @@
 package com.bagile.gmo.security;
 
-import com.bagile.gmo.entities.UsrGroupHabilitation;
-import com.bagile.gmo.entities.UsrHabilitation;
-import com.bagile.gmo.entities.UsrUser;
-import com.bagile.gmo.repositories.UserRepository;
+import com.bagile.gmo.dto.User;
+import com.bagile.gmo.services.UserService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-@Service("customUserDetailsService")
+@Service
 public class CustomUserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    public CustomUserDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public CustomUserDetailsService(UserService userService) {
+        this.userService = userService;
     }
 
     @Override
-    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UsrUser user = userRepository.findByUsrUserEmail(username);
-        if (user == null || user.getUsrUserIsActive() == null || !user.getUsrUserIsActive()) {
-            throw new UsernameNotFoundException("User not found or not active: " + username);
+        // The existing service API requires email+password; use empty password to lookup by email only.
+        User user = userService.findByEmailAndPassowrd(username, "");
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found: " + username);
         }
 
-        // Collect permissions (habilitation codes) from user's group
-        Set<UsrGroupHabilitation> groupHabs = null;
-        if (user.getUsrUserGroup() != null) {
-            groupHabs = user.getUsrUserGroup().getUsrGroupHabilitations();
-        }
+        // The project User DTO does expose isActive() as primitive boolean and has getPassword()/getEmail().
+        // Map permissions later; here provide a default authority while preserving active state.
+        List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
 
-        List<GrantedAuthority> authorities;
-        if (groupHabs == null || groupHabs.isEmpty()) {
-            authorities = Collections.emptyList();
-        } else {
-            authorities = groupHabs.stream()
-                    .map(UsrGroupHabilitation::getUsrHabilitation)
-                    .filter(h -> h != null && h.getUsrHabilitationCode() != null)
-                    .map(UsrHabilitation::getUsrHabilitationCode)
-                    .map(SimpleGrantedAuthority::new)
-                    .collect(Collectors.toList());
-        }
+        boolean active = user.isActive();
+        boolean disabled = !active;
 
         return org.springframework.security.core.userdetails.User.builder()
-                .username(user.getUsrUserEmail())
-                .password(user.getUsrUserPassword())
+                .username(user.getEmail())
+                .password(user.getPassword())
                 .authorities(authorities)
-                .accountExpired(false)
                 .accountLocked(false)
-                .credentialsExpired(false)
-                .disabled(!user.getUsrUserIsActive())
+                .disabled(disabled)
                 .build();
     }
 }
