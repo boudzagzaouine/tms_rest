@@ -2,6 +2,7 @@ package com.bagile.gmo.controllers;
 
 import com.bagile.gmo.login.LoginRequest;
 import com.bagile.gmo.auth.security.JwtTokenService;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,11 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @RestController
-@RequestMapping("/auth")
+@RequestMapping(value = "/auth", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AuthenticationController {
 
     private final AuthenticationManager authenticationManager;
@@ -38,19 +36,20 @@ public class AuthenticationController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
         // Pre-check: load user and verify password to give clearer error messages
         UserDetails preloaded;
         try {
             preloaded = authUserDetailsService.loadUserByUsername(request.getEmail());
         } catch (UsernameNotFoundException ex) {
-            // user not found
-            return ResponseEntity.status(401).body("Bad credentials: user not found");
+            AuthResponse body = new AuthResponse(false, null, null, "Bad credentials: user not found");
+            return ResponseEntity.status(401).contentType(MediaType.APPLICATION_JSON).body(body);
         }
 
         if (!passwordEncoder.matches(request.getPassword(), preloaded.getPassword())) {
-            return ResponseEntity.status(401).body("Bad credentials: password mismatch");
+            AuthResponse body = new AuthResponse(false, null, null, "Bad credentials: password mismatch");
+            return ResponseEntity.status(401).contentType(MediaType.APPLICATION_JSON).body(body);
         }
 
         Authentication authentication = authenticationManager.authenticate(
@@ -76,9 +75,7 @@ public class AuthenticationController {
 
         String token = jwtTokenService.generateToken(userDetails);
 
-        Map<String, String> resp = new HashMap<>();
-        resp.put("token", token);
-        resp.put("type", "Bearer");
-        return ResponseEntity.ok(resp);
+        AuthResponse resp = new AuthResponse(true, token, "Bearer", "User logged in successfully with email: " + userDetails.getUsername());
+        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(resp);
     }
 }
