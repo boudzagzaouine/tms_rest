@@ -26,10 +26,18 @@ spring:
       max-request-size: 25MB
       max-file-size: 10MB
 
+  main:
+    allow-bean-definition-overriding: true
+
 server:
   port: 8080
   servlet:
     context-path: /tms-rest
+
+security:
+  jwt:
+    secret: change-this-to-a-very-long-secret-with-at-least-32-chars
+    expiration-ms: 3600000
 
 
 #logging:
