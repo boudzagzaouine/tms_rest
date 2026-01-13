@@ -32,6 +32,7 @@ public class DebugAuthController {
         String email = request.getEmail();
         String raw = request.getPassword();
 
+
         return userRepository.findByEmail(email)
                 .map(user -> {
                     boolean matches = passwordEncoder.matches(raw, user.getPassword());
