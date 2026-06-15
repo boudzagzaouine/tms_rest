@@ -1,6 +1,8 @@
 package com.bagile.gmo.config.filter;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -12,9 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
@@ -25,9 +25,7 @@ import com.bagile.gmo.util.TokenUtils;
 public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
 
     @Autowired
-    @Qualifier("userDetailsService")
-    private UserDetailsService userDetailsService;
-
+    private TokenUtils tokenUtils;
 
     public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain chain) throws IOException, ServletException {
@@ -35,19 +33,18 @@ public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
         HttpServletRequest httpRequest = this.getAsHttpRequest(request);
 
         String authToken = this.extractAuthTokenFromRequest(httpRequest);
-        String userName = TokenUtils.getUserNameFromToken(authToken);
-        User user = null;
-        if (null != SecurityContextHolder.getContext() && null != SecurityContextHolder.getContext().getAuthentication()&&!"anonymousUser".equals( SecurityContextHolder.getContext().getAuthentication().getPrincipal())) {
-            user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        }
-        if (userName != null && user == null) {
+        String userName = tokenUtils.getUserNameFromToken(authToken);
 
-            UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
+        if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            if (TokenUtils.validateToken(authToken, userDetails)) {
+            if (tokenUtils.validateToken(authToken)) {
+                List<String> perms = tokenUtils.getPermissionsFromToken(authToken);
+                List<SimpleGrantedAuthority> authorities = perms.stream()
+                        .map(SimpleGrantedAuthority::new)
+                        .collect(Collectors.toList());
 
                 UsernamePasswordAuthenticationToken token =
-                        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                        new UsernamePasswordAuthenticationToken(userName, null, authorities);
                 token.setDetails(new WebAuthenticationDetails((HttpServletRequest) request));
                 SecurityContextHolder.getContext().setAuthentication(token);
             }
@@ -65,11 +62,13 @@ public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
     }
 
     private String extractAuthTokenFromRequest(HttpServletRequest httpRequest) {
+        String authHeader = httpRequest.getHeader("Authorization");
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            return authHeader.substring(7);
+        }
 
-//		String authToken = httpRequest.getParameter("token");
-//		return authToken;
         String authToken = httpRequest.getHeader("token");
-        if (null == authToken || "".equals(authToken)) {
+        if (authToken == null || authToken.isEmpty()) {
             authToken = httpRequest.getParameter("token");
         }
         return authToken;
