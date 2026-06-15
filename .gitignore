@@ -46,3 +46,5 @@
 build_baseline*.log
 smoke_run.log
 hs_err_pid*.log
+p1_compile.log
+p1_smoke.log

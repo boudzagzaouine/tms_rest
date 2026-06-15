@@ -1,4 +1,10 @@
 spring:
+  main:
+    # Boot 2.6+ prohibits bean circular references by default. This codebase has many
+    # field-injected service cycles (e.g. accountPricingService <-> companyService).
+    # Re-enabled to preserve behavior during the framework migration; breaking the
+    # cycles is tracked as separate tech-debt cleanup, not part of this migration.
+    allow-circular-references: true
   datasource:
     tomcat:
       test-while-idle: true
