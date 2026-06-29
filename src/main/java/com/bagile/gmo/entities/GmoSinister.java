@@ -5,7 +5,7 @@ import com.bagile.gmo.dto.SinisterType;
 import com.bagile.gmo.dto.Supplier;
 import com.bagile.gmo.dto.Vehicle;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;

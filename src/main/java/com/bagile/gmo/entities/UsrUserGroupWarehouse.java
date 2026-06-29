@@ -1,6 +1,6 @@
 package com.bagile.gmo.entities;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "usr_usergroup_wrh_warehouse")

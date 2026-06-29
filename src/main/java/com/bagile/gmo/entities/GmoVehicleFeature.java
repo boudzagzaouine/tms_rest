@@ -1,6 +1,6 @@
 package com.bagile.gmo.entities;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import com.bagile.gmo.dto.Uom;
 

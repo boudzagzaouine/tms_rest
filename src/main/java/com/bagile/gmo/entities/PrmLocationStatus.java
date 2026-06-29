@@ -1,6 +1,6 @@
 package com.bagile.gmo.entities;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /**
  * Created by Enissay on 03/05/2016.

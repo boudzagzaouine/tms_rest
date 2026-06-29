@@ -2,7 +2,7 @@ package com.bagile.gmo.entities;
 
 import com.bagile.gmo.dto.Ville;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 @Entity
 @Table(name = "tms_zoneville")

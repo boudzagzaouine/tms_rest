@@ -1,8 +1,8 @@
 package com.bagile.gmo.entities;
 
 
-import javax.persistence.Embeddable;
-import javax.persistence.Table;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Table;
 import java.math.BigDecimal;
 
 @Embeddable

@@ -5,7 +5,7 @@ import com.bagile.gmo.dto.Supplier;
 import com.bagile.gmo.dto.Uom;
 import com.bagile.gmo.dto.Vat;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;

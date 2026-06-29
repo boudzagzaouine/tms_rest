@@ -3,9 +3,9 @@ package com.bagile.gmo.exceptions;
 import com.bagile.gmo.util.Search;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-import javax.validation.Path;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Path;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;

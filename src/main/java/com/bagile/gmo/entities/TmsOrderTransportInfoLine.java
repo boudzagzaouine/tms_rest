@@ -6,7 +6,7 @@ import com.bagile.gmo.dto.Contact;
 import com.bagile.gmo.dto.PaymentType;
 import com.bagile.gmo.mapper.PaymentRuleMapper;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;

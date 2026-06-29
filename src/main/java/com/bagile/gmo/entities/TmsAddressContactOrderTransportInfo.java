@@ -1,7 +1,7 @@
 package com.bagile.gmo.entities;
 
 
-import javax.persistence.Embeddable;
+import jakarta.persistence.Embeddable;
 import java.util.Date;
 
 @Embeddable

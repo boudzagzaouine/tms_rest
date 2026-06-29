@@ -1,7 +1,7 @@
 package com.bagile.gmo.entities;
 
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 @Entity

@@ -1,4 +1,9 @@
 spring:
+  # Spring Boot 2.6+ forbids bean circular references by default; this code base (originally on
+  # Boot 2.2) relies on several service<->service cycles. Re-enabled to preserve behaviour during
+  # the Java 21 / Boot 3 migration. TODO: refactor the cycles (e.g. @Lazy) and remove this flag.
+  main:
+    allow-circular-references: true
   datasource:
     tomcat:
       test-while-idle: true

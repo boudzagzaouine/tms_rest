@@ -13,7 +13,6 @@ import com.bagile.gmo.services.*;
 import com.bagile.gmo.util.EmsDate;
 import com.bagile.gmo.util.GmaoSearch;
 import com.bagile.gmo.util.Search;
-import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

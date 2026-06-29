@@ -6,11 +6,11 @@ import org.hibernate.annotations.Immutable;
 import org.hibernate.annotations.Subselect;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
@@ -707,7 +707,11 @@ public class PdtProductView extends EmsEntity implements java.io.Serializable {
         this.pdtAliases = pdtAliases;
     }*/
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pdtProduct")
+    // Read-only association for this @Immutable view. Hibernate 6 rejects the previous
+    // mappedBy = "pdtProduct" (that property is typed PdtProduct, not PdtProductView), so the
+    // packs are joined directly on the product FK column, non-writable to keep the view read-only.
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pdt_productpackpdtid", insertable = false, updatable = false)
     public Set<PdtProductPack> getPdtProductPacks() {
         return this.pdtProductPacks;
     }

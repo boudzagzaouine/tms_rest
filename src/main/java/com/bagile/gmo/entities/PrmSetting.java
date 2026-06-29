@@ -1,7 +1,7 @@
 package com.bagile.gmo.entities;
 
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /**
  * Created by ASMAE on 28/04/2016.

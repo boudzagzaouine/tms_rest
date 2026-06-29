@@ -16,7 +16,7 @@ import com.bagile.gmo.services.ProductService;
 import com.bagile.gmo.util.EmsDate;
 import com.bagile.gmo.util.GmaoSearch;
 import com.bagile.gmo.util.Search;
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -437,7 +437,7 @@ public class ProductServiceImpl implements ProductService, GmaoSearch {
             idNotFound.printStackTrace();
         }
 
-        List<ProductPack> productPacks = Lists.newArrayList(product.getProductPacks());
+        List<ProductPack> productPacks = new ArrayList<>(product.getProductPacks());
         ProductPack served = new ProductPack();
         ProductPack expected = new ProductPack();
 

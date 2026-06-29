@@ -2,7 +2,7 @@ package com.bagile.gmo.config.mail;
 
 import com.bagile.gmo.entities.EmsEntity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;

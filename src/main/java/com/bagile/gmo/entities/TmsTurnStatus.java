@@ -3,7 +3,7 @@ package com.bagile.gmo.entities;
 import com.bagile.gmo.entities.EmsEntity;
 import com.bagile.gmo.entities.OwnOwner;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 

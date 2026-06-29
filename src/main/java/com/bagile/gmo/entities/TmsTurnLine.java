@@ -3,7 +3,7 @@ package com.bagile.gmo.entities;
 
 import com.bagile.gmo.dto.EmsDto;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashSet;

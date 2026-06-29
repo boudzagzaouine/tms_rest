@@ -2,7 +2,7 @@ package com.bagile.gmo.entities;
 
 import com.bagile.gmo.dto.Driver;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
