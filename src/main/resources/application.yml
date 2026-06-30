@@ -36,6 +36,12 @@ server:
   servlet:
     context-path: /tms-rest
 
+# JWT settings. In production, supply JWT_SECRET (>= 32 chars) and JWT_EXPIRATION_MS
+# via environment variables; the defaults below are for local development only.
+jwt:
+  secret: ${JWT_SECRET:tms-voieexpress-dev-secret-change-me-in-production-0123456789}
+  expiration-ms: ${JWT_EXPIRATION_MS:3600000}
+
 
 #logging:
 #  pattern:
