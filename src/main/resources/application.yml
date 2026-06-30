@@ -35,6 +35,9 @@ server:
   port: 8080
   servlet:
     context-path: /tms-rest
+  # The JWT embeds all of the user's habilitation codes, so an admin's token is ~7 KB. With normal
+  # browser headers that exceeds Tomcat's default 8 KB header limit (request rejected with 400).
+  max-http-request-header-size: 65536
 
 # JWT settings. In production, supply JWT_SECRET (>= 32 chars) and JWT_EXPIRATION_MS
 # via environment variables; the defaults below are for local development only.
