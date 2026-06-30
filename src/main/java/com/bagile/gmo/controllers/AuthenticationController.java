@@ -8,6 +8,7 @@ import com.bagile.gmo.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -47,7 +48,7 @@ public class AuthenticationController {
         this.jwtService = jwtService;
     }
 
-    @PostMapping("/login")
+    @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> login(@Valid @RequestBody LoginRequest request) {
         String md5Password = DigestUtils.md5DigestAsHex(
                 request.password().getBytes(StandardCharsets.UTF_8));
