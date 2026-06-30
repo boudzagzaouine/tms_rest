@@ -32,7 +32,7 @@ public class AccountController {
         return accountService.findAll(page, size);
 
     }
-    @RequestMapping(method = RequestMethod.GET, value = "/size")
+    @RequestMapping(method = RequestMethod.GET, value = "/size",produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Long size() {
         return accountService.size();
