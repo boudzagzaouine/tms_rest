@@ -90,6 +90,10 @@ public class SecurityConfig {
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> {
+                    // 0) CORS preflight requests carry no Authorization header, so they must be
+                    //    allowed through or every cross-origin call with a Bearer token would be
+                    //    blocked by a 401 on its OPTIONS preflight.
+                    auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
                     // 1) Public / authentication endpoints
                     auth.requestMatchers("/api/auth/login", "/authentification", "/monitoring",
                             "/api/public/**").permitAll();
