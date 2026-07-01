@@ -82,16 +82,13 @@ public class AuthenticationController {
 
         String token = jwtService.generateToken(request.email(), user.getId(), roles);
 
-        Map<String, Object> userInfo = new LinkedHashMap<>();
-        userInfo.put("id", user.getId());
-        userInfo.put("username", request.email());
-        userInfo.put("roles", roles);
-
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("accessToken", token);
         body.put("tokenType", "Bearer");
         body.put("expiresIn", jwtService.getExpirationMs() / 1000);
-        body.put("user", userInfo);
+        // Return the FULL profile (userGroup, habilitations, owner, ...) so the frontend needs a
+        // single call and no longer has to follow up with GET /authentification.
+        body.put("user", user);
 
         return ResponseEntity.ok(body);
     }
