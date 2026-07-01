@@ -17,7 +17,11 @@ public class SimpleCORSFilter implements Filter {
 
 		HttpServletResponse response = (HttpServletResponse) res;
 		HttpServletRequest request = (HttpServletRequest) req;
-		response.setHeader("Access-Control-Allow-Origin", "*");
+		// Echo the caller's Origin (falling back to *) instead of a bare "*", so the response is
+		// valid alongside Access-Control-Allow-Credentials: true.
+		String origin = request.getHeader("Origin");
+		response.setHeader("Access-Control-Allow-Origin", (origin != null && !origin.isEmpty()) ? origin : "*");
+		response.setHeader("Vary", "Origin");
 		response.setHeader("Access-Control-Allow-Methods", "*");
 		response.setHeader("Access-Control-Max-Age", "3600");
 		response.setHeader("Access-Control-Allow-Credentials", "true");

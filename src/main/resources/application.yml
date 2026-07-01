@@ -41,7 +41,7 @@ server:
 # expires the frontend silently obtains a new one with the long-lived refresh token.
 jwt:
   secret: ${JWT_SECRET:tms-voieexpress-dev-secret-change-me-in-production-0123456789}
-  expiration-ms: ${JWT_EXPIRATION_MS:900000}            # access token: 15 minutes
+  expiration-ms: ${JWT_EXPIRATION_MS:60000}            # access token: 15 minutes
   refresh-expiration-ms: ${JWT_REFRESH_EXPIRATION_MS:604800000}  # refresh token: 7 days
 
 
