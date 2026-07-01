@@ -3,6 +3,7 @@ package com.bagile.gmo.controllers;
 import com.bagile.gmo.dto.User;
 import com.bagile.gmo.security.JwtService;
 import com.bagile.gmo.security.LoginRequest;
+import com.bagile.gmo.security.RefreshRequest;
 import com.bagile.gmo.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -20,12 +21,11 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Issues a small JWT (identity only) for valid credentials and returns the full user profile in the
- * same response, so the frontend needs a single call. The stored password is an MD5 hash, so the
- * submitted (plain) password is MD5-hashed here and compared against the existing user store.
- *
- * <p>Habilitations are NOT put in the token; {@code JwtAuthenticationFilter} loads them from the
- * user store on each request.</p>
+ * Issues a short-lived access token + a long-lived refresh token for valid credentials, and returns
+ * the full user profile in the same response so the frontend needs a single login call. The stored
+ * password is MD5, so the submitted (plain) password is MD5-hashed here and compared against the
+ * existing user store. Habilitations are NOT in the token; {@code JwtAuthenticationFilter} loads
+ * them from the user store on each request.
  */
 @RestController
 @RequestMapping("/api/auth")
@@ -50,15 +50,34 @@ public class AuthenticationController {
             return unauthorized("Invalid email or password");
         }
 
-        String token = jwtService.generateToken(request.email(), user.getId());
-
         Map<String, Object> body = new LinkedHashMap<>();
-        body.put("accessToken", token);
+        body.put("accessToken", jwtService.generateToken(request.email(), user.getId()));
+        body.put("refreshToken", jwtService.generateRefreshToken(request.email(), user.getId()));
         body.put("tokenType", "Bearer");
         body.put("expiresIn", jwtService.getExpirationMs() / 1000);
         // Full profile (userGroup, habilitations, owner, ...) so the frontend needs a single call.
         body.put("user", user);
 
+        return ResponseEntity.ok(body);
+    }
+
+    /** Exchanges a valid refresh token for a new access token (no re-authentication). */
+    @PostMapping(value = "/refresh", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> refresh(@Valid @RequestBody RefreshRequest request) {
+        String refreshToken = request.refreshToken();
+        if (!jwtService.isRefreshToken(refreshToken)) {
+            return unauthorized("Invalid or expired refresh token");
+        }
+        String username = jwtService.extractUsername(refreshToken);
+        Long userId = jwtService.extractUserId(refreshToken);
+        if (username == null) {
+            return unauthorized("Invalid refresh token");
+        }
+
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("accessToken", jwtService.generateToken(username, userId));
+        body.put("tokenType", "Bearer");
+        body.put("expiresIn", jwtService.getExpirationMs() / 1000);
         return ResponseEntity.ok(body);
     }
 

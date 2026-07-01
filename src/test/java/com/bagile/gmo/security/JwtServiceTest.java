@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class JwtServiceTest {
 
     private static final String SECRET = "tms-voieexpress-dev-secret-change-me-in-production-0123456789";
-    private final JwtService jwt = new JwtService(SECRET, 3_600_000L);
+    private final JwtService jwt = new JwtService(SECRET, 3_600_000L, 604_800_000L);
 
     @Test
     void generatedTokenIsValidAndCarriesIdentity() {
@@ -35,9 +35,20 @@ class JwtServiceTest {
 
     @Test
     void aTokenSignedWithADifferentSecretIsRejected() {
-        JwtService other = new JwtService("a-totally-different-secret-key-of-sufficient-length-123456", 3_600_000L);
+        JwtService other = new JwtService("a-totally-different-secret-key-of-sufficient-length-123456", 3_600_000L, 604_800_000L);
         String foreign = other.generateToken("ems@ems.com", 6L);
 
         assertFalse(jwt.isValid(foreign), "token signed by another key must be rejected");
+    }
+
+    @Test
+    void accessAndRefreshTokensAreDistinguished() {
+        String access = jwt.generateToken("ems@ems.com", 6L);
+        String refresh = jwt.generateRefreshToken("ems@ems.com", 6L);
+
+        assertTrue(jwt.isAccessToken(access));
+        assertFalse(jwt.isRefreshToken(access));
+        assertTrue(jwt.isRefreshToken(refresh));
+        assertFalse(jwt.isAccessToken(refresh), "a refresh token must not authenticate API calls");
     }
 }

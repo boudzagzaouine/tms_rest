@@ -95,8 +95,8 @@ public class SecurityConfig {
                     //    blocked by a 401 on its OPTIONS preflight.
                     auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
                     // 1) Public / authentication endpoints
-                    auth.requestMatchers("/api/auth/login", "/authentification", "/monitoring",
-                            "/api/public/**").permitAll();
+                    auth.requestMatchers("/api/auth/login", "/api/auth/refresh", "/authentification",
+                            "/monitoring", "/api/public/**").permitAll();
                     // 2) Reserved admin area
                     auth.requestMatchers("/api/admin/**").hasAuthority("ADMIN");
 
