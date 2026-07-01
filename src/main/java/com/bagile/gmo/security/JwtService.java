@@ -36,14 +36,16 @@ public class JwtService {
         return expirationMs;
     }
 
-    /** Builds a signed JWT for the given user. */
-    public String generateToken(String username, Long userId, List<String> roles) {
+    /**
+     * Builds a signed JWT carrying only the user's identity (small token). Authorities/habilitations
+     * are NOT embedded; they are loaded from the user store on each request by the auth filter.
+     */
+    public String generateToken(String username, Long userId) {
         Date now = new Date();
         Date expiry = new Date(now.getTime() + expirationMs);
         return Jwts.builder()
                 .subject(username)
                 .claim("uid", userId)
-                .claim("roles", roles)
                 .issuedAt(now)
                 .expiration(expiry)
                 .signWith(key)

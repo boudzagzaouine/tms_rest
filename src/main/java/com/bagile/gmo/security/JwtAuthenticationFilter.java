@@ -1,9 +1,11 @@
 package com.bagile.gmo.security;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -14,20 +16,23 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
- * Validates the JWT on every request and, if valid, populates the {@link SecurityContextHolder}
- * with the username and the habilitation codes carried by the token (stateless — no DB lookup).
+ * Validates the JWT on every request. The token carries only the user's identity (small token);
+ * the authorities/habilitations are loaded fresh from the user store via {@link UserDetailsService}
+ * on each request. This keeps tokens tiny and makes permission changes take effect immediately
+ * (no need to wait for a token to expire), at the cost of a per-request user lookup.
  */
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
+    private final UserDetailsService userDetailsService;
 
-    public JwtAuthenticationFilter(JwtService jwtService) {
+    public JwtAuthenticationFilter(JwtService jwtService,
+                                   @Qualifier("userDetailsService") UserDetailsService userDetailsService) {
         this.jwtService = jwtService;
+        this.userDetailsService = userDetailsService;
     }
 
     @Override
@@ -44,15 +49,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             String username = jwtService.extractUsername(token);
             if (username != null) {
-                List<SimpleGrantedAuthority> authorities = jwtService.extractRoles(token)
-                        .stream()
-                        .map(SimpleGrantedAuthority::new)
-                        .collect(Collectors.toList());
-
-                UsernamePasswordAuthenticationToken authentication =
-                        new UsernamePasswordAuthenticationToken(username, null, authorities);
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+                try {
+                    // Load the user's current authorities (habilitation codes + USER/ADMIN) from the
+                    // store. Returns null / throws for unknown or inactive users -> stay unauthenticated.
+                    UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+                    if (userDetails != null) {
+                        UsernamePasswordAuthenticationToken authentication =
+                                new UsernamePasswordAuthenticationToken(
+                                        userDetails, null, userDetails.getAuthorities());
+                        authentication.setDetails(
+                                new WebAuthenticationDetailsSource().buildDetails(request));
+                        SecurityContextHolder.getContext().setAuthentication(authentication);
+                    }
+                } catch (Exception ex) {
+                    // user not found / inactive -> request proceeds unauthenticated (401/403 downstream)
+                }
             }
         }
 
@@ -62,7 +73,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     /**
      * Resolves the token from the standard {@code Authorization: Bearer <token>} header, falling
      * back to the legacy {@code token} header / {@code ?token=} query parameter so existing
-     * frontend calls keep working during the migration. Every source is signature-verified.
+     * frontend calls keep working. Every source is signature-verified.
      */
     private String resolveToken(HttpServletRequest request) {
         String header = request.getHeader("Authorization");

@@ -8,6 +8,7 @@ import com.bagile.gmo.repositories.UserRepository;
 import com.bagile.gmo.services.UserDetailsServiceWarehouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -142,6 +143,13 @@ public class MyUserDetailsService implements UserDetailsService, UserDetailsServ
             //Iterator<UsrHabilitation> iterator = usrHabilitation.iterator();
             for (UsrGroupHabilitation groupHabilitation : userRoles) {
                 list.add(groupHabilitation.getUsrHabilitation());
+            }
+            // Coarse roles on top of the fine-grained habilitations: everyone authenticated is USER;
+            // members of a group whose code contains "ADMIN" (e.g. SUPER ADMIN) are also ADMIN.
+            list.add(new SimpleGrantedAuthority("USER"));
+            String groupCode = user.getUsrUserGroup().getUsrUserGroupCode();
+            if (groupCode != null && groupCode.toUpperCase().contains("ADMIN")) {
+                list.add(new SimpleGrantedAuthority("ADMIN"));
             }
 //            while (iterator.hasNext()) {
 ////               / UsrHabilitation habilitation = i.next();
