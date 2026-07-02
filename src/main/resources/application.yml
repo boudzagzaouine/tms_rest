@@ -19,6 +19,11 @@ spring:
     properties:
       hibernate:
         enable_lazy_load_no_trans: true
+        # Cap eager join-fetch depth for many-to-one/one-to-one associations. Without this, deep
+        # entity graphs (e.g. saving a transport plan pulls plan+vehicle+order+... into one join)
+        # produce a SELECT with > 1664 columns, which PostgreSQL rejects. Deeper associations are
+        # now loaded via separate selects instead of one monster join.
+        max_fetch_depth: 1
         default_schema: schema_tmsvoieexpress
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
@@ -41,7 +46,7 @@ server:
 # expires the frontend silently obtains a new one with the long-lived refresh token.
 jwt:
   secret: ${JWT_SECRET:tms-voieexpress-dev-secret-change-me-in-production-0123456789}
-  expiration-ms: ${JWT_EXPIRATION_MS:60000}            # access token: 15 minutes
+  expiration-ms: ${JWT_EXPIRATION_MS:3600000}            # access token: 15 minutes
   refresh-expiration-ms: ${JWT_REFRESH_EXPIRATION_MS:604800000}  # refresh token: 7 days
 
 
