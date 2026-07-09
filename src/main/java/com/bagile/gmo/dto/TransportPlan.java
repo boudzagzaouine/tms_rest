@@ -44,6 +44,13 @@ public class TransportPlan extends EmsDto implements Serializable {
 
     private Date dateValidate;
 
+    // Driver operation timestamps traced by the mobile app.
+    private Date dateArriver;
+    private Date dateCommancerChargement;
+    private Date dateFinChargement;
+    private Date dateCommancerDechargement;
+    private Date dateFinDechargement;
+
     private BigDecimal totalPriceHT;
     private BigDecimal totalPriceTTC;
     private BigDecimal totalPriceVat;
@@ -170,6 +177,46 @@ public class TransportPlan extends EmsDto implements Serializable {
 
     public void setDateValidate(Date dateValidate) {
         this.dateValidate = dateValidate;
+    }
+
+    public Date getDateArriver() {
+        return dateArriver;
+    }
+
+    public void setDateArriver(Date dateArriver) {
+        this.dateArriver = dateArriver;
+    }
+
+    public Date getDateCommancerChargement() {
+        return dateCommancerChargement;
+    }
+
+    public void setDateCommancerChargement(Date dateCommancerChargement) {
+        this.dateCommancerChargement = dateCommancerChargement;
+    }
+
+    public Date getDateFinChargement() {
+        return dateFinChargement;
+    }
+
+    public void setDateFinChargement(Date dateFinChargement) {
+        this.dateFinChargement = dateFinChargement;
+    }
+
+    public Date getDateCommancerDechargement() {
+        return dateCommancerDechargement;
+    }
+
+    public void setDateCommancerDechargement(Date dateCommancerDechargement) {
+        this.dateCommancerDechargement = dateCommancerDechargement;
+    }
+
+    public Date getDateFinDechargement() {
+        return dateFinDechargement;
+    }
+
+    public void setDateFinDechargement(Date dateFinDechargement) {
+        this.dateFinDechargement = dateFinDechargement;
     }
 
     public BigDecimal getMargineService() {

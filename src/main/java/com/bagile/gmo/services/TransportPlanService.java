@@ -46,6 +46,7 @@ public interface TransportPlanService {
 
     List<TransportPlan> getItineraries(String search,int page, int size)  throws ErrorType, AttributesNotFound;
 
-
+    /** Lightweight live-position update for driver tracking (updates only lat/long). */
+    int updateLivePosition(long id, Double latitude, Double longitude);
 
 }

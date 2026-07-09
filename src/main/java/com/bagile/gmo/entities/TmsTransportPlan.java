@@ -40,6 +40,14 @@ public class TmsTransportPlan extends EmsEntity {
 
     private  Date tmsTransportPlanDateValidate;
 
+    // Driver operation timestamps (columns already exist in the table; mapped here so the
+    // driver app can trace each delivery operation: arrival, loading start/end, unloading start/end).
+    private  Date tmsTransportPlanDateArriver;
+    private  Date tmsTransportPlanDateCommancerChargement;
+    private  Date tmsTransportPlanDateFinChargement;
+    private  Date tmsTransportPlanDateCommancerDechargement;
+    private  Date tmsTransportPlanDateFinDechargement;
+
     private BigDecimal tmsTransportPlanMarginRate;
     private BigDecimal tmsTransportPlanmargineService;
 
@@ -401,5 +409,50 @@ public class TmsTransportPlan extends EmsEntity {
 
     public void setTmsTransportPlanDateValidate(Date tmsTransportPlanDateValidate) {
         this.tmsTransportPlanDateValidate = tmsTransportPlanDateValidate;
+    }
+
+    @Column(name = "tms_transportplandatearriver")
+    public Date getTmsTransportPlanDateArriver() {
+        return tmsTransportPlanDateArriver;
+    }
+
+    public void setTmsTransportPlanDateArriver(Date tmsTransportPlanDateArriver) {
+        this.tmsTransportPlanDateArriver = tmsTransportPlanDateArriver;
+    }
+
+    @Column(name = "tms_transportplandatecommancerchargement")
+    public Date getTmsTransportPlanDateCommancerChargement() {
+        return tmsTransportPlanDateCommancerChargement;
+    }
+
+    public void setTmsTransportPlanDateCommancerChargement(Date tmsTransportPlanDateCommancerChargement) {
+        this.tmsTransportPlanDateCommancerChargement = tmsTransportPlanDateCommancerChargement;
+    }
+
+    @Column(name = "tms_transportplandatefinchargement")
+    public Date getTmsTransportPlanDateFinChargement() {
+        return tmsTransportPlanDateFinChargement;
+    }
+
+    public void setTmsTransportPlanDateFinChargement(Date tmsTransportPlanDateFinChargement) {
+        this.tmsTransportPlanDateFinChargement = tmsTransportPlanDateFinChargement;
+    }
+
+    @Column(name = "tms_transportplandatecommancerdechargement")
+    public Date getTmsTransportPlanDateCommancerDechargement() {
+        return tmsTransportPlanDateCommancerDechargement;
+    }
+
+    public void setTmsTransportPlanDateCommancerDechargement(Date tmsTransportPlanDateCommancerDechargement) {
+        this.tmsTransportPlanDateCommancerDechargement = tmsTransportPlanDateCommancerDechargement;
+    }
+
+    @Column(name = "tms_transportplandatefindechargement")
+    public Date getTmsTransportPlanDateFinDechargement() {
+        return tmsTransportPlanDateFinDechargement;
+    }
+
+    public void setTmsTransportPlanDateFinDechargement(Date tmsTransportPlanDateFinDechargement) {
+        this.tmsTransportPlanDateFinDechargement = tmsTransportPlanDateFinDechargement;
     }
 }

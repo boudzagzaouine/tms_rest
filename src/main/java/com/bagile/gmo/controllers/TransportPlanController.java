@@ -147,4 +147,21 @@ public class TransportPlanController {
     public List<TransportPlan> getItineraries(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         return transportPlanService.getItineraries(search, page,  size);
     }
+
+    /**
+     * Lightweight live-position update used by the driver app during a mission.
+     * Updates only the plan's current latitude/longitude (a targeted UPDATE), so
+     * the tracking map reflects the driver's position without a full plan save.
+     */
+    @RequestMapping(value = "/{id}/position", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public java.util.Map<String, Object> updatePosition(@PathVariable Long id,
+                                                        @RequestBody java.util.Map<String, Object> body) {
+        Double lat = body.get("latitude") == null ? null : Double.valueOf(body.get("latitude").toString());
+        Double lng = body.get("longitude") == null ? null : Double.valueOf(body.get("longitude").toString());
+        int updated = transportPlanService.updateLivePosition(id, lat, lng);
+        java.util.Map<String, Object> res = new java.util.HashMap<>();
+        res.put("updated", updated);
+        return res;
+    }
 }

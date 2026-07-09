@@ -38,6 +38,9 @@ public class TransportPlanServiceImpl implements TransportPlanService {
     private final TransportPlanRepository transportPlanRepository;
     private final DataSource dataSource;
 
+    @Autowired
+    private com.bagile.gmo.services.PushService pushService;
+
 
     private final static Logger LOGGER = LoggerFactory
             .getLogger(MaintenanceService.class);
@@ -79,7 +82,28 @@ if(transportPlan.getTransport().getInterneOrExterne()) {
     }
 }
 
-        return TransportPlanMapper.toDto(transportPlanRepository.saveAndFlush(TransportPlanMapper.toEntity(transportPlan, false)), false);
+        boolean isNew = transportPlan.getId() == 0;
+        TransportPlan saved = TransportPlanMapper.toDto(
+                transportPlanRepository.saveAndFlush(TransportPlanMapper.toEntity(transportPlan, false)), false);
+
+        // Notify the driver when a delivery is newly affected to them (a new plan
+        // with a driver). Updates (id>0, incl. the app's own status writes) don't
+        // fire, so there's no self-notification loop. Best-effort — never blocks save.
+        if (isNew && saved.getDriver() != null && saved.getDriver().getId() > 0) {
+            try {
+                java.util.Map<String, Object> data = new java.util.HashMap<>();
+                data.put("orderId", saved.getId());
+                String code = saved.getOrderTransport() != null && saved.getOrderTransport().getCode() != null
+                        ? saved.getOrderTransport().getCode()
+                        : "TP-" + saved.getId();
+                String route = saved.getTrajet() != null ? saved.getTrajet().getCode() : "";
+                pushService.notifyDriver(saved.getDriver().getId(),
+                        "Nouvelle livraison affectée", code + (route.isEmpty() ? "" : " · " + route), data);
+            } catch (Exception ignored) {
+                // push must never break the assignment
+            }
+        }
+        return saved;
     }
 
     @Override
@@ -286,6 +310,11 @@ orderTransportInfoLine.setDate(transportPlanLocation.getDate());
 
        return transportPlans;
 
+    }
+
+    @Override
+    public int updateLivePosition(long id, Double latitude, Double longitude) {
+        return transportPlanRepository.updateLivePosition(id, latitude, longitude);
     }
 
 }

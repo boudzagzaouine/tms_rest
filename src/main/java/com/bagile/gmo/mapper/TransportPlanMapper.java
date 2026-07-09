@@ -73,6 +73,13 @@ public class TransportPlanMapper {
         tmsTransportPlan.setTmsTransportPlanTotalServiceVAT(transportPlan.getTotalServiceVat());
         tmsTransportPlan.setTmsTransportPlanDateDepartDriver(transportPlan.getDateDepartDriver());
 
+        // Driver operation timestamps traced by the mobile app.
+        tmsTransportPlan.setTmsTransportPlanDateArriver(transportPlan.getDateArriver());
+        tmsTransportPlan.setTmsTransportPlanDateCommancerChargement(transportPlan.getDateCommancerChargement());
+        tmsTransportPlan.setTmsTransportPlanDateFinChargement(transportPlan.getDateFinChargement());
+        tmsTransportPlan.setTmsTransportPlanDateCommancerDechargement(transportPlan.getDateCommancerDechargement());
+        tmsTransportPlan.setTmsTransportPlanDateFinDechargement(transportPlan.getDateFinDechargement());
+
         tmsTransportPlan.setGmoDriverExterne(transportPlan.getDriverExterne());
         tmsTransportPlan.setGmoVehicleExterne(transportPlan.getVehicleExterne());
 
@@ -127,6 +134,13 @@ public class TransportPlanMapper {
         transportPlan.setDateDepart(tmsTransportPlan.getTmsTransportPlanDateDepart());
         transportPlan.setDateValidate(tmsTransportPlan.getTmsTransportPlanDateValidate());
         transportPlan.setCloseDate(tmsTransportPlan.getTmsTransportPlanCloseDate());
+
+        // Driver operation timestamps traced by the mobile app.
+        transportPlan.setDateArriver(tmsTransportPlan.getTmsTransportPlanDateArriver());
+        transportPlan.setDateCommancerChargement(tmsTransportPlan.getTmsTransportPlanDateCommancerChargement());
+        transportPlan.setDateFinChargement(tmsTransportPlan.getTmsTransportPlanDateFinChargement());
+        transportPlan.setDateCommancerDechargement(tmsTransportPlan.getTmsTransportPlanDateCommancerDechargement());
+        transportPlan.setDateFinDechargement(tmsTransportPlan.getTmsTransportPlanDateFinDechargement());
         transportPlan.setMarginRate(tmsTransportPlan.getTmsTransportPlanMarginRate());
         transportPlan.setMargineService(tmsTransportPlan.getTmsTransportPlanmargineService());
         transportPlan.setSalePrice(tmsTransportPlan.getTmsTransportPlanSalePrice());
