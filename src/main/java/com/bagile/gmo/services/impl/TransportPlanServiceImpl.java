@@ -118,27 +118,55 @@ if(transportPlan.getTransport().getInterneOrExterne()) {
         return saved;
     }
 
-    /** Copies the plan's operation timestamps onto the order's info-line(s). */
+    /**
+     * Copies the plan's operation timestamps onto the order's info-line(s).
+     *
+     * An order has separate info-lines for the pickup leg (enlevement,
+     * tms_ordertrasnportserviceid = 1) and the delivery leg (livraison,
+     * serviceid = 2). Each leg must only receive its own operations, otherwise
+     * recording e.g. "arrival at pickup" would wrongly stamp the delivery line
+     * too. So we split the mirroring per line type:
+     *   - enlevement: arrival, loading start/end, close
+     *   - livraison:  unloading start/end, close
+     * (the delivery leg's own arrival is a distinct event, not the pickup
+     * arrival, so we never copy the plan's dateArriver onto it here.)
+     */
     private void propagateOpsToInfoLines(long orderId, TransportPlan plan) {
-        String sql = "UPDATE schema_tmsvoieexpress.tms_ordertransportinfolineinfoline l SET "
+        // Pickup leg (enlevement) — arrival + loading + close.
+        String enlevementSql = "UPDATE schema_tmsvoieexpress.tms_ordertransportinfolineinfoline l SET "
                 + "tms_ordertransportinfolinedatearriver = COALESCE(?, l.tms_ordertransportinfolinedatearriver), "
                 + "tms_ordertransportinfolinedatecommancerchargement = COALESCE(?, l.tms_ordertransportinfolinedatecommancerchargement), "
                 + "tms_ordertransportinfolinedatefinchargement = COALESCE(?, l.tms_ordertransportinfolinedatefinchargement), "
+                + "tms_ordertransportinfolineclosedate = COALESCE(?, l.tms_ordertransportinfolineclosedate) "
+                + "FROM schema_tmsvoieexpress.tms_ordertransportinfo i "
+                + "WHERE i.tms_ordertransportinfoid = l.tms_ordertransportinfoid "
+                + "AND i.tms_ordertransport = ? AND l.tms_ordertrasnportserviceid = 1";
+
+        // Delivery leg (livraison) — unloading + close.
+        String livraisonSql = "UPDATE schema_tmsvoieexpress.tms_ordertransportinfolineinfoline l SET "
                 + "tms_ordertransportinfolinedatecommancerdechargement = COALESCE(?, l.tms_ordertransportinfolinedatecommancerdechargement), "
                 + "tms_ordertransportinfolinedatefindechargement = COALESCE(?, l.tms_ordertransportinfolinedatefindechargement), "
                 + "tms_ordertransportinfolineclosedate = COALESCE(?, l.tms_ordertransportinfolineclosedate) "
                 + "FROM schema_tmsvoieexpress.tms_ordertransportinfo i "
-                + "WHERE i.tms_ordertransportinfoid = l.tms_ordertransportinfoid AND i.tms_ordertransport = ?";
-        try (java.sql.Connection c = dataSource.getConnection();
-             java.sql.PreparedStatement ps = c.prepareStatement(sql)) {
-            setTs(ps, 1, plan.getDateArriver());
-            setTs(ps, 2, plan.getDateCommancerChargement());
-            setTs(ps, 3, plan.getDateFinChargement());
-            setTs(ps, 4, plan.getDateCommancerDechargement());
-            setTs(ps, 5, plan.getDateFinDechargement());
-            setTs(ps, 6, plan.getCloseDate());
-            ps.setLong(7, orderId);
-            ps.executeUpdate();
+                + "WHERE i.tms_ordertransportinfoid = l.tms_ordertransportinfoid "
+                + "AND i.tms_ordertransport = ? AND l.tms_ordertrasnportserviceid = 2";
+
+        try (java.sql.Connection c = dataSource.getConnection()) {
+            try (java.sql.PreparedStatement ps = c.prepareStatement(enlevementSql)) {
+                setTs(ps, 1, plan.getDateArriver());
+                setTs(ps, 2, plan.getDateCommancerChargement());
+                setTs(ps, 3, plan.getDateFinChargement());
+                setTs(ps, 4, plan.getCloseDate());
+                ps.setLong(5, orderId);
+                ps.executeUpdate();
+            }
+            try (java.sql.PreparedStatement ps = c.prepareStatement(livraisonSql)) {
+                setTs(ps, 1, plan.getDateCommancerDechargement());
+                setTs(ps, 2, plan.getDateFinDechargement());
+                setTs(ps, 3, plan.getCloseDate());
+                ps.setLong(4, orderId);
+                ps.executeUpdate();
+            }
         } catch (Exception e) {
             LOGGER.warn("could not propagate operation dates to info-lines for order {}", orderId, e);
         }
