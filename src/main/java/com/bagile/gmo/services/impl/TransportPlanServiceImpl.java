@@ -103,7 +103,50 @@ if(transportPlan.getTransport().getInterneOrExterne()) {
                 // push must never break the assignment
             }
         }
+
+        // The driver app records operation timestamps on the plan, but the
+        // Track & Trace screen reads them from the order's info-line. Mirror the
+        // plan's operation dates onto the order's info-line(s) so the driver's
+        // progress (arrival, loading/unloading start/end, close) shows there.
+        try {
+            if (saved.getOrderTransport() != null && saved.getOrderTransport().getId() > 0) {
+                propagateOpsToInfoLines(saved.getOrderTransport().getId(), saved);
+            }
+        } catch (Exception ignored) {
+            // never block the save on this mirroring
+        }
         return saved;
+    }
+
+    /** Copies the plan's operation timestamps onto the order's info-line(s). */
+    private void propagateOpsToInfoLines(long orderId, TransportPlan plan) {
+        String sql = "UPDATE schema_tmsvoieexpress.tms_ordertransportinfolineinfoline l SET "
+                + "tms_ordertransportinfolinedatearriver = COALESCE(?, l.tms_ordertransportinfolinedatearriver), "
+                + "tms_ordertransportinfolinedatecommancerchargement = COALESCE(?, l.tms_ordertransportinfolinedatecommancerchargement), "
+                + "tms_ordertransportinfolinedatefinchargement = COALESCE(?, l.tms_ordertransportinfolinedatefinchargement), "
+                + "tms_ordertransportinfolinedatecommancerdechargement = COALESCE(?, l.tms_ordertransportinfolinedatecommancerdechargement), "
+                + "tms_ordertransportinfolinedatefindechargement = COALESCE(?, l.tms_ordertransportinfolinedatefindechargement), "
+                + "tms_ordertransportinfolineclosedate = COALESCE(?, l.tms_ordertransportinfolineclosedate) "
+                + "FROM schema_tmsvoieexpress.tms_ordertransportinfo i "
+                + "WHERE i.tms_ordertransportinfoid = l.tms_ordertransportinfoid AND i.tms_ordertransport = ?";
+        try (java.sql.Connection c = dataSource.getConnection();
+             java.sql.PreparedStatement ps = c.prepareStatement(sql)) {
+            setTs(ps, 1, plan.getDateArriver());
+            setTs(ps, 2, plan.getDateCommancerChargement());
+            setTs(ps, 3, plan.getDateFinChargement());
+            setTs(ps, 4, plan.getDateCommancerDechargement());
+            setTs(ps, 5, plan.getDateFinDechargement());
+            setTs(ps, 6, plan.getCloseDate());
+            ps.setLong(7, orderId);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            LOGGER.warn("could not propagate operation dates to info-lines for order {}", orderId, e);
+        }
+    }
+
+    private static void setTs(java.sql.PreparedStatement ps, int idx, java.util.Date d) throws java.sql.SQLException {
+        if (d == null) ps.setNull(idx, java.sql.Types.TIMESTAMP);
+        else ps.setTimestamp(idx, new java.sql.Timestamp(d.getTime()));
     }
 
     @Override
