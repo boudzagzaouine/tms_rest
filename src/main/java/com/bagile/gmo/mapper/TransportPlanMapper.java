@@ -79,6 +79,7 @@ public class TransportPlanMapper {
         tmsTransportPlan.setTmsTransportPlanDateFinChargement(transportPlan.getDateFinChargement());
         tmsTransportPlan.setTmsTransportPlanDateCommancerDechargement(transportPlan.getDateCommancerDechargement());
         tmsTransportPlan.setTmsTransportPlanDateFinDechargement(transportPlan.getDateFinDechargement());
+        tmsTransportPlan.setTmsTransportPlanDateArriverDestination(transportPlan.getDateArriverDestination());
 
         tmsTransportPlan.setGmoDriverExterne(transportPlan.getDriverExterne());
         tmsTransportPlan.setGmoVehicleExterne(transportPlan.getVehicleExterne());
@@ -141,6 +142,7 @@ public class TransportPlanMapper {
         transportPlan.setDateFinChargement(tmsTransportPlan.getTmsTransportPlanDateFinChargement());
         transportPlan.setDateCommancerDechargement(tmsTransportPlan.getTmsTransportPlanDateCommancerDechargement());
         transportPlan.setDateFinDechargement(tmsTransportPlan.getTmsTransportPlanDateFinDechargement());
+        transportPlan.setDateArriverDestination(tmsTransportPlan.getTmsTransportPlanDateArriverDestination());
         transportPlan.setMarginRate(tmsTransportPlan.getTmsTransportPlanMarginRate());
         transportPlan.setMargineService(tmsTransportPlan.getTmsTransportPlanmargineService());
         transportPlan.setSalePrice(tmsTransportPlan.getTmsTransportPlanSalePrice());

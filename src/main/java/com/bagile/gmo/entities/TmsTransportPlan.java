@@ -47,6 +47,9 @@ public class TmsTransportPlan extends EmsEntity {
     private  Date tmsTransportPlanDateFinChargement;
     private  Date tmsTransportPlanDateCommancerDechargement;
     private  Date tmsTransportPlanDateFinDechargement;
+    // Arrival at the delivery point (distinct from tmsTransportPlanDateArriver,
+    // which is the arrival at the pickup point).
+    private  Date tmsTransportPlanDateArriverDestination;
 
     private BigDecimal tmsTransportPlanMarginRate;
     private BigDecimal tmsTransportPlanmargineService;
@@ -454,5 +457,14 @@ public class TmsTransportPlan extends EmsEntity {
 
     public void setTmsTransportPlanDateFinDechargement(Date tmsTransportPlanDateFinDechargement) {
         this.tmsTransportPlanDateFinDechargement = tmsTransportPlanDateFinDechargement;
+    }
+
+    @Column(name = "tms_transportplandatearriverdestination")
+    public Date getTmsTransportPlanDateArriverDestination() {
+        return tmsTransportPlanDateArriverDestination;
+    }
+
+    public void setTmsTransportPlanDateArriverDestination(Date tmsTransportPlanDateArriverDestination) {
+        this.tmsTransportPlanDateArriverDestination = tmsTransportPlanDateArriverDestination;
     }
 }

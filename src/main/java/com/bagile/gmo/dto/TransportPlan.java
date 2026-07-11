@@ -50,6 +50,8 @@ public class TransportPlan extends EmsDto implements Serializable {
     private Date dateFinChargement;
     private Date dateCommancerDechargement;
     private Date dateFinDechargement;
+    // Arrival at the delivery point (distinct from dateArriver = pickup arrival).
+    private Date dateArriverDestination;
 
     private BigDecimal totalPriceHT;
     private BigDecimal totalPriceTTC;
@@ -217,6 +219,14 @@ public class TransportPlan extends EmsDto implements Serializable {
 
     public void setDateFinDechargement(Date dateFinDechargement) {
         this.dateFinDechargement = dateFinDechargement;
+    }
+
+    public Date getDateArriverDestination() {
+        return dateArriverDestination;
+    }
+
+    public void setDateArriverDestination(Date dateArriverDestination) {
+        this.dateArriverDestination = dateArriverDestination;
     }
 
     public BigDecimal getMargineService() {

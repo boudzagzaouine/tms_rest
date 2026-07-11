@@ -142,8 +142,9 @@ if(transportPlan.getTransport().getInterneOrExterne()) {
                 + "WHERE i.tms_ordertransportinfoid = l.tms_ordertransportinfoid "
                 + "AND i.tms_ordertransport = ? AND l.tms_ordertrasnportserviceid = 1";
 
-        // Delivery leg (livraison) — unloading + close.
+        // Delivery leg (livraison) — arrival at destination + unloading + close.
         String livraisonSql = "UPDATE schema_tmsvoieexpress.tms_ordertransportinfolineinfoline l SET "
+                + "tms_ordertransportinfolinedatearriver = COALESCE(?, l.tms_ordertransportinfolinedatearriver), "
                 + "tms_ordertransportinfolinedatecommancerdechargement = COALESCE(?, l.tms_ordertransportinfolinedatecommancerdechargement), "
                 + "tms_ordertransportinfolinedatefindechargement = COALESCE(?, l.tms_ordertransportinfolinedatefindechargement), "
                 + "tms_ordertransportinfolineclosedate = COALESCE(?, l.tms_ordertransportinfolineclosedate) "
@@ -161,10 +162,11 @@ if(transportPlan.getTransport().getInterneOrExterne()) {
                 ps.executeUpdate();
             }
             try (java.sql.PreparedStatement ps = c.prepareStatement(livraisonSql)) {
-                setTs(ps, 1, plan.getDateCommancerDechargement());
-                setTs(ps, 2, plan.getDateFinDechargement());
-                setTs(ps, 3, plan.getCloseDate());
-                ps.setLong(4, orderId);
+                setTs(ps, 1, plan.getDateArriverDestination());
+                setTs(ps, 2, plan.getDateCommancerDechargement());
+                setTs(ps, 3, plan.getDateFinDechargement());
+                setTs(ps, 4, plan.getCloseDate());
+                ps.setLong(5, orderId);
                 ps.executeUpdate();
             }
         } catch (Exception e) {
