@@ -126,19 +126,21 @@ if(transportPlan.getTransport().getInterneOrExterne()) {
      * serviceid = 2). Each leg must only receive its own operations, otherwise
      * recording e.g. "arrival at pickup" would wrongly stamp the delivery line
      * too. So we split the mirroring per line type:
-     *   - enlevement: arrival, loading start/end, close (= departure from pickup)
+     *   - enlevement: arrival, loading start/end, close (= loading finished)
      *   - livraison:  arrival at destination, unloading start/end, close (= delivered)
      * (the delivery leg's own arrival is a distinct event, not the pickup
      * arrival, so we never copy the plan's dateArriver onto it here.)
      *
-     * The pickup leg finishes when the driver departs (loading done), so its
-     * "FIN" is the departure time; the delivery leg finishes on delivery.
+     * The pickup leg's "FIN" is the moment loading finished
+     * (dateFinChargement). We deliberately do NOT use dateDepart here: that
+     * column is pre-populated with the *planned* departure at planning time,
+     * so it would stamp a FIN before the driver has done anything.
+     * dateFinChargement is only ever set by the driver's "loading finished"
+     * action, so it is a safe, real signal.
      */
     private void propagateOpsToInfoLines(long orderId, TransportPlan plan) {
-        // The pickup leg closes on departure; fall back to the order close if
-        // departure was never recorded (e.g. delivered straight away).
-        java.util.Date enlevementClose = plan.getDateDepart() != null
-                ? plan.getDateDepart() : plan.getCloseDate();
+        // The pickup leg closes when loading is finished (driver action only).
+        java.util.Date enlevementClose = plan.getDateFinChargement();
 
         // Pickup leg (enlevement) — arrival + loading + close.
         String enlevementSql = "UPDATE schema_tmsvoieexpress.tms_ordertransportinfolineinfoline l SET "
