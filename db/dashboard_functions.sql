@@ -335,3 +335,73 @@ RETURNS numeric SET search_path TO schema_tmsvoieexpress AS $$
     AND (_dash_d(p_d1) IS NULL OR tp.tms_transportplandatedepart>=_dash_d(p_d1))
     AND (_dash_d(p_d2) IS NULL OR tp.tms_transportplandatedepart<=_dash_d(p_d2));
 $$ LANGUAGE sql;
+
+-- ==== data-audit fixes (override the versions above) ====
+SET search_path TO schema_tmsvoieexpress;
+-- Fixes from the data audit:
+--  (1) "Trajets parcouru / plans effectués" must count trips actually run,
+--      not planned (CRÉE=1) or cancelled (ANNULÉ=4).
+--  (2) Kilométrage: use the order distance; when it's missing, fall back to the
+--      great-circle distance between the trajet's source and destination villes
+--      (all villes have GPS), so the km isn't lost for un-priced orders.
+
+-- great-circle km between a trajet's source and destination ville
+CREATE OR REPLACE FUNCTION _dash_trajetkm(p_trajet numeric) RETURNS numeric
+SET search_path TO schema_tmsvoieexpress AS $$
+  SELECT 6371 * acos(GREATEST(-1, LEAST(1,
+           cos(radians(vs.prm_villelatitude)) * cos(radians(vd.prm_villelatitude))
+             * cos(radians(vd.prm_villelongtitude) - radians(vs.prm_villelongtitude))
+         + sin(radians(vs.prm_villelatitude)) * sin(radians(vd.prm_villelatitude)))))
+  FROM tms_trajet tr
+  JOIN prm_ville vs ON vs.prm_villeid = tr.tms_villesournceid
+  JOIN prm_ville vd ON vd.prm_villeid = tr.tms_villedistinationid
+  WHERE tr.tms_trajetid = p_trajet;
+$$ LANGUAGE sql;
+
+CREATE OR REPLACE FUNCTION number_trajetvehicle(p_vehicle varchar, p_trajet varchar, p_cat varchar,
+       p_marque varchar, p_seniority varchar, p_d1 varchar, p_d2 varchar)
+RETURNS numeric SET search_path TO schema_tmsvoieexpress AS $$
+  SELECT count(*)::numeric FROM tms_transportplan tp
+  WHERE tp.tms_turnstatusid NOT IN (1,4)
+    AND (p_vehicle='*' OR tp.tms_gmovehicleid=NULLIF(p_vehicle,'*')::numeric)
+    AND (p_trajet ='*' OR tp.tms_transportplantrajetid=NULLIF(p_trajet,'*')::numeric)
+    AND (p_cat    ='*' OR tp.tms_vehiclecategryid=NULLIF(p_cat,'*')::numeric)
+    AND (_dash_d(p_d1) IS NULL OR tp.tms_transportplandatedepart>=_dash_d(p_d1))
+    AND (_dash_d(p_d2) IS NULL OR tp.tms_transportplandatedepart<=_dash_d(p_d2));
+$$ LANGUAGE sql;
+
+CREATE OR REPLACE FUNCTION number_trajetdriver(p_driver varchar, p_trajet varchar, p_d1 varchar, p_d2 varchar)
+RETURNS numeric SET search_path TO schema_tmsvoieexpress AS $$
+  SELECT count(*)::numeric FROM tms_transportplan tp
+  WHERE tp.tms_turnstatusid NOT IN (1,4)
+    AND (p_driver='*' OR tp.tms_gmodriverid=NULLIF(p_driver,'*')::numeric)
+    AND (p_trajet='*' OR tp.tms_transportplantrajetid=NULLIF(p_trajet,'*')::numeric)
+    AND (_dash_d(p_d1) IS NULL OR tp.tms_transportplandatedepart>=_dash_d(p_d1))
+    AND (_dash_d(p_d2) IS NULL OR tp.tms_transportplandatedepart<=_dash_d(p_d2));
+$$ LANGUAGE sql;
+
+CREATE OR REPLACE FUNCTION total_mileage_vehicle(p_vehicle varchar, p_trajet varchar, p_cat varchar,
+       p_marque varchar, p_seniority varchar, p_d1 varchar, p_d2 varchar)
+RETURNS numeric SET search_path TO schema_tmsvoieexpress AS $$
+  SELECT COALESCE(round(sum(COALESCE(ot.tms_ordertransportnumberkm, _dash_trajetkm(tp.tms_transportplantrajetid)))::numeric, 2), 0)
+  FROM tms_transportplan tp
+  JOIN tms_ordertransport ot ON ot.tms_ordertransportid = tp.tms_ordertransportid
+  WHERE tp.tms_turnstatusid NOT IN (1,4)
+    AND (p_vehicle='*' OR tp.tms_gmovehicleid=NULLIF(p_vehicle,'*')::numeric)
+    AND (p_trajet ='*' OR tp.tms_transportplantrajetid=NULLIF(p_trajet,'*')::numeric)
+    AND (p_cat    ='*' OR tp.tms_vehiclecategryid=NULLIF(p_cat,'*')::numeric)
+    AND (_dash_d(p_d1) IS NULL OR tp.tms_transportplandatedepart>=_dash_d(p_d1))
+    AND (_dash_d(p_d2) IS NULL OR tp.tms_transportplandatedepart<=_dash_d(p_d2));
+$$ LANGUAGE sql;
+
+CREATE OR REPLACE FUNCTION total_mileage_driver(p_driver varchar, p_trajet varchar, p_d1 varchar, p_d2 varchar)
+RETURNS numeric SET search_path TO schema_tmsvoieexpress AS $$
+  SELECT COALESCE(round(sum(COALESCE(ot.tms_ordertransportnumberkm, _dash_trajetkm(tp.tms_transportplantrajetid)))::numeric, 2), 0)
+  FROM tms_transportplan tp
+  JOIN tms_ordertransport ot ON ot.tms_ordertransportid = tp.tms_ordertransportid
+  WHERE tp.tms_turnstatusid NOT IN (1,4)
+    AND (p_driver='*' OR tp.tms_gmodriverid=NULLIF(p_driver,'*')::numeric)
+    AND (p_trajet='*' OR tp.tms_transportplantrajetid=NULLIF(p_trajet,'*')::numeric)
+    AND (_dash_d(p_d1) IS NULL OR tp.tms_transportplandatedepart>=_dash_d(p_d1))
+    AND (_dash_d(p_d2) IS NULL OR tp.tms_transportplandatedepart<=_dash_d(p_d2));
+$$ LANGUAGE sql;
