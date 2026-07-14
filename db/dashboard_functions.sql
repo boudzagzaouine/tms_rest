@@ -304,3 +304,34 @@ RETURNS numeric SET search_path TO schema_tmsvoieexpress AS $$
       AND (_dash_d(p_d2) IS NULL OR tp.tms_transportplandatedepart<=_dash_d(p_d2))
   ) x WHERE mins > 0;
 $$ LANGUAGE sql;
+
+-- ---- mileage: use order distance (tms_ordertransportnumberkm), not the
+--      empty odometer table — overrides the diesel-based versions above ----
+SET search_path TO schema_tmsvoieexpress;
+-- Kilométrage parcouru = sum of the order distance (tms_ordertransportnumberkm)
+-- over the driver's/vehicle's trips. (gmo_dieseldeclaration odometer is empty
+-- in this environment, so the order distance is the real, populated source.)
+
+CREATE OR REPLACE FUNCTION total_mileage_vehicle(p_vehicle varchar, p_trajet varchar, p_cat varchar,
+       p_marque varchar, p_seniority varchar, p_d1 varchar, p_d2 varchar)
+RETURNS numeric SET search_path TO schema_tmsvoieexpress AS $$
+  SELECT COALESCE(round(sum(ot.tms_ordertransportnumberkm)::numeric, 2), 0)
+  FROM tms_transportplan tp
+  JOIN tms_ordertransport ot ON ot.tms_ordertransportid = tp.tms_ordertransportid
+  WHERE (p_vehicle='*' OR tp.tms_gmovehicleid=NULLIF(p_vehicle,'*')::numeric)
+    AND (p_trajet ='*' OR tp.tms_transportplantrajetid=NULLIF(p_trajet,'*')::numeric)
+    AND (p_cat    ='*' OR tp.tms_vehiclecategryid=NULLIF(p_cat,'*')::numeric)
+    AND (_dash_d(p_d1) IS NULL OR tp.tms_transportplandatedepart>=_dash_d(p_d1))
+    AND (_dash_d(p_d2) IS NULL OR tp.tms_transportplandatedepart<=_dash_d(p_d2));
+$$ LANGUAGE sql;
+
+CREATE OR REPLACE FUNCTION total_mileage_driver(p_driver varchar, p_trajet varchar, p_d1 varchar, p_d2 varchar)
+RETURNS numeric SET search_path TO schema_tmsvoieexpress AS $$
+  SELECT COALESCE(round(sum(ot.tms_ordertransportnumberkm)::numeric, 2), 0)
+  FROM tms_transportplan tp
+  JOIN tms_ordertransport ot ON ot.tms_ordertransportid = tp.tms_ordertransportid
+  WHERE (p_driver='*' OR tp.tms_gmodriverid=NULLIF(p_driver,'*')::numeric)
+    AND (p_trajet='*' OR tp.tms_transportplantrajetid=NULLIF(p_trajet,'*')::numeric)
+    AND (_dash_d(p_d1) IS NULL OR tp.tms_transportplandatedepart>=_dash_d(p_d1))
+    AND (_dash_d(p_d2) IS NULL OR tp.tms_transportplandatedepart<=_dash_d(p_d2));
+$$ LANGUAGE sql;
