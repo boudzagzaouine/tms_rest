@@ -56,6 +56,8 @@ public class TransportPlanServiceImpl implements TransportPlanService {
     private TransportPlanLocationService transportPlanLocationService;
     @Autowired
     private VehicleService vehicleService;
+    @Autowired
+    private com.bagile.gmo.repositories.CashCollectionRepository cashCollectionRepository;
 
     public TransportPlanServiceImpl(TransportPlanRepository transportPlanRepository, DataSource dataSource) {
         this.transportPlanRepository = transportPlanRepository;
@@ -484,6 +486,56 @@ orderTransportInfoLine.setDate(transportPlanLocation.getDate());
     @Override
     public int updateLivePosition(long id, Double latitude, Double longitude) {
         return transportPlanRepository.updateLivePosition(id, latitude, longitude);
+    }
+
+    @Override
+    public Long recordCashCollection(Long transportPlanId, Integer leg, java.math.BigDecimal collectedAmount,
+                                     java.math.BigDecimal expectedAmount, String paymentTypeCode,
+                                     Long driverId, String note) {
+        com.bagile.gmo.entities.TmsCashCollection row = new com.bagile.gmo.entities.TmsCashCollection();
+        row.setTransportPlanId(transportPlanId);
+        row.setLeg(leg);
+        row.setCollectedAmount(collectedAmount);
+        row.setExpectedAmount(expectedAmount);
+        row.setPaymentTypeCode(paymentTypeCode);
+        row.setDriverId(driverId);
+        row.setNote(note);
+        row.setCollectedAt(new java.util.Date());
+        // Resolve the owning order so finance can reconcile by order without joining the plan.
+        try {
+            TransportPlan plan = findById(transportPlanId);
+            if (plan != null && plan.getOrderTransport() != null) {
+                row.setOrderTransportId(plan.getOrderTransport().getId());
+            }
+        } catch (Exception e) {
+            LOGGER.warn("cash collection {}: could not resolve order for plan {}", collectedAmount, transportPlanId);
+        }
+        return cashCollectionRepository.save(row).getId();
+    }
+
+    @Override
+    public java.util.List<java.util.Map<String, Object>> findCashCollections(Long transportPlanId) {
+        java.util.List<java.util.Map<String, Object>> out = new java.util.ArrayList<>();
+        for (com.bagile.gmo.entities.TmsCashCollection r
+                : cashCollectionRepository.findByTransportPlanId(transportPlanId)) {
+            java.util.Map<String, Object> m = new java.util.HashMap<>();
+            m.put("id", r.getId());
+            m.put("leg", r.getLeg());
+            m.put("collectedAmount", r.getCollectedAmount());
+            m.put("expectedAmount", r.getExpectedAmount());
+            m.put("paymentTypeCode", r.getPaymentTypeCode());
+            m.put("driverId", r.getDriverId());
+            m.put("collectedAt", r.getCollectedAt());
+            m.put("note", r.getNote());
+            out.add(m);
+        }
+        out.sort((a, b) -> {
+            java.util.Date da = (java.util.Date) a.get("collectedAt");
+            java.util.Date db = (java.util.Date) b.get("collectedAt");
+            if (da == null || db == null) return 0;
+            return db.compareTo(da);
+        });
+        return out;
     }
 
 }

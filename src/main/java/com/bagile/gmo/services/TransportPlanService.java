@@ -49,4 +49,12 @@ public interface TransportPlanService {
     /** Lightweight live-position update for driver tracking (updates only lat/long). */
     int updateLivePosition(long id, Double latitude, Double longitude);
 
+    /** Records cash collected by the driver at a stop; returns the new record id. */
+    Long recordCashCollection(Long transportPlanId, Integer leg, java.math.BigDecimal collectedAmount,
+                              java.math.BigDecimal expectedAmount, String paymentTypeCode,
+                              Long driverId, String note);
+
+    /** Cash collections already recorded against a plan, most recent first. */
+    java.util.List<java.util.Map<String, Object>> findCashCollections(Long transportPlanId);
+
 }
