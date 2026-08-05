@@ -242,7 +242,52 @@ if(transportPlan.getTransport().getInterneOrExterne()) {
 
     @Override
     public TransportPlan findById(Long id) throws IdNotFound {
-        return TransportPlanMapper.toDto(transportPlanRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
+        TransportPlan plan = TransportPlanMapper.toDto(
+                transportPlanRepository.findById(id).orElseThrow(() -> new IdNotFound(id)), false);
+        fillCashToCollect(plan);
+        return plan;
+    }
+
+    /**
+     * Fills the plan's "retour de fonds" summary (amount + payment type per leg) from the order's
+     * info-lines. Done with one targeted query rather than mapping the whole info-line graph onto
+     * every OrderTransport, which would bloat all order responses. Best-effort: a failure here
+     * must not break loading the plan.
+     */
+    private void fillCashToCollect(TransportPlan plan) {
+        if (plan == null || plan.getOrderTransport() == null) {
+            return;
+        }
+        String sql = "SELECT l.tms_ordertrasnportserviceid, "
+                + "l.tms_ordertransportinfolinepaymentamountenlevement, "
+                + "l.tms_ordertransportinfolinepaymentamountlivraison, "
+                + "pe.prm_paymenttypecode, pl.prm_paymenttypecode "
+                + "FROM schema_tmsvoieexpress.tms_ordertransportinfolineinfoline l "
+                + "JOIN schema_tmsvoieexpress.tms_ordertransportinfo i "
+                + "  ON i.tms_ordertransportinfoid = l.tms_ordertransportinfoid "
+                + "LEFT JOIN schema_tmsvoieexpress.prm_paymenttype pe "
+                + "  ON pe.prm_paymenttypeid = l.tms_paymenttypeenlevementid "
+                + "LEFT JOIN schema_tmsvoieexpress.prm_paymenttype pl "
+                + "  ON pl.prm_paymenttypeid = l.tms_paymenttypelivraisonid "
+                + "WHERE i.tms_ordertransport = ?";
+        try (java.sql.Connection c = dataSource.getConnection();
+             java.sql.PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setLong(1, plan.getOrderTransport().getId());
+            try (java.sql.ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    int leg = rs.getInt(1);
+                    if (leg == 1) {
+                        plan.setPaymentAmountEnlevement(rs.getBigDecimal(2));
+                        plan.setPaymentTypeEnlevement(rs.getString(4));
+                    } else if (leg == 2) {
+                        plan.setPaymentAmountLivraison(rs.getBigDecimal(3));
+                        plan.setPaymentTypeLivraison(rs.getString(5));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            LOGGER.warn("could not read cash-to-collect for plan {}", plan.getId(), e);
+        }
     }
 
     @Override

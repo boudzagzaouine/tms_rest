@@ -52,17 +52,17 @@ spring:
       # background instead of failing startup. Set to false to disable ingestion entirely.
       missing-topics-fatal: false
 
+  servlet:
+    multipart:
+      max-request-size: 25MB
+      max-file-size: 10MB
+
 # Driver-location streaming toggle. When false, the @KafkaListener does not auto-start (handy for
 # running the API without a broker); the synchronous POST /transportPlanLocations/save still works.
 tms:
   location-streaming:
     enabled: ${TMS_LOCATION_STREAMING_ENABLED:true}
     topic: driver-locations
-
-  servlet:
-    multipart:
-      max-request-size: 25MB
-      max-file-size: 10MB
 
 server:
   port: 8080

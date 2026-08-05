@@ -398,6 +398,47 @@ public class TransportPlan extends EmsDto implements Serializable {
 //        this.transportPlanServiceCatalogs = transportPlanServiceCatalogs;
 //    }
 
+    // --- Cash-to-collect ("retour de fonds") summary -------------------------------------------
+    // Flattened onto the plan so the driver app knows what to collect at each stop. The amounts
+    // themselves live on the order's info-lines (per leg), whose full graph is deliberately NOT
+    // mapped here — these four fields are filled by a targeted query in TransportPlanServiceImpl.
+    private java.math.BigDecimal paymentAmountEnlevement;
+    private String paymentTypeEnlevement;
+    private java.math.BigDecimal paymentAmountLivraison;
+    private String paymentTypeLivraison;
+
+    public java.math.BigDecimal getPaymentAmountEnlevement() {
+        return paymentAmountEnlevement;
+    }
+
+    public void setPaymentAmountEnlevement(java.math.BigDecimal paymentAmountEnlevement) {
+        this.paymentAmountEnlevement = paymentAmountEnlevement;
+    }
+
+    public String getPaymentTypeEnlevement() {
+        return paymentTypeEnlevement;
+    }
+
+    public void setPaymentTypeEnlevement(String paymentTypeEnlevement) {
+        this.paymentTypeEnlevement = paymentTypeEnlevement;
+    }
+
+    public java.math.BigDecimal getPaymentAmountLivraison() {
+        return paymentAmountLivraison;
+    }
+
+    public void setPaymentAmountLivraison(java.math.BigDecimal paymentAmountLivraison) {
+        this.paymentAmountLivraison = paymentAmountLivraison;
+    }
+
+    public String getPaymentTypeLivraison() {
+        return paymentTypeLivraison;
+    }
+
+    public void setPaymentTypeLivraison(String paymentTypeLivraison) {
+        this.paymentTypeLivraison = paymentTypeLivraison;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
