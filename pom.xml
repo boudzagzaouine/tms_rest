@@ -97,6 +97,12 @@
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
 
+        <!-- Kafka: async driver-location streaming for track & trace (version managed by the Boot BOM) -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+
         <!-- JWT (JJWT) for stateless authentication -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>

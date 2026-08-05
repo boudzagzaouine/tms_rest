@@ -179,9 +179,50 @@ if(transportPlan.getTransport().getInterneOrExterne()) {
                 ps.setLong(5, orderId);
                 ps.executeUpdate();
             }
+
+            // Also advance each leg's turnStatus — the web plan/tracking screens display the
+            // INFO-LINE status, while the driver app only writes the plan's. Same status
+            // vocabulary as the app (10 ARRIVÉ, 5 En Cours, 11/12 Fin Ch./Déch., 3 FERMÉ).
+            // Terminal/billing statuses (FERMÉ, ANNULÉ, FACTURÉ, REGLÉ, 13, 14) are never
+            // overwritten, so a manually closed/cancelled line stays put.
+            Integer enlevementStatus = legStatus(plan.getDateFinChargement(), 3,
+                    plan.getDateCommancerChargement(), 5,
+                    plan.getDateArriver(), 10,
+                    plan.getDateDepartDriver(), 5);
+            Integer livraisonStatus = plan.getCloseDate() != null ? Integer.valueOf(3)
+                    : legStatus(plan.getDateFinDechargement(), 12,
+                    plan.getDateCommancerDechargement(), 5,
+                    plan.getDateArriverDestination(), 10,
+                    plan.getDateDepart(), 5);
+            String statusSql = "UPDATE schema_tmsvoieexpress.tms_ordertransportinfolineinfoline l SET "
+                    + "tms_turnstatusid = ? "
+                    + "FROM schema_tmsvoieexpress.tms_ordertransportinfo i "
+                    + "WHERE i.tms_ordertransportinfoid = l.tms_ordertransportinfoid "
+                    + "AND i.tms_ordertransport = ? AND l.tms_ordertrasnportserviceid = ? "
+                    + "AND (l.tms_turnstatusid IS NULL OR l.tms_turnstatusid NOT IN (3, 4, 8, 9, 13, 14))";
+            for (int leg = 1; leg <= 2; leg++) {
+                Integer target = (leg == 1) ? enlevementStatus : livraisonStatus;
+                if (target == null) continue;
+                try (java.sql.PreparedStatement ps = c.prepareStatement(statusSql)) {
+                    ps.setInt(1, target);
+                    ps.setLong(2, orderId);
+                    ps.setInt(3, leg);
+                    ps.executeUpdate();
+                }
+            }
         } catch (Exception e) {
             LOGGER.warn("could not propagate operation dates to info-lines for order {}", orderId, e);
         }
+    }
+
+    /** First status whose date is set wins (most-advanced operation first). */
+    private static Integer legStatus(java.util.Date d1, int s1, java.util.Date d2, int s2,
+                                     java.util.Date d3, int s3, java.util.Date d4, int s4) {
+        if (d1 != null) return s1;
+        if (d2 != null) return s2;
+        if (d3 != null) return s3;
+        if (d4 != null) return s4;
+        return null;
     }
 
     private static void setTs(java.sql.PreparedStatement ps, int idx, java.util.Date d) throws java.sql.SQLException {

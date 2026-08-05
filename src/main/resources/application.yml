@@ -31,6 +31,34 @@ spring:
     serialization:
       fail-on-empty-beans: false
 
+  # Kafka: async driver-location streaming for track & trace. Points to the local Redpanda/Kafka
+  # broker from docker-compose.yml. Override KAFKA_BOOTSTRAP_SERVERS in other environments.
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
+    consumer:
+      group-id: tms-location-ingest
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.value.default.type: com.bagile.gmo.dto.event.DriverLocationEvent
+        spring.json.trusted.packages: com.bagile.gmo.dto.event
+    listener:
+      # Keep the app bootable when no broker is running: the listener retries the connection in the
+      # background instead of failing startup. Set to false to disable ingestion entirely.
+      missing-topics-fatal: false
+
+# Driver-location streaming toggle. When false, the @KafkaListener does not auto-start (handy for
+# running the API without a broker); the synchronous POST /transportPlanLocations/save still works.
+tms:
+  location-streaming:
+    enabled: ${TMS_LOCATION_STREAMING_ENABLED:true}
+    topic: driver-locations
+
   servlet:
     multipart:
       max-request-size: 25MB

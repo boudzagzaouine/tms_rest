@@ -1,0 +1,43 @@
+# Local Kafka broker for driver-location streaming (track & trace).
+#
+# Uses Redpanda — a single-binary, Kafka-API-compatible broker — so there is no ZooKeeper/KRaft
+# ceremony to run one node locally. The tms-rest app connects at localhost:9092 (see the
+# spring.kafka.bootstrap-servers default in application.yml).
+#
+#   docker compose up -d            # start broker + console
+#   docker compose down             # stop
+#   Console UI:  http://localhost:8081  (browse the driver-locations topic + messages)
+#
+# To point the app elsewhere:  set KAFKA_BOOTSTRAP_SERVERS=host:port before starting tms-rest.
+
+services:
+  redpanda:
+    image: redpandadata/redpanda:v24.2.7
+    container_name: tms-redpanda
+    command:
+      - redpanda
+      - start
+      - --smp=1
+      - --overprovisioned
+      - --node-id=0
+      - --kafka-addr=PLAINTEXT://0.0.0.0:29092,OUTSIDE://0.0.0.0:9092
+      # OUTSIDE is what the host (tms-rest running outside Docker) uses to reach the broker.
+      - --advertise-kafka-addr=PLAINTEXT://redpanda:29092,OUTSIDE://localhost:9092
+    ports:
+      - "9092:9092"    # Kafka API for the app on the host
+      - "9644:9644"    # Redpanda admin/metrics
+    healthcheck:
+      test: ["CMD-SHELL", "rpk cluster health | grep -q 'Healthy:.*true'"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  console:
+    image: redpandadata/console:v2.7.2
+    container_name: tms-redpanda-console
+    depends_on:
+      - redpanda
+    ports:
+      - "8081:8080"    # web UI to inspect topics/messages
+    environment:
+      KAFKA_BROKERS: redpanda:29092

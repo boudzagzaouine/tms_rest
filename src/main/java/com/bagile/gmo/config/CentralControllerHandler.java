@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import jakarta.validation.ConstraintViolationException;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
 import java.lang.reflect.InvocationTargetException;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class CentralControllerHandler {
     private final static Logger LOGGER = LoggerFactory
             .getLogger(CentralControllerHandler.class);

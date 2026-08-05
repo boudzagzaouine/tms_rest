@@ -175,18 +175,26 @@ public class CriteriaPredicate {
                 String[] split = criteria.getValue().toString().split(";");
                 ArrayList<Long> numbers = new ArrayList<Long>();
                 for (int i = 0; i < split.length; i++) {
-                    numbers.add(Long.valueOf(split[i]));
+                    try { numbers.add(Long.valueOf(split[i])); } catch (NumberFormatException ignored) { /* skip non-numeric token */ }
                 }
                 return path.in(numbers);
             } else if (criteria.getOperation().equalsIgnoreCase("!")) {
                 String[] split = criteria.getValue().toString().split(";");
                 ArrayList<Long> numbers = new ArrayList<Long>();
                 for (int i = 0; i < split.length; i++) {
-                    numbers.add(Long.valueOf(split[i]));
+                    try { numbers.add(Long.valueOf(split[i])); } catch (NumberFormatException ignored) { /* skip non-numeric token */ }
                 }
                 return path.notIn(numbers);
             } else {
-                Long valueLong = Long.parseLong(criteria.getValue().toString());
+                Long valueLong;
+                try {
+                    valueLong = Long.parseLong(criteria.getValue().toString());
+                } catch (NumberFormatException nfe) {
+                    // Invalid numeric filter value (e.g. a frontend "undefined"/"null" that slipped
+                    // through). Degrade to "matches nothing" instead of throwing and 500-ing the whole
+                    // request — an id filter with a non-numeric value can never match a real row.
+                    return path.in(new ArrayList<Long>());
+                }
                 if (criteria.getOperation().equalsIgnoreCase(":")) {
 
                     return path.eq(valueLong);

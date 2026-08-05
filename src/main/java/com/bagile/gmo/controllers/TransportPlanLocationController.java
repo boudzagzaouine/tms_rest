@@ -1,11 +1,14 @@
 package com.bagile.gmo.controllers;
 
 import com.bagile.gmo.dto.TransportPlanLocation;
+import com.bagile.gmo.dto.event.DriverLocationEvent;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
+import com.bagile.gmo.services.DriverLocationEventProducer;
 import com.bagile.gmo.services.TransportPlanLocationService;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,9 +21,12 @@ import java.util.List;
 public class TransportPlanLocationController {
 
     private final TransportPlanLocationService transportPlanLocaltionService;
+    private final DriverLocationEventProducer driverLocationEventProducer;
 
-    public TransportPlanLocationController(TransportPlanLocationService transportPlanLocaltionService) {
+    public TransportPlanLocationController(TransportPlanLocationService transportPlanLocaltionService,
+                                           DriverLocationEventProducer driverLocationEventProducer) {
         this.transportPlanLocaltionService = transportPlanLocaltionService;
+        this.driverLocationEventProducer = driverLocationEventProducer;
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/list")
@@ -82,6 +88,19 @@ public class TransportPlanLocationController {
     @ResponseBody
     public TransportPlanLocation set(@RequestBody TransportPlanLocation transportPlanLocaltion) throws IdNotFound, ErrorType, IOException, AttributesNotFound {
         return transportPlanLocaltionService.save(transportPlanLocaltion);
+    }
+
+    /**
+     * Async ingestion for driver GPS pings: publishes the location to the {@code driver-locations}
+     * Kafka topic and returns 202 immediately. The {@code DriverLocationEventConsumer} persists it
+     * off the stream. Use this from the driver app instead of {@code /save} to avoid blocking on the
+     * DB write for every high-frequency ping. Behaviour is otherwise identical to {@code /save}.
+     */
+    @PostMapping(value = "/stream", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Void> stream(@RequestBody TransportPlanLocation transportPlanLocaltion) {
+        driverLocationEventProducer.publish(DriverLocationEvent.from(transportPlanLocaltion));
+        return ResponseEntity.accepted().build();
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
