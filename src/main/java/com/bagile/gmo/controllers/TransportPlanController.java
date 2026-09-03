@@ -1,6 +1,7 @@
 package com.bagile.gmo.controllers;
 
 import com.bagile.gmo.dto.TransportPlan;
+import com.bagile.gmo.dto.TransportPlanServiceCatalog;
 import com.bagile.gmo.exceptions.AttributesNotFound;
 import com.bagile.gmo.exceptions.ErrorType;
 import com.bagile.gmo.exceptions.IdNotFound;
@@ -146,6 +147,106 @@ public class TransportPlanController {
     @ResponseBody
     public List<TransportPlan> getItineraries(@RequestParam(value = "search") String search, @RequestParam int page, @RequestParam int size) throws AttributesNotFound, ErrorType {
         return transportPlanService.getItineraries(search, page,  size);
+    }
+
+    /**
+     * Slim plan list for the driver mobile app: only the fields the app reads,
+     * filtered server-side to one driver. The full DTO graph serializes to
+     * hundreds of KB per plan (vehicle maintenance data, order graph, vehicle
+     * category), which runs the phone out of memory once the table grows — this
+     * keeps each plan to a few KB.
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/driver/{driverId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<java.util.Map<String, Object>> listForDriver(@PathVariable Long driverId) throws AttributesNotFound, ErrorType {
+        List<TransportPlan> plans = transportPlanService.find("driver.id:" + driverId);
+        List<java.util.Map<String, Object>> out = new java.util.ArrayList<java.util.Map<String, Object>>(plans.size());
+        for (TransportPlan p : plans) {
+            java.util.Map<String, Object> m = new java.util.HashMap<String, Object>();
+            m.put("id", p.getId());
+            if (p.getDriver() != null) {
+                java.util.Map<String, Object> d = new java.util.HashMap<String, Object>();
+                d.put("id", p.getDriver().getId());
+                m.put("driver", d);
+            }
+            if (p.getTurnStatus() != null) {
+                java.util.Map<String, Object> ts = new java.util.HashMap<String, Object>();
+                ts.put("id", p.getTurnStatus().getId());
+                ts.put("code", p.getTurnStatus().getCode());
+                m.put("turnStatus", ts);
+            }
+            if (p.getVehicle() != null) {
+                java.util.Map<String, Object> v = new java.util.HashMap<String, Object>();
+                v.put("id", p.getVehicle().getId());
+                v.put("code", p.getVehicle().getCode());
+                v.put("matricule", p.getVehicle().getRegistrationNumber());
+                m.put("vehicle", v);
+            }
+            if (p.getOrderTransport() != null) {
+                java.util.Map<String, Object> ot = new java.util.HashMap<String, Object>();
+                ot.put("id", p.getOrderTransport().getId());
+                ot.put("code", p.getOrderTransport().getCode());
+                ot.put("description", p.getOrderTransport().getDescription());
+                if (p.getOrderTransport().getTurnType() != null) {
+                    java.util.Map<String, Object> tt = new java.util.HashMap<String, Object>();
+                    tt.put("code", p.getOrderTransport().getTurnType().getCode());
+                    ot.put("turnType", tt);
+                }
+                if (p.getOrderTransport().getOrderTransportServiceCatalogs() != null) {
+                    List<java.util.Map<String, Object>> scs = new java.util.ArrayList<java.util.Map<String, Object>>();
+                    for (TransportPlanServiceCatalog sc : p.getOrderTransport().getOrderTransportServiceCatalogs()) {
+                        if (sc == null) continue;
+                        java.util.Map<String, Object> scm = new java.util.HashMap<String, Object>();
+                        if (sc.getProduct() != null) {
+                            java.util.Map<String, Object> prod = new java.util.HashMap<String, Object>();
+                            prod.put("code", sc.getProduct().getCode());
+                            scm.put("product", prod);
+                        }
+                        scm.put("quantity", sc.getQuantity());
+                        scs.add(scm);
+                    }
+                    ot.put("orderTransportServiceCatalogs", scs);
+                }
+                m.put("orderTransport", ot);
+            }
+            m.put("villeSource", slimVille(p.getVilleSource()));
+            m.put("villeDistination", slimVille(p.getVilleDistination()));
+            if (p.getTrajet() != null) {
+                java.util.Map<String, Object> tr = new java.util.HashMap<String, Object>();
+                tr.put("code", p.getTrajet().getCode());
+                tr.put("villeSource", slimVille(p.getTrajet().getVilleSource()));
+                tr.put("villeDestination", slimVille(p.getTrajet().getVilleDestination()));
+                m.put("trajet", tr);
+            }
+            m.put("dateDepart", p.getDateDepart());
+            m.put("dateDepartDriver", p.getDateDepartDriver());
+            m.put("closeDate", p.getCloseDate());
+            m.put("dateArriver", p.getDateArriver());
+            m.put("dateCommancerChargement", p.getDateCommancerChargement());
+            m.put("dateFinChargement", p.getDateFinChargement());
+            m.put("dateCommancerDechargement", p.getDateCommancerDechargement());
+            m.put("dateFinDechargement", p.getDateFinDechargement());
+            m.put("dateArriverDestination", p.getDateArriverDestination());
+            m.put("latitude", p.getLatitude());
+            m.put("longitude", p.getLongitude());
+            m.put("remark", p.getRemark());
+            m.put("paymentAmountEnlevement", p.getPaymentAmountEnlevement());
+            m.put("paymentTypeEnlevement", p.getPaymentTypeEnlevement());
+            m.put("paymentAmountLivraison", p.getPaymentAmountLivraison());
+            m.put("paymentTypeLivraison", p.getPaymentTypeLivraison());
+            out.add(m);
+        }
+        return out;
+    }
+
+    private static java.util.Map<String, Object> slimVille(com.bagile.gmo.dto.Ville v) {
+        if (v == null) return null;
+        java.util.Map<String, Object> m = new java.util.HashMap<String, Object>();
+        m.put("code", v.getCode());
+        m.put("description", v.getDescription());
+        m.put("latitude", v.getLatitude());
+        m.put("longitude", v.getLongitude());
+        return m;
     }
 
     /**
