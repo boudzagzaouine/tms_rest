@@ -52,17 +52,52 @@ spring:
       # background instead of failing startup. Set to false to disable ingestion entirely.
       missing-topics-fatal: false
 
+  # AI assistant: Spring AI OpenAI client pointed at Google Gemini's OpenAI-compatible endpoint.
+  # To use OpenAI instead: remove base-url and completions-path, set the model (e.g. gpt-4o-mini) and the key.
+  ai:
+    model:
+      # only the chat model is used; do not create embedding/image/audio/moderation beans
+      embedding: none
+      image: none
+      audio:
+        speech: none
+        transcription: none
+      moderation: none
+    openai:
+      api-key: ${GEMINI_API_KEY:not-set}
+      base-url: ${AI_BASE_URL:https://generativelanguage.googleapis.com/v1beta/openai}
+      chat:
+        completions-path: ${AI_COMPLETIONS_PATH:/chat/completions}
+        options:
+          model: ${AI_MODEL:gemini-3.8-flash}
+          temperature: 0.2
+          # less "thinking" = much faster answers; the tools do the heavy lifting
+          reasoning-effort: ${AI_REASONING_EFFORT:low}
+    # Fail fast instead of Spring AI's default 10 attempts with up to 3 min back-off (the user is waiting in the chat).
+    retry:
+      max-attempts: 2
+      on-client-errors: false
+      backoff:
+        initial-interval: 1s
+        multiplier: 2
+        max-interval: 4s
+
   servlet:
     multipart:
       max-request-size: 25MB
       max-file-size: 10MB
 
+# AI assistant (see com.bagile.gmo.ai): tms.assistant.* below. Disabled automatically when GEMINI_API_KEY is not set.
 # Driver-location streaming toggle. When false, the @KafkaListener does not auto-start (handy for
 # running the API without a broker); the synchronous POST /transportPlanLocations/save still works.
 tms:
   location-streaming:
     enabled: ${TMS_LOCATION_STREAMING_ENABLED:true}
     topic: driver-locations
+  assistant:
+    enabled: ${TMS_ASSISTANT_ENABLED:true}
+    api-key: ${spring.ai.openai.api-key}
+    max-messages: 20
 
 server:
   port: 8080
